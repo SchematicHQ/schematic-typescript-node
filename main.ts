@@ -1,16 +1,20 @@
+import fetch from 'node-fetch';
+
 import * as api from './src/index';
+
+const fetchApi: api.FetchAPI = fetch as unknown as api.FetchAPI;
 
 export interface SchematicClient {
   Customers: api.CustomersApi;
   Entitlements: api.EntitlementsApi;
   Events: api.EventsApi;
-};
+}
 
 export function init(apiKey: string, basePath?: string): SchematicClient {
   const headers = {
     'User-Agent': 'Schematic TypeScript NodeJS Client', // TODO version
-  }
-  const config = new api.Configuration({apiKey, basePath, headers});
+  };
+  const config = new api.Configuration({ apiKey, basePath, headers, fetchApi });
 
   return {
     Customers: new api.CustomersApi(config),
