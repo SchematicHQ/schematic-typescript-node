@@ -1,6 +1,12 @@
 import * as api from './src/index';
 
-export function init(apiKey: string, basePath?: string): any {
+interface SchematicClient {
+  Customers: api.CustomersApi;
+  Entitlements: api.EntitlementsApi;
+  Events: api.EventsApi;
+};
+
+export function init(apiKey: string, basePath?: string): SchematicClient {
   const headers = {
     'User-Agent': 'Schematic TypeScript NodeJS Client', // TODO version
   }
