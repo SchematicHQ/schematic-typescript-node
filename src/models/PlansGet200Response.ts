@@ -19,12 +19,12 @@ import {
     CustomersGet200ResponseParamsFromJSONTyped,
     CustomersGet200ResponseParamsToJSON,
 } from './CustomersGet200ResponseParams';
-import type { PlansGet200ResponseData } from './PlansGet200ResponseData';
+import type { PlansGet200ResponseDataInner } from './PlansGet200ResponseDataInner';
 import {
-    PlansGet200ResponseDataFromJSON,
-    PlansGet200ResponseDataFromJSONTyped,
-    PlansGet200ResponseDataToJSON,
-} from './PlansGet200ResponseData';
+    PlansGet200ResponseDataInnerFromJSON,
+    PlansGet200ResponseDataInnerFromJSONTyped,
+    PlansGet200ResponseDataInnerToJSON,
+} from './PlansGet200ResponseDataInner';
 
 /**
  * 
@@ -33,11 +33,11 @@ import {
  */
 export interface PlansGet200Response {
     /**
-     * 
-     * @type {PlansGet200ResponseData}
+     * The returned resource
+     * @type {Array<PlansGet200ResponseDataInner>}
      * @memberof PlansGet200Response
      */
-    data?: PlansGet200ResponseData;
+    data?: Array<PlansGet200ResponseDataInner>;
     /**
      * 
      * @type {CustomersGet200ResponseParams}
@@ -65,7 +65,7 @@ export function PlansGet200ResponseFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'data': !exists(json, 'data') ? undefined : PlansGet200ResponseDataFromJSON(json['data']),
+        'data': !exists(json, 'data') ? undefined : ((json['data'] as Array<any>).map(PlansGet200ResponseDataInnerFromJSON)),
         'params': !exists(json, 'params') ? undefined : CustomersGet200ResponseParamsFromJSON(json['params']),
     };
 }
@@ -79,7 +79,7 @@ export function PlansGet200ResponseToJSON(value?: PlansGet200Response | null): a
     }
     return {
         
-        'data': PlansGet200ResponseDataToJSON(value.data),
+        'data': value.data === undefined ? undefined : ((value.data as Array<any>).map(PlansGet200ResponseDataInnerToJSON)),
         'params': CustomersGet200ResponseParamsToJSON(value.params),
     };
 }

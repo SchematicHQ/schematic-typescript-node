@@ -19,12 +19,12 @@ import {
     CustomersGet200ResponseParamsFromJSONTyped,
     CustomersGet200ResponseParamsToJSON,
 } from './CustomersGet200ResponseParams';
-import type { FeaturesGet200ResponseData } from './FeaturesGet200ResponseData';
+import type { FeaturesGet200ResponseDataInner } from './FeaturesGet200ResponseDataInner';
 import {
-    FeaturesGet200ResponseDataFromJSON,
-    FeaturesGet200ResponseDataFromJSONTyped,
-    FeaturesGet200ResponseDataToJSON,
-} from './FeaturesGet200ResponseData';
+    FeaturesGet200ResponseDataInnerFromJSON,
+    FeaturesGet200ResponseDataInnerFromJSONTyped,
+    FeaturesGet200ResponseDataInnerToJSON,
+} from './FeaturesGet200ResponseDataInner';
 
 /**
  * 
@@ -33,11 +33,11 @@ import {
  */
 export interface FeaturesGet200Response {
     /**
-     * 
-     * @type {FeaturesGet200ResponseData}
+     * The returned resource
+     * @type {Array<FeaturesGet200ResponseDataInner>}
      * @memberof FeaturesGet200Response
      */
-    data?: FeaturesGet200ResponseData;
+    data?: Array<FeaturesGet200ResponseDataInner>;
     /**
      * 
      * @type {CustomersGet200ResponseParams}
@@ -65,7 +65,7 @@ export function FeaturesGet200ResponseFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'data': !exists(json, 'data') ? undefined : FeaturesGet200ResponseDataFromJSON(json['data']),
+        'data': !exists(json, 'data') ? undefined : ((json['data'] as Array<any>).map(FeaturesGet200ResponseDataInnerFromJSON)),
         'params': !exists(json, 'params') ? undefined : CustomersGet200ResponseParamsFromJSON(json['params']),
     };
 }
@@ -79,7 +79,7 @@ export function FeaturesGet200ResponseToJSON(value?: FeaturesGet200Response | nu
     }
     return {
         
-        'data': FeaturesGet200ResponseDataToJSON(value.data),
+        'data': value.data === undefined ? undefined : ((value.data as Array<any>).map(FeaturesGet200ResponseDataInnerToJSON)),
         'params': CustomersGet200ResponseParamsToJSON(value.params),
     };
 }

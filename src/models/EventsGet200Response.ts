@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { EventsGet200ResponseData } from './EventsGet200ResponseData';
+import type { EventsGet200ResponseDataInner } from './EventsGet200ResponseDataInner';
 import {
-    EventsGet200ResponseDataFromJSON,
-    EventsGet200ResponseDataFromJSONTyped,
-    EventsGet200ResponseDataToJSON,
-} from './EventsGet200ResponseData';
+    EventsGet200ResponseDataInnerFromJSON,
+    EventsGet200ResponseDataInnerFromJSONTyped,
+    EventsGet200ResponseDataInnerToJSON,
+} from './EventsGet200ResponseDataInner';
 import type { EventsGet200ResponseParams } from './EventsGet200ResponseParams';
 import {
     EventsGet200ResponseParamsFromJSON,
@@ -33,11 +33,11 @@ import {
  */
 export interface EventsGet200Response {
     /**
-     * 
-     * @type {EventsGet200ResponseData}
+     * The returned resource
+     * @type {Array<EventsGet200ResponseDataInner>}
      * @memberof EventsGet200Response
      */
-    data?: EventsGet200ResponseData;
+    data?: Array<EventsGet200ResponseDataInner>;
     /**
      * 
      * @type {EventsGet200ResponseParams}
@@ -65,7 +65,7 @@ export function EventsGet200ResponseFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'data': !exists(json, 'data') ? undefined : EventsGet200ResponseDataFromJSON(json['data']),
+        'data': !exists(json, 'data') ? undefined : ((json['data'] as Array<any>).map(EventsGet200ResponseDataInnerFromJSON)),
         'params': !exists(json, 'params') ? undefined : EventsGet200ResponseParamsFromJSON(json['params']),
     };
 }
@@ -79,7 +79,7 @@ export function EventsGet200ResponseToJSON(value?: EventsGet200Response | null):
     }
     return {
         
-        'data': EventsGet200ResponseDataToJSON(value.data),
+        'data': value.data === undefined ? undefined : ((value.data as Array<any>).map(EventsGet200ResponseDataInnerToJSON)),
         'params': EventsGet200ResponseParamsToJSON(value.params),
     };
 }

@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { CustomersGet200ResponseData } from './CustomersGet200ResponseData';
+import type { CustomersGet200ResponseDataInner } from './CustomersGet200ResponseDataInner';
 import {
-    CustomersGet200ResponseDataFromJSON,
-    CustomersGet200ResponseDataFromJSONTyped,
-    CustomersGet200ResponseDataToJSON,
-} from './CustomersGet200ResponseData';
+    CustomersGet200ResponseDataInnerFromJSON,
+    CustomersGet200ResponseDataInnerFromJSONTyped,
+    CustomersGet200ResponseDataInnerToJSON,
+} from './CustomersGet200ResponseDataInner';
 import type { CustomersGet200ResponseParams } from './CustomersGet200ResponseParams';
 import {
     CustomersGet200ResponseParamsFromJSON,
@@ -33,11 +33,11 @@ import {
  */
 export interface CustomersGet200Response {
     /**
-     * 
-     * @type {CustomersGet200ResponseData}
+     * The returned resource
+     * @type {Array<CustomersGet200ResponseDataInner>}
      * @memberof CustomersGet200Response
      */
-    data?: CustomersGet200ResponseData;
+    data?: Array<CustomersGet200ResponseDataInner>;
     /**
      * 
      * @type {CustomersGet200ResponseParams}
@@ -65,7 +65,7 @@ export function CustomersGet200ResponseFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
-        'data': !exists(json, 'data') ? undefined : CustomersGet200ResponseDataFromJSON(json['data']),
+        'data': !exists(json, 'data') ? undefined : ((json['data'] as Array<any>).map(CustomersGet200ResponseDataInnerFromJSON)),
         'params': !exists(json, 'params') ? undefined : CustomersGet200ResponseParamsFromJSON(json['params']),
     };
 }
@@ -79,7 +79,7 @@ export function CustomersGet200ResponseToJSON(value?: CustomersGet200Response | 
     }
     return {
         
-        'data': CustomersGet200ResponseDataToJSON(value.data),
+        'data': value.data === undefined ? undefined : ((value.data as Array<any>).map(CustomersGet200ResponseDataInnerToJSON)),
         'params': CustomersGet200ResponseParamsToJSON(value.params),
     };
 }

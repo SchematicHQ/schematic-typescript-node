@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { MetricCountsGet200ResponseData } from './MetricCountsGet200ResponseData';
+import type { MetricCountsGet200ResponseDataInner } from './MetricCountsGet200ResponseDataInner';
 import {
-    MetricCountsGet200ResponseDataFromJSON,
-    MetricCountsGet200ResponseDataFromJSONTyped,
-    MetricCountsGet200ResponseDataToJSON,
-} from './MetricCountsGet200ResponseData';
+    MetricCountsGet200ResponseDataInnerFromJSON,
+    MetricCountsGet200ResponseDataInnerFromJSONTyped,
+    MetricCountsGet200ResponseDataInnerToJSON,
+} from './MetricCountsGet200ResponseDataInner';
 import type { MetricCountsGet200ResponseParams } from './MetricCountsGet200ResponseParams';
 import {
     MetricCountsGet200ResponseParamsFromJSON,
@@ -33,11 +33,11 @@ import {
  */
 export interface MetricCountsGet200Response {
     /**
-     * 
-     * @type {MetricCountsGet200ResponseData}
+     * The returned resource
+     * @type {Array<MetricCountsGet200ResponseDataInner>}
      * @memberof MetricCountsGet200Response
      */
-    data?: MetricCountsGet200ResponseData;
+    data?: Array<MetricCountsGet200ResponseDataInner>;
     /**
      * 
      * @type {MetricCountsGet200ResponseParams}
@@ -65,7 +65,7 @@ export function MetricCountsGet200ResponseFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'data': !exists(json, 'data') ? undefined : MetricCountsGet200ResponseDataFromJSON(json['data']),
+        'data': !exists(json, 'data') ? undefined : ((json['data'] as Array<any>).map(MetricCountsGet200ResponseDataInnerFromJSON)),
         'params': !exists(json, 'params') ? undefined : MetricCountsGet200ResponseParamsFromJSON(json['params']),
     };
 }
@@ -79,7 +79,7 @@ export function MetricCountsGet200ResponseToJSON(value?: MetricCountsGet200Respo
     }
     return {
         
-        'data': MetricCountsGet200ResponseDataToJSON(value.data),
+        'data': value.data === undefined ? undefined : ((value.data as Array<any>).map(MetricCountsGet200ResponseDataInnerToJSON)),
         'params': MetricCountsGet200ResponseParamsToJSON(value.params),
     };
 }

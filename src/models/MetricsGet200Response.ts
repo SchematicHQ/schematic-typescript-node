@@ -19,12 +19,12 @@ import {
     CustomersGet200ResponseParamsFromJSONTyped,
     CustomersGet200ResponseParamsToJSON,
 } from './CustomersGet200ResponseParams';
-import type { MetricsGet200ResponseData } from './MetricsGet200ResponseData';
+import type { MetricsGet200ResponseDataInner } from './MetricsGet200ResponseDataInner';
 import {
-    MetricsGet200ResponseDataFromJSON,
-    MetricsGet200ResponseDataFromJSONTyped,
-    MetricsGet200ResponseDataToJSON,
-} from './MetricsGet200ResponseData';
+    MetricsGet200ResponseDataInnerFromJSON,
+    MetricsGet200ResponseDataInnerFromJSONTyped,
+    MetricsGet200ResponseDataInnerToJSON,
+} from './MetricsGet200ResponseDataInner';
 
 /**
  * 
@@ -33,11 +33,11 @@ import {
  */
 export interface MetricsGet200Response {
     /**
-     * 
-     * @type {MetricsGet200ResponseData}
+     * The returned resource
+     * @type {Array<MetricsGet200ResponseDataInner>}
      * @memberof MetricsGet200Response
      */
-    data?: MetricsGet200ResponseData;
+    data?: Array<MetricsGet200ResponseDataInner>;
     /**
      * 
      * @type {CustomersGet200ResponseParams}
@@ -65,7 +65,7 @@ export function MetricsGet200ResponseFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'data': !exists(json, 'data') ? undefined : MetricsGet200ResponseDataFromJSON(json['data']),
+        'data': !exists(json, 'data') ? undefined : ((json['data'] as Array<any>).map(MetricsGet200ResponseDataInnerFromJSON)),
         'params': !exists(json, 'params') ? undefined : CustomersGet200ResponseParamsFromJSON(json['params']),
     };
 }
@@ -79,7 +79,7 @@ export function MetricsGet200ResponseToJSON(value?: MetricsGet200Response | null
     }
     return {
         
-        'data': MetricsGet200ResponseDataToJSON(value.data),
+        'data': value.data === undefined ? undefined : ((value.data as Array<any>).map(MetricsGet200ResponseDataInnerToJSON)),
         'params': CustomersGet200ResponseParamsToJSON(value.params),
     };
 }
