@@ -1,6 +1,6 @@
 import * as api from './src/index';
 
-interface SchematicClient {
+export interface SchematicClient {
   Customers: api.CustomersApi;
   Entitlements: api.EntitlementsApi;
   Events: api.EventsApi;
