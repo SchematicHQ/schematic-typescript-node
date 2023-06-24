@@ -23,3 +23,4 @@ export function init(apiKey: string, basePath?: string): SchematicClient {
   };
 }
 
+export * from './src/index';
