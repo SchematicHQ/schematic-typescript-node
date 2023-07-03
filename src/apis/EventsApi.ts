@@ -16,12 +16,15 @@
 import * as runtime from '../runtime';
 import type {
   EventsGet200Response,
+  EventsIdGet200Response,
   MetricCountsGet200Response,
   MetricsGet200Response,
 } from '../models';
 import {
     EventsGet200ResponseFromJSON,
     EventsGet200ResponseToJSON,
+    EventsIdGet200ResponseFromJSON,
+    EventsIdGet200ResponseToJSON,
     MetricCountsGet200ResponseFromJSON,
     MetricCountsGet200ResponseToJSON,
     MetricsGet200ResponseFromJSON,
@@ -34,6 +37,10 @@ export interface EventsGetRequest {
     offset?: number;
     order?: string;
     dir?: string;
+}
+
+export interface EventsIdGetRequest {
+    eventId: string;
 }
 
 export interface MetricCountsGetRequest {
@@ -105,6 +112,40 @@ export class EventsApi extends runtime.BaseAPI {
      */
     async eventsGet(requestParameters: EventsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventsGet200Response> {
         const response = await this.eventsGetRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get event
+     */
+    async eventsIdGetRaw(requestParameters: EventsIdGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventsIdGet200Response>> {
+        if (requestParameters.eventId === null || requestParameters.eventId === undefined) {
+            throw new runtime.RequiredError('eventId','Required parameter requestParameters.eventId was null or undefined when calling eventsIdGet.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/events/:id`.replace(`{${"event_id"}}`, encodeURIComponent(String(requestParameters.eventId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => EventsIdGet200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get event
+     */
+    async eventsIdGet(requestParameters: EventsIdGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventsIdGet200Response> {
+        const response = await this.eventsIdGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -99,7 +99,7 @@ export class EntitlementsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Check features
+     * Check feature
      */
     async featuresIdCheckGetRaw(requestParameters: FeaturesIdCheckGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeaturesIdCheckGet200Response>> {
         if (requestParameters.featureId === null || requestParameters.featureId === undefined) {
@@ -133,7 +133,7 @@ export class EntitlementsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Check features
+     * Check feature
      */
     async featuresIdCheckGet(requestParameters: FeaturesIdCheckGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeaturesIdCheckGet200Response> {
         const response = await this.featuresIdCheckGetRaw(requestParameters, initOverrides);

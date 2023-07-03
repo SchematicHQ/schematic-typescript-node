@@ -9,6 +9,8 @@ models/CompaniesGet200ResponseParams.ts
 models/EventsGet200Response.ts
 models/EventsGet200ResponseDataInner.ts
 models/EventsGet200ResponseParams.ts
+models/EventsIdGet200Response.ts
+models/EventsIdGet200ResponseData.ts
 models/FeaturesGet200Response.ts
 models/FeaturesGet200ResponseDataInner.ts
 models/FeaturesIdCheckGet200Response.ts

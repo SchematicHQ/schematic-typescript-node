@@ -6,6 +6,8 @@ export * from './CompaniesGet200ResponseParams';
 export * from './EventsGet200Response';
 export * from './EventsGet200ResponseDataInner';
 export * from './EventsGet200ResponseParams';
+export * from './EventsIdGet200Response';
+export * from './EventsIdGet200ResponseData';
 export * from './FeaturesGet200Response';
 export * from './FeaturesGet200ResponseDataInner';
 export * from './FeaturesIdCheckGet200Response';
