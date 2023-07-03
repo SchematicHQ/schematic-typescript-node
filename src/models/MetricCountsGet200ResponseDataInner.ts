@@ -27,16 +27,16 @@ export interface MetricCountsGet200ResponseDataInner {
     accountId?: string;
     /**
      * 
+     * @type {string}
+     * @memberof MetricCountsGet200ResponseDataInner
+     */
+    companyId?: string;
+    /**
+     * 
      * @type {Date}
      * @memberof MetricCountsGet200ResponseDataInner
      */
     createdAt?: Date;
-    /**
-     * 
-     * @type {string}
-     * @memberof MetricCountsGet200ResponseDataInner
-     */
-    customerId?: string;
     /**
      * 
      * @type {string}
@@ -83,8 +83,8 @@ export function MetricCountsGet200ResponseDataInnerFromJSONTyped(json: any, igno
     return {
         
         'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
+        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
-        'customerId': !exists(json, 'customer_id') ? undefined : json['customer_id'],
         'definitionId': !exists(json, 'definition_id') ? undefined : json['definition_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'startTime': !exists(json, 'start_time') ? undefined : (new Date(json['start_time'])),
@@ -102,8 +102,8 @@ export function MetricCountsGet200ResponseDataInnerToJSON(value?: MetricCountsGe
     return {
         
         'account_id': value.accountId,
+        'company_id': value.companyId,
         'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'customer_id': value.customerId,
         'definition_id': value.definitionId,
         'id': value.id,
         'start_time': value.startTime === undefined ? undefined : (value.startTime.toISOString()),

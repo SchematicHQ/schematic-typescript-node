@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
-export * from './CustomersGet200Response';
-export * from './CustomersGet200ResponseDataInner';
-export * from './CustomersGet200ResponseParams';
+export * from './CompaniesGet200Response';
+export * from './CompaniesGet200ResponseDataInner';
+export * from './CompaniesGet200ResponseParams';
 export * from './EventsGet200Response';
 export * from './EventsGet200ResponseDataInner';
 export * from './EventsGet200ResponseParams';

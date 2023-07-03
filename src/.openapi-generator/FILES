@@ -1,11 +1,11 @@
-apis/CustomersApi.ts
+apis/CompaniesApi.ts
 apis/EntitlementsApi.ts
 apis/EventsApi.ts
 apis/index.ts
 index.ts
-models/CustomersGet200Response.ts
-models/CustomersGet200ResponseDataInner.ts
-models/CustomersGet200ResponseParams.ts
+models/CompaniesGet200Response.ts
+models/CompaniesGet200ResponseDataInner.ts
+models/CompaniesGet200ResponseParams.ts
 models/EventsGet200Response.ts
 models/EventsGet200ResponseDataInner.ts
 models/EventsGet200ResponseParams.ts

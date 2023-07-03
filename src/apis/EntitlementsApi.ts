@@ -37,7 +37,7 @@ export interface FeaturesGetRequest {
 
 export interface FeaturesIdCheckGetRequest {
     featureId: string;
-    customerId: string;
+    companyId: string;
 }
 
 export interface PlansGetRequest {
@@ -106,14 +106,14 @@ export class EntitlementsApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('featureId','Required parameter requestParameters.featureId was null or undefined when calling featuresIdCheckGet.');
         }
 
-        if (requestParameters.customerId === null || requestParameters.customerId === undefined) {
-            throw new runtime.RequiredError('customerId','Required parameter requestParameters.customerId was null or undefined when calling featuresIdCheckGet.');
+        if (requestParameters.companyId === null || requestParameters.companyId === undefined) {
+            throw new runtime.RequiredError('companyId','Required parameter requestParameters.companyId was null or undefined when calling featuresIdCheckGet.');
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.customerId !== undefined) {
-            queryParameters['customer_id'] = requestParameters.customerId;
+        if (requestParameters.companyId !== undefined) {
+            queryParameters['company_id'] = requestParameters.companyId;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

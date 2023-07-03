@@ -24,7 +24,7 @@ export interface FeaturesIdCheckGet200ResponseParams {
      * @type {string}
      * @memberof FeaturesIdCheckGet200ResponseParams
      */
-    customerId?: string;
+    companyId?: string;
 }
 
 /**
@@ -46,7 +46,7 @@ export function FeaturesIdCheckGet200ResponseParamsFromJSONTyped(json: any, igno
     }
     return {
         
-        'customerId': !exists(json, 'customer_id') ? undefined : json['customer_id'],
+        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
     };
 }
 
@@ -59,7 +59,7 @@ export function FeaturesIdCheckGet200ResponseParamsToJSON(value?: FeaturesIdChec
     }
     return {
         
-        'customer_id': value.customerId,
+        'company_id': value.companyId,
     };
 }
 
