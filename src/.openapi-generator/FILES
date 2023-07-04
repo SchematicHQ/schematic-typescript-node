@@ -7,7 +7,7 @@ models/CompaniesGet200Response.ts
 models/CompaniesGet200ResponseDataInner.ts
 models/CompaniesGet200ResponseParams.ts
 models/EventsCountGet200Response.ts
-models/EventsCountGet200ResponseDataInner.ts
+models/EventsCountGet200ResponseData.ts
 models/EventsEventIdGet200Response.ts
 models/EventsEventIdGet200ResponseData.ts
 models/EventsGet200Response.ts

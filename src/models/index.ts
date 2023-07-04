@@ -4,7 +4,7 @@ export * from './CompaniesGet200Response';
 export * from './CompaniesGet200ResponseDataInner';
 export * from './CompaniesGet200ResponseParams';
 export * from './EventsCountGet200Response';
-export * from './EventsCountGet200ResponseDataInner';
+export * from './EventsCountGet200ResponseData';
 export * from './EventsEventIdGet200Response';
 export * from './EventsEventIdGet200ResponseData';
 export * from './EventsGet200Response';

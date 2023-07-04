@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { EventsCountGet200ResponseDataInner } from './EventsCountGet200ResponseDataInner';
+import type { EventsCountGet200ResponseData } from './EventsCountGet200ResponseData';
 import {
-    EventsCountGet200ResponseDataInnerFromJSON,
-    EventsCountGet200ResponseDataInnerFromJSONTyped,
-    EventsCountGet200ResponseDataInnerToJSON,
-} from './EventsCountGet200ResponseDataInner';
+    EventsCountGet200ResponseDataFromJSON,
+    EventsCountGet200ResponseDataFromJSONTyped,
+    EventsCountGet200ResponseDataToJSON,
+} from './EventsCountGet200ResponseData';
 import type { EventsGet200ResponseParams } from './EventsGet200ResponseParams';
 import {
     EventsGet200ResponseParamsFromJSON,
@@ -33,11 +33,11 @@ import {
  */
 export interface EventsCountGet200Response {
     /**
-     * The returned resource
-     * @type {Array<EventsCountGet200ResponseDataInner>}
+     * 
+     * @type {EventsCountGet200ResponseData}
      * @memberof EventsCountGet200Response
      */
-    data?: Array<EventsCountGet200ResponseDataInner>;
+    data?: EventsCountGet200ResponseData;
     /**
      * 
      * @type {EventsGet200ResponseParams}
@@ -65,7 +65,7 @@ export function EventsCountGet200ResponseFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'data': !exists(json, 'data') ? undefined : ((json['data'] as Array<any>).map(EventsCountGet200ResponseDataInnerFromJSON)),
+        'data': !exists(json, 'data') ? undefined : EventsCountGet200ResponseDataFromJSON(json['data']),
         'params': !exists(json, 'params') ? undefined : EventsGet200ResponseParamsFromJSON(json['params']),
     };
 }
@@ -79,7 +79,7 @@ export function EventsCountGet200ResponseToJSON(value?: EventsCountGet200Respons
     }
     return {
         
-        'data': value.data === undefined ? undefined : ((value.data as Array<any>).map(EventsCountGet200ResponseDataInnerToJSON)),
+        'data': EventsCountGet200ResponseDataToJSON(value.data),
         'params': EventsGet200ResponseParamsToJSON(value.params),
     };
 }
