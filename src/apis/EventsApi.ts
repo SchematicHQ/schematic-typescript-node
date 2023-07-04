@@ -15,32 +15,45 @@
 
 import * as runtime from '../runtime';
 import type {
+  EventsCountGet200Response,
+  EventsEventIdGet200Response,
   EventsGet200Response,
-  EventsIdGet200Response,
   MetricCountsGet200Response,
   MetricsGet200Response,
 } from '../models';
 import {
+    EventsCountGet200ResponseFromJSON,
+    EventsCountGet200ResponseToJSON,
+    EventsEventIdGet200ResponseFromJSON,
+    EventsEventIdGet200ResponseToJSON,
     EventsGet200ResponseFromJSON,
     EventsGet200ResponseToJSON,
-    EventsIdGet200ResponseFromJSON,
-    EventsIdGet200ResponseToJSON,
     MetricCountsGet200ResponseFromJSON,
     MetricCountsGet200ResponseToJSON,
     MetricsGet200ResponseFromJSON,
     MetricsGet200ResponseToJSON,
 } from '../models';
 
-export interface EventsGetRequest {
+export interface EventsCountGetRequest {
     featureId?: string;
+    companyId?: string;
     limit?: number;
     offset?: number;
     order?: string;
     dir?: string;
 }
 
-export interface EventsIdGetRequest {
+export interface EventsEventIdGetRequest {
     eventId: string;
+}
+
+export interface EventsGetRequest {
+    featureId?: string;
+    companyId?: string;
+    limit?: number;
+    offset?: number;
+    order?: string;
+    dir?: string;
 }
 
 export interface MetricCountsGetRequest {
@@ -66,6 +79,94 @@ export interface MetricsGetRequest {
 export class EventsApi extends runtime.BaseAPI {
 
     /**
+     * List events/count
+     */
+    async eventsCountGetRaw(requestParameters: EventsCountGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventsCountGet200Response>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.featureId !== undefined) {
+            queryParameters['feature_id'] = requestParameters.featureId;
+        }
+
+        if (requestParameters.companyId !== undefined) {
+            queryParameters['company_id'] = requestParameters.companyId;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.order !== undefined) {
+            queryParameters['order'] = requestParameters.order;
+        }
+
+        if (requestParameters.dir !== undefined) {
+            queryParameters['dir'] = requestParameters.dir;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/events/count`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => EventsCountGet200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List events/count
+     */
+    async eventsCountGet(requestParameters: EventsCountGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventsCountGet200Response> {
+        const response = await this.eventsCountGetRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get event
+     */
+    async eventsEventIdGetRaw(requestParameters: EventsEventIdGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventsEventIdGet200Response>> {
+        if (requestParameters.eventId === null || requestParameters.eventId === undefined) {
+            throw new runtime.RequiredError('eventId','Required parameter requestParameters.eventId was null or undefined when calling eventsEventIdGet.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/events/{event_id}`.replace(`{${"event_id"}}`, encodeURIComponent(String(requestParameters.eventId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => EventsEventIdGet200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get event
+     */
+    async eventsEventIdGet(requestParameters: EventsEventIdGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventsEventIdGet200Response> {
+        const response = await this.eventsEventIdGetRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * List events
      */
     async eventsGetRaw(requestParameters: EventsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventsGet200Response>> {
@@ -73,6 +174,10 @@ export class EventsApi extends runtime.BaseAPI {
 
         if (requestParameters.featureId !== undefined) {
             queryParameters['feature_id'] = requestParameters.featureId;
+        }
+
+        if (requestParameters.companyId !== undefined) {
+            queryParameters['company_id'] = requestParameters.companyId;
         }
 
         if (requestParameters.limit !== undefined) {
@@ -112,40 +217,6 @@ export class EventsApi extends runtime.BaseAPI {
      */
     async eventsGet(requestParameters: EventsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventsGet200Response> {
         const response = await this.eventsGetRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Get event
-     */
-    async eventsIdGetRaw(requestParameters: EventsIdGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventsIdGet200Response>> {
-        if (requestParameters.eventId === null || requestParameters.eventId === undefined) {
-            throw new runtime.RequiredError('eventId','Required parameter requestParameters.eventId was null or undefined when calling eventsIdGet.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/events/:id`.replace(`{${"event_id"}}`, encodeURIComponent(String(requestParameters.eventId))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => EventsIdGet200ResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Get event
-     */
-    async eventsIdGet(requestParameters: EventsIdGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventsIdGet200Response> {
-        const response = await this.eventsIdGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

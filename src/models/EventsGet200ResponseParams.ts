@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface EventsGet200ResponseParams {
     /**
+     * 
+     * @type {string}
+     * @memberof EventsGet200ResponseParams
+     */
+    companyId?: string;
+    /**
      * Order direction
      * @type {string}
      * @memberof EventsGet200ResponseParams
@@ -70,6 +76,7 @@ export function EventsGet200ResponseParamsFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
+        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'dir': !exists(json, 'dir') ? undefined : json['dir'],
         'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
@@ -87,6 +94,7 @@ export function EventsGet200ResponseParamsToJSON(value?: EventsGet200ResponsePar
     }
     return {
         
+        'company_id': value.companyId,
         'dir': value.dir,
         'feature_id': value.featureId,
         'limit': value.limit,

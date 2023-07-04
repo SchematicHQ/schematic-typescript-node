@@ -15,29 +15,29 @@
 
 import * as runtime from '../runtime';
 import type {
+  FeaturesFeatureIdCheckGet200Response,
   FeaturesGet200Response,
-  FeaturesIdCheckGet200Response,
   PlansGet200Response,
 } from '../models';
 import {
+    FeaturesFeatureIdCheckGet200ResponseFromJSON,
+    FeaturesFeatureIdCheckGet200ResponseToJSON,
     FeaturesGet200ResponseFromJSON,
     FeaturesGet200ResponseToJSON,
-    FeaturesIdCheckGet200ResponseFromJSON,
-    FeaturesIdCheckGet200ResponseToJSON,
     PlansGet200ResponseFromJSON,
     PlansGet200ResponseToJSON,
 } from '../models';
+
+export interface FeaturesFeatureIdCheckGetRequest {
+    featureId: string;
+    companyId: string;
+}
 
 export interface FeaturesGetRequest {
     limit?: number;
     offset?: number;
     order?: string;
     dir?: string;
-}
-
-export interface FeaturesIdCheckGetRequest {
-    featureId: string;
-    companyId: string;
 }
 
 export interface PlansGetRequest {
@@ -51,6 +51,48 @@ export interface PlansGetRequest {
  * 
  */
 export class EntitlementsApi extends runtime.BaseAPI {
+
+    /**
+     * Check feature
+     */
+    async featuresFeatureIdCheckGetRaw(requestParameters: FeaturesFeatureIdCheckGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeaturesFeatureIdCheckGet200Response>> {
+        if (requestParameters.featureId === null || requestParameters.featureId === undefined) {
+            throw new runtime.RequiredError('featureId','Required parameter requestParameters.featureId was null or undefined when calling featuresFeatureIdCheckGet.');
+        }
+
+        if (requestParameters.companyId === null || requestParameters.companyId === undefined) {
+            throw new runtime.RequiredError('companyId','Required parameter requestParameters.companyId was null or undefined when calling featuresFeatureIdCheckGet.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.companyId !== undefined) {
+            queryParameters['company_id'] = requestParameters.companyId;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/features/{feature_id}/check`.replace(`{${"feature_id"}}`, encodeURIComponent(String(requestParameters.featureId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => FeaturesFeatureIdCheckGet200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Check feature
+     */
+    async featuresFeatureIdCheckGet(requestParameters: FeaturesFeatureIdCheckGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeaturesFeatureIdCheckGet200Response> {
+        const response = await this.featuresFeatureIdCheckGetRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * List features
@@ -95,48 +137,6 @@ export class EntitlementsApi extends runtime.BaseAPI {
      */
     async featuresGet(requestParameters: FeaturesGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeaturesGet200Response> {
         const response = await this.featuresGetRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Check feature
-     */
-    async featuresIdCheckGetRaw(requestParameters: FeaturesIdCheckGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeaturesIdCheckGet200Response>> {
-        if (requestParameters.featureId === null || requestParameters.featureId === undefined) {
-            throw new runtime.RequiredError('featureId','Required parameter requestParameters.featureId was null or undefined when calling featuresIdCheckGet.');
-        }
-
-        if (requestParameters.companyId === null || requestParameters.companyId === undefined) {
-            throw new runtime.RequiredError('companyId','Required parameter requestParameters.companyId was null or undefined when calling featuresIdCheckGet.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.companyId !== undefined) {
-            queryParameters['company_id'] = requestParameters.companyId;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/features/:id/check`.replace(`{${"feature_id"}}`, encodeURIComponent(String(requestParameters.featureId))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => FeaturesIdCheckGet200ResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Check feature
-     */
-    async featuresIdCheckGet(requestParameters: FeaturesIdCheckGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeaturesIdCheckGet200Response> {
-        const response = await this.featuresIdCheckGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
