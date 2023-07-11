@@ -1,6 +1,6 @@
-import fetch from 'node-fetch';
+import fetch from "node-fetch";
 
-import * as api from './src/index';
+import * as api from "./src/index";
 
 const fetchApi: api.FetchAPI = fetch as unknown as api.FetchAPI;
 
@@ -10,11 +10,25 @@ export interface Schematic {
   Events: api.EventsApi;
 }
 
-export function init(apiKey: string, basePath?: string): Schematic {
-  const headers = {
-    'User-Agent': 'Schematic TypeScript NodeJS Client', // TODO version
+export interface SchematicOptions {
+  basePath?: string;
+  environmentId?: string;
+}
+
+export function init(apiKey: string, opts?: SchematicOptions): Schematic {
+  const headers: api.HTTPHeaders = {
+    "User-Agent": "Schematic TypeScript NodeJS Client", // TODO version
   };
-  const config = new api.Configuration({ apiKey, basePath, headers, fetchApi });
+  if (opts?.environmentId) {
+    headers["X-Schematic-Environment-Id"] = opts.environmentId;
+  }
+
+  const config = new api.Configuration({
+    apiKey,
+    fetchApi,
+    headers,
+    basePath: opts?.basePath,
+  });
 
   return {
     Companies: new api.CompaniesApi(config),
@@ -23,4 +37,4 @@ export function init(apiKey: string, basePath?: string): Schematic {
   };
 }
 
-export * from './src/index';
+export * from "./src/index";
