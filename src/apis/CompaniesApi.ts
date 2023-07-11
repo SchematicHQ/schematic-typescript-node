@@ -23,6 +23,7 @@ import {
 } from '../models';
 
 export interface CompaniesGetRequest {
+    xSchematicEnvironmentId?: string;
     limit?: number;
     offset?: number;
     order?: string;
@@ -57,6 +58,10 @@ export class CompaniesApi extends runtime.BaseAPI {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
 
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication

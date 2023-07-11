@@ -35,8 +35,9 @@ import {
 } from '../models';
 
 export interface EventsCountGetRequest {
-    featureId?: string;
+    xSchematicEnvironmentId?: string;
     companyId?: string;
+    featureId?: string;
     limit?: number;
     offset?: number;
     order?: string;
@@ -45,11 +46,13 @@ export interface EventsCountGetRequest {
 
 export interface EventsEventIdGetRequest {
     eventId: string;
+    xSchematicEnvironmentId?: string;
 }
 
 export interface EventsGetRequest {
-    featureId?: string;
+    xSchematicEnvironmentId?: string;
     companyId?: string;
+    featureId?: string;
     limit?: number;
     offset?: number;
     order?: string;
@@ -57,6 +60,7 @@ export interface EventsGetRequest {
 }
 
 export interface MetricCountsGetRequest {
+    xSchematicEnvironmentId?: string;
     definitionId?: string;
     startTime?: Date;
     endTime?: Date;
@@ -67,6 +71,7 @@ export interface MetricCountsGetRequest {
 }
 
 export interface MetricsGetRequest {
+    xSchematicEnvironmentId?: string;
     limit?: number;
     offset?: number;
     order?: string;
@@ -84,12 +89,12 @@ export class EventsApi extends runtime.BaseAPI {
     async eventsCountGetRaw(requestParameters: EventsCountGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventsCountGet200Response>> {
         const queryParameters: any = {};
 
-        if (requestParameters.featureId !== undefined) {
-            queryParameters['feature_id'] = requestParameters.featureId;
-        }
-
         if (requestParameters.companyId !== undefined) {
             queryParameters['company_id'] = requestParameters.companyId;
+        }
+
+        if (requestParameters.featureId !== undefined) {
+            queryParameters['feature_id'] = requestParameters.featureId;
         }
 
         if (requestParameters.limit !== undefined) {
@@ -109,6 +114,10 @@ export class EventsApi extends runtime.BaseAPI {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
 
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
@@ -144,6 +153,10 @@ export class EventsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
@@ -172,12 +185,12 @@ export class EventsApi extends runtime.BaseAPI {
     async eventsGetRaw(requestParameters: EventsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventsGet200Response>> {
         const queryParameters: any = {};
 
-        if (requestParameters.featureId !== undefined) {
-            queryParameters['feature_id'] = requestParameters.featureId;
-        }
-
         if (requestParameters.companyId !== undefined) {
             queryParameters['company_id'] = requestParameters.companyId;
+        }
+
+        if (requestParameters.featureId !== undefined) {
+            queryParameters['feature_id'] = requestParameters.featureId;
         }
 
         if (requestParameters.limit !== undefined) {
@@ -197,6 +210,10 @@ export class EventsApi extends runtime.BaseAPI {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
 
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
@@ -256,6 +273,10 @@ export class EventsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
@@ -301,6 +322,10 @@ export class EventsApi extends runtime.BaseAPI {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
 
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
