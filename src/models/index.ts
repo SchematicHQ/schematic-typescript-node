@@ -20,5 +20,6 @@ export * from './MetricCountsGet200ResponseDataInner';
 export * from './MetricCountsGet200ResponseParams';
 export * from './MetricsGet200Response';
 export * from './MetricsGet200ResponseDataInner';
+export * from './ModelError';
 export * from './PlansGet200Response';
 export * from './PlansGet200ResponseDataInner';

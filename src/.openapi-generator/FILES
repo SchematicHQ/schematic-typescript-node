@@ -23,6 +23,7 @@ models/MetricCountsGet200ResponseDataInner.ts
 models/MetricCountsGet200ResponseParams.ts
 models/MetricsGet200Response.ts
 models/MetricsGet200ResponseDataInner.ts
+models/ModelError.ts
 models/PlansGet200Response.ts
 models/PlansGet200ResponseDataInner.ts
 models/index.ts
