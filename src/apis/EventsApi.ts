@@ -15,26 +15,26 @@
 
 import * as runtime from '../runtime';
 import type {
-  EventsCountGet200Response,
-  EventsEventIdGet200Response,
-  EventsGet200Response,
-  MetricCountsGet200Response,
-  MetricsGet200Response,
+  CountEventsCount200Response,
+  GetEvent200Response,
+  ListEvents200Response,
+  ListMetricCounts200Response,
+  ListMetrics200Response,
 } from '../models';
 import {
-    EventsCountGet200ResponseFromJSON,
-    EventsCountGet200ResponseToJSON,
-    EventsEventIdGet200ResponseFromJSON,
-    EventsEventIdGet200ResponseToJSON,
-    EventsGet200ResponseFromJSON,
-    EventsGet200ResponseToJSON,
-    MetricCountsGet200ResponseFromJSON,
-    MetricCountsGet200ResponseToJSON,
-    MetricsGet200ResponseFromJSON,
-    MetricsGet200ResponseToJSON,
+    CountEventsCount200ResponseFromJSON,
+    CountEventsCount200ResponseToJSON,
+    GetEvent200ResponseFromJSON,
+    GetEvent200ResponseToJSON,
+    ListEvents200ResponseFromJSON,
+    ListEvents200ResponseToJSON,
+    ListMetricCounts200ResponseFromJSON,
+    ListMetricCounts200ResponseToJSON,
+    ListMetrics200ResponseFromJSON,
+    ListMetrics200ResponseToJSON,
 } from '../models';
 
-export interface EventsCountGetRequest {
+export interface CountEventsCountRequest {
     xSchematicEnvironmentId?: string;
     companyId?: string;
     featureId?: string;
@@ -44,12 +44,12 @@ export interface EventsCountGetRequest {
     dir?: string;
 }
 
-export interface EventsEventIdGetRequest {
+export interface GetEventRequest {
     eventId: string;
     xSchematicEnvironmentId?: string;
 }
 
-export interface EventsGetRequest {
+export interface ListEventsRequest {
     xSchematicEnvironmentId?: string;
     companyId?: string;
     featureId?: string;
@@ -59,7 +59,7 @@ export interface EventsGetRequest {
     dir?: string;
 }
 
-export interface MetricCountsGetRequest {
+export interface ListMetricCountsRequest {
     xSchematicEnvironmentId?: string;
     definitionId?: string;
     startTime?: Date;
@@ -70,7 +70,7 @@ export interface MetricCountsGetRequest {
     dir?: string;
 }
 
-export interface MetricsGetRequest {
+export interface ListMetricsRequest {
     xSchematicEnvironmentId?: string;
     limit?: number;
     offset?: number;
@@ -86,7 +86,7 @@ export class EventsApi extends runtime.BaseAPI {
     /**
      * List events/count
      */
-    async eventsCountGetRaw(requestParameters: EventsCountGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventsCountGet200Response>> {
+    async countEventsCountRaw(requestParameters: CountEventsCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountEventsCount200Response>> {
         const queryParameters: any = {};
 
         if (requestParameters.companyId !== undefined) {
@@ -130,23 +130,23 @@ export class EventsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => EventsCountGet200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountEventsCount200ResponseFromJSON(jsonValue));
     }
 
     /**
      * List events/count
      */
-    async eventsCountGet(requestParameters: EventsCountGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventsCountGet200Response> {
-        const response = await this.eventsCountGetRaw(requestParameters, initOverrides);
+    async countEventsCount(requestParameters: CountEventsCountRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountEventsCount200Response> {
+        const response = await this.countEventsCountRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      * Get event
      */
-    async eventsEventIdGetRaw(requestParameters: EventsEventIdGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventsEventIdGet200Response>> {
+    async getEventRaw(requestParameters: GetEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEvent200Response>> {
         if (requestParameters.eventId === null || requestParameters.eventId === undefined) {
-            throw new runtime.RequiredError('eventId','Required parameter requestParameters.eventId was null or undefined when calling eventsEventIdGet.');
+            throw new runtime.RequiredError('eventId','Required parameter requestParameters.eventId was null or undefined when calling getEvent.');
         }
 
         const queryParameters: any = {};
@@ -168,21 +168,21 @@ export class EventsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => EventsEventIdGet200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetEvent200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Get event
      */
-    async eventsEventIdGet(requestParameters: EventsEventIdGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventsEventIdGet200Response> {
-        const response = await this.eventsEventIdGetRaw(requestParameters, initOverrides);
+    async getEvent(requestParameters: GetEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEvent200Response> {
+        const response = await this.getEventRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      * List events
      */
-    async eventsGetRaw(requestParameters: EventsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventsGet200Response>> {
+    async listEventsRaw(requestParameters: ListEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListEvents200Response>> {
         const queryParameters: any = {};
 
         if (requestParameters.companyId !== undefined) {
@@ -226,21 +226,21 @@ export class EventsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => EventsGet200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListEvents200ResponseFromJSON(jsonValue));
     }
 
     /**
      * List events
      */
-    async eventsGet(requestParameters: EventsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventsGet200Response> {
-        const response = await this.eventsGetRaw(requestParameters, initOverrides);
+    async listEvents(requestParameters: ListEventsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListEvents200Response> {
+        const response = await this.listEventsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      * List metric-counts
      */
-    async metricCountsGetRaw(requestParameters: MetricCountsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MetricCountsGet200Response>> {
+    async listMetricCountsRaw(requestParameters: ListMetricCountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListMetricCounts200Response>> {
         const queryParameters: any = {};
 
         if (requestParameters.definitionId !== undefined) {
@@ -288,21 +288,21 @@ export class EventsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => MetricCountsGet200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListMetricCounts200ResponseFromJSON(jsonValue));
     }
 
     /**
      * List metric-counts
      */
-    async metricCountsGet(requestParameters: MetricCountsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MetricCountsGet200Response> {
-        const response = await this.metricCountsGetRaw(requestParameters, initOverrides);
+    async listMetricCounts(requestParameters: ListMetricCountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListMetricCounts200Response> {
+        const response = await this.listMetricCountsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      * List metrics
      */
-    async metricsGetRaw(requestParameters: MetricsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MetricsGet200Response>> {
+    async listMetricsRaw(requestParameters: ListMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListMetrics200Response>> {
         const queryParameters: any = {};
 
         if (requestParameters.limit !== undefined) {
@@ -338,14 +338,14 @@ export class EventsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => MetricsGet200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListMetrics200ResponseFromJSON(jsonValue));
     }
 
     /**
      * List metrics
      */
-    async metricsGet(requestParameters: MetricsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MetricsGet200Response> {
-        const response = await this.metricsGetRaw(requestParameters, initOverrides);
+    async listMetrics(requestParameters: ListMetricsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListMetrics200Response> {
+        const response = await this.listMetricsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

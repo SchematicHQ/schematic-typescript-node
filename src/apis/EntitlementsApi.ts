@@ -15,26 +15,26 @@
 
 import * as runtime from '../runtime';
 import type {
-  FeaturesFeatureIdCheckGet200Response,
-  FeaturesGet200Response,
-  PlansGet200Response,
+  CheckFeature200Response,
+  ListFeatures200Response,
+  ListPlans200Response,
 } from '../models';
 import {
-    FeaturesFeatureIdCheckGet200ResponseFromJSON,
-    FeaturesFeatureIdCheckGet200ResponseToJSON,
-    FeaturesGet200ResponseFromJSON,
-    FeaturesGet200ResponseToJSON,
-    PlansGet200ResponseFromJSON,
-    PlansGet200ResponseToJSON,
+    CheckFeature200ResponseFromJSON,
+    CheckFeature200ResponseToJSON,
+    ListFeatures200ResponseFromJSON,
+    ListFeatures200ResponseToJSON,
+    ListPlans200ResponseFromJSON,
+    ListPlans200ResponseToJSON,
 } from '../models';
 
-export interface FeaturesFeatureIdCheckGetRequest {
+export interface CheckFeatureRequest {
     featureId: string;
     companyId: string;
     xSchematicEnvironmentId?: string;
 }
 
-export interface FeaturesGetRequest {
+export interface ListFeaturesRequest {
     xSchematicEnvironmentId?: string;
     limit?: number;
     offset?: number;
@@ -42,7 +42,7 @@ export interface FeaturesGetRequest {
     dir?: string;
 }
 
-export interface PlansGetRequest {
+export interface ListPlansRequest {
     xSchematicEnvironmentId?: string;
     limit?: number;
     offset?: number;
@@ -58,13 +58,13 @@ export class EntitlementsApi extends runtime.BaseAPI {
     /**
      * Check feature
      */
-    async featuresFeatureIdCheckGetRaw(requestParameters: FeaturesFeatureIdCheckGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeaturesFeatureIdCheckGet200Response>> {
+    async checkFeatureRaw(requestParameters: CheckFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckFeature200Response>> {
         if (requestParameters.featureId === null || requestParameters.featureId === undefined) {
-            throw new runtime.RequiredError('featureId','Required parameter requestParameters.featureId was null or undefined when calling featuresFeatureIdCheckGet.');
+            throw new runtime.RequiredError('featureId','Required parameter requestParameters.featureId was null or undefined when calling checkFeature.');
         }
 
         if (requestParameters.companyId === null || requestParameters.companyId === undefined) {
-            throw new runtime.RequiredError('companyId','Required parameter requestParameters.companyId was null or undefined when calling featuresFeatureIdCheckGet.');
+            throw new runtime.RequiredError('companyId','Required parameter requestParameters.companyId was null or undefined when calling checkFeature.');
         }
 
         const queryParameters: any = {};
@@ -90,21 +90,21 @@ export class EntitlementsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => FeaturesFeatureIdCheckGet200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CheckFeature200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Check feature
      */
-    async featuresFeatureIdCheckGet(requestParameters: FeaturesFeatureIdCheckGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeaturesFeatureIdCheckGet200Response> {
-        const response = await this.featuresFeatureIdCheckGetRaw(requestParameters, initOverrides);
+    async checkFeature(requestParameters: CheckFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CheckFeature200Response> {
+        const response = await this.checkFeatureRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      * List features
      */
-    async featuresGetRaw(requestParameters: FeaturesGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FeaturesGet200Response>> {
+    async listFeaturesRaw(requestParameters: ListFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFeatures200Response>> {
         const queryParameters: any = {};
 
         if (requestParameters.limit !== undefined) {
@@ -140,21 +140,21 @@ export class EntitlementsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => FeaturesGet200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListFeatures200ResponseFromJSON(jsonValue));
     }
 
     /**
      * List features
      */
-    async featuresGet(requestParameters: FeaturesGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FeaturesGet200Response> {
-        const response = await this.featuresGetRaw(requestParameters, initOverrides);
+    async listFeatures(requestParameters: ListFeaturesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListFeatures200Response> {
+        const response = await this.listFeaturesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      * List plans
      */
-    async plansGetRaw(requestParameters: PlansGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlansGet200Response>> {
+    async listPlansRaw(requestParameters: ListPlansRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListPlans200Response>> {
         const queryParameters: any = {};
 
         if (requestParameters.limit !== undefined) {
@@ -190,14 +190,14 @@ export class EntitlementsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PlansGet200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListPlans200ResponseFromJSON(jsonValue));
     }
 
     /**
      * List plans
      */
-    async plansGet(requestParameters: PlansGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlansGet200Response> {
-        const response = await this.plansGetRaw(requestParameters, initOverrides);
+    async listPlans(requestParameters: ListPlansRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListPlans200Response> {
+        const response = await this.listPlansRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -15,14 +15,14 @@
 
 import * as runtime from '../runtime';
 import type {
-  CompaniesGet200Response,
+  ListCompanies200Response,
 } from '../models';
 import {
-    CompaniesGet200ResponseFromJSON,
-    CompaniesGet200ResponseToJSON,
+    ListCompanies200ResponseFromJSON,
+    ListCompanies200ResponseToJSON,
 } from '../models';
 
-export interface CompaniesGetRequest {
+export interface ListCompaniesRequest {
     xSchematicEnvironmentId?: string;
     limit?: number;
     offset?: number;
@@ -38,7 +38,7 @@ export class CompaniesApi extends runtime.BaseAPI {
     /**
      * List companies
      */
-    async companiesGetRaw(requestParameters: CompaniesGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CompaniesGet200Response>> {
+    async listCompaniesRaw(requestParameters: ListCompaniesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListCompanies200Response>> {
         const queryParameters: any = {};
 
         if (requestParameters.limit !== undefined) {
@@ -74,14 +74,14 @@ export class CompaniesApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CompaniesGet200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListCompanies200ResponseFromJSON(jsonValue));
     }
 
     /**
      * List companies
      */
-    async companiesGet(requestParameters: CompaniesGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CompaniesGet200Response> {
-        const response = await this.companiesGetRaw(requestParameters, initOverrides);
+    async listCompanies(requestParameters: ListCompaniesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListCompanies200Response> {
+        const response = await this.listCompaniesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
