@@ -6,8 +6,8 @@ index.ts
 models/CheckFeature200Response.ts
 models/CheckFeature200ResponseData.ts
 models/CheckFeature200ResponseParams.ts
-models/CountEventsCount200Response.ts
-models/CountEventsCount200ResponseData.ts
+models/CountEvents200Response.ts
+models/CountEvents200ResponseData.ts
 models/GetEvent200Response.ts
 models/GetEvent200ResponseData.ts
 models/ListCompanies200Response.ts
