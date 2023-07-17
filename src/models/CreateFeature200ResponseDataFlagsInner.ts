@@ -16,67 +16,67 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface ListFeatures200ResponseDataInner
+ * @interface CreateFeature200ResponseDataFlagsInner
  */
-export interface ListFeatures200ResponseDataInner {
+export interface CreateFeature200ResponseDataFlagsInner {
     /**
      * 
      * @type {string}
-     * @memberof ListFeatures200ResponseDataInner
+     * @memberof CreateFeature200ResponseDataFlagsInner
      */
     accountId?: string;
     /**
      * 
      * @type {Date}
-     * @memberof ListFeatures200ResponseDataInner
+     * @memberof CreateFeature200ResponseDataFlagsInner
      */
     createdAt?: Date;
     /**
      * 
      * @type {string}
-     * @memberof ListFeatures200ResponseDataInner
+     * @memberof CreateFeature200ResponseDataFlagsInner
      */
-    description?: string;
+    featureId?: string;
     /**
      * 
      * @type {string}
-     * @memberof ListFeatures200ResponseDataInner
+     * @memberof CreateFeature200ResponseDataFlagsInner
+     */
+    flagType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeature200ResponseDataFlagsInner
      */
     id?: string;
     /**
      * 
      * @type {string}
-     * @memberof ListFeatures200ResponseDataInner
+     * @memberof CreateFeature200ResponseDataFlagsInner
      */
-    lifecyclePhase?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListFeatures200ResponseDataInner
-     */
-    name?: string;
+    key?: string;
     /**
      * 
      * @type {Date}
-     * @memberof ListFeatures200ResponseDataInner
+     * @memberof CreateFeature200ResponseDataFlagsInner
      */
     updatedAt?: Date;
 }
 
 /**
- * Check if a given object implements the ListFeatures200ResponseDataInner interface.
+ * Check if a given object implements the CreateFeature200ResponseDataFlagsInner interface.
  */
-export function instanceOfListFeatures200ResponseDataInner(value: object): boolean {
+export function instanceOfCreateFeature200ResponseDataFlagsInner(value: object): boolean {
     let isInstance = true;
 
     return isInstance;
 }
 
-export function ListFeatures200ResponseDataInnerFromJSON(json: any): ListFeatures200ResponseDataInner {
-    return ListFeatures200ResponseDataInnerFromJSONTyped(json, false);
+export function CreateFeature200ResponseDataFlagsInnerFromJSON(json: any): CreateFeature200ResponseDataFlagsInner {
+    return CreateFeature200ResponseDataFlagsInnerFromJSONTyped(json, false);
 }
 
-export function ListFeatures200ResponseDataInnerFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListFeatures200ResponseDataInner {
+export function CreateFeature200ResponseDataFlagsInnerFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateFeature200ResponseDataFlagsInner {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -84,15 +84,15 @@ export function ListFeatures200ResponseDataInnerFromJSONTyped(json: any, ignoreD
         
         'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
         'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
-        'description': !exists(json, 'description') ? undefined : json['description'],
+        'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
+        'flagType': !exists(json, 'flag_type') ? undefined : json['flag_type'],
         'id': !exists(json, 'id') ? undefined : json['id'],
-        'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
+        'key': !exists(json, 'key') ? undefined : json['key'],
         'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
     };
 }
 
-export function ListFeatures200ResponseDataInnerToJSON(value?: ListFeatures200ResponseDataInner | null): any {
+export function CreateFeature200ResponseDataFlagsInnerToJSON(value?: CreateFeature200ResponseDataFlagsInner | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -103,10 +103,10 @@ export function ListFeatures200ResponseDataInnerToJSON(value?: ListFeatures200Re
         
         'account_id': value.accountId,
         'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'description': value.description,
+        'feature_id': value.featureId,
+        'flag_type': value.flagType,
         'id': value.id,
-        'lifecycle_phase': value.lifecyclePhase,
-        'name': value.name,
+        'key': value.key,
         'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
     };
 }

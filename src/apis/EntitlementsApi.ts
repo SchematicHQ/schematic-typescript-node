@@ -16,14 +16,11 @@
 import * as runtime from '../runtime';
 import type {
   CheckFeature200Response,
-  ListFeatures200Response,
   ListPlans200Response,
 } from '../models';
 import {
     CheckFeature200ResponseFromJSON,
     CheckFeature200ResponseToJSON,
-    ListFeatures200ResponseFromJSON,
-    ListFeatures200ResponseToJSON,
     ListPlans200ResponseFromJSON,
     ListPlans200ResponseToJSON,
 } from '../models';
@@ -32,14 +29,6 @@ export interface CheckFeatureRequest {
     featureId: string;
     companyId: string;
     xSchematicEnvironmentId?: string;
-}
-
-export interface ListFeaturesRequest {
-    xSchematicEnvironmentId?: string;
-    limit?: number;
-    offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface ListPlansRequest {
@@ -98,56 +87,6 @@ export class EntitlementsApi extends runtime.BaseAPI {
      */
     async checkFeature(requestParameters: CheckFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CheckFeature200Response> {
         const response = await this.checkFeatureRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * List features
-     */
-    async listFeaturesRaw(requestParameters: ListFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFeatures200Response>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
-        }
-
-        if (requestParameters.offset !== undefined) {
-            queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/features`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ListFeatures200ResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * List features
-     */
-    async listFeatures(requestParameters: ListFeaturesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListFeatures200Response> {
-        const response = await this.listFeaturesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

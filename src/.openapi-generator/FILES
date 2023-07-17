@@ -1,6 +1,7 @@
 apis/CompaniesApi.ts
 apis/EntitlementsApi.ts
 apis/EventsApi.ts
+apis/FeaturesApi.ts
 apis/index.ts
 index.ts
 models/CheckFeature200Response.ts
@@ -8,8 +9,16 @@ models/CheckFeature200ResponseData.ts
 models/CheckFeature200ResponseParams.ts
 models/CountEvents200Response.ts
 models/CountEvents200ResponseData.ts
+models/CreateFeature200Response.ts
+models/CreateFeature200ResponseData.ts
+models/CreateFeature200ResponseDataFlagsInner.ts
+models/CreateFeatureRequest.ts
+models/CreateFeatureRequestFlag.ts
+models/DeleteFeature200Response.ts
+models/DeleteFeature200ResponseData.ts
 models/GetEvent200Response.ts
 models/GetEvent200ResponseData.ts
+models/GetFeature200Response.ts
 models/ListCompanies200Response.ts
 models/ListCompanies200ResponseDataInner.ts
 models/ListCompanies200ResponseParams.ts
@@ -26,5 +35,6 @@ models/ListMetrics200ResponseDataInner.ts
 models/ListPlans200Response.ts
 models/ListPlans200ResponseDataInner.ts
 models/ModelError.ts
+models/UpdateFeatureRequest.ts
 models/index.ts
 runtime.ts
