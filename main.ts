@@ -8,6 +8,7 @@ export interface Schematic {
   Companies: api.CompaniesApi;
   Entitlements: api.EntitlementsApi;
   Events: api.EventsApi;
+  Features: api.FeaturesApi;
 }
 
 export interface SchematicOptions {
@@ -34,6 +35,7 @@ export function init(apiKey: string, opts?: SchematicOptions): Schematic {
     Companies: new api.CompaniesApi(config),
     Entitlements: new api.EntitlementsApi(config),
     Events: new api.EventsApi(config),
+    Features: new api.FeaturesApi(config),
   };
 }
 
