@@ -36,6 +36,12 @@ export interface ListEvents200ResponseParams {
      * @type {string}
      * @memberof ListEvents200ResponseParams
      */
+    eventSubtype?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListEvents200ResponseParams
+     */
     featureId?: string;
     /**
      * Page limit (default 100)
@@ -78,6 +84,7 @@ export function ListEvents200ResponseParamsFromJSONTyped(json: any, ignoreDiscri
         
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'dir': !exists(json, 'dir') ? undefined : json['dir'],
+        'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
         'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'offset': !exists(json, 'offset') ? undefined : json['offset'],
@@ -96,6 +103,7 @@ export function ListEvents200ResponseParamsToJSON(value?: ListEvents200ResponseP
         
         'company_id': value.companyId,
         'dir': value.dir,
+        'event_subtype': value.eventSubtype,
         'feature_id': value.featureId,
         'limit': value.limit,
         'offset': value.offset,

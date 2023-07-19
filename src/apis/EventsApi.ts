@@ -44,6 +44,7 @@ export interface CountEventsRequest {
     xSchematicEnvironmentId?: string;
     companyId?: string;
     featureId?: string;
+    eventSubtype?: string;
     limit?: number;
     offset?: number;
     order?: string;
@@ -73,6 +74,7 @@ export interface ListEventsRequest {
     xSchematicEnvironmentId?: string;
     companyId?: string;
     featureId?: string;
+    eventSubtype?: string;
     limit?: number;
     offset?: number;
     order?: string;
@@ -115,6 +117,10 @@ export class EventsApi extends runtime.BaseAPI {
 
         if (requestParameters.featureId !== undefined) {
             queryParameters['feature_id'] = requestParameters.featureId;
+        }
+
+        if (requestParameters.eventSubtype !== undefined) {
+            queryParameters['event_subtype'] = requestParameters.eventSubtype;
         }
 
         if (requestParameters.limit !== undefined) {
@@ -220,7 +226,7 @@ export class EventsApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/event-types/:key`.replace(`{${"key"}}`, encodeURIComponent(String(requestParameters.key))),
+            path: `/event-types/{key}`.replace(`{${"key"}}`, encodeURIComponent(String(requestParameters.key))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -303,6 +309,10 @@ export class EventsApi extends runtime.BaseAPI {
 
         if (requestParameters.featureId !== undefined) {
             queryParameters['feature_id'] = requestParameters.featureId;
+        }
+
+        if (requestParameters.eventSubtype !== undefined) {
+            queryParameters['event_subtype'] = requestParameters.eventSubtype;
         }
 
         if (requestParameters.limit !== undefined) {
