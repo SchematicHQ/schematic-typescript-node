@@ -17,6 +17,8 @@ import * as runtime from '../runtime';
 import type {
   CountEvents200Response,
   GetEvent200Response,
+  GetEventType200Response,
+  ListEventTypes200Response,
   ListEvents200Response,
   ListMetricCounts200Response,
   ListMetrics200Response,
@@ -26,6 +28,10 @@ import {
     CountEvents200ResponseToJSON,
     GetEvent200ResponseFromJSON,
     GetEvent200ResponseToJSON,
+    GetEventType200ResponseFromJSON,
+    GetEventType200ResponseToJSON,
+    ListEventTypes200ResponseFromJSON,
+    ListEventTypes200ResponseToJSON,
     ListEvents200ResponseFromJSON,
     ListEvents200ResponseToJSON,
     ListMetricCounts200ResponseFromJSON,
@@ -47,6 +53,20 @@ export interface CountEventsRequest {
 export interface GetEventRequest {
     eventId: string;
     xSchematicEnvironmentId?: string;
+}
+
+export interface GetEventTypeRequest {
+    key: string;
+    xSchematicEnvironmentId?: string;
+}
+
+export interface ListEventTypesRequest {
+    xSchematicEnvironmentId?: string;
+    q?: string;
+    limit?: number;
+    offset?: number;
+    order?: string;
+    dir?: string;
 }
 
 export interface ListEventsRequest {
@@ -180,6 +200,98 @@ export class EventsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Get event type
+     */
+    async getEventTypeRaw(requestParameters: GetEventTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEventType200Response>> {
+        if (requestParameters.key === null || requestParameters.key === undefined) {
+            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling getEventType.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/event-types/:key`.replace(`{${"key"}}`, encodeURIComponent(String(requestParameters.key))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetEventType200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get event type
+     */
+    async getEventType(requestParameters: GetEventTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEventType200Response> {
+        const response = await this.getEventTypeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List event types
+     */
+    async listEventTypesRaw(requestParameters: ListEventTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListEventTypes200Response>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.q !== undefined) {
+            queryParameters['q'] = requestParameters.q;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.order !== undefined) {
+            queryParameters['order'] = requestParameters.order;
+        }
+
+        if (requestParameters.dir !== undefined) {
+            queryParameters['dir'] = requestParameters.dir;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/event-types`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListEventTypes200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List event types
+     */
+    async listEventTypes(requestParameters: ListEventTypesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListEventTypes200Response> {
+        const response = await this.listEventTypesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * List events
      */
     async listEventsRaw(requestParameters: ListEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListEvents200Response>> {
@@ -238,7 +350,7 @@ export class EventsApi extends runtime.BaseAPI {
     }
 
     /**
-     * List metric-counts
+     * List metric counts
      */
     async listMetricCountsRaw(requestParameters: ListMetricCountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListMetricCounts200Response>> {
         const queryParameters: any = {};
@@ -292,7 +404,7 @@ export class EventsApi extends runtime.BaseAPI {
     }
 
     /**
-     * List metric-counts
+     * List metric counts
      */
     async listMetricCounts(requestParameters: ListMetricCountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListMetricCounts200Response> {
         const response = await this.listMetricCountsRaw(requestParameters, initOverrides);

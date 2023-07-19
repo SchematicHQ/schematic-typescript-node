@@ -19,6 +19,12 @@ import {
     CreateFeature200ResponseDataFlagsInnerFromJSONTyped,
     CreateFeature200ResponseDataFlagsInnerToJSON,
 } from './CreateFeature200ResponseDataFlagsInner';
+import type { ListEventTypes200ResponseDataInner } from './ListEventTypes200ResponseDataInner';
+import {
+    ListEventTypes200ResponseDataInnerFromJSON,
+    ListEventTypes200ResponseDataInnerFromJSONTyped,
+    ListEventTypes200ResponseDataInnerToJSON,
+} from './ListEventTypes200ResponseDataInner';
 import type { ListFeatures200ResponseDataInner } from './ListFeatures200ResponseDataInner';
 import {
     ListFeatures200ResponseDataInnerFromJSON,
@@ -32,6 +38,12 @@ import {
  * @interface CreateFeature200ResponseData
  */
 export interface CreateFeature200ResponseData {
+    /**
+     * 
+     * @type {ListEventTypes200ResponseDataInner}
+     * @memberof CreateFeature200ResponseData
+     */
+    eventSummary?: ListEventTypes200ResponseDataInner;
     /**
      * 
      * @type {ListFeatures200ResponseDataInner}
@@ -65,6 +77,7 @@ export function CreateFeature200ResponseDataFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
+        'eventSummary': !exists(json, 'event_summary') ? undefined : ListEventTypes200ResponseDataInnerFromJSON(json['event_summary']),
         'feature': !exists(json, 'feature') ? undefined : ListFeatures200ResponseDataInnerFromJSON(json['feature']),
         'flags': !exists(json, 'flags') ? undefined : ((json['flags'] as Array<any>).map(CreateFeature200ResponseDataFlagsInnerFromJSON)),
     };
@@ -79,6 +92,7 @@ export function CreateFeature200ResponseDataToJSON(value?: CreateFeature200Respo
     }
     return {
         
+        'event_summary': ListEventTypes200ResponseDataInnerToJSON(value.eventSummary),
         'feature': ListFeatures200ResponseDataInnerToJSON(value.feature),
         'flags': value.flags === undefined ? undefined : ((value.flags as Array<any>).map(CreateFeature200ResponseDataFlagsInnerToJSON)),
     };

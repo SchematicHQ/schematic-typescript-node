@@ -42,6 +42,12 @@ export interface ListFeatures200ResponseDataInner {
      * @type {string}
      * @memberof ListFeatures200ResponseDataInner
      */
+    eventSubtype?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListFeatures200ResponseDataInner
+     */
     id?: string;
     /**
      * 
@@ -85,6 +91,7 @@ export function ListFeatures200ResponseDataInnerFromJSONTyped(json: any, ignoreD
         'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
         'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
         'name': !exists(json, 'name') ? undefined : json['name'],
@@ -104,6 +111,7 @@ export function ListFeatures200ResponseDataInnerToJSON(value?: ListFeatures200Re
         'account_id': value.accountId,
         'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
         'description': value.description,
+        'event_subtype': value.eventSubtype,
         'id': value.id,
         'lifecycle_phase': value.lifecyclePhase,
         'name': value.name,

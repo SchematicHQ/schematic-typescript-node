@@ -18,10 +18,15 @@ models/DeleteFeature200Response.ts
 models/DeleteFeature200ResponseData.ts
 models/GetEvent200Response.ts
 models/GetEvent200ResponseData.ts
+models/GetEventType200Response.ts
+models/GetEventType200ResponseData.ts
 models/GetFeature200Response.ts
 models/ListCompanies200Response.ts
 models/ListCompanies200ResponseDataInner.ts
 models/ListCompanies200ResponseParams.ts
+models/ListEventTypes200Response.ts
+models/ListEventTypes200ResponseDataInner.ts
+models/ListEventTypes200ResponseParams.ts
 models/ListEvents200Response.ts
 models/ListEvents200ResponseDataInner.ts
 models/ListEvents200ResponseParams.ts

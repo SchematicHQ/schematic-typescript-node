@@ -34,6 +34,12 @@ export interface CreateFeatureRequest {
     description?: string;
     /**
      * 
+     * @type {string}
+     * @memberof CreateFeatureRequest
+     */
+    eventSubtype?: string;
+    /**
+     * 
      * @type {CreateFeatureRequestFlag}
      * @memberof CreateFeatureRequest
      */
@@ -78,6 +84,7 @@ export function CreateFeatureRequestFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
         'flag': !exists(json, 'flag') ? undefined : CreateFeatureRequestFlagFromJSON(json['flag']),
         'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
         'name': !exists(json, 'name') ? undefined : json['name'],
@@ -95,6 +102,7 @@ export function CreateFeatureRequestToJSON(value?: CreateFeatureRequest | null):
     return {
         
         'description': value.description,
+        'event_subtype': value.eventSubtype,
         'flag': CreateFeatureRequestFlagToJSON(value.flag),
         'lifecycle_phase': value.lifecyclePhase,
         'name': value.name,

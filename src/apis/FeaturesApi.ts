@@ -61,8 +61,8 @@ export interface ListFeaturesRequest {
 }
 
 export interface UpdateFeatureOperationRequest {
-    featureId: string;
     updateFeatureRequest: UpdateFeatureRequest;
+    featureId: string;
     xSchematicEnvironmentId?: string;
 }
 
@@ -242,12 +242,12 @@ export class FeaturesApi extends runtime.BaseAPI {
      * Update feature
      */
     async updateFeatureRaw(requestParameters: UpdateFeatureOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFeature200Response>> {
-        if (requestParameters.featureId === null || requestParameters.featureId === undefined) {
-            throw new runtime.RequiredError('featureId','Required parameter requestParameters.featureId was null or undefined when calling updateFeature.');
-        }
-
         if (requestParameters.updateFeatureRequest === null || requestParameters.updateFeatureRequest === undefined) {
             throw new runtime.RequiredError('updateFeatureRequest','Required parameter requestParameters.updateFeatureRequest was null or undefined when calling updateFeature.');
+        }
+
+        if (requestParameters.featureId === null || requestParameters.featureId === undefined) {
+            throw new runtime.RequiredError('featureId','Required parameter requestParameters.featureId was null or undefined when calling updateFeature.');
         }
 
         const queryParameters: any = {};
