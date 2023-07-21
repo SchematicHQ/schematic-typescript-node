@@ -121,6 +121,12 @@ export interface ListEvents200ResponseDataInner {
      * @memberof ListEvents200ResponseDataInner
      */
     updatedAt?: Date;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListEvents200ResponseDataInner
+     */
+    userId?: string;
 }
 
 /**
@@ -159,6 +165,7 @@ export function ListEvents200ResponseDataInnerFromJSONTyped(json: any, ignoreDis
         'subtype': !exists(json, 'subtype') ? undefined : json['subtype'],
         'type': !exists(json, 'type') ? undefined : json['type'],
         'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
+        'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
     };
 }
 
@@ -188,6 +195,7 @@ export function ListEvents200ResponseDataInnerToJSON(value?: ListEvents200Respon
         'subtype': value.subtype,
         'type': value.type,
         'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
+        'user_id': value.userId,
     };
 }
 

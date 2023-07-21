@@ -121,6 +121,12 @@ export interface GetEvent200ResponseData {
      * @memberof GetEvent200ResponseData
      */
     updatedAt?: Date;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetEvent200ResponseData
+     */
+    userId?: string;
 }
 
 /**
@@ -159,6 +165,7 @@ export function GetEvent200ResponseDataFromJSONTyped(json: any, ignoreDiscrimina
         'subtype': !exists(json, 'subtype') ? undefined : json['subtype'],
         'type': !exists(json, 'type') ? undefined : json['type'],
         'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
+        'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
     };
 }
 
@@ -188,6 +195,7 @@ export function GetEvent200ResponseDataToJSON(value?: GetEvent200ResponseData | 
         'subtype': value.subtype,
         'type': value.type,
         'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
+        'user_id': value.userId,
     };
 }
 

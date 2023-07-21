@@ -12,6 +12,10 @@ models/CountEvents200ResponseData.ts
 models/CreateFeature200Response.ts
 models/CreateFeature200ResponseData.ts
 models/CreateFeature200ResponseDataFlagsInner.ts
+models/CreateFeature200ResponseDataFlagsInnerFlag.ts
+models/CreateFeature200ResponseDataFlagsInnerRulesInner.ts
+models/CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner.ts
+models/CreateFeature200ResponseDataFlagsInnerRulesInnerRule.ts
 models/CreateFeatureRequest.ts
 models/CreateFeatureRequestFlag.ts
 models/DeleteFeature200Response.ts

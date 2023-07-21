@@ -13,6 +13,19 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { CreateFeature200ResponseDataFlagsInnerFlag } from './CreateFeature200ResponseDataFlagsInnerFlag';
+import {
+    CreateFeature200ResponseDataFlagsInnerFlagFromJSON,
+    CreateFeature200ResponseDataFlagsInnerFlagFromJSONTyped,
+    CreateFeature200ResponseDataFlagsInnerFlagToJSON,
+} from './CreateFeature200ResponseDataFlagsInnerFlag';
+import type { CreateFeature200ResponseDataFlagsInnerRulesInner } from './CreateFeature200ResponseDataFlagsInnerRulesInner';
+import {
+    CreateFeature200ResponseDataFlagsInnerRulesInnerFromJSON,
+    CreateFeature200ResponseDataFlagsInnerRulesInnerFromJSONTyped,
+    CreateFeature200ResponseDataFlagsInnerRulesInnerToJSON,
+} from './CreateFeature200ResponseDataFlagsInnerRulesInner';
+
 /**
  * 
  * @export
@@ -21,46 +34,16 @@ import { exists, mapValues } from '../runtime';
 export interface CreateFeature200ResponseDataFlagsInner {
     /**
      * 
-     * @type {string}
+     * @type {CreateFeature200ResponseDataFlagsInnerFlag}
      * @memberof CreateFeature200ResponseDataFlagsInner
      */
-    accountId?: string;
+    flag?: CreateFeature200ResponseDataFlagsInnerFlag;
     /**
      * 
-     * @type {Date}
+     * @type {Array<CreateFeature200ResponseDataFlagsInnerRulesInner>}
      * @memberof CreateFeature200ResponseDataFlagsInner
      */
-    createdAt?: Date;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateFeature200ResponseDataFlagsInner
-     */
-    featureId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateFeature200ResponseDataFlagsInner
-     */
-    flagType?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateFeature200ResponseDataFlagsInner
-     */
-    id?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateFeature200ResponseDataFlagsInner
-     */
-    key?: string;
-    /**
-     * 
-     * @type {Date}
-     * @memberof CreateFeature200ResponseDataFlagsInner
-     */
-    updatedAt?: Date;
+    rules?: Array<CreateFeature200ResponseDataFlagsInnerRulesInner>;
 }
 
 /**
@@ -82,13 +65,8 @@ export function CreateFeature200ResponseDataFlagsInnerFromJSONTyped(json: any, i
     }
     return {
         
-        'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
-        'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
-        'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
-        'flagType': !exists(json, 'flag_type') ? undefined : json['flag_type'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'key': !exists(json, 'key') ? undefined : json['key'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
+        'flag': !exists(json, 'flag') ? undefined : CreateFeature200ResponseDataFlagsInnerFlagFromJSON(json['flag']),
+        'rules': !exists(json, 'rules') ? undefined : ((json['rules'] as Array<any>).map(CreateFeature200ResponseDataFlagsInnerRulesInnerFromJSON)),
     };
 }
 
@@ -101,13 +79,8 @@ export function CreateFeature200ResponseDataFlagsInnerToJSON(value?: CreateFeatu
     }
     return {
         
-        'account_id': value.accountId,
-        'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'feature_id': value.featureId,
-        'flag_type': value.flagType,
-        'id': value.id,
-        'key': value.key,
-        'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
+        'flag': CreateFeature200ResponseDataFlagsInnerFlagToJSON(value.flag),
+        'rules': value.rules === undefined ? undefined : ((value.rules as Array<any>).map(CreateFeature200ResponseDataFlagsInnerRulesInnerToJSON)),
     };
 }
 
