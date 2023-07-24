@@ -51,12 +51,6 @@ export interface GetEvent200ResponseData {
     companyId?: string;
     /**
      * 
-     * @type {string}
-     * @memberof GetEvent200ResponseData
-     */
-    companyName?: string;
-    /**
-     * 
      * @type {Date}
      * @memberof GetEvent200ResponseData
      */
@@ -67,12 +61,6 @@ export interface GetEvent200ResponseData {
      * @memberof GetEvent200ResponseData
      */
     featureId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetEvent200ResponseData
-     */
-    featureName?: string;
     /**
      * 
      * @type {string}
@@ -153,10 +141,8 @@ export function GetEvent200ResponseDataFromJSONTyped(json: any, ignoreDiscrimina
         'body': !exists(json, 'body') ? undefined : json['body'],
         'capturedAt': !exists(json, 'captured_at') ? undefined : (new Date(json['captured_at'])),
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'companyName': !exists(json, 'company_name') ? undefined : json['company_name'],
         'enrichedAt': !exists(json, 'enriched_at') ? undefined : (new Date(json['enriched_at'])),
         'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
-        'featureName': !exists(json, 'feature_name') ? undefined : json['feature_name'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'loadedAt': !exists(json, 'loaded_at') ? undefined : (new Date(json['loaded_at'])),
         'processedAt': !exists(json, 'processed_at') ? undefined : (new Date(json['processed_at'])),
@@ -183,10 +169,8 @@ export function GetEvent200ResponseDataToJSON(value?: GetEvent200ResponseData | 
         'body': value.body,
         'captured_at': value.capturedAt === undefined ? undefined : (value.capturedAt.toISOString()),
         'company_id': value.companyId,
-        'company_name': value.companyName,
         'enriched_at': value.enrichedAt === undefined ? undefined : (value.enrichedAt.toISOString()),
         'feature_id': value.featureId,
-        'feature_name': value.featureName,
         'id': value.id,
         'loaded_at': value.loadedAt === undefined ? undefined : (value.loadedAt.toISOString()),
         'processed_at': value.processedAt === undefined ? undefined : (value.processedAt.toISOString()),

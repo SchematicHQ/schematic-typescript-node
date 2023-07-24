@@ -7,8 +7,9 @@ index.ts
 models/CheckFeature200Response.ts
 models/CheckFeature200ResponseData.ts
 models/CheckFeature200ResponseParams.ts
+models/CountEventTypes200Response.ts
+models/CountEventTypes200ResponseData.ts
 models/CountEvents200Response.ts
-models/CountEvents200ResponseData.ts
 models/CreateFeature200Response.ts
 models/CreateFeature200ResponseData.ts
 models/CreateFeature200ResponseDataFlagsInner.ts

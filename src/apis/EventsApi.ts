@@ -15,6 +15,7 @@
 
 import * as runtime from '../runtime';
 import type {
+  CountEventTypes200Response,
   CountEvents200Response,
   GetEvent200Response,
   GetEventType200Response,
@@ -24,6 +25,8 @@ import type {
   ListMetrics200Response,
 } from '../models';
 import {
+    CountEventTypes200ResponseFromJSON,
+    CountEventTypes200ResponseToJSON,
     CountEvents200ResponseFromJSON,
     CountEvents200ResponseToJSON,
     GetEvent200ResponseFromJSON,
@@ -39,6 +42,15 @@ import {
     ListMetrics200ResponseFromJSON,
     ListMetrics200ResponseToJSON,
 } from '../models';
+
+export interface CountEventTypesRequest {
+    xSchematicEnvironmentId?: string;
+    q?: string;
+    limit?: number;
+    offset?: number;
+    order?: string;
+    dir?: string;
+}
 
 export interface CountEventsRequest {
     xSchematicEnvironmentId?: string;
@@ -104,6 +116,60 @@ export interface ListMetricsRequest {
  * 
  */
 export class EventsApi extends runtime.BaseAPI {
+
+    /**
+     * Count event types
+     */
+    async countEventTypesRaw(requestParameters: CountEventTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountEventTypes200Response>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.q !== undefined) {
+            queryParameters['q'] = requestParameters.q;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.order !== undefined) {
+            queryParameters['order'] = requestParameters.order;
+        }
+
+        if (requestParameters.dir !== undefined) {
+            queryParameters['dir'] = requestParameters.dir;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/event-types/count`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountEventTypes200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Count event types
+     */
+    async countEventTypes(requestParameters: CountEventTypesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountEventTypes200Response> {
+        const response = await this.countEventTypesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Count events

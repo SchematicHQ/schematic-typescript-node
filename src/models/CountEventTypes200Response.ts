@@ -19,58 +19,58 @@ import {
     CountEventTypes200ResponseDataFromJSONTyped,
     CountEventTypes200ResponseDataToJSON,
 } from './CountEventTypes200ResponseData';
-import type { ListEvents200ResponseParams } from './ListEvents200ResponseParams';
+import type { ListEventTypes200ResponseParams } from './ListEventTypes200ResponseParams';
 import {
-    ListEvents200ResponseParamsFromJSON,
-    ListEvents200ResponseParamsFromJSONTyped,
-    ListEvents200ResponseParamsToJSON,
-} from './ListEvents200ResponseParams';
+    ListEventTypes200ResponseParamsFromJSON,
+    ListEventTypes200ResponseParamsFromJSONTyped,
+    ListEventTypes200ResponseParamsToJSON,
+} from './ListEventTypes200ResponseParams';
 
 /**
  * 
  * @export
- * @interface CountEvents200Response
+ * @interface CountEventTypes200Response
  */
-export interface CountEvents200Response {
+export interface CountEventTypes200Response {
     /**
      * 
      * @type {CountEventTypes200ResponseData}
-     * @memberof CountEvents200Response
+     * @memberof CountEventTypes200Response
      */
     data?: CountEventTypes200ResponseData;
     /**
      * 
-     * @type {ListEvents200ResponseParams}
-     * @memberof CountEvents200Response
+     * @type {ListEventTypes200ResponseParams}
+     * @memberof CountEventTypes200Response
      */
-    params?: ListEvents200ResponseParams;
+    params?: ListEventTypes200ResponseParams;
 }
 
 /**
- * Check if a given object implements the CountEvents200Response interface.
+ * Check if a given object implements the CountEventTypes200Response interface.
  */
-export function instanceOfCountEvents200Response(value: object): boolean {
+export function instanceOfCountEventTypes200Response(value: object): boolean {
     let isInstance = true;
 
     return isInstance;
 }
 
-export function CountEvents200ResponseFromJSON(json: any): CountEvents200Response {
-    return CountEvents200ResponseFromJSONTyped(json, false);
+export function CountEventTypes200ResponseFromJSON(json: any): CountEventTypes200Response {
+    return CountEventTypes200ResponseFromJSONTyped(json, false);
 }
 
-export function CountEvents200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CountEvents200Response {
+export function CountEventTypes200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CountEventTypes200Response {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
         'data': !exists(json, 'data') ? undefined : CountEventTypes200ResponseDataFromJSON(json['data']),
-        'params': !exists(json, 'params') ? undefined : ListEvents200ResponseParamsFromJSON(json['params']),
+        'params': !exists(json, 'params') ? undefined : ListEventTypes200ResponseParamsFromJSON(json['params']),
     };
 }
 
-export function CountEvents200ResponseToJSON(value?: CountEvents200Response | null): any {
+export function CountEventTypes200ResponseToJSON(value?: CountEventTypes200Response | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -80,7 +80,7 @@ export function CountEvents200ResponseToJSON(value?: CountEvents200Response | nu
     return {
         
         'data': CountEventTypes200ResponseDataToJSON(value.data),
-        'params': ListEvents200ResponseParamsToJSON(value.params),
+        'params': ListEventTypes200ResponseParamsToJSON(value.params),
     };
 }
 
