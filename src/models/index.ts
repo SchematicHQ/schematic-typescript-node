@@ -1,11 +1,13 @@
 /* tslint:disable */
 /* eslint-disable */
-export * from './CheckFeature200Response';
-export * from './CheckFeature200ResponseData';
-export * from './CheckFeature200ResponseParams';
 export * from './CountEventTypes200Response';
 export * from './CountEventTypes200ResponseData';
 export * from './CountEvents200Response';
+export * from './CreateCompany200Response';
+export * from './CreateCompany200ResponseData';
+export * from './CreateCompany200ResponseDataKeysInner';
+export * from './CreateCompanyRequest';
+export * from './CreateCompanyRequestKeysInner';
 export * from './CreateFeature200Response';
 export * from './CreateFeature200ResponseData';
 export * from './CreateFeature200ResponseDataFlagsInner';
@@ -15,13 +17,18 @@ export * from './CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
 export * from './CreateFeature200ResponseDataFlagsInnerRulesInnerRule';
 export * from './CreateFeatureRequest';
 export * from './CreateFeatureRequestFlag';
+export * from './CreateUser200Response';
+export * from './CreateUser200ResponseData';
+export * from './CreateUserRequest';
 export * from './DeleteFeature200Response';
 export * from './DeleteFeature200ResponseData';
+export * from './GetCompany200Response';
 export * from './GetEvent200Response';
 export * from './GetEvent200ResponseData';
 export * from './GetEventType200Response';
 export * from './GetEventType200ResponseData';
 export * from './GetFeature200Response';
+export * from './GetUser200Response';
 export * from './ListCompanies200Response';
 export * from './ListCompanies200ResponseDataInner';
 export * from './ListCompanies200ResponseParams';
@@ -40,5 +47,7 @@ export * from './ListMetrics200Response';
 export * from './ListMetrics200ResponseDataInner';
 export * from './ListPlans200Response';
 export * from './ListPlans200ResponseDataInner';
+export * from './ListUsers200Response';
+export * from './ListUsers200ResponseDataInner';
 export * from './ModelError';
 export * from './UpdateFeatureRequest';

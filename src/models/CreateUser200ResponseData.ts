@@ -13,93 +13,107 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { CreateCompany200ResponseDataKeysInner } from './CreateCompany200ResponseDataKeysInner';
+import {
+    CreateCompany200ResponseDataKeysInnerFromJSON,
+    CreateCompany200ResponseDataKeysInnerFromJSONTyped,
+    CreateCompany200ResponseDataKeysInnerToJSON,
+} from './CreateCompany200ResponseDataKeysInner';
+
 /**
- * 
+ * The returned resource
  * @export
- * @interface ListCompanies200ResponseDataInner
+ * @interface CreateUser200ResponseData
  */
-export interface ListCompanies200ResponseDataInner {
+export interface CreateUser200ResponseData {
     /**
      * 
      * @type {string}
-     * @memberof ListCompanies200ResponseDataInner
+     * @memberof CreateUser200ResponseData
      */
     accountId?: string;
     /**
      * 
+     * @type {string}
+     * @memberof CreateUser200ResponseData
+     */
+    companyId?: string;
+    /**
+     * 
      * @type {Date}
-     * @memberof ListCompanies200ResponseDataInner
+     * @memberof CreateUser200ResponseData
      */
     createdAt?: Date;
     /**
      * 
      * @type {string}
-     * @memberof ListCompanies200ResponseDataInner
+     * @memberof CreateUser200ResponseData
      */
     environmentId?: string;
     /**
      * 
      * @type {string}
-     * @memberof ListCompanies200ResponseDataInner
+     * @memberof CreateUser200ResponseData
      */
     id?: string;
     /**
      * 
+     * @type {Array<CreateCompany200ResponseDataKeysInner>}
+     * @memberof CreateUser200ResponseData
+     */
+    keys?: Array<CreateCompany200ResponseDataKeysInner>;
+    /**
+     * 
      * @type {Date}
-     * @memberof ListCompanies200ResponseDataInner
+     * @memberof CreateUser200ResponseData
      */
     lastSeenAt?: Date;
     /**
      * 
-     * @type {string}
-     * @memberof ListCompanies200ResponseDataInner
-     */
-    name?: string;
-    /**
-     * 
      * @type {object}
-     * @memberof ListCompanies200ResponseDataInner
+     * @memberof CreateUser200ResponseData
      */
     traits?: object;
     /**
      * 
      * @type {Date}
-     * @memberof ListCompanies200ResponseDataInner
+     * @memberof CreateUser200ResponseData
      */
     updatedAt?: Date;
 }
 
 /**
- * Check if a given object implements the ListCompanies200ResponseDataInner interface.
+ * Check if a given object implements the CreateUser200ResponseData interface.
  */
-export function instanceOfListCompanies200ResponseDataInner(value: object): boolean {
+export function instanceOfCreateUser200ResponseData(value: object): boolean {
     let isInstance = true;
 
     return isInstance;
 }
 
-export function ListCompanies200ResponseDataInnerFromJSON(json: any): ListCompanies200ResponseDataInner {
-    return ListCompanies200ResponseDataInnerFromJSONTyped(json, false);
+export function CreateUser200ResponseDataFromJSON(json: any): CreateUser200ResponseData {
+    return CreateUser200ResponseDataFromJSONTyped(json, false);
 }
 
-export function ListCompanies200ResponseDataInnerFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListCompanies200ResponseDataInner {
+export function CreateUser200ResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateUser200ResponseData {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
         'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
+        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
+        'keys': !exists(json, 'keys') ? undefined : ((json['keys'] as Array<any>).map(CreateCompany200ResponseDataKeysInnerFromJSON)),
         'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (new Date(json['last_seen_at'])),
-        'name': !exists(json, 'name') ? undefined : json['name'],
         'traits': !exists(json, 'traits') ? undefined : json['traits'],
         'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
     };
 }
 
-export function ListCompanies200ResponseDataInnerToJSON(value?: ListCompanies200ResponseDataInner | null): any {
+export function CreateUser200ResponseDataToJSON(value?: CreateUser200ResponseData | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -109,11 +123,12 @@ export function ListCompanies200ResponseDataInnerToJSON(value?: ListCompanies200
     return {
         
         'account_id': value.accountId,
+        'company_id': value.companyId,
         'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
         'environment_id': value.environmentId,
         'id': value.id,
+        'keys': value.keys === undefined ? undefined : ((value.keys as Array<any>).map(CreateCompany200ResponseDataKeysInnerToJSON)),
         'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt.toISOString()),
-        'name': value.name,
         'traits': value.traits,
         'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
     };

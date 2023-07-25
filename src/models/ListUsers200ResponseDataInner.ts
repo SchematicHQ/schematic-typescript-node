@@ -16,90 +16,90 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface ListCompanies200ResponseDataInner
+ * @interface ListUsers200ResponseDataInner
  */
-export interface ListCompanies200ResponseDataInner {
+export interface ListUsers200ResponseDataInner {
     /**
      * 
      * @type {string}
-     * @memberof ListCompanies200ResponseDataInner
+     * @memberof ListUsers200ResponseDataInner
      */
     accountId?: string;
     /**
      * 
+     * @type {string}
+     * @memberof ListUsers200ResponseDataInner
+     */
+    companyId?: string;
+    /**
+     * 
      * @type {Date}
-     * @memberof ListCompanies200ResponseDataInner
+     * @memberof ListUsers200ResponseDataInner
      */
     createdAt?: Date;
     /**
      * 
      * @type {string}
-     * @memberof ListCompanies200ResponseDataInner
+     * @memberof ListUsers200ResponseDataInner
      */
     environmentId?: string;
     /**
      * 
      * @type {string}
-     * @memberof ListCompanies200ResponseDataInner
+     * @memberof ListUsers200ResponseDataInner
      */
     id?: string;
     /**
      * 
      * @type {Date}
-     * @memberof ListCompanies200ResponseDataInner
+     * @memberof ListUsers200ResponseDataInner
      */
     lastSeenAt?: Date;
     /**
      * 
-     * @type {string}
-     * @memberof ListCompanies200ResponseDataInner
-     */
-    name?: string;
-    /**
-     * 
      * @type {object}
-     * @memberof ListCompanies200ResponseDataInner
+     * @memberof ListUsers200ResponseDataInner
      */
     traits?: object;
     /**
      * 
      * @type {Date}
-     * @memberof ListCompanies200ResponseDataInner
+     * @memberof ListUsers200ResponseDataInner
      */
     updatedAt?: Date;
 }
 
 /**
- * Check if a given object implements the ListCompanies200ResponseDataInner interface.
+ * Check if a given object implements the ListUsers200ResponseDataInner interface.
  */
-export function instanceOfListCompanies200ResponseDataInner(value: object): boolean {
+export function instanceOfListUsers200ResponseDataInner(value: object): boolean {
     let isInstance = true;
 
     return isInstance;
 }
 
-export function ListCompanies200ResponseDataInnerFromJSON(json: any): ListCompanies200ResponseDataInner {
-    return ListCompanies200ResponseDataInnerFromJSONTyped(json, false);
+export function ListUsers200ResponseDataInnerFromJSON(json: any): ListUsers200ResponseDataInner {
+    return ListUsers200ResponseDataInnerFromJSONTyped(json, false);
 }
 
-export function ListCompanies200ResponseDataInnerFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListCompanies200ResponseDataInner {
+export function ListUsers200ResponseDataInnerFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListUsers200ResponseDataInner {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
         'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
+        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (new Date(json['last_seen_at'])),
-        'name': !exists(json, 'name') ? undefined : json['name'],
         'traits': !exists(json, 'traits') ? undefined : json['traits'],
         'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
     };
 }
 
-export function ListCompanies200ResponseDataInnerToJSON(value?: ListCompanies200ResponseDataInner | null): any {
+export function ListUsers200ResponseDataInnerToJSON(value?: ListUsers200ResponseDataInner | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -109,11 +109,11 @@ export function ListCompanies200ResponseDataInnerToJSON(value?: ListCompanies200
     return {
         
         'account_id': value.accountId,
+        'company_id': value.companyId,
         'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
         'environment_id': value.environmentId,
         'id': value.id,
         'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt.toISOString()),
-        'name': value.name,
         'traits': value.traits,
         'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
     };

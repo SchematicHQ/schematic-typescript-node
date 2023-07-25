@@ -15,21 +15,12 @@
 
 import * as runtime from '../runtime';
 import type {
-  CheckFeature200Response,
   ListPlans200Response,
 } from '../models';
 import {
-    CheckFeature200ResponseFromJSON,
-    CheckFeature200ResponseToJSON,
     ListPlans200ResponseFromJSON,
     ListPlans200ResponseToJSON,
 } from '../models';
-
-export interface CheckFeatureRequest {
-    featureId: string;
-    companyId: string;
-    xSchematicEnvironmentId?: string;
-}
 
 export interface ListPlansRequest {
     xSchematicEnvironmentId?: string;
@@ -43,52 +34,6 @@ export interface ListPlansRequest {
  * 
  */
 export class EntitlementsApi extends runtime.BaseAPI {
-
-    /**
-     * Check feature
-     */
-    async checkFeatureRaw(requestParameters: CheckFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckFeature200Response>> {
-        if (requestParameters.featureId === null || requestParameters.featureId === undefined) {
-            throw new runtime.RequiredError('featureId','Required parameter requestParameters.featureId was null or undefined when calling checkFeature.');
-        }
-
-        if (requestParameters.companyId === null || requestParameters.companyId === undefined) {
-            throw new runtime.RequiredError('companyId','Required parameter requestParameters.companyId was null or undefined when calling checkFeature.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.companyId !== undefined) {
-            queryParameters['company_id'] = requestParameters.companyId;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/features/{feature_id}/check`.replace(`{${"feature_id"}}`, encodeURIComponent(String(requestParameters.featureId))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => CheckFeature200ResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Check feature
-     */
-    async checkFeature(requestParameters: CheckFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CheckFeature200Response> {
-        const response = await this.checkFeatureRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
 
     /**
      * List plans
