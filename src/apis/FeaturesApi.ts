@@ -15,14 +15,18 @@
 
 import * as runtime from '../runtime';
 import type {
+  CheckFlag200Response,
   CreateFeature200Response,
   CreateFeatureRequest,
   DeleteFeature200Response,
   GetFeature200Response,
   ListFeatures200Response,
+  ListFlagValues200Response,
   UpdateFeatureRequest,
 } from '../models';
 import {
+    CheckFlag200ResponseFromJSON,
+    CheckFlag200ResponseToJSON,
     CreateFeature200ResponseFromJSON,
     CreateFeature200ResponseToJSON,
     CreateFeatureRequestFromJSON,
@@ -33,9 +37,18 @@ import {
     GetFeature200ResponseToJSON,
     ListFeatures200ResponseFromJSON,
     ListFeatures200ResponseToJSON,
+    ListFlagValues200ResponseFromJSON,
+    ListFlagValues200ResponseToJSON,
     UpdateFeatureRequestFromJSON,
     UpdateFeatureRequestToJSON,
 } from '../models';
+
+export interface CheckFlagRequest {
+    key: string;
+    xSchematicEnvironmentId?: string;
+    company?: object;
+    user?: object;
+}
 
 export interface CreateFeatureOperationRequest {
     createFeatureRequest: CreateFeatureRequest;
@@ -60,6 +73,17 @@ export interface ListFeaturesRequest {
     dir?: string;
 }
 
+export interface ListFlagValuesRequest {
+    xSchematicEnvironmentId?: string;
+    entityType?: number;
+    entityId?: number;
+    flagId?: number;
+    limit?: number;
+    offset?: number;
+    order?: string;
+    dir?: string;
+}
+
 export interface UpdateFeatureOperationRequest {
     updateFeatureRequest: UpdateFeatureRequest;
     featureId: string;
@@ -70,6 +94,52 @@ export interface UpdateFeatureOperationRequest {
  * 
  */
 export class FeaturesApi extends runtime.BaseAPI {
+
+    /**
+     * Check flag
+     */
+    async checkFlagRaw(requestParameters: CheckFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckFlag200Response>> {
+        if (requestParameters.key === null || requestParameters.key === undefined) {
+            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling checkFlag.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.company !== undefined) {
+            queryParameters['company'] = requestParameters.company;
+        }
+
+        if (requestParameters.user !== undefined) {
+            queryParameters['user'] = requestParameters.user;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/flags/{key}/check`.replace(`{${"key"}}`, encodeURIComponent(String(requestParameters.key))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CheckFlag200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Check flag
+     */
+    async checkFlag(requestParameters: CheckFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CheckFlag200Response> {
+        const response = await this.checkFlagRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Create feature
@@ -235,6 +305,68 @@ export class FeaturesApi extends runtime.BaseAPI {
      */
     async listFeatures(requestParameters: ListFeaturesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListFeatures200Response> {
         const response = await this.listFeaturesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List flag values
+     */
+    async listFlagValuesRaw(requestParameters: ListFlagValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFlagValues200Response>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.entityType !== undefined) {
+            queryParameters['entity_type'] = requestParameters.entityType;
+        }
+
+        if (requestParameters.entityId !== undefined) {
+            queryParameters['entity_id'] = requestParameters.entityId;
+        }
+
+        if (requestParameters.flagId !== undefined) {
+            queryParameters['flag_id'] = requestParameters.flagId;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.order !== undefined) {
+            queryParameters['order'] = requestParameters.order;
+        }
+
+        if (requestParameters.dir !== undefined) {
+            queryParameters['dir'] = requestParameters.dir;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/flag-values`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListFlagValues200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List flag values
+     */
+    async listFlagValues(requestParameters: ListFlagValuesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListFlagValues200Response> {
+        const response = await this.listFlagValuesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

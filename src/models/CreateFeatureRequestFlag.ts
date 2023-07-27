@@ -21,6 +21,12 @@ import { exists, mapValues } from '../runtime';
 export interface CreateFeatureRequestFlag {
     /**
      * 
+     * @type {boolean}
+     * @memberof CreateFeatureRequestFlag
+     */
+    defaultValue?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof CreateFeatureRequestFlag
      */
@@ -52,6 +58,7 @@ export function CreateFeatureRequestFlagFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
+        'defaultValue': !exists(json, 'default_value') ? undefined : json['default_value'],
         'flagType': !exists(json, 'flag_type') ? undefined : json['flag_type'],
         'key': !exists(json, 'key') ? undefined : json['key'],
     };
@@ -66,6 +73,7 @@ export function CreateFeatureRequestFlagToJSON(value?: CreateFeatureRequestFlag 
     }
     return {
         
+        'default_value': value.defaultValue,
         'flag_type': value.flagType,
         'key': value.key,
     };

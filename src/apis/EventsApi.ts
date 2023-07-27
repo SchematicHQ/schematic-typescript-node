@@ -21,8 +21,6 @@ import type {
   GetEventType200Response,
   ListEventTypes200Response,
   ListEvents200Response,
-  ListMetricCounts200Response,
-  ListMetrics200Response,
 } from '../models';
 import {
     CountEventTypes200ResponseFromJSON,
@@ -37,10 +35,6 @@ import {
     ListEventTypes200ResponseToJSON,
     ListEvents200ResponseFromJSON,
     ListEvents200ResponseToJSON,
-    ListMetricCounts200ResponseFromJSON,
-    ListMetricCounts200ResponseToJSON,
-    ListMetrics200ResponseFromJSON,
-    ListMetrics200ResponseToJSON,
 } from '../models';
 
 export interface CountEventTypesRequest {
@@ -87,25 +81,6 @@ export interface ListEventsRequest {
     companyId?: string;
     featureId?: string;
     eventSubtype?: string;
-    limit?: number;
-    offset?: number;
-    order?: string;
-    dir?: string;
-}
-
-export interface ListMetricCountsRequest {
-    xSchematicEnvironmentId?: string;
-    definitionId?: string;
-    startTime?: Date;
-    endTime?: Date;
-    limit?: number;
-    offset?: number;
-    order?: string;
-    dir?: string;
-}
-
-export interface ListMetricsRequest {
-    xSchematicEnvironmentId?: string;
     limit?: number;
     offset?: number;
     order?: string;
@@ -422,118 +397,6 @@ export class EventsApi extends runtime.BaseAPI {
      */
     async listEvents(requestParameters: ListEventsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListEvents200Response> {
         const response = await this.listEventsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * List metric counts
-     */
-    async listMetricCountsRaw(requestParameters: ListMetricCountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListMetricCounts200Response>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.definitionId !== undefined) {
-            queryParameters['definition_id'] = requestParameters.definitionId;
-        }
-
-        if (requestParameters.startTime !== undefined) {
-            queryParameters['start_time'] = (requestParameters.startTime as any).toISOString();
-        }
-
-        if (requestParameters.endTime !== undefined) {
-            queryParameters['end_time'] = (requestParameters.endTime as any).toISOString();
-        }
-
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
-        }
-
-        if (requestParameters.offset !== undefined) {
-            queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/metric-counts`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ListMetricCounts200ResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * List metric counts
-     */
-    async listMetricCounts(requestParameters: ListMetricCountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListMetricCounts200Response> {
-        const response = await this.listMetricCountsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * List metrics
-     */
-    async listMetricsRaw(requestParameters: ListMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListMetrics200Response>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
-        }
-
-        if (requestParameters.offset !== undefined) {
-            queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/metrics`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ListMetrics200ResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * List metrics
-     */
-    async listMetrics(requestParameters: ListMetricsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListMetrics200Response> {
-        const response = await this.listMetricsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -33,6 +33,12 @@ export interface CreateFeature200ResponseDataFlagsInnerFlag {
     createdAt?: Date;
     /**
      * 
+     * @type {boolean}
+     * @memberof CreateFeature200ResponseDataFlagsInnerFlag
+     */
+    defaultValue?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof CreateFeature200ResponseDataFlagsInnerFlag
      */
@@ -84,6 +90,7 @@ export function CreateFeature200ResponseDataFlagsInnerFlagFromJSONTyped(json: an
         
         'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
         'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
+        'defaultValue': !exists(json, 'default_value') ? undefined : json['default_value'],
         'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
         'flagType': !exists(json, 'flag_type') ? undefined : json['flag_type'],
         'id': !exists(json, 'id') ? undefined : json['id'],
@@ -103,6 +110,7 @@ export function CreateFeature200ResponseDataFlagsInnerFlagToJSON(value?: CreateF
         
         'account_id': value.accountId,
         'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'default_value': value.defaultValue,
         'feature_id': value.featureId,
         'flag_type': value.flagType,
         'id': value.id,

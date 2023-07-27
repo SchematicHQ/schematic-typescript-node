@@ -4,6 +4,8 @@ apis/EventsApi.ts
 apis/FeaturesApi.ts
 apis/index.ts
 index.ts
+models/CheckFlag200Response.ts
+models/CheckFlag200ResponseData.ts
 models/CountEventTypes200Response.ts
 models/CountEventTypes200ResponseData.ts
 models/CountEvents200Response.ts
@@ -44,11 +46,9 @@ models/ListEvents200ResponseDataInner.ts
 models/ListEvents200ResponseParams.ts
 models/ListFeatures200Response.ts
 models/ListFeatures200ResponseDataInner.ts
-models/ListMetricCounts200Response.ts
-models/ListMetricCounts200ResponseDataInner.ts
-models/ListMetricCounts200ResponseParams.ts
-models/ListMetrics200Response.ts
-models/ListMetrics200ResponseDataInner.ts
+models/ListFlagValues200Response.ts
+models/ListFlagValues200ResponseDataInner.ts
+models/ListFlagValues200ResponseParams.ts
 models/ListPlans200Response.ts
 models/ListPlans200ResponseDataInner.ts
 models/ListUsers200Response.ts
