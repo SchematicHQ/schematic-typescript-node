@@ -5,6 +5,7 @@ export * from './CheckFlag200ResponseData';
 export * from './CountEventTypes200Response';
 export * from './CountEventTypes200ResponseData';
 export * from './CountEvents200Response';
+export * from './CountFlagValues200Response';
 export * from './CreateCompany200Response';
 export * from './CreateCompany200ResponseData';
 export * from './CreateCompany200ResponseDataKeysInner';

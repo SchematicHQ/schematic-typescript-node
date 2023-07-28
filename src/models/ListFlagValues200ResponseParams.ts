@@ -27,10 +27,10 @@ export interface ListFlagValues200ResponseParams {
     dir?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof ListFlagValues200ResponseParams
      */
-    entityId?: number;
+    entityId?: string;
     /**
      * 
      * @type {number}
@@ -39,10 +39,10 @@ export interface ListFlagValues200ResponseParams {
     entityType?: number;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof ListFlagValues200ResponseParams
      */
-    flagId?: number;
+    flagId?: string;
     /**
      * Page limit (default 100)
      * @type {number}

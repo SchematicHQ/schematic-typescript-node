@@ -9,6 +9,7 @@ models/CheckFlag200ResponseData.ts
 models/CountEventTypes200Response.ts
 models/CountEventTypes200ResponseData.ts
 models/CountEvents200Response.ts
+models/CountFlagValues200Response.ts
 models/CreateCompany200Response.ts
 models/CreateCompany200ResponseData.ts
 models/CreateCompany200ResponseDataKeysInner.ts

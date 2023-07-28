@@ -21,16 +21,16 @@ import { exists, mapValues } from '../runtime';
 export interface ListFlagValues200ResponseDataInner {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof ListFlagValues200ResponseDataInner
      */
-    accountId?: number;
+    accountId?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof ListFlagValues200ResponseDataInner
      */
-    entityId?: number;
+    entityId?: string;
     /**
      * 
      * @type {number}
@@ -39,22 +39,22 @@ export interface ListFlagValues200ResponseDataInner {
     entityType?: number;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof ListFlagValues200ResponseDataInner
      */
-    environmentId?: number;
+    environmentId?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof ListFlagValues200ResponseDataInner
      */
-    flagId?: number;
+    flagId?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof ListFlagValues200ResponseDataInner
      */
-    ruleId?: number;
+    ruleId?: string;
     /**
      * 
      * @type {number}

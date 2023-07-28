@@ -16,6 +16,7 @@
 import * as runtime from '../runtime';
 import type {
   CheckFlag200Response,
+  CountFlagValues200Response,
   CreateFeature200Response,
   CreateFeatureRequest,
   DeleteFeature200Response,
@@ -27,6 +28,8 @@ import type {
 import {
     CheckFlag200ResponseFromJSON,
     CheckFlag200ResponseToJSON,
+    CountFlagValues200ResponseFromJSON,
+    CountFlagValues200ResponseToJSON,
     CreateFeature200ResponseFromJSON,
     CreateFeature200ResponseToJSON,
     CreateFeatureRequestFromJSON,
@@ -48,6 +51,17 @@ export interface CheckFlagRequest {
     xSchematicEnvironmentId?: string;
     company?: object;
     user?: object;
+}
+
+export interface CountFlagValuesRequest {
+    xSchematicEnvironmentId?: string;
+    entityType?: number;
+    entityId?: string;
+    flagId?: string;
+    limit?: number;
+    offset?: number;
+    order?: string;
+    dir?: string;
 }
 
 export interface CreateFeatureOperationRequest {
@@ -76,8 +90,8 @@ export interface ListFeaturesRequest {
 export interface ListFlagValuesRequest {
     xSchematicEnvironmentId?: string;
     entityType?: number;
-    entityId?: number;
-    flagId?: number;
+    entityId?: string;
+    flagId?: string;
     limit?: number;
     offset?: number;
     order?: string;
@@ -138,6 +152,68 @@ export class FeaturesApi extends runtime.BaseAPI {
      */
     async checkFlag(requestParameters: CheckFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CheckFlag200Response> {
         const response = await this.checkFlagRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Count flag values
+     */
+    async countFlagValuesRaw(requestParameters: CountFlagValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountFlagValues200Response>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.entityType !== undefined) {
+            queryParameters['entity_type'] = requestParameters.entityType;
+        }
+
+        if (requestParameters.entityId !== undefined) {
+            queryParameters['entity_id'] = requestParameters.entityId;
+        }
+
+        if (requestParameters.flagId !== undefined) {
+            queryParameters['flag_id'] = requestParameters.flagId;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.order !== undefined) {
+            queryParameters['order'] = requestParameters.order;
+        }
+
+        if (requestParameters.dir !== undefined) {
+            queryParameters['dir'] = requestParameters.dir;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/flag-values/count`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountFlagValues200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Count flag values
+     */
+    async countFlagValues(requestParameters: CountFlagValuesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountFlagValues200Response> {
+        const response = await this.countFlagValuesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
