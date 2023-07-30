@@ -30,6 +30,12 @@ export interface UpdateFeatureRequest {
      * @type {string}
      * @memberof UpdateFeatureRequest
      */
+    eventSubtype?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateFeatureRequest
+     */
     lifecyclePhase?: string;
     /**
      * 
@@ -65,6 +71,7 @@ export function UpdateFeatureRequestFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
         'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
@@ -81,6 +88,7 @@ export function UpdateFeatureRequestToJSON(value?: UpdateFeatureRequest | null):
     return {
         
         'description': value.description,
+        'event_subtype': value.eventSubtype,
         'lifecycle_phase': value.lifecyclePhase,
         'name': value.name,
         'skip_webhooks': value.skipWebhooks,
