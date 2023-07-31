@@ -51,10 +51,10 @@ export interface CreateFeatureRequestFlagsInnerRulesInnerConditionsInner {
     priority?: number;
     /**
      * 
-     * @type {Array<object>}
+     * @type {Array<string>}
      * @memberof CreateFeatureRequestFlagsInnerRulesInnerConditionsInner
      */
-    resourceIds?: Array<object>;
+    resourceIds?: Array<string>;
     /**
      * 
      * @type {number}

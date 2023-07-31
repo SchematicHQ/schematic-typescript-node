@@ -75,10 +75,10 @@ export interface CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
     priority?: number;
     /**
      * 
-     * @type {Array<object>}
+     * @type {Array<string>}
      * @memberof CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
      */
-    resourceIds?: Array<object>;
+    resourceIds?: Array<string>;
     /**
      * 
      * @type {string}
