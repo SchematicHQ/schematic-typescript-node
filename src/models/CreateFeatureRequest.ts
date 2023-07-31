@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { CreateFeatureRequestFlag } from './CreateFeatureRequestFlag';
+import type { CreateFeatureRequestFlagsInner } from './CreateFeatureRequestFlagsInner';
 import {
-    CreateFeatureRequestFlagFromJSON,
-    CreateFeatureRequestFlagFromJSONTyped,
-    CreateFeatureRequestFlagToJSON,
-} from './CreateFeatureRequestFlag';
+    CreateFeatureRequestFlagsInnerFromJSON,
+    CreateFeatureRequestFlagsInnerFromJSONTyped,
+    CreateFeatureRequestFlagsInnerToJSON,
+} from './CreateFeatureRequestFlagsInner';
 
 /**
  * 
@@ -40,10 +40,10 @@ export interface CreateFeatureRequest {
     eventSubtype?: string;
     /**
      * 
-     * @type {CreateFeatureRequestFlag}
+     * @type {Array<CreateFeatureRequestFlagsInner>}
      * @memberof CreateFeatureRequest
      */
-    flag?: CreateFeatureRequestFlag;
+    flags?: Array<CreateFeatureRequestFlagsInner>;
     /**
      * 
      * @type {string}
@@ -85,7 +85,7 @@ export function CreateFeatureRequestFromJSONTyped(json: any, ignoreDiscriminator
         
         'description': !exists(json, 'description') ? undefined : json['description'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
-        'flag': !exists(json, 'flag') ? undefined : CreateFeatureRequestFlagFromJSON(json['flag']),
+        'flags': !exists(json, 'flags') ? undefined : ((json['flags'] as Array<any>).map(CreateFeatureRequestFlagsInnerFromJSON)),
         'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
@@ -103,7 +103,7 @@ export function CreateFeatureRequestToJSON(value?: CreateFeatureRequest | null):
         
         'description': value.description,
         'event_subtype': value.eventSubtype,
-        'flag': CreateFeatureRequestFlagToJSON(value.flag),
+        'flags': value.flags === undefined ? undefined : ((value.flags as Array<any>).map(CreateFeatureRequestFlagsInnerToJSON)),
         'lifecycle_phase': value.lifecyclePhase,
         'name': value.name,
         'skip_webhooks': value.skipWebhooks,

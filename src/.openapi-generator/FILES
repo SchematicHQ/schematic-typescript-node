@@ -18,12 +18,12 @@ models/CreateCompanyRequestKeysInner.ts
 models/CreateFeature200Response.ts
 models/CreateFeature200ResponseData.ts
 models/CreateFeature200ResponseDataFlagsInner.ts
-models/CreateFeature200ResponseDataFlagsInnerFlag.ts
 models/CreateFeature200ResponseDataFlagsInnerRulesInner.ts
 models/CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner.ts
-models/CreateFeature200ResponseDataFlagsInnerRulesInnerRule.ts
 models/CreateFeatureRequest.ts
-models/CreateFeatureRequestFlag.ts
+models/CreateFeatureRequestFlagsInner.ts
+models/CreateFeatureRequestFlagsInnerRulesInner.ts
+models/CreateFeatureRequestFlagsInnerRulesInnerConditionsInner.ts
 models/CreateUser200Response.ts
 models/CreateUser200ResponseData.ts
 models/CreateUserRequest.ts
@@ -55,6 +55,5 @@ models/ListPlans200ResponseDataInner.ts
 models/ListUsers200Response.ts
 models/ListUsers200ResponseDataInner.ts
 models/ModelError.ts
-models/UpdateFeatureRequest.ts
 models/index.ts
 runtime.ts

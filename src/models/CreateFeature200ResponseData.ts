@@ -25,12 +25,6 @@ import {
     ListEventTypes200ResponseDataInnerFromJSONTyped,
     ListEventTypes200ResponseDataInnerToJSON,
 } from './ListEventTypes200ResponseDataInner';
-import type { ListFeatures200ResponseDataInner } from './ListFeatures200ResponseDataInner';
-import {
-    ListFeatures200ResponseDataInnerFromJSON,
-    ListFeatures200ResponseDataInnerFromJSONTyped,
-    ListFeatures200ResponseDataInnerToJSON,
-} from './ListFeatures200ResponseDataInner';
 
 /**
  * The returned resource
@@ -40,22 +34,64 @@ import {
 export interface CreateFeature200ResponseData {
     /**
      * 
+     * @type {string}
+     * @memberof CreateFeature200ResponseData
+     */
+    accountId?: string;
+    /**
+     * 
+     * @type {Date}
+     * @memberof CreateFeature200ResponseData
+     */
+    createdAt?: Date;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeature200ResponseData
+     */
+    description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeature200ResponseData
+     */
+    eventSubtype?: string;
+    /**
+     * 
      * @type {ListEventTypes200ResponseDataInner}
      * @memberof CreateFeature200ResponseData
      */
     eventSummary?: ListEventTypes200ResponseDataInner;
     /**
      * 
-     * @type {ListFeatures200ResponseDataInner}
-     * @memberof CreateFeature200ResponseData
-     */
-    feature?: ListFeatures200ResponseDataInner;
-    /**
-     * 
      * @type {Array<CreateFeature200ResponseDataFlagsInner>}
      * @memberof CreateFeature200ResponseData
      */
     flags?: Array<CreateFeature200ResponseDataFlagsInner>;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeature200ResponseData
+     */
+    id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeature200ResponseData
+     */
+    lifecyclePhase?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeature200ResponseData
+     */
+    name?: string;
+    /**
+     * 
+     * @type {Date}
+     * @memberof CreateFeature200ResponseData
+     */
+    updatedAt?: Date;
 }
 
 /**
@@ -77,9 +113,16 @@ export function CreateFeature200ResponseDataFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
+        'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
+        'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
+        'description': !exists(json, 'description') ? undefined : json['description'],
+        'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
         'eventSummary': !exists(json, 'event_summary') ? undefined : ListEventTypes200ResponseDataInnerFromJSON(json['event_summary']),
-        'feature': !exists(json, 'feature') ? undefined : ListFeatures200ResponseDataInnerFromJSON(json['feature']),
         'flags': !exists(json, 'flags') ? undefined : ((json['flags'] as Array<any>).map(CreateFeature200ResponseDataFlagsInnerFromJSON)),
+        'id': !exists(json, 'id') ? undefined : json['id'],
+        'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
+        'name': !exists(json, 'name') ? undefined : json['name'],
+        'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
     };
 }
 
@@ -92,9 +135,16 @@ export function CreateFeature200ResponseDataToJSON(value?: CreateFeature200Respo
     }
     return {
         
+        'account_id': value.accountId,
+        'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'description': value.description,
+        'event_subtype': value.eventSubtype,
         'event_summary': ListEventTypes200ResponseDataInnerToJSON(value.eventSummary),
-        'feature': ListFeatures200ResponseDataInnerToJSON(value.feature),
         'flags': value.flags === undefined ? undefined : ((value.flags as Array<any>).map(CreateFeature200ResponseDataFlagsInnerToJSON)),
+        'id': value.id,
+        'lifecycle_phase': value.lifecyclePhase,
+        'name': value.name,
+        'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
     };
 }
 

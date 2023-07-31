@@ -19,12 +19,6 @@ import {
     CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInnerFromJSONTyped,
     CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInnerToJSON,
 } from './CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner';
-import type { CreateFeature200ResponseDataFlagsInnerRulesInnerRule } from './CreateFeature200ResponseDataFlagsInnerRulesInnerRule';
-import {
-    CreateFeature200ResponseDataFlagsInnerRulesInnerRuleFromJSON,
-    CreateFeature200ResponseDataFlagsInnerRulesInnerRuleFromJSONTyped,
-    CreateFeature200ResponseDataFlagsInnerRulesInnerRuleToJSON,
-} from './CreateFeature200ResponseDataFlagsInnerRulesInnerRule';
 
 /**
  * 
@@ -34,16 +28,64 @@ import {
 export interface CreateFeature200ResponseDataFlagsInnerRulesInner {
     /**
      * 
+     * @type {string}
+     * @memberof CreateFeature200ResponseDataFlagsInnerRulesInner
+     */
+    accountId?: string;
+    /**
+     * 
      * @type {Array<CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner>}
      * @memberof CreateFeature200ResponseDataFlagsInnerRulesInner
      */
     conditions?: Array<CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner>;
     /**
      * 
-     * @type {CreateFeature200ResponseDataFlagsInnerRulesInnerRule}
+     * @type {Date}
      * @memberof CreateFeature200ResponseDataFlagsInnerRulesInner
      */
-    rule?: CreateFeature200ResponseDataFlagsInnerRulesInnerRule;
+    createdAt?: Date;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeature200ResponseDataFlagsInnerRulesInner
+     */
+    environmentId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeature200ResponseDataFlagsInnerRulesInner
+     */
+    flagId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeature200ResponseDataFlagsInnerRulesInner
+     */
+    id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeature200ResponseDataFlagsInnerRulesInner
+     */
+    name?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateFeature200ResponseDataFlagsInnerRulesInner
+     */
+    priority?: number;
+    /**
+     * 
+     * @type {Date}
+     * @memberof CreateFeature200ResponseDataFlagsInnerRulesInner
+     */
+    updatedAt?: Date;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateFeature200ResponseDataFlagsInnerRulesInner
+     */
+    value?: boolean;
 }
 
 /**
@@ -65,8 +107,16 @@ export function CreateFeature200ResponseDataFlagsInnerRulesInnerFromJSONTyped(js
     }
     return {
         
+        'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
         'conditions': !exists(json, 'conditions') ? undefined : ((json['conditions'] as Array<any>).map(CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInnerFromJSON)),
-        'rule': !exists(json, 'rule') ? undefined : CreateFeature200ResponseDataFlagsInnerRulesInnerRuleFromJSON(json['rule']),
+        'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
+        'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
+        'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
+        'id': !exists(json, 'id') ? undefined : json['id'],
+        'name': !exists(json, 'name') ? undefined : json['name'],
+        'priority': !exists(json, 'priority') ? undefined : json['priority'],
+        'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
+        'value': !exists(json, 'value') ? undefined : json['value'],
     };
 }
 
@@ -79,8 +129,16 @@ export function CreateFeature200ResponseDataFlagsInnerRulesInnerToJSON(value?: C
     }
     return {
         
+        'account_id': value.accountId,
         'conditions': value.conditions === undefined ? undefined : ((value.conditions as Array<any>).map(CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInnerToJSON)),
-        'rule': CreateFeature200ResponseDataFlagsInnerRulesInnerRuleToJSON(value.rule),
+        'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'environment_id': value.environmentId,
+        'flag_id': value.flagId,
+        'id': value.id,
+        'name': value.name,
+        'priority': value.priority,
+        'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
+        'value': value.value,
     };
 }
 
