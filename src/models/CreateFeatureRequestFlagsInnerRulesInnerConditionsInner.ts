@@ -24,6 +24,12 @@ export interface CreateFeatureRequestFlagsInnerRulesInnerConditionsInner {
      * @type {string}
      * @memberof CreateFeatureRequestFlagsInnerRulesInnerConditionsInner
      */
+    conditionType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeatureRequestFlagsInnerRulesInnerConditionsInner
+     */
     eventSubtype?: string;
     /**
      * 
@@ -36,7 +42,13 @@ export interface CreateFeatureRequestFlagsInnerRulesInnerConditionsInner {
      * @type {string}
      * @memberof CreateFeatureRequestFlagsInnerRulesInnerConditionsInner
      */
-    objectType?: string;
+    metricPeriod?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateFeatureRequestFlagsInnerRulesInnerConditionsInner
+     */
+    metricValue?: number;
     /**
      * 
      * @type {string}
@@ -45,22 +57,10 @@ export interface CreateFeatureRequestFlagsInnerRulesInnerConditionsInner {
     operator?: string;
     /**
      * 
-     * @type {number}
-     * @memberof CreateFeatureRequestFlagsInnerRulesInnerConditionsInner
-     */
-    priority?: number;
-    /**
-     * 
      * @type {Array<string>}
      * @memberof CreateFeatureRequestFlagsInnerRulesInnerConditionsInner
      */
     resourceIds?: Array<string>;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateFeatureRequestFlagsInnerRulesInnerConditionsInner
-     */
-    value?: number;
 }
 
 /**
@@ -82,13 +82,13 @@ export function CreateFeatureRequestFlagsInnerRulesInnerConditionsInnerFromJSONT
     }
     return {
         
+        'conditionType': !exists(json, 'condition_type') ? undefined : json['condition_type'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
         'id': !exists(json, 'id') ? undefined : json['id'],
-        'objectType': !exists(json, 'object_type') ? undefined : json['object_type'],
+        'metricPeriod': !exists(json, 'metric_period') ? undefined : json['metric_period'],
+        'metricValue': !exists(json, 'metric_value') ? undefined : json['metric_value'],
         'operator': !exists(json, 'operator') ? undefined : json['operator'],
-        'priority': !exists(json, 'priority') ? undefined : json['priority'],
         'resourceIds': !exists(json, 'resource_ids') ? undefined : json['resource_ids'],
-        'value': !exists(json, 'value') ? undefined : json['value'],
     };
 }
 
@@ -101,13 +101,13 @@ export function CreateFeatureRequestFlagsInnerRulesInnerConditionsInnerToJSON(va
     }
     return {
         
+        'condition_type': value.conditionType,
         'event_subtype': value.eventSubtype,
         'id': value.id,
-        'object_type': value.objectType,
+        'metric_period': value.metricPeriod,
+        'metric_value': value.metricValue,
         'operator': value.operator,
-        'priority': value.priority,
         'resource_ids': value.resourceIds,
-        'value': value.value,
     };
 }
 

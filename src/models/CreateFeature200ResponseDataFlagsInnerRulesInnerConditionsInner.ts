@@ -27,6 +27,12 @@ export interface CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
     accountId?: string;
     /**
      * 
+     * @type {string}
+     * @memberof CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
+     */
+    conditionType?: string;
+    /**
+     * 
      * @type {Date}
      * @memberof CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
      */
@@ -60,19 +66,19 @@ export interface CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
      * @type {string}
      * @memberof CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
      */
-    objectType?: string;
+    metricPeriod?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
+     */
+    metricValue?: number;
     /**
      * 
      * @type {string}
      * @memberof CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
      */
     operator?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
-     */
-    priority?: number;
     /**
      * 
      * @type {Array<string>}
@@ -91,12 +97,6 @@ export interface CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
      * @memberof CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
      */
     updatedAt?: Date;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
-     */
-    value?: number;
 }
 
 /**
@@ -119,18 +119,18 @@ export function CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInnerF
     return {
         
         'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
+        'conditionType': !exists(json, 'condition_type') ? undefined : json['condition_type'],
         'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
         'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
-        'objectType': !exists(json, 'object_type') ? undefined : json['object_type'],
+        'metricPeriod': !exists(json, 'metric_period') ? undefined : json['metric_period'],
+        'metricValue': !exists(json, 'metric_value') ? undefined : json['metric_value'],
         'operator': !exists(json, 'operator') ? undefined : json['operator'],
-        'priority': !exists(json, 'priority') ? undefined : json['priority'],
         'resourceIds': !exists(json, 'resource_ids') ? undefined : json['resource_ids'],
         'ruleId': !exists(json, 'rule_id') ? undefined : json['rule_id'],
         'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
-        'value': !exists(json, 'value') ? undefined : json['value'],
     };
 }
 
@@ -144,18 +144,18 @@ export function CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInnerT
     return {
         
         'account_id': value.accountId,
+        'condition_type': value.conditionType,
         'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
         'environment_id': value.environmentId,
         'event_subtype': value.eventSubtype,
         'flag_id': value.flagId,
         'id': value.id,
-        'object_type': value.objectType,
+        'metric_period': value.metricPeriod,
+        'metric_value': value.metricValue,
         'operator': value.operator,
-        'priority': value.priority,
         'resource_ids': value.resourceIds,
         'rule_id': value.ruleId,
         'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
-        'value': value.value,
     };
 }
 
