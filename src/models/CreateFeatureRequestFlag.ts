@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { CreateFeatureRequestFlagRulesInner } from './CreateFeatureRequestFlagRulesInner';
+import {
+    CreateFeatureRequestFlagRulesInnerFromJSON,
+    CreateFeatureRequestFlagRulesInnerFromJSONTyped,
+    CreateFeatureRequestFlagRulesInnerToJSON,
+} from './CreateFeatureRequestFlagRulesInner';
+
 /**
  * 
  * @export
@@ -36,7 +43,19 @@ export interface CreateFeatureRequestFlag {
      * @type {string}
      * @memberof CreateFeatureRequestFlag
      */
+    id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeatureRequestFlag
+     */
     key?: string;
+    /**
+     * 
+     * @type {Array<CreateFeatureRequestFlagRulesInner>}
+     * @memberof CreateFeatureRequestFlag
+     */
+    rules?: Array<CreateFeatureRequestFlagRulesInner>;
 }
 
 /**
@@ -60,7 +79,9 @@ export function CreateFeatureRequestFlagFromJSONTyped(json: any, ignoreDiscrimin
         
         'defaultValue': !exists(json, 'default_value') ? undefined : json['default_value'],
         'flagType': !exists(json, 'flag_type') ? undefined : json['flag_type'],
+        'id': !exists(json, 'id') ? undefined : json['id'],
         'key': !exists(json, 'key') ? undefined : json['key'],
+        'rules': !exists(json, 'rules') ? undefined : ((json['rules'] as Array<any>).map(CreateFeatureRequestFlagRulesInnerFromJSON)),
     };
 }
 
@@ -75,7 +96,9 @@ export function CreateFeatureRequestFlagToJSON(value?: CreateFeatureRequestFlag 
         
         'default_value': value.defaultValue,
         'flag_type': value.flagType,
+        'id': value.id,
         'key': value.key,
+        'rules': value.rules === undefined ? undefined : ((value.rules as Array<any>).map(CreateFeatureRequestFlagRulesInnerToJSON)),
     };
 }
 

@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { CreateFeatureRequestFlagsInner } from './CreateFeatureRequestFlagsInner';
+import type { CreateFeatureRequestFlag } from './CreateFeatureRequestFlag';
 import {
-    CreateFeatureRequestFlagsInnerFromJSON,
-    CreateFeatureRequestFlagsInnerFromJSONTyped,
-    CreateFeatureRequestFlagsInnerToJSON,
-} from './CreateFeatureRequestFlagsInner';
+    CreateFeatureRequestFlagFromJSON,
+    CreateFeatureRequestFlagFromJSONTyped,
+    CreateFeatureRequestFlagToJSON,
+} from './CreateFeatureRequestFlag';
 
 /**
  * 
@@ -40,10 +40,10 @@ export interface CreateFeatureRequest {
     eventSubtype?: string;
     /**
      * 
-     * @type {Array<CreateFeatureRequestFlagsInner>}
+     * @type {CreateFeatureRequestFlag}
      * @memberof CreateFeatureRequest
      */
-    flags?: Array<CreateFeatureRequestFlagsInner>;
+    flag?: CreateFeatureRequestFlag;
     /**
      * 
      * @type {string}
@@ -85,7 +85,7 @@ export function CreateFeatureRequestFromJSONTyped(json: any, ignoreDiscriminator
         
         'description': !exists(json, 'description') ? undefined : json['description'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
-        'flags': !exists(json, 'flags') ? undefined : ((json['flags'] as Array<any>).map(CreateFeatureRequestFlagsInnerFromJSON)),
+        'flag': !exists(json, 'flag') ? undefined : CreateFeatureRequestFlagFromJSON(json['flag']),
         'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
@@ -103,7 +103,7 @@ export function CreateFeatureRequestToJSON(value?: CreateFeatureRequest | null):
         
         'description': value.description,
         'event_subtype': value.eventSubtype,
-        'flags': value.flags === undefined ? undefined : ((value.flags as Array<any>).map(CreateFeatureRequestFlagsInnerToJSON)),
+        'flag': CreateFeatureRequestFlagToJSON(value.flag),
         'lifecycle_phase': value.lifecyclePhase,
         'name': value.name,
         'skip_webhooks': value.skipWebhooks,
