@@ -1,6 +1,7 @@
 node_modules
 dist
 .parcel-cache
+yarn-error.log
 
 # OpenAPI artifacts to ignore
 src/git_push.sh
