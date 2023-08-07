@@ -52,8 +52,8 @@ export function CreateCompanyRequestKeysInnerFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'keyType': !exists(json, 'KeyType') ? undefined : json['KeyType'],
-        'value': !exists(json, 'Value') ? undefined : json['Value'],
+        'keyType': !exists(json, 'key_type') ? undefined : json['key_type'],
+        'value': !exists(json, 'value') ? undefined : json['value'],
     };
 }
 
@@ -66,8 +66,8 @@ export function CreateCompanyRequestKeysInnerToJSON(value?: CreateCompanyRequest
     }
     return {
         
-        'KeyType': value.keyType,
-        'Value': value.value,
+        'key_type': value.keyType,
+        'value': value.value,
     };
 }
 

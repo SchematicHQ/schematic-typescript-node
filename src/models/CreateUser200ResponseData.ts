@@ -69,7 +69,7 @@ export interface CreateUser200ResponseData {
      */
     lastSeenAt?: Date;
     /**
-     * 
+     * A map of trait names to trait values
      * @type {object}
      * @memberof CreateUser200ResponseData
      */

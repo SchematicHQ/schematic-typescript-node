@@ -51,7 +51,7 @@ export interface CreateUserRequest {
      */
     skipWebhooks?: boolean;
     /**
-     * 
+     * A map of trait names to trait values
      * @type {object}
      * @memberof CreateUserRequest
      */

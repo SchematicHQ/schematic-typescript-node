@@ -57,12 +57,6 @@ export interface ListCompanies200ResponseDataInner {
     name?: string;
     /**
      * 
-     * @type {object}
-     * @memberof ListCompanies200ResponseDataInner
-     */
-    traits?: object;
-    /**
-     * 
      * @type {Date}
      * @memberof ListCompanies200ResponseDataInner
      */
@@ -94,7 +88,6 @@ export function ListCompanies200ResponseDataInnerFromJSONTyped(json: any, ignore
         'id': !exists(json, 'id') ? undefined : json['id'],
         'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (new Date(json['last_seen_at'])),
         'name': !exists(json, 'name') ? undefined : json['name'],
-        'traits': !exists(json, 'traits') ? undefined : json['traits'],
         'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
     };
 }
@@ -114,7 +107,6 @@ export function ListCompanies200ResponseDataInnerToJSON(value?: ListCompanies200
         'id': value.id,
         'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt.toISOString()),
         'name': value.name,
-        'traits': value.traits,
         'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
     };
 }

@@ -69,7 +69,7 @@ export interface CreateCompany200ResponseData {
      */
     name?: string;
     /**
-     * 
+     * A map of trait names to trait values
      * @type {object}
      * @memberof CreateCompany200ResponseData
      */

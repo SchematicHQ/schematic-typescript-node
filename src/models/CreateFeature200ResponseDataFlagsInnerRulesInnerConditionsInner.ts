@@ -93,6 +93,24 @@ export interface CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
     ruleId?: string;
     /**
      * 
+     * @type {string}
+     * @memberof CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
+     */
+    traitEntityType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
+     */
+    traitId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
+     */
+    traitValue?: string;
+    /**
+     * 
      * @type {Date}
      * @memberof CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
      */
@@ -130,6 +148,9 @@ export function CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInnerF
         'operator': !exists(json, 'operator') ? undefined : json['operator'],
         'resourceIds': !exists(json, 'resource_ids') ? undefined : json['resource_ids'],
         'ruleId': !exists(json, 'rule_id') ? undefined : json['rule_id'],
+        'traitEntityType': !exists(json, 'trait_entity_type') ? undefined : json['trait_entity_type'],
+        'traitId': !exists(json, 'trait_id') ? undefined : json['trait_id'],
+        'traitValue': !exists(json, 'trait_value') ? undefined : json['trait_value'],
         'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
     };
 }
@@ -155,6 +176,9 @@ export function CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInnerT
         'operator': value.operator,
         'resource_ids': value.resourceIds,
         'rule_id': value.ruleId,
+        'trait_entity_type': value.traitEntityType,
+        'trait_id': value.traitId,
+        'trait_value': value.traitValue,
         'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
     };
 }

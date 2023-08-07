@@ -57,12 +57,6 @@ export interface ListUsers200ResponseDataInner {
     lastSeenAt?: Date;
     /**
      * 
-     * @type {object}
-     * @memberof ListUsers200ResponseDataInner
-     */
-    traits?: object;
-    /**
-     * 
      * @type {Date}
      * @memberof ListUsers200ResponseDataInner
      */
@@ -94,7 +88,6 @@ export function ListUsers200ResponseDataInnerFromJSONTyped(json: any, ignoreDisc
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (new Date(json['last_seen_at'])),
-        'traits': !exists(json, 'traits') ? undefined : json['traits'],
         'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
     };
 }
@@ -114,7 +107,6 @@ export function ListUsers200ResponseDataInnerToJSON(value?: ListUsers200Response
         'environment_id': value.environmentId,
         'id': value.id,
         'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt.toISOString()),
-        'traits': value.traits,
         'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
     };
 }
