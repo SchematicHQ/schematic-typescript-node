@@ -24,6 +24,8 @@ models/CreateFeatureRequestFlag.ts
 models/CreateFeatureRequestFlagRulesInner.ts
 models/CreateFeatureRequestFlagRulesInnerConditionsInner.ts
 models/CreatePlan200Response.ts
+models/CreatePlan200ResponseData.ts
+models/CreatePlanRequest.ts
 models/CreateUser200Response.ts
 models/CreateUser200ResponseData.ts
 models/CreateUserRequest.ts
@@ -56,8 +58,6 @@ models/ListPlans200ResponseDataInner.ts
 models/ListUsers200Response.ts
 models/ListUsers200ResponseDataInner.ts
 models/ModelError.ts
-models/UpdateFeature200Response.ts
-models/UpdateFeature200ResponseData.ts
-models/UpdateFeatureRequest.ts
+models/UpdatePlan200Response.ts
 models/index.ts
 runtime.ts

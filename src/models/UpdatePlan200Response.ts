@@ -23,37 +23,37 @@ import {
 /**
  * 
  * @export
- * @interface CreatePlan200Response
+ * @interface UpdatePlan200Response
  */
-export interface CreatePlan200Response {
+export interface UpdatePlan200Response {
     /**
      * 
      * @type {CreatePlan200ResponseData}
-     * @memberof CreatePlan200Response
+     * @memberof UpdatePlan200Response
      */
     data?: CreatePlan200ResponseData;
     /**
-     * Input parameters
-     * @type {object}
-     * @memberof CreatePlan200Response
+     * 
+     * @type {any}
+     * @memberof UpdatePlan200Response
      */
-    params?: object;
+    params?: any | null;
 }
 
 /**
- * Check if a given object implements the CreatePlan200Response interface.
+ * Check if a given object implements the UpdatePlan200Response interface.
  */
-export function instanceOfCreatePlan200Response(value: object): boolean {
+export function instanceOfUpdatePlan200Response(value: object): boolean {
     let isInstance = true;
 
     return isInstance;
 }
 
-export function CreatePlan200ResponseFromJSON(json: any): CreatePlan200Response {
-    return CreatePlan200ResponseFromJSONTyped(json, false);
+export function UpdatePlan200ResponseFromJSON(json: any): UpdatePlan200Response {
+    return UpdatePlan200ResponseFromJSONTyped(json, false);
 }
 
-export function CreatePlan200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreatePlan200Response {
+export function UpdatePlan200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdatePlan200Response {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -64,7 +64,7 @@ export function CreatePlan200ResponseFromJSONTyped(json: any, ignoreDiscriminato
     };
 }
 
-export function CreatePlan200ResponseToJSON(value?: CreatePlan200Response | null): any {
+export function UpdatePlan200ResponseToJSON(value?: UpdatePlan200Response | null): any {
     if (value === undefined) {
         return undefined;
     }
