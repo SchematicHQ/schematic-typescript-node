@@ -13,18 +13,18 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { ListCompanies200ResponseParams } from './ListCompanies200ResponseParams';
-import {
-    ListCompanies200ResponseParamsFromJSON,
-    ListCompanies200ResponseParamsFromJSONTyped,
-    ListCompanies200ResponseParamsToJSON,
-} from './ListCompanies200ResponseParams';
 import type { ListFeatures200ResponseDataInner } from './ListFeatures200ResponseDataInner';
 import {
     ListFeatures200ResponseDataInnerFromJSON,
     ListFeatures200ResponseDataInnerFromJSONTyped,
     ListFeatures200ResponseDataInnerToJSON,
 } from './ListFeatures200ResponseDataInner';
+import type { ListFeatures200ResponseParams } from './ListFeatures200ResponseParams';
+import {
+    ListFeatures200ResponseParamsFromJSON,
+    ListFeatures200ResponseParamsFromJSONTyped,
+    ListFeatures200ResponseParamsToJSON,
+} from './ListFeatures200ResponseParams';
 
 /**
  * 
@@ -40,10 +40,10 @@ export interface ListFeatures200Response {
     data?: Array<ListFeatures200ResponseDataInner>;
     /**
      * 
-     * @type {ListCompanies200ResponseParams}
+     * @type {ListFeatures200ResponseParams}
      * @memberof ListFeatures200Response
      */
-    params?: ListCompanies200ResponseParams;
+    params?: ListFeatures200ResponseParams;
 }
 
 /**
@@ -66,7 +66,7 @@ export function ListFeatures200ResponseFromJSONTyped(json: any, ignoreDiscrimina
     return {
         
         'data': !exists(json, 'data') ? undefined : ((json['data'] as Array<any>).map(ListFeatures200ResponseDataInnerFromJSON)),
-        'params': !exists(json, 'params') ? undefined : ListCompanies200ResponseParamsFromJSON(json['params']),
+        'params': !exists(json, 'params') ? undefined : ListFeatures200ResponseParamsFromJSON(json['params']),
     };
 }
 
@@ -80,7 +80,7 @@ export function ListFeatures200ResponseToJSON(value?: ListFeatures200Response | 
     return {
         
         'data': value.data === undefined ? undefined : ((value.data as Array<any>).map(ListFeatures200ResponseDataInnerToJSON)),
-        'params': ListCompanies200ResponseParamsToJSON(value.params),
+        'params': ListFeatures200ResponseParamsToJSON(value.params),
     };
 }
 

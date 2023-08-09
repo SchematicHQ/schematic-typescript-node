@@ -20,25 +20,31 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ListCompanies200ResponseParams {
     /**
-     * Order direction
+     * 
      * @type {string}
      * @memberof ListCompanies200ResponseParams
      */
     dir?: string;
     /**
-     * Page limit (default 100)
+     * 
+     * @type {Array<number>}
+     * @memberof ListCompanies200ResponseParams
+     */
+    ids?: Array<number>;
+    /**
+     * 
      * @type {number}
      * @memberof ListCompanies200ResponseParams
      */
     limit?: number;
     /**
-     * Page offset (default 0)
+     * 
      * @type {number}
      * @memberof ListCompanies200ResponseParams
      */
     offset?: number;
     /**
-     * Order by column
+     * 
      * @type {string}
      * @memberof ListCompanies200ResponseParams
      */
@@ -65,6 +71,7 @@ export function ListCompanies200ResponseParamsFromJSONTyped(json: any, ignoreDis
     return {
         
         'dir': !exists(json, 'dir') ? undefined : json['dir'],
+        'ids': !exists(json, 'ids') ? undefined : json['ids'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'offset': !exists(json, 'offset') ? undefined : json['offset'],
         'order': !exists(json, 'order') ? undefined : json['order'],
@@ -81,6 +88,7 @@ export function ListCompanies200ResponseParamsToJSON(value?: ListCompanies200Res
     return {
         
         'dir': value.dir,
+        'ids': value.ids,
         'limit': value.limit,
         'offset': value.offset,
         'order': value.order,

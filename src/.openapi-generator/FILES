@@ -1,7 +1,7 @@
 apis/CompaniesApi.ts
-apis/EntitlementsApi.ts
 apis/EventsApi.ts
 apis/FeaturesApi.ts
+apis/PlansApi.ts
 apis/index.ts
 index.ts
 models/CheckFlag200Response.ts
@@ -14,7 +14,6 @@ models/CreateCompany200Response.ts
 models/CreateCompany200ResponseData.ts
 models/CreateCompany200ResponseDataKeysInner.ts
 models/CreateCompanyRequest.ts
-models/CreateCompanyRequestKeysInner.ts
 models/CreateFeature200Response.ts
 models/CreateFeature200ResponseData.ts
 models/CreateFeature200ResponseDataFlagsInner.ts
@@ -24,6 +23,7 @@ models/CreateFeatureRequest.ts
 models/CreateFeatureRequestFlag.ts
 models/CreateFeatureRequestFlagRulesInner.ts
 models/CreateFeatureRequestFlagRulesInnerConditionsInner.ts
+models/CreatePlan200Response.ts
 models/CreateUser200Response.ts
 models/CreateUser200ResponseData.ts
 models/CreateUserRequest.ts
@@ -47,6 +47,7 @@ models/ListEvents200ResponseDataInner.ts
 models/ListEvents200ResponseParams.ts
 models/ListFeatures200Response.ts
 models/ListFeatures200ResponseDataInner.ts
+models/ListFeatures200ResponseParams.ts
 models/ListFlagValues200Response.ts
 models/ListFlagValues200ResponseDataInner.ts
 models/ListFlagValues200ResponseParams.ts
@@ -55,5 +56,8 @@ models/ListPlans200ResponseDataInner.ts
 models/ListUsers200Response.ts
 models/ListUsers200ResponseDataInner.ts
 models/ModelError.ts
+models/UpdateFeature200Response.ts
+models/UpdateFeature200ResponseData.ts
+models/UpdateFeatureRequest.ts
 models/index.ts
 runtime.ts

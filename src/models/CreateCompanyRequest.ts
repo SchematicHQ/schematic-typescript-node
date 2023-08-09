@@ -13,13 +13,6 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { CreateCompanyRequestKeysInner } from './CreateCompanyRequestKeysInner';
-import {
-    CreateCompanyRequestKeysInnerFromJSON,
-    CreateCompanyRequestKeysInnerFromJSONTyped,
-    CreateCompanyRequestKeysInnerToJSON,
-} from './CreateCompanyRequestKeysInner';
-
 /**
  * 
  * @export
@@ -28,10 +21,10 @@ import {
 export interface CreateCompanyRequest {
     /**
      * 
-     * @type {Array<CreateCompanyRequestKeysInner>}
+     * @type {object}
      * @memberof CreateCompanyRequest
      */
-    keys?: Array<CreateCompanyRequestKeysInner>;
+    keys?: object;
     /**
      * 
      * @type {Date}
@@ -77,7 +70,7 @@ export function CreateCompanyRequestFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'keys': !exists(json, 'keys') ? undefined : ((json['keys'] as Array<any>).map(CreateCompanyRequestKeysInnerFromJSON)),
+        'keys': !exists(json, 'keys') ? undefined : json['keys'],
         'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (new Date(json['last_seen_at'])),
         'name': !exists(json, 'name') ? undefined : json['name'],
         'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
@@ -94,7 +87,7 @@ export function CreateCompanyRequestToJSON(value?: CreateCompanyRequest | null):
     }
     return {
         
-        'keys': value.keys === undefined ? undefined : ((value.keys as Array<any>).map(CreateCompanyRequestKeysInnerToJSON)),
+        'keys': value.keys,
         'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt.toISOString()),
         'name': value.name,
         'skip_webhooks': value.skipWebhooks,

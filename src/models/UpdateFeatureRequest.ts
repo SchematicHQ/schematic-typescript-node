@@ -13,43 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { CreateFeatureRequestFlagsInner } from './CreateFeatureRequestFlagsInner';
-import {
-    CreateFeatureRequestFlagsInnerFromJSON,
-    CreateFeatureRequestFlagsInnerFromJSONTyped,
-    CreateFeatureRequestFlagsInnerToJSON,
-} from './CreateFeatureRequestFlagsInner';
-
 /**
  * 
  * @export
  * @interface UpdateFeatureRequest
  */
 export interface UpdateFeatureRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateFeatureRequest
-     */
-    description?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateFeatureRequest
-     */
-    eventSubtype?: string;
-    /**
-     * 
-     * @type {Array<CreateFeatureRequestFlagsInner>}
-     * @memberof UpdateFeatureRequest
-     */
-    flags?: Array<CreateFeatureRequestFlagsInner>;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateFeatureRequest
-     */
-    lifecyclePhase?: string;
     /**
      * 
      * @type {string}
@@ -83,10 +52,6 @@ export function UpdateFeatureRequestFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
-        'flags': !exists(json, 'flags') ? undefined : ((json['flags'] as Array<any>).map(CreateFeatureRequestFlagsInnerFromJSON)),
-        'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
     };
@@ -101,10 +66,6 @@ export function UpdateFeatureRequestToJSON(value?: UpdateFeatureRequest | null):
     }
     return {
         
-        'description': value.description,
-        'event_subtype': value.eventSubtype,
-        'flags': value.flags === undefined ? undefined : ((value.flags as Array<any>).map(CreateFeatureRequestFlagsInnerToJSON)),
-        'lifecycle_phase': value.lifecyclePhase,
         'name': value.name,
         'skip_webhooks': value.skipWebhooks,
     };

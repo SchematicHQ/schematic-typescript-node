@@ -19,7 +19,6 @@ import type {
   CountFlagValues200Response,
   CreateFeature200Response,
   CreateFeatureRequest,
-  DeleteFeature200Response,
   GetFeature200Response,
   ListFeatures200Response,
   ListFlagValues200Response,
@@ -33,8 +32,6 @@ import {
     CreateFeature200ResponseToJSON,
     CreateFeatureRequestFromJSON,
     CreateFeatureRequestToJSON,
-    DeleteFeature200ResponseFromJSON,
-    DeleteFeature200ResponseToJSON,
     GetFeature200ResponseFromJSON,
     GetFeature200ResponseToJSON,
     ListFeatures200ResponseFromJSON,
@@ -66,11 +63,6 @@ export interface CreateFeatureOperationRequest {
     xSchematicEnvironmentId?: string;
 }
 
-export interface DeleteFeatureRequest {
-    featureId: string;
-    xSchematicEnvironmentId?: string;
-}
-
 export interface GetFeatureRequest {
     featureId: string;
     xSchematicEnvironmentId?: string;
@@ -93,12 +85,6 @@ export interface ListFlagValuesRequest {
     offset?: number;
     order?: string;
     dir?: string;
-}
-
-export interface UpdateFeatureRequest {
-    createFeatureRequest: CreateFeatureRequest;
-    featureId: string;
-    xSchematicEnvironmentId?: string;
 }
 
 /**
@@ -256,44 +242,6 @@ export class FeaturesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete feature
-     */
-    async deleteFeatureRaw(requestParameters: DeleteFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteFeature200Response>> {
-        if (requestParameters.featureId === null || requestParameters.featureId === undefined) {
-            throw new runtime.RequiredError('featureId','Required parameter requestParameters.featureId was null or undefined when calling deleteFeature.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/features/{feature_id}`.replace(`{${"feature_id"}}`, encodeURIComponent(String(requestParameters.featureId))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteFeature200ResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Delete feature
-     */
-    async deleteFeature(requestParameters: DeleteFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteFeature200Response> {
-        const response = await this.deleteFeatureRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
      * Get feature
      */
     async getFeatureRaw(requestParameters: GetFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFeature200Response>> {
@@ -440,51 +388,6 @@ export class FeaturesApi extends runtime.BaseAPI {
      */
     async listFlagValues(requestParameters: ListFlagValuesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListFlagValues200Response> {
         const response = await this.listFlagValuesRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Update feature
-     */
-    async updateFeatureRaw(requestParameters: UpdateFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFeature200Response>> {
-        if (requestParameters.createFeatureRequest === null || requestParameters.createFeatureRequest === undefined) {
-            throw new runtime.RequiredError('createFeatureRequest','Required parameter requestParameters.createFeatureRequest was null or undefined when calling updateFeature.');
-        }
-
-        if (requestParameters.featureId === null || requestParameters.featureId === undefined) {
-            throw new runtime.RequiredError('featureId','Required parameter requestParameters.featureId was null or undefined when calling updateFeature.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/features/{feature_id}`.replace(`{${"feature_id"}}`, encodeURIComponent(String(requestParameters.featureId))),
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: CreateFeatureRequestToJSON(requestParameters.createFeatureRequest),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetFeature200ResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Update feature
-     */
-    async updateFeature(requestParameters: UpdateFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFeature200Response> {
-        const response = await this.updateFeatureRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

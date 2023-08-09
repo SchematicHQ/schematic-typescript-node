@@ -13,13 +13,6 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { CreateCompanyRequestKeysInner } from './CreateCompanyRequestKeysInner';
-import {
-    CreateCompanyRequestKeysInnerFromJSON,
-    CreateCompanyRequestKeysInnerFromJSONTyped,
-    CreateCompanyRequestKeysInnerToJSON,
-} from './CreateCompanyRequestKeysInner';
-
 /**
  * 
  * @export
@@ -34,10 +27,10 @@ export interface CreateUserRequest {
     companyId?: number;
     /**
      * 
-     * @type {Array<CreateCompanyRequestKeysInner>}
+     * @type {object}
      * @memberof CreateUserRequest
      */
-    keys?: Array<CreateCompanyRequestKeysInner>;
+    keys?: object;
     /**
      * 
      * @type {Date}
@@ -78,7 +71,7 @@ export function CreateUserRequestFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'keys': !exists(json, 'keys') ? undefined : ((json['keys'] as Array<any>).map(CreateCompanyRequestKeysInnerFromJSON)),
+        'keys': !exists(json, 'keys') ? undefined : json['keys'],
         'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (new Date(json['last_seen_at'])),
         'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
         'traits': !exists(json, 'traits') ? undefined : json['traits'],
@@ -95,7 +88,7 @@ export function CreateUserRequestToJSON(value?: CreateUserRequest | null): any {
     return {
         
         'company_id': value.companyId,
-        'keys': value.keys === undefined ? undefined : ((value.keys as Array<any>).map(CreateCompanyRequestKeysInnerToJSON)),
+        'keys': value.keys,
         'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt.toISOString()),
         'skip_webhooks': value.skipWebhooks,
         'traits': value.traits,

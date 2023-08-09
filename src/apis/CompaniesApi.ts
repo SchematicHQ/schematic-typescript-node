@@ -65,6 +65,7 @@ export interface GetUserRequest {
 
 export interface ListCompaniesRequest {
     xSchematicEnvironmentId?: string;
+    ids?: Array<number>;
     limit?: number;
     offset?: number;
     order?: string;
@@ -73,6 +74,7 @@ export interface ListCompaniesRequest {
 
 export interface ListUsersRequest {
     xSchematicEnvironmentId?: string;
+    ids?: Array<number>;
     limit?: number;
     offset?: number;
     order?: string;
@@ -248,6 +250,10 @@ export class CompaniesApi extends runtime.BaseAPI {
     async listCompaniesRaw(requestParameters: ListCompaniesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListCompanies200Response>> {
         const queryParameters: any = {};
 
+        if (requestParameters.ids) {
+            queryParameters['ids'] = requestParameters.ids;
+        }
+
         if (requestParameters.limit !== undefined) {
             queryParameters['limit'] = requestParameters.limit;
         }
@@ -297,6 +303,10 @@ export class CompaniesApi extends runtime.BaseAPI {
      */
     async listUsersRaw(requestParameters: ListUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListUsers200Response>> {
         const queryParameters: any = {};
+
+        if (requestParameters.ids) {
+            queryParameters['ids'] = requestParameters.ids;
+        }
 
         if (requestParameters.limit !== undefined) {
             queryParameters['limit'] = requestParameters.limit;

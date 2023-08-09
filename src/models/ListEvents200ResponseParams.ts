@@ -26,7 +26,7 @@ export interface ListEvents200ResponseParams {
      */
     companyId?: string;
     /**
-     * Order direction
+     * 
      * @type {string}
      * @memberof ListEvents200ResponseParams
      */
@@ -44,19 +44,19 @@ export interface ListEvents200ResponseParams {
      */
     featureId?: string;
     /**
-     * Page limit (default 100)
+     * 
      * @type {number}
      * @memberof ListEvents200ResponseParams
      */
     limit?: number;
     /**
-     * Page offset (default 0)
+     * 
      * @type {number}
      * @memberof ListEvents200ResponseParams
      */
     offset?: number;
     /**
-     * Order by column
+     * 
      * @type {string}
      * @memberof ListEvents200ResponseParams
      */

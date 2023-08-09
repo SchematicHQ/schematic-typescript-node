@@ -20,31 +20,25 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ListFeatures200ResponseParams {
     /**
-     * Order direction
+     * 
      * @type {string}
      * @memberof ListFeatures200ResponseParams
      */
     dir?: string;
     /**
-     * Page limit (default 100)
+     * 
      * @type {number}
      * @memberof ListFeatures200ResponseParams
      */
     limit?: number;
     /**
      * 
-     * @type {string}
-     * @memberof ListFeatures200ResponseParams
-     */
-    name?: string;
-    /**
-     * Page offset (default 0)
      * @type {number}
      * @memberof ListFeatures200ResponseParams
      */
     offset?: number;
     /**
-     * Order by column
+     * 
      * @type {string}
      * @memberof ListFeatures200ResponseParams
      */
@@ -72,7 +66,6 @@ export function ListFeatures200ResponseParamsFromJSONTyped(json: any, ignoreDisc
         
         'dir': !exists(json, 'dir') ? undefined : json['dir'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
         'offset': !exists(json, 'offset') ? undefined : json['offset'],
         'order': !exists(json, 'order') ? undefined : json['order'],
     };
@@ -89,7 +82,6 @@ export function ListFeatures200ResponseParamsToJSON(value?: ListFeatures200Respo
         
         'dir': value.dir,
         'limit': value.limit,
-        'name': value.name,
         'offset': value.offset,
         'order': value.order,
     };

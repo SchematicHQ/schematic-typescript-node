@@ -20,25 +20,25 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ListEventTypes200ResponseParams {
     /**
-     * Order direction
+     * 
      * @type {string}
      * @memberof ListEventTypes200ResponseParams
      */
     dir?: string;
     /**
-     * Page limit (default 100)
+     * 
      * @type {number}
      * @memberof ListEventTypes200ResponseParams
      */
     limit?: number;
     /**
-     * Page offset (default 0)
+     * 
      * @type {number}
      * @memberof ListEventTypes200ResponseParams
      */
     offset?: number;
     /**
-     * Order by column
+     * 
      * @type {string}
      * @memberof ListEventTypes200ResponseParams
      */

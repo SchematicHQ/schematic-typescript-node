@@ -20,7 +20,7 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ListFlagValues200ResponseParams {
     /**
-     * Order direction
+     * 
      * @type {string}
      * @memberof ListFlagValues200ResponseParams
      */
@@ -44,19 +44,19 @@ export interface ListFlagValues200ResponseParams {
      */
     flagId?: string;
     /**
-     * Page limit (default 100)
+     * 
      * @type {number}
      * @memberof ListFlagValues200ResponseParams
      */
     limit?: number;
     /**
-     * Page offset (default 0)
+     * 
      * @type {number}
      * @memberof ListFlagValues200ResponseParams
      */
     offset?: number;
     /**
-     * Order by column
+     * 
      * @type {string}
      * @memberof ListFlagValues200ResponseParams
      */
