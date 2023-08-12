@@ -19,6 +19,8 @@ import type {
   CreatePlanRequest,
   DeleteFeature200Response,
   ListPlans200Response,
+  SyncCompanyPlans200Response,
+  SyncCompanyPlansRequest,
   UpdatePlan200Response,
 } from '../models';
 import {
@@ -30,6 +32,10 @@ import {
     DeleteFeature200ResponseToJSON,
     ListPlans200ResponseFromJSON,
     ListPlans200ResponseToJSON,
+    SyncCompanyPlans200ResponseFromJSON,
+    SyncCompanyPlans200ResponseToJSON,
+    SyncCompanyPlansRequestFromJSON,
+    SyncCompanyPlansRequestToJSON,
     UpdatePlan200ResponseFromJSON,
     UpdatePlan200ResponseToJSON,
 } from '../models';
@@ -50,6 +56,11 @@ export interface ListPlansRequest {
     offset?: number;
     order?: string;
     dir?: string;
+}
+
+export interface SyncCompanyPlansOperationRequest {
+    syncCompanyPlansRequest: SyncCompanyPlansRequest;
+    xSchematicEnvironmentId?: string;
 }
 
 export interface UpdatePlanRequest {
@@ -189,6 +200,47 @@ export class PlansApi extends runtime.BaseAPI {
      */
     async listPlans(requestParameters: ListPlansRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListPlans200Response> {
         const response = await this.listPlansRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Sync company plans
+     */
+    async syncCompanyPlansRaw(requestParameters: SyncCompanyPlansOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SyncCompanyPlans200Response>> {
+        if (requestParameters.syncCompanyPlansRequest === null || requestParameters.syncCompanyPlansRequest === undefined) {
+            throw new runtime.RequiredError('syncCompanyPlansRequest','Required parameter requestParameters.syncCompanyPlansRequest was null or undefined when calling syncCompanyPlans.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/company-plans/sync`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SyncCompanyPlansRequestToJSON(requestParameters.syncCompanyPlansRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SyncCompanyPlans200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Sync company plans
+     */
+    async syncCompanyPlans(requestParameters: SyncCompanyPlansOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SyncCompanyPlans200Response> {
+        const response = await this.syncCompanyPlansRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

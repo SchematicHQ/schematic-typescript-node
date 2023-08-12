@@ -58,6 +58,10 @@ models/ListPlans200ResponseDataInner.ts
 models/ListUsers200Response.ts
 models/ListUsers200ResponseDataInner.ts
 models/ModelError.ts
+models/SyncCompanyPlans200Response.ts
+models/SyncCompanyPlans200ResponseData.ts
+models/SyncCompanyPlansRequest.ts
+models/SyncCompanyPlansRequestPlansInner.ts
 models/UpdatePlan200Response.ts
 models/index.ts
 runtime.ts
