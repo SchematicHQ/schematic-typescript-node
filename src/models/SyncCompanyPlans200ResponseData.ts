@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { SyncCompanyPlans200ResponseDataPlansInner } from './SyncCompanyPlans200ResponseDataPlansInner';
+import {
+    SyncCompanyPlans200ResponseDataPlansInnerFromJSON,
+    SyncCompanyPlans200ResponseDataPlansInnerFromJSONTyped,
+    SyncCompanyPlans200ResponseDataPlansInnerToJSON,
+} from './SyncCompanyPlans200ResponseDataPlansInner';
+
 /**
  * The returned resource
  * @export
@@ -21,10 +28,10 @@ import { exists, mapValues } from '../runtime';
 export interface SyncCompanyPlans200ResponseData {
     /**
      * 
-     * @type {boolean}
+     * @type {Array<SyncCompanyPlans200ResponseDataPlansInner>}
      * @memberof SyncCompanyPlans200ResponseData
      */
-    success?: boolean;
+    plans?: Array<SyncCompanyPlans200ResponseDataPlansInner>;
 }
 
 /**
@@ -46,7 +53,7 @@ export function SyncCompanyPlans200ResponseDataFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'success': !exists(json, 'success') ? undefined : json['success'],
+        'plans': !exists(json, 'plans') ? undefined : ((json['plans'] as Array<any>).map(SyncCompanyPlans200ResponseDataPlansInnerFromJSON)),
     };
 }
 
@@ -59,7 +66,7 @@ export function SyncCompanyPlans200ResponseDataToJSON(value?: SyncCompanyPlans20
     }
     return {
         
-        'success': value.success,
+        'plans': value.plans === undefined ? undefined : ((value.plans as Array<any>).map(SyncCompanyPlans200ResponseDataPlansInnerToJSON)),
     };
 }
 
