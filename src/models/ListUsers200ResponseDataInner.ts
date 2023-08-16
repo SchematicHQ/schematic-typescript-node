@@ -48,7 +48,7 @@ export interface ListUsers200ResponseDataInner {
      * @type {Date}
      * @memberof ListUsers200ResponseDataInner
      */
-    lastSeenAt?: Date;
+    lastSeenAt?: Date | null;
     /**
      * 
      * @type {Date}
@@ -80,7 +80,7 @@ export function ListUsers200ResponseDataInnerFromJSONTyped(json: any, ignoreDisc
         'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
-        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (new Date(json['last_seen_at'])),
+        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (json['last_seen_at'] === null ? null : new Date(json['last_seen_at'])),
         'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
     };
 }
@@ -98,7 +98,7 @@ export function ListUsers200ResponseDataInnerToJSON(value?: ListUsers200Response
         'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
         'environment_id': value.environmentId,
         'id': value.id,
-        'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt.toISOString()),
+        'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt === null ? null : value.lastSeenAt.toISOString()),
         'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
     };
 }

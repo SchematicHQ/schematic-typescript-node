@@ -55,7 +55,7 @@ export interface CreateCompany200ResponseData {
      * @type {Date}
      * @memberof CreateCompany200ResponseData
      */
-    lastSeenAt?: Date;
+    lastSeenAt?: Date | null;
     /**
      * 
      * @type {string}
@@ -99,7 +99,7 @@ export function CreateCompany200ResponseDataFromJSONTyped(json: any, ignoreDiscr
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'keys': !exists(json, 'keys') ? undefined : ((json['keys'] as Array<any>).map(CreateCompany200ResponseDataKeysInnerFromJSON)),
-        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (new Date(json['last_seen_at'])),
+        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (json['last_seen_at'] === null ? null : new Date(json['last_seen_at'])),
         'name': !exists(json, 'name') ? undefined : json['name'],
         'traits': !exists(json, 'traits') ? undefined : json['traits'],
         'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
@@ -119,7 +119,7 @@ export function CreateCompany200ResponseDataToJSON(value?: CreateCompany200Respo
         'environment_id': value.environmentId,
         'id': value.id,
         'keys': value.keys === undefined ? undefined : ((value.keys as Array<any>).map(CreateCompany200ResponseDataKeysInnerToJSON)),
-        'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt.toISOString()),
+        'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt === null ? null : value.lastSeenAt.toISOString()),
         'name': value.name,
         'traits': value.traits,
         'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),

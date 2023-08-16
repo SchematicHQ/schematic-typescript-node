@@ -36,7 +36,7 @@ export interface SyncCompanyPlans200ResponseDataPlansInner {
      * @type {Date}
      * @memberof SyncCompanyPlans200ResponseDataPlansInner
      */
-    endedAt?: Date;
+    endedAt?: Date | null;
     /**
      * 
      * @type {string}
@@ -90,7 +90,7 @@ export function SyncCompanyPlans200ResponseDataPlansInnerFromJSONTyped(json: any
         
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
-        'endedAt': !exists(json, 'ended_at') ? undefined : (new Date(json['ended_at'])),
+        'endedAt': !exists(json, 'ended_at') ? undefined : (json['ended_at'] === null ? null : new Date(json['ended_at'])),
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'planId': !exists(json, 'plan_id') ? undefined : json['plan_id'],
@@ -110,7 +110,7 @@ export function SyncCompanyPlans200ResponseDataPlansInnerToJSON(value?: SyncComp
         
         'company_id': value.companyId,
         'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'ended_at': value.endedAt === undefined ? undefined : (value.endedAt.toISOString()),
+        'ended_at': value.endedAt === undefined ? undefined : (value.endedAt === null ? null : value.endedAt.toISOString()),
         'environment_id': value.environmentId,
         'id': value.id,
         'plan_id': value.planId,

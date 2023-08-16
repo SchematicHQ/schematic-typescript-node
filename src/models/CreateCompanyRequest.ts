@@ -36,7 +36,7 @@ export interface CreateCompanyRequest {
      * @type {Date}
      * @memberof CreateCompanyRequest
      */
-    lastSeenAt?: Date;
+    lastSeenAt?: Date | null;
     /**
      * 
      * @type {string}
@@ -78,7 +78,7 @@ export function CreateCompanyRequestFromJSONTyped(json: any, ignoreDiscriminator
         
         'id': !exists(json, 'id') ? undefined : json['id'],
         'keys': !exists(json, 'keys') ? undefined : json['keys'],
-        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (new Date(json['last_seen_at'])),
+        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (json['last_seen_at'] === null ? null : new Date(json['last_seen_at'])),
         'name': !exists(json, 'name') ? undefined : json['name'],
         'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
         'traits': !exists(json, 'traits') ? undefined : json['traits'],
@@ -96,7 +96,7 @@ export function CreateCompanyRequestToJSON(value?: CreateCompanyRequest | null):
         
         'id': value.id,
         'keys': value.keys,
-        'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt.toISOString()),
+        'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt === null ? null : value.lastSeenAt.toISOString()),
         'name': value.name,
         'skip_webhooks': value.skipWebhooks,
         'traits': value.traits,
