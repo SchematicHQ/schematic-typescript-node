@@ -31,12 +31,6 @@ export interface CreateUser200ResponseData {
      * @type {string}
      * @memberof CreateUser200ResponseData
      */
-    accountId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateUser200ResponseData
-     */
     companyId?: string;
     /**
      * 
@@ -101,7 +95,6 @@ export function CreateUser200ResponseDataFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
@@ -122,7 +115,6 @@ export function CreateUser200ResponseDataToJSON(value?: CreateUser200ResponseDat
     }
     return {
         
-        'account_id': value.accountId,
         'company_id': value.companyId,
         'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
         'environment_id': value.environmentId,

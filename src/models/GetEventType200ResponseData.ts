@@ -24,12 +24,6 @@ export interface GetEventType200ResponseData {
      * @type {string}
      * @memberof GetEventType200ResponseData
      */
-    accountId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetEventType200ResponseData
-     */
     environmentId?: string;
     /**
      * 
@@ -76,7 +70,6 @@ export function GetEventType200ResponseDataFromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
-        'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
         'last30CompanyCount': !exists(json, 'last_30_company_count') ? undefined : json['last_30_company_count'],
@@ -94,7 +87,6 @@ export function GetEventType200ResponseDataToJSON(value?: GetEventType200Respons
     }
     return {
         
-        'account_id': value.accountId,
         'environment_id': value.environmentId,
         'event_subtype': value.eventSubtype,
         'last_30_company_count': value.last30CompanyCount,

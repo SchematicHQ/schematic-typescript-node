@@ -24,12 +24,6 @@ export interface CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
      * @type {string}
      * @memberof CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
      */
-    accountId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
-     */
     conditionType?: string;
     /**
      * 
@@ -136,7 +130,6 @@ export function CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInnerF
     }
     return {
         
-        'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
         'conditionType': !exists(json, 'condition_type') ? undefined : json['condition_type'],
         'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
@@ -164,7 +157,6 @@ export function CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInnerT
     }
     return {
         
-        'account_id': value.accountId,
         'condition_type': value.conditionType,
         'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
         'environment_id': value.environmentId,

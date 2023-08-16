@@ -34,12 +34,6 @@ import {
 export interface CreateFeature200ResponseData {
     /**
      * 
-     * @type {string}
-     * @memberof CreateFeature200ResponseData
-     */
-    accountId?: string;
-    /**
-     * 
      * @type {Date}
      * @memberof CreateFeature200ResponseData
      */
@@ -113,7 +107,6 @@ export function CreateFeature200ResponseDataFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
         'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
         'description': !exists(json, 'description') ? undefined : json['description'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
@@ -135,7 +128,6 @@ export function CreateFeature200ResponseDataToJSON(value?: CreateFeature200Respo
     }
     return {
         
-        'account_id': value.accountId,
         'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
         'description': value.description,
         'event_subtype': value.eventSubtype,

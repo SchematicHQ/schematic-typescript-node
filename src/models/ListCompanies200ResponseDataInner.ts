@@ -21,12 +21,6 @@ import { exists, mapValues } from '../runtime';
 export interface ListCompanies200ResponseDataInner {
     /**
      * 
-     * @type {string}
-     * @memberof ListCompanies200ResponseDataInner
-     */
-    accountId?: string;
-    /**
-     * 
      * @type {Date}
      * @memberof ListCompanies200ResponseDataInner
      */
@@ -82,7 +76,6 @@ export function ListCompanies200ResponseDataInnerFromJSONTyped(json: any, ignore
     }
     return {
         
-        'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
         'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
@@ -101,7 +94,6 @@ export function ListCompanies200ResponseDataInnerToJSON(value?: ListCompanies200
     }
     return {
         
-        'account_id': value.accountId,
         'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
         'environment_id': value.environmentId,
         'id': value.id,

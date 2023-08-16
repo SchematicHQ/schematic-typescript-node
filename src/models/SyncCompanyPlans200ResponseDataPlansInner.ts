@@ -24,12 +24,6 @@ export interface SyncCompanyPlans200ResponseDataPlansInner {
      * @type {string}
      * @memberof SyncCompanyPlans200ResponseDataPlansInner
      */
-    accountId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SyncCompanyPlans200ResponseDataPlansInner
-     */
     companyId?: string;
     /**
      * 
@@ -94,7 +88,6 @@ export function SyncCompanyPlans200ResponseDataPlansInnerFromJSONTyped(json: any
     }
     return {
         
-        'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
         'endedAt': !exists(json, 'ended_at') ? undefined : (new Date(json['ended_at'])),
@@ -115,7 +108,6 @@ export function SyncCompanyPlans200ResponseDataPlansInnerToJSON(value?: SyncComp
     }
     return {
         
-        'account_id': value.accountId,
         'company_id': value.companyId,
         'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
         'ended_at': value.endedAt === undefined ? undefined : (value.endedAt.toISOString()),

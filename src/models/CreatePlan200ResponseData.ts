@@ -21,12 +21,6 @@ import { exists, mapValues } from '../runtime';
 export interface CreatePlan200ResponseData {
     /**
      * 
-     * @type {string}
-     * @memberof CreatePlan200ResponseData
-     */
-    accountId?: string;
-    /**
-     * 
      * @type {Date}
      * @memberof CreatePlan200ResponseData
      */
@@ -70,7 +64,6 @@ export function CreatePlan200ResponseDataFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
         'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
         'id': !exists(json, 'id') ? undefined : json['id'],
         'name': !exists(json, 'name') ? undefined : json['name'],
@@ -87,7 +80,6 @@ export function CreatePlan200ResponseDataToJSON(value?: CreatePlan200ResponseDat
     }
     return {
         
-        'account_id': value.accountId,
         'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
         'id': value.id,
         'name': value.name,

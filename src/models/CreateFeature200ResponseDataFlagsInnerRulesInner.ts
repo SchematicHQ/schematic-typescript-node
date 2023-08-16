@@ -28,12 +28,6 @@ import {
 export interface CreateFeature200ResponseDataFlagsInnerRulesInner {
     /**
      * 
-     * @type {string}
-     * @memberof CreateFeature200ResponseDataFlagsInnerRulesInner
-     */
-    accountId?: string;
-    /**
-     * 
      * @type {Array<CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner>}
      * @memberof CreateFeature200ResponseDataFlagsInnerRulesInner
      */
@@ -107,7 +101,6 @@ export function CreateFeature200ResponseDataFlagsInnerRulesInnerFromJSONTyped(js
     }
     return {
         
-        'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
         'conditions': !exists(json, 'conditions') ? undefined : ((json['conditions'] as Array<any>).map(CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInnerFromJSON)),
         'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
@@ -129,7 +122,6 @@ export function CreateFeature200ResponseDataFlagsInnerRulesInnerToJSON(value?: C
     }
     return {
         
-        'account_id': value.accountId,
         'conditions': value.conditions === undefined ? undefined : ((value.conditions as Array<any>).map(CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInnerToJSON)),
         'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
         'environment_id': value.environmentId,

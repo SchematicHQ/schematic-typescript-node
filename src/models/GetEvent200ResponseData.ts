@@ -24,12 +24,6 @@ export interface GetEvent200ResponseData {
      * @type {string}
      * @memberof GetEvent200ResponseData
      */
-    accountId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetEvent200ResponseData
-     */
     apiKey?: string;
     /**
      * 
@@ -136,7 +130,6 @@ export function GetEvent200ResponseDataFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
-        'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
         'apiKey': !exists(json, 'api_key') ? undefined : json['api_key'],
         'body': !exists(json, 'body') ? undefined : json['body'],
         'capturedAt': !exists(json, 'captured_at') ? undefined : (new Date(json['captured_at'])),
@@ -164,7 +157,6 @@ export function GetEvent200ResponseDataToJSON(value?: GetEvent200ResponseData | 
     }
     return {
         
-        'account_id': value.accountId,
         'api_key': value.apiKey,
         'body': value.body,
         'captured_at': value.capturedAt === undefined ? undefined : (value.capturedAt.toISOString()),

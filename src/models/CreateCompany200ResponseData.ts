@@ -28,12 +28,6 @@ import {
 export interface CreateCompany200ResponseData {
     /**
      * 
-     * @type {string}
-     * @memberof CreateCompany200ResponseData
-     */
-    accountId?: string;
-    /**
-     * 
      * @type {Date}
      * @memberof CreateCompany200ResponseData
      */
@@ -101,7 +95,6 @@ export function CreateCompany200ResponseDataFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
         'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
@@ -122,7 +115,6 @@ export function CreateCompany200ResponseDataToJSON(value?: CreateCompany200Respo
     }
     return {
         
-        'account_id': value.accountId,
         'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
         'environment_id': value.environmentId,
         'id': value.id,

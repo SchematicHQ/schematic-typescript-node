@@ -28,12 +28,6 @@ import {
 export interface CreateFeature200ResponseDataFlagsInner {
     /**
      * 
-     * @type {string}
-     * @memberof CreateFeature200ResponseDataFlagsInner
-     */
-    accountId?: string;
-    /**
-     * 
      * @type {Date}
      * @memberof CreateFeature200ResponseDataFlagsInner
      */
@@ -101,7 +95,6 @@ export function CreateFeature200ResponseDataFlagsInnerFromJSONTyped(json: any, i
     }
     return {
         
-        'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
         'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
         'defaultValue': !exists(json, 'default_value') ? undefined : json['default_value'],
         'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
@@ -122,7 +115,6 @@ export function CreateFeature200ResponseDataFlagsInnerToJSON(value?: CreateFeatu
     }
     return {
         
-        'account_id': value.accountId,
         'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
         'default_value': value.defaultValue,
         'feature_id': value.featureId,

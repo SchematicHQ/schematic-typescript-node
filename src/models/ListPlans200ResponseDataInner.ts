@@ -21,12 +21,6 @@ import { exists, mapValues } from '../runtime';
 export interface ListPlans200ResponseDataInner {
     /**
      * 
-     * @type {string}
-     * @memberof ListPlans200ResponseDataInner
-     */
-    accountId?: string;
-    /**
-     * 
      * @type {Date}
      * @memberof ListPlans200ResponseDataInner
      */
@@ -70,7 +64,6 @@ export function ListPlans200ResponseDataInnerFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
         'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
         'id': !exists(json, 'id') ? undefined : json['id'],
         'name': !exists(json, 'name') ? undefined : json['name'],
@@ -87,7 +80,6 @@ export function ListPlans200ResponseDataInnerToJSON(value?: ListPlans200Response
     }
     return {
         
-        'account_id': value.accountId,
         'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
         'id': value.id,
         'name': value.name,

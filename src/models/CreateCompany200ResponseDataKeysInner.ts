@@ -21,12 +21,6 @@ import { exists, mapValues } from '../runtime';
 export interface CreateCompany200ResponseDataKeysInner {
     /**
      * 
-     * @type {string}
-     * @memberof CreateCompany200ResponseDataKeysInner
-     */
-    accountId?: string;
-    /**
-     * 
      * @type {Date}
      * @memberof CreateCompany200ResponseDataKeysInner
      */
@@ -100,7 +94,6 @@ export function CreateCompany200ResponseDataKeysInnerFromJSONTyped(json: any, ig
     }
     return {
         
-        'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
         'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
         'entityId': !exists(json, 'entity_id') ? undefined : json['entity_id'],
         'entityType': !exists(json, 'entity_type') ? undefined : json['entity_type'],
@@ -122,7 +115,6 @@ export function CreateCompany200ResponseDataKeysInnerToJSON(value?: CreateCompan
     }
     return {
         
-        'account_id': value.accountId,
         'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
         'entity_id': value.entityId,
         'entity_type': value.entityType,

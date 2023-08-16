@@ -24,12 +24,6 @@ export interface ListFlagValues200ResponseDataInner {
      * @type {string}
      * @memberof ListFlagValues200ResponseDataInner
      */
-    accountId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListFlagValues200ResponseDataInner
-     */
     entityId?: string;
     /**
      * 
@@ -88,7 +82,6 @@ export function ListFlagValues200ResponseDataInnerFromJSONTyped(json: any, ignor
     }
     return {
         
-        'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
         'entityId': !exists(json, 'entity_id') ? undefined : json['entity_id'],
         'entityType': !exists(json, 'entity_type') ? undefined : json['entity_type'],
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
@@ -108,7 +101,6 @@ export function ListFlagValues200ResponseDataInnerToJSON(value?: ListFlagValues2
     }
     return {
         
-        'account_id': value.accountId,
         'entity_id': value.entityId,
         'entity_type': value.entityType,
         'environment_id': value.environmentId,

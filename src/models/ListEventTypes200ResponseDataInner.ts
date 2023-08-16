@@ -24,12 +24,6 @@ export interface ListEventTypes200ResponseDataInner {
      * @type {string}
      * @memberof ListEventTypes200ResponseDataInner
      */
-    accountId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListEventTypes200ResponseDataInner
-     */
     environmentId?: string;
     /**
      * 
@@ -76,7 +70,6 @@ export function ListEventTypes200ResponseDataInnerFromJSONTyped(json: any, ignor
     }
     return {
         
-        'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
         'last30CompanyCount': !exists(json, 'last_30_company_count') ? undefined : json['last_30_company_count'],
@@ -94,7 +87,6 @@ export function ListEventTypes200ResponseDataInnerToJSON(value?: ListEventTypes2
     }
     return {
         
-        'account_id': value.accountId,
         'environment_id': value.environmentId,
         'event_subtype': value.eventSubtype,
         'last_30_company_count': value.last30CompanyCount,
