@@ -27,16 +27,16 @@ export interface SyncCompanyPlans200ResponseDataPlansInner {
     companyId?: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof SyncCompanyPlans200ResponseDataPlansInner
      */
-    createdAt?: Date;
+    createdAt?: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof SyncCompanyPlans200ResponseDataPlansInner
      */
-    endedAt?: Date | null;
+    endedAt?: string | null;
     /**
      * 
      * @type {string}
@@ -57,16 +57,16 @@ export interface SyncCompanyPlans200ResponseDataPlansInner {
     planId?: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof SyncCompanyPlans200ResponseDataPlansInner
      */
-    startedAt?: Date;
+    startedAt?: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof SyncCompanyPlans200ResponseDataPlansInner
      */
-    updatedAt?: Date;
+    updatedAt?: string;
 }
 
 /**
@@ -89,13 +89,13 @@ export function SyncCompanyPlans200ResponseDataPlansInnerFromJSONTyped(json: any
     return {
         
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
-        'endedAt': !exists(json, 'ended_at') ? undefined : (json['ended_at'] === null ? null : new Date(json['ended_at'])),
+        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
+        'endedAt': !exists(json, 'ended_at') ? undefined : json['ended_at'],
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'planId': !exists(json, 'plan_id') ? undefined : json['plan_id'],
-        'startedAt': !exists(json, 'started_at') ? undefined : (new Date(json['started_at'])),
-        'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
+        'startedAt': !exists(json, 'started_at') ? undefined : json['started_at'],
+        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
     };
 }
 
@@ -109,13 +109,13 @@ export function SyncCompanyPlans200ResponseDataPlansInnerToJSON(value?: SyncComp
     return {
         
         'company_id': value.companyId,
-        'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'ended_at': value.endedAt === undefined ? undefined : (value.endedAt === null ? null : value.endedAt.toISOString()),
+        'created_at': value.createdAt,
+        'ended_at': value.endedAt,
         'environment_id': value.environmentId,
         'id': value.id,
         'plan_id': value.planId,
-        'started_at': value.startedAt === undefined ? undefined : (value.startedAt.toISOString()),
-        'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
+        'started_at': value.startedAt,
+        'updated_at': value.updatedAt,
     };
 }
 

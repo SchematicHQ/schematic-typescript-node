@@ -33,10 +33,10 @@ export interface ListEvents200ResponseDataInner {
     body?: object;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof ListEvents200ResponseDataInner
      */
-    capturedAt?: Date;
+    capturedAt?: string;
     /**
      * 
      * @type {string}
@@ -45,10 +45,10 @@ export interface ListEvents200ResponseDataInner {
     companyId?: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof ListEvents200ResponseDataInner
      */
-    enrichedAt?: Date | null;
+    enrichedAt?: string | null;
     /**
      * 
      * @type {string}
@@ -63,16 +63,16 @@ export interface ListEvents200ResponseDataInner {
     id?: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof ListEvents200ResponseDataInner
      */
-    loadedAt?: Date | null;
+    loadedAt?: string | null;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof ListEvents200ResponseDataInner
      */
-    processedAt?: Date | null;
+    processedAt?: string | null;
     /**
      * 
      * @type {string}
@@ -81,10 +81,10 @@ export interface ListEvents200ResponseDataInner {
     processingStatus?: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof ListEvents200ResponseDataInner
      */
-    sentAt?: Date | null;
+    sentAt?: string | null;
     /**
      * 
      * @type {string}
@@ -99,10 +99,10 @@ export interface ListEvents200ResponseDataInner {
     type?: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof ListEvents200ResponseDataInner
      */
-    updatedAt?: Date;
+    updatedAt?: string;
     /**
      * 
      * @type {string}
@@ -132,18 +132,18 @@ export function ListEvents200ResponseDataInnerFromJSONTyped(json: any, ignoreDis
         
         'apiKey': !exists(json, 'api_key') ? undefined : json['api_key'],
         'body': !exists(json, 'body') ? undefined : json['body'],
-        'capturedAt': !exists(json, 'captured_at') ? undefined : (new Date(json['captured_at'])),
+        'capturedAt': !exists(json, 'captured_at') ? undefined : json['captured_at'],
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'enrichedAt': !exists(json, 'enriched_at') ? undefined : (json['enriched_at'] === null ? null : new Date(json['enriched_at'])),
+        'enrichedAt': !exists(json, 'enriched_at') ? undefined : json['enriched_at'],
         'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
-        'loadedAt': !exists(json, 'loaded_at') ? undefined : (json['loaded_at'] === null ? null : new Date(json['loaded_at'])),
-        'processedAt': !exists(json, 'processed_at') ? undefined : (json['processed_at'] === null ? null : new Date(json['processed_at'])),
+        'loadedAt': !exists(json, 'loaded_at') ? undefined : json['loaded_at'],
+        'processedAt': !exists(json, 'processed_at') ? undefined : json['processed_at'],
         'processingStatus': !exists(json, 'processing_status') ? undefined : json['processing_status'],
-        'sentAt': !exists(json, 'sent_at') ? undefined : (json['sent_at'] === null ? null : new Date(json['sent_at'])),
+        'sentAt': !exists(json, 'sent_at') ? undefined : json['sent_at'],
         'subtype': !exists(json, 'subtype') ? undefined : json['subtype'],
         'type': !exists(json, 'type') ? undefined : json['type'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
+        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
         'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
     };
 }
@@ -159,18 +159,18 @@ export function ListEvents200ResponseDataInnerToJSON(value?: ListEvents200Respon
         
         'api_key': value.apiKey,
         'body': value.body,
-        'captured_at': value.capturedAt === undefined ? undefined : (value.capturedAt.toISOString()),
+        'captured_at': value.capturedAt,
         'company_id': value.companyId,
-        'enriched_at': value.enrichedAt === undefined ? undefined : (value.enrichedAt === null ? null : value.enrichedAt.toISOString()),
+        'enriched_at': value.enrichedAt,
         'feature_id': value.featureId,
         'id': value.id,
-        'loaded_at': value.loadedAt === undefined ? undefined : (value.loadedAt === null ? null : value.loadedAt.toISOString()),
-        'processed_at': value.processedAt === undefined ? undefined : (value.processedAt === null ? null : value.processedAt.toISOString()),
+        'loaded_at': value.loadedAt,
+        'processed_at': value.processedAt,
         'processing_status': value.processingStatus,
-        'sent_at': value.sentAt === undefined ? undefined : (value.sentAt === null ? null : value.sentAt.toISOString()),
+        'sent_at': value.sentAt,
         'subtype': value.subtype,
         'type': value.type,
-        'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
+        'updated_at': value.updatedAt,
         'user_id': value.userId,
     };
 }

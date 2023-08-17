@@ -28,10 +28,10 @@ import {
 export interface CreateCompany200ResponseData {
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof CreateCompany200ResponseData
      */
-    createdAt?: Date;
+    createdAt?: string;
     /**
      * 
      * @type {string}
@@ -52,10 +52,10 @@ export interface CreateCompany200ResponseData {
     keys?: Array<CreateCompany200ResponseDataKeysInner>;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof CreateCompany200ResponseData
      */
-    lastSeenAt?: Date | null;
+    lastSeenAt?: string | null;
     /**
      * 
      * @type {string}
@@ -70,10 +70,10 @@ export interface CreateCompany200ResponseData {
     traits?: object;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof CreateCompany200ResponseData
      */
-    updatedAt?: Date;
+    updatedAt?: string;
 }
 
 /**
@@ -95,14 +95,14 @@ export function CreateCompany200ResponseDataFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
+        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'keys': !exists(json, 'keys') ? undefined : ((json['keys'] as Array<any>).map(CreateCompany200ResponseDataKeysInnerFromJSON)),
-        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (json['last_seen_at'] === null ? null : new Date(json['last_seen_at'])),
+        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : json['last_seen_at'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'traits': !exists(json, 'traits') ? undefined : json['traits'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
+        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
     };
 }
 
@@ -115,14 +115,14 @@ export function CreateCompany200ResponseDataToJSON(value?: CreateCompany200Respo
     }
     return {
         
-        'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'created_at': value.createdAt,
         'environment_id': value.environmentId,
         'id': value.id,
         'keys': value.keys === undefined ? undefined : ((value.keys as Array<any>).map(CreateCompany200ResponseDataKeysInnerToJSON)),
-        'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt === null ? null : value.lastSeenAt.toISOString()),
+        'last_seen_at': value.lastSeenAt,
         'name': value.name,
         'traits': value.traits,
-        'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
+        'updated_at': value.updatedAt,
     };
 }
 

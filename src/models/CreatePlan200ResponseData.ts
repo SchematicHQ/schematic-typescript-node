@@ -21,10 +21,10 @@ import { exists, mapValues } from '../runtime';
 export interface CreatePlan200ResponseData {
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof CreatePlan200ResponseData
      */
-    createdAt?: Date;
+    createdAt?: string;
     /**
      * 
      * @type {string}
@@ -39,10 +39,10 @@ export interface CreatePlan200ResponseData {
     name?: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof CreatePlan200ResponseData
      */
-    updatedAt?: Date;
+    updatedAt?: string;
 }
 
 /**
@@ -64,10 +64,10 @@ export function CreatePlan200ResponseDataFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
+        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'name': !exists(json, 'name') ? undefined : json['name'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
+        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
     };
 }
 
@@ -80,10 +80,10 @@ export function CreatePlan200ResponseDataToJSON(value?: CreatePlan200ResponseDat
     }
     return {
         
-        'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'created_at': value.createdAt,
         'id': value.id,
         'name': value.name,
-        'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
+        'updated_at': value.updatedAt,
     };
 }
 

@@ -33,10 +33,10 @@ export interface CreateUserRequest {
     keys?: object;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof CreateUserRequest
      */
-    lastSeenAt?: Date | null;
+    lastSeenAt?: string | null;
     /**
      * 
      * @type {boolean}
@@ -72,7 +72,7 @@ export function CreateUserRequestFromJSONTyped(json: any, ignoreDiscriminator: b
         
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'keys': !exists(json, 'keys') ? undefined : json['keys'],
-        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (json['last_seen_at'] === null ? null : new Date(json['last_seen_at'])),
+        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : json['last_seen_at'],
         'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
         'traits': !exists(json, 'traits') ? undefined : json['traits'],
     };
@@ -89,7 +89,7 @@ export function CreateUserRequestToJSON(value?: CreateUserRequest | null): any {
         
         'company_id': value.companyId,
         'keys': value.keys,
-        'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt === null ? null : value.lastSeenAt.toISOString()),
+        'last_seen_at': value.lastSeenAt,
         'skip_webhooks': value.skipWebhooks,
         'traits': value.traits,
     };

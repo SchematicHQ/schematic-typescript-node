@@ -27,10 +27,10 @@ export interface SyncCompanyPlansRequestPlansInner {
     companyId?: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof SyncCompanyPlansRequestPlansInner
      */
-    endedAt?: Date | null;
+    endedAt?: string | null;
     /**
      * 
      * @type {string}
@@ -45,10 +45,10 @@ export interface SyncCompanyPlansRequestPlansInner {
     planId?: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof SyncCompanyPlansRequestPlansInner
      */
-    startedAt?: Date | null;
+    startedAt?: string | null;
 }
 
 /**
@@ -71,10 +71,10 @@ export function SyncCompanyPlansRequestPlansInnerFromJSONTyped(json: any, ignore
     return {
         
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'endedAt': !exists(json, 'ended_at') ? undefined : (json['ended_at'] === null ? null : new Date(json['ended_at'])),
+        'endedAt': !exists(json, 'ended_at') ? undefined : json['ended_at'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'planId': !exists(json, 'plan_id') ? undefined : json['plan_id'],
-        'startedAt': !exists(json, 'started_at') ? undefined : (json['started_at'] === null ? null : new Date(json['started_at'])),
+        'startedAt': !exists(json, 'started_at') ? undefined : json['started_at'],
     };
 }
 
@@ -88,10 +88,10 @@ export function SyncCompanyPlansRequestPlansInnerToJSON(value?: SyncCompanyPlans
     return {
         
         'company_id': value.companyId,
-        'ended_at': value.endedAt === undefined ? undefined : (value.endedAt === null ? null : value.endedAt.toISOString()),
+        'ended_at': value.endedAt,
         'id': value.id,
         'plan_id': value.planId,
-        'started_at': value.startedAt === undefined ? undefined : (value.startedAt === null ? null : value.startedAt.toISOString()),
+        'started_at': value.startedAt,
     };
 }
 

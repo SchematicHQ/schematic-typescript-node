@@ -34,10 +34,10 @@ export interface CreateUser200ResponseData {
     companyId?: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof CreateUser200ResponseData
      */
-    createdAt?: Date;
+    createdAt?: string;
     /**
      * 
      * @type {string}
@@ -58,10 +58,10 @@ export interface CreateUser200ResponseData {
     keys?: Array<CreateCompany200ResponseDataKeysInner>;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof CreateUser200ResponseData
      */
-    lastSeenAt?: Date | null;
+    lastSeenAt?: string | null;
     /**
      * A map of trait names to trait values
      * @type {object}
@@ -70,10 +70,10 @@ export interface CreateUser200ResponseData {
     traits?: object;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof CreateUser200ResponseData
      */
-    updatedAt?: Date;
+    updatedAt?: string;
 }
 
 /**
@@ -96,13 +96,13 @@ export function CreateUser200ResponseDataFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
+        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'keys': !exists(json, 'keys') ? undefined : ((json['keys'] as Array<any>).map(CreateCompany200ResponseDataKeysInnerFromJSON)),
-        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (json['last_seen_at'] === null ? null : new Date(json['last_seen_at'])),
+        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : json['last_seen_at'],
         'traits': !exists(json, 'traits') ? undefined : json['traits'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
+        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
     };
 }
 
@@ -116,13 +116,13 @@ export function CreateUser200ResponseDataToJSON(value?: CreateUser200ResponseDat
     return {
         
         'company_id': value.companyId,
-        'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'created_at': value.createdAt,
         'environment_id': value.environmentId,
         'id': value.id,
         'keys': value.keys === undefined ? undefined : ((value.keys as Array<any>).map(CreateCompany200ResponseDataKeysInnerToJSON)),
-        'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt === null ? null : value.lastSeenAt.toISOString()),
+        'last_seen_at': value.lastSeenAt,
         'traits': value.traits,
-        'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
+        'updated_at': value.updatedAt,
     };
 }
 

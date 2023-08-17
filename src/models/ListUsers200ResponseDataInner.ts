@@ -27,10 +27,10 @@ export interface ListUsers200ResponseDataInner {
     companyId?: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof ListUsers200ResponseDataInner
      */
-    createdAt?: Date;
+    createdAt?: string;
     /**
      * 
      * @type {string}
@@ -45,16 +45,16 @@ export interface ListUsers200ResponseDataInner {
     id?: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof ListUsers200ResponseDataInner
      */
-    lastSeenAt?: Date | null;
+    lastSeenAt?: string | null;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof ListUsers200ResponseDataInner
      */
-    updatedAt?: Date;
+    updatedAt?: string;
 }
 
 /**
@@ -77,11 +77,11 @@ export function ListUsers200ResponseDataInnerFromJSONTyped(json: any, ignoreDisc
     return {
         
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
+        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
-        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (json['last_seen_at'] === null ? null : new Date(json['last_seen_at'])),
-        'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
+        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : json['last_seen_at'],
+        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
     };
 }
 
@@ -95,11 +95,11 @@ export function ListUsers200ResponseDataInnerToJSON(value?: ListUsers200Response
     return {
         
         'company_id': value.companyId,
-        'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'created_at': value.createdAt,
         'environment_id': value.environmentId,
         'id': value.id,
-        'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt === null ? null : value.lastSeenAt.toISOString()),
-        'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
+        'last_seen_at': value.lastSeenAt,
+        'updated_at': value.updatedAt,
     };
 }
 

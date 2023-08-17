@@ -27,10 +27,10 @@ export interface CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
     conditionType?: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
      */
-    createdAt?: Date;
+    createdAt?: string;
     /**
      * 
      * @type {string}
@@ -105,10 +105,10 @@ export interface CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
     traitValue?: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner
      */
-    updatedAt?: Date;
+    updatedAt?: string;
 }
 
 /**
@@ -131,7 +131,7 @@ export function CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInnerF
     return {
         
         'conditionType': !exists(json, 'condition_type') ? undefined : json['condition_type'],
-        'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
+        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
         'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
@@ -144,7 +144,7 @@ export function CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInnerF
         'traitEntityType': !exists(json, 'trait_entity_type') ? undefined : json['trait_entity_type'],
         'traitId': !exists(json, 'trait_id') ? undefined : json['trait_id'],
         'traitValue': !exists(json, 'trait_value') ? undefined : json['trait_value'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
+        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
     };
 }
 
@@ -158,7 +158,7 @@ export function CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInnerT
     return {
         
         'condition_type': value.conditionType,
-        'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'created_at': value.createdAt,
         'environment_id': value.environmentId,
         'event_subtype': value.eventSubtype,
         'flag_id': value.flagId,
@@ -171,7 +171,7 @@ export function CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInnerT
         'trait_entity_type': value.traitEntityType,
         'trait_id': value.traitId,
         'trait_value': value.traitValue,
-        'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
+        'updated_at': value.updatedAt,
     };
 }
 

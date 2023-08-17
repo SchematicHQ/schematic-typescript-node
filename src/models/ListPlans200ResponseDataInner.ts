@@ -21,10 +21,10 @@ import { exists, mapValues } from '../runtime';
 export interface ListPlans200ResponseDataInner {
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof ListPlans200ResponseDataInner
      */
-    createdAt?: Date;
+    createdAt?: string;
     /**
      * 
      * @type {string}
@@ -39,10 +39,10 @@ export interface ListPlans200ResponseDataInner {
     name?: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof ListPlans200ResponseDataInner
      */
-    updatedAt?: Date;
+    updatedAt?: string;
 }
 
 /**
@@ -64,10 +64,10 @@ export function ListPlans200ResponseDataInnerFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
+        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'name': !exists(json, 'name') ? undefined : json['name'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
+        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
     };
 }
 
@@ -80,10 +80,10 @@ export function ListPlans200ResponseDataInnerToJSON(value?: ListPlans200Response
     }
     return {
         
-        'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'created_at': value.createdAt,
         'id': value.id,
         'name': value.name,
-        'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
+        'updated_at': value.updatedAt,
     };
 }
 

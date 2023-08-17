@@ -34,10 +34,10 @@ import {
 export interface CreateFeature200ResponseData {
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof CreateFeature200ResponseData
      */
-    createdAt?: Date;
+    createdAt?: string;
     /**
      * 
      * @type {string}
@@ -82,10 +82,10 @@ export interface CreateFeature200ResponseData {
     name?: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof CreateFeature200ResponseData
      */
-    updatedAt?: Date;
+    updatedAt?: string;
 }
 
 /**
@@ -107,7 +107,7 @@ export function CreateFeature200ResponseDataFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
+        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
         'eventSummary': !exists(json, 'event_summary') ? undefined : ListEventTypes200ResponseDataInnerFromJSON(json['event_summary']),
@@ -115,7 +115,7 @@ export function CreateFeature200ResponseDataFromJSONTyped(json: any, ignoreDiscr
         'id': !exists(json, 'id') ? undefined : json['id'],
         'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
         'name': !exists(json, 'name') ? undefined : json['name'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
+        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
     };
 }
 
@@ -128,7 +128,7 @@ export function CreateFeature200ResponseDataToJSON(value?: CreateFeature200Respo
     }
     return {
         
-        'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'created_at': value.createdAt,
         'description': value.description,
         'event_subtype': value.eventSubtype,
         'event_summary': ListEventTypes200ResponseDataInnerToJSON(value.eventSummary),
@@ -136,7 +136,7 @@ export function CreateFeature200ResponseDataToJSON(value?: CreateFeature200Respo
         'id': value.id,
         'lifecycle_phase': value.lifecyclePhase,
         'name': value.name,
-        'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
+        'updated_at': value.updatedAt,
     };
 }
 

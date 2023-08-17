@@ -34,10 +34,10 @@ export interface CreateFeature200ResponseDataFlagsInnerRulesInner {
     conditions?: Array<CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInner>;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof CreateFeature200ResponseDataFlagsInnerRulesInner
      */
-    createdAt?: Date;
+    createdAt?: string;
     /**
      * 
      * @type {string}
@@ -70,10 +70,10 @@ export interface CreateFeature200ResponseDataFlagsInnerRulesInner {
     priority?: number;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof CreateFeature200ResponseDataFlagsInnerRulesInner
      */
-    updatedAt?: Date;
+    updatedAt?: string;
     /**
      * 
      * @type {boolean}
@@ -102,13 +102,13 @@ export function CreateFeature200ResponseDataFlagsInnerRulesInnerFromJSONTyped(js
     return {
         
         'conditions': !exists(json, 'conditions') ? undefined : ((json['conditions'] as Array<any>).map(CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInnerFromJSON)),
-        'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
+        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'priority': !exists(json, 'priority') ? undefined : json['priority'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
+        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
         'value': !exists(json, 'value') ? undefined : json['value'],
     };
 }
@@ -123,13 +123,13 @@ export function CreateFeature200ResponseDataFlagsInnerRulesInnerToJSON(value?: C
     return {
         
         'conditions': value.conditions === undefined ? undefined : ((value.conditions as Array<any>).map(CreateFeature200ResponseDataFlagsInnerRulesInnerConditionsInnerToJSON)),
-        'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'created_at': value.createdAt,
         'environment_id': value.environmentId,
         'flag_id': value.flagId,
         'id': value.id,
         'name': value.name,
         'priority': value.priority,
-        'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
+        'updated_at': value.updatedAt,
         'value': value.value,
     };
 }

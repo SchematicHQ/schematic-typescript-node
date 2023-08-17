@@ -21,10 +21,10 @@ import { exists, mapValues } from '../runtime';
 export interface CreateCompany200ResponseDataKeysInner {
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof CreateCompany200ResponseDataKeysInner
      */
-    createdAt?: Date;
+    createdAt?: string;
     /**
      * 
      * @type {string}
@@ -63,10 +63,10 @@ export interface CreateCompany200ResponseDataKeysInner {
     keyTypeId?: string;
     /**
      * 
-     * @type {Date}
+     * @type {string}
      * @memberof CreateCompany200ResponseDataKeysInner
      */
-    updatedAt?: Date;
+    updatedAt?: string;
     /**
      * 
      * @type {string}
@@ -94,14 +94,14 @@ export function CreateCompany200ResponseDataKeysInnerFromJSONTyped(json: any, ig
     }
     return {
         
-        'createdAt': !exists(json, 'created_at') ? undefined : (new Date(json['created_at'])),
+        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
         'entityId': !exists(json, 'entity_id') ? undefined : json['entity_id'],
         'entityType': !exists(json, 'entity_type') ? undefined : json['entity_type'],
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'keyType': !exists(json, 'key_type') ? undefined : json['key_type'],
         'keyTypeId': !exists(json, 'key_type_id') ? undefined : json['key_type_id'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : (new Date(json['updated_at'])),
+        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
         'value': !exists(json, 'value') ? undefined : json['value'],
     };
 }
@@ -115,14 +115,14 @@ export function CreateCompany200ResponseDataKeysInnerToJSON(value?: CreateCompan
     }
     return {
         
-        'created_at': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'created_at': value.createdAt,
         'entity_id': value.entityId,
         'entity_type': value.entityType,
         'environment_id': value.environmentId,
         'id': value.id,
         'key_type': value.keyType,
         'key_type_id': value.keyTypeId,
-        'updated_at': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
+        'updated_at': value.updatedAt,
         'value': value.value,
     };
 }
