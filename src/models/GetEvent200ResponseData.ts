@@ -54,6 +54,12 @@ export interface GetEvent200ResponseData {
      * @type {string}
      * @memberof GetEvent200ResponseData
      */
+    environmentId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetEvent200ResponseData
+     */
     featureId?: string;
     /**
      * 
@@ -135,6 +141,7 @@ export function GetEvent200ResponseDataFromJSONTyped(json: any, ignoreDiscrimina
         'capturedAt': !exists(json, 'captured_at') ? undefined : json['captured_at'],
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'enrichedAt': !exists(json, 'enriched_at') ? undefined : json['enriched_at'],
+        'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'loadedAt': !exists(json, 'loaded_at') ? undefined : json['loaded_at'],
@@ -162,6 +169,7 @@ export function GetEvent200ResponseDataToJSON(value?: GetEvent200ResponseData | 
         'captured_at': value.capturedAt,
         'company_id': value.companyId,
         'enriched_at': value.enrichedAt,
+        'environment_id': value.environmentId,
         'feature_id': value.featureId,
         'id': value.id,
         'loaded_at': value.loadedAt,
