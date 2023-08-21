@@ -16,6 +16,7 @@ type EventBodyCompany = {
 type EventBodyIdentify = {
   company?: EventBodyCompany;
   keys: Record<string, string>;
+  name?: string;
   traits: Record<string, any>;
 };
 
