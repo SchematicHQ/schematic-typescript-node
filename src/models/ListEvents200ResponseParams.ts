@@ -61,6 +61,12 @@ export interface ListEvents200ResponseParams {
      * @memberof ListEvents200ResponseParams
      */
     order?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListEvents200ResponseParams
+     */
+    userId?: string;
 }
 
 /**
@@ -89,6 +95,7 @@ export function ListEvents200ResponseParamsFromJSONTyped(json: any, ignoreDiscri
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'offset': !exists(json, 'offset') ? undefined : json['offset'],
         'order': !exists(json, 'order') ? undefined : json['order'],
+        'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
     };
 }
 
@@ -108,6 +115,7 @@ export function ListEvents200ResponseParamsToJSON(value?: ListEvents200ResponseP
         'limit': value.limit,
         'offset': value.offset,
         'order': value.order,
+        'user_id': value.userId,
     };
 }
 

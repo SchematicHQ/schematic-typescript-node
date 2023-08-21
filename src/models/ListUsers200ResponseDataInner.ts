@@ -54,6 +54,12 @@ export interface ListUsers200ResponseDataInner {
      * @type {string}
      * @memberof ListUsers200ResponseDataInner
      */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListUsers200ResponseDataInner
+     */
     updatedAt?: string;
 }
 
@@ -81,6 +87,7 @@ export function ListUsers200ResponseDataInnerFromJSONTyped(json: any, ignoreDisc
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : json['last_seen_at'],
+        'name': !exists(json, 'name') ? undefined : json['name'],
         'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
     };
 }
@@ -99,6 +106,7 @@ export function ListUsers200ResponseDataInnerToJSON(value?: ListUsers200Response
         'environment_id': value.environmentId,
         'id': value.id,
         'last_seen_at': value.lastSeenAt,
+        'name': value.name,
         'updated_at': value.updatedAt,
     };
 }

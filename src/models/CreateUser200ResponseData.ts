@@ -63,6 +63,12 @@ export interface CreateUser200ResponseData {
      */
     lastSeenAt?: string | null;
     /**
+     * 
+     * @type {string}
+     * @memberof CreateUser200ResponseData
+     */
+    name?: string;
+    /**
      * A map of trait names to trait values
      * @type {object}
      * @memberof CreateUser200ResponseData
@@ -101,6 +107,7 @@ export function CreateUser200ResponseDataFromJSONTyped(json: any, ignoreDiscrimi
         'id': !exists(json, 'id') ? undefined : json['id'],
         'keys': !exists(json, 'keys') ? undefined : ((json['keys'] as Array<any>).map(CreateCompany200ResponseDataKeysInnerFromJSON)),
         'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : json['last_seen_at'],
+        'name': !exists(json, 'name') ? undefined : json['name'],
         'traits': !exists(json, 'traits') ? undefined : json['traits'],
         'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
     };
@@ -121,6 +128,7 @@ export function CreateUser200ResponseDataToJSON(value?: CreateUser200ResponseDat
         'id': value.id,
         'keys': value.keys === undefined ? undefined : ((value.keys as Array<any>).map(CreateCompany200ResponseDataKeysInnerToJSON)),
         'last_seen_at': value.lastSeenAt,
+        'name': value.name,
         'traits': value.traits,
         'updated_at': value.updatedAt,
     };
