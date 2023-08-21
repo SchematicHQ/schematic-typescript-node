@@ -20,7 +20,13 @@ import { exists, mapValues } from '../runtime';
  */
 export interface CreateUserRequest {
     /**
-     * 
+     * Optionally specify company using key/value pairs
+     * @type {object}
+     * @memberof CreateUserRequest
+     */
+    company?: object;
+    /**
+     * Optionally specify company using Schematic company ID
      * @type {number}
      * @memberof CreateUserRequest
      */
@@ -76,6 +82,7 @@ export function CreateUserRequestFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
+        'company': !exists(json, 'company') ? undefined : json['company'],
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'keys': !exists(json, 'keys') ? undefined : json['keys'],
         'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : json['last_seen_at'],
@@ -94,6 +101,7 @@ export function CreateUserRequestToJSON(value?: CreateUserRequest | null): any {
     }
     return {
         
+        'company': value.company,
         'company_id': value.companyId,
         'keys': value.keys,
         'last_seen_at': value.lastSeenAt,
