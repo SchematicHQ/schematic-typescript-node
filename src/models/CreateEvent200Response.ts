@@ -23,37 +23,37 @@ import {
 /**
  * 
  * @export
- * @interface GetEvent200Response
+ * @interface CreateEvent200Response
  */
-export interface GetEvent200Response {
+export interface CreateEvent200Response {
     /**
      * 
      * @type {CreateEvent200ResponseData}
-     * @memberof GetEvent200Response
+     * @memberof CreateEvent200Response
      */
     data?: CreateEvent200ResponseData;
     /**
-     * 
-     * @type {any}
-     * @memberof GetEvent200Response
+     * Input parameters
+     * @type {object}
+     * @memberof CreateEvent200Response
      */
-    params?: any | null;
+    params?: object;
 }
 
 /**
- * Check if a given object implements the GetEvent200Response interface.
+ * Check if a given object implements the CreateEvent200Response interface.
  */
-export function instanceOfGetEvent200Response(value: object): boolean {
+export function instanceOfCreateEvent200Response(value: object): boolean {
     let isInstance = true;
 
     return isInstance;
 }
 
-export function GetEvent200ResponseFromJSON(json: any): GetEvent200Response {
-    return GetEvent200ResponseFromJSONTyped(json, false);
+export function CreateEvent200ResponseFromJSON(json: any): CreateEvent200Response {
+    return CreateEvent200ResponseFromJSONTyped(json, false);
 }
 
-export function GetEvent200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetEvent200Response {
+export function CreateEvent200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateEvent200Response {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -64,7 +64,7 @@ export function GetEvent200ResponseFromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-export function GetEvent200ResponseToJSON(value?: GetEvent200Response | null): any {
+export function CreateEvent200ResponseToJSON(value?: CreateEvent200Response | null): any {
     if (value === undefined) {
         return undefined;
     }

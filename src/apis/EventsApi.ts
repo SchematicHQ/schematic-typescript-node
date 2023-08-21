@@ -17,6 +17,8 @@ import * as runtime from '../runtime';
 import type {
   CountEventTypes200Response,
   CountEvents200Response,
+  CreateEvent200Response,
+  CreateEventRequest,
   GetEvent200Response,
   GetEventType200Response,
   ListEventTypes200Response,
@@ -27,6 +29,10 @@ import {
     CountEventTypes200ResponseToJSON,
     CountEvents200ResponseFromJSON,
     CountEvents200ResponseToJSON,
+    CreateEvent200ResponseFromJSON,
+    CreateEvent200ResponseToJSON,
+    CreateEventRequestFromJSON,
+    CreateEventRequestToJSON,
     GetEvent200ResponseFromJSON,
     GetEvent200ResponseToJSON,
     GetEventType200ResponseFromJSON,
@@ -56,6 +62,11 @@ export interface CountEventsRequest {
     offset?: number;
     order?: string;
     dir?: string;
+}
+
+export interface CreateEventOperationRequest {
+    createEventRequest: CreateEventRequest;
+    xSchematicEnvironmentId?: string;
 }
 
 export interface GetEventRequest {
@@ -211,6 +222,47 @@ export class EventsApi extends runtime.BaseAPI {
      */
     async countEvents(requestParameters: CountEventsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountEvents200Response> {
         const response = await this.countEventsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Create event
+     */
+    async createEventRaw(requestParameters: CreateEventOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateEvent200Response>> {
+        if (requestParameters.createEventRequest === null || requestParameters.createEventRequest === undefined) {
+            throw new runtime.RequiredError('createEventRequest','Required parameter requestParameters.createEventRequest was null or undefined when calling createEvent.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/events`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateEventRequestToJSON(requestParameters.createEventRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateEvent200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Create event
+     */
+    async createEvent(requestParameters: CreateEventOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateEvent200Response> {
+        const response = await this.createEventRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

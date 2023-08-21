@@ -14,6 +14,9 @@ models/CreateCompany200Response.ts
 models/CreateCompany200ResponseData.ts
 models/CreateCompany200ResponseDataKeysInner.ts
 models/CreateCompanyRequest.ts
+models/CreateEvent200Response.ts
+models/CreateEvent200ResponseData.ts
+models/CreateEventRequest.ts
 models/CreateFeature200Response.ts
 models/CreateFeature200ResponseData.ts
 models/CreateFeature200ResponseDataFlagsInner.ts
@@ -33,7 +36,6 @@ models/DeleteFeature200Response.ts
 models/DeleteFeature200ResponseData.ts
 models/GetCompany200Response.ts
 models/GetEvent200Response.ts
-models/GetEvent200ResponseData.ts
 models/GetEventType200Response.ts
 models/GetEventType200ResponseData.ts
 models/GetFeature200Response.ts
