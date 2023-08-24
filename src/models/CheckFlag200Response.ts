@@ -33,11 +33,11 @@ export interface CheckFlag200Response {
      */
     data?: CheckFlag200ResponseData;
     /**
-     * 
-     * @type {any}
+     * Input parameters
+     * @type {object}
      * @memberof CheckFlag200Response
      */
-    params?: any | null;
+    params?: object;
 }
 
 /**

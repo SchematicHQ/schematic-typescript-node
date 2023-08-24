@@ -6,6 +6,7 @@ import { EventCapture } from "./src/events";
 const fetchApi: api.FetchAPI = fetch as unknown as api.FetchAPI;
 
 export interface Schematic {
+  Accounts: api.AccountsApi;
   Companies: api.CompaniesApi;
   EventCapture: EventCapture;
   Events: api.EventsApi;
@@ -34,6 +35,7 @@ export function init(apiKey: string, opts?: SchematicOptions): Schematic {
   });
 
   return {
+    Accounts: new api.AccountsApi(config),
     Companies: new api.CompaniesApi(config),
     EventCapture: new EventCapture(config),
     Events: new api.EventsApi(config),

@@ -17,27 +17,27 @@ import * as runtime from '../runtime';
 import type {
   CreatePlan200Response,
   CreatePlanRequest,
-  DeleteFeature200Response,
+  DeleteApiKey200Response,
+  GetPlan200Response,
   ListPlans200Response,
   SyncCompanyPlans200Response,
   SyncCompanyPlansRequest,
-  UpdatePlan200Response,
 } from '../models';
 import {
     CreatePlan200ResponseFromJSON,
     CreatePlan200ResponseToJSON,
     CreatePlanRequestFromJSON,
     CreatePlanRequestToJSON,
-    DeleteFeature200ResponseFromJSON,
-    DeleteFeature200ResponseToJSON,
+    DeleteApiKey200ResponseFromJSON,
+    DeleteApiKey200ResponseToJSON,
+    GetPlan200ResponseFromJSON,
+    GetPlan200ResponseToJSON,
     ListPlans200ResponseFromJSON,
     ListPlans200ResponseToJSON,
     SyncCompanyPlans200ResponseFromJSON,
     SyncCompanyPlans200ResponseToJSON,
     SyncCompanyPlansRequestFromJSON,
     SyncCompanyPlansRequestToJSON,
-    UpdatePlan200ResponseFromJSON,
-    UpdatePlan200ResponseToJSON,
 } from '../models';
 
 export interface CreatePlanOperationRequest {
@@ -46,6 +46,11 @@ export interface CreatePlanOperationRequest {
 }
 
 export interface DeletePlanRequest {
+    planId: string;
+    xSchematicEnvironmentId?: string;
+}
+
+export interface GetPlanRequest {
     planId: string;
     xSchematicEnvironmentId?: string;
 }
@@ -118,7 +123,7 @@ export class PlansApi extends runtime.BaseAPI {
     /**
      * Delete plan
      */
-    async deletePlanRaw(requestParameters: DeletePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteFeature200Response>> {
+    async deletePlanRaw(requestParameters: DeletePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteApiKey200Response>> {
         if (requestParameters.planId === null || requestParameters.planId === undefined) {
             throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling deletePlan.');
         }
@@ -142,14 +147,52 @@ export class PlansApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteFeature200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteApiKey200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Delete plan
      */
-    async deletePlan(requestParameters: DeletePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteFeature200Response> {
+    async deletePlan(requestParameters: DeletePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteApiKey200Response> {
         const response = await this.deletePlanRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get plan
+     */
+    async getPlanRaw(requestParameters: GetPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPlan200Response>> {
+        if (requestParameters.planId === null || requestParameters.planId === undefined) {
+            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling getPlan.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/plans/{plan_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetPlan200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get plan
+     */
+    async getPlan(requestParameters: GetPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPlan200Response> {
+        const response = await this.getPlanRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -247,7 +290,7 @@ export class PlansApi extends runtime.BaseAPI {
     /**
      * Update plan
      */
-    async updatePlanRaw(requestParameters: UpdatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdatePlan200Response>> {
+    async updatePlanRaw(requestParameters: UpdatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPlan200Response>> {
         if (requestParameters.createPlanRequest === null || requestParameters.createPlanRequest === undefined) {
             throw new runtime.RequiredError('createPlanRequest','Required parameter requestParameters.createPlanRequest was null or undefined when calling updatePlan.');
         }
@@ -278,13 +321,13 @@ export class PlansApi extends runtime.BaseAPI {
             body: CreatePlanRequestToJSON(requestParameters.createPlanRequest),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => UpdatePlan200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetPlan200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Update plan
      */
-    async updatePlan(requestParameters: UpdatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdatePlan200Response> {
+    async updatePlan(requestParameters: UpdatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPlan200Response> {
         const response = await this.updatePlanRaw(requestParameters, initOverrides);
         return await response.value();
     }

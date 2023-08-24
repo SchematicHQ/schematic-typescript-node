@@ -16,10 +16,11 @@
 import * as runtime from '../runtime';
 import type {
   CheckFlag200Response,
+  CheckFlagRequest,
   CountFlagValues200Response,
   CreateFeature200Response,
   CreateFeatureRequest,
-  DeleteFeature200Response,
+  DeleteApiKey200Response,
   GetFeature200Response,
   ListFeatures200Response,
   ListFlagValues200Response,
@@ -27,14 +28,16 @@ import type {
 import {
     CheckFlag200ResponseFromJSON,
     CheckFlag200ResponseToJSON,
+    CheckFlagRequestFromJSON,
+    CheckFlagRequestToJSON,
     CountFlagValues200ResponseFromJSON,
     CountFlagValues200ResponseToJSON,
     CreateFeature200ResponseFromJSON,
     CreateFeature200ResponseToJSON,
     CreateFeatureRequestFromJSON,
     CreateFeatureRequestToJSON,
-    DeleteFeature200ResponseFromJSON,
-    DeleteFeature200ResponseToJSON,
+    DeleteApiKey200ResponseFromJSON,
+    DeleteApiKey200ResponseToJSON,
     GetFeature200ResponseFromJSON,
     GetFeature200ResponseToJSON,
     ListFeatures200ResponseFromJSON,
@@ -43,11 +46,10 @@ import {
     ListFlagValues200ResponseToJSON,
 } from '../models';
 
-export interface CheckFlagRequest {
+export interface CheckFlagOperationRequest {
+    checkFlagRequest: CheckFlagRequest;
     key: string;
     xSchematicEnvironmentId?: string;
-    company?: object;
-    user?: object;
 }
 
 export interface CountFlagValuesRequest {
@@ -109,22 +111,20 @@ export class FeaturesApi extends runtime.BaseAPI {
     /**
      * Check flag
      */
-    async checkFlagRaw(requestParameters: CheckFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckFlag200Response>> {
+    async checkFlagRaw(requestParameters: CheckFlagOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckFlag200Response>> {
+        if (requestParameters.checkFlagRequest === null || requestParameters.checkFlagRequest === undefined) {
+            throw new runtime.RequiredError('checkFlagRequest','Required parameter requestParameters.checkFlagRequest was null or undefined when calling checkFlag.');
+        }
+
         if (requestParameters.key === null || requestParameters.key === undefined) {
             throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling checkFlag.');
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.company !== undefined) {
-            queryParameters['company'] = requestParameters.company;
-        }
-
-        if (requestParameters.user !== undefined) {
-            queryParameters['user'] = requestParameters.user;
-        }
-
         const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
 
         if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
             headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
@@ -136,9 +136,10 @@ export class FeaturesApi extends runtime.BaseAPI {
 
         const response = await this.request({
             path: `/flags/{key}/check`.replace(`{${"key"}}`, encodeURIComponent(String(requestParameters.key))),
-            method: 'GET',
+            method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+            body: CheckFlagRequestToJSON(requestParameters.checkFlagRequest),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CheckFlag200ResponseFromJSON(jsonValue));
@@ -147,7 +148,7 @@ export class FeaturesApi extends runtime.BaseAPI {
     /**
      * Check flag
      */
-    async checkFlag(requestParameters: CheckFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CheckFlag200Response> {
+    async checkFlag(requestParameters: CheckFlagOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CheckFlag200Response> {
         const response = await this.checkFlagRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -258,7 +259,7 @@ export class FeaturesApi extends runtime.BaseAPI {
     /**
      * Delete feature
      */
-    async deleteFeatureRaw(requestParameters: DeleteFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteFeature200Response>> {
+    async deleteFeatureRaw(requestParameters: DeleteFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteApiKey200Response>> {
         if (requestParameters.featureId === null || requestParameters.featureId === undefined) {
             throw new runtime.RequiredError('featureId','Required parameter requestParameters.featureId was null or undefined when calling deleteFeature.');
         }
@@ -282,13 +283,13 @@ export class FeaturesApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteFeature200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteApiKey200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Delete feature
      */
-    async deleteFeature(requestParameters: DeleteFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteFeature200Response> {
+    async deleteFeature(requestParameters: DeleteFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteApiKey200Response> {
         const response = await this.deleteFeatureRaw(requestParameters, initOverrides);
         return await response.value();
     }

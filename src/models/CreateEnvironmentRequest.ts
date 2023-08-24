@@ -16,48 +16,55 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface UpdateFeatureRequest
+ * @interface CreateEnvironmentRequest
  */
-export interface UpdateFeatureRequest {
+export interface CreateEnvironmentRequest {
     /**
      * 
      * @type {string}
-     * @memberof UpdateFeatureRequest
+     * @memberof CreateEnvironmentRequest
+     */
+    environmentType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateEnvironmentRequest
      */
     name?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof UpdateFeatureRequest
+     * @memberof CreateEnvironmentRequest
      */
     skipWebhooks?: boolean;
 }
 
 /**
- * Check if a given object implements the UpdateFeatureRequest interface.
+ * Check if a given object implements the CreateEnvironmentRequest interface.
  */
-export function instanceOfUpdateFeatureRequest(value: object): boolean {
+export function instanceOfCreateEnvironmentRequest(value: object): boolean {
     let isInstance = true;
 
     return isInstance;
 }
 
-export function UpdateFeatureRequestFromJSON(json: any): UpdateFeatureRequest {
-    return UpdateFeatureRequestFromJSONTyped(json, false);
+export function CreateEnvironmentRequestFromJSON(json: any): CreateEnvironmentRequest {
+    return CreateEnvironmentRequestFromJSONTyped(json, false);
 }
 
-export function UpdateFeatureRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateFeatureRequest {
+export function CreateEnvironmentRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateEnvironmentRequest {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
+        'environmentType': !exists(json, 'environment_type') ? undefined : json['environment_type'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
     };
 }
 
-export function UpdateFeatureRequestToJSON(value?: UpdateFeatureRequest | null): any {
+export function CreateEnvironmentRequestToJSON(value?: CreateEnvironmentRequest | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -66,6 +73,7 @@ export function UpdateFeatureRequestToJSON(value?: UpdateFeatureRequest | null):
     }
     return {
         
+        'environment_type': value.environmentType,
         'name': value.name,
         'skip_webhooks': value.skipWebhooks,
     };
