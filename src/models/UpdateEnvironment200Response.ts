@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { CreateEnvironment200ResponseData } from './CreateEnvironment200ResponseData';
+import type { UpdateEnvironment200ResponseData } from './UpdateEnvironment200ResponseData';
 import {
-    CreateEnvironment200ResponseDataFromJSON,
-    CreateEnvironment200ResponseDataFromJSONTyped,
-    CreateEnvironment200ResponseDataToJSON,
-} from './CreateEnvironment200ResponseData';
+    UpdateEnvironment200ResponseDataFromJSON,
+    UpdateEnvironment200ResponseDataFromJSONTyped,
+    UpdateEnvironment200ResponseDataToJSON,
+} from './UpdateEnvironment200ResponseData';
 
 /**
  * 
@@ -28,10 +28,10 @@ import {
 export interface UpdateEnvironment200Response {
     /**
      * 
-     * @type {CreateEnvironment200ResponseData}
+     * @type {UpdateEnvironment200ResponseData}
      * @memberof UpdateEnvironment200Response
      */
-    data?: CreateEnvironment200ResponseData;
+    data?: UpdateEnvironment200ResponseData;
     /**
      * 
      * @type {any}
@@ -59,7 +59,7 @@ export function UpdateEnvironment200ResponseFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'data': !exists(json, 'data') ? undefined : CreateEnvironment200ResponseDataFromJSON(json['data']),
+        'data': !exists(json, 'data') ? undefined : UpdateEnvironment200ResponseDataFromJSON(json['data']),
         'params': !exists(json, 'params') ? undefined : json['params'],
     };
 }
@@ -73,7 +73,7 @@ export function UpdateEnvironment200ResponseToJSON(value?: UpdateEnvironment200R
     }
     return {
         
-        'data': CreateEnvironment200ResponseDataToJSON(value.data),
+        'data': UpdateEnvironment200ResponseDataToJSON(value.data),
         'params': value.params,
     };
 }

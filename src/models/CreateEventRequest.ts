@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { CreateEventRequestBody } from './CreateEventRequestBody';
+import {
+    CreateEventRequestBodyFromJSON,
+    CreateEventRequestBodyFromJSONTyped,
+    CreateEventRequestBodyToJSON,
+} from './CreateEventRequestBody';
+
 /**
  * 
  * @export
@@ -20,35 +27,23 @@ import { exists, mapValues } from '../runtime';
  */
 export interface CreateEventRequest {
     /**
-     * Event body varies depending on type
-     * @type {object}
+     * 
+     * @type {CreateEventRequestBody}
      * @memberof CreateEventRequest
      */
-    body?: object;
+    body?: CreateEventRequestBody;
     /**
-     * 
+     * Either 'identify' or 'track'
      * @type {string}
      * @memberof CreateEventRequest
      */
     eventType?: string;
     /**
-     * 
+     * Optionally provide a timestamp at which the event was sent to Schematic
      * @type {string}
      * @memberof CreateEventRequest
      */
     sentAt?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateEventRequest
-     */
-    trackerEventID?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateEventRequest
-     */
-    trackerUserID?: string;
 }
 
 /**
@@ -70,11 +65,9 @@ export function CreateEventRequestFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'body': !exists(json, 'Body') ? undefined : json['Body'],
-        'eventType': !exists(json, 'EventType') ? undefined : json['EventType'],
-        'sentAt': !exists(json, 'SentAt') ? undefined : json['SentAt'],
-        'trackerEventID': !exists(json, 'TrackerEventID') ? undefined : json['TrackerEventID'],
-        'trackerUserID': !exists(json, 'TrackerUserID') ? undefined : json['TrackerUserID'],
+        'body': !exists(json, 'body') ? undefined : CreateEventRequestBodyFromJSON(json['body']),
+        'eventType': !exists(json, 'event_type') ? undefined : json['event_type'],
+        'sentAt': !exists(json, 'sent_at') ? undefined : json['sent_at'],
     };
 }
 
@@ -87,11 +80,9 @@ export function CreateEventRequestToJSON(value?: CreateEventRequest | null): any
     }
     return {
         
-        'Body': value.body,
-        'EventType': value.eventType,
-        'SentAt': value.sentAt,
-        'TrackerEventID': value.trackerEventID,
-        'TrackerUserID': value.trackerUserID,
+        'body': CreateEventRequestBodyToJSON(value.body),
+        'event_type': value.eventType,
+        'sent_at': value.sentAt,
     };
 }
 

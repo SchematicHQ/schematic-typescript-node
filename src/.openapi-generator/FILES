@@ -21,10 +21,15 @@ models/CreateCompany200ResponseDataKeysInner.ts
 models/CreateCompanyRequest.ts
 models/CreateEnvironment200Response.ts
 models/CreateEnvironment200ResponseData.ts
+models/CreateEnvironment200ResponseDataApiKeysInner.ts
 models/CreateEnvironmentRequest.ts
 models/CreateEvent200Response.ts
 models/CreateEvent200ResponseData.ts
 models/CreateEventRequest.ts
+models/CreateEventRequestBody.ts
+models/CreateEventRequestBodyOneOf.ts
+models/CreateEventRequestBodyOneOf1.ts
+models/CreateEventRequestBodyOneOf1Company.ts
 models/CreateFeature200Response.ts
 models/CreateFeature200ResponseData.ts
 models/CreateFeature200ResponseDataFlagsInner.ts
@@ -75,5 +80,6 @@ models/SyncCompanyPlans200ResponseDataPlansInner.ts
 models/SyncCompanyPlansRequest.ts
 models/SyncCompanyPlansRequestPlansInner.ts
 models/UpdateEnvironment200Response.ts
+models/UpdateEnvironment200ResponseData.ts
 models/index.ts
 runtime.ts

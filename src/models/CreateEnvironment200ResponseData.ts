@@ -13,12 +13,25 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { CreateEnvironment200ResponseDataApiKeysInner } from './CreateEnvironment200ResponseDataApiKeysInner';
+import {
+    CreateEnvironment200ResponseDataApiKeysInnerFromJSON,
+    CreateEnvironment200ResponseDataApiKeysInnerFromJSONTyped,
+    CreateEnvironment200ResponseDataApiKeysInnerToJSON,
+} from './CreateEnvironment200ResponseDataApiKeysInner';
+
 /**
  * The returned resource
  * @export
  * @interface CreateEnvironment200ResponseData
  */
 export interface CreateEnvironment200ResponseData {
+    /**
+     * 
+     * @type {Array<CreateEnvironment200ResponseDataApiKeysInner>}
+     * @memberof CreateEnvironment200ResponseData
+     */
+    apiKeys?: Array<CreateEnvironment200ResponseDataApiKeysInner>;
     /**
      * 
      * @type {string}
@@ -70,6 +83,7 @@ export function CreateEnvironment200ResponseDataFromJSONTyped(json: any, ignoreD
     }
     return {
         
+        'apiKeys': !exists(json, 'ApiKeys') ? undefined : ((json['ApiKeys'] as Array<any>).map(CreateEnvironment200ResponseDataApiKeysInnerFromJSON)),
         'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
         'environmentType': !exists(json, 'environment_type') ? undefined : json['environment_type'],
         'id': !exists(json, 'id') ? undefined : json['id'],
@@ -87,6 +101,7 @@ export function CreateEnvironment200ResponseDataToJSON(value?: CreateEnvironment
     }
     return {
         
+        'ApiKeys': value.apiKeys === undefined ? undefined : ((value.apiKeys as Array<any>).map(CreateEnvironment200ResponseDataApiKeysInnerToJSON)),
         'created_at': value.createdAt,
         'environment_type': value.environmentType,
         'id': value.id,

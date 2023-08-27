@@ -27,10 +27,10 @@ export interface CreateUserRequest {
     company?: object;
     /**
      * Optionally specify company using Schematic company ID
-     * @type {number}
+     * @type {string}
      * @memberof CreateUserRequest
      */
-    companyId?: number;
+    companyId?: string;
     /**
      * 
      * @type {object}
