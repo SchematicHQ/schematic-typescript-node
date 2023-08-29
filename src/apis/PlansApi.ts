@@ -15,8 +15,6 @@
 
 import * as runtime from '../runtime';
 import type {
-  CreateBillingPeriod200Response,
-  CreateBillingPeriodRequest,
   CreatePlan200Response,
   CreatePlanRequest,
   DeleteApiKey200Response,
@@ -24,12 +22,10 @@ import type {
   ListPlans200Response,
   SyncCompanyPlans200Response,
   SyncCompanyPlansRequest,
+  UpsertBillingPeriod200Response,
+  UpsertBillingPeriodRequest,
 } from '../models';
 import {
-    CreateBillingPeriod200ResponseFromJSON,
-    CreateBillingPeriod200ResponseToJSON,
-    CreateBillingPeriodRequestFromJSON,
-    CreateBillingPeriodRequestToJSON,
     CreatePlan200ResponseFromJSON,
     CreatePlan200ResponseToJSON,
     CreatePlanRequestFromJSON,
@@ -44,12 +40,11 @@ import {
     SyncCompanyPlans200ResponseToJSON,
     SyncCompanyPlansRequestFromJSON,
     SyncCompanyPlansRequestToJSON,
+    UpsertBillingPeriod200ResponseFromJSON,
+    UpsertBillingPeriod200ResponseToJSON,
+    UpsertBillingPeriodRequestFromJSON,
+    UpsertBillingPeriodRequestToJSON,
 } from '../models';
-
-export interface CreateBillingPeriodOperationRequest {
-    createBillingPeriodRequest: CreateBillingPeriodRequest;
-    xSchematicEnvironmentId?: string;
-}
 
 export interface CreatePlanOperationRequest {
     createPlanRequest: CreatePlanRequest;
@@ -85,51 +80,16 @@ export interface UpdatePlanRequest {
     xSchematicEnvironmentId?: string;
 }
 
+export interface UpsertBillingPeriodOperationRequest {
+    upsertBillingPeriodRequest: UpsertBillingPeriodRequest;
+    key: string;
+    xSchematicEnvironmentId?: string;
+}
+
 /**
  * 
  */
 export class PlansApi extends runtime.BaseAPI {
-
-    /**
-     * Create billing period
-     */
-    async createBillingPeriodRaw(requestParameters: CreateBillingPeriodOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateBillingPeriod200Response>> {
-        if (requestParameters.createBillingPeriodRequest === null || requestParameters.createBillingPeriodRequest === undefined) {
-            throw new runtime.RequiredError('createBillingPeriodRequest','Required parameter requestParameters.createBillingPeriodRequest was null or undefined when calling createBillingPeriod.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/billing-periods`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: CreateBillingPeriodRequestToJSON(requestParameters.createBillingPeriodRequest),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateBillingPeriod200ResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Create billing period
-     */
-    async createBillingPeriod(requestParameters: CreateBillingPeriodOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateBillingPeriod200Response> {
-        const response = await this.createBillingPeriodRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
 
     /**
      * Create plan
@@ -381,6 +341,51 @@ export class PlansApi extends runtime.BaseAPI {
      */
     async updatePlan(requestParameters: UpdatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPlan200Response> {
         const response = await this.updatePlanRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Upsert billing period
+     */
+    async upsertBillingPeriodRaw(requestParameters: UpsertBillingPeriodOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpsertBillingPeriod200Response>> {
+        if (requestParameters.upsertBillingPeriodRequest === null || requestParameters.upsertBillingPeriodRequest === undefined) {
+            throw new runtime.RequiredError('upsertBillingPeriodRequest','Required parameter requestParameters.upsertBillingPeriodRequest was null or undefined when calling upsertBillingPeriod.');
+        }
+
+        if (requestParameters.key === null || requestParameters.key === undefined) {
+            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling upsertBillingPeriod.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/billing-periods/{key}/upsert`.replace(`{${"key"}}`, encodeURIComponent(String(requestParameters.key))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpsertBillingPeriodRequestToJSON(requestParameters.upsertBillingPeriodRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpsertBillingPeriod200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Upsert billing period
+     */
+    async upsertBillingPeriod(requestParameters: UpsertBillingPeriodOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpsertBillingPeriod200Response> {
+        const response = await this.upsertBillingPeriodRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
