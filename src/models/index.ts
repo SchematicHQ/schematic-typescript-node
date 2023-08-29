@@ -77,7 +77,5 @@ export * from './SyncCompanyPlans200ResponseData';
 export * from './SyncCompanyPlans200ResponseDataPlansInner';
 export * from './SyncCompanyPlansRequest';
 export * from './SyncCompanyPlansRequestPlansInner';
-export * from './UpdateBillingPeriod200Response';
-export * from './UpdateBillingPeriodRequest';
 export * from './UpdateEnvironment200Response';
 export * from './UpdateEnvironment200ResponseData';

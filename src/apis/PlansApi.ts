@@ -24,8 +24,6 @@ import type {
   ListPlans200Response,
   SyncCompanyPlans200Response,
   SyncCompanyPlansRequest,
-  UpdateBillingPeriod200Response,
-  UpdateBillingPeriodRequest,
 } from '../models';
 import {
     CreateBillingPeriod200ResponseFromJSON,
@@ -46,10 +44,6 @@ import {
     SyncCompanyPlans200ResponseToJSON,
     SyncCompanyPlansRequestFromJSON,
     SyncCompanyPlansRequestToJSON,
-    UpdateBillingPeriod200ResponseFromJSON,
-    UpdateBillingPeriod200ResponseToJSON,
-    UpdateBillingPeriodRequestFromJSON,
-    UpdateBillingPeriodRequestToJSON,
 } from '../models';
 
 export interface CreateBillingPeriodOperationRequest {
@@ -59,11 +53,6 @@ export interface CreateBillingPeriodOperationRequest {
 
 export interface CreatePlanOperationRequest {
     createPlanRequest: CreatePlanRequest;
-    xSchematicEnvironmentId?: string;
-}
-
-export interface DeleteBillingPeriodRequest {
-    billingPeriodId: string;
     xSchematicEnvironmentId?: string;
 }
 
@@ -87,12 +76,6 @@ export interface ListPlansRequest {
 
 export interface SyncCompanyPlansOperationRequest {
     syncCompanyPlansRequest: SyncCompanyPlansRequest;
-    xSchematicEnvironmentId?: string;
-}
-
-export interface UpdateBillingPeriodOperationRequest {
-    updateBillingPeriodRequest: UpdateBillingPeriodRequest;
-    billingPeriodId: string;
     xSchematicEnvironmentId?: string;
 }
 
@@ -186,44 +169,6 @@ export class PlansApi extends runtime.BaseAPI {
      */
     async createPlan(requestParameters: CreatePlanOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePlan200Response> {
         const response = await this.createPlanRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Delete billing period
-     */
-    async deleteBillingPeriodRaw(requestParameters: DeleteBillingPeriodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteApiKey200Response>> {
-        if (requestParameters.billingPeriodId === null || requestParameters.billingPeriodId === undefined) {
-            throw new runtime.RequiredError('billingPeriodId','Required parameter requestParameters.billingPeriodId was null or undefined when calling deleteBillingPeriod.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/billing-periods/{billing_period_id}`.replace(`{${"billing_period_id"}}`, encodeURIComponent(String(requestParameters.billingPeriodId))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteApiKey200ResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Delete billing period
-     */
-    async deleteBillingPeriod(requestParameters: DeleteBillingPeriodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteApiKey200Response> {
-        const response = await this.deleteBillingPeriodRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -391,51 +336,6 @@ export class PlansApi extends runtime.BaseAPI {
      */
     async syncCompanyPlans(requestParameters: SyncCompanyPlansOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SyncCompanyPlans200Response> {
         const response = await this.syncCompanyPlansRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Update billing period
-     */
-    async updateBillingPeriodRaw(requestParameters: UpdateBillingPeriodOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateBillingPeriod200Response>> {
-        if (requestParameters.updateBillingPeriodRequest === null || requestParameters.updateBillingPeriodRequest === undefined) {
-            throw new runtime.RequiredError('updateBillingPeriodRequest','Required parameter requestParameters.updateBillingPeriodRequest was null or undefined when calling updateBillingPeriod.');
-        }
-
-        if (requestParameters.billingPeriodId === null || requestParameters.billingPeriodId === undefined) {
-            throw new runtime.RequiredError('billingPeriodId','Required parameter requestParameters.billingPeriodId was null or undefined when calling updateBillingPeriod.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/billing-periods/{billing_period_id}`.replace(`{${"billing_period_id"}}`, encodeURIComponent(String(requestParameters.billingPeriodId))),
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: UpdateBillingPeriodRequestToJSON(requestParameters.updateBillingPeriodRequest),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateBillingPeriod200ResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Update billing period
-     */
-    async updateBillingPeriod(requestParameters: UpdateBillingPeriodOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateBillingPeriod200Response> {
-        const response = await this.updateBillingPeriodRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
