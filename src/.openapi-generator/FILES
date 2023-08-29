@@ -15,6 +15,9 @@ models/CountFlagValues200Response.ts
 models/CreateApiKey200Response.ts
 models/CreateApiKey200ResponseData.ts
 models/CreateApiKeyRequest.ts
+models/CreateBillingPeriod200Response.ts
+models/CreateBillingPeriod200ResponseData.ts
+models/CreateBillingPeriodRequest.ts
 models/CreateCompany200Response.ts
 models/CreateCompany200ResponseData.ts
 models/CreateCompany200ResponseDataKeysInner.ts
@@ -79,6 +82,8 @@ models/SyncCompanyPlans200ResponseData.ts
 models/SyncCompanyPlans200ResponseDataPlansInner.ts
 models/SyncCompanyPlansRequest.ts
 models/SyncCompanyPlansRequestPlansInner.ts
+models/UpdateBillingPeriod200Response.ts
+models/UpdateBillingPeriodRequest.ts
 models/UpdateEnvironment200Response.ts
 models/UpdateEnvironment200ResponseData.ts
 models/index.ts
