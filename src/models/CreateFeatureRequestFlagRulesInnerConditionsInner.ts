@@ -61,6 +61,18 @@ export interface CreateFeatureRequestFlagRulesInnerConditionsInner {
      * @memberof CreateFeatureRequestFlagRulesInnerConditionsInner
      */
     resourceIds?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeatureRequestFlagRulesInnerConditionsInner
+     */
+    traitId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeatureRequestFlagRulesInnerConditionsInner
+     */
+    traitValue?: string;
 }
 
 /**
@@ -89,6 +101,8 @@ export function CreateFeatureRequestFlagRulesInnerConditionsInnerFromJSONTyped(j
         'metricValue': !exists(json, 'metric_value') ? undefined : json['metric_value'],
         'operator': !exists(json, 'operator') ? undefined : json['operator'],
         'resourceIds': !exists(json, 'resource_ids') ? undefined : json['resource_ids'],
+        'traitId': !exists(json, 'trait_id') ? undefined : json['trait_id'],
+        'traitValue': !exists(json, 'trait_value') ? undefined : json['trait_value'],
     };
 }
 
@@ -108,6 +122,8 @@ export function CreateFeatureRequestFlagRulesInnerConditionsInnerToJSON(value?: 
         'metric_value': value.metricValue,
         'operator': value.operator,
         'resource_ids': value.resourceIds,
+        'trait_id': value.traitId,
+        'trait_value': value.traitValue,
     };
 }
 
