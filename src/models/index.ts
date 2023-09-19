@@ -68,6 +68,7 @@ export * from './ListPlans200Response';
 export * from './ListPlans200ResponseDataInner';
 export * from './ListUsers200Response';
 export * from './ListUsers200ResponseDataInner';
+export * from './ListUsers200ResponseParams';
 export * from './ModelError';
 export * from './SyncCompanyPlans200Response';
 export * from './SyncCompanyPlans200ResponseData';

@@ -21,6 +21,30 @@ import { exists, mapValues } from '../runtime';
 export interface CheckFlag200ResponseData {
     /**
      * 
+     * @type {string}
+     * @memberof CheckFlag200ResponseData
+     */
+    entityId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CheckFlag200ResponseData
+     */
+    entityType?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CheckFlag200ResponseData
+     */
+    error?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CheckFlag200ResponseData
+     */
+    ruleId?: string;
+    /**
+     * 
      * @type {boolean}
      * @memberof CheckFlag200ResponseData
      */
@@ -46,6 +70,10 @@ export function CheckFlag200ResponseDataFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
+        'entityId': !exists(json, 'entity_id') ? undefined : json['entity_id'],
+        'entityType': !exists(json, 'entity_type') ? undefined : json['entity_type'],
+        'error': !exists(json, 'error') ? undefined : json['error'],
+        'ruleId': !exists(json, 'rule_id') ? undefined : json['rule_id'],
         'value': !exists(json, 'value') ? undefined : json['value'],
     };
 }
@@ -59,6 +87,10 @@ export function CheckFlag200ResponseDataToJSON(value?: CheckFlag200ResponseData 
     }
     return {
         
+        'entity_id': value.entityId,
+        'entity_type': value.entityType,
+        'error': value.error,
+        'rule_id': value.ruleId,
         'value': value.value,
     };
 }

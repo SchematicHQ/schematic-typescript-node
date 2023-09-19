@@ -75,6 +75,7 @@ export interface ListCompaniesRequest {
 export interface ListUsersRequest {
     xSchematicEnvironmentId?: string;
     ids?: Array<number>;
+    companyId?: string;
     limit?: number;
     offset?: number;
     order?: string;
@@ -306,6 +307,10 @@ export class CompaniesApi extends runtime.BaseAPI {
 
         if (requestParameters.ids) {
             queryParameters['ids'] = requestParameters.ids;
+        }
+
+        if (requestParameters.companyId !== undefined) {
+            queryParameters['company_id'] = requestParameters.companyId;
         }
 
         if (requestParameters.limit !== undefined) {

@@ -54,6 +54,12 @@ export interface CreateApiKey200ResponseData {
      * @type {string}
      * @memberof CreateApiKey200ResponseData
      */
+    lastUsedAt?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateApiKey200ResponseData
+     */
     name?: string;
     /**
      * 
@@ -93,6 +99,7 @@ export function CreateApiKey200ResponseDataFromJSONTyped(json: any, ignoreDiscri
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'keyType': !exists(json, 'key_type') ? undefined : json['key_type'],
+        'lastUsedAt': !exists(json, 'last_used_at') ? undefined : json['last_used_at'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'scopes': !exists(json, 'scopes') ? undefined : json['scopes'],
         'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
@@ -113,6 +120,7 @@ export function CreateApiKey200ResponseDataToJSON(value?: CreateApiKey200Respons
         'environment_id': value.environmentId,
         'id': value.id,
         'key_type': value.keyType,
+        'last_used_at': value.lastUsedAt,
         'name': value.name,
         'scopes': value.scopes,
         'updated_at': value.updatedAt,

@@ -54,6 +54,12 @@ export interface CreateEnvironment200ResponseDataApiKeysInner {
      * @type {string}
      * @memberof CreateEnvironment200ResponseDataApiKeysInner
      */
+    lastUsedAt?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateEnvironment200ResponseDataApiKeysInner
+     */
     name?: string;
     /**
      * 
@@ -93,6 +99,7 @@ export function CreateEnvironment200ResponseDataApiKeysInnerFromJSONTyped(json: 
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'keyType': !exists(json, 'key_type') ? undefined : json['key_type'],
+        'lastUsedAt': !exists(json, 'last_used_at') ? undefined : json['last_used_at'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'scopes': !exists(json, 'scopes') ? undefined : json['scopes'],
         'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
@@ -113,6 +120,7 @@ export function CreateEnvironment200ResponseDataApiKeysInnerToJSON(value?: Creat
         'environment_id': value.environmentId,
         'id': value.id,
         'key_type': value.keyType,
+        'last_used_at': value.lastUsedAt,
         'name': value.name,
         'scopes': value.scopes,
         'updated_at': value.updatedAt,

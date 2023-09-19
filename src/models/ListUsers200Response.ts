@@ -13,18 +13,18 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { ListCompanies200ResponseParams } from './ListCompanies200ResponseParams';
-import {
-    ListCompanies200ResponseParamsFromJSON,
-    ListCompanies200ResponseParamsFromJSONTyped,
-    ListCompanies200ResponseParamsToJSON,
-} from './ListCompanies200ResponseParams';
 import type { ListUsers200ResponseDataInner } from './ListUsers200ResponseDataInner';
 import {
     ListUsers200ResponseDataInnerFromJSON,
     ListUsers200ResponseDataInnerFromJSONTyped,
     ListUsers200ResponseDataInnerToJSON,
 } from './ListUsers200ResponseDataInner';
+import type { ListUsers200ResponseParams } from './ListUsers200ResponseParams';
+import {
+    ListUsers200ResponseParamsFromJSON,
+    ListUsers200ResponseParamsFromJSONTyped,
+    ListUsers200ResponseParamsToJSON,
+} from './ListUsers200ResponseParams';
 
 /**
  * 
@@ -40,10 +40,10 @@ export interface ListUsers200Response {
     data?: Array<ListUsers200ResponseDataInner>;
     /**
      * 
-     * @type {ListCompanies200ResponseParams}
+     * @type {ListUsers200ResponseParams}
      * @memberof ListUsers200Response
      */
-    params?: ListCompanies200ResponseParams;
+    params?: ListUsers200ResponseParams;
 }
 
 /**
@@ -66,7 +66,7 @@ export function ListUsers200ResponseFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'data': !exists(json, 'data') ? undefined : ((json['data'] as Array<any>).map(ListUsers200ResponseDataInnerFromJSON)),
-        'params': !exists(json, 'params') ? undefined : ListCompanies200ResponseParamsFromJSON(json['params']),
+        'params': !exists(json, 'params') ? undefined : ListUsers200ResponseParamsFromJSON(json['params']),
     };
 }
 
@@ -80,7 +80,7 @@ export function ListUsers200ResponseToJSON(value?: ListUsers200Response | null):
     return {
         
         'data': value.data === undefined ? undefined : ((value.data as Array<any>).map(ListUsers200ResponseDataInnerToJSON)),
-        'params': ListCompanies200ResponseParamsToJSON(value.params),
+        'params': ListUsers200ResponseParamsToJSON(value.params),
     };
 }
 
