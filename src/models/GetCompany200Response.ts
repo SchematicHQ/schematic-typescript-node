@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { CreateCompany200ResponseData } from './CreateCompany200ResponseData';
+import type { CreateCompany201ResponseData } from './CreateCompany201ResponseData';
 import {
-    CreateCompany200ResponseDataFromJSON,
-    CreateCompany200ResponseDataFromJSONTyped,
-    CreateCompany200ResponseDataToJSON,
-} from './CreateCompany200ResponseData';
+    CreateCompany201ResponseDataFromJSON,
+    CreateCompany201ResponseDataFromJSONTyped,
+    CreateCompany201ResponseDataToJSON,
+} from './CreateCompany201ResponseData';
 
 /**
  * 
@@ -28,10 +28,10 @@ import {
 export interface GetCompany200Response {
     /**
      * 
-     * @type {CreateCompany200ResponseData}
+     * @type {CreateCompany201ResponseData}
      * @memberof GetCompany200Response
      */
-    data?: CreateCompany200ResponseData;
+    data?: CreateCompany201ResponseData;
     /**
      * 
      * @type {any}
@@ -59,7 +59,7 @@ export function GetCompany200ResponseFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'data': !exists(json, 'data') ? undefined : CreateCompany200ResponseDataFromJSON(json['data']),
+        'data': !exists(json, 'data') ? undefined : CreateCompany201ResponseDataFromJSON(json['data']),
         'params': !exists(json, 'params') ? undefined : json['params'],
     };
 }
@@ -73,7 +73,7 @@ export function GetCompany200ResponseToJSON(value?: GetCompany200Response | null
     }
     return {
         
-        'data': CreateCompany200ResponseDataToJSON(value.data),
+        'data': CreateCompany201ResponseDataToJSON(value.data),
         'params': value.params,
     };
 }

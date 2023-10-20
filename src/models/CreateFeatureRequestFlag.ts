@@ -37,6 +37,18 @@ export interface CreateFeatureRequestFlag {
      * @type {string}
      * @memberof CreateFeatureRequestFlag
      */
+    description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeatureRequestFlag
+     */
+    featureId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeatureRequestFlag
+     */
     flagType?: string;
     /**
      * 
@@ -50,6 +62,12 @@ export interface CreateFeatureRequestFlag {
      * @memberof CreateFeatureRequestFlag
      */
     key?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeatureRequestFlag
+     */
+    name?: string;
     /**
      * 
      * @type {Array<CreateFeatureRequestFlagRulesInner>}
@@ -78,9 +96,12 @@ export function CreateFeatureRequestFlagFromJSONTyped(json: any, ignoreDiscrimin
     return {
         
         'defaultValue': !exists(json, 'default_value') ? undefined : json['default_value'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
+        'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
         'flagType': !exists(json, 'flag_type') ? undefined : json['flag_type'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'key': !exists(json, 'key') ? undefined : json['key'],
+        'name': !exists(json, 'name') ? undefined : json['name'],
         'rules': !exists(json, 'rules') ? undefined : ((json['rules'] as Array<any>).map(CreateFeatureRequestFlagRulesInnerFromJSON)),
     };
 }
@@ -95,9 +116,12 @@ export function CreateFeatureRequestFlagToJSON(value?: CreateFeatureRequestFlag 
     return {
         
         'default_value': value.defaultValue,
+        'description': value.description,
+        'feature_id': value.featureId,
         'flag_type': value.flagType,
         'id': value.id,
         'key': value.key,
+        'name': value.name,
         'rules': value.rules === undefined ? undefined : ((value.rules as Array<any>).map(CreateFeatureRequestFlagRulesInnerToJSON)),
     };
 }

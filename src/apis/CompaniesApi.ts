@@ -15,32 +15,41 @@
 
 import * as runtime from '../runtime';
 import type {
-  CreateCompany200Response,
+  CreateCompany201Response,
+  CreateCompanyMembership201Response,
+  CreateCompanyMembershipRequest,
   CreateCompanyRequest,
-  CreateUser200Response,
+  CreateUser201Response,
   CreateUserRequest,
+  DeleteApiKey200Response,
   GetCompany200Response,
   GetUser200Response,
   ListCompanies200Response,
-  ListUsers200Response,
+  ListCompanyMemberships200Response,
 } from '../models';
 import {
-    CreateCompany200ResponseFromJSON,
-    CreateCompany200ResponseToJSON,
+    CreateCompany201ResponseFromJSON,
+    CreateCompany201ResponseToJSON,
+    CreateCompanyMembership201ResponseFromJSON,
+    CreateCompanyMembership201ResponseToJSON,
+    CreateCompanyMembershipRequestFromJSON,
+    CreateCompanyMembershipRequestToJSON,
     CreateCompanyRequestFromJSON,
     CreateCompanyRequestToJSON,
-    CreateUser200ResponseFromJSON,
-    CreateUser200ResponseToJSON,
+    CreateUser201ResponseFromJSON,
+    CreateUser201ResponseToJSON,
     CreateUserRequestFromJSON,
     CreateUserRequestToJSON,
+    DeleteApiKey200ResponseFromJSON,
+    DeleteApiKey200ResponseToJSON,
     GetCompany200ResponseFromJSON,
     GetCompany200ResponseToJSON,
     GetUser200ResponseFromJSON,
     GetUser200ResponseToJSON,
     ListCompanies200ResponseFromJSON,
     ListCompanies200ResponseToJSON,
-    ListUsers200ResponseFromJSON,
-    ListUsers200ResponseToJSON,
+    ListCompanyMemberships200ResponseFromJSON,
+    ListCompanyMemberships200ResponseToJSON,
 } from '../models';
 
 export interface CreateCompanyOperationRequest {
@@ -48,8 +57,18 @@ export interface CreateCompanyOperationRequest {
     xSchematicEnvironmentId?: string;
 }
 
+export interface CreateCompanyMembershipOperationRequest {
+    createCompanyMembershipRequest: CreateCompanyMembershipRequest;
+    xSchematicEnvironmentId?: string;
+}
+
 export interface CreateUserOperationRequest {
     createUserRequest: CreateUserRequest;
+    xSchematicEnvironmentId?: string;
+}
+
+export interface DeleteCompanyMembershipRequest {
+    companyMembershipId: string;
     xSchematicEnvironmentId?: string;
 }
 
@@ -72,10 +91,19 @@ export interface ListCompaniesRequest {
     dir?: string;
 }
 
+export interface ListCompanyMembershipsRequest {
+    xSchematicEnvironmentId?: string;
+    companyId?: string;
+    userId?: string;
+    limit?: number;
+    offset?: number;
+    order?: string;
+    dir?: string;
+}
+
 export interface ListUsersRequest {
     xSchematicEnvironmentId?: string;
     ids?: Array<number>;
-    companyId?: string;
     limit?: number;
     offset?: number;
     order?: string;
@@ -90,7 +118,7 @@ export class CompaniesApi extends runtime.BaseAPI {
     /**
      * Create company
      */
-    async createCompanyRaw(requestParameters: CreateCompanyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCompany200Response>> {
+    async createCompanyRaw(requestParameters: CreateCompanyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCompany201Response>> {
         if (requestParameters.createCompanyRequest === null || requestParameters.createCompanyRequest === undefined) {
             throw new runtime.RequiredError('createCompanyRequest','Required parameter requestParameters.createCompanyRequest was null or undefined when calling createCompany.');
         }
@@ -117,21 +145,62 @@ export class CompaniesApi extends runtime.BaseAPI {
             body: CreateCompanyRequestToJSON(requestParameters.createCompanyRequest),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCompany200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCompany201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Create company
      */
-    async createCompany(requestParameters: CreateCompanyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCompany200Response> {
+    async createCompany(requestParameters: CreateCompanyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCompany201Response> {
         const response = await this.createCompanyRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Create company membership
+     */
+    async createCompanyMembershipRaw(requestParameters: CreateCompanyMembershipOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCompanyMembership201Response>> {
+        if (requestParameters.createCompanyMembershipRequest === null || requestParameters.createCompanyMembershipRequest === undefined) {
+            throw new runtime.RequiredError('createCompanyMembershipRequest','Required parameter requestParameters.createCompanyMembershipRequest was null or undefined when calling createCompanyMembership.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/company-memberships`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateCompanyMembershipRequestToJSON(requestParameters.createCompanyMembershipRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCompanyMembership201ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Create company membership
+     */
+    async createCompanyMembership(requestParameters: CreateCompanyMembershipOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCompanyMembership201Response> {
+        const response = await this.createCompanyMembershipRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      * Create user
      */
-    async createUserRaw(requestParameters: CreateUserOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateUser200Response>> {
+    async createUserRaw(requestParameters: CreateUserOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateUser201Response>> {
         if (requestParameters.createUserRequest === null || requestParameters.createUserRequest === undefined) {
             throw new runtime.RequiredError('createUserRequest','Required parameter requestParameters.createUserRequest was null or undefined when calling createUser.');
         }
@@ -158,14 +227,52 @@ export class CompaniesApi extends runtime.BaseAPI {
             body: CreateUserRequestToJSON(requestParameters.createUserRequest),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateUser200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateUser201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Create user
      */
-    async createUser(requestParameters: CreateUserOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateUser200Response> {
+    async createUser(requestParameters: CreateUserOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateUser201Response> {
         const response = await this.createUserRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete company membership
+     */
+    async deleteCompanyMembershipRaw(requestParameters: DeleteCompanyMembershipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteApiKey200Response>> {
+        if (requestParameters.companyMembershipId === null || requestParameters.companyMembershipId === undefined) {
+            throw new runtime.RequiredError('companyMembershipId','Required parameter requestParameters.companyMembershipId was null or undefined when calling deleteCompanyMembership.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/company-memberships/{company_membership_id}`.replace(`{${"company_membership_id"}}`, encodeURIComponent(String(requestParameters.companyMembershipId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteApiKey200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete company membership
+     */
+    async deleteCompanyMembership(requestParameters: DeleteCompanyMembershipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteApiKey200Response> {
+        const response = await this.deleteCompanyMembershipRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -300,17 +407,71 @@ export class CompaniesApi extends runtime.BaseAPI {
     }
 
     /**
+     * List company memberships
+     */
+    async listCompanyMembershipsRaw(requestParameters: ListCompanyMembershipsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListCompanyMemberships200Response>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.companyId !== undefined) {
+            queryParameters['company_id'] = requestParameters.companyId;
+        }
+
+        if (requestParameters.userId !== undefined) {
+            queryParameters['user_id'] = requestParameters.userId;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.order !== undefined) {
+            queryParameters['order'] = requestParameters.order;
+        }
+
+        if (requestParameters.dir !== undefined) {
+            queryParameters['dir'] = requestParameters.dir;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/company-memberships`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListCompanyMemberships200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List company memberships
+     */
+    async listCompanyMemberships(requestParameters: ListCompanyMembershipsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListCompanyMemberships200Response> {
+        const response = await this.listCompanyMembershipsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * List users
      */
-    async listUsersRaw(requestParameters: ListUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListUsers200Response>> {
+    async listUsersRaw(requestParameters: ListUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListCompanies200Response>> {
         const queryParameters: any = {};
 
         if (requestParameters.ids) {
             queryParameters['ids'] = requestParameters.ids;
-        }
-
-        if (requestParameters.companyId !== undefined) {
-            queryParameters['company_id'] = requestParameters.companyId;
         }
 
         if (requestParameters.limit !== undefined) {
@@ -346,13 +507,13 @@ export class CompaniesApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ListUsers200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListCompanies200ResponseFromJSON(jsonValue));
     }
 
     /**
      * List users
      */
-    async listUsers(requestParameters: ListUsersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListUsers200Response> {
+    async listUsers(requestParameters: ListUsersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListCompanies200Response> {
         const response = await this.listUsersRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -24,7 +24,7 @@ export interface ListFlagValues200ResponseDataInner {
      * @type {string}
      * @memberof ListFlagValues200ResponseDataInner
      */
-    entityId?: string;
+    companyId?: string;
     /**
      * 
      * @type {number}
@@ -51,10 +51,10 @@ export interface ListFlagValues200ResponseDataInner {
     ruleId?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof ListFlagValues200ResponseDataInner
      */
-    targetingLevel?: number;
+    userId?: string;
     /**
      * 
      * @type {boolean}
@@ -82,12 +82,12 @@ export function ListFlagValues200ResponseDataInnerFromJSONTyped(json: any, ignor
     }
     return {
         
-        'entityId': !exists(json, 'entity_id') ? undefined : json['entity_id'],
+        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'entityType': !exists(json, 'entity_type') ? undefined : json['entity_type'],
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
         'ruleId': !exists(json, 'rule_id') ? undefined : json['rule_id'],
-        'targetingLevel': !exists(json, 'targeting_level') ? undefined : json['targeting_level'],
+        'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
         'value': !exists(json, 'value') ? undefined : json['value'],
     };
 }
@@ -101,12 +101,12 @@ export function ListFlagValues200ResponseDataInnerToJSON(value?: ListFlagValues2
     }
     return {
         
-        'entity_id': value.entityId,
+        'company_id': value.companyId,
         'entity_type': value.entityType,
         'environment_id': value.environmentId,
         'flag_id': value.flagId,
         'rule_id': value.ruleId,
-        'targeting_level': value.targetingLevel,
+        'user_id': value.userId,
         'value': value.value,
     };
 }

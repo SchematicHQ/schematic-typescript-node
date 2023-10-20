@@ -19,6 +19,12 @@ import {
     CreateCompany200ResponseDataKeysInnerFromJSONTyped,
     CreateCompany200ResponseDataKeysInnerToJSON,
 } from './CreateCompany200ResponseDataKeysInner';
+import type { ListCompanyMemberships200ResponseDataInner } from './ListCompanyMemberships200ResponseDataInner';
+import {
+    ListCompanyMemberships200ResponseDataInnerFromJSON,
+    ListCompanyMemberships200ResponseDataInnerFromJSONTyped,
+    ListCompanyMemberships200ResponseDataInnerToJSON,
+} from './ListCompanyMemberships200ResponseDataInner';
 
 /**
  * The returned resource
@@ -28,10 +34,10 @@ import {
 export interface CreateUser200ResponseData {
     /**
      * 
-     * @type {string}
+     * @type {Array<ListCompanyMemberships200ResponseDataInner>}
      * @memberof CreateUser200ResponseData
      */
-    companyId?: string;
+    companyMemberships?: Array<ListCompanyMemberships200ResponseDataInner>;
     /**
      * 
      * @type {string}
@@ -101,7 +107,7 @@ export function CreateUser200ResponseDataFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
+        'companyMemberships': !exists(json, 'company_memberships') ? undefined : ((json['company_memberships'] as Array<any>).map(ListCompanyMemberships200ResponseDataInnerFromJSON)),
         'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'id': !exists(json, 'id') ? undefined : json['id'],
@@ -122,7 +128,7 @@ export function CreateUser200ResponseDataToJSON(value?: CreateUser200ResponseDat
     }
     return {
         
-        'company_id': value.companyId,
+        'company_memberships': value.companyMemberships === undefined ? undefined : ((value.companyMemberships as Array<any>).map(ListCompanyMemberships200ResponseDataInnerToJSON)),
         'created_at': value.createdAt,
         'environment_id': value.environmentId,
         'id': value.id,

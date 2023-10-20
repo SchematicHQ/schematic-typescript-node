@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { CreatePlan200ResponseData } from './CreatePlan200ResponseData';
+import type { CreatePlan201ResponseData } from './CreatePlan201ResponseData';
 import {
-    CreatePlan200ResponseDataFromJSON,
-    CreatePlan200ResponseDataFromJSONTyped,
-    CreatePlan200ResponseDataToJSON,
-} from './CreatePlan200ResponseData';
+    CreatePlan201ResponseDataFromJSON,
+    CreatePlan201ResponseDataFromJSONTyped,
+    CreatePlan201ResponseDataToJSON,
+} from './CreatePlan201ResponseData';
 
 /**
  * 
@@ -28,10 +28,10 @@ import {
 export interface GetPlan200Response {
     /**
      * 
-     * @type {CreatePlan200ResponseData}
+     * @type {CreatePlan201ResponseData}
      * @memberof GetPlan200Response
      */
-    data?: CreatePlan200ResponseData;
+    data?: CreatePlan201ResponseData;
     /**
      * 
      * @type {any}
@@ -59,7 +59,7 @@ export function GetPlan200ResponseFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'data': !exists(json, 'data') ? undefined : CreatePlan200ResponseDataFromJSON(json['data']),
+        'data': !exists(json, 'data') ? undefined : CreatePlan201ResponseDataFromJSON(json['data']),
         'params': !exists(json, 'params') ? undefined : json['params'],
     };
 }
@@ -73,7 +73,7 @@ export function GetPlan200ResponseToJSON(value?: GetPlan200Response | null): any
     }
     return {
         
-        'data': CreatePlan200ResponseDataToJSON(value.data),
+        'data': CreatePlan201ResponseDataToJSON(value.data),
         'params': value.params,
     };
 }

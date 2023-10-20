@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { CreateEnvironment200ResponseDataApiKeysInner } from './CreateEnvironment200ResponseDataApiKeysInner';
+import type { ListApiKeys200ResponseDataInner } from './ListApiKeys200ResponseDataInner';
 import {
-    CreateEnvironment200ResponseDataApiKeysInnerFromJSON,
-    CreateEnvironment200ResponseDataApiKeysInnerFromJSONTyped,
-    CreateEnvironment200ResponseDataApiKeysInnerToJSON,
-} from './CreateEnvironment200ResponseDataApiKeysInner';
+    ListApiKeys200ResponseDataInnerFromJSON,
+    ListApiKeys200ResponseDataInnerFromJSONTyped,
+    ListApiKeys200ResponseDataInnerToJSON,
+} from './ListApiKeys200ResponseDataInner';
 
 /**
  * The returned resource
@@ -28,10 +28,10 @@ import {
 export interface CreateEnvironment200ResponseData {
     /**
      * 
-     * @type {Array<CreateEnvironment200ResponseDataApiKeysInner>}
+     * @type {Array<ListApiKeys200ResponseDataInner>}
      * @memberof CreateEnvironment200ResponseData
      */
-    apiKeys?: Array<CreateEnvironment200ResponseDataApiKeysInner>;
+    apiKeys?: Array<ListApiKeys200ResponseDataInner>;
     /**
      * 
      * @type {string}
@@ -83,7 +83,7 @@ export function CreateEnvironment200ResponseDataFromJSONTyped(json: any, ignoreD
     }
     return {
         
-        'apiKeys': !exists(json, 'ApiKeys') ? undefined : ((json['ApiKeys'] as Array<any>).map(CreateEnvironment200ResponseDataApiKeysInnerFromJSON)),
+        'apiKeys': !exists(json, 'ApiKeys') ? undefined : ((json['ApiKeys'] as Array<any>).map(ListApiKeys200ResponseDataInnerFromJSON)),
         'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
         'environmentType': !exists(json, 'environment_type') ? undefined : json['environment_type'],
         'id': !exists(json, 'id') ? undefined : json['id'],
@@ -101,7 +101,7 @@ export function CreateEnvironment200ResponseDataToJSON(value?: CreateEnvironment
     }
     return {
         
-        'ApiKeys': value.apiKeys === undefined ? undefined : ((value.apiKeys as Array<any>).map(CreateEnvironment200ResponseDataApiKeysInnerToJSON)),
+        'ApiKeys': value.apiKeys === undefined ? undefined : ((value.apiKeys as Array<any>).map(ListApiKeys200ResponseDataInnerToJSON)),
         'created_at': value.createdAt,
         'environment_type': value.environmentType,
         'id': value.id,

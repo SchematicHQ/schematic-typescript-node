@@ -36,12 +36,6 @@ export interface CreateApiKeyRequest {
      * @type {string}
      * @memberof CreateApiKeyRequest
      */
-    keyType?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateApiKeyRequest
-     */
     name?: string;
     /**
      * 
@@ -49,12 +43,6 @@ export interface CreateApiKeyRequest {
      * @memberof CreateApiKeyRequest
      */
     scopes?: Array<string>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CreateApiKeyRequest
-     */
-    skipWebhooks?: boolean;
 }
 
 /**
@@ -78,10 +66,8 @@ export function CreateApiKeyRequestFromJSONTyped(json: any, ignoreDiscriminator:
         
         'description': !exists(json, 'description') ? undefined : json['description'],
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
-        'keyType': !exists(json, 'key_type') ? undefined : json['key_type'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'scopes': !exists(json, 'scopes') ? undefined : json['scopes'],
-        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
     };
 }
 
@@ -96,10 +82,8 @@ export function CreateApiKeyRequestToJSON(value?: CreateApiKeyRequest | null): a
         
         'description': value.description,
         'environment_id': value.environmentId,
-        'key_type': value.keyType,
         'name': value.name,
         'scopes': value.scopes,
-        'skip_webhooks': value.skipWebhooks,
     };
 }
 

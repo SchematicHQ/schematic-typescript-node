@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { CreateFeature200ResponseData } from './CreateFeature200ResponseData';
+import type { CreateFeature201ResponseData } from './CreateFeature201ResponseData';
 import {
-    CreateFeature200ResponseDataFromJSON,
-    CreateFeature200ResponseDataFromJSONTyped,
-    CreateFeature200ResponseDataToJSON,
-} from './CreateFeature200ResponseData';
+    CreateFeature201ResponseDataFromJSON,
+    CreateFeature201ResponseDataFromJSONTyped,
+    CreateFeature201ResponseDataToJSON,
+} from './CreateFeature201ResponseData';
 
 /**
  * 
@@ -28,10 +28,10 @@ import {
 export interface GetFeature200Response {
     /**
      * 
-     * @type {CreateFeature200ResponseData}
+     * @type {CreateFeature201ResponseData}
      * @memberof GetFeature200Response
      */
-    data?: CreateFeature200ResponseData;
+    data?: CreateFeature201ResponseData;
     /**
      * 
      * @type {any}
@@ -59,7 +59,7 @@ export function GetFeature200ResponseFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'data': !exists(json, 'data') ? undefined : CreateFeature200ResponseDataFromJSON(json['data']),
+        'data': !exists(json, 'data') ? undefined : CreateFeature201ResponseDataFromJSON(json['data']),
         'params': !exists(json, 'params') ? undefined : json['params'],
     };
 }
@@ -73,7 +73,7 @@ export function GetFeature200ResponseToJSON(value?: GetFeature200Response | null
     }
     return {
         
-        'data': CreateFeature200ResponseDataToJSON(value.data),
+        'data': CreateFeature201ResponseDataToJSON(value.data),
         'params': value.params,
     };
 }

@@ -24,13 +24,7 @@ export interface CheckFlag200ResponseData {
      * @type {string}
      * @memberof CheckFlag200ResponseData
      */
-    entityId?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CheckFlag200ResponseData
-     */
-    entityType?: number;
+    companyId?: string;
     /**
      * 
      * @type {string}
@@ -42,7 +36,19 @@ export interface CheckFlag200ResponseData {
      * @type {string}
      * @memberof CheckFlag200ResponseData
      */
+    reason?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CheckFlag200ResponseData
+     */
     ruleId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CheckFlag200ResponseData
+     */
+    userId?: string;
     /**
      * 
      * @type {boolean}
@@ -70,10 +76,11 @@ export function CheckFlag200ResponseDataFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'entityId': !exists(json, 'entity_id') ? undefined : json['entity_id'],
-        'entityType': !exists(json, 'entity_type') ? undefined : json['entity_type'],
+        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'error': !exists(json, 'error') ? undefined : json['error'],
+        'reason': !exists(json, 'reason') ? undefined : json['reason'],
         'ruleId': !exists(json, 'rule_id') ? undefined : json['rule_id'],
+        'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
         'value': !exists(json, 'value') ? undefined : json['value'],
     };
 }
@@ -87,10 +94,11 @@ export function CheckFlag200ResponseDataToJSON(value?: CheckFlag200ResponseData 
     }
     return {
         
-        'entity_id': value.entityId,
-        'entity_type': value.entityType,
+        'company_id': value.companyId,
         'error': value.error,
+        'reason': value.reason,
         'rule_id': value.ruleId,
+        'user_id': value.userId,
         'value': value.value,
     };
 }

@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { ListUsers200ResponseDataInner } from './ListUsers200ResponseDataInner';
+import type { ListCompanies200ResponseDataInner } from './ListCompanies200ResponseDataInner';
 import {
-    ListUsers200ResponseDataInnerFromJSON,
-    ListUsers200ResponseDataInnerFromJSONTyped,
-    ListUsers200ResponseDataInnerToJSON,
-} from './ListUsers200ResponseDataInner';
+    ListCompanies200ResponseDataInnerFromJSON,
+    ListCompanies200ResponseDataInnerFromJSONTyped,
+    ListCompanies200ResponseDataInnerToJSON,
+} from './ListCompanies200ResponseDataInner';
 import type { ListUsers200ResponseParams } from './ListUsers200ResponseParams';
 import {
     ListUsers200ResponseParamsFromJSON,
@@ -34,10 +34,10 @@ import {
 export interface ListUsers200Response {
     /**
      * The returned resource
-     * @type {Array<ListUsers200ResponseDataInner>}
+     * @type {Array<ListCompanies200ResponseDataInner>}
      * @memberof ListUsers200Response
      */
-    data?: Array<ListUsers200ResponseDataInner>;
+    data?: Array<ListCompanies200ResponseDataInner>;
     /**
      * 
      * @type {ListUsers200ResponseParams}
@@ -65,7 +65,7 @@ export function ListUsers200ResponseFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'data': !exists(json, 'data') ? undefined : ((json['data'] as Array<any>).map(ListUsers200ResponseDataInnerFromJSON)),
+        'data': !exists(json, 'data') ? undefined : ((json['data'] as Array<any>).map(ListCompanies200ResponseDataInnerFromJSON)),
         'params': !exists(json, 'params') ? undefined : ListUsers200ResponseParamsFromJSON(json['params']),
     };
 }
@@ -79,7 +79,7 @@ export function ListUsers200ResponseToJSON(value?: ListUsers200Response | null):
     }
     return {
         
-        'data': value.data === undefined ? undefined : ((value.data as Array<any>).map(ListUsers200ResponseDataInnerToJSON)),
+        'data': value.data === undefined ? undefined : ((value.data as Array<any>).map(ListCompanies200ResponseDataInnerToJSON)),
         'params': ListUsers200ResponseParamsToJSON(value.params),
     };
 }

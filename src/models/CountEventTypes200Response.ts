@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { CountEventTypes200ResponseData } from './CountEventTypes200ResponseData';
+import type { CountApiKeys200ResponseData } from './CountApiKeys200ResponseData';
 import {
-    CountEventTypes200ResponseDataFromJSON,
-    CountEventTypes200ResponseDataFromJSONTyped,
-    CountEventTypes200ResponseDataToJSON,
-} from './CountEventTypes200ResponseData';
+    CountApiKeys200ResponseDataFromJSON,
+    CountApiKeys200ResponseDataFromJSONTyped,
+    CountApiKeys200ResponseDataToJSON,
+} from './CountApiKeys200ResponseData';
 import type { ListEventTypes200ResponseParams } from './ListEventTypes200ResponseParams';
 import {
     ListEventTypes200ResponseParamsFromJSON,
@@ -34,10 +34,10 @@ import {
 export interface CountEventTypes200Response {
     /**
      * 
-     * @type {CountEventTypes200ResponseData}
+     * @type {CountApiKeys200ResponseData}
      * @memberof CountEventTypes200Response
      */
-    data?: CountEventTypes200ResponseData;
+    data?: CountApiKeys200ResponseData;
     /**
      * 
      * @type {ListEventTypes200ResponseParams}
@@ -65,7 +65,7 @@ export function CountEventTypes200ResponseFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'data': !exists(json, 'data') ? undefined : CountEventTypes200ResponseDataFromJSON(json['data']),
+        'data': !exists(json, 'data') ? undefined : CountApiKeys200ResponseDataFromJSON(json['data']),
         'params': !exists(json, 'params') ? undefined : ListEventTypes200ResponseParamsFromJSON(json['params']),
     };
 }
@@ -79,7 +79,7 @@ export function CountEventTypes200ResponseToJSON(value?: CountEventTypes200Respo
     }
     return {
         
-        'data': CountEventTypes200ResponseDataToJSON(value.data),
+        'data': CountApiKeys200ResponseDataToJSON(value.data),
         'params': ListEventTypes200ResponseParamsToJSON(value.params),
     };
 }

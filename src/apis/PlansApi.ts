@@ -15,19 +15,19 @@
 
 import * as runtime from '../runtime';
 import type {
-  CreatePlan200Response,
+  CreatePlan201Response,
   CreatePlanRequest,
   DeleteApiKey200Response,
   GetPlan200Response,
   ListPlans200Response,
-  SyncCompanyPlans200Response,
+  SyncCompanyPlans201Response,
   SyncCompanyPlansRequest,
   UpsertBillingPeriod200Response,
   UpsertBillingPeriodRequest,
 } from '../models';
 import {
-    CreatePlan200ResponseFromJSON,
-    CreatePlan200ResponseToJSON,
+    CreatePlan201ResponseFromJSON,
+    CreatePlan201ResponseToJSON,
     CreatePlanRequestFromJSON,
     CreatePlanRequestToJSON,
     DeleteApiKey200ResponseFromJSON,
@@ -36,8 +36,8 @@ import {
     GetPlan200ResponseToJSON,
     ListPlans200ResponseFromJSON,
     ListPlans200ResponseToJSON,
-    SyncCompanyPlans200ResponseFromJSON,
-    SyncCompanyPlans200ResponseToJSON,
+    SyncCompanyPlans201ResponseFromJSON,
+    SyncCompanyPlans201ResponseToJSON,
     SyncCompanyPlansRequestFromJSON,
     SyncCompanyPlansRequestToJSON,
     UpsertBillingPeriod200ResponseFromJSON,
@@ -94,7 +94,7 @@ export class PlansApi extends runtime.BaseAPI {
     /**
      * Create plan
      */
-    async createPlanRaw(requestParameters: CreatePlanOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePlan200Response>> {
+    async createPlanRaw(requestParameters: CreatePlanOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePlan201Response>> {
         if (requestParameters.createPlanRequest === null || requestParameters.createPlanRequest === undefined) {
             throw new runtime.RequiredError('createPlanRequest','Required parameter requestParameters.createPlanRequest was null or undefined when calling createPlan.');
         }
@@ -121,13 +121,13 @@ export class PlansApi extends runtime.BaseAPI {
             body: CreatePlanRequestToJSON(requestParameters.createPlanRequest),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreatePlan200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreatePlan201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Create plan
      */
-    async createPlan(requestParameters: CreatePlanOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePlan200Response> {
+    async createPlan(requestParameters: CreatePlanOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePlan201Response> {
         const response = await this.createPlanRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -261,7 +261,7 @@ export class PlansApi extends runtime.BaseAPI {
     /**
      * Sync company plans
      */
-    async syncCompanyPlansRaw(requestParameters: SyncCompanyPlansOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SyncCompanyPlans200Response>> {
+    async syncCompanyPlansRaw(requestParameters: SyncCompanyPlansOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SyncCompanyPlans201Response>> {
         if (requestParameters.syncCompanyPlansRequest === null || requestParameters.syncCompanyPlansRequest === undefined) {
             throw new runtime.RequiredError('syncCompanyPlansRequest','Required parameter requestParameters.syncCompanyPlansRequest was null or undefined when calling syncCompanyPlans.');
         }
@@ -288,13 +288,13 @@ export class PlansApi extends runtime.BaseAPI {
             body: SyncCompanyPlansRequestToJSON(requestParameters.syncCompanyPlansRequest),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SyncCompanyPlans200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => SyncCompanyPlans201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Sync company plans
      */
-    async syncCompanyPlans(requestParameters: SyncCompanyPlansOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SyncCompanyPlans200Response> {
+    async syncCompanyPlans(requestParameters: SyncCompanyPlansOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SyncCompanyPlans201Response> {
         const response = await this.syncCompanyPlansRaw(requestParameters, initOverrides);
         return await response.value();
     }

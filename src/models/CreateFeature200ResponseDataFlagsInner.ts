@@ -43,6 +43,12 @@ export interface CreateFeature200ResponseDataFlagsInner {
      * @type {string}
      * @memberof CreateFeature200ResponseDataFlagsInner
      */
+    description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeature200ResponseDataFlagsInner
+     */
     featureId?: string;
     /**
      * 
@@ -62,6 +68,12 @@ export interface CreateFeature200ResponseDataFlagsInner {
      * @memberof CreateFeature200ResponseDataFlagsInner
      */
     key?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeature200ResponseDataFlagsInner
+     */
+    name?: string;
     /**
      * 
      * @type {Array<CreateFeature200ResponseDataFlagsInnerRulesInner>}
@@ -97,10 +109,12 @@ export function CreateFeature200ResponseDataFlagsInnerFromJSONTyped(json: any, i
         
         'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
         'defaultValue': !exists(json, 'default_value') ? undefined : json['default_value'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
         'flagType': !exists(json, 'flag_type') ? undefined : json['flag_type'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'key': !exists(json, 'key') ? undefined : json['key'],
+        'name': !exists(json, 'name') ? undefined : json['name'],
         'rules': !exists(json, 'rules') ? undefined : ((json['rules'] as Array<any>).map(CreateFeature200ResponseDataFlagsInnerRulesInnerFromJSON)),
         'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
     };
@@ -117,10 +131,12 @@ export function CreateFeature200ResponseDataFlagsInnerToJSON(value?: CreateFeatu
         
         'created_at': value.createdAt,
         'default_value': value.defaultValue,
+        'description': value.description,
         'feature_id': value.featureId,
         'flag_type': value.flagType,
         'id': value.id,
         'key': value.key,
+        'name': value.name,
         'rules': value.rules === undefined ? undefined : ((value.rules as Array<any>).map(CreateFeature200ResponseDataFlagsInnerRulesInnerToJSON)),
         'updated_at': value.updatedAt,
     };

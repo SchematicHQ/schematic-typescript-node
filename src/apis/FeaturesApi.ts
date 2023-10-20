@@ -17,33 +17,51 @@ import * as runtime from '../runtime';
 import type {
   CheckFlag200Response,
   CheckFlagRequest,
+  CheckFlags201Response,
+  CheckFlagsRequest,
   CountFlagValues200Response,
-  CreateFeature200Response,
+  CreateFeature201Response,
   CreateFeatureRequest,
+  CreateFlag201Response,
+  CreateFlagRequest,
   DeleteApiKey200Response,
   GetFeature200Response,
+  GetFlag200Response,
   ListFeatures200Response,
   ListFlagValues200Response,
+  ListFlags200Response,
 } from '../models';
 import {
     CheckFlag200ResponseFromJSON,
     CheckFlag200ResponseToJSON,
     CheckFlagRequestFromJSON,
     CheckFlagRequestToJSON,
+    CheckFlags201ResponseFromJSON,
+    CheckFlags201ResponseToJSON,
+    CheckFlagsRequestFromJSON,
+    CheckFlagsRequestToJSON,
     CountFlagValues200ResponseFromJSON,
     CountFlagValues200ResponseToJSON,
-    CreateFeature200ResponseFromJSON,
-    CreateFeature200ResponseToJSON,
+    CreateFeature201ResponseFromJSON,
+    CreateFeature201ResponseToJSON,
     CreateFeatureRequestFromJSON,
     CreateFeatureRequestToJSON,
+    CreateFlag201ResponseFromJSON,
+    CreateFlag201ResponseToJSON,
+    CreateFlagRequestFromJSON,
+    CreateFlagRequestToJSON,
     DeleteApiKey200ResponseFromJSON,
     DeleteApiKey200ResponseToJSON,
     GetFeature200ResponseFromJSON,
     GetFeature200ResponseToJSON,
+    GetFlag200ResponseFromJSON,
+    GetFlag200ResponseToJSON,
     ListFeatures200ResponseFromJSON,
     ListFeatures200ResponseToJSON,
     ListFlagValues200ResponseFromJSON,
     ListFlagValues200ResponseToJSON,
+    ListFlags200ResponseFromJSON,
+    ListFlags200ResponseToJSON,
 } from '../models';
 
 export interface CheckFlagOperationRequest {
@@ -52,10 +70,16 @@ export interface CheckFlagOperationRequest {
     xSchematicEnvironmentId?: string;
 }
 
-export interface CountFlagValuesRequest {
+export interface CheckFlagsOperationRequest {
+    checkFlagsRequest: CheckFlagsRequest;
     xSchematicEnvironmentId?: string;
-    entityType?: number;
-    entityId?: string;
+}
+
+export interface CountFlagValuesRequest {
+    entityType: number;
+    xSchematicEnvironmentId?: string;
+    companyId?: string;
+    userId?: string;
     flagId?: string;
     limit?: number;
     offset?: number;
@@ -68,13 +92,28 @@ export interface CreateFeatureOperationRequest {
     xSchematicEnvironmentId?: string;
 }
 
+export interface CreateFlagOperationRequest {
+    createFlagRequest: CreateFlagRequest;
+    xSchematicEnvironmentId?: string;
+}
+
 export interface DeleteFeatureRequest {
     featureId: string;
     xSchematicEnvironmentId?: string;
 }
 
+export interface DeleteFlagRequest {
+    flagId: string;
+    xSchematicEnvironmentId?: string;
+}
+
 export interface GetFeatureRequest {
     featureId: string;
+    xSchematicEnvironmentId?: string;
+}
+
+export interface GetFlagRequest {
+    flagId: string;
     xSchematicEnvironmentId?: string;
 }
 
@@ -87,10 +126,20 @@ export interface ListFeaturesRequest {
 }
 
 export interface ListFlagValuesRequest {
+    entityType: number;
     xSchematicEnvironmentId?: string;
-    entityType?: number;
-    entityId?: string;
+    companyId?: string;
+    userId?: string;
     flagId?: string;
+    limit?: number;
+    offset?: number;
+    order?: string;
+    dir?: string;
+}
+
+export interface ListFlagsRequest {
+    xSchematicEnvironmentId?: string;
+    featureId?: string;
     limit?: number;
     offset?: number;
     order?: string;
@@ -100,6 +149,12 @@ export interface ListFlagValuesRequest {
 export interface UpdateFeatureRequest {
     createFeatureRequest: CreateFeatureRequest;
     featureId: string;
+    xSchematicEnvironmentId?: string;
+}
+
+export interface UpdateFlagRequest {
+    createFlagRequest: CreateFlagRequest;
+    flagId: string;
     xSchematicEnvironmentId?: string;
 }
 
@@ -154,17 +209,66 @@ export class FeaturesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Check flags
+     */
+    async checkFlagsRaw(requestParameters: CheckFlagsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckFlags201Response>> {
+        if (requestParameters.checkFlagsRequest === null || requestParameters.checkFlagsRequest === undefined) {
+            throw new runtime.RequiredError('checkFlagsRequest','Required parameter requestParameters.checkFlagsRequest was null or undefined when calling checkFlags.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/flags/check`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CheckFlagsRequestToJSON(requestParameters.checkFlagsRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CheckFlags201ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Check flags
+     */
+    async checkFlags(requestParameters: CheckFlagsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CheckFlags201Response> {
+        const response = await this.checkFlagsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Count flag values
      */
     async countFlagValuesRaw(requestParameters: CountFlagValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountFlagValues200Response>> {
+        if (requestParameters.entityType === null || requestParameters.entityType === undefined) {
+            throw new runtime.RequiredError('entityType','Required parameter requestParameters.entityType was null or undefined when calling countFlagValues.');
+        }
+
         const queryParameters: any = {};
 
         if (requestParameters.entityType !== undefined) {
             queryParameters['entity_type'] = requestParameters.entityType;
         }
 
-        if (requestParameters.entityId !== undefined) {
-            queryParameters['entity_id'] = requestParameters.entityId;
+        if (requestParameters.companyId !== undefined) {
+            queryParameters['company_id'] = requestParameters.companyId;
+        }
+
+        if (requestParameters.userId !== undefined) {
+            queryParameters['user_id'] = requestParameters.userId;
         }
 
         if (requestParameters.flagId !== undefined) {
@@ -210,7 +314,7 @@ export class FeaturesApi extends runtime.BaseAPI {
     /**
      * Count flag values
      */
-    async countFlagValues(requestParameters: CountFlagValuesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountFlagValues200Response> {
+    async countFlagValues(requestParameters: CountFlagValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountFlagValues200Response> {
         const response = await this.countFlagValuesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -218,7 +322,7 @@ export class FeaturesApi extends runtime.BaseAPI {
     /**
      * Create feature
      */
-    async createFeatureRaw(requestParameters: CreateFeatureOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateFeature200Response>> {
+    async createFeatureRaw(requestParameters: CreateFeatureOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateFeature201Response>> {
         if (requestParameters.createFeatureRequest === null || requestParameters.createFeatureRequest === undefined) {
             throw new runtime.RequiredError('createFeatureRequest','Required parameter requestParameters.createFeatureRequest was null or undefined when calling createFeature.');
         }
@@ -245,14 +349,55 @@ export class FeaturesApi extends runtime.BaseAPI {
             body: CreateFeatureRequestToJSON(requestParameters.createFeatureRequest),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateFeature200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateFeature201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Create feature
      */
-    async createFeature(requestParameters: CreateFeatureOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateFeature200Response> {
+    async createFeature(requestParameters: CreateFeatureOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateFeature201Response> {
         const response = await this.createFeatureRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Create flag
+     */
+    async createFlagRaw(requestParameters: CreateFlagOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateFlag201Response>> {
+        if (requestParameters.createFlagRequest === null || requestParameters.createFlagRequest === undefined) {
+            throw new runtime.RequiredError('createFlagRequest','Required parameter requestParameters.createFlagRequest was null or undefined when calling createFlag.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/flags`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateFlagRequestToJSON(requestParameters.createFlagRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateFlag201ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Create flag
+     */
+    async createFlag(requestParameters: CreateFlagOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateFlag201Response> {
+        const response = await this.createFlagRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -295,6 +440,44 @@ export class FeaturesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Delete flag
+     */
+    async deleteFlagRaw(requestParameters: DeleteFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteApiKey200Response>> {
+        if (requestParameters.flagId === null || requestParameters.flagId === undefined) {
+            throw new runtime.RequiredError('flagId','Required parameter requestParameters.flagId was null or undefined when calling deleteFlag.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/flags/{flag_id}`.replace(`{${"flag_id"}}`, encodeURIComponent(String(requestParameters.flagId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteApiKey200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete flag
+     */
+    async deleteFlag(requestParameters: DeleteFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteApiKey200Response> {
+        const response = await this.deleteFlagRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Get feature
      */
     async getFeatureRaw(requestParameters: GetFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFeature200Response>> {
@@ -329,6 +512,44 @@ export class FeaturesApi extends runtime.BaseAPI {
      */
     async getFeature(requestParameters: GetFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFeature200Response> {
         const response = await this.getFeatureRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get flag
+     */
+    async getFlagRaw(requestParameters: GetFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFlag200Response>> {
+        if (requestParameters.flagId === null || requestParameters.flagId === undefined) {
+            throw new runtime.RequiredError('flagId','Required parameter requestParameters.flagId was null or undefined when calling getFlag.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/flags/{flag_id}`.replace(`{${"flag_id"}}`, encodeURIComponent(String(requestParameters.flagId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetFlag200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get flag
+     */
+    async getFlag(requestParameters: GetFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFlag200Response> {
+        const response = await this.getFlagRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -386,14 +607,22 @@ export class FeaturesApi extends runtime.BaseAPI {
      * List flag values
      */
     async listFlagValuesRaw(requestParameters: ListFlagValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFlagValues200Response>> {
+        if (requestParameters.entityType === null || requestParameters.entityType === undefined) {
+            throw new runtime.RequiredError('entityType','Required parameter requestParameters.entityType was null or undefined when calling listFlagValues.');
+        }
+
         const queryParameters: any = {};
 
         if (requestParameters.entityType !== undefined) {
             queryParameters['entity_type'] = requestParameters.entityType;
         }
 
-        if (requestParameters.entityId !== undefined) {
-            queryParameters['entity_id'] = requestParameters.entityId;
+        if (requestParameters.companyId !== undefined) {
+            queryParameters['company_id'] = requestParameters.companyId;
+        }
+
+        if (requestParameters.userId !== undefined) {
+            queryParameters['user_id'] = requestParameters.userId;
         }
 
         if (requestParameters.flagId !== undefined) {
@@ -439,8 +668,62 @@ export class FeaturesApi extends runtime.BaseAPI {
     /**
      * List flag values
      */
-    async listFlagValues(requestParameters: ListFlagValuesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListFlagValues200Response> {
+    async listFlagValues(requestParameters: ListFlagValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListFlagValues200Response> {
         const response = await this.listFlagValuesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List flags
+     */
+    async listFlagsRaw(requestParameters: ListFlagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFlags200Response>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.featureId !== undefined) {
+            queryParameters['feature_id'] = requestParameters.featureId;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.order !== undefined) {
+            queryParameters['order'] = requestParameters.order;
+        }
+
+        if (requestParameters.dir !== undefined) {
+            queryParameters['dir'] = requestParameters.dir;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/flags`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListFlags200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List flags
+     */
+    async listFlags(requestParameters: ListFlagsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListFlags200Response> {
+        const response = await this.listFlagsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -486,6 +769,51 @@ export class FeaturesApi extends runtime.BaseAPI {
      */
     async updateFeature(requestParameters: UpdateFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFeature200Response> {
         const response = await this.updateFeatureRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update flag
+     */
+    async updateFlagRaw(requestParameters: UpdateFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFlag200Response>> {
+        if (requestParameters.createFlagRequest === null || requestParameters.createFlagRequest === undefined) {
+            throw new runtime.RequiredError('createFlagRequest','Required parameter requestParameters.createFlagRequest was null or undefined when calling updateFlag.');
+        }
+
+        if (requestParameters.flagId === null || requestParameters.flagId === undefined) {
+            throw new runtime.RequiredError('flagId','Required parameter requestParameters.flagId was null or undefined when calling updateFlag.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/flags/{flag_id}`.replace(`{${"flag_id"}}`, encodeURIComponent(String(requestParameters.flagId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateFlagRequestToJSON(requestParameters.createFlagRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetFlag200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update flag
+     */
+    async updateFlag(requestParameters: UpdateFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFlag200Response> {
+        const response = await this.updateFlagRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
