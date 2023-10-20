@@ -24,19 +24,19 @@ export interface CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInner
      * @type {string}
      * @memberof CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInner
      */
-    conditionType?: string;
+    conditionType: string;
     /**
      * 
      * @type {string}
      * @memberof CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInner
      */
-    createdAt?: string;
+    createdAt: string;
     /**
      * 
      * @type {string}
      * @memberof CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInner
      */
-    environmentId?: string;
+    environmentId: string;
     /**
      * 
      * @type {string}
@@ -48,13 +48,13 @@ export interface CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInner
      * @type {string}
      * @memberof CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInner
      */
-    flagId?: string;
+    flagId: string;
     /**
      * 
      * @type {string}
      * @memberof CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInner
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
@@ -66,25 +66,25 @@ export interface CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInner
      * @type {number}
      * @memberof CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInner
      */
-    metricValue?: number;
+    metricValue: number;
     /**
      * 
      * @type {string}
      * @memberof CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInner
      */
-    operator?: string;
+    operator: string;
     /**
      * 
      * @type {Array<string>}
      * @memberof CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInner
      */
-    resourceIds?: Array<string>;
+    resourceIds: Array<string>;
     /**
      * 
      * @type {string}
      * @memberof CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInner
      */
-    ruleId?: string;
+    ruleId: string;
     /**
      * 
      * @type {string}
@@ -108,7 +108,7 @@ export interface CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInner
      * @type {string}
      * @memberof CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInner
      */
-    updatedAt?: string;
+    updatedAt: string;
 }
 
 /**
@@ -116,6 +116,16 @@ export interface CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInner
  */
 export function instanceOfCreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInner(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "conditionType" in value;
+    isInstance = isInstance && "createdAt" in value;
+    isInstance = isInstance && "environmentId" in value;
+    isInstance = isInstance && "flagId" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "metricValue" in value;
+    isInstance = isInstance && "operator" in value;
+    isInstance = isInstance && "resourceIds" in value;
+    isInstance = isInstance && "ruleId" in value;
+    isInstance = isInstance && "updatedAt" in value;
 
     return isInstance;
 }
@@ -130,21 +140,21 @@ export function CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInnerF
     }
     return {
         
-        'conditionType': !exists(json, 'condition_type') ? undefined : json['condition_type'],
-        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
-        'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
+        'conditionType': json['condition_type'],
+        'createdAt': json['created_at'],
+        'environmentId': json['environment_id'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
-        'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'flagId': json['flag_id'],
+        'id': json['id'],
         'metricPeriod': !exists(json, 'metric_period') ? undefined : json['metric_period'],
-        'metricValue': !exists(json, 'metric_value') ? undefined : json['metric_value'],
-        'operator': !exists(json, 'operator') ? undefined : json['operator'],
-        'resourceIds': !exists(json, 'resource_ids') ? undefined : json['resource_ids'],
-        'ruleId': !exists(json, 'rule_id') ? undefined : json['rule_id'],
+        'metricValue': json['metric_value'],
+        'operator': json['operator'],
+        'resourceIds': json['resource_ids'],
+        'ruleId': json['rule_id'],
         'traitEntityType': !exists(json, 'trait_entity_type') ? undefined : json['trait_entity_type'],
         'traitId': !exists(json, 'trait_id') ? undefined : json['trait_id'],
         'traitValue': !exists(json, 'trait_value') ? undefined : json['trait_value'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
+        'updatedAt': json['updated_at'],
     };
 }
 

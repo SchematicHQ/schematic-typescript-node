@@ -24,25 +24,25 @@ export interface CreatePlan201ResponseData {
      * @type {string}
      * @memberof CreatePlan201ResponseData
      */
-    createdAt?: string;
+    createdAt: string;
     /**
      * 
      * @type {string}
      * @memberof CreatePlan201ResponseData
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
      * @memberof CreatePlan201ResponseData
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {string}
      * @memberof CreatePlan201ResponseData
      */
-    updatedAt?: string;
+    updatedAt: string;
 }
 
 /**
@@ -50,6 +50,10 @@ export interface CreatePlan201ResponseData {
  */
 export function instanceOfCreatePlan201ResponseData(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "createdAt" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "updatedAt" in value;
 
     return isInstance;
 }
@@ -64,10 +68,10 @@ export function CreatePlan201ResponseDataFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
+        'createdAt': json['created_at'],
+        'id': json['id'],
+        'name': json['name'],
+        'updatedAt': json['updated_at'],
     };
 }
 

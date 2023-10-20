@@ -31,55 +31,55 @@ export interface CreateFeature201ResponseDataFlagsInnerRulesInner {
      * @type {Array<CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInner>}
      * @memberof CreateFeature201ResponseDataFlagsInnerRulesInner
      */
-    conditions?: Array<CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInner>;
+    conditions: Array<CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInner>;
     /**
      * 
      * @type {string}
      * @memberof CreateFeature201ResponseDataFlagsInnerRulesInner
      */
-    createdAt?: string;
+    createdAt: string;
     /**
      * 
      * @type {string}
      * @memberof CreateFeature201ResponseDataFlagsInnerRulesInner
      */
-    environmentId?: string;
+    environmentId: string;
     /**
      * 
      * @type {string}
      * @memberof CreateFeature201ResponseDataFlagsInnerRulesInner
      */
-    flagId?: string;
+    flagId: string;
     /**
      * 
      * @type {string}
      * @memberof CreateFeature201ResponseDataFlagsInnerRulesInner
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
      * @memberof CreateFeature201ResponseDataFlagsInnerRulesInner
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {number}
      * @memberof CreateFeature201ResponseDataFlagsInnerRulesInner
      */
-    priority?: number;
+    priority: number;
     /**
      * 
      * @type {string}
      * @memberof CreateFeature201ResponseDataFlagsInnerRulesInner
      */
-    updatedAt?: string;
+    updatedAt: string;
     /**
      * 
      * @type {boolean}
      * @memberof CreateFeature201ResponseDataFlagsInnerRulesInner
      */
-    value?: boolean;
+    value: boolean;
 }
 
 /**
@@ -87,6 +87,15 @@ export interface CreateFeature201ResponseDataFlagsInnerRulesInner {
  */
 export function instanceOfCreateFeature201ResponseDataFlagsInnerRulesInner(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "conditions" in value;
+    isInstance = isInstance && "createdAt" in value;
+    isInstance = isInstance && "environmentId" in value;
+    isInstance = isInstance && "flagId" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "priority" in value;
+    isInstance = isInstance && "updatedAt" in value;
+    isInstance = isInstance && "value" in value;
 
     return isInstance;
 }
@@ -101,15 +110,15 @@ export function CreateFeature201ResponseDataFlagsInnerRulesInnerFromJSONTyped(js
     }
     return {
         
-        'conditions': !exists(json, 'conditions') ? undefined : ((json['conditions'] as Array<any>).map(CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInnerFromJSON)),
-        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
-        'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
-        'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'priority': !exists(json, 'priority') ? undefined : json['priority'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
-        'value': !exists(json, 'value') ? undefined : json['value'],
+        'conditions': ((json['conditions'] as Array<any>).map(CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInnerFromJSON)),
+        'createdAt': json['created_at'],
+        'environmentId': json['environment_id'],
+        'flagId': json['flag_id'],
+        'id': json['id'],
+        'name': json['name'],
+        'priority': json['priority'],
+        'updatedAt': json['updated_at'],
+        'value': json['value'],
     };
 }
 
@@ -122,7 +131,7 @@ export function CreateFeature201ResponseDataFlagsInnerRulesInnerToJSON(value?: C
     }
     return {
         
-        'conditions': value.conditions === undefined ? undefined : ((value.conditions as Array<any>).map(CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInnerToJSON)),
+        'conditions': ((value.conditions as Array<any>).map(CreateFeature201ResponseDataFlagsInnerRulesInnerConditionsInnerToJSON)),
         'created_at': value.createdAt,
         'environment_id': value.environmentId,
         'flag_id': value.flagId,

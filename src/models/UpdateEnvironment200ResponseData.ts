@@ -24,31 +24,31 @@ export interface UpdateEnvironment200ResponseData {
      * @type {string}
      * @memberof UpdateEnvironment200ResponseData
      */
-    createdAt?: string;
+    createdAt: string;
     /**
      * 
      * @type {string}
      * @memberof UpdateEnvironment200ResponseData
      */
-    environmentType?: string;
+    environmentType: string;
     /**
      * 
      * @type {string}
      * @memberof UpdateEnvironment200ResponseData
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
      * @memberof UpdateEnvironment200ResponseData
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {string}
      * @memberof UpdateEnvironment200ResponseData
      */
-    updatedAt?: string;
+    updatedAt: string;
 }
 
 /**
@@ -56,6 +56,11 @@ export interface UpdateEnvironment200ResponseData {
  */
 export function instanceOfUpdateEnvironment200ResponseData(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "createdAt" in value;
+    isInstance = isInstance && "environmentType" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "updatedAt" in value;
 
     return isInstance;
 }
@@ -70,11 +75,11 @@ export function UpdateEnvironment200ResponseDataFromJSONTyped(json: any, ignoreD
     }
     return {
         
-        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
-        'environmentType': !exists(json, 'environment_type') ? undefined : json['environment_type'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
+        'createdAt': json['created_at'],
+        'environmentType': json['environment_type'],
+        'id': json['id'],
+        'name': json['name'],
+        'updatedAt': json['updated_at'],
     };
 }
 

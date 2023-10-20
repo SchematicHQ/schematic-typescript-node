@@ -24,13 +24,13 @@ export interface CreateCompanyMembershipRequest {
      * @type {string}
      * @memberof CreateCompanyMembershipRequest
      */
-    companyId?: string;
+    companyId: string;
     /**
      * 
      * @type {string}
      * @memberof CreateCompanyMembershipRequest
      */
-    userId?: string;
+    userId: string;
 }
 
 /**
@@ -38,6 +38,8 @@ export interface CreateCompanyMembershipRequest {
  */
 export function instanceOfCreateCompanyMembershipRequest(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "companyId" in value;
+    isInstance = isInstance && "userId" in value;
 
     return isInstance;
 }
@@ -52,8 +54,8 @@ export function CreateCompanyMembershipRequestFromJSONTyped(json: any, ignoreDis
     }
     return {
         
-        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
+        'companyId': json['company_id'],
+        'userId': json['user_id'],
     };
 }
 

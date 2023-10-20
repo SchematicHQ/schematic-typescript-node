@@ -24,7 +24,7 @@ export interface CreateFeatureRequestFlagRulesInnerConditionsInner {
      * @type {string}
      * @memberof CreateFeatureRequestFlagRulesInnerConditionsInner
      */
-    conditionType?: string;
+    conditionType: string;
     /**
      * 
      * @type {string}
@@ -48,19 +48,19 @@ export interface CreateFeatureRequestFlagRulesInnerConditionsInner {
      * @type {number}
      * @memberof CreateFeatureRequestFlagRulesInnerConditionsInner
      */
-    metricValue?: number;
+    metricValue: number;
     /**
      * 
      * @type {string}
      * @memberof CreateFeatureRequestFlagRulesInnerConditionsInner
      */
-    operator?: string;
+    operator: string;
     /**
      * 
      * @type {Array<string>}
      * @memberof CreateFeatureRequestFlagRulesInnerConditionsInner
      */
-    resourceIds?: Array<string>;
+    resourceIds: Array<string>;
     /**
      * 
      * @type {string}
@@ -80,6 +80,10 @@ export interface CreateFeatureRequestFlagRulesInnerConditionsInner {
  */
 export function instanceOfCreateFeatureRequestFlagRulesInnerConditionsInner(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "conditionType" in value;
+    isInstance = isInstance && "metricValue" in value;
+    isInstance = isInstance && "operator" in value;
+    isInstance = isInstance && "resourceIds" in value;
 
     return isInstance;
 }
@@ -94,13 +98,13 @@ export function CreateFeatureRequestFlagRulesInnerConditionsInnerFromJSONTyped(j
     }
     return {
         
-        'conditionType': !exists(json, 'condition_type') ? undefined : json['condition_type'],
+        'conditionType': json['condition_type'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
         'id': !exists(json, 'id') ? undefined : json['id'],
         'metricPeriod': !exists(json, 'metric_period') ? undefined : json['metric_period'],
-        'metricValue': !exists(json, 'metric_value') ? undefined : json['metric_value'],
-        'operator': !exists(json, 'operator') ? undefined : json['operator'],
-        'resourceIds': !exists(json, 'resource_ids') ? undefined : json['resource_ids'],
+        'metricValue': json['metric_value'],
+        'operator': json['operator'],
+        'resourceIds': json['resource_ids'],
         'traitId': !exists(json, 'trait_id') ? undefined : json['trait_id'],
         'traitValue': !exists(json, 'trait_value') ? undefined : json['trait_value'],
     };

@@ -24,13 +24,13 @@ export interface ListFeatures200ResponseDataInner {
      * @type {string}
      * @memberof ListFeatures200ResponseDataInner
      */
-    createdAt?: string;
+    createdAt: string;
     /**
      * 
      * @type {string}
      * @memberof ListFeatures200ResponseDataInner
      */
-    description?: string;
+    description: string;
     /**
      * 
      * @type {string}
@@ -42,7 +42,7 @@ export interface ListFeatures200ResponseDataInner {
      * @type {string}
      * @memberof ListFeatures200ResponseDataInner
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
@@ -54,13 +54,13 @@ export interface ListFeatures200ResponseDataInner {
      * @type {string}
      * @memberof ListFeatures200ResponseDataInner
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {string}
      * @memberof ListFeatures200ResponseDataInner
      */
-    updatedAt?: string;
+    updatedAt: string;
 }
 
 /**
@@ -68,6 +68,11 @@ export interface ListFeatures200ResponseDataInner {
  */
 export function instanceOfListFeatures200ResponseDataInner(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "createdAt" in value;
+    isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "updatedAt" in value;
 
     return isInstance;
 }
@@ -82,13 +87,13 @@ export function ListFeatures200ResponseDataInnerFromJSONTyped(json: any, ignoreD
     }
     return {
         
-        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
+        'createdAt': json['created_at'],
+        'description': json['description'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'id': json['id'],
         'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
+        'name': json['name'],
+        'updatedAt': json['updated_at'],
     };
 }
 

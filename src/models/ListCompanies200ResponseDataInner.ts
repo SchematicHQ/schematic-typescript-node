@@ -24,19 +24,19 @@ export interface ListCompanies200ResponseDataInner {
      * @type {string}
      * @memberof ListCompanies200ResponseDataInner
      */
-    createdAt?: string;
+    createdAt: string;
     /**
      * 
      * @type {string}
      * @memberof ListCompanies200ResponseDataInner
      */
-    environmentId?: string;
+    environmentId: string;
     /**
      * 
      * @type {string}
      * @memberof ListCompanies200ResponseDataInner
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
@@ -48,13 +48,13 @@ export interface ListCompanies200ResponseDataInner {
      * @type {string}
      * @memberof ListCompanies200ResponseDataInner
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {string}
      * @memberof ListCompanies200ResponseDataInner
      */
-    updatedAt?: string;
+    updatedAt: string;
 }
 
 /**
@@ -62,6 +62,11 @@ export interface ListCompanies200ResponseDataInner {
  */
 export function instanceOfListCompanies200ResponseDataInner(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "createdAt" in value;
+    isInstance = isInstance && "environmentId" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "updatedAt" in value;
 
     return isInstance;
 }
@@ -76,12 +81,12 @@ export function ListCompanies200ResponseDataInnerFromJSONTyped(json: any, ignore
     }
     return {
         
-        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
-        'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'createdAt': json['created_at'],
+        'environmentId': json['environment_id'],
+        'id': json['id'],
         'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : json['last_seen_at'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
+        'name': json['name'],
+        'updatedAt': json['updated_at'],
     };
 }
 

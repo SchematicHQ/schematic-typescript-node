@@ -31,19 +31,19 @@ export interface CreateFeature201ResponseDataFlagsInner {
      * @type {string}
      * @memberof CreateFeature201ResponseDataFlagsInner
      */
-    createdAt?: string;
+    createdAt: string;
     /**
      * 
      * @type {boolean}
      * @memberof CreateFeature201ResponseDataFlagsInner
      */
-    defaultValue?: boolean;
+    defaultValue: boolean;
     /**
      * 
      * @type {string}
      * @memberof CreateFeature201ResponseDataFlagsInner
      */
-    description?: string;
+    description: string;
     /**
      * 
      * @type {string}
@@ -55,37 +55,37 @@ export interface CreateFeature201ResponseDataFlagsInner {
      * @type {string}
      * @memberof CreateFeature201ResponseDataFlagsInner
      */
-    flagType?: string;
+    flagType: string;
     /**
      * 
      * @type {string}
      * @memberof CreateFeature201ResponseDataFlagsInner
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
      * @memberof CreateFeature201ResponseDataFlagsInner
      */
-    key?: string;
+    key: string;
     /**
      * 
      * @type {string}
      * @memberof CreateFeature201ResponseDataFlagsInner
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {Array<CreateFeature201ResponseDataFlagsInnerRulesInner>}
      * @memberof CreateFeature201ResponseDataFlagsInner
      */
-    rules?: Array<CreateFeature201ResponseDataFlagsInnerRulesInner>;
+    rules: Array<CreateFeature201ResponseDataFlagsInnerRulesInner>;
     /**
      * 
      * @type {string}
      * @memberof CreateFeature201ResponseDataFlagsInner
      */
-    updatedAt?: string;
+    updatedAt: string;
 }
 
 /**
@@ -93,6 +93,15 @@ export interface CreateFeature201ResponseDataFlagsInner {
  */
 export function instanceOfCreateFeature201ResponseDataFlagsInner(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "createdAt" in value;
+    isInstance = isInstance && "defaultValue" in value;
+    isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "flagType" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "key" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "rules" in value;
+    isInstance = isInstance && "updatedAt" in value;
 
     return isInstance;
 }
@@ -107,16 +116,16 @@ export function CreateFeature201ResponseDataFlagsInnerFromJSONTyped(json: any, i
     }
     return {
         
-        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
-        'defaultValue': !exists(json, 'default_value') ? undefined : json['default_value'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
+        'createdAt': json['created_at'],
+        'defaultValue': json['default_value'],
+        'description': json['description'],
         'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
-        'flagType': !exists(json, 'flag_type') ? undefined : json['flag_type'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'key': !exists(json, 'key') ? undefined : json['key'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'rules': !exists(json, 'rules') ? undefined : ((json['rules'] as Array<any>).map(CreateFeature201ResponseDataFlagsInnerRulesInnerFromJSON)),
-        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
+        'flagType': json['flag_type'],
+        'id': json['id'],
+        'key': json['key'],
+        'name': json['name'],
+        'rules': ((json['rules'] as Array<any>).map(CreateFeature201ResponseDataFlagsInnerRulesInnerFromJSON)),
+        'updatedAt': json['updated_at'],
     };
 }
 
@@ -137,7 +146,7 @@ export function CreateFeature201ResponseDataFlagsInnerToJSON(value?: CreateFeatu
         'id': value.id,
         'key': value.key,
         'name': value.name,
-        'rules': value.rules === undefined ? undefined : ((value.rules as Array<any>).map(CreateFeature201ResponseDataFlagsInnerRulesInnerToJSON)),
+        'rules': ((value.rules as Array<any>).map(CreateFeature201ResponseDataFlagsInnerRulesInnerToJSON)),
         'updated_at': value.updatedAt,
     };
 }

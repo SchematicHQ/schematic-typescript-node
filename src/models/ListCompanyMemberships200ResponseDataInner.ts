@@ -37,31 +37,31 @@ export interface ListCompanyMemberships200ResponseDataInner {
      * @type {string}
      * @memberof ListCompanyMemberships200ResponseDataInner
      */
-    companyId?: string;
+    companyId: string;
     /**
      * 
      * @type {string}
      * @memberof ListCompanyMemberships200ResponseDataInner
      */
-    createdAt?: string;
+    createdAt: string;
     /**
      * 
      * @type {string}
      * @memberof ListCompanyMemberships200ResponseDataInner
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
      * @memberof ListCompanyMemberships200ResponseDataInner
      */
-    updatedAt?: string;
+    updatedAt: string;
     /**
      * 
      * @type {string}
      * @memberof ListCompanyMemberships200ResponseDataInner
      */
-    userId?: string;
+    userId: string;
 }
 
 /**
@@ -69,6 +69,11 @@ export interface ListCompanyMemberships200ResponseDataInner {
  */
 export function instanceOfListCompanyMemberships200ResponseDataInner(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "companyId" in value;
+    isInstance = isInstance && "createdAt" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "updatedAt" in value;
+    isInstance = isInstance && "userId" in value;
 
     return isInstance;
 }
@@ -84,11 +89,11 @@ export function ListCompanyMemberships200ResponseDataInnerFromJSONTyped(json: an
     return {
         
         'company': !exists(json, 'company') ? undefined : ListCompanies200ResponseDataInnerFromJSON(json['company']),
-        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
-        'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
+        'companyId': json['company_id'],
+        'createdAt': json['created_at'],
+        'id': json['id'],
+        'updatedAt': json['updated_at'],
+        'userId': json['user_id'],
     };
 }
 

@@ -31,7 +31,7 @@ export interface SyncCompanyPlans201ResponseData {
      * @type {Array<SyncCompanyPlans201ResponseDataPlansInner>}
      * @memberof SyncCompanyPlans201ResponseData
      */
-    plans?: Array<SyncCompanyPlans201ResponseDataPlansInner>;
+    plans: Array<SyncCompanyPlans201ResponseDataPlansInner>;
 }
 
 /**
@@ -39,6 +39,7 @@ export interface SyncCompanyPlans201ResponseData {
  */
 export function instanceOfSyncCompanyPlans201ResponseData(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "plans" in value;
 
     return isInstance;
 }
@@ -53,7 +54,7 @@ export function SyncCompanyPlans201ResponseDataFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'plans': !exists(json, 'plans') ? undefined : ((json['plans'] as Array<any>).map(SyncCompanyPlans201ResponseDataPlansInnerFromJSON)),
+        'plans': ((json['plans'] as Array<any>).map(SyncCompanyPlans201ResponseDataPlansInnerFromJSON)),
     };
 }
 
@@ -66,7 +67,7 @@ export function SyncCompanyPlans201ResponseDataToJSON(value?: SyncCompanyPlans20
     }
     return {
         
-        'plans': value.plans === undefined ? undefined : ((value.plans as Array<any>).map(SyncCompanyPlans201ResponseDataPlansInnerToJSON)),
+        'plans': ((value.plans as Array<any>).map(SyncCompanyPlans201ResponseDataPlansInnerToJSON)),
     };
 }
 

@@ -31,7 +31,7 @@ export interface CheckFlags201ResponseData {
      * @type {Array<CheckFlags201ResponseDataFlagsInner>}
      * @memberof CheckFlags201ResponseData
      */
-    flags?: Array<CheckFlags201ResponseDataFlagsInner>;
+    flags: Array<CheckFlags201ResponseDataFlagsInner>;
 }
 
 /**
@@ -39,6 +39,7 @@ export interface CheckFlags201ResponseData {
  */
 export function instanceOfCheckFlags201ResponseData(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "flags" in value;
 
     return isInstance;
 }
@@ -53,7 +54,7 @@ export function CheckFlags201ResponseDataFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'flags': !exists(json, 'flags') ? undefined : ((json['flags'] as Array<any>).map(CheckFlags201ResponseDataFlagsInnerFromJSON)),
+        'flags': ((json['flags'] as Array<any>).map(CheckFlags201ResponseDataFlagsInnerFromJSON)),
     };
 }
 
@@ -66,7 +67,7 @@ export function CheckFlags201ResponseDataToJSON(value?: CheckFlags201ResponseDat
     }
     return {
         
-        'flags': value.flags === undefined ? undefined : ((value.flags as Array<any>).map(CheckFlags201ResponseDataFlagsInnerToJSON)),
+        'flags': ((value.flags as Array<any>).map(CheckFlags201ResponseDataFlagsInnerToJSON)),
     };
 }
 

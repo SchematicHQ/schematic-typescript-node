@@ -24,19 +24,19 @@ export interface ListFlags200ResponseDataInner {
      * @type {string}
      * @memberof ListFlags200ResponseDataInner
      */
-    createdAt?: string;
+    createdAt: string;
     /**
      * 
      * @type {boolean}
      * @memberof ListFlags200ResponseDataInner
      */
-    defaultValue?: boolean;
+    defaultValue: boolean;
     /**
      * 
      * @type {string}
      * @memberof ListFlags200ResponseDataInner
      */
-    description?: string;
+    description: string;
     /**
      * 
      * @type {string}
@@ -48,31 +48,31 @@ export interface ListFlags200ResponseDataInner {
      * @type {string}
      * @memberof ListFlags200ResponseDataInner
      */
-    flagType?: string;
+    flagType: string;
     /**
      * 
      * @type {string}
      * @memberof ListFlags200ResponseDataInner
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
      * @memberof ListFlags200ResponseDataInner
      */
-    key?: string;
+    key: string;
     /**
      * 
      * @type {string}
      * @memberof ListFlags200ResponseDataInner
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {string}
      * @memberof ListFlags200ResponseDataInner
      */
-    updatedAt?: string;
+    updatedAt: string;
 }
 
 /**
@@ -80,6 +80,14 @@ export interface ListFlags200ResponseDataInner {
  */
 export function instanceOfListFlags200ResponseDataInner(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "createdAt" in value;
+    isInstance = isInstance && "defaultValue" in value;
+    isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "flagType" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "key" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "updatedAt" in value;
 
     return isInstance;
 }
@@ -94,15 +102,15 @@ export function ListFlags200ResponseDataInnerFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
-        'defaultValue': !exists(json, 'default_value') ? undefined : json['default_value'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
+        'createdAt': json['created_at'],
+        'defaultValue': json['default_value'],
+        'description': json['description'],
         'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
-        'flagType': !exists(json, 'flag_type') ? undefined : json['flag_type'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'key': !exists(json, 'key') ? undefined : json['key'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
+        'flagType': json['flag_type'],
+        'id': json['id'],
+        'key': json['key'],
+        'name': json['name'],
+        'updatedAt': json['updated_at'],
     };
 }
 

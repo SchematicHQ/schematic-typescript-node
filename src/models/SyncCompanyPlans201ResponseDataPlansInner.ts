@@ -24,13 +24,13 @@ export interface SyncCompanyPlans201ResponseDataPlansInner {
      * @type {string}
      * @memberof SyncCompanyPlans201ResponseDataPlansInner
      */
-    companyId?: string;
+    companyId: string;
     /**
      * 
      * @type {string}
      * @memberof SyncCompanyPlans201ResponseDataPlansInner
      */
-    createdAt?: string;
+    createdAt: string;
     /**
      * 
      * @type {string}
@@ -42,31 +42,31 @@ export interface SyncCompanyPlans201ResponseDataPlansInner {
      * @type {string}
      * @memberof SyncCompanyPlans201ResponseDataPlansInner
      */
-    environmentId?: string;
+    environmentId: string;
     /**
      * 
      * @type {string}
      * @memberof SyncCompanyPlans201ResponseDataPlansInner
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
      * @memberof SyncCompanyPlans201ResponseDataPlansInner
      */
-    planId?: string;
+    planId: string;
     /**
      * 
      * @type {string}
      * @memberof SyncCompanyPlans201ResponseDataPlansInner
      */
-    startedAt?: string;
+    startedAt: string;
     /**
      * 
      * @type {string}
      * @memberof SyncCompanyPlans201ResponseDataPlansInner
      */
-    updatedAt?: string;
+    updatedAt: string;
 }
 
 /**
@@ -74,6 +74,13 @@ export interface SyncCompanyPlans201ResponseDataPlansInner {
  */
 export function instanceOfSyncCompanyPlans201ResponseDataPlansInner(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "companyId" in value;
+    isInstance = isInstance && "createdAt" in value;
+    isInstance = isInstance && "environmentId" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "planId" in value;
+    isInstance = isInstance && "startedAt" in value;
+    isInstance = isInstance && "updatedAt" in value;
 
     return isInstance;
 }
@@ -88,14 +95,14 @@ export function SyncCompanyPlans201ResponseDataPlansInnerFromJSONTyped(json: any
     }
     return {
         
-        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
+        'companyId': json['company_id'],
+        'createdAt': json['created_at'],
         'endedAt': !exists(json, 'ended_at') ? undefined : json['ended_at'],
-        'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'planId': !exists(json, 'plan_id') ? undefined : json['plan_id'],
-        'startedAt': !exists(json, 'started_at') ? undefined : json['started_at'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
+        'environmentId': json['environment_id'],
+        'id': json['id'],
+        'planId': json['plan_id'],
+        'startedAt': json['started_at'],
+        'updatedAt': json['updated_at'],
     };
 }
 

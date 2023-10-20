@@ -31,13 +31,13 @@ export interface CreateFeatureRequestFlag {
      * @type {boolean}
      * @memberof CreateFeatureRequestFlag
      */
-    defaultValue?: boolean;
+    defaultValue: boolean;
     /**
      * 
      * @type {string}
      * @memberof CreateFeatureRequestFlag
      */
-    description?: string;
+    description: string;
     /**
      * 
      * @type {string}
@@ -49,7 +49,7 @@ export interface CreateFeatureRequestFlag {
      * @type {string}
      * @memberof CreateFeatureRequestFlag
      */
-    flagType?: string;
+    flagType: string;
     /**
      * 
      * @type {string}
@@ -61,19 +61,19 @@ export interface CreateFeatureRequestFlag {
      * @type {string}
      * @memberof CreateFeatureRequestFlag
      */
-    key?: string;
+    key: string;
     /**
      * 
      * @type {string}
      * @memberof CreateFeatureRequestFlag
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {Array<CreateFeatureRequestFlagRulesInner>}
      * @memberof CreateFeatureRequestFlag
      */
-    rules?: Array<CreateFeatureRequestFlagRulesInner>;
+    rules: Array<CreateFeatureRequestFlagRulesInner>;
 }
 
 /**
@@ -81,6 +81,12 @@ export interface CreateFeatureRequestFlag {
  */
 export function instanceOfCreateFeatureRequestFlag(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "defaultValue" in value;
+    isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "flagType" in value;
+    isInstance = isInstance && "key" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "rules" in value;
 
     return isInstance;
 }
@@ -95,14 +101,14 @@ export function CreateFeatureRequestFlagFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'defaultValue': !exists(json, 'default_value') ? undefined : json['default_value'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
+        'defaultValue': json['default_value'],
+        'description': json['description'],
         'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
-        'flagType': !exists(json, 'flag_type') ? undefined : json['flag_type'],
+        'flagType': json['flag_type'],
         'id': !exists(json, 'id') ? undefined : json['id'],
-        'key': !exists(json, 'key') ? undefined : json['key'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'rules': !exists(json, 'rules') ? undefined : ((json['rules'] as Array<any>).map(CreateFeatureRequestFlagRulesInnerFromJSON)),
+        'key': json['key'],
+        'name': json['name'],
+        'rules': ((json['rules'] as Array<any>).map(CreateFeatureRequestFlagRulesInnerFromJSON)),
     };
 }
 
@@ -122,7 +128,7 @@ export function CreateFeatureRequestFlagToJSON(value?: CreateFeatureRequestFlag 
         'id': value.id,
         'key': value.key,
         'name': value.name,
-        'rules': value.rules === undefined ? undefined : ((value.rules as Array<any>).map(CreateFeatureRequestFlagRulesInnerToJSON)),
+        'rules': ((value.rules as Array<any>).map(CreateFeatureRequestFlagRulesInnerToJSON)),
     };
 }
 

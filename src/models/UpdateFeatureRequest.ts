@@ -23,79 +23,77 @@ import {
 /**
  * 
  * @export
- * @interface CreateFeatureRequest
+ * @interface UpdateFeatureRequest
  */
-export interface CreateFeatureRequest {
+export interface UpdateFeatureRequest {
     /**
      * 
      * @type {string}
-     * @memberof CreateFeatureRequest
+     * @memberof UpdateFeatureRequest
      */
-    description: string;
+    description?: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateFeatureRequest
+     * @memberof UpdateFeatureRequest
      */
     eventSubtype?: string;
     /**
      * 
      * @type {CreateFeatureRequestFlag}
-     * @memberof CreateFeatureRequest
+     * @memberof UpdateFeatureRequest
      */
     flag?: CreateFeatureRequestFlag;
     /**
      * 
      * @type {string}
-     * @memberof CreateFeatureRequest
+     * @memberof UpdateFeatureRequest
      */
     lifecyclePhase?: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateFeatureRequest
+     * @memberof UpdateFeatureRequest
      */
-    name: string;
+    name?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof CreateFeatureRequest
+     * @memberof UpdateFeatureRequest
      */
     skipWebhooks: boolean;
 }
 
 /**
- * Check if a given object implements the CreateFeatureRequest interface.
+ * Check if a given object implements the UpdateFeatureRequest interface.
  */
-export function instanceOfCreateFeatureRequest(value: object): boolean {
+export function instanceOfUpdateFeatureRequest(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "name" in value;
     isInstance = isInstance && "skipWebhooks" in value;
 
     return isInstance;
 }
 
-export function CreateFeatureRequestFromJSON(json: any): CreateFeatureRequest {
-    return CreateFeatureRequestFromJSONTyped(json, false);
+export function UpdateFeatureRequestFromJSON(json: any): UpdateFeatureRequest {
+    return UpdateFeatureRequestFromJSONTyped(json, false);
 }
 
-export function CreateFeatureRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateFeatureRequest {
+export function UpdateFeatureRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateFeatureRequest {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'description': json['description'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
         'flag': !exists(json, 'flag') ? undefined : CreateFeatureRequestFlagFromJSON(json['flag']),
         'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
-        'name': json['name'],
+        'name': !exists(json, 'name') ? undefined : json['name'],
         'skipWebhooks': json['skip_webhooks'],
     };
 }
 
-export function CreateFeatureRequestToJSON(value?: CreateFeatureRequest | null): any {
+export function UpdateFeatureRequestToJSON(value?: UpdateFeatureRequest | null): any {
     if (value === undefined) {
         return undefined;
     }

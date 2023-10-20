@@ -30,7 +30,7 @@ export interface CreateCompanyRequest {
      * @type {object}
      * @memberof CreateCompanyRequest
      */
-    keys?: object;
+    keys: object;
     /**
      * 
      * @type {string}
@@ -48,7 +48,7 @@ export interface CreateCompanyRequest {
      * @type {boolean}
      * @memberof CreateCompanyRequest
      */
-    skipWebhooks?: boolean;
+    skipWebhooks: boolean;
     /**
      * A map of trait names to trait values
      * @type {object}
@@ -62,6 +62,8 @@ export interface CreateCompanyRequest {
  */
 export function instanceOfCreateCompanyRequest(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "keys" in value;
+    isInstance = isInstance && "skipWebhooks" in value;
 
     return isInstance;
 }
@@ -77,10 +79,10 @@ export function CreateCompanyRequestFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'id': !exists(json, 'id') ? undefined : json['id'],
-        'keys': !exists(json, 'keys') ? undefined : json['keys'],
+        'keys': json['keys'],
         'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : json['last_seen_at'],
         'name': !exists(json, 'name') ? undefined : json['name'],
-        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
+        'skipWebhooks': json['skip_webhooks'],
         'traits': !exists(json, 'traits') ? undefined : json['traits'],
     };
 }

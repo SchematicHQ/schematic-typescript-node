@@ -24,31 +24,31 @@ export interface ListEventTypes200ResponseDataInner {
      * @type {string}
      * @memberof ListEventTypes200ResponseDataInner
      */
-    environmentId?: string;
+    environmentId: string;
     /**
      * 
      * @type {string}
      * @memberof ListEventTypes200ResponseDataInner
      */
-    eventSubtype?: string;
+    eventSubtype: string;
     /**
      * 
      * @type {number}
      * @memberof ListEventTypes200ResponseDataInner
      */
-    last30CompanyCount?: number;
+    last30CompanyCount: number;
     /**
      * 
      * @type {number}
      * @memberof ListEventTypes200ResponseDataInner
      */
-    last30Count?: number;
+    last30Count: number;
     /**
      * 
      * @type {number}
      * @memberof ListEventTypes200ResponseDataInner
      */
-    last30UserCount?: number;
+    last30UserCount: number;
 }
 
 /**
@@ -56,6 +56,11 @@ export interface ListEventTypes200ResponseDataInner {
  */
 export function instanceOfListEventTypes200ResponseDataInner(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "environmentId" in value;
+    isInstance = isInstance && "eventSubtype" in value;
+    isInstance = isInstance && "last30CompanyCount" in value;
+    isInstance = isInstance && "last30Count" in value;
+    isInstance = isInstance && "last30UserCount" in value;
 
     return isInstance;
 }
@@ -70,11 +75,11 @@ export function ListEventTypes200ResponseDataInnerFromJSONTyped(json: any, ignor
     }
     return {
         
-        'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
-        'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
-        'last30CompanyCount': !exists(json, 'last_30_company_count') ? undefined : json['last_30_company_count'],
-        'last30Count': !exists(json, 'last_30_count') ? undefined : json['last_30_count'],
-        'last30UserCount': !exists(json, 'last_30_user_count') ? undefined : json['last_30_user_count'],
+        'environmentId': json['environment_id'],
+        'eventSubtype': json['event_subtype'],
+        'last30CompanyCount': json['last_30_company_count'],
+        'last30Count': json['last_30_count'],
+        'last30UserCount': json['last_30_user_count'],
     };
 }
 

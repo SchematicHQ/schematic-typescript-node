@@ -24,7 +24,7 @@ export interface UpsertBillingPeriodRequest {
      * @type {string}
      * @memberof UpsertBillingPeriodRequest
      */
-    companyId?: string;
+    companyId: string;
     /**
      * 
      * @type {string}
@@ -36,7 +36,7 @@ export interface UpsertBillingPeriodRequest {
      * @type {string}
      * @memberof UpsertBillingPeriodRequest
      */
-    startedAt?: string;
+    startedAt: string;
 }
 
 /**
@@ -44,6 +44,8 @@ export interface UpsertBillingPeriodRequest {
  */
 export function instanceOfUpsertBillingPeriodRequest(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "companyId" in value;
+    isInstance = isInstance && "startedAt" in value;
 
     return isInstance;
 }
@@ -58,9 +60,9 @@ export function UpsertBillingPeriodRequestFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
+        'companyId': json['company_id'],
         'endedAt': !exists(json, 'ended_at') ? undefined : json['ended_at'],
-        'startedAt': !exists(json, 'started_at') ? undefined : json['started_at'],
+        'startedAt': json['started_at'],
     };
 }
 

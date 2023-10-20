@@ -24,13 +24,13 @@ export interface CheckFlagsRequest {
      * @type {object}
      * @memberof CheckFlagsRequest
      */
-    company?: object;
+    company: object;
     /**
      * 
      * @type {Array<string>}
      * @memberof CheckFlagsRequest
      */
-    flags?: Array<string>;
+    flags: Array<string>;
     /**
      * 
      * @type {object}
@@ -44,6 +44,8 @@ export interface CheckFlagsRequest {
  */
 export function instanceOfCheckFlagsRequest(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "company" in value;
+    isInstance = isInstance && "flags" in value;
 
     return isInstance;
 }
@@ -58,8 +60,8 @@ export function CheckFlagsRequestFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'company': !exists(json, 'company') ? undefined : json['company'],
-        'flags': !exists(json, 'flags') ? undefined : json['flags'],
+        'company': json['company'],
+        'flags': json['flags'],
         'user': !exists(json, 'user') ? undefined : json['user'],
     };
 }

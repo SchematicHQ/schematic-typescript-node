@@ -36,13 +36,13 @@ export interface CheckFlags201ResponseDataFlagsInner {
      * @type {string}
      * @memberof CheckFlags201ResponseDataFlagsInner
      */
-    flag?: string;
+    flag: string;
     /**
      * 
      * @type {string}
      * @memberof CheckFlags201ResponseDataFlagsInner
      */
-    reason?: string;
+    reason: string;
     /**
      * 
      * @type {string}
@@ -60,7 +60,7 @@ export interface CheckFlags201ResponseDataFlagsInner {
      * @type {boolean}
      * @memberof CheckFlags201ResponseDataFlagsInner
      */
-    value?: boolean;
+    value: boolean;
 }
 
 /**
@@ -68,6 +68,9 @@ export interface CheckFlags201ResponseDataFlagsInner {
  */
 export function instanceOfCheckFlags201ResponseDataFlagsInner(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "flag" in value;
+    isInstance = isInstance && "reason" in value;
+    isInstance = isInstance && "value" in value;
 
     return isInstance;
 }
@@ -84,11 +87,11 @@ export function CheckFlags201ResponseDataFlagsInnerFromJSONTyped(json: any, igno
         
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'error': !exists(json, 'error') ? undefined : json['error'],
-        'flag': !exists(json, 'flag') ? undefined : json['flag'],
-        'reason': !exists(json, 'reason') ? undefined : json['reason'],
+        'flag': json['flag'],
+        'reason': json['reason'],
         'ruleId': !exists(json, 'rule_id') ? undefined : json['rule_id'],
         'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
-        'value': !exists(json, 'value') ? undefined : json['value'],
+        'value': json['value'],
     };
 }
 

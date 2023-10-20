@@ -24,19 +24,19 @@ export interface ListEvents200ResponseDataInner {
      * @type {string}
      * @memberof ListEvents200ResponseDataInner
      */
-    apiKey?: string;
+    apiKey: string;
     /**
      * 
      * @type {object}
      * @memberof ListEvents200ResponseDataInner
      */
-    body?: object;
+    body: object;
     /**
      * 
      * @type {string}
      * @memberof ListEvents200ResponseDataInner
      */
-    capturedAt?: string;
+    capturedAt: string;
     /**
      * 
      * @type {string}
@@ -66,7 +66,7 @@ export interface ListEvents200ResponseDataInner {
      * @type {string}
      * @memberof ListEvents200ResponseDataInner
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
@@ -84,7 +84,7 @@ export interface ListEvents200ResponseDataInner {
      * @type {string}
      * @memberof ListEvents200ResponseDataInner
      */
-    processingStatus?: string;
+    processingStatus: string;
     /**
      * 
      * @type {string}
@@ -102,13 +102,13 @@ export interface ListEvents200ResponseDataInner {
      * @type {string}
      * @memberof ListEvents200ResponseDataInner
      */
-    type?: string;
+    type: string;
     /**
      * 
      * @type {string}
      * @memberof ListEvents200ResponseDataInner
      */
-    updatedAt?: string;
+    updatedAt: string;
     /**
      * 
      * @type {string}
@@ -122,6 +122,13 @@ export interface ListEvents200ResponseDataInner {
  */
 export function instanceOfListEvents200ResponseDataInner(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "apiKey" in value;
+    isInstance = isInstance && "body" in value;
+    isInstance = isInstance && "capturedAt" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "processingStatus" in value;
+    isInstance = isInstance && "type" in value;
+    isInstance = isInstance && "updatedAt" in value;
 
     return isInstance;
 }
@@ -136,21 +143,21 @@ export function ListEvents200ResponseDataInnerFromJSONTyped(json: any, ignoreDis
     }
     return {
         
-        'apiKey': !exists(json, 'api_key') ? undefined : json['api_key'],
-        'body': !exists(json, 'body') ? undefined : json['body'],
-        'capturedAt': !exists(json, 'captured_at') ? undefined : json['captured_at'],
+        'apiKey': json['api_key'],
+        'body': json['body'],
+        'capturedAt': json['captured_at'],
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'enrichedAt': !exists(json, 'enriched_at') ? undefined : json['enriched_at'],
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'id': json['id'],
         'loadedAt': !exists(json, 'loaded_at') ? undefined : json['loaded_at'],
         'processedAt': !exists(json, 'processed_at') ? undefined : json['processed_at'],
-        'processingStatus': !exists(json, 'processing_status') ? undefined : json['processing_status'],
+        'processingStatus': json['processing_status'],
         'sentAt': !exists(json, 'sent_at') ? undefined : json['sent_at'],
         'subtype': !exists(json, 'subtype') ? undefined : json['subtype'],
-        'type': !exists(json, 'type') ? undefined : json['type'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
+        'type': json['type'],
+        'updatedAt': json['updated_at'],
         'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
     };
 }

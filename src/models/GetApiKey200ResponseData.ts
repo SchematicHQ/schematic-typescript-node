@@ -24,7 +24,7 @@ export interface GetApiKey200ResponseData {
      * @type {string}
      * @memberof GetApiKey200ResponseData
      */
-    createdAt?: string;
+    createdAt: string;
     /**
      * 
      * @type {string}
@@ -42,7 +42,7 @@ export interface GetApiKey200ResponseData {
      * @type {string}
      * @memberof GetApiKey200ResponseData
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
@@ -54,19 +54,19 @@ export interface GetApiKey200ResponseData {
      * @type {string}
      * @memberof GetApiKey200ResponseData
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {Array<string>}
      * @memberof GetApiKey200ResponseData
      */
-    scopes?: Array<string>;
+    scopes: Array<string>;
     /**
      * 
      * @type {string}
      * @memberof GetApiKey200ResponseData
      */
-    updatedAt?: string;
+    updatedAt: string;
 }
 
 /**
@@ -74,6 +74,11 @@ export interface GetApiKey200ResponseData {
  */
 export function instanceOfGetApiKey200ResponseData(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "createdAt" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "scopes" in value;
+    isInstance = isInstance && "updatedAt" in value;
 
     return isInstance;
 }
@@ -88,14 +93,14 @@ export function GetApiKey200ResponseDataFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
+        'createdAt': json['created_at'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'id': json['id'],
         'lastUsedAt': !exists(json, 'last_used_at') ? undefined : json['last_used_at'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'scopes': !exists(json, 'scopes') ? undefined : json['scopes'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
+        'name': json['name'],
+        'scopes': json['scopes'],
+        'updatedAt': json['updated_at'],
     };
 }
 

@@ -24,25 +24,25 @@ export interface ListFlagValues200ResponseDataInner {
      * @type {string}
      * @memberof ListFlagValues200ResponseDataInner
      */
-    companyId?: string;
+    companyId: string;
     /**
      * 
      * @type {number}
      * @memberof ListFlagValues200ResponseDataInner
      */
-    entityType?: number;
+    entityType: number;
     /**
      * 
      * @type {string}
      * @memberof ListFlagValues200ResponseDataInner
      */
-    environmentId?: string;
+    environmentId: string;
     /**
      * 
      * @type {string}
      * @memberof ListFlagValues200ResponseDataInner
      */
-    flagId?: string;
+    flagId: string;
     /**
      * 
      * @type {string}
@@ -60,7 +60,7 @@ export interface ListFlagValues200ResponseDataInner {
      * @type {boolean}
      * @memberof ListFlagValues200ResponseDataInner
      */
-    value?: boolean;
+    value: boolean;
 }
 
 /**
@@ -68,6 +68,11 @@ export interface ListFlagValues200ResponseDataInner {
  */
 export function instanceOfListFlagValues200ResponseDataInner(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "companyId" in value;
+    isInstance = isInstance && "entityType" in value;
+    isInstance = isInstance && "environmentId" in value;
+    isInstance = isInstance && "flagId" in value;
+    isInstance = isInstance && "value" in value;
 
     return isInstance;
 }
@@ -82,13 +87,13 @@ export function ListFlagValues200ResponseDataInnerFromJSONTyped(json: any, ignor
     }
     return {
         
-        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'entityType': !exists(json, 'entity_type') ? undefined : json['entity_type'],
-        'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
-        'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
+        'companyId': json['company_id'],
+        'entityType': json['entity_type'],
+        'environmentId': json['environment_id'],
+        'flagId': json['flag_id'],
         'ruleId': !exists(json, 'rule_id') ? undefined : json['rule_id'],
         'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
-        'value': !exists(json, 'value') ? undefined : json['value'],
+        'value': json['value'],
     };
 }
 

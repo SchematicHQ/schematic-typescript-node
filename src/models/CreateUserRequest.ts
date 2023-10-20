@@ -24,7 +24,7 @@ export interface CreateUserRequest {
      * @type {object}
      * @memberof CreateUserRequest
      */
-    company?: object;
+    company: object;
     /**
      * Optionally specify company using Schematic company ID
      * @type {string}
@@ -36,7 +36,7 @@ export interface CreateUserRequest {
      * @type {object}
      * @memberof CreateUserRequest
      */
-    keys?: object;
+    keys: object;
     /**
      * 
      * @type {string}
@@ -54,7 +54,7 @@ export interface CreateUserRequest {
      * @type {boolean}
      * @memberof CreateUserRequest
      */
-    skipWebhooks?: boolean;
+    skipWebhooks: boolean;
     /**
      * A map of trait names to trait values
      * @type {object}
@@ -68,6 +68,9 @@ export interface CreateUserRequest {
  */
 export function instanceOfCreateUserRequest(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "company" in value;
+    isInstance = isInstance && "keys" in value;
+    isInstance = isInstance && "skipWebhooks" in value;
 
     return isInstance;
 }
@@ -82,12 +85,12 @@ export function CreateUserRequestFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'company': !exists(json, 'company') ? undefined : json['company'],
+        'company': json['company'],
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'keys': !exists(json, 'keys') ? undefined : json['keys'],
+        'keys': json['keys'],
         'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : json['last_seen_at'],
         'name': !exists(json, 'name') ? undefined : json['name'],
-        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
+        'skipWebhooks': json['skip_webhooks'],
         'traits': !exists(json, 'traits') ? undefined : json['traits'],
     };
 }

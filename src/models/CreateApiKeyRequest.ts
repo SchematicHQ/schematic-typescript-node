@@ -36,13 +36,7 @@ export interface CreateApiKeyRequest {
      * @type {string}
      * @memberof CreateApiKeyRequest
      */
-    name?: string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof CreateApiKeyRequest
-     */
-    scopes?: Array<string>;
+    name: string;
 }
 
 /**
@@ -50,6 +44,7 @@ export interface CreateApiKeyRequest {
  */
 export function instanceOfCreateApiKeyRequest(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "name" in value;
 
     return isInstance;
 }
@@ -66,8 +61,7 @@ export function CreateApiKeyRequestFromJSONTyped(json: any, ignoreDiscriminator:
         
         'description': !exists(json, 'description') ? undefined : json['description'],
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'scopes': !exists(json, 'scopes') ? undefined : json['scopes'],
+        'name': json['name'],
     };
 }
 
@@ -83,7 +77,6 @@ export function CreateApiKeyRequestToJSON(value?: CreateApiKeyRequest | null): a
         'description': value.description,
         'environment_id': value.environmentId,
         'name': value.name,
-        'scopes': value.scopes,
     };
 }
 

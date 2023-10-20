@@ -37,7 +37,7 @@ export interface CreateEventRequest {
      * @type {string}
      * @memberof CreateEventRequest
      */
-    eventType?: string;
+    eventType: string;
     /**
      * Optionally provide a timestamp at which the event was sent to Schematic
      * @type {string}
@@ -51,6 +51,7 @@ export interface CreateEventRequest {
  */
 export function instanceOfCreateEventRequest(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "eventType" in value;
 
     return isInstance;
 }
@@ -66,7 +67,7 @@ export function CreateEventRequestFromJSONTyped(json: any, ignoreDiscriminator: 
     return {
         
         'body': !exists(json, 'body') ? undefined : CreateEventRequestBodyFromJSON(json['body']),
-        'eventType': !exists(json, 'event_type') ? undefined : json['event_type'],
+        'eventType': json['event_type'],
         'sentAt': !exists(json, 'sent_at') ? undefined : json['sent_at'],
     };
 }

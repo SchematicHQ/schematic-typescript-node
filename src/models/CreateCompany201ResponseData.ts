@@ -31,25 +31,25 @@ export interface CreateCompany201ResponseData {
      * @type {string}
      * @memberof CreateCompany201ResponseData
      */
-    createdAt?: string;
+    createdAt: string;
     /**
      * 
      * @type {string}
      * @memberof CreateCompany201ResponseData
      */
-    environmentId?: string;
+    environmentId: string;
     /**
      * 
      * @type {string}
      * @memberof CreateCompany201ResponseData
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {Array<CreateCompany201ResponseDataKeysInner>}
      * @memberof CreateCompany201ResponseData
      */
-    keys?: Array<CreateCompany201ResponseDataKeysInner>;
+    keys: Array<CreateCompany201ResponseDataKeysInner>;
     /**
      * 
      * @type {string}
@@ -61,7 +61,7 @@ export interface CreateCompany201ResponseData {
      * @type {string}
      * @memberof CreateCompany201ResponseData
      */
-    name?: string;
+    name: string;
     /**
      * A map of trait names to trait values
      * @type {object}
@@ -73,7 +73,7 @@ export interface CreateCompany201ResponseData {
      * @type {string}
      * @memberof CreateCompany201ResponseData
      */
-    updatedAt?: string;
+    updatedAt: string;
 }
 
 /**
@@ -81,6 +81,12 @@ export interface CreateCompany201ResponseData {
  */
 export function instanceOfCreateCompany201ResponseData(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "createdAt" in value;
+    isInstance = isInstance && "environmentId" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "keys" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "updatedAt" in value;
 
     return isInstance;
 }
@@ -95,14 +101,14 @@ export function CreateCompany201ResponseDataFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
-        'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'keys': !exists(json, 'keys') ? undefined : ((json['keys'] as Array<any>).map(CreateCompany201ResponseDataKeysInnerFromJSON)),
+        'createdAt': json['created_at'],
+        'environmentId': json['environment_id'],
+        'id': json['id'],
+        'keys': ((json['keys'] as Array<any>).map(CreateCompany201ResponseDataKeysInnerFromJSON)),
         'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : json['last_seen_at'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
+        'name': json['name'],
         'traits': !exists(json, 'traits') ? undefined : json['traits'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
+        'updatedAt': json['updated_at'],
     };
 }
 
@@ -118,7 +124,7 @@ export function CreateCompany201ResponseDataToJSON(value?: CreateCompany201Respo
         'created_at': value.createdAt,
         'environment_id': value.environmentId,
         'id': value.id,
-        'keys': value.keys === undefined ? undefined : ((value.keys as Array<any>).map(CreateCompany201ResponseDataKeysInnerToJSON)),
+        'keys': ((value.keys as Array<any>).map(CreateCompany201ResponseDataKeysInnerToJSON)),
         'last_seen_at': value.lastSeenAt,
         'name': value.name,
         'traits': value.traits,

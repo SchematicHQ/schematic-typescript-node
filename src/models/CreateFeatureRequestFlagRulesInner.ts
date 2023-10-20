@@ -31,7 +31,7 @@ export interface CreateFeatureRequestFlagRulesInner {
      * @type {Array<CreateFeatureRequestFlagRulesInnerConditionsInner>}
      * @memberof CreateFeatureRequestFlagRulesInner
      */
-    conditions?: Array<CreateFeatureRequestFlagRulesInnerConditionsInner>;
+    conditions: Array<CreateFeatureRequestFlagRulesInnerConditionsInner>;
     /**
      * 
      * @type {string}
@@ -43,19 +43,19 @@ export interface CreateFeatureRequestFlagRulesInner {
      * @type {string}
      * @memberof CreateFeatureRequestFlagRulesInner
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {number}
      * @memberof CreateFeatureRequestFlagRulesInner
      */
-    priority?: number;
+    priority: number;
     /**
      * 
      * @type {boolean}
      * @memberof CreateFeatureRequestFlagRulesInner
      */
-    value?: boolean;
+    value: boolean;
 }
 
 /**
@@ -63,6 +63,10 @@ export interface CreateFeatureRequestFlagRulesInner {
  */
 export function instanceOfCreateFeatureRequestFlagRulesInner(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "conditions" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "priority" in value;
+    isInstance = isInstance && "value" in value;
 
     return isInstance;
 }
@@ -77,11 +81,11 @@ export function CreateFeatureRequestFlagRulesInnerFromJSONTyped(json: any, ignor
     }
     return {
         
-        'conditions': !exists(json, 'conditions') ? undefined : ((json['conditions'] as Array<any>).map(CreateFeatureRequestFlagRulesInnerConditionsInnerFromJSON)),
+        'conditions': ((json['conditions'] as Array<any>).map(CreateFeatureRequestFlagRulesInnerConditionsInnerFromJSON)),
         'id': !exists(json, 'id') ? undefined : json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'priority': !exists(json, 'priority') ? undefined : json['priority'],
-        'value': !exists(json, 'value') ? undefined : json['value'],
+        'name': json['name'],
+        'priority': json['priority'],
+        'value': json['value'],
     };
 }
 
@@ -94,7 +98,7 @@ export function CreateFeatureRequestFlagRulesInnerToJSON(value?: CreateFeatureRe
     }
     return {
         
-        'conditions': value.conditions === undefined ? undefined : ((value.conditions as Array<any>).map(CreateFeatureRequestFlagRulesInnerConditionsInnerToJSON)),
+        'conditions': ((value.conditions as Array<any>).map(CreateFeatureRequestFlagRulesInnerConditionsInnerToJSON)),
         'id': value.id,
         'name': value.name,
         'priority': value.priority,

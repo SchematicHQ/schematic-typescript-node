@@ -37,13 +37,13 @@ export interface CreateFeature201ResponseData {
      * @type {string}
      * @memberof CreateFeature201ResponseData
      */
-    createdAt?: string;
+    createdAt: string;
     /**
      * 
      * @type {string}
      * @memberof CreateFeature201ResponseData
      */
-    description?: string;
+    description: string;
     /**
      * 
      * @type {string}
@@ -61,13 +61,13 @@ export interface CreateFeature201ResponseData {
      * @type {Array<CreateFeature201ResponseDataFlagsInner>}
      * @memberof CreateFeature201ResponseData
      */
-    flags?: Array<CreateFeature201ResponseDataFlagsInner>;
+    flags: Array<CreateFeature201ResponseDataFlagsInner>;
     /**
      * 
      * @type {string}
      * @memberof CreateFeature201ResponseData
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
@@ -79,13 +79,13 @@ export interface CreateFeature201ResponseData {
      * @type {string}
      * @memberof CreateFeature201ResponseData
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {string}
      * @memberof CreateFeature201ResponseData
      */
-    updatedAt?: string;
+    updatedAt: string;
 }
 
 /**
@@ -93,6 +93,12 @@ export interface CreateFeature201ResponseData {
  */
 export function instanceOfCreateFeature201ResponseData(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "createdAt" in value;
+    isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "flags" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "updatedAt" in value;
 
     return isInstance;
 }
@@ -107,15 +113,15 @@ export function CreateFeature201ResponseDataFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
+        'createdAt': json['created_at'],
+        'description': json['description'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
         'eventSummary': !exists(json, 'event_summary') ? undefined : ListEventTypes200ResponseDataInnerFromJSON(json['event_summary']),
-        'flags': !exists(json, 'flags') ? undefined : ((json['flags'] as Array<any>).map(CreateFeature201ResponseDataFlagsInnerFromJSON)),
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'flags': ((json['flags'] as Array<any>).map(CreateFeature201ResponseDataFlagsInnerFromJSON)),
+        'id': json['id'],
         'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
+        'name': json['name'],
+        'updatedAt': json['updated_at'],
     };
 }
 
@@ -132,7 +138,7 @@ export function CreateFeature201ResponseDataToJSON(value?: CreateFeature201Respo
         'description': value.description,
         'event_subtype': value.eventSubtype,
         'event_summary': ListEventTypes200ResponseDataInnerToJSON(value.eventSummary),
-        'flags': value.flags === undefined ? undefined : ((value.flags as Array<any>).map(CreateFeature201ResponseDataFlagsInnerToJSON)),
+        'flags': ((value.flags as Array<any>).map(CreateFeature201ResponseDataFlagsInnerToJSON)),
         'id': value.id,
         'lifecycle_phase': value.lifecyclePhase,
         'name': value.name,

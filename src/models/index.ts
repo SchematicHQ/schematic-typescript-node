@@ -97,6 +97,8 @@ export * from './SyncCompanyPlansRequestPlansInner';
 export * from './UpdateApiKeyRequest';
 export * from './UpdateEnvironment200Response';
 export * from './UpdateEnvironment200ResponseData';
+export * from './UpdateEnvironmentRequest';
+export * from './UpdateFeatureRequest';
 export * from './UpsertBillingPeriod200Response';
 export * from './UpsertBillingPeriod200ResponseData';
 export * from './UpsertBillingPeriodRequest';

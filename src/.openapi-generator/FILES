@@ -102,6 +102,8 @@ models/SyncCompanyPlansRequestPlansInner.ts
 models/UpdateApiKeyRequest.ts
 models/UpdateEnvironment200Response.ts
 models/UpdateEnvironment200ResponseData.ts
+models/UpdateEnvironmentRequest.ts
+models/UpdateFeatureRequest.ts
 models/UpsertBillingPeriod200Response.ts
 models/UpsertBillingPeriod200ResponseData.ts
 models/UpsertBillingPeriodRequest.ts

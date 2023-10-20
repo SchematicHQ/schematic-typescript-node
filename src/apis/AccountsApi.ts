@@ -25,6 +25,7 @@ import type {
   ListApiKeys200Response,
   UpdateApiKeyRequest,
   UpdateEnvironment200Response,
+  UpdateEnvironmentRequest,
 } from '../models';
 import {
     CountApiKeys200ResponseFromJSON,
@@ -47,6 +48,8 @@ import {
     UpdateApiKeyRequestToJSON,
     UpdateEnvironment200ResponseFromJSON,
     UpdateEnvironment200ResponseToJSON,
+    UpdateEnvironmentRequestFromJSON,
+    UpdateEnvironmentRequestToJSON,
 } from '../models';
 
 export interface CountApiKeysRequest {
@@ -100,8 +103,8 @@ export interface UpdateApiKeyOperationRequest {
     xSchematicEnvironmentId?: string;
 }
 
-export interface UpdateEnvironmentRequest {
-    createEnvironmentRequest: CreateEnvironmentRequest;
+export interface UpdateEnvironmentOperationRequest {
+    updateEnvironmentRequest: UpdateEnvironmentRequest;
     environmentId: string;
     xSchematicEnvironmentId?: string;
 }
@@ -479,9 +482,9 @@ export class AccountsApi extends runtime.BaseAPI {
     /**
      * Update environment
      */
-    async updateEnvironmentRaw(requestParameters: UpdateEnvironmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateEnvironment200Response>> {
-        if (requestParameters.createEnvironmentRequest === null || requestParameters.createEnvironmentRequest === undefined) {
-            throw new runtime.RequiredError('createEnvironmentRequest','Required parameter requestParameters.createEnvironmentRequest was null or undefined when calling updateEnvironment.');
+    async updateEnvironmentRaw(requestParameters: UpdateEnvironmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateEnvironment200Response>> {
+        if (requestParameters.updateEnvironmentRequest === null || requestParameters.updateEnvironmentRequest === undefined) {
+            throw new runtime.RequiredError('updateEnvironmentRequest','Required parameter requestParameters.updateEnvironmentRequest was null or undefined when calling updateEnvironment.');
         }
 
         if (requestParameters.environmentId === null || requestParameters.environmentId === undefined) {
@@ -507,7 +510,7 @@ export class AccountsApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateEnvironmentRequestToJSON(requestParameters.createEnvironmentRequest),
+            body: UpdateEnvironmentRequestToJSON(requestParameters.updateEnvironmentRequest),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateEnvironment200ResponseFromJSON(jsonValue));
@@ -516,7 +519,7 @@ export class AccountsApi extends runtime.BaseAPI {
     /**
      * Update environment
      */
-    async updateEnvironment(requestParameters: UpdateEnvironmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateEnvironment200Response> {
+    async updateEnvironment(requestParameters: UpdateEnvironmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateEnvironment200Response> {
         const response = await this.updateEnvironmentRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -24,7 +24,7 @@ export interface SyncCompanyPlansRequestPlansInner {
      * @type {string}
      * @memberof SyncCompanyPlansRequestPlansInner
      */
-    companyId?: string;
+    companyId: string;
     /**
      * 
      * @type {string}
@@ -42,7 +42,7 @@ export interface SyncCompanyPlansRequestPlansInner {
      * @type {string}
      * @memberof SyncCompanyPlansRequestPlansInner
      */
-    planId?: string;
+    planId: string;
     /**
      * 
      * @type {string}
@@ -56,6 +56,8 @@ export interface SyncCompanyPlansRequestPlansInner {
  */
 export function instanceOfSyncCompanyPlansRequestPlansInner(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "companyId" in value;
+    isInstance = isInstance && "planId" in value;
 
     return isInstance;
 }
@@ -70,10 +72,10 @@ export function SyncCompanyPlansRequestPlansInnerFromJSONTyped(json: any, ignore
     }
     return {
         
-        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
+        'companyId': json['company_id'],
         'endedAt': !exists(json, 'ended_at') ? undefined : json['ended_at'],
         'id': !exists(json, 'id') ? undefined : json['id'],
-        'planId': !exists(json, 'plan_id') ? undefined : json['plan_id'],
+        'planId': json['plan_id'],
         'startedAt': !exists(json, 'started_at') ? undefined : json['started_at'],
     };
 }

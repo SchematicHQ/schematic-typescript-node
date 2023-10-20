@@ -31,37 +31,37 @@ export interface CreateEnvironment201ResponseData {
      * @type {Array<ListApiKeys200ResponseDataInner>}
      * @memberof CreateEnvironment201ResponseData
      */
-    apiKeys?: Array<ListApiKeys200ResponseDataInner>;
+    apiKeys: Array<ListApiKeys200ResponseDataInner>;
     /**
      * 
      * @type {string}
      * @memberof CreateEnvironment201ResponseData
      */
-    createdAt?: string;
+    createdAt: string;
     /**
      * 
      * @type {string}
      * @memberof CreateEnvironment201ResponseData
      */
-    environmentType?: string;
+    environmentType: string;
     /**
      * 
      * @type {string}
      * @memberof CreateEnvironment201ResponseData
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
      * @memberof CreateEnvironment201ResponseData
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {string}
      * @memberof CreateEnvironment201ResponseData
      */
-    updatedAt?: string;
+    updatedAt: string;
 }
 
 /**
@@ -69,6 +69,12 @@ export interface CreateEnvironment201ResponseData {
  */
 export function instanceOfCreateEnvironment201ResponseData(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "apiKeys" in value;
+    isInstance = isInstance && "createdAt" in value;
+    isInstance = isInstance && "environmentType" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "updatedAt" in value;
 
     return isInstance;
 }
@@ -83,12 +89,12 @@ export function CreateEnvironment201ResponseDataFromJSONTyped(json: any, ignoreD
     }
     return {
         
-        'apiKeys': !exists(json, 'ApiKeys') ? undefined : ((json['ApiKeys'] as Array<any>).map(ListApiKeys200ResponseDataInnerFromJSON)),
-        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
-        'environmentType': !exists(json, 'environment_type') ? undefined : json['environment_type'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
+        'apiKeys': ((json['ApiKeys'] as Array<any>).map(ListApiKeys200ResponseDataInnerFromJSON)),
+        'createdAt': json['created_at'],
+        'environmentType': json['environment_type'],
+        'id': json['id'],
+        'name': json['name'],
+        'updatedAt': json['updated_at'],
     };
 }
 
@@ -101,7 +107,7 @@ export function CreateEnvironment201ResponseDataToJSON(value?: CreateEnvironment
     }
     return {
         
-        'ApiKeys': value.apiKeys === undefined ? undefined : ((value.apiKeys as Array<any>).map(ListApiKeys200ResponseDataInnerToJSON)),
+        'ApiKeys': ((value.apiKeys as Array<any>).map(ListApiKeys200ResponseDataInnerToJSON)),
         'created_at': value.createdAt,
         'environment_type': value.environmentType,
         'id': value.id,

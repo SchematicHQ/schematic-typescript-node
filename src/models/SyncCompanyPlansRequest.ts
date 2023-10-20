@@ -43,7 +43,7 @@ export interface SyncCompanyPlansRequest {
      * @type {Array<SyncCompanyPlansRequestPlansInner>}
      * @memberof SyncCompanyPlansRequest
      */
-    plans?: Array<SyncCompanyPlansRequestPlansInner>;
+    plans: Array<SyncCompanyPlansRequestPlansInner>;
 }
 
 /**
@@ -51,6 +51,7 @@ export interface SyncCompanyPlansRequest {
  */
 export function instanceOfSyncCompanyPlansRequest(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "plans" in value;
 
     return isInstance;
 }
@@ -67,7 +68,7 @@ export function SyncCompanyPlansRequestFromJSONTyped(json: any, ignoreDiscrimina
         
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'planId': !exists(json, 'plan_id') ? undefined : json['plan_id'],
-        'plans': !exists(json, 'plans') ? undefined : ((json['plans'] as Array<any>).map(SyncCompanyPlansRequestPlansInnerFromJSON)),
+        'plans': ((json['plans'] as Array<any>).map(SyncCompanyPlansRequestPlansInnerFromJSON)),
     };
 }
 
@@ -82,7 +83,7 @@ export function SyncCompanyPlansRequestToJSON(value?: SyncCompanyPlansRequest | 
         
         'company_id': value.companyId,
         'plan_id': value.planId,
-        'plans': value.plans === undefined ? undefined : ((value.plans as Array<any>).map(SyncCompanyPlansRequestPlansInnerToJSON)),
+        'plans': ((value.plans as Array<any>).map(SyncCompanyPlansRequestPlansInnerToJSON)),
     };
 }
 

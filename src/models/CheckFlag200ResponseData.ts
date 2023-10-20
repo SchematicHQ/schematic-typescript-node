@@ -36,7 +36,7 @@ export interface CheckFlag200ResponseData {
      * @type {string}
      * @memberof CheckFlag200ResponseData
      */
-    reason?: string;
+    reason: string;
     /**
      * 
      * @type {string}
@@ -54,7 +54,7 @@ export interface CheckFlag200ResponseData {
      * @type {boolean}
      * @memberof CheckFlag200ResponseData
      */
-    value?: boolean;
+    value: boolean;
 }
 
 /**
@@ -62,6 +62,8 @@ export interface CheckFlag200ResponseData {
  */
 export function instanceOfCheckFlag200ResponseData(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "reason" in value;
+    isInstance = isInstance && "value" in value;
 
     return isInstance;
 }
@@ -78,10 +80,10 @@ export function CheckFlag200ResponseDataFromJSONTyped(json: any, ignoreDiscrimin
         
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'error': !exists(json, 'error') ? undefined : json['error'],
-        'reason': !exists(json, 'reason') ? undefined : json['reason'],
+        'reason': json['reason'],
         'ruleId': !exists(json, 'rule_id') ? undefined : json['rule_id'],
         'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
-        'value': !exists(json, 'value') ? undefined : json['value'],
+        'value': json['value'],
     };
 }
 

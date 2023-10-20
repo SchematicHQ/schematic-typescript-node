@@ -24,13 +24,13 @@ export interface UpsertBillingPeriod200ResponseData {
      * @type {string}
      * @memberof UpsertBillingPeriod200ResponseData
      */
-    companyId?: string;
+    companyId: string;
     /**
      * 
      * @type {string}
      * @memberof UpsertBillingPeriod200ResponseData
      */
-    createdAt?: string;
+    createdAt: string;
     /**
      * 
      * @type {string}
@@ -42,25 +42,25 @@ export interface UpsertBillingPeriod200ResponseData {
      * @type {string}
      * @memberof UpsertBillingPeriod200ResponseData
      */
-    environmentId?: string;
+    environmentId: string;
     /**
      * 
      * @type {string}
      * @memberof UpsertBillingPeriod200ResponseData
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
      * @memberof UpsertBillingPeriod200ResponseData
      */
-    startedAt?: string;
+    startedAt: string;
     /**
      * 
      * @type {string}
      * @memberof UpsertBillingPeriod200ResponseData
      */
-    updatedAt?: string;
+    updatedAt: string;
 }
 
 /**
@@ -68,6 +68,12 @@ export interface UpsertBillingPeriod200ResponseData {
  */
 export function instanceOfUpsertBillingPeriod200ResponseData(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "companyId" in value;
+    isInstance = isInstance && "createdAt" in value;
+    isInstance = isInstance && "environmentId" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "startedAt" in value;
+    isInstance = isInstance && "updatedAt" in value;
 
     return isInstance;
 }
@@ -82,13 +88,13 @@ export function UpsertBillingPeriod200ResponseDataFromJSONTyped(json: any, ignor
     }
     return {
         
-        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
+        'companyId': json['company_id'],
+        'createdAt': json['created_at'],
         'endedAt': !exists(json, 'ended_at') ? undefined : json['ended_at'],
-        'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'startedAt': !exists(json, 'started_at') ? undefined : json['started_at'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
+        'environmentId': json['environment_id'],
+        'id': json['id'],
+        'startedAt': json['started_at'],
+        'updatedAt': json['updated_at'],
     };
 }
 

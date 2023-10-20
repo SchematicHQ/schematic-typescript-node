@@ -24,55 +24,55 @@ export interface CreateCompany201ResponseDataKeysInner {
      * @type {string}
      * @memberof CreateCompany201ResponseDataKeysInner
      */
-    createdAt?: string;
+    createdAt: string;
     /**
      * 
      * @type {string}
      * @memberof CreateCompany201ResponseDataKeysInner
      */
-    entityId?: string;
+    entityId: string;
     /**
      * 
      * @type {string}
      * @memberof CreateCompany201ResponseDataKeysInner
      */
-    entityType?: string;
+    entityType: string;
     /**
      * 
      * @type {string}
      * @memberof CreateCompany201ResponseDataKeysInner
      */
-    environmentId?: string;
+    environmentId: string;
     /**
      * 
      * @type {string}
      * @memberof CreateCompany201ResponseDataKeysInner
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
      * @memberof CreateCompany201ResponseDataKeysInner
      */
-    keyType?: string;
+    keyType: string;
     /**
      * 
      * @type {string}
      * @memberof CreateCompany201ResponseDataKeysInner
      */
-    keyTypeId?: string;
+    keyTypeId: string;
     /**
      * 
      * @type {string}
      * @memberof CreateCompany201ResponseDataKeysInner
      */
-    updatedAt?: string;
+    updatedAt: string;
     /**
      * 
      * @type {string}
      * @memberof CreateCompany201ResponseDataKeysInner
      */
-    value?: string;
+    value: string;
 }
 
 /**
@@ -80,6 +80,15 @@ export interface CreateCompany201ResponseDataKeysInner {
  */
 export function instanceOfCreateCompany201ResponseDataKeysInner(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "createdAt" in value;
+    isInstance = isInstance && "entityId" in value;
+    isInstance = isInstance && "entityType" in value;
+    isInstance = isInstance && "environmentId" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "keyType" in value;
+    isInstance = isInstance && "keyTypeId" in value;
+    isInstance = isInstance && "updatedAt" in value;
+    isInstance = isInstance && "value" in value;
 
     return isInstance;
 }
@@ -94,15 +103,15 @@ export function CreateCompany201ResponseDataKeysInnerFromJSONTyped(json: any, ig
     }
     return {
         
-        'createdAt': !exists(json, 'created_at') ? undefined : json['created_at'],
-        'entityId': !exists(json, 'entity_id') ? undefined : json['entity_id'],
-        'entityType': !exists(json, 'entity_type') ? undefined : json['entity_type'],
-        'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'keyType': !exists(json, 'key_type') ? undefined : json['key_type'],
-        'keyTypeId': !exists(json, 'key_type_id') ? undefined : json['key_type_id'],
-        'updatedAt': !exists(json, 'updated_at') ? undefined : json['updated_at'],
-        'value': !exists(json, 'value') ? undefined : json['value'],
+        'createdAt': json['created_at'],
+        'entityId': json['entity_id'],
+        'entityType': json['entity_type'],
+        'environmentId': json['environment_id'],
+        'id': json['id'],
+        'keyType': json['key_type'],
+        'keyTypeId': json['key_type_id'],
+        'updatedAt': json['updated_at'],
+        'value': json['value'],
     };
 }
 

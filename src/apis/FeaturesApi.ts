@@ -30,6 +30,7 @@ import type {
   ListFeatures200Response,
   ListFlagValues200Response,
   ListFlags200Response,
+  UpdateFeatureRequest,
 } from '../models';
 import {
     CheckFlag200ResponseFromJSON,
@@ -62,6 +63,8 @@ import {
     ListFlagValues200ResponseToJSON,
     ListFlags200ResponseFromJSON,
     ListFlags200ResponseToJSON,
+    UpdateFeatureRequestFromJSON,
+    UpdateFeatureRequestToJSON,
 } from '../models';
 
 export interface CheckFlagOperationRequest {
@@ -146,8 +149,8 @@ export interface ListFlagsRequest {
     dir?: string;
 }
 
-export interface UpdateFeatureRequest {
-    createFeatureRequest: CreateFeatureRequest;
+export interface UpdateFeatureOperationRequest {
+    updateFeatureRequest: UpdateFeatureRequest;
     featureId: string;
     xSchematicEnvironmentId?: string;
 }
@@ -730,9 +733,9 @@ export class FeaturesApi extends runtime.BaseAPI {
     /**
      * Update feature
      */
-    async updateFeatureRaw(requestParameters: UpdateFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFeature200Response>> {
-        if (requestParameters.createFeatureRequest === null || requestParameters.createFeatureRequest === undefined) {
-            throw new runtime.RequiredError('createFeatureRequest','Required parameter requestParameters.createFeatureRequest was null or undefined when calling updateFeature.');
+    async updateFeatureRaw(requestParameters: UpdateFeatureOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFeature200Response>> {
+        if (requestParameters.updateFeatureRequest === null || requestParameters.updateFeatureRequest === undefined) {
+            throw new runtime.RequiredError('updateFeatureRequest','Required parameter requestParameters.updateFeatureRequest was null or undefined when calling updateFeature.');
         }
 
         if (requestParameters.featureId === null || requestParameters.featureId === undefined) {
@@ -758,7 +761,7 @@ export class FeaturesApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateFeatureRequestToJSON(requestParameters.createFeatureRequest),
+            body: UpdateFeatureRequestToJSON(requestParameters.updateFeatureRequest),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetFeature200ResponseFromJSON(jsonValue));
@@ -767,7 +770,7 @@ export class FeaturesApi extends runtime.BaseAPI {
     /**
      * Update feature
      */
-    async updateFeature(requestParameters: UpdateFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFeature200Response> {
+    async updateFeature(requestParameters: UpdateFeatureOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFeature200Response> {
         const response = await this.updateFeatureRaw(requestParameters, initOverrides);
         return await response.value();
     }
