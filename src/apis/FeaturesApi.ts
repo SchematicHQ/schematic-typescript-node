@@ -30,7 +30,9 @@ import type {
   ListFeatures200Response,
   ListFlagValues200Response,
   ListFlags200Response,
+  UpdateFeature200Response,
   UpdateFeatureRequest,
+  UpdateFlag200Response,
 } from '../models';
 import {
     CheckFlag200ResponseFromJSON,
@@ -63,8 +65,12 @@ import {
     ListFlagValues200ResponseToJSON,
     ListFlags200ResponseFromJSON,
     ListFlags200ResponseToJSON,
+    UpdateFeature200ResponseFromJSON,
+    UpdateFeature200ResponseToJSON,
     UpdateFeatureRequestFromJSON,
     UpdateFeatureRequestToJSON,
+    UpdateFlag200ResponseFromJSON,
+    UpdateFlag200ResponseToJSON,
 } from '../models';
 
 export interface CheckFlagOperationRequest {
@@ -733,7 +739,7 @@ export class FeaturesApi extends runtime.BaseAPI {
     /**
      * Update feature
      */
-    async updateFeatureRaw(requestParameters: UpdateFeatureOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFeature200Response>> {
+    async updateFeatureRaw(requestParameters: UpdateFeatureOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateFeature200Response>> {
         if (requestParameters.updateFeatureRequest === null || requestParameters.updateFeatureRequest === undefined) {
             throw new runtime.RequiredError('updateFeatureRequest','Required parameter requestParameters.updateFeatureRequest was null or undefined when calling updateFeature.');
         }
@@ -764,13 +770,13 @@ export class FeaturesApi extends runtime.BaseAPI {
             body: UpdateFeatureRequestToJSON(requestParameters.updateFeatureRequest),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetFeature200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateFeature200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Update feature
      */
-    async updateFeature(requestParameters: UpdateFeatureOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFeature200Response> {
+    async updateFeature(requestParameters: UpdateFeatureOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateFeature200Response> {
         const response = await this.updateFeatureRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -778,7 +784,7 @@ export class FeaturesApi extends runtime.BaseAPI {
     /**
      * Update flag
      */
-    async updateFlagRaw(requestParameters: UpdateFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFlag200Response>> {
+    async updateFlagRaw(requestParameters: UpdateFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateFlag200Response>> {
         if (requestParameters.createFlagRequest === null || requestParameters.createFlagRequest === undefined) {
             throw new runtime.RequiredError('createFlagRequest','Required parameter requestParameters.createFlagRequest was null or undefined when calling updateFlag.');
         }
@@ -809,13 +815,13 @@ export class FeaturesApi extends runtime.BaseAPI {
             body: CreateFlagRequestToJSON(requestParameters.createFlagRequest),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetFlag200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateFlag200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Update flag
      */
-    async updateFlag(requestParameters: UpdateFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFlag200Response> {
+    async updateFlag(requestParameters: UpdateFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateFlag200Response> {
         const response = await this.updateFlagRaw(requestParameters, initOverrides);
         return await response.value();
     }

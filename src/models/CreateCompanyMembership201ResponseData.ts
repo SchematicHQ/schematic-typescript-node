@@ -21,7 +21,7 @@ import {
 } from './ListCompanies200ResponseDataInner';
 
 /**
- * The returned resource
+ * The created resource
  * @export
  * @interface CreateCompanyMembership201ResponseData
  */

@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { CreatePlan200ResponseData } from './CreatePlan200ResponseData';
+import type { UpdatePlan200ResponseData } from './UpdatePlan200ResponseData';
 import {
-    CreatePlan200ResponseDataFromJSON,
-    CreatePlan200ResponseDataFromJSONTyped,
-    CreatePlan200ResponseDataToJSON,
-} from './CreatePlan200ResponseData';
+    UpdatePlan200ResponseDataFromJSON,
+    UpdatePlan200ResponseDataFromJSONTyped,
+    UpdatePlan200ResponseDataToJSON,
+} from './UpdatePlan200ResponseData';
 
 /**
  * 
@@ -28,10 +28,10 @@ import {
 export interface UpdatePlan200Response {
     /**
      * 
-     * @type {CreatePlan200ResponseData}
+     * @type {UpdatePlan200ResponseData}
      * @memberof UpdatePlan200Response
      */
-    data?: CreatePlan200ResponseData;
+    data?: UpdatePlan200ResponseData;
     /**
      * 
      * @type {any}
@@ -59,7 +59,7 @@ export function UpdatePlan200ResponseFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'data': !exists(json, 'data') ? undefined : CreatePlan200ResponseDataFromJSON(json['data']),
+        'data': !exists(json, 'data') ? undefined : UpdatePlan200ResponseDataFromJSON(json['data']),
         'params': !exists(json, 'params') ? undefined : json['params'],
     };
 }
@@ -73,7 +73,7 @@ export function UpdatePlan200ResponseToJSON(value?: UpdatePlan200Response | null
     }
     return {
         
-        'data': CreatePlan200ResponseDataToJSON(value.data),
+        'data': UpdatePlan200ResponseDataToJSON(value.data),
         'params': value.params,
     };
 }

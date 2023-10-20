@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { CreateFlag201ResponseData } from './CreateFlag201ResponseData';
+import type { GetFlag200ResponseData } from './GetFlag200ResponseData';
 import {
-    CreateFlag201ResponseDataFromJSON,
-    CreateFlag201ResponseDataFromJSONTyped,
-    CreateFlag201ResponseDataToJSON,
-} from './CreateFlag201ResponseData';
+    GetFlag200ResponseDataFromJSON,
+    GetFlag200ResponseDataFromJSONTyped,
+    GetFlag200ResponseDataToJSON,
+} from './GetFlag200ResponseData';
 
 /**
  * 
@@ -28,10 +28,10 @@ import {
 export interface GetFlag200Response {
     /**
      * 
-     * @type {CreateFlag201ResponseData}
+     * @type {GetFlag200ResponseData}
      * @memberof GetFlag200Response
      */
-    data?: CreateFlag201ResponseData;
+    data?: GetFlag200ResponseData;
     /**
      * 
      * @type {any}
@@ -59,7 +59,7 @@ export function GetFlag200ResponseFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'data': !exists(json, 'data') ? undefined : CreateFlag201ResponseDataFromJSON(json['data']),
+        'data': !exists(json, 'data') ? undefined : GetFlag200ResponseDataFromJSON(json['data']),
         'params': !exists(json, 'params') ? undefined : json['params'],
     };
 }
@@ -73,7 +73,7 @@ export function GetFlag200ResponseToJSON(value?: GetFlag200Response | null): any
     }
     return {
         
-        'data': CreateFlag201ResponseDataToJSON(value.data),
+        'data': GetFlag200ResponseDataToJSON(value.data),
         'params': value.params,
     };
 }

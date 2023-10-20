@@ -22,6 +22,7 @@ import type {
   ListPlans200Response,
   SyncCompanyPlans201Response,
   SyncCompanyPlansRequest,
+  UpdatePlan200Response,
   UpsertBillingPeriod200Response,
   UpsertBillingPeriodRequest,
 } from '../models';
@@ -40,6 +41,8 @@ import {
     SyncCompanyPlans201ResponseToJSON,
     SyncCompanyPlansRequestFromJSON,
     SyncCompanyPlansRequestToJSON,
+    UpdatePlan200ResponseFromJSON,
+    UpdatePlan200ResponseToJSON,
     UpsertBillingPeriod200ResponseFromJSON,
     UpsertBillingPeriod200ResponseToJSON,
     UpsertBillingPeriodRequestFromJSON,
@@ -302,7 +305,7 @@ export class PlansApi extends runtime.BaseAPI {
     /**
      * Update plan
      */
-    async updatePlanRaw(requestParameters: UpdatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPlan200Response>> {
+    async updatePlanRaw(requestParameters: UpdatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdatePlan200Response>> {
         if (requestParameters.createPlanRequest === null || requestParameters.createPlanRequest === undefined) {
             throw new runtime.RequiredError('createPlanRequest','Required parameter requestParameters.createPlanRequest was null or undefined when calling updatePlan.');
         }
@@ -333,13 +336,13 @@ export class PlansApi extends runtime.BaseAPI {
             body: CreatePlanRequestToJSON(requestParameters.createPlanRequest),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetPlan200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdatePlan200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Update plan
      */
-    async updatePlan(requestParameters: UpdatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPlan200Response> {
+    async updatePlan(requestParameters: UpdatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdatePlan200Response> {
         const response = await this.updatePlanRaw(requestParameters, initOverrides);
         return await response.value();
     }

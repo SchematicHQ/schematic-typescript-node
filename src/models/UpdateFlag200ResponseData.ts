@@ -21,77 +21,77 @@ import {
 } from './CreateFeature201ResponseDataFlagsInnerRulesInner';
 
 /**
- * The created resource
+ * The updated resource
  * @export
- * @interface CreateFlag201ResponseData
+ * @interface UpdateFlag200ResponseData
  */
-export interface CreateFlag201ResponseData {
+export interface UpdateFlag200ResponseData {
     /**
      * 
      * @type {string}
-     * @memberof CreateFlag201ResponseData
+     * @memberof UpdateFlag200ResponseData
      */
     createdAt: string;
     /**
      * 
      * @type {boolean}
-     * @memberof CreateFlag201ResponseData
+     * @memberof UpdateFlag200ResponseData
      */
     defaultValue: boolean;
     /**
      * 
      * @type {string}
-     * @memberof CreateFlag201ResponseData
+     * @memberof UpdateFlag200ResponseData
      */
     description: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateFlag201ResponseData
+     * @memberof UpdateFlag200ResponseData
      */
     featureId?: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateFlag201ResponseData
+     * @memberof UpdateFlag200ResponseData
      */
     flagType: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateFlag201ResponseData
+     * @memberof UpdateFlag200ResponseData
      */
     id: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateFlag201ResponseData
+     * @memberof UpdateFlag200ResponseData
      */
     key: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateFlag201ResponseData
+     * @memberof UpdateFlag200ResponseData
      */
     name: string;
     /**
      * 
      * @type {Array<CreateFeature201ResponseDataFlagsInnerRulesInner>}
-     * @memberof CreateFlag201ResponseData
+     * @memberof UpdateFlag200ResponseData
      */
     rules: Array<CreateFeature201ResponseDataFlagsInnerRulesInner>;
     /**
      * 
      * @type {string}
-     * @memberof CreateFlag201ResponseData
+     * @memberof UpdateFlag200ResponseData
      */
     updatedAt: string;
 }
 
 /**
- * Check if a given object implements the CreateFlag201ResponseData interface.
+ * Check if a given object implements the UpdateFlag200ResponseData interface.
  */
-export function instanceOfCreateFlag201ResponseData(value: object): boolean {
+export function instanceOfUpdateFlag200ResponseData(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "createdAt" in value;
     isInstance = isInstance && "defaultValue" in value;
@@ -106,11 +106,11 @@ export function instanceOfCreateFlag201ResponseData(value: object): boolean {
     return isInstance;
 }
 
-export function CreateFlag201ResponseDataFromJSON(json: any): CreateFlag201ResponseData {
-    return CreateFlag201ResponseDataFromJSONTyped(json, false);
+export function UpdateFlag200ResponseDataFromJSON(json: any): UpdateFlag200ResponseData {
+    return UpdateFlag200ResponseDataFromJSONTyped(json, false);
 }
 
-export function CreateFlag201ResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateFlag201ResponseData {
+export function UpdateFlag200ResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateFlag200ResponseData {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -129,7 +129,7 @@ export function CreateFlag201ResponseDataFromJSONTyped(json: any, ignoreDiscrimi
     };
 }
 
-export function CreateFlag201ResponseDataToJSON(value?: CreateFlag201ResponseData | null): any {
+export function UpdateFlag200ResponseDataToJSON(value?: UpdateFlag200ResponseData | null): any {
     if (value === undefined) {
         return undefined;
     }

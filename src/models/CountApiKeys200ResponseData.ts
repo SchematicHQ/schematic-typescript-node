@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * The returned resource
+ * 
  * @export
  * @interface CountApiKeys200ResponseData
  */

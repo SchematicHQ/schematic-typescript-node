@@ -21,7 +21,7 @@ import {
 } from './CreateCompany201ResponseDataKeysInner';
 
 /**
- * The returned resource
+ * The created resource
  * @export
  * @interface CreateCompany201ResponseData
  */

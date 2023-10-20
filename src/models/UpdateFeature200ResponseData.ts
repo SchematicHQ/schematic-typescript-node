@@ -27,71 +27,71 @@ import {
 } from './ListEventTypes200ResponseDataInner';
 
 /**
- * The created resource
+ * The updated resource
  * @export
- * @interface CreateFeature201ResponseData
+ * @interface UpdateFeature200ResponseData
  */
-export interface CreateFeature201ResponseData {
+export interface UpdateFeature200ResponseData {
     /**
      * 
      * @type {string}
-     * @memberof CreateFeature201ResponseData
+     * @memberof UpdateFeature200ResponseData
      */
     createdAt: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateFeature201ResponseData
+     * @memberof UpdateFeature200ResponseData
      */
     description: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateFeature201ResponseData
+     * @memberof UpdateFeature200ResponseData
      */
     eventSubtype?: string;
     /**
      * 
      * @type {ListEventTypes200ResponseDataInner}
-     * @memberof CreateFeature201ResponseData
+     * @memberof UpdateFeature200ResponseData
      */
     eventSummary?: ListEventTypes200ResponseDataInner;
     /**
      * 
      * @type {Array<CreateFeature201ResponseDataFlagsInner>}
-     * @memberof CreateFeature201ResponseData
+     * @memberof UpdateFeature200ResponseData
      */
     flags: Array<CreateFeature201ResponseDataFlagsInner>;
     /**
      * 
      * @type {string}
-     * @memberof CreateFeature201ResponseData
+     * @memberof UpdateFeature200ResponseData
      */
     id: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateFeature201ResponseData
+     * @memberof UpdateFeature200ResponseData
      */
     lifecyclePhase?: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateFeature201ResponseData
+     * @memberof UpdateFeature200ResponseData
      */
     name: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateFeature201ResponseData
+     * @memberof UpdateFeature200ResponseData
      */
     updatedAt: string;
 }
 
 /**
- * Check if a given object implements the CreateFeature201ResponseData interface.
+ * Check if a given object implements the UpdateFeature200ResponseData interface.
  */
-export function instanceOfCreateFeature201ResponseData(value: object): boolean {
+export function instanceOfUpdateFeature200ResponseData(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "createdAt" in value;
     isInstance = isInstance && "description" in value;
@@ -103,11 +103,11 @@ export function instanceOfCreateFeature201ResponseData(value: object): boolean {
     return isInstance;
 }
 
-export function CreateFeature201ResponseDataFromJSON(json: any): CreateFeature201ResponseData {
-    return CreateFeature201ResponseDataFromJSONTyped(json, false);
+export function UpdateFeature200ResponseDataFromJSON(json: any): UpdateFeature200ResponseData {
+    return UpdateFeature200ResponseDataFromJSONTyped(json, false);
 }
 
-export function CreateFeature201ResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateFeature201ResponseData {
+export function UpdateFeature200ResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateFeature200ResponseData {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -125,7 +125,7 @@ export function CreateFeature201ResponseDataFromJSONTyped(json: any, ignoreDiscr
     };
 }
 
-export function CreateFeature201ResponseDataToJSON(value?: CreateFeature201ResponseData | null): any {
+export function UpdateFeature200ResponseDataToJSON(value?: UpdateFeature200ResponseData | null): any {
     if (value === undefined) {
         return undefined;
     }

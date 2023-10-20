@@ -21,7 +21,7 @@ import {
 } from './CheckFlags201ResponseDataFlagsInner';
 
 /**
- * The returned resource
+ * The created resource
  * @export
  * @interface CheckFlags201ResponseData
  */

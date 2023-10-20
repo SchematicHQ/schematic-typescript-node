@@ -27,71 +27,71 @@ import {
 } from './ListEventTypes200ResponseDataInner';
 
 /**
- * The created resource
+ * The returned resource
  * @export
- * @interface CreateFeature201ResponseData
+ * @interface GetFeature200ResponseData
  */
-export interface CreateFeature201ResponseData {
+export interface GetFeature200ResponseData {
     /**
      * 
      * @type {string}
-     * @memberof CreateFeature201ResponseData
+     * @memberof GetFeature200ResponseData
      */
     createdAt: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateFeature201ResponseData
+     * @memberof GetFeature200ResponseData
      */
     description: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateFeature201ResponseData
+     * @memberof GetFeature200ResponseData
      */
     eventSubtype?: string;
     /**
      * 
      * @type {ListEventTypes200ResponseDataInner}
-     * @memberof CreateFeature201ResponseData
+     * @memberof GetFeature200ResponseData
      */
     eventSummary?: ListEventTypes200ResponseDataInner;
     /**
      * 
      * @type {Array<CreateFeature201ResponseDataFlagsInner>}
-     * @memberof CreateFeature201ResponseData
+     * @memberof GetFeature200ResponseData
      */
     flags: Array<CreateFeature201ResponseDataFlagsInner>;
     /**
      * 
      * @type {string}
-     * @memberof CreateFeature201ResponseData
+     * @memberof GetFeature200ResponseData
      */
     id: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateFeature201ResponseData
+     * @memberof GetFeature200ResponseData
      */
     lifecyclePhase?: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateFeature201ResponseData
+     * @memberof GetFeature200ResponseData
      */
     name: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateFeature201ResponseData
+     * @memberof GetFeature200ResponseData
      */
     updatedAt: string;
 }
 
 /**
- * Check if a given object implements the CreateFeature201ResponseData interface.
+ * Check if a given object implements the GetFeature200ResponseData interface.
  */
-export function instanceOfCreateFeature201ResponseData(value: object): boolean {
+export function instanceOfGetFeature200ResponseData(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "createdAt" in value;
     isInstance = isInstance && "description" in value;
@@ -103,11 +103,11 @@ export function instanceOfCreateFeature201ResponseData(value: object): boolean {
     return isInstance;
 }
 
-export function CreateFeature201ResponseDataFromJSON(json: any): CreateFeature201ResponseData {
-    return CreateFeature201ResponseDataFromJSONTyped(json, false);
+export function GetFeature200ResponseDataFromJSON(json: any): GetFeature200ResponseData {
+    return GetFeature200ResponseDataFromJSONTyped(json, false);
 }
 
-export function CreateFeature201ResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateFeature201ResponseData {
+export function GetFeature200ResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetFeature200ResponseData {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -125,7 +125,7 @@ export function CreateFeature201ResponseDataFromJSONTyped(json: any, ignoreDiscr
     };
 }
 
-export function CreateFeature201ResponseDataToJSON(value?: CreateFeature201ResponseData | null): any {
+export function GetFeature200ResponseDataToJSON(value?: GetFeature200ResponseData | null): any {
     if (value === undefined) {
         return undefined;
     }

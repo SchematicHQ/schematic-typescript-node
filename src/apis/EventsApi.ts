@@ -17,7 +17,7 @@ import * as runtime from '../runtime';
 import type {
   CountEventTypes200Response,
   CountEvents200Response,
-  CreateEvent200Response,
+  CreateEvent201Response,
   CreateEventRequest,
   GetEvent200Response,
   GetEventType200Response,
@@ -29,8 +29,8 @@ import {
     CountEventTypes200ResponseToJSON,
     CountEvents200ResponseFromJSON,
     CountEvents200ResponseToJSON,
-    CreateEvent200ResponseFromJSON,
-    CreateEvent200ResponseToJSON,
+    CreateEvent201ResponseFromJSON,
+    CreateEvent201ResponseToJSON,
     CreateEventRequestFromJSON,
     CreateEventRequestToJSON,
     GetEvent200ResponseFromJSON,
@@ -228,7 +228,7 @@ export class EventsApi extends runtime.BaseAPI {
     /**
      * Create event
      */
-    async createEventRaw(requestParameters: CreateEventOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateEvent200Response>> {
+    async createEventRaw(requestParameters: CreateEventOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateEvent201Response>> {
         if (requestParameters.createEventRequest === null || requestParameters.createEventRequest === undefined) {
             throw new runtime.RequiredError('createEventRequest','Required parameter requestParameters.createEventRequest was null or undefined when calling createEvent.');
         }
@@ -255,13 +255,13 @@ export class EventsApi extends runtime.BaseAPI {
             body: CreateEventRequestToJSON(requestParameters.createEventRequest),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateEvent200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateEvent201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Create event
      */
-    async createEvent(requestParameters: CreateEventOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateEvent200Response> {
+    async createEvent(requestParameters: CreateEventOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateEvent201Response> {
         const response = await this.createEventRaw(requestParameters, initOverrides);
         return await response.value();
     }

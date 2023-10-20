@@ -23,6 +23,7 @@ import type {
   DeleteApiKey200Response,
   GetApiKey200Response,
   ListApiKeys200Response,
+  UpdateApiKey200Response,
   UpdateApiKeyRequest,
   UpdateEnvironment200Response,
   UpdateEnvironmentRequest,
@@ -44,6 +45,8 @@ import {
     GetApiKey200ResponseToJSON,
     ListApiKeys200ResponseFromJSON,
     ListApiKeys200ResponseToJSON,
+    UpdateApiKey200ResponseFromJSON,
+    UpdateApiKey200ResponseToJSON,
     UpdateApiKeyRequestFromJSON,
     UpdateApiKeyRequestToJSON,
     UpdateEnvironment200ResponseFromJSON,
@@ -437,7 +440,7 @@ export class AccountsApi extends runtime.BaseAPI {
     /**
      * Update api key
      */
-    async updateApiKeyRaw(requestParameters: UpdateApiKeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApiKey200Response>> {
+    async updateApiKeyRaw(requestParameters: UpdateApiKeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateApiKey200Response>> {
         if (requestParameters.updateApiKeyRequest === null || requestParameters.updateApiKeyRequest === undefined) {
             throw new runtime.RequiredError('updateApiKeyRequest','Required parameter requestParameters.updateApiKeyRequest was null or undefined when calling updateApiKey.');
         }
@@ -468,13 +471,13 @@ export class AccountsApi extends runtime.BaseAPI {
             body: UpdateApiKeyRequestToJSON(requestParameters.updateApiKeyRequest),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetApiKey200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateApiKey200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Update api key
      */
-    async updateApiKey(requestParameters: UpdateApiKeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetApiKey200Response> {
+    async updateApiKey(requestParameters: UpdateApiKeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateApiKey200Response> {
         const response = await this.updateApiKeyRaw(requestParameters, initOverrides);
         return await response.value();
     }

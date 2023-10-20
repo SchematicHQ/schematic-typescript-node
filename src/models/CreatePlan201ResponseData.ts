@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * The returned resource
+ * The created resource
  * @export
  * @interface CreatePlan201ResponseData
  */

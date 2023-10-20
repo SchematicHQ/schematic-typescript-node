@@ -27,71 +27,71 @@ import {
 } from './ListCompanyMemberships200ResponseDataInner';
 
 /**
- * The created resource
+ * The returned resource
  * @export
- * @interface CreateUser201ResponseData
+ * @interface GetUser200ResponseData
  */
-export interface CreateUser201ResponseData {
+export interface GetUser200ResponseData {
     /**
      * 
      * @type {Array<ListCompanyMemberships200ResponseDataInner>}
-     * @memberof CreateUser201ResponseData
+     * @memberof GetUser200ResponseData
      */
     companyMemberships: Array<ListCompanyMemberships200ResponseDataInner>;
     /**
      * 
      * @type {string}
-     * @memberof CreateUser201ResponseData
+     * @memberof GetUser200ResponseData
      */
     createdAt: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateUser201ResponseData
+     * @memberof GetUser200ResponseData
      */
     environmentId: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateUser201ResponseData
+     * @memberof GetUser200ResponseData
      */
     id: string;
     /**
      * 
      * @type {Array<CreateCompany201ResponseDataKeysInner>}
-     * @memberof CreateUser201ResponseData
+     * @memberof GetUser200ResponseData
      */
     keys: Array<CreateCompany201ResponseDataKeysInner>;
     /**
      * 
      * @type {string}
-     * @memberof CreateUser201ResponseData
+     * @memberof GetUser200ResponseData
      */
     lastSeenAt?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof CreateUser201ResponseData
+     * @memberof GetUser200ResponseData
      */
     name: string;
     /**
      * A map of trait names to trait values
      * @type {object}
-     * @memberof CreateUser201ResponseData
+     * @memberof GetUser200ResponseData
      */
     traits?: object;
     /**
      * 
      * @type {string}
-     * @memberof CreateUser201ResponseData
+     * @memberof GetUser200ResponseData
      */
     updatedAt: string;
 }
 
 /**
- * Check if a given object implements the CreateUser201ResponseData interface.
+ * Check if a given object implements the GetUser200ResponseData interface.
  */
-export function instanceOfCreateUser201ResponseData(value: object): boolean {
+export function instanceOfGetUser200ResponseData(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "companyMemberships" in value;
     isInstance = isInstance && "createdAt" in value;
@@ -104,11 +104,11 @@ export function instanceOfCreateUser201ResponseData(value: object): boolean {
     return isInstance;
 }
 
-export function CreateUser201ResponseDataFromJSON(json: any): CreateUser201ResponseData {
-    return CreateUser201ResponseDataFromJSONTyped(json, false);
+export function GetUser200ResponseDataFromJSON(json: any): GetUser200ResponseData {
+    return GetUser200ResponseDataFromJSONTyped(json, false);
 }
 
-export function CreateUser201ResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateUser201ResponseData {
+export function GetUser200ResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetUser200ResponseData {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -126,7 +126,7 @@ export function CreateUser201ResponseDataFromJSONTyped(json: any, ignoreDiscrimi
     };
 }
 
-export function CreateUser201ResponseDataToJSON(value?: CreateUser201ResponseData | null): any {
+export function GetUser200ResponseDataToJSON(value?: GetUser200ResponseData | null): any {
     if (value === undefined) {
         return undefined;
     }

@@ -21,7 +21,7 @@ import {
 } from './ListApiKeys200ResponseDataInner';
 
 /**
- * The returned resource
+ * The created resource
  * @export
  * @interface CreateEnvironment201ResponseData
  */

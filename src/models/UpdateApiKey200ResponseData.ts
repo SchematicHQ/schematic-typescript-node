@@ -14,87 +14,80 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * The created resource
+ * The updated resource
  * @export
- * @interface CreateApiKey201ResponseData
+ * @interface UpdateApiKey200ResponseData
  */
-export interface CreateApiKey201ResponseData {
+export interface UpdateApiKey200ResponseData {
     /**
      * 
      * @type {string}
-     * @memberof CreateApiKey201ResponseData
+     * @memberof UpdateApiKey200ResponseData
      */
     createdAt: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateApiKey201ResponseData
+     * @memberof UpdateApiKey200ResponseData
      */
     description?: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateApiKey201ResponseData
+     * @memberof UpdateApiKey200ResponseData
      */
     environmentId?: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateApiKey201ResponseData
+     * @memberof UpdateApiKey200ResponseData
      */
     id: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateApiKey201ResponseData
+     * @memberof UpdateApiKey200ResponseData
      */
     lastUsedAt?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof CreateApiKey201ResponseData
+     * @memberof UpdateApiKey200ResponseData
      */
     name: string;
     /**
      * 
      * @type {Array<string>}
-     * @memberof CreateApiKey201ResponseData
+     * @memberof UpdateApiKey200ResponseData
      */
     scopes: Array<string>;
     /**
      * 
      * @type {string}
-     * @memberof CreateApiKey201ResponseData
-     */
-    secret: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateApiKey201ResponseData
+     * @memberof UpdateApiKey200ResponseData
      */
     updatedAt: string;
 }
 
 /**
- * Check if a given object implements the CreateApiKey201ResponseData interface.
+ * Check if a given object implements the UpdateApiKey200ResponseData interface.
  */
-export function instanceOfCreateApiKey201ResponseData(value: object): boolean {
+export function instanceOfUpdateApiKey200ResponseData(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "createdAt" in value;
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "name" in value;
     isInstance = isInstance && "scopes" in value;
-    isInstance = isInstance && "secret" in value;
     isInstance = isInstance && "updatedAt" in value;
 
     return isInstance;
 }
 
-export function CreateApiKey201ResponseDataFromJSON(json: any): CreateApiKey201ResponseData {
-    return CreateApiKey201ResponseDataFromJSONTyped(json, false);
+export function UpdateApiKey200ResponseDataFromJSON(json: any): UpdateApiKey200ResponseData {
+    return UpdateApiKey200ResponseDataFromJSONTyped(json, false);
 }
 
-export function CreateApiKey201ResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateApiKey201ResponseData {
+export function UpdateApiKey200ResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateApiKey200ResponseData {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -107,12 +100,11 @@ export function CreateApiKey201ResponseDataFromJSONTyped(json: any, ignoreDiscri
         'lastUsedAt': !exists(json, 'last_used_at') ? undefined : json['last_used_at'],
         'name': json['name'],
         'scopes': json['scopes'],
-        'secret': json['secret'],
         'updatedAt': json['updated_at'],
     };
 }
 
-export function CreateApiKey201ResponseDataToJSON(value?: CreateApiKey201ResponseData | null): any {
+export function UpdateApiKey200ResponseDataToJSON(value?: UpdateApiKey200ResponseData | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -128,7 +120,6 @@ export function CreateApiKey201ResponseDataToJSON(value?: CreateApiKey201Respons
         'last_used_at': value.lastUsedAt,
         'name': value.name,
         'scopes': value.scopes,
-        'secret': value.secret,
         'updated_at': value.updatedAt,
     };
 }

@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { CreateEvent200ResponseData } from './CreateEvent200ResponseData';
+import type { GetEvent200ResponseData } from './GetEvent200ResponseData';
 import {
-    CreateEvent200ResponseDataFromJSON,
-    CreateEvent200ResponseDataFromJSONTyped,
-    CreateEvent200ResponseDataToJSON,
-} from './CreateEvent200ResponseData';
+    GetEvent200ResponseDataFromJSON,
+    GetEvent200ResponseDataFromJSONTyped,
+    GetEvent200ResponseDataToJSON,
+} from './GetEvent200ResponseData';
 
 /**
  * 
@@ -28,10 +28,10 @@ import {
 export interface GetEvent200Response {
     /**
      * 
-     * @type {CreateEvent200ResponseData}
+     * @type {GetEvent200ResponseData}
      * @memberof GetEvent200Response
      */
-    data?: CreateEvent200ResponseData;
+    data?: GetEvent200ResponseData;
     /**
      * 
      * @type {any}
@@ -59,7 +59,7 @@ export function GetEvent200ResponseFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'data': !exists(json, 'data') ? undefined : CreateEvent200ResponseDataFromJSON(json['data']),
+        'data': !exists(json, 'data') ? undefined : GetEvent200ResponseDataFromJSON(json['data']),
         'params': !exists(json, 'params') ? undefined : json['params'],
     };
 }
@@ -73,7 +73,7 @@ export function GetEvent200ResponseToJSON(value?: GetEvent200Response | null): a
     }
     return {
         
-        'data': CreateEvent200ResponseDataToJSON(value.data),
+        'data': GetEvent200ResponseDataToJSON(value.data),
         'params': value.params,
     };
 }

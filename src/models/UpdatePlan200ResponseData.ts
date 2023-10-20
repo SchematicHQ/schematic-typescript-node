@@ -16,48 +16,41 @@ import { exists, mapValues } from '../runtime';
 /**
  * The updated resource
  * @export
- * @interface UpdateEnvironment200ResponseData
+ * @interface UpdatePlan200ResponseData
  */
-export interface UpdateEnvironment200ResponseData {
+export interface UpdatePlan200ResponseData {
     /**
      * 
      * @type {string}
-     * @memberof UpdateEnvironment200ResponseData
+     * @memberof UpdatePlan200ResponseData
      */
     createdAt: string;
     /**
      * 
      * @type {string}
-     * @memberof UpdateEnvironment200ResponseData
-     */
-    environmentType: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateEnvironment200ResponseData
+     * @memberof UpdatePlan200ResponseData
      */
     id: string;
     /**
      * 
      * @type {string}
-     * @memberof UpdateEnvironment200ResponseData
+     * @memberof UpdatePlan200ResponseData
      */
     name: string;
     /**
      * 
      * @type {string}
-     * @memberof UpdateEnvironment200ResponseData
+     * @memberof UpdatePlan200ResponseData
      */
     updatedAt: string;
 }
 
 /**
- * Check if a given object implements the UpdateEnvironment200ResponseData interface.
+ * Check if a given object implements the UpdatePlan200ResponseData interface.
  */
-export function instanceOfUpdateEnvironment200ResponseData(value: object): boolean {
+export function instanceOfUpdatePlan200ResponseData(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "environmentType" in value;
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "name" in value;
     isInstance = isInstance && "updatedAt" in value;
@@ -65,25 +58,24 @@ export function instanceOfUpdateEnvironment200ResponseData(value: object): boole
     return isInstance;
 }
 
-export function UpdateEnvironment200ResponseDataFromJSON(json: any): UpdateEnvironment200ResponseData {
-    return UpdateEnvironment200ResponseDataFromJSONTyped(json, false);
+export function UpdatePlan200ResponseDataFromJSON(json: any): UpdatePlan200ResponseData {
+    return UpdatePlan200ResponseDataFromJSONTyped(json, false);
 }
 
-export function UpdateEnvironment200ResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateEnvironment200ResponseData {
+export function UpdatePlan200ResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdatePlan200ResponseData {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
         'createdAt': json['created_at'],
-        'environmentType': json['environment_type'],
         'id': json['id'],
         'name': json['name'],
         'updatedAt': json['updated_at'],
     };
 }
 
-export function UpdateEnvironment200ResponseDataToJSON(value?: UpdateEnvironment200ResponseData | null): any {
+export function UpdatePlan200ResponseDataToJSON(value?: UpdatePlan200ResponseData | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -93,7 +85,6 @@ export function UpdateEnvironment200ResponseDataToJSON(value?: UpdateEnvironment
     return {
         
         'created_at': value.createdAt,
-        'environment_type': value.environmentType,
         'id': value.id,
         'name': value.name,
         'updated_at': value.updatedAt,

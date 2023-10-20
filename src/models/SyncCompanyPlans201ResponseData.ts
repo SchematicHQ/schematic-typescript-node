@@ -21,7 +21,7 @@ import {
 } from './SyncCompanyPlans201ResponseDataPlansInner';
 
 /**
- * The returned resource
+ * The created resource
  * @export
  * @interface SyncCompanyPlans201ResponseData
  */

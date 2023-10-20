@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { CreateUser201ResponseData } from './CreateUser201ResponseData';
+import type { GetUser200ResponseData } from './GetUser200ResponseData';
 import {
-    CreateUser201ResponseDataFromJSON,
-    CreateUser201ResponseDataFromJSONTyped,
-    CreateUser201ResponseDataToJSON,
-} from './CreateUser201ResponseData';
+    GetUser200ResponseDataFromJSON,
+    GetUser200ResponseDataFromJSONTyped,
+    GetUser200ResponseDataToJSON,
+} from './GetUser200ResponseData';
 
 /**
  * 
@@ -28,10 +28,10 @@ import {
 export interface GetUser200Response {
     /**
      * 
-     * @type {CreateUser201ResponseData}
+     * @type {GetUser200ResponseData}
      * @memberof GetUser200Response
      */
-    data?: CreateUser201ResponseData;
+    data?: GetUser200ResponseData;
     /**
      * 
      * @type {any}
@@ -59,7 +59,7 @@ export function GetUser200ResponseFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'data': !exists(json, 'data') ? undefined : CreateUser201ResponseDataFromJSON(json['data']),
+        'data': !exists(json, 'data') ? undefined : GetUser200ResponseDataFromJSON(json['data']),
         'params': !exists(json, 'params') ? undefined : json['params'],
     };
 }
@@ -73,7 +73,7 @@ export function GetUser200ResponseToJSON(value?: GetUser200Response | null): any
     }
     return {
         
-        'data': CreateUser201ResponseDataToJSON(value.data),
+        'data': GetUser200ResponseDataToJSON(value.data),
         'params': value.params,
     };
 }

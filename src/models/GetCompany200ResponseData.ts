@@ -19,81 +19,68 @@ import {
     CreateCompany201ResponseDataKeysInnerFromJSONTyped,
     CreateCompany201ResponseDataKeysInnerToJSON,
 } from './CreateCompany201ResponseDataKeysInner';
-import type { ListCompanyMemberships200ResponseDataInner } from './ListCompanyMemberships200ResponseDataInner';
-import {
-    ListCompanyMemberships200ResponseDataInnerFromJSON,
-    ListCompanyMemberships200ResponseDataInnerFromJSONTyped,
-    ListCompanyMemberships200ResponseDataInnerToJSON,
-} from './ListCompanyMemberships200ResponseDataInner';
 
 /**
- * The created resource
+ * The returned resource
  * @export
- * @interface CreateUser201ResponseData
+ * @interface GetCompany200ResponseData
  */
-export interface CreateUser201ResponseData {
-    /**
-     * 
-     * @type {Array<ListCompanyMemberships200ResponseDataInner>}
-     * @memberof CreateUser201ResponseData
-     */
-    companyMemberships: Array<ListCompanyMemberships200ResponseDataInner>;
+export interface GetCompany200ResponseData {
     /**
      * 
      * @type {string}
-     * @memberof CreateUser201ResponseData
+     * @memberof GetCompany200ResponseData
      */
     createdAt: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateUser201ResponseData
+     * @memberof GetCompany200ResponseData
      */
     environmentId: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateUser201ResponseData
+     * @memberof GetCompany200ResponseData
      */
     id: string;
     /**
      * 
      * @type {Array<CreateCompany201ResponseDataKeysInner>}
-     * @memberof CreateUser201ResponseData
+     * @memberof GetCompany200ResponseData
      */
     keys: Array<CreateCompany201ResponseDataKeysInner>;
     /**
      * 
      * @type {string}
-     * @memberof CreateUser201ResponseData
+     * @memberof GetCompany200ResponseData
      */
     lastSeenAt?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof CreateUser201ResponseData
+     * @memberof GetCompany200ResponseData
      */
     name: string;
     /**
      * A map of trait names to trait values
      * @type {object}
-     * @memberof CreateUser201ResponseData
+     * @memberof GetCompany200ResponseData
      */
     traits?: object;
     /**
      * 
      * @type {string}
-     * @memberof CreateUser201ResponseData
+     * @memberof GetCompany200ResponseData
      */
     updatedAt: string;
 }
 
 /**
- * Check if a given object implements the CreateUser201ResponseData interface.
+ * Check if a given object implements the GetCompany200ResponseData interface.
  */
-export function instanceOfCreateUser201ResponseData(value: object): boolean {
+export function instanceOfGetCompany200ResponseData(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "companyMemberships" in value;
     isInstance = isInstance && "createdAt" in value;
     isInstance = isInstance && "environmentId" in value;
     isInstance = isInstance && "id" in value;
@@ -104,17 +91,16 @@ export function instanceOfCreateUser201ResponseData(value: object): boolean {
     return isInstance;
 }
 
-export function CreateUser201ResponseDataFromJSON(json: any): CreateUser201ResponseData {
-    return CreateUser201ResponseDataFromJSONTyped(json, false);
+export function GetCompany200ResponseDataFromJSON(json: any): GetCompany200ResponseData {
+    return GetCompany200ResponseDataFromJSONTyped(json, false);
 }
 
-export function CreateUser201ResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateUser201ResponseData {
+export function GetCompany200ResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetCompany200ResponseData {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'companyMemberships': ((json['company_memberships'] as Array<any>).map(ListCompanyMemberships200ResponseDataInnerFromJSON)),
         'createdAt': json['created_at'],
         'environmentId': json['environment_id'],
         'id': json['id'],
@@ -126,7 +112,7 @@ export function CreateUser201ResponseDataFromJSONTyped(json: any, ignoreDiscrimi
     };
 }
 
-export function CreateUser201ResponseDataToJSON(value?: CreateUser201ResponseData | null): any {
+export function GetCompany200ResponseDataToJSON(value?: GetCompany200ResponseData | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -135,7 +121,6 @@ export function CreateUser201ResponseDataToJSON(value?: CreateUser201ResponseDat
     }
     return {
         
-        'company_memberships': ((value.companyMemberships as Array<any>).map(ListCompanyMemberships200ResponseDataInnerToJSON)),
         'created_at': value.createdAt,
         'environment_id': value.environmentId,
         'id': value.id,
