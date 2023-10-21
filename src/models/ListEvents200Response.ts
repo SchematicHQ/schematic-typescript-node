@@ -33,7 +33,7 @@ import {
  */
 export interface ListEvents200Response {
     /**
-     * The returned resource
+     * The returned resources
      * @type {Array<ListEvents200ResponseDataInner>}
      * @memberof ListEvents200Response
      */

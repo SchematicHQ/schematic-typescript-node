@@ -33,7 +33,7 @@ import {
  */
 export interface ListApiKeys200Response {
     /**
-     * The returned resource
+     * The returned resources
      * @type {Array<ListApiKeys200ResponseDataInner>}
      * @memberof ListApiKeys200Response
      */

@@ -33,11 +33,11 @@ export interface GetUser200Response {
      */
     data?: GetUser200ResponseData;
     /**
-     * 
-     * @type {any}
+     * Input parameters
+     * @type {object}
      * @memberof GetUser200Response
      */
-    params?: any | null;
+    params?: object;
 }
 
 /**

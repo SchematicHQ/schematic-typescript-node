@@ -33,11 +33,11 @@ export interface GetFeature200Response {
      */
     data?: GetFeature200ResponseData;
     /**
-     * 
-     * @type {any}
+     * Input parameters
+     * @type {object}
      * @memberof GetFeature200Response
      */
-    params?: any | null;
+    params?: object;
 }
 
 /**

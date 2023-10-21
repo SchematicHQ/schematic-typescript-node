@@ -28,6 +28,7 @@ import type {
   GetFeature200Response,
   GetFlag200Response,
   ListFeatures200Response,
+  ListFlagChecks200Response,
   ListFlagValues200Response,
   ListFlags200Response,
   UpdateFeature200Response,
@@ -61,6 +62,8 @@ import {
     GetFlag200ResponseToJSON,
     ListFeatures200ResponseFromJSON,
     ListFeatures200ResponseToJSON,
+    ListFlagChecks200ResponseFromJSON,
+    ListFlagChecks200ResponseToJSON,
     ListFlagValues200ResponseFromJSON,
     ListFlagValues200ResponseToJSON,
     ListFlags200ResponseFromJSON,
@@ -126,8 +129,32 @@ export interface GetFlagRequest {
     xSchematicEnvironmentId?: string;
 }
 
+export interface LatestFlagChecksRequest {
+    accountId: string;
+    environmentId: string;
+    flagIds: Array<string>;
+    xSchematicEnvironmentId?: string;
+    flagId?: string;
+    limit?: number;
+    offset?: number;
+    order?: string;
+    dir?: string;
+}
+
 export interface ListFeaturesRequest {
     xSchematicEnvironmentId?: string;
+    limit?: number;
+    offset?: number;
+    order?: string;
+    dir?: string;
+}
+
+export interface ListFlagChecksRequest {
+    accountId: string;
+    environmentId: string;
+    flagIds: Array<string>;
+    xSchematicEnvironmentId?: string;
+    flagId?: string;
     limit?: number;
     offset?: number;
     order?: string;
@@ -563,6 +590,84 @@ export class FeaturesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Latest flag checks
+     */
+    async latestFlagChecksRaw(requestParameters: LatestFlagChecksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFlagChecks200Response>> {
+        if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
+            throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling latestFlagChecks.');
+        }
+
+        if (requestParameters.environmentId === null || requestParameters.environmentId === undefined) {
+            throw new runtime.RequiredError('environmentId','Required parameter requestParameters.environmentId was null or undefined when calling latestFlagChecks.');
+        }
+
+        if (requestParameters.flagIds === null || requestParameters.flagIds === undefined) {
+            throw new runtime.RequiredError('flagIds','Required parameter requestParameters.flagIds was null or undefined when calling latestFlagChecks.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.accountId !== undefined) {
+            queryParameters['account_id'] = requestParameters.accountId;
+        }
+
+        if (requestParameters.environmentId !== undefined) {
+            queryParameters['environment_id'] = requestParameters.environmentId;
+        }
+
+        if (requestParameters.flagId !== undefined) {
+            queryParameters['flag_id'] = requestParameters.flagId;
+        }
+
+        if (requestParameters.flagIds) {
+            queryParameters['flag_ids'] = requestParameters.flagIds;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.order !== undefined) {
+            queryParameters['order'] = requestParameters.order;
+        }
+
+        if (requestParameters.dir !== undefined) {
+            queryParameters['dir'] = requestParameters.dir;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/flag-checks/latest`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListFlagChecks200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Latest flag checks
+     */
+    async latestFlagChecks(requestParameters: LatestFlagChecksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListFlagChecks200Response> {
+        const response = await this.latestFlagChecksRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * List features
      */
     async listFeaturesRaw(requestParameters: ListFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFeatures200Response>> {
@@ -609,6 +714,84 @@ export class FeaturesApi extends runtime.BaseAPI {
      */
     async listFeatures(requestParameters: ListFeaturesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListFeatures200Response> {
         const response = await this.listFeaturesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List flag checks
+     */
+    async listFlagChecksRaw(requestParameters: ListFlagChecksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFlagChecks200Response>> {
+        if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
+            throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling listFlagChecks.');
+        }
+
+        if (requestParameters.environmentId === null || requestParameters.environmentId === undefined) {
+            throw new runtime.RequiredError('environmentId','Required parameter requestParameters.environmentId was null or undefined when calling listFlagChecks.');
+        }
+
+        if (requestParameters.flagIds === null || requestParameters.flagIds === undefined) {
+            throw new runtime.RequiredError('flagIds','Required parameter requestParameters.flagIds was null or undefined when calling listFlagChecks.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.accountId !== undefined) {
+            queryParameters['account_id'] = requestParameters.accountId;
+        }
+
+        if (requestParameters.environmentId !== undefined) {
+            queryParameters['environment_id'] = requestParameters.environmentId;
+        }
+
+        if (requestParameters.flagId !== undefined) {
+            queryParameters['flag_id'] = requestParameters.flagId;
+        }
+
+        if (requestParameters.flagIds) {
+            queryParameters['flag_ids'] = requestParameters.flagIds;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.order !== undefined) {
+            queryParameters['order'] = requestParameters.order;
+        }
+
+        if (requestParameters.dir !== undefined) {
+            queryParameters['dir'] = requestParameters.dir;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/flag-checks`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListFlagChecks200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List flag checks
+     */
+    async listFlagChecks(requestParameters: ListFlagChecksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListFlagChecks200Response> {
+        const response = await this.listFlagChecksRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

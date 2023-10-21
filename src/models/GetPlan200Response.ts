@@ -33,11 +33,11 @@ export interface GetPlan200Response {
      */
     data?: GetPlan200ResponseData;
     /**
-     * 
-     * @type {any}
+     * Input parameters
+     * @type {object}
      * @memberof GetPlan200Response
      */
-    params?: any | null;
+    params?: object;
 }
 
 /**

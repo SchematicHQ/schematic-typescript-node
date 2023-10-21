@@ -91,6 +91,9 @@ models/ListEvents200ResponseParams.ts
 models/ListFeatures200Response.ts
 models/ListFeatures200ResponseDataInner.ts
 models/ListFeatures200ResponseParams.ts
+models/ListFlagChecks200Response.ts
+models/ListFlagChecks200ResponseDataInner.ts
+models/ListFlagChecks200ResponseParams.ts
 models/ListFlagValues200Response.ts
 models/ListFlagValues200ResponseDataInner.ts
 models/ListFlagValues200ResponseParams.ts

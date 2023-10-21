@@ -33,11 +33,11 @@ export interface UpdateFeature200Response {
      */
     data?: UpdateFeature200ResponseData;
     /**
-     * 
-     * @type {any}
+     * Input parameters
+     * @type {object}
      * @memberof UpdateFeature200Response
      */
-    params?: any | null;
+    params?: object;
 }
 
 /**

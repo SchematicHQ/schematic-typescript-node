@@ -33,11 +33,11 @@ export interface GetEvent200Response {
      */
     data?: GetEvent200ResponseData;
     /**
-     * 
-     * @type {any}
+     * Input parameters
+     * @type {object}
      * @memberof GetEvent200Response
      */
-    params?: any | null;
+    params?: object;
 }
 
 /**

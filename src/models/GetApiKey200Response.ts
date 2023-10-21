@@ -33,11 +33,11 @@ export interface GetApiKey200Response {
      */
     data?: GetApiKey200ResponseData;
     /**
-     * 
-     * @type {any}
+     * Input parameters
+     * @type {object}
      * @memberof GetApiKey200Response
      */
-    params?: any | null;
+    params?: object;
 }
 
 /**

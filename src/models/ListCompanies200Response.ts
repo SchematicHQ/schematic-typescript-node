@@ -33,7 +33,7 @@ import {
  */
 export interface ListCompanies200Response {
     /**
-     * The returned resource
+     * The returned resources
      * @type {Array<ListCompanies200ResponseDataInner>}
      * @memberof ListCompanies200Response
      */

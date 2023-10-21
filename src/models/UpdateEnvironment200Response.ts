@@ -33,11 +33,11 @@ export interface UpdateEnvironment200Response {
      */
     data?: UpdateEnvironment200ResponseData;
     /**
-     * 
-     * @type {any}
+     * Input parameters
+     * @type {object}
      * @memberof UpdateEnvironment200Response
      */
-    params?: any | null;
+    params?: object;
 }
 
 /**

@@ -33,11 +33,11 @@ export interface UpdateFlag200Response {
      */
     data?: UpdateFlag200ResponseData;
     /**
-     * 
-     * @type {any}
+     * Input parameters
+     * @type {object}
      * @memberof UpdateFlag200Response
      */
-    params?: any | null;
+    params?: object;
 }
 
 /**
