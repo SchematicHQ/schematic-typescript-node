@@ -15,42 +15,48 @@
 
 import * as runtime from '../runtime';
 import type {
-  CreatePlan201Response,
-  CreatePlanRequest,
-  DeleteApiKey200Response,
-  GetPlan200Response,
-  ListPlans200Response,
-  SyncCompanyPlans201Response,
-  SyncCompanyPlansRequest,
-  UpdatePlan200Response,
-  UpsertBillingPeriod200Response,
-  UpsertBillingPeriodRequest,
+  ApiError,
+  CreatePlanRequestBody,
+  CreatePlanResponse,
+  DeletePlanResponse,
+  GetPlanResponse,
+  ListPlansResponse,
+  SyncCompanyPlansRequestBody,
+  SyncCompanyPlansResponse,
+  UpdatePlanRequestBody,
+  UpdatePlanResponse,
+  UpsertBillingPeriodRequestBody,
+  UpsertBillingPeriodResponse,
 } from '../models';
 import {
-    CreatePlan201ResponseFromJSON,
-    CreatePlan201ResponseToJSON,
-    CreatePlanRequestFromJSON,
-    CreatePlanRequestToJSON,
-    DeleteApiKey200ResponseFromJSON,
-    DeleteApiKey200ResponseToJSON,
-    GetPlan200ResponseFromJSON,
-    GetPlan200ResponseToJSON,
-    ListPlans200ResponseFromJSON,
-    ListPlans200ResponseToJSON,
-    SyncCompanyPlans201ResponseFromJSON,
-    SyncCompanyPlans201ResponseToJSON,
-    SyncCompanyPlansRequestFromJSON,
-    SyncCompanyPlansRequestToJSON,
-    UpdatePlan200ResponseFromJSON,
-    UpdatePlan200ResponseToJSON,
-    UpsertBillingPeriod200ResponseFromJSON,
-    UpsertBillingPeriod200ResponseToJSON,
-    UpsertBillingPeriodRequestFromJSON,
-    UpsertBillingPeriodRequestToJSON,
+    ApiErrorFromJSON,
+    ApiErrorToJSON,
+    CreatePlanRequestBodyFromJSON,
+    CreatePlanRequestBodyToJSON,
+    CreatePlanResponseFromJSON,
+    CreatePlanResponseToJSON,
+    DeletePlanResponseFromJSON,
+    DeletePlanResponseToJSON,
+    GetPlanResponseFromJSON,
+    GetPlanResponseToJSON,
+    ListPlansResponseFromJSON,
+    ListPlansResponseToJSON,
+    SyncCompanyPlansRequestBodyFromJSON,
+    SyncCompanyPlansRequestBodyToJSON,
+    SyncCompanyPlansResponseFromJSON,
+    SyncCompanyPlansResponseToJSON,
+    UpdatePlanRequestBodyFromJSON,
+    UpdatePlanRequestBodyToJSON,
+    UpdatePlanResponseFromJSON,
+    UpdatePlanResponseToJSON,
+    UpsertBillingPeriodRequestBodyFromJSON,
+    UpsertBillingPeriodRequestBodyToJSON,
+    UpsertBillingPeriodResponseFromJSON,
+    UpsertBillingPeriodResponseToJSON,
 } from '../models';
 
-export interface CreatePlanOperationRequest {
-    createPlanRequest: CreatePlanRequest;
+export interface CreatePlanRequest {
+    createPlanRequestBody: CreatePlanRequestBody;
     xSchematicEnvironmentId?: string;
 }
 
@@ -72,19 +78,19 @@ export interface ListPlansRequest {
     dir?: string;
 }
 
-export interface SyncCompanyPlansOperationRequest {
-    syncCompanyPlansRequest: SyncCompanyPlansRequest;
+export interface SyncCompanyPlansRequest {
+    syncCompanyPlansRequestBody: SyncCompanyPlansRequestBody;
     xSchematicEnvironmentId?: string;
 }
 
 export interface UpdatePlanRequest {
-    createPlanRequest: CreatePlanRequest;
+    updatePlanRequestBody: UpdatePlanRequestBody;
     planId: string;
     xSchematicEnvironmentId?: string;
 }
 
-export interface UpsertBillingPeriodOperationRequest {
-    upsertBillingPeriodRequest: UpsertBillingPeriodRequest;
+export interface UpsertBillingPeriodRequest {
+    upsertBillingPeriodRequestBody: UpsertBillingPeriodRequestBody;
     key: string;
     xSchematicEnvironmentId?: string;
 }
@@ -97,9 +103,9 @@ export class PlansApi extends runtime.BaseAPI {
     /**
      * Create plan
      */
-    async createPlanRaw(requestParameters: CreatePlanOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePlan201Response>> {
-        if (requestParameters.createPlanRequest === null || requestParameters.createPlanRequest === undefined) {
-            throw new runtime.RequiredError('createPlanRequest','Required parameter requestParameters.createPlanRequest was null or undefined when calling createPlan.');
+    async createPlanRaw(requestParameters: CreatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePlanResponse>> {
+        if (requestParameters.createPlanRequestBody === null || requestParameters.createPlanRequestBody === undefined) {
+            throw new runtime.RequiredError('createPlanRequestBody','Required parameter requestParameters.createPlanRequestBody was null or undefined when calling createPlan.');
         }
 
         const queryParameters: any = {};
@@ -121,16 +127,16 @@ export class PlansApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreatePlanRequestToJSON(requestParameters.createPlanRequest),
+            body: CreatePlanRequestBodyToJSON(requestParameters.createPlanRequestBody),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreatePlan201ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreatePlanResponseFromJSON(jsonValue));
     }
 
     /**
      * Create plan
      */
-    async createPlan(requestParameters: CreatePlanOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePlan201Response> {
+    async createPlan(requestParameters: CreatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePlanResponse> {
         const response = await this.createPlanRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -138,7 +144,7 @@ export class PlansApi extends runtime.BaseAPI {
     /**
      * Delete plan
      */
-    async deletePlanRaw(requestParameters: DeletePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteApiKey200Response>> {
+    async deletePlanRaw(requestParameters: DeletePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletePlanResponse>> {
         if (requestParameters.planId === null || requestParameters.planId === undefined) {
             throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling deletePlan.');
         }
@@ -162,13 +168,13 @@ export class PlansApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteApiKey200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeletePlanResponseFromJSON(jsonValue));
     }
 
     /**
      * Delete plan
      */
-    async deletePlan(requestParameters: DeletePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteApiKey200Response> {
+    async deletePlan(requestParameters: DeletePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletePlanResponse> {
         const response = await this.deletePlanRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -176,7 +182,7 @@ export class PlansApi extends runtime.BaseAPI {
     /**
      * Get plan
      */
-    async getPlanRaw(requestParameters: GetPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPlan200Response>> {
+    async getPlanRaw(requestParameters: GetPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPlanResponse>> {
         if (requestParameters.planId === null || requestParameters.planId === undefined) {
             throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling getPlan.');
         }
@@ -200,13 +206,13 @@ export class PlansApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetPlan200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetPlanResponseFromJSON(jsonValue));
     }
 
     /**
      * Get plan
      */
-    async getPlan(requestParameters: GetPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPlan200Response> {
+    async getPlan(requestParameters: GetPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPlanResponse> {
         const response = await this.getPlanRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -214,7 +220,7 @@ export class PlansApi extends runtime.BaseAPI {
     /**
      * List plans
      */
-    async listPlansRaw(requestParameters: ListPlansRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListPlans200Response>> {
+    async listPlansRaw(requestParameters: ListPlansRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListPlansResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters.limit !== undefined) {
@@ -250,13 +256,13 @@ export class PlansApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ListPlans200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListPlansResponseFromJSON(jsonValue));
     }
 
     /**
      * List plans
      */
-    async listPlans(requestParameters: ListPlansRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListPlans200Response> {
+    async listPlans(requestParameters: ListPlansRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListPlansResponse> {
         const response = await this.listPlansRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -264,9 +270,9 @@ export class PlansApi extends runtime.BaseAPI {
     /**
      * Sync company plans
      */
-    async syncCompanyPlansRaw(requestParameters: SyncCompanyPlansOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SyncCompanyPlans201Response>> {
-        if (requestParameters.syncCompanyPlansRequest === null || requestParameters.syncCompanyPlansRequest === undefined) {
-            throw new runtime.RequiredError('syncCompanyPlansRequest','Required parameter requestParameters.syncCompanyPlansRequest was null or undefined when calling syncCompanyPlans.');
+    async syncCompanyPlansRaw(requestParameters: SyncCompanyPlansRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SyncCompanyPlansResponse>> {
+        if (requestParameters.syncCompanyPlansRequestBody === null || requestParameters.syncCompanyPlansRequestBody === undefined) {
+            throw new runtime.RequiredError('syncCompanyPlansRequestBody','Required parameter requestParameters.syncCompanyPlansRequestBody was null or undefined when calling syncCompanyPlans.');
         }
 
         const queryParameters: any = {};
@@ -288,16 +294,16 @@ export class PlansApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SyncCompanyPlansRequestToJSON(requestParameters.syncCompanyPlansRequest),
+            body: SyncCompanyPlansRequestBodyToJSON(requestParameters.syncCompanyPlansRequestBody),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SyncCompanyPlans201ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => SyncCompanyPlansResponseFromJSON(jsonValue));
     }
 
     /**
      * Sync company plans
      */
-    async syncCompanyPlans(requestParameters: SyncCompanyPlansOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SyncCompanyPlans201Response> {
+    async syncCompanyPlans(requestParameters: SyncCompanyPlansRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SyncCompanyPlansResponse> {
         const response = await this.syncCompanyPlansRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -305,9 +311,9 @@ export class PlansApi extends runtime.BaseAPI {
     /**
      * Update plan
      */
-    async updatePlanRaw(requestParameters: UpdatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdatePlan200Response>> {
-        if (requestParameters.createPlanRequest === null || requestParameters.createPlanRequest === undefined) {
-            throw new runtime.RequiredError('createPlanRequest','Required parameter requestParameters.createPlanRequest was null or undefined when calling updatePlan.');
+    async updatePlanRaw(requestParameters: UpdatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdatePlanResponse>> {
+        if (requestParameters.updatePlanRequestBody === null || requestParameters.updatePlanRequestBody === undefined) {
+            throw new runtime.RequiredError('updatePlanRequestBody','Required parameter requestParameters.updatePlanRequestBody was null or undefined when calling updatePlan.');
         }
 
         if (requestParameters.planId === null || requestParameters.planId === undefined) {
@@ -333,16 +339,16 @@ export class PlansApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: CreatePlanRequestToJSON(requestParameters.createPlanRequest),
+            body: UpdatePlanRequestBodyToJSON(requestParameters.updatePlanRequestBody),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => UpdatePlan200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdatePlanResponseFromJSON(jsonValue));
     }
 
     /**
      * Update plan
      */
-    async updatePlan(requestParameters: UpdatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdatePlan200Response> {
+    async updatePlan(requestParameters: UpdatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdatePlanResponse> {
         const response = await this.updatePlanRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -350,9 +356,9 @@ export class PlansApi extends runtime.BaseAPI {
     /**
      * Upsert billing period
      */
-    async upsertBillingPeriodRaw(requestParameters: UpsertBillingPeriodOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpsertBillingPeriod200Response>> {
-        if (requestParameters.upsertBillingPeriodRequest === null || requestParameters.upsertBillingPeriodRequest === undefined) {
-            throw new runtime.RequiredError('upsertBillingPeriodRequest','Required parameter requestParameters.upsertBillingPeriodRequest was null or undefined when calling upsertBillingPeriod.');
+    async upsertBillingPeriodRaw(requestParameters: UpsertBillingPeriodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpsertBillingPeriodResponse>> {
+        if (requestParameters.upsertBillingPeriodRequestBody === null || requestParameters.upsertBillingPeriodRequestBody === undefined) {
+            throw new runtime.RequiredError('upsertBillingPeriodRequestBody','Required parameter requestParameters.upsertBillingPeriodRequestBody was null or undefined when calling upsertBillingPeriod.');
         }
 
         if (requestParameters.key === null || requestParameters.key === undefined) {
@@ -378,16 +384,16 @@ export class PlansApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: UpsertBillingPeriodRequestToJSON(requestParameters.upsertBillingPeriodRequest),
+            body: UpsertBillingPeriodRequestBodyToJSON(requestParameters.upsertBillingPeriodRequestBody),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => UpsertBillingPeriod200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpsertBillingPeriodResponseFromJSON(jsonValue));
     }
 
     /**
      * Upsert billing period
      */
-    async upsertBillingPeriod(requestParameters: UpsertBillingPeriodOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpsertBillingPeriod200Response> {
+    async upsertBillingPeriod(requestParameters: UpsertBillingPeriodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpsertBillingPeriodResponse> {
         const response = await this.upsertBillingPeriodRaw(requestParameters, initOverrides);
         return await response.value();
     }

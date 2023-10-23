@@ -15,32 +15,35 @@
 
 import * as runtime from '../runtime';
 import type {
-  CountEventTypes200Response,
-  CountEvents200Response,
-  CreateEvent201Response,
-  CreateEventRequest,
-  GetEvent200Response,
-  GetEventType200Response,
-  ListEventTypes200Response,
-  ListEvents200Response,
+  ApiError,
+  CountEventTypesResponse,
+  CountEventsResponse,
+  CreateEventRequestBody,
+  CreateEventResponse,
+  GetEventResponse,
+  GetEventTypeResponse,
+  ListEventTypesResponse,
+  ListEventsResponse,
 } from '../models';
 import {
-    CountEventTypes200ResponseFromJSON,
-    CountEventTypes200ResponseToJSON,
-    CountEvents200ResponseFromJSON,
-    CountEvents200ResponseToJSON,
-    CreateEvent201ResponseFromJSON,
-    CreateEvent201ResponseToJSON,
-    CreateEventRequestFromJSON,
-    CreateEventRequestToJSON,
-    GetEvent200ResponseFromJSON,
-    GetEvent200ResponseToJSON,
-    GetEventType200ResponseFromJSON,
-    GetEventType200ResponseToJSON,
-    ListEventTypes200ResponseFromJSON,
-    ListEventTypes200ResponseToJSON,
-    ListEvents200ResponseFromJSON,
-    ListEvents200ResponseToJSON,
+    ApiErrorFromJSON,
+    ApiErrorToJSON,
+    CountEventTypesResponseFromJSON,
+    CountEventTypesResponseToJSON,
+    CountEventsResponseFromJSON,
+    CountEventsResponseToJSON,
+    CreateEventRequestBodyFromJSON,
+    CreateEventRequestBodyToJSON,
+    CreateEventResponseFromJSON,
+    CreateEventResponseToJSON,
+    GetEventResponseFromJSON,
+    GetEventResponseToJSON,
+    GetEventTypeResponseFromJSON,
+    GetEventTypeResponseToJSON,
+    ListEventTypesResponseFromJSON,
+    ListEventTypesResponseToJSON,
+    ListEventsResponseFromJSON,
+    ListEventsResponseToJSON,
 } from '../models';
 
 export interface CountEventTypesRequest {
@@ -64,8 +67,8 @@ export interface CountEventsRequest {
     dir?: string;
 }
 
-export interface CreateEventOperationRequest {
-    createEventRequest: CreateEventRequest;
+export interface CreateEventRequest {
+    createEventRequestBody: CreateEventRequestBody;
     xSchematicEnvironmentId?: string;
 }
 
@@ -108,7 +111,7 @@ export class EventsApi extends runtime.BaseAPI {
     /**
      * Count event types
      */
-    async countEventTypesRaw(requestParameters: CountEventTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountEventTypes200Response>> {
+    async countEventTypesRaw(requestParameters: CountEventTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountEventTypesResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters.q !== undefined) {
@@ -148,13 +151,13 @@ export class EventsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CountEventTypes200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountEventTypesResponseFromJSON(jsonValue));
     }
 
     /**
      * Count event types
      */
-    async countEventTypes(requestParameters: CountEventTypesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountEventTypes200Response> {
+    async countEventTypes(requestParameters: CountEventTypesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountEventTypesResponse> {
         const response = await this.countEventTypesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -162,7 +165,7 @@ export class EventsApi extends runtime.BaseAPI {
     /**
      * Count events
      */
-    async countEventsRaw(requestParameters: CountEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountEvents200Response>> {
+    async countEventsRaw(requestParameters: CountEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountEventsResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters.companyId !== undefined) {
@@ -214,13 +217,13 @@ export class EventsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CountEvents200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountEventsResponseFromJSON(jsonValue));
     }
 
     /**
      * Count events
      */
-    async countEvents(requestParameters: CountEventsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountEvents200Response> {
+    async countEvents(requestParameters: CountEventsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountEventsResponse> {
         const response = await this.countEventsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -228,9 +231,9 @@ export class EventsApi extends runtime.BaseAPI {
     /**
      * Create event
      */
-    async createEventRaw(requestParameters: CreateEventOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateEvent201Response>> {
-        if (requestParameters.createEventRequest === null || requestParameters.createEventRequest === undefined) {
-            throw new runtime.RequiredError('createEventRequest','Required parameter requestParameters.createEventRequest was null or undefined when calling createEvent.');
+    async createEventRaw(requestParameters: CreateEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateEventResponse>> {
+        if (requestParameters.createEventRequestBody === null || requestParameters.createEventRequestBody === undefined) {
+            throw new runtime.RequiredError('createEventRequestBody','Required parameter requestParameters.createEventRequestBody was null or undefined when calling createEvent.');
         }
 
         const queryParameters: any = {};
@@ -252,16 +255,16 @@ export class EventsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateEventRequestToJSON(requestParameters.createEventRequest),
+            body: CreateEventRequestBodyToJSON(requestParameters.createEventRequestBody),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateEvent201ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateEventResponseFromJSON(jsonValue));
     }
 
     /**
      * Create event
      */
-    async createEvent(requestParameters: CreateEventOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateEvent201Response> {
+    async createEvent(requestParameters: CreateEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateEventResponse> {
         const response = await this.createEventRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -269,7 +272,7 @@ export class EventsApi extends runtime.BaseAPI {
     /**
      * Get event
      */
-    async getEventRaw(requestParameters: GetEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEvent200Response>> {
+    async getEventRaw(requestParameters: GetEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEventResponse>> {
         if (requestParameters.eventId === null || requestParameters.eventId === undefined) {
             throw new runtime.RequiredError('eventId','Required parameter requestParameters.eventId was null or undefined when calling getEvent.');
         }
@@ -293,13 +296,13 @@ export class EventsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetEvent200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetEventResponseFromJSON(jsonValue));
     }
 
     /**
      * Get event
      */
-    async getEvent(requestParameters: GetEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEvent200Response> {
+    async getEvent(requestParameters: GetEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEventResponse> {
         const response = await this.getEventRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -307,7 +310,7 @@ export class EventsApi extends runtime.BaseAPI {
     /**
      * Get event type
      */
-    async getEventTypeRaw(requestParameters: GetEventTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEventType200Response>> {
+    async getEventTypeRaw(requestParameters: GetEventTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEventTypeResponse>> {
         if (requestParameters.key === null || requestParameters.key === undefined) {
             throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling getEventType.');
         }
@@ -331,13 +334,13 @@ export class EventsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetEventType200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetEventTypeResponseFromJSON(jsonValue));
     }
 
     /**
      * Get event type
      */
-    async getEventType(requestParameters: GetEventTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEventType200Response> {
+    async getEventType(requestParameters: GetEventTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEventTypeResponse> {
         const response = await this.getEventTypeRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -345,7 +348,7 @@ export class EventsApi extends runtime.BaseAPI {
     /**
      * List event types
      */
-    async listEventTypesRaw(requestParameters: ListEventTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListEventTypes200Response>> {
+    async listEventTypesRaw(requestParameters: ListEventTypesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListEventTypesResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters.q !== undefined) {
@@ -385,13 +388,13 @@ export class EventsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ListEventTypes200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListEventTypesResponseFromJSON(jsonValue));
     }
 
     /**
      * List event types
      */
-    async listEventTypes(requestParameters: ListEventTypesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListEventTypes200Response> {
+    async listEventTypes(requestParameters: ListEventTypesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListEventTypesResponse> {
         const response = await this.listEventTypesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -399,7 +402,7 @@ export class EventsApi extends runtime.BaseAPI {
     /**
      * List events
      */
-    async listEventsRaw(requestParameters: ListEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListEvents200Response>> {
+    async listEventsRaw(requestParameters: ListEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListEventsResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters.companyId !== undefined) {
@@ -451,13 +454,13 @@ export class EventsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ListEvents200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListEventsResponseFromJSON(jsonValue));
     }
 
     /**
      * List events
      */
-    async listEvents(requestParameters: ListEventsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListEvents200Response> {
+    async listEvents(requestParameters: ListEventsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListEventsResponse> {
         const response = await this.listEventsRaw(requestParameters, initOverrides);
         return await response.value();
     }

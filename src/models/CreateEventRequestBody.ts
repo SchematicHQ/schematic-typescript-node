@@ -12,27 +12,49 @@
  * Do not edit the class manually.
  */
 
+import { exists, mapValues } from '../runtime';
+import type { EventBody } from './EventBody';
 import {
-    CreateEventRequestBodyOneOf,
-    instanceOfCreateEventRequestBodyOneOf,
-    CreateEventRequestBodyOneOfFromJSON,
-    CreateEventRequestBodyOneOfFromJSONTyped,
-    CreateEventRequestBodyOneOfToJSON,
-} from './CreateEventRequestBodyOneOf';
-import {
-    CreateEventRequestBodyOneOf1,
-    instanceOfCreateEventRequestBodyOneOf1,
-    CreateEventRequestBodyOneOf1FromJSON,
-    CreateEventRequestBodyOneOf1FromJSONTyped,
-    CreateEventRequestBodyOneOf1ToJSON,
-} from './CreateEventRequestBodyOneOf1';
+    EventBodyFromJSON,
+    EventBodyFromJSONTyped,
+    EventBodyToJSON,
+} from './EventBody';
 
 /**
- * @type CreateEventRequestBody
  * 
  * @export
+ * @interface CreateEventRequestBody
  */
-export type CreateEventRequestBody = CreateEventRequestBodyOneOf | CreateEventRequestBodyOneOf1;
+export interface CreateEventRequestBody {
+    /**
+     * 
+     * @type {EventBody}
+     * @memberof CreateEventRequestBody
+     */
+    body?: EventBody;
+    /**
+     * Either 'identify' or 'track'
+     * @type {string}
+     * @memberof CreateEventRequestBody
+     */
+    eventType: string;
+    /**
+     * Optionally provide a timestamp at which the event was sent to Schematic
+     * @type {string}
+     * @memberof CreateEventRequestBody
+     */
+    sentAt?: string | null;
+}
+
+/**
+ * Check if a given object implements the CreateEventRequestBody interface.
+ */
+export function instanceOfCreateEventRequestBody(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "eventType" in value;
+
+    return isInstance;
+}
 
 export function CreateEventRequestBodyFromJSON(json: any): CreateEventRequestBody {
     return CreateEventRequestBodyFromJSONTyped(json, false);
@@ -42,7 +64,12 @@ export function CreateEventRequestBodyFromJSONTyped(json: any, ignoreDiscriminat
     if ((json === undefined) || (json === null)) {
         return json;
     }
-    return { ...CreateEventRequestBodyOneOfFromJSONTyped(json, true), ...CreateEventRequestBodyOneOf1FromJSONTyped(json, true) };
+    return {
+        
+        'body': !exists(json, 'body') ? undefined : EventBodyFromJSON(json['body']),
+        'eventType': json['event_type'],
+        'sentAt': !exists(json, 'sent_at') ? undefined : json['sent_at'],
+    };
 }
 
 export function CreateEventRequestBodyToJSON(value?: CreateEventRequestBody | null): any {
@@ -52,14 +79,11 @@ export function CreateEventRequestBodyToJSON(value?: CreateEventRequestBody | nu
     if (value === null) {
         return null;
     }
-
-    if (instanceOfCreateEventRequestBodyOneOf(value)) {
-        return CreateEventRequestBodyOneOfToJSON(value as CreateEventRequestBodyOneOf);
-    }
-    if (instanceOfCreateEventRequestBodyOneOf1(value)) {
-        return CreateEventRequestBodyOneOf1ToJSON(value as CreateEventRequestBodyOneOf1);
-    }
-
-    return {};
+    return {
+        
+        'body': EventBodyToJSON(value.body),
+        'event_type': value.eventType,
+        'sent_at': value.sentAt,
+    };
 }
 

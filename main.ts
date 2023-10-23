@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 
 import * as api from "./src/index";
-import { EventCapture } from "./src/events";
+import { EventCapture } from "./events";
 
 const fetchApi: api.FetchAPI = fetch as unknown as api.FetchAPI;
 
