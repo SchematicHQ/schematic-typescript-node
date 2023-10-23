@@ -21,10 +21,10 @@ import { exists, mapValues } from '../runtime';
 export interface PlanResponseData {
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof PlanResponseData
      */
-    createdAt: string;
+    createdAt: Date;
     /**
      * 
      * @type {string}
@@ -39,10 +39,10 @@ export interface PlanResponseData {
     name: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof PlanResponseData
      */
-    updatedAt: string;
+    updatedAt: Date;
 }
 
 /**
@@ -68,10 +68,10 @@ export function PlanResponseDataFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'createdAt': json['created_at'],
+        'createdAt': (new Date(json['created_at'])),
         'id': json['id'],
         'name': json['name'],
-        'updatedAt': json['updated_at'],
+        'updatedAt': (new Date(json['updated_at'])),
     };
 }
 
@@ -84,10 +84,10 @@ export function PlanResponseDataToJSON(value?: PlanResponseData | null): any {
     }
     return {
         
-        'created_at': value.createdAt,
+        'created_at': (value.createdAt.toISOString()),
         'id': value.id,
         'name': value.name,
-        'updated_at': value.updatedAt,
+        'updated_at': (value.updatedAt.toISOString()),
     };
 }
 

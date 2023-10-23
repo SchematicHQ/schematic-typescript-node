@@ -21,10 +21,10 @@ import { exists, mapValues } from '../runtime';
 export interface CompanyResponseData {
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof CompanyResponseData
      */
-    createdAt: string;
+    createdAt: Date;
     /**
      * 
      * @type {string}
@@ -39,10 +39,10 @@ export interface CompanyResponseData {
     id: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof CompanyResponseData
      */
-    lastSeenAt?: string | null;
+    lastSeenAt?: Date | null;
     /**
      * 
      * @type {string}
@@ -51,10 +51,10 @@ export interface CompanyResponseData {
     name: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof CompanyResponseData
      */
-    updatedAt: string;
+    updatedAt: Date;
 }
 
 /**
@@ -81,12 +81,12 @@ export function CompanyResponseDataFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'createdAt': json['created_at'],
+        'createdAt': (new Date(json['created_at'])),
         'environmentId': json['environment_id'],
         'id': json['id'],
-        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : json['last_seen_at'],
+        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (json['last_seen_at'] === null ? null : new Date(json['last_seen_at'])),
         'name': json['name'],
-        'updatedAt': json['updated_at'],
+        'updatedAt': (new Date(json['updated_at'])),
     };
 }
 
@@ -99,12 +99,12 @@ export function CompanyResponseDataToJSON(value?: CompanyResponseData | null): a
     }
     return {
         
-        'created_at': value.createdAt,
+        'created_at': (value.createdAt.toISOString()),
         'environment_id': value.environmentId,
         'id': value.id,
-        'last_seen_at': value.lastSeenAt,
+        'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt === null ? null : value.lastSeenAt.toISOString()),
         'name': value.name,
-        'updated_at': value.updatedAt,
+        'updated_at': (value.updatedAt.toISOString()),
     };
 }
 

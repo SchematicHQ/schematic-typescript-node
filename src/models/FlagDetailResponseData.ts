@@ -28,10 +28,10 @@ import {
 export interface FlagDetailResponseData {
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof FlagDetailResponseData
      */
-    createdAt: string;
+    createdAt: Date;
     /**
      * 
      * @type {boolean}
@@ -82,10 +82,10 @@ export interface FlagDetailResponseData {
     rules: Array<FlagRuleDetailResponseData>;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof FlagDetailResponseData
      */
-    updatedAt: string;
+    updatedAt: Date;
 }
 
 /**
@@ -116,7 +116,7 @@ export function FlagDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'createdAt': json['created_at'],
+        'createdAt': (new Date(json['created_at'])),
         'defaultValue': json['default_value'],
         'description': json['description'],
         'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
@@ -125,7 +125,7 @@ export function FlagDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminat
         'key': json['key'],
         'name': json['name'],
         'rules': ((json['rules'] as Array<any>).map(FlagRuleDetailResponseDataFromJSON)),
-        'updatedAt': json['updated_at'],
+        'updatedAt': (new Date(json['updated_at'])),
     };
 }
 
@@ -138,7 +138,7 @@ export function FlagDetailResponseDataToJSON(value?: FlagDetailResponseData | nu
     }
     return {
         
-        'created_at': value.createdAt,
+        'created_at': (value.createdAt.toISOString()),
         'default_value': value.defaultValue,
         'description': value.description,
         'feature_id': value.featureId,
@@ -147,7 +147,7 @@ export function FlagDetailResponseDataToJSON(value?: FlagDetailResponseData | nu
         'key': value.key,
         'name': value.name,
         'rules': ((value.rules as Array<any>).map(FlagRuleDetailResponseDataToJSON)),
-        'updated_at': value.updatedAt,
+        'updated_at': (value.updatedAt.toISOString()),
     };
 }
 

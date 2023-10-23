@@ -40,10 +40,10 @@ export interface CompanyMembershipDetailResponseData {
     companyId: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof CompanyMembershipDetailResponseData
      */
-    createdAt: string;
+    createdAt: Date;
     /**
      * 
      * @type {string}
@@ -52,10 +52,10 @@ export interface CompanyMembershipDetailResponseData {
     id: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof CompanyMembershipDetailResponseData
      */
-    updatedAt: string;
+    updatedAt: Date;
     /**
      * 
      * @type {string}
@@ -90,9 +90,9 @@ export function CompanyMembershipDetailResponseDataFromJSONTyped(json: any, igno
         
         'company': !exists(json, 'company') ? undefined : CompanyResponseDataFromJSON(json['company']),
         'companyId': json['company_id'],
-        'createdAt': json['created_at'],
+        'createdAt': (new Date(json['created_at'])),
         'id': json['id'],
-        'updatedAt': json['updated_at'],
+        'updatedAt': (new Date(json['updated_at'])),
         'userId': json['user_id'],
     };
 }
@@ -108,9 +108,9 @@ export function CompanyMembershipDetailResponseDataToJSON(value?: CompanyMembers
         
         'company': CompanyResponseDataToJSON(value.company),
         'company_id': value.companyId,
-        'created_at': value.createdAt,
+        'created_at': (value.createdAt.toISOString()),
         'id': value.id,
-        'updated_at': value.updatedAt,
+        'updated_at': (value.updatedAt.toISOString()),
         'user_id': value.userId,
     };
 }

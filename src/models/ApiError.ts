@@ -24,7 +24,7 @@ export interface ApiError {
      * @type {string}
      * @memberof ApiError
      */
-    error?: string;
+    error: string;
 }
 
 /**
@@ -32,6 +32,7 @@ export interface ApiError {
  */
 export function instanceOfApiError(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "error" in value;
 
     return isInstance;
 }
@@ -46,7 +47,7 @@ export function ApiErrorFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     }
     return {
         
-        'error': !exists(json, 'error') ? undefined : json['error'],
+        'error': json['error'],
     };
 }
 

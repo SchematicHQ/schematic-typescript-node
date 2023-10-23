@@ -21,10 +21,10 @@ import { exists, mapValues } from '../runtime';
 export interface ApiKeyCreateResponseData {
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof ApiKeyCreateResponseData
      */
-    createdAt: string;
+    createdAt: Date;
     /**
      * 
      * @type {string}
@@ -45,10 +45,10 @@ export interface ApiKeyCreateResponseData {
     id: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof ApiKeyCreateResponseData
      */
-    lastUsedAt?: string | null;
+    lastUsedAt?: Date | null;
     /**
      * 
      * @type {string}
@@ -69,10 +69,10 @@ export interface ApiKeyCreateResponseData {
     secret: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof ApiKeyCreateResponseData
      */
-    updatedAt: string;
+    updatedAt: Date;
 }
 
 /**
@@ -100,15 +100,15 @@ export function ApiKeyCreateResponseDataFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'createdAt': json['created_at'],
+        'createdAt': (new Date(json['created_at'])),
         'description': !exists(json, 'description') ? undefined : json['description'],
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'id': json['id'],
-        'lastUsedAt': !exists(json, 'last_used_at') ? undefined : json['last_used_at'],
+        'lastUsedAt': !exists(json, 'last_used_at') ? undefined : (json['last_used_at'] === null ? null : new Date(json['last_used_at'])),
         'name': json['name'],
         'scopes': json['scopes'],
         'secret': json['secret'],
-        'updatedAt': json['updated_at'],
+        'updatedAt': (new Date(json['updated_at'])),
     };
 }
 
@@ -121,15 +121,15 @@ export function ApiKeyCreateResponseDataToJSON(value?: ApiKeyCreateResponseData 
     }
     return {
         
-        'created_at': value.createdAt,
+        'created_at': (value.createdAt.toISOString()),
         'description': value.description,
         'environment_id': value.environmentId,
         'id': value.id,
-        'last_used_at': value.lastUsedAt,
+        'last_used_at': value.lastUsedAt === undefined ? undefined : (value.lastUsedAt === null ? null : value.lastUsedAt.toISOString()),
         'name': value.name,
         'scopes': value.scopes,
         'secret': value.secret,
-        'updated_at': value.updatedAt,
+        'updated_at': (value.updatedAt.toISOString()),
     };
 }
 

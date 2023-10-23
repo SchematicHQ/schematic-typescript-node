@@ -21,10 +21,10 @@ import { exists, mapValues } from '../runtime';
 export interface EnvironmentResponseData {
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof EnvironmentResponseData
      */
-    createdAt: string;
+    createdAt: Date;
     /**
      * 
      * @type {string}
@@ -45,10 +45,10 @@ export interface EnvironmentResponseData {
     name: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof EnvironmentResponseData
      */
-    updatedAt: string;
+    updatedAt: Date;
 }
 
 /**
@@ -75,11 +75,11 @@ export function EnvironmentResponseDataFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
-        'createdAt': json['created_at'],
+        'createdAt': (new Date(json['created_at'])),
         'environmentType': json['environment_type'],
         'id': json['id'],
         'name': json['name'],
-        'updatedAt': json['updated_at'],
+        'updatedAt': (new Date(json['updated_at'])),
     };
 }
 
@@ -92,11 +92,11 @@ export function EnvironmentResponseDataToJSON(value?: EnvironmentResponseData | 
     }
     return {
         
-        'created_at': value.createdAt,
+        'created_at': (value.createdAt.toISOString()),
         'environment_type': value.environmentType,
         'id': value.id,
         'name': value.name,
-        'updated_at': value.updatedAt,
+        'updated_at': (value.updatedAt.toISOString()),
     };
 }
 

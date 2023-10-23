@@ -27,16 +27,16 @@ export interface UpsertBillingPeriodRequestBody {
     companyId: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof UpsertBillingPeriodRequestBody
      */
-    endedAt?: string | null;
+    endedAt?: Date | null;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof UpsertBillingPeriodRequestBody
      */
-    startedAt: string;
+    startedAt: Date;
 }
 
 /**
@@ -61,8 +61,8 @@ export function UpsertBillingPeriodRequestBodyFromJSONTyped(json: any, ignoreDis
     return {
         
         'companyId': json['company_id'],
-        'endedAt': !exists(json, 'ended_at') ? undefined : json['ended_at'],
-        'startedAt': json['started_at'],
+        'endedAt': !exists(json, 'ended_at') ? undefined : (json['ended_at'] === null ? null : new Date(json['ended_at'])),
+        'startedAt': (new Date(json['started_at'])),
     };
 }
 
@@ -76,8 +76,8 @@ export function UpsertBillingPeriodRequestBodyToJSON(value?: UpsertBillingPeriod
     return {
         
         'company_id': value.companyId,
-        'ended_at': value.endedAt,
-        'started_at': value.startedAt,
+        'ended_at': value.endedAt === undefined ? undefined : (value.endedAt === null ? null : value.endedAt.toISOString()),
+        'started_at': (value.startedAt.toISOString()),
     };
 }
 

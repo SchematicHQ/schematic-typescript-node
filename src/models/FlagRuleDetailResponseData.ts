@@ -34,10 +34,10 @@ export interface FlagRuleDetailResponseData {
     conditions: Array<RuleConditionResponseData>;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof FlagRuleDetailResponseData
      */
-    createdAt: string;
+    createdAt: Date;
     /**
      * 
      * @type {string}
@@ -70,10 +70,10 @@ export interface FlagRuleDetailResponseData {
     priority: number;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof FlagRuleDetailResponseData
      */
-    updatedAt: string;
+    updatedAt: Date;
     /**
      * 
      * @type {boolean}
@@ -111,13 +111,13 @@ export function FlagRuleDetailResponseDataFromJSONTyped(json: any, ignoreDiscrim
     return {
         
         'conditions': ((json['conditions'] as Array<any>).map(RuleConditionResponseDataFromJSON)),
-        'createdAt': json['created_at'],
+        'createdAt': (new Date(json['created_at'])),
         'environmentId': json['environment_id'],
         'flagId': json['flag_id'],
         'id': json['id'],
         'name': json['name'],
         'priority': json['priority'],
-        'updatedAt': json['updated_at'],
+        'updatedAt': (new Date(json['updated_at'])),
         'value': json['value'],
     };
 }
@@ -132,13 +132,13 @@ export function FlagRuleDetailResponseDataToJSON(value?: FlagRuleDetailResponseD
     return {
         
         'conditions': ((value.conditions as Array<any>).map(RuleConditionResponseDataToJSON)),
-        'created_at': value.createdAt,
+        'created_at': (value.createdAt.toISOString()),
         'environment_id': value.environmentId,
         'flag_id': value.flagId,
         'id': value.id,
         'name': value.name,
         'priority': value.priority,
-        'updated_at': value.updatedAt,
+        'updated_at': (value.updatedAt.toISOString()),
         'value': value.value,
     };
 }

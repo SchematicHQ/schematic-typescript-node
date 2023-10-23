@@ -34,10 +34,10 @@ export interface EnvironmentDetailResponseData {
     apiKeys: Array<ApiKeyResponseData>;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof EnvironmentDetailResponseData
      */
-    createdAt: string;
+    createdAt: Date;
     /**
      * 
      * @type {string}
@@ -58,10 +58,10 @@ export interface EnvironmentDetailResponseData {
     name: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof EnvironmentDetailResponseData
      */
-    updatedAt: string;
+    updatedAt: Date;
 }
 
 /**
@@ -90,11 +90,11 @@ export function EnvironmentDetailResponseDataFromJSONTyped(json: any, ignoreDisc
     return {
         
         'apiKeys': ((json['api_keys'] as Array<any>).map(ApiKeyResponseDataFromJSON)),
-        'createdAt': json['created_at'],
+        'createdAt': (new Date(json['created_at'])),
         'environmentType': json['environment_type'],
         'id': json['id'],
         'name': json['name'],
-        'updatedAt': json['updated_at'],
+        'updatedAt': (new Date(json['updated_at'])),
     };
 }
 
@@ -108,11 +108,11 @@ export function EnvironmentDetailResponseDataToJSON(value?: EnvironmentDetailRes
     return {
         
         'api_keys': ((value.apiKeys as Array<any>).map(ApiKeyResponseDataToJSON)),
-        'created_at': value.createdAt,
+        'created_at': (value.createdAt.toISOString()),
         'environment_type': value.environmentType,
         'id': value.id,
         'name': value.name,
-        'updated_at': value.updatedAt,
+        'updated_at': (value.updatedAt.toISOString()),
     };
 }
 

@@ -40,10 +40,10 @@ export interface CreateEventRequestBody {
     eventType: string;
     /**
      * Optionally provide a timestamp at which the event was sent to Schematic
-     * @type {string}
+     * @type {Date}
      * @memberof CreateEventRequestBody
      */
-    sentAt?: string | null;
+    sentAt?: Date | null;
 }
 
 /**
@@ -68,7 +68,7 @@ export function CreateEventRequestBodyFromJSONTyped(json: any, ignoreDiscriminat
         
         'body': !exists(json, 'body') ? undefined : EventBodyFromJSON(json['body']),
         'eventType': json['event_type'],
-        'sentAt': !exists(json, 'sent_at') ? undefined : json['sent_at'],
+        'sentAt': !exists(json, 'sent_at') ? undefined : (json['sent_at'] === null ? null : new Date(json['sent_at'])),
     };
 }
 
@@ -83,7 +83,7 @@ export function CreateEventRequestBodyToJSON(value?: CreateEventRequestBody | nu
         
         'body': EventBodyToJSON(value.body),
         'event_type': value.eventType,
-        'sent_at': value.sentAt,
+        'sent_at': value.sentAt === undefined ? undefined : (value.sentAt === null ? null : value.sentAt.toISOString()),
     };
 }
 

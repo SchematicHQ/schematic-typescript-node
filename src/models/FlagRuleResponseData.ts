@@ -21,10 +21,10 @@ import { exists, mapValues } from '../runtime';
 export interface FlagRuleResponseData {
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof FlagRuleResponseData
      */
-    createdAt: string;
+    createdAt: Date;
     /**
      * 
      * @type {string}
@@ -57,10 +57,10 @@ export interface FlagRuleResponseData {
     priority: number;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof FlagRuleResponseData
      */
-    updatedAt: string;
+    updatedAt: Date;
     /**
      * 
      * @type {boolean}
@@ -96,13 +96,13 @@ export function FlagRuleResponseDataFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'createdAt': json['created_at'],
+        'createdAt': (new Date(json['created_at'])),
         'environmentId': json['environment_id'],
         'flagId': json['flag_id'],
         'id': json['id'],
         'name': json['name'],
         'priority': json['priority'],
-        'updatedAt': json['updated_at'],
+        'updatedAt': (new Date(json['updated_at'])),
         'value': json['value'],
     };
 }
@@ -116,13 +116,13 @@ export function FlagRuleResponseDataToJSON(value?: FlagRuleResponseData | null):
     }
     return {
         
-        'created_at': value.createdAt,
+        'created_at': (value.createdAt.toISOString()),
         'environment_id': value.environmentId,
         'flag_id': value.flagId,
         'id': value.id,
         'name': value.name,
         'priority': value.priority,
-        'updated_at': value.updatedAt,
+        'updated_at': (value.updatedAt.toISOString()),
         'value': value.value,
     };
 }

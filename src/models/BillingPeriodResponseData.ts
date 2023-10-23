@@ -27,16 +27,16 @@ export interface BillingPeriodResponseData {
     companyId: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof BillingPeriodResponseData
      */
-    createdAt: string;
+    createdAt: Date;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof BillingPeriodResponseData
      */
-    endedAt?: string | null;
+    endedAt?: Date | null;
     /**
      * 
      * @type {string}
@@ -51,16 +51,16 @@ export interface BillingPeriodResponseData {
     id: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof BillingPeriodResponseData
      */
-    startedAt: string;
+    startedAt: Date;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof BillingPeriodResponseData
      */
-    updatedAt: string;
+    updatedAt: Date;
 }
 
 /**
@@ -89,12 +89,12 @@ export function BillingPeriodResponseDataFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'companyId': json['company_id'],
-        'createdAt': json['created_at'],
-        'endedAt': !exists(json, 'ended_at') ? undefined : json['ended_at'],
+        'createdAt': (new Date(json['created_at'])),
+        'endedAt': !exists(json, 'ended_at') ? undefined : (json['ended_at'] === null ? null : new Date(json['ended_at'])),
         'environmentId': json['environment_id'],
         'id': json['id'],
-        'startedAt': json['started_at'],
-        'updatedAt': json['updated_at'],
+        'startedAt': (new Date(json['started_at'])),
+        'updatedAt': (new Date(json['updated_at'])),
     };
 }
 
@@ -108,12 +108,12 @@ export function BillingPeriodResponseDataToJSON(value?: BillingPeriodResponseDat
     return {
         
         'company_id': value.companyId,
-        'created_at': value.createdAt,
-        'ended_at': value.endedAt,
+        'created_at': (value.createdAt.toISOString()),
+        'ended_at': value.endedAt === undefined ? undefined : (value.endedAt === null ? null : value.endedAt.toISOString()),
         'environment_id': value.environmentId,
         'id': value.id,
-        'started_at': value.startedAt,
-        'updated_at': value.updatedAt,
+        'started_at': (value.startedAt.toISOString()),
+        'updated_at': (value.updatedAt.toISOString()),
     };
 }
 

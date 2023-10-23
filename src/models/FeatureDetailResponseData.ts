@@ -34,10 +34,10 @@ import {
 export interface FeatureDetailResponseData {
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof FeatureDetailResponseData
      */
-    createdAt: string;
+    createdAt: Date;
     /**
      * 
      * @type {string}
@@ -82,10 +82,10 @@ export interface FeatureDetailResponseData {
     name: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof FeatureDetailResponseData
      */
-    updatedAt: string;
+    updatedAt: Date;
 }
 
 /**
@@ -113,7 +113,7 @@ export function FeatureDetailResponseDataFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'createdAt': json['created_at'],
+        'createdAt': (new Date(json['created_at'])),
         'description': json['description'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
         'eventSummary': !exists(json, 'event_summary') ? undefined : EventSummaryResponseDataFromJSON(json['event_summary']),
@@ -121,7 +121,7 @@ export function FeatureDetailResponseDataFromJSONTyped(json: any, ignoreDiscrimi
         'id': json['id'],
         'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
         'name': json['name'],
-        'updatedAt': json['updated_at'],
+        'updatedAt': (new Date(json['updated_at'])),
     };
 }
 
@@ -134,7 +134,7 @@ export function FeatureDetailResponseDataToJSON(value?: FeatureDetailResponseDat
     }
     return {
         
-        'created_at': value.createdAt,
+        'created_at': (value.createdAt.toISOString()),
         'description': value.description,
         'event_subtype': value.eventSubtype,
         'event_summary': EventSummaryResponseDataToJSON(value.eventSummary),
@@ -142,7 +142,7 @@ export function FeatureDetailResponseDataToJSON(value?: FeatureDetailResponseDat
         'id': value.id,
         'lifecycle_phase': value.lifecyclePhase,
         'name': value.name,
-        'updated_at': value.updatedAt,
+        'updated_at': (value.updatedAt.toISOString()),
     };
 }
 

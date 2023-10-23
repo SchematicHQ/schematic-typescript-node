@@ -27,10 +27,10 @@ export interface RuleConditionResponseData {
     conditionType: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof RuleConditionResponseData
      */
-    createdAt: string;
+    createdAt: Date;
     /**
      * 
      * @type {string}
@@ -105,10 +105,10 @@ export interface RuleConditionResponseData {
     traitValue?: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof RuleConditionResponseData
      */
-    updatedAt: string;
+    updatedAt: Date;
 }
 
 /**
@@ -141,7 +141,7 @@ export function RuleConditionResponseDataFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'conditionType': json['condition_type'],
-        'createdAt': json['created_at'],
+        'createdAt': (new Date(json['created_at'])),
         'environmentId': json['environment_id'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
         'flagId': json['flag_id'],
@@ -154,7 +154,7 @@ export function RuleConditionResponseDataFromJSONTyped(json: any, ignoreDiscrimi
         'traitEntityType': !exists(json, 'trait_entity_type') ? undefined : json['trait_entity_type'],
         'traitId': !exists(json, 'trait_id') ? undefined : json['trait_id'],
         'traitValue': !exists(json, 'trait_value') ? undefined : json['trait_value'],
-        'updatedAt': json['updated_at'],
+        'updatedAt': (new Date(json['updated_at'])),
     };
 }
 
@@ -168,7 +168,7 @@ export function RuleConditionResponseDataToJSON(value?: RuleConditionResponseDat
     return {
         
         'condition_type': value.conditionType,
-        'created_at': value.createdAt,
+        'created_at': (value.createdAt.toISOString()),
         'environment_id': value.environmentId,
         'event_subtype': value.eventSubtype,
         'flag_id': value.flagId,
@@ -181,7 +181,7 @@ export function RuleConditionResponseDataToJSON(value?: RuleConditionResponseDat
         'trait_entity_type': value.traitEntityType,
         'trait_id': value.traitId,
         'trait_value': value.traitValue,
-        'updated_at': value.updatedAt,
+        'updated_at': (value.updatedAt.toISOString()),
     };
 }
 

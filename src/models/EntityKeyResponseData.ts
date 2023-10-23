@@ -21,10 +21,10 @@ import { exists, mapValues } from '../runtime';
 export interface EntityKeyResponseData {
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof EntityKeyResponseData
      */
-    createdAt: string;
+    createdAt: Date;
     /**
      * 
      * @type {string}
@@ -63,10 +63,10 @@ export interface EntityKeyResponseData {
     keyTypeId: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof EntityKeyResponseData
      */
-    updatedAt: string;
+    updatedAt: Date;
     /**
      * 
      * @type {string}
@@ -103,14 +103,14 @@ export function EntityKeyResponseDataFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'createdAt': json['created_at'],
+        'createdAt': (new Date(json['created_at'])),
         'entityId': json['entity_id'],
         'entityType': json['entity_type'],
         'environmentId': json['environment_id'],
         'id': json['id'],
         'keyType': json['key_type'],
         'keyTypeId': json['key_type_id'],
-        'updatedAt': json['updated_at'],
+        'updatedAt': (new Date(json['updated_at'])),
         'value': json['value'],
     };
 }
@@ -124,14 +124,14 @@ export function EntityKeyResponseDataToJSON(value?: EntityKeyResponseData | null
     }
     return {
         
-        'created_at': value.createdAt,
+        'created_at': (value.createdAt.toISOString()),
         'entity_id': value.entityId,
         'entity_type': value.entityType,
         'environment_id': value.environmentId,
         'id': value.id,
         'key_type': value.keyType,
         'key_type_id': value.keyTypeId,
-        'updated_at': value.updatedAt,
+        'updated_at': (value.updatedAt.toISOString()),
         'value': value.value,
     };
 }

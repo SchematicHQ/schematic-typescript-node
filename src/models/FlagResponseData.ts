@@ -21,10 +21,10 @@ import { exists, mapValues } from '../runtime';
 export interface FlagResponseData {
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof FlagResponseData
      */
-    createdAt: string;
+    createdAt: Date;
     /**
      * 
      * @type {boolean}
@@ -69,10 +69,10 @@ export interface FlagResponseData {
     name: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof FlagResponseData
      */
-    updatedAt: string;
+    updatedAt: Date;
 }
 
 /**
@@ -102,7 +102,7 @@ export function FlagResponseDataFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'createdAt': json['created_at'],
+        'createdAt': (new Date(json['created_at'])),
         'defaultValue': json['default_value'],
         'description': json['description'],
         'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
@@ -110,7 +110,7 @@ export function FlagResponseDataFromJSONTyped(json: any, ignoreDiscriminator: bo
         'id': json['id'],
         'key': json['key'],
         'name': json['name'],
-        'updatedAt': json['updated_at'],
+        'updatedAt': (new Date(json['updated_at'])),
     };
 }
 
@@ -123,7 +123,7 @@ export function FlagResponseDataToJSON(value?: FlagResponseData | null): any {
     }
     return {
         
-        'created_at': value.createdAt,
+        'created_at': (value.createdAt.toISOString()),
         'default_value': value.defaultValue,
         'description': value.description,
         'feature_id': value.featureId,
@@ -131,7 +131,7 @@ export function FlagResponseDataToJSON(value?: FlagResponseData | null): any {
         'id': value.id,
         'key': value.key,
         'name': value.name,
-        'updated_at': value.updatedAt,
+        'updated_at': (value.updatedAt.toISOString()),
     };
 }
 

@@ -33,10 +33,10 @@ export interface EventResponseData {
     body: object;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof EventResponseData
      */
-    capturedAt: string;
+    capturedAt: Date;
     /**
      * 
      * @type {string}
@@ -45,10 +45,10 @@ export interface EventResponseData {
     companyId?: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof EventResponseData
      */
-    enrichedAt?: string | null;
+    enrichedAt?: Date | null;
     /**
      * 
      * @type {string}
@@ -69,16 +69,16 @@ export interface EventResponseData {
     id: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof EventResponseData
      */
-    loadedAt?: string | null;
+    loadedAt?: Date | null;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof EventResponseData
      */
-    processedAt?: string | null;
+    processedAt?: Date | null;
     /**
      * 
      * @type {string}
@@ -87,10 +87,10 @@ export interface EventResponseData {
     processingStatus: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof EventResponseData
      */
-    sentAt?: string | null;
+    sentAt?: Date | null;
     /**
      * 
      * @type {string}
@@ -105,10 +105,10 @@ export interface EventResponseData {
     type: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof EventResponseData
      */
-    updatedAt: string;
+    updatedAt: Date;
     /**
      * 
      * @type {string}
@@ -145,19 +145,19 @@ export function EventResponseDataFromJSONTyped(json: any, ignoreDiscriminator: b
         
         'apiKey': json['api_key'],
         'body': json['body'],
-        'capturedAt': json['captured_at'],
+        'capturedAt': (new Date(json['captured_at'])),
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'enrichedAt': !exists(json, 'enriched_at') ? undefined : json['enriched_at'],
+        'enrichedAt': !exists(json, 'enriched_at') ? undefined : (json['enriched_at'] === null ? null : new Date(json['enriched_at'])),
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
         'id': json['id'],
-        'loadedAt': !exists(json, 'loaded_at') ? undefined : json['loaded_at'],
-        'processedAt': !exists(json, 'processed_at') ? undefined : json['processed_at'],
+        'loadedAt': !exists(json, 'loaded_at') ? undefined : (json['loaded_at'] === null ? null : new Date(json['loaded_at'])),
+        'processedAt': !exists(json, 'processed_at') ? undefined : (json['processed_at'] === null ? null : new Date(json['processed_at'])),
         'processingStatus': json['processing_status'],
-        'sentAt': !exists(json, 'sent_at') ? undefined : json['sent_at'],
+        'sentAt': !exists(json, 'sent_at') ? undefined : (json['sent_at'] === null ? null : new Date(json['sent_at'])),
         'subtype': !exists(json, 'subtype') ? undefined : json['subtype'],
         'type': json['type'],
-        'updatedAt': json['updated_at'],
+        'updatedAt': (new Date(json['updated_at'])),
         'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
     };
 }
@@ -173,19 +173,19 @@ export function EventResponseDataToJSON(value?: EventResponseData | null): any {
         
         'api_key': value.apiKey,
         'body': value.body,
-        'captured_at': value.capturedAt,
+        'captured_at': (value.capturedAt.toISOString()),
         'company_id': value.companyId,
-        'enriched_at': value.enrichedAt,
+        'enriched_at': value.enrichedAt === undefined ? undefined : (value.enrichedAt === null ? null : value.enrichedAt.toISOString()),
         'environment_id': value.environmentId,
         'feature_id': value.featureId,
         'id': value.id,
-        'loaded_at': value.loadedAt,
-        'processed_at': value.processedAt,
+        'loaded_at': value.loadedAt === undefined ? undefined : (value.loadedAt === null ? null : value.loadedAt.toISOString()),
+        'processed_at': value.processedAt === undefined ? undefined : (value.processedAt === null ? null : value.processedAt.toISOString()),
         'processing_status': value.processingStatus,
-        'sent_at': value.sentAt,
+        'sent_at': value.sentAt === undefined ? undefined : (value.sentAt === null ? null : value.sentAt.toISOString()),
         'subtype': value.subtype,
         'type': value.type,
-        'updated_at': value.updatedAt,
+        'updated_at': (value.updatedAt.toISOString()),
         'user_id': value.userId,
     };
 }

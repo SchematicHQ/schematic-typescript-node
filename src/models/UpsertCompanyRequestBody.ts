@@ -33,10 +33,10 @@ export interface UpsertCompanyRequestBody {
     keys: object;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof UpsertCompanyRequestBody
      */
-    lastSeenAt?: string | null;
+    lastSeenAt?: Date | null;
     /**
      * 
      * @type {string}
@@ -80,7 +80,7 @@ export function UpsertCompanyRequestBodyFromJSONTyped(json: any, ignoreDiscrimin
         
         'id': !exists(json, 'id') ? undefined : json['id'],
         'keys': json['keys'],
-        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : json['last_seen_at'],
+        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (json['last_seen_at'] === null ? null : new Date(json['last_seen_at'])),
         'name': !exists(json, 'name') ? undefined : json['name'],
         'skipWebhooks': json['skip_webhooks'],
         'traits': !exists(json, 'traits') ? undefined : json['traits'],
@@ -98,7 +98,7 @@ export function UpsertCompanyRequestBodyToJSON(value?: UpsertCompanyRequestBody 
         
         'id': value.id,
         'keys': value.keys,
-        'last_seen_at': value.lastSeenAt,
+        'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt === null ? null : value.lastSeenAt.toISOString()),
         'name': value.name,
         'skip_webhooks': value.skipWebhooks,
         'traits': value.traits,

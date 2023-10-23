@@ -27,10 +27,10 @@ export interface CompanyMembershipResponseData {
     companyId: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof CompanyMembershipResponseData
      */
-    createdAt: string;
+    createdAt: Date;
     /**
      * 
      * @type {string}
@@ -39,10 +39,10 @@ export interface CompanyMembershipResponseData {
     id: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof CompanyMembershipResponseData
      */
-    updatedAt: string;
+    updatedAt: Date;
     /**
      * 
      * @type {string}
@@ -76,9 +76,9 @@ export function CompanyMembershipResponseDataFromJSONTyped(json: any, ignoreDisc
     return {
         
         'companyId': json['company_id'],
-        'createdAt': json['created_at'],
+        'createdAt': (new Date(json['created_at'])),
         'id': json['id'],
-        'updatedAt': json['updated_at'],
+        'updatedAt': (new Date(json['updated_at'])),
         'userId': json['user_id'],
     };
 }
@@ -93,9 +93,9 @@ export function CompanyMembershipResponseDataToJSON(value?: CompanyMembershipRes
     return {
         
         'company_id': value.companyId,
-        'created_at': value.createdAt,
+        'created_at': (value.createdAt.toISOString()),
         'id': value.id,
-        'updated_at': value.updatedAt,
+        'updated_at': (value.updatedAt.toISOString()),
         'user_id': value.userId,
     };
 }

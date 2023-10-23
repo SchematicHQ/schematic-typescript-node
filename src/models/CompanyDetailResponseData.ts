@@ -28,10 +28,10 @@ import {
 export interface CompanyDetailResponseData {
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof CompanyDetailResponseData
      */
-    createdAt: string;
+    createdAt: Date;
     /**
      * 
      * @type {string}
@@ -52,10 +52,10 @@ export interface CompanyDetailResponseData {
     keys: Array<EntityKeyResponseData>;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof CompanyDetailResponseData
      */
-    lastSeenAt?: string | null;
+    lastSeenAt?: Date | null;
     /**
      * 
      * @type {string}
@@ -70,10 +70,10 @@ export interface CompanyDetailResponseData {
     traits?: object;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof CompanyDetailResponseData
      */
-    updatedAt: string;
+    updatedAt: Date;
 }
 
 /**
@@ -101,14 +101,14 @@ export function CompanyDetailResponseDataFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'createdAt': json['created_at'],
+        'createdAt': (new Date(json['created_at'])),
         'environmentId': json['environment_id'],
         'id': json['id'],
         'keys': ((json['keys'] as Array<any>).map(EntityKeyResponseDataFromJSON)),
-        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : json['last_seen_at'],
+        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (json['last_seen_at'] === null ? null : new Date(json['last_seen_at'])),
         'name': json['name'],
         'traits': !exists(json, 'traits') ? undefined : json['traits'],
-        'updatedAt': json['updated_at'],
+        'updatedAt': (new Date(json['updated_at'])),
     };
 }
 
@@ -121,14 +121,14 @@ export function CompanyDetailResponseDataToJSON(value?: CompanyDetailResponseDat
     }
     return {
         
-        'created_at': value.createdAt,
+        'created_at': (value.createdAt.toISOString()),
         'environment_id': value.environmentId,
         'id': value.id,
         'keys': ((value.keys as Array<any>).map(EntityKeyResponseDataToJSON)),
-        'last_seen_at': value.lastSeenAt,
+        'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt === null ? null : value.lastSeenAt.toISOString()),
         'name': value.name,
         'traits': value.traits,
-        'updated_at': value.updatedAt,
+        'updated_at': (value.updatedAt.toISOString()),
     };
 }
 

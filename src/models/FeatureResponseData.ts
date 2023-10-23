@@ -21,10 +21,10 @@ import { exists, mapValues } from '../runtime';
 export interface FeatureResponseData {
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof FeatureResponseData
      */
-    createdAt: string;
+    createdAt: Date;
     /**
      * 
      * @type {string}
@@ -57,10 +57,10 @@ export interface FeatureResponseData {
     name: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof FeatureResponseData
      */
-    updatedAt: string;
+    updatedAt: Date;
 }
 
 /**
@@ -87,13 +87,13 @@ export function FeatureResponseDataFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'createdAt': json['created_at'],
+        'createdAt': (new Date(json['created_at'])),
         'description': json['description'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
         'id': json['id'],
         'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
         'name': json['name'],
-        'updatedAt': json['updated_at'],
+        'updatedAt': (new Date(json['updated_at'])),
     };
 }
 
@@ -106,13 +106,13 @@ export function FeatureResponseDataToJSON(value?: FeatureResponseData | null): a
     }
     return {
         
-        'created_at': value.createdAt,
+        'created_at': (value.createdAt.toISOString()),
         'description': value.description,
         'event_subtype': value.eventSubtype,
         'id': value.id,
         'lifecycle_phase': value.lifecyclePhase,
         'name': value.name,
-        'updated_at': value.updatedAt,
+        'updated_at': (value.updatedAt.toISOString()),
     };
 }
 

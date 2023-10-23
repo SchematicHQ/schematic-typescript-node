@@ -21,10 +21,10 @@ import { exists, mapValues } from '../runtime';
 export interface ApiKeyResponseData {
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof ApiKeyResponseData
      */
-    createdAt: string;
+    createdAt: Date;
     /**
      * 
      * @type {string}
@@ -45,10 +45,10 @@ export interface ApiKeyResponseData {
     id: string;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof ApiKeyResponseData
      */
-    lastUsedAt?: string | null;
+    lastUsedAt?: Date | null;
     /**
      * 
      * @type {string}
@@ -63,10 +63,10 @@ export interface ApiKeyResponseData {
     scopes: Array<string>;
     /**
      * 
-     * @type {string}
+     * @type {Date}
      * @memberof ApiKeyResponseData
      */
-    updatedAt: string;
+    updatedAt: Date;
 }
 
 /**
@@ -93,14 +93,14 @@ export function ApiKeyResponseDataFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'createdAt': json['created_at'],
+        'createdAt': (new Date(json['created_at'])),
         'description': !exists(json, 'description') ? undefined : json['description'],
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'id': json['id'],
-        'lastUsedAt': !exists(json, 'last_used_at') ? undefined : json['last_used_at'],
+        'lastUsedAt': !exists(json, 'last_used_at') ? undefined : (json['last_used_at'] === null ? null : new Date(json['last_used_at'])),
         'name': json['name'],
         'scopes': json['scopes'],
-        'updatedAt': json['updated_at'],
+        'updatedAt': (new Date(json['updated_at'])),
     };
 }
 
@@ -113,14 +113,14 @@ export function ApiKeyResponseDataToJSON(value?: ApiKeyResponseData | null): any
     }
     return {
         
-        'created_at': value.createdAt,
+        'created_at': (value.createdAt.toISOString()),
         'description': value.description,
         'environment_id': value.environmentId,
         'id': value.id,
-        'last_used_at': value.lastUsedAt,
+        'last_used_at': value.lastUsedAt === undefined ? undefined : (value.lastUsedAt === null ? null : value.lastUsedAt.toISOString()),
         'name': value.name,
         'scopes': value.scopes,
-        'updated_at': value.updatedAt,
+        'updated_at': (value.updatedAt.toISOString()),
     };
 }
 
