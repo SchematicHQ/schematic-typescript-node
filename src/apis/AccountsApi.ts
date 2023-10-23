@@ -15,44 +15,50 @@
 
 import * as runtime from '../runtime';
 import type {
-  CountApiKeys200Response,
-  CreateApiKey201Response,
-  CreateApiKeyRequest,
-  CreateEnvironment201Response,
-  CreateEnvironmentRequest,
-  DeleteApiKey200Response,
-  GetApiKey200Response,
-  ListApiKeys200Response,
-  UpdateApiKey200Response,
-  UpdateApiKeyRequest,
-  UpdateEnvironment200Response,
-  UpdateEnvironmentRequest,
+  ApiError,
+  CountApiKeysResponse,
+  CreateApiKeyRequestBody,
+  CreateApiKeyResponse,
+  CreateEnvironmentRequestBody,
+  CreateEnvironmentResponse,
+  DeleteApiKeyResponse,
+  DeleteEnvironmentResponse,
+  GetApiKeyResponse,
+  ListApiKeysResponse,
+  UpdateApiKeyRequestBody,
+  UpdateApiKeyResponse,
+  UpdateEnvironmentRequestBody,
+  UpdateEnvironmentResponse,
 } from '../models';
 import {
-    CountApiKeys200ResponseFromJSON,
-    CountApiKeys200ResponseToJSON,
-    CreateApiKey201ResponseFromJSON,
-    CreateApiKey201ResponseToJSON,
-    CreateApiKeyRequestFromJSON,
-    CreateApiKeyRequestToJSON,
-    CreateEnvironment201ResponseFromJSON,
-    CreateEnvironment201ResponseToJSON,
-    CreateEnvironmentRequestFromJSON,
-    CreateEnvironmentRequestToJSON,
-    DeleteApiKey200ResponseFromJSON,
-    DeleteApiKey200ResponseToJSON,
-    GetApiKey200ResponseFromJSON,
-    GetApiKey200ResponseToJSON,
-    ListApiKeys200ResponseFromJSON,
-    ListApiKeys200ResponseToJSON,
-    UpdateApiKey200ResponseFromJSON,
-    UpdateApiKey200ResponseToJSON,
-    UpdateApiKeyRequestFromJSON,
-    UpdateApiKeyRequestToJSON,
-    UpdateEnvironment200ResponseFromJSON,
-    UpdateEnvironment200ResponseToJSON,
-    UpdateEnvironmentRequestFromJSON,
-    UpdateEnvironmentRequestToJSON,
+    ApiErrorFromJSON,
+    ApiErrorToJSON,
+    CountApiKeysResponseFromJSON,
+    CountApiKeysResponseToJSON,
+    CreateApiKeyRequestBodyFromJSON,
+    CreateApiKeyRequestBodyToJSON,
+    CreateApiKeyResponseFromJSON,
+    CreateApiKeyResponseToJSON,
+    CreateEnvironmentRequestBodyFromJSON,
+    CreateEnvironmentRequestBodyToJSON,
+    CreateEnvironmentResponseFromJSON,
+    CreateEnvironmentResponseToJSON,
+    DeleteApiKeyResponseFromJSON,
+    DeleteApiKeyResponseToJSON,
+    DeleteEnvironmentResponseFromJSON,
+    DeleteEnvironmentResponseToJSON,
+    GetApiKeyResponseFromJSON,
+    GetApiKeyResponseToJSON,
+    ListApiKeysResponseFromJSON,
+    ListApiKeysResponseToJSON,
+    UpdateApiKeyRequestBodyFromJSON,
+    UpdateApiKeyRequestBodyToJSON,
+    UpdateApiKeyResponseFromJSON,
+    UpdateApiKeyResponseToJSON,
+    UpdateEnvironmentRequestBodyFromJSON,
+    UpdateEnvironmentRequestBodyToJSON,
+    UpdateEnvironmentResponseFromJSON,
+    UpdateEnvironmentResponseToJSON,
 } from '../models';
 
 export interface CountApiKeysRequest {
@@ -65,13 +71,13 @@ export interface CountApiKeysRequest {
     dir?: string;
 }
 
-export interface CreateApiKeyOperationRequest {
-    createApiKeyRequest: CreateApiKeyRequest;
+export interface CreateApiKeyRequest {
+    createApiKeyRequestBody: CreateApiKeyRequestBody;
     xSchematicEnvironmentId?: string;
 }
 
-export interface CreateEnvironmentOperationRequest {
-    createEnvironmentRequest: CreateEnvironmentRequest;
+export interface CreateEnvironmentRequest {
+    createEnvironmentRequestBody: CreateEnvironmentRequestBody;
     xSchematicEnvironmentId?: string;
 }
 
@@ -100,14 +106,14 @@ export interface ListApiKeysRequest {
     dir?: string;
 }
 
-export interface UpdateApiKeyOperationRequest {
-    updateApiKeyRequest: UpdateApiKeyRequest;
+export interface UpdateApiKeyRequest {
+    updateApiKeyRequestBody: UpdateApiKeyRequestBody;
     apiKeyId: string;
     xSchematicEnvironmentId?: string;
 }
 
-export interface UpdateEnvironmentOperationRequest {
-    updateEnvironmentRequest: UpdateEnvironmentRequest;
+export interface UpdateEnvironmentRequest {
+    updateEnvironmentRequestBody: UpdateEnvironmentRequestBody;
     environmentId: string;
     xSchematicEnvironmentId?: string;
 }
@@ -120,7 +126,7 @@ export class AccountsApi extends runtime.BaseAPI {
     /**
      * Count api keys
      */
-    async countApiKeysRaw(requestParameters: CountApiKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountApiKeys200Response>> {
+    async countApiKeysRaw(requestParameters: CountApiKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountApiKeysResponse>> {
         if (requestParameters.requireEnvironment === null || requestParameters.requireEnvironment === undefined) {
             throw new runtime.RequiredError('requireEnvironment','Required parameter requestParameters.requireEnvironment was null or undefined when calling countApiKeys.');
         }
@@ -168,13 +174,13 @@ export class AccountsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CountApiKeys200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountApiKeysResponseFromJSON(jsonValue));
     }
 
     /**
      * Count api keys
      */
-    async countApiKeys(requestParameters: CountApiKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountApiKeys200Response> {
+    async countApiKeys(requestParameters: CountApiKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountApiKeysResponse> {
         const response = await this.countApiKeysRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -182,9 +188,9 @@ export class AccountsApi extends runtime.BaseAPI {
     /**
      * Create api key
      */
-    async createApiKeyRaw(requestParameters: CreateApiKeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateApiKey201Response>> {
-        if (requestParameters.createApiKeyRequest === null || requestParameters.createApiKeyRequest === undefined) {
-            throw new runtime.RequiredError('createApiKeyRequest','Required parameter requestParameters.createApiKeyRequest was null or undefined when calling createApiKey.');
+    async createApiKeyRaw(requestParameters: CreateApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateApiKeyResponse>> {
+        if (requestParameters.createApiKeyRequestBody === null || requestParameters.createApiKeyRequestBody === undefined) {
+            throw new runtime.RequiredError('createApiKeyRequestBody','Required parameter requestParameters.createApiKeyRequestBody was null or undefined when calling createApiKey.');
         }
 
         const queryParameters: any = {};
@@ -206,16 +212,16 @@ export class AccountsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateApiKeyRequestToJSON(requestParameters.createApiKeyRequest),
+            body: CreateApiKeyRequestBodyToJSON(requestParameters.createApiKeyRequestBody),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateApiKey201ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateApiKeyResponseFromJSON(jsonValue));
     }
 
     /**
      * Create api key
      */
-    async createApiKey(requestParameters: CreateApiKeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateApiKey201Response> {
+    async createApiKey(requestParameters: CreateApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateApiKeyResponse> {
         const response = await this.createApiKeyRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -223,9 +229,9 @@ export class AccountsApi extends runtime.BaseAPI {
     /**
      * Create environment
      */
-    async createEnvironmentRaw(requestParameters: CreateEnvironmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateEnvironment201Response>> {
-        if (requestParameters.createEnvironmentRequest === null || requestParameters.createEnvironmentRequest === undefined) {
-            throw new runtime.RequiredError('createEnvironmentRequest','Required parameter requestParameters.createEnvironmentRequest was null or undefined when calling createEnvironment.');
+    async createEnvironmentRaw(requestParameters: CreateEnvironmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateEnvironmentResponse>> {
+        if (requestParameters.createEnvironmentRequestBody === null || requestParameters.createEnvironmentRequestBody === undefined) {
+            throw new runtime.RequiredError('createEnvironmentRequestBody','Required parameter requestParameters.createEnvironmentRequestBody was null or undefined when calling createEnvironment.');
         }
 
         const queryParameters: any = {};
@@ -247,16 +253,16 @@ export class AccountsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateEnvironmentRequestToJSON(requestParameters.createEnvironmentRequest),
+            body: CreateEnvironmentRequestBodyToJSON(requestParameters.createEnvironmentRequestBody),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateEnvironment201ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateEnvironmentResponseFromJSON(jsonValue));
     }
 
     /**
      * Create environment
      */
-    async createEnvironment(requestParameters: CreateEnvironmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateEnvironment201Response> {
+    async createEnvironment(requestParameters: CreateEnvironmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateEnvironmentResponse> {
         const response = await this.createEnvironmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -264,7 +270,7 @@ export class AccountsApi extends runtime.BaseAPI {
     /**
      * Delete api key
      */
-    async deleteApiKeyRaw(requestParameters: DeleteApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteApiKey200Response>> {
+    async deleteApiKeyRaw(requestParameters: DeleteApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteApiKeyResponse>> {
         if (requestParameters.apiKeyId === null || requestParameters.apiKeyId === undefined) {
             throw new runtime.RequiredError('apiKeyId','Required parameter requestParameters.apiKeyId was null or undefined when calling deleteApiKey.');
         }
@@ -288,13 +294,13 @@ export class AccountsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteApiKey200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteApiKeyResponseFromJSON(jsonValue));
     }
 
     /**
      * Delete api key
      */
-    async deleteApiKey(requestParameters: DeleteApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteApiKey200Response> {
+    async deleteApiKey(requestParameters: DeleteApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteApiKeyResponse> {
         const response = await this.deleteApiKeyRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -302,7 +308,7 @@ export class AccountsApi extends runtime.BaseAPI {
     /**
      * Delete environment
      */
-    async deleteEnvironmentRaw(requestParameters: DeleteEnvironmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteApiKey200Response>> {
+    async deleteEnvironmentRaw(requestParameters: DeleteEnvironmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteEnvironmentResponse>> {
         if (requestParameters.environmentId === null || requestParameters.environmentId === undefined) {
             throw new runtime.RequiredError('environmentId','Required parameter requestParameters.environmentId was null or undefined when calling deleteEnvironment.');
         }
@@ -326,13 +332,13 @@ export class AccountsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteApiKey200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteEnvironmentResponseFromJSON(jsonValue));
     }
 
     /**
      * Delete environment
      */
-    async deleteEnvironment(requestParameters: DeleteEnvironmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteApiKey200Response> {
+    async deleteEnvironment(requestParameters: DeleteEnvironmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteEnvironmentResponse> {
         const response = await this.deleteEnvironmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -340,7 +346,7 @@ export class AccountsApi extends runtime.BaseAPI {
     /**
      * Get api key
      */
-    async getApiKeyRaw(requestParameters: GetApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApiKey200Response>> {
+    async getApiKeyRaw(requestParameters: GetApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApiKeyResponse>> {
         if (requestParameters.apiKeyId === null || requestParameters.apiKeyId === undefined) {
             throw new runtime.RequiredError('apiKeyId','Required parameter requestParameters.apiKeyId was null or undefined when calling getApiKey.');
         }
@@ -364,13 +370,13 @@ export class AccountsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetApiKey200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetApiKeyResponseFromJSON(jsonValue));
     }
 
     /**
      * Get api key
      */
-    async getApiKey(requestParameters: GetApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetApiKey200Response> {
+    async getApiKey(requestParameters: GetApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetApiKeyResponse> {
         const response = await this.getApiKeyRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -378,7 +384,7 @@ export class AccountsApi extends runtime.BaseAPI {
     /**
      * List api keys
      */
-    async listApiKeysRaw(requestParameters: ListApiKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListApiKeys200Response>> {
+    async listApiKeysRaw(requestParameters: ListApiKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListApiKeysResponse>> {
         if (requestParameters.requireEnvironment === null || requestParameters.requireEnvironment === undefined) {
             throw new runtime.RequiredError('requireEnvironment','Required parameter requestParameters.requireEnvironment was null or undefined when calling listApiKeys.');
         }
@@ -426,13 +432,13 @@ export class AccountsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ListApiKeys200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListApiKeysResponseFromJSON(jsonValue));
     }
 
     /**
      * List api keys
      */
-    async listApiKeys(requestParameters: ListApiKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListApiKeys200Response> {
+    async listApiKeys(requestParameters: ListApiKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListApiKeysResponse> {
         const response = await this.listApiKeysRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -440,9 +446,9 @@ export class AccountsApi extends runtime.BaseAPI {
     /**
      * Update api key
      */
-    async updateApiKeyRaw(requestParameters: UpdateApiKeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateApiKey200Response>> {
-        if (requestParameters.updateApiKeyRequest === null || requestParameters.updateApiKeyRequest === undefined) {
-            throw new runtime.RequiredError('updateApiKeyRequest','Required parameter requestParameters.updateApiKeyRequest was null or undefined when calling updateApiKey.');
+    async updateApiKeyRaw(requestParameters: UpdateApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateApiKeyResponse>> {
+        if (requestParameters.updateApiKeyRequestBody === null || requestParameters.updateApiKeyRequestBody === undefined) {
+            throw new runtime.RequiredError('updateApiKeyRequestBody','Required parameter requestParameters.updateApiKeyRequestBody was null or undefined when calling updateApiKey.');
         }
 
         if (requestParameters.apiKeyId === null || requestParameters.apiKeyId === undefined) {
@@ -468,16 +474,16 @@ export class AccountsApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateApiKeyRequestToJSON(requestParameters.updateApiKeyRequest),
+            body: UpdateApiKeyRequestBodyToJSON(requestParameters.updateApiKeyRequestBody),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateApiKey200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateApiKeyResponseFromJSON(jsonValue));
     }
 
     /**
      * Update api key
      */
-    async updateApiKey(requestParameters: UpdateApiKeyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateApiKey200Response> {
+    async updateApiKey(requestParameters: UpdateApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateApiKeyResponse> {
         const response = await this.updateApiKeyRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -485,9 +491,9 @@ export class AccountsApi extends runtime.BaseAPI {
     /**
      * Update environment
      */
-    async updateEnvironmentRaw(requestParameters: UpdateEnvironmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateEnvironment200Response>> {
-        if (requestParameters.updateEnvironmentRequest === null || requestParameters.updateEnvironmentRequest === undefined) {
-            throw new runtime.RequiredError('updateEnvironmentRequest','Required parameter requestParameters.updateEnvironmentRequest was null or undefined when calling updateEnvironment.');
+    async updateEnvironmentRaw(requestParameters: UpdateEnvironmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateEnvironmentResponse>> {
+        if (requestParameters.updateEnvironmentRequestBody === null || requestParameters.updateEnvironmentRequestBody === undefined) {
+            throw new runtime.RequiredError('updateEnvironmentRequestBody','Required parameter requestParameters.updateEnvironmentRequestBody was null or undefined when calling updateEnvironment.');
         }
 
         if (requestParameters.environmentId === null || requestParameters.environmentId === undefined) {
@@ -513,16 +519,16 @@ export class AccountsApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateEnvironmentRequestToJSON(requestParameters.updateEnvironmentRequest),
+            body: UpdateEnvironmentRequestBodyToJSON(requestParameters.updateEnvironmentRequestBody),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateEnvironment200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateEnvironmentResponseFromJSON(jsonValue));
     }
 
     /**
      * Update environment
      */
-    async updateEnvironment(requestParameters: UpdateEnvironmentOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateEnvironment200Response> {
+    async updateEnvironment(requestParameters: UpdateEnvironmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateEnvironmentResponse> {
         const response = await this.updateEnvironmentRaw(requestParameters, initOverrides);
         return await response.value();
     }

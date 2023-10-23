@@ -15,55 +15,61 @@
 
 import * as runtime from '../runtime';
 import type {
-  CreateCompany201Response,
-  CreateCompanyMembership201Response,
-  CreateCompanyMembershipRequest,
-  CreateCompanyRequest,
-  CreateUser201Response,
-  CreateUserRequest,
-  DeleteApiKey200Response,
-  GetCompany200Response,
-  GetUser200Response,
-  ListCompanies200Response,
-  ListCompanyMemberships200Response,
+  ApiError,
+  CreateCompanyMembershipResponse,
+  CreateCompanyResponse,
+  CreateUserResponse,
+  DeleteCompanyMembershipResponse,
+  GetCompanyResponse,
+  GetOrCreateCompanyMembershipRequestBody,
+  GetUserResponse,
+  ListCompaniesResponse,
+  ListCompanyMembershipsResponse,
+  ListUsersResponse,
+  UpsertCompanyRequestBody,
+  UpsertUserApiRequestBody,
 } from '../models';
 import {
-    CreateCompany201ResponseFromJSON,
-    CreateCompany201ResponseToJSON,
-    CreateCompanyMembership201ResponseFromJSON,
-    CreateCompanyMembership201ResponseToJSON,
-    CreateCompanyMembershipRequestFromJSON,
-    CreateCompanyMembershipRequestToJSON,
-    CreateCompanyRequestFromJSON,
-    CreateCompanyRequestToJSON,
-    CreateUser201ResponseFromJSON,
-    CreateUser201ResponseToJSON,
-    CreateUserRequestFromJSON,
-    CreateUserRequestToJSON,
-    DeleteApiKey200ResponseFromJSON,
-    DeleteApiKey200ResponseToJSON,
-    GetCompany200ResponseFromJSON,
-    GetCompany200ResponseToJSON,
-    GetUser200ResponseFromJSON,
-    GetUser200ResponseToJSON,
-    ListCompanies200ResponseFromJSON,
-    ListCompanies200ResponseToJSON,
-    ListCompanyMemberships200ResponseFromJSON,
-    ListCompanyMemberships200ResponseToJSON,
+    ApiErrorFromJSON,
+    ApiErrorToJSON,
+    CreateCompanyMembershipResponseFromJSON,
+    CreateCompanyMembershipResponseToJSON,
+    CreateCompanyResponseFromJSON,
+    CreateCompanyResponseToJSON,
+    CreateUserResponseFromJSON,
+    CreateUserResponseToJSON,
+    DeleteCompanyMembershipResponseFromJSON,
+    DeleteCompanyMembershipResponseToJSON,
+    GetCompanyResponseFromJSON,
+    GetCompanyResponseToJSON,
+    GetOrCreateCompanyMembershipRequestBodyFromJSON,
+    GetOrCreateCompanyMembershipRequestBodyToJSON,
+    GetUserResponseFromJSON,
+    GetUserResponseToJSON,
+    ListCompaniesResponseFromJSON,
+    ListCompaniesResponseToJSON,
+    ListCompanyMembershipsResponseFromJSON,
+    ListCompanyMembershipsResponseToJSON,
+    ListUsersResponseFromJSON,
+    ListUsersResponseToJSON,
+    UpsertCompanyRequestBodyFromJSON,
+    UpsertCompanyRequestBodyToJSON,
+    UpsertUserApiRequestBodyFromJSON,
+    UpsertUserApiRequestBodyToJSON,
 } from '../models';
 
-export interface CreateCompanyOperationRequest {
-    createCompanyRequest: CreateCompanyRequest;
+export interface CreateCompanyRequest {
+    upsertCompanyRequestBody: UpsertCompanyRequestBody;
     xSchematicEnvironmentId?: string;
 }
 
-export interface CreateCompanyMembershipOperationRequest {
-    createCompanyMembershipRequest: CreateCompanyMembershipRequest;
+export interface CreateCompanyMembershipRequest {
+    getOrCreateCompanyMembershipRequestBody: GetOrCreateCompanyMembershipRequestBody;
     xSchematicEnvironmentId?: string;
 }
 
-export interface CreateUserOperationRequest {
-    createUserRequest: CreateUserRequest;
+export interface CreateUserRequest {
+    upsertUserApiRequestBody: UpsertUserApiRequestBody;
     xSchematicEnvironmentId?: string;
 }
 
@@ -118,9 +124,9 @@ export class CompaniesApi extends runtime.BaseAPI {
     /**
      * Create company
      */
-    async createCompanyRaw(requestParameters: CreateCompanyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCompany201Response>> {
-        if (requestParameters.createCompanyRequest === null || requestParameters.createCompanyRequest === undefined) {
-            throw new runtime.RequiredError('createCompanyRequest','Required parameter requestParameters.createCompanyRequest was null or undefined when calling createCompany.');
+    async createCompanyRaw(requestParameters: CreateCompanyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCompanyResponse>> {
+        if (requestParameters.upsertCompanyRequestBody === null || requestParameters.upsertCompanyRequestBody === undefined) {
+            throw new runtime.RequiredError('upsertCompanyRequestBody','Required parameter requestParameters.upsertCompanyRequestBody was null or undefined when calling createCompany.');
         }
 
         const queryParameters: any = {};
@@ -142,16 +148,16 @@ export class CompaniesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateCompanyRequestToJSON(requestParameters.createCompanyRequest),
+            body: UpsertCompanyRequestBodyToJSON(requestParameters.upsertCompanyRequestBody),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCompany201ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCompanyResponseFromJSON(jsonValue));
     }
 
     /**
      * Create company
      */
-    async createCompany(requestParameters: CreateCompanyOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCompany201Response> {
+    async createCompany(requestParameters: CreateCompanyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCompanyResponse> {
         const response = await this.createCompanyRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -159,9 +165,9 @@ export class CompaniesApi extends runtime.BaseAPI {
     /**
      * Create company membership
      */
-    async createCompanyMembershipRaw(requestParameters: CreateCompanyMembershipOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCompanyMembership201Response>> {
-        if (requestParameters.createCompanyMembershipRequest === null || requestParameters.createCompanyMembershipRequest === undefined) {
-            throw new runtime.RequiredError('createCompanyMembershipRequest','Required parameter requestParameters.createCompanyMembershipRequest was null or undefined when calling createCompanyMembership.');
+    async createCompanyMembershipRaw(requestParameters: CreateCompanyMembershipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCompanyMembershipResponse>> {
+        if (requestParameters.getOrCreateCompanyMembershipRequestBody === null || requestParameters.getOrCreateCompanyMembershipRequestBody === undefined) {
+            throw new runtime.RequiredError('getOrCreateCompanyMembershipRequestBody','Required parameter requestParameters.getOrCreateCompanyMembershipRequestBody was null or undefined when calling createCompanyMembership.');
         }
 
         const queryParameters: any = {};
@@ -183,16 +189,16 @@ export class CompaniesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateCompanyMembershipRequestToJSON(requestParameters.createCompanyMembershipRequest),
+            body: GetOrCreateCompanyMembershipRequestBodyToJSON(requestParameters.getOrCreateCompanyMembershipRequestBody),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCompanyMembership201ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCompanyMembershipResponseFromJSON(jsonValue));
     }
 
     /**
      * Create company membership
      */
-    async createCompanyMembership(requestParameters: CreateCompanyMembershipOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCompanyMembership201Response> {
+    async createCompanyMembership(requestParameters: CreateCompanyMembershipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCompanyMembershipResponse> {
         const response = await this.createCompanyMembershipRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -200,9 +206,9 @@ export class CompaniesApi extends runtime.BaseAPI {
     /**
      * Create user
      */
-    async createUserRaw(requestParameters: CreateUserOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateUser201Response>> {
-        if (requestParameters.createUserRequest === null || requestParameters.createUserRequest === undefined) {
-            throw new runtime.RequiredError('createUserRequest','Required parameter requestParameters.createUserRequest was null or undefined when calling createUser.');
+    async createUserRaw(requestParameters: CreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateUserResponse>> {
+        if (requestParameters.upsertUserApiRequestBody === null || requestParameters.upsertUserApiRequestBody === undefined) {
+            throw new runtime.RequiredError('upsertUserApiRequestBody','Required parameter requestParameters.upsertUserApiRequestBody was null or undefined when calling createUser.');
         }
 
         const queryParameters: any = {};
@@ -224,16 +230,16 @@ export class CompaniesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateUserRequestToJSON(requestParameters.createUserRequest),
+            body: UpsertUserApiRequestBodyToJSON(requestParameters.upsertUserApiRequestBody),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateUser201ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateUserResponseFromJSON(jsonValue));
     }
 
     /**
      * Create user
      */
-    async createUser(requestParameters: CreateUserOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateUser201Response> {
+    async createUser(requestParameters: CreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateUserResponse> {
         const response = await this.createUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -241,7 +247,7 @@ export class CompaniesApi extends runtime.BaseAPI {
     /**
      * Delete company membership
      */
-    async deleteCompanyMembershipRaw(requestParameters: DeleteCompanyMembershipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteApiKey200Response>> {
+    async deleteCompanyMembershipRaw(requestParameters: DeleteCompanyMembershipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteCompanyMembershipResponse>> {
         if (requestParameters.companyMembershipId === null || requestParameters.companyMembershipId === undefined) {
             throw new runtime.RequiredError('companyMembershipId','Required parameter requestParameters.companyMembershipId was null or undefined when calling deleteCompanyMembership.');
         }
@@ -265,13 +271,13 @@ export class CompaniesApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteApiKey200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteCompanyMembershipResponseFromJSON(jsonValue));
     }
 
     /**
      * Delete company membership
      */
-    async deleteCompanyMembership(requestParameters: DeleteCompanyMembershipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteApiKey200Response> {
+    async deleteCompanyMembership(requestParameters: DeleteCompanyMembershipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteCompanyMembershipResponse> {
         const response = await this.deleteCompanyMembershipRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -279,7 +285,7 @@ export class CompaniesApi extends runtime.BaseAPI {
     /**
      * Get company
      */
-    async getCompanyRaw(requestParameters: GetCompanyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCompany200Response>> {
+    async getCompanyRaw(requestParameters: GetCompanyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCompanyResponse>> {
         if (requestParameters.companyId === null || requestParameters.companyId === undefined) {
             throw new runtime.RequiredError('companyId','Required parameter requestParameters.companyId was null or undefined when calling getCompany.');
         }
@@ -303,13 +309,13 @@ export class CompaniesApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetCompany200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetCompanyResponseFromJSON(jsonValue));
     }
 
     /**
      * Get company
      */
-    async getCompany(requestParameters: GetCompanyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCompany200Response> {
+    async getCompany(requestParameters: GetCompanyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCompanyResponse> {
         const response = await this.getCompanyRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -317,7 +323,7 @@ export class CompaniesApi extends runtime.BaseAPI {
     /**
      * Get user
      */
-    async getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUser200Response>> {
+    async getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserResponse>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
             throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getUser.');
         }
@@ -341,13 +347,13 @@ export class CompaniesApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetUser200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetUserResponseFromJSON(jsonValue));
     }
 
     /**
      * Get user
      */
-    async getUser(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUser200Response> {
+    async getUser(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUserResponse> {
         const response = await this.getUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -355,7 +361,7 @@ export class CompaniesApi extends runtime.BaseAPI {
     /**
      * List companies
      */
-    async listCompaniesRaw(requestParameters: ListCompaniesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListCompanies200Response>> {
+    async listCompaniesRaw(requestParameters: ListCompaniesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListCompaniesResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters.ids) {
@@ -395,13 +401,13 @@ export class CompaniesApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ListCompanies200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListCompaniesResponseFromJSON(jsonValue));
     }
 
     /**
      * List companies
      */
-    async listCompanies(requestParameters: ListCompaniesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListCompanies200Response> {
+    async listCompanies(requestParameters: ListCompaniesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListCompaniesResponse> {
         const response = await this.listCompaniesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -409,7 +415,7 @@ export class CompaniesApi extends runtime.BaseAPI {
     /**
      * List company memberships
      */
-    async listCompanyMembershipsRaw(requestParameters: ListCompanyMembershipsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListCompanyMemberships200Response>> {
+    async listCompanyMembershipsRaw(requestParameters: ListCompanyMembershipsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListCompanyMembershipsResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters.companyId !== undefined) {
@@ -453,13 +459,13 @@ export class CompaniesApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ListCompanyMemberships200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListCompanyMembershipsResponseFromJSON(jsonValue));
     }
 
     /**
      * List company memberships
      */
-    async listCompanyMemberships(requestParameters: ListCompanyMembershipsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListCompanyMemberships200Response> {
+    async listCompanyMemberships(requestParameters: ListCompanyMembershipsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListCompanyMembershipsResponse> {
         const response = await this.listCompanyMembershipsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -467,7 +473,7 @@ export class CompaniesApi extends runtime.BaseAPI {
     /**
      * List users
      */
-    async listUsersRaw(requestParameters: ListUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListCompanies200Response>> {
+    async listUsersRaw(requestParameters: ListUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListUsersResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters.ids) {
@@ -507,13 +513,13 @@ export class CompaniesApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ListCompanies200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListUsersResponseFromJSON(jsonValue));
     }
 
     /**
      * List users
      */
-    async listUsers(requestParameters: ListUsersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListCompanies200Response> {
+    async listUsers(requestParameters: ListUsersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListUsersResponse> {
         const response = await this.listUsersRaw(requestParameters, initOverrides);
         return await response.value();
     }
