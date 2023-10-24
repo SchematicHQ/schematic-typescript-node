@@ -123,8 +123,8 @@ models/UpdatePlanResponse.ts
 models/UpsertBillingPeriodRequestBody.ts
 models/UpsertBillingPeriodResponse.ts
 models/UpsertCompanyRequestBody.ts
-models/UpsertUserApiRequestBody.ts
 models/UpsertUserRequestBody.ts
+models/UpsertUserSubRequestBody.ts
 models/UserDetailResponseData.ts
 models/UserResponseData.ts
 models/index.ts

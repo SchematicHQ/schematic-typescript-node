@@ -27,7 +27,7 @@ import type {
   ListCompanyMembershipsResponse,
   ListUsersResponse,
   UpsertCompanyRequestBody,
-  UpsertUserApiRequestBody,
+  UpsertUserRequestBody,
 } from '../models';
 import {
     ApiErrorFromJSON,
@@ -54,8 +54,8 @@ import {
     ListUsersResponseToJSON,
     UpsertCompanyRequestBodyFromJSON,
     UpsertCompanyRequestBodyToJSON,
-    UpsertUserApiRequestBodyFromJSON,
-    UpsertUserApiRequestBodyToJSON,
+    UpsertUserRequestBodyFromJSON,
+    UpsertUserRequestBodyToJSON,
 } from '../models';
 
 export interface CreateCompanyRequest {
@@ -69,7 +69,7 @@ export interface CreateCompanyMembershipRequest {
 }
 
 export interface CreateUserRequest {
-    upsertUserApiRequestBody: UpsertUserApiRequestBody;
+    upsertUserRequestBody: UpsertUserRequestBody;
     xSchematicEnvironmentId?: string;
 }
 
@@ -207,8 +207,8 @@ export class CompaniesApi extends runtime.BaseAPI {
      * Create user
      */
     async createUserRaw(requestParameters: CreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateUserResponse>> {
-        if (requestParameters.upsertUserApiRequestBody === null || requestParameters.upsertUserApiRequestBody === undefined) {
-            throw new runtime.RequiredError('upsertUserApiRequestBody','Required parameter requestParameters.upsertUserApiRequestBody was null or undefined when calling createUser.');
+        if (requestParameters.upsertUserRequestBody === null || requestParameters.upsertUserRequestBody === undefined) {
+            throw new runtime.RequiredError('upsertUserRequestBody','Required parameter requestParameters.upsertUserRequestBody was null or undefined when calling createUser.');
         }
 
         const queryParameters: any = {};
@@ -230,7 +230,7 @@ export class CompaniesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: UpsertUserApiRequestBodyToJSON(requestParameters.upsertUserApiRequestBody),
+            body: UpsertUserRequestBodyToJSON(requestParameters.upsertUserRequestBody),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateUserResponseFromJSON(jsonValue));

@@ -24,19 +24,7 @@ export interface LatestFlagChecksParams {
      * @type {string}
      * @memberof LatestFlagChecksParams
      */
-    accountId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LatestFlagChecksParams
-     */
     dir?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LatestFlagChecksParams
-     */
-    environmentId?: string;
     /**
      * 
      * @type {string}
@@ -88,9 +76,7 @@ export function LatestFlagChecksParamsFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
         'dir': !exists(json, 'dir') ? undefined : json['dir'],
-        'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
         'flagIds': !exists(json, 'flag_ids') ? undefined : json['flag_ids'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
@@ -108,9 +94,7 @@ export function LatestFlagChecksParamsToJSON(value?: LatestFlagChecksParams | nu
     }
     return {
         
-        'account_id': value.accountId,
         'dir': value.dir,
-        'environment_id': value.environmentId,
         'flag_id': value.flagId,
         'flag_ids': value.flagIds,
         'limit': value.limit,

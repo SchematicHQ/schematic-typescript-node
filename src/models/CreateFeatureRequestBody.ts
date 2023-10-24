@@ -40,6 +40,12 @@ export interface CreateFeatureRequestBody {
     eventSubtype?: string;
     /**
      * 
+     * @type {string}
+     * @memberof CreateFeatureRequestBody
+     */
+    featureType: string;
+    /**
+     * 
      * @type {CreateOrUpdateFlagRequestBody}
      * @memberof CreateFeatureRequestBody
      */
@@ -62,6 +68,12 @@ export interface CreateFeatureRequestBody {
      * @memberof CreateFeatureRequestBody
      */
     skipWebhooks: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateFeatureRequestBody
+     */
+    traitId?: string;
 }
 
 /**
@@ -70,6 +82,7 @@ export interface CreateFeatureRequestBody {
 export function instanceOfCreateFeatureRequestBody(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "featureType" in value;
     isInstance = isInstance && "name" in value;
     isInstance = isInstance && "skipWebhooks" in value;
 
@@ -88,10 +101,12 @@ export function CreateFeatureRequestBodyFromJSONTyped(json: any, ignoreDiscrimin
         
         'description': json['description'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
+        'featureType': json['feature_type'],
         'flag': !exists(json, 'flag') ? undefined : CreateOrUpdateFlagRequestBodyFromJSON(json['flag']),
         'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
         'name': json['name'],
         'skipWebhooks': json['skip_webhooks'],
+        'traitId': !exists(json, 'trait_id') ? undefined : json['trait_id'],
     };
 }
 
@@ -106,10 +121,12 @@ export function CreateFeatureRequestBodyToJSON(value?: CreateFeatureRequestBody 
         
         'description': value.description,
         'event_subtype': value.eventSubtype,
+        'feature_type': value.featureType,
         'flag': CreateOrUpdateFlagRequestBodyToJSON(value.flag),
         'lifecycle_phase': value.lifecyclePhase,
         'name': value.name,
         'skip_webhooks': value.skipWebhooks,
+        'trait_id': value.traitId,
     };
 }
 

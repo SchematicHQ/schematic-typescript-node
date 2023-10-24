@@ -24,19 +24,7 @@ export interface ListFlagChecksParams {
      * @type {string}
      * @memberof ListFlagChecksParams
      */
-    accountId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListFlagChecksParams
-     */
     dir?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListFlagChecksParams
-     */
-    environmentId?: string;
     /**
      * 
      * @type {string}
@@ -88,9 +76,7 @@ export function ListFlagChecksParamsFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'accountId': !exists(json, 'account_id') ? undefined : json['account_id'],
         'dir': !exists(json, 'dir') ? undefined : json['dir'],
-        'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
         'flagIds': !exists(json, 'flag_ids') ? undefined : json['flag_ids'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
@@ -108,9 +94,7 @@ export function ListFlagChecksParamsToJSON(value?: ListFlagChecksParams | null):
     }
     return {
         
-        'account_id': value.accountId,
         'dir': value.dir,
-        'environment_id': value.environmentId,
         'flag_id': value.flagId,
         'flag_ids': value.flagIds,
         'limit': value.limit,

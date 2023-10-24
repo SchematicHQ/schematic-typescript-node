@@ -40,6 +40,12 @@ export interface UpdateFeatureRequestBody {
     eventSubtype?: string;
     /**
      * 
+     * @type {string}
+     * @memberof UpdateFeatureRequestBody
+     */
+    featureType?: string;
+    /**
+     * 
      * @type {CreateOrUpdateFlagRequestBody}
      * @memberof UpdateFeatureRequestBody
      */
@@ -62,6 +68,12 @@ export interface UpdateFeatureRequestBody {
      * @memberof UpdateFeatureRequestBody
      */
     skipWebhooks: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateFeatureRequestBody
+     */
+    traitId?: string;
 }
 
 /**
@@ -86,10 +98,12 @@ export function UpdateFeatureRequestBodyFromJSONTyped(json: any, ignoreDiscrimin
         
         'description': !exists(json, 'description') ? undefined : json['description'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
+        'featureType': !exists(json, 'feature_type') ? undefined : json['feature_type'],
         'flag': !exists(json, 'flag') ? undefined : CreateOrUpdateFlagRequestBodyFromJSON(json['flag']),
         'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'skipWebhooks': json['skip_webhooks'],
+        'traitId': !exists(json, 'trait_id') ? undefined : json['trait_id'],
     };
 }
 
@@ -104,10 +118,12 @@ export function UpdateFeatureRequestBodyToJSON(value?: UpdateFeatureRequestBody 
         
         'description': value.description,
         'event_subtype': value.eventSubtype,
+        'feature_type': value.featureType,
         'flag': CreateOrUpdateFlagRequestBodyToJSON(value.flag),
         'lifecycle_phase': value.lifecyclePhase,
         'name': value.name,
         'skip_webhooks': value.skipWebhooks,
+        'trait_id': value.traitId,
     };
 }
 

@@ -118,7 +118,7 @@ export * from './UpdatePlanResponse';
 export * from './UpsertBillingPeriodRequestBody';
 export * from './UpsertBillingPeriodResponse';
 export * from './UpsertCompanyRequestBody';
-export * from './UpsertUserApiRequestBody';
 export * from './UpsertUserRequestBody';
+export * from './UpsertUserSubRequestBody';
 export * from './UserDetailResponseData';
 export * from './UserResponseData';

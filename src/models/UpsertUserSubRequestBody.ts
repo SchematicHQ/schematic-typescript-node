@@ -16,76 +16,68 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface UpsertUserRequestBody
+ * @interface UpsertUserSubRequestBody
  */
-export interface UpsertUserRequestBody {
-    /**
-     * Optionally specify company using key/value pairs
-     * @type {object}
-     * @memberof UpsertUserRequestBody
-     */
-    company: object;
+export interface UpsertUserSubRequestBody {
     /**
      * Optionally specify company using Schematic company ID
      * @type {string}
-     * @memberof UpsertUserRequestBody
+     * @memberof UpsertUserSubRequestBody
      */
     companyId?: string;
     /**
      * 
      * @type {object}
-     * @memberof UpsertUserRequestBody
+     * @memberof UpsertUserSubRequestBody
      */
     keys: object;
     /**
      * 
      * @type {Date}
-     * @memberof UpsertUserRequestBody
+     * @memberof UpsertUserSubRequestBody
      */
     lastSeenAt?: Date | null;
     /**
      * 
      * @type {string}
-     * @memberof UpsertUserRequestBody
+     * @memberof UpsertUserSubRequestBody
      */
     name?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof UpsertUserRequestBody
+     * @memberof UpsertUserSubRequestBody
      */
     skipWebhooks: boolean;
     /**
      * A map of trait names to trait values
      * @type {object}
-     * @memberof UpsertUserRequestBody
+     * @memberof UpsertUserSubRequestBody
      */
     traits?: object;
 }
 
 /**
- * Check if a given object implements the UpsertUserRequestBody interface.
+ * Check if a given object implements the UpsertUserSubRequestBody interface.
  */
-export function instanceOfUpsertUserRequestBody(value: object): boolean {
+export function instanceOfUpsertUserSubRequestBody(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "company" in value;
     isInstance = isInstance && "keys" in value;
     isInstance = isInstance && "skipWebhooks" in value;
 
     return isInstance;
 }
 
-export function UpsertUserRequestBodyFromJSON(json: any): UpsertUserRequestBody {
-    return UpsertUserRequestBodyFromJSONTyped(json, false);
+export function UpsertUserSubRequestBodyFromJSON(json: any): UpsertUserSubRequestBody {
+    return UpsertUserSubRequestBodyFromJSONTyped(json, false);
 }
 
-export function UpsertUserRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpsertUserRequestBody {
+export function UpsertUserSubRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpsertUserSubRequestBody {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'company': json['company'],
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'keys': json['keys'],
         'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (json['last_seen_at'] === null ? null : new Date(json['last_seen_at'])),
@@ -95,7 +87,7 @@ export function UpsertUserRequestBodyFromJSONTyped(json: any, ignoreDiscriminato
     };
 }
 
-export function UpsertUserRequestBodyToJSON(value?: UpsertUserRequestBody | null): any {
+export function UpsertUserSubRequestBodyToJSON(value?: UpsertUserSubRequestBody | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -104,7 +96,6 @@ export function UpsertUserRequestBodyToJSON(value?: UpsertUserRequestBody | null
     }
     return {
         
-        'company': value.company,
         'company_id': value.companyId,
         'keys': value.keys,
         'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt === null ? null : value.lastSeenAt.toISOString()),

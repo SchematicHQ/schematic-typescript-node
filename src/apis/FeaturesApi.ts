@@ -139,8 +139,6 @@ export interface GetFlagRequest {
 }
 
 export interface LatestFlagChecksRequest {
-    accountId: string;
-    environmentId: string;
     flagIds: Array<string>;
     xSchematicEnvironmentId?: string;
     flagId?: string;
@@ -159,8 +157,6 @@ export interface ListFeaturesRequest {
 }
 
 export interface ListFlagChecksRequest {
-    accountId: string;
-    environmentId: string;
     flagIds: Array<string>;
     xSchematicEnvironmentId?: string;
     flagId?: string;
@@ -602,27 +598,11 @@ export class FeaturesApi extends runtime.BaseAPI {
      * Latest flag checks
      */
     async latestFlagChecksRaw(requestParameters: LatestFlagChecksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LatestFlagChecksResponse>> {
-        if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
-            throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling latestFlagChecks.');
-        }
-
-        if (requestParameters.environmentId === null || requestParameters.environmentId === undefined) {
-            throw new runtime.RequiredError('environmentId','Required parameter requestParameters.environmentId was null or undefined when calling latestFlagChecks.');
-        }
-
         if (requestParameters.flagIds === null || requestParameters.flagIds === undefined) {
             throw new runtime.RequiredError('flagIds','Required parameter requestParameters.flagIds was null or undefined when calling latestFlagChecks.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.accountId !== undefined) {
-            queryParameters['account_id'] = requestParameters.accountId;
-        }
-
-        if (requestParameters.environmentId !== undefined) {
-            queryParameters['environment_id'] = requestParameters.environmentId;
-        }
 
         if (requestParameters.flagId !== undefined) {
             queryParameters['flag_id'] = requestParameters.flagId;
@@ -730,27 +710,11 @@ export class FeaturesApi extends runtime.BaseAPI {
      * List flag checks
      */
     async listFlagChecksRaw(requestParameters: ListFlagChecksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFlagChecksResponse>> {
-        if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
-            throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling listFlagChecks.');
-        }
-
-        if (requestParameters.environmentId === null || requestParameters.environmentId === undefined) {
-            throw new runtime.RequiredError('environmentId','Required parameter requestParameters.environmentId was null or undefined when calling listFlagChecks.');
-        }
-
         if (requestParameters.flagIds === null || requestParameters.flagIds === undefined) {
             throw new runtime.RequiredError('flagIds','Required parameter requestParameters.flagIds was null or undefined when calling listFlagChecks.');
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.accountId !== undefined) {
-            queryParameters['account_id'] = requestParameters.accountId;
-        }
-
-        if (requestParameters.environmentId !== undefined) {
-            queryParameters['environment_id'] = requestParameters.environmentId;
-        }
 
         if (requestParameters.flagId !== undefined) {
             queryParameters['flag_id'] = requestParameters.flagId;
