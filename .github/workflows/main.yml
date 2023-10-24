@@ -38,14 +38,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-      - name: Yarn install
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: install
-      - name: Publish
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: publish
+          registry-url: 'https://npm.pkg.github.com'
+      - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
