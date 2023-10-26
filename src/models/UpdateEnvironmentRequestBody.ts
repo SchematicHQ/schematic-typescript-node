@@ -24,19 +24,19 @@ export interface UpdateEnvironmentRequestBody {
      * @type {string}
      * @memberof UpdateEnvironmentRequestBody
      */
-    environmentType?: string;
+    environmentType?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateEnvironmentRequestBody
      */
-    name?: string;
+    name?: string | null;
     /**
      * 
      * @type {boolean}
      * @memberof UpdateEnvironmentRequestBody
      */
-    skipWebhooks?: boolean;
+    skipWebhooks?: boolean | null;
 }
 
 /**

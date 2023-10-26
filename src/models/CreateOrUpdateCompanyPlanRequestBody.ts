@@ -36,7 +36,7 @@ export interface CreateOrUpdateCompanyPlanRequestBody {
      * @type {string}
      * @memberof CreateOrUpdateCompanyPlanRequestBody
      */
-    id?: string;
+    id?: string | null;
     /**
      * 
      * @type {string}

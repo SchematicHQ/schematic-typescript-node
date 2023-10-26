@@ -24,13 +24,13 @@ export interface UpdateApiKeyRequestBody {
      * @type {string}
      * @memberof UpdateApiKeyRequestBody
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateApiKeyRequestBody
      */
-    name?: string;
+    name?: string | null;
 }
 
 /**

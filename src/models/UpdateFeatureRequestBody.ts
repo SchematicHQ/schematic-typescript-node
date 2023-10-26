@@ -31,19 +31,19 @@ export interface UpdateFeatureRequestBody {
      * @type {string}
      * @memberof UpdateFeatureRequestBody
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateFeatureRequestBody
      */
-    eventSubtype?: string;
+    eventSubtype?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateFeatureRequestBody
      */
-    featureType?: string;
+    featureType?: string | null;
     /**
      * 
      * @type {CreateOrUpdateFlagRequestBody}
@@ -55,13 +55,13 @@ export interface UpdateFeatureRequestBody {
      * @type {string}
      * @memberof UpdateFeatureRequestBody
      */
-    lifecyclePhase?: string;
+    lifecyclePhase?: string | null;
     /**
      * 
      * @type {string}
      * @memberof UpdateFeatureRequestBody
      */
-    name?: string;
+    name?: string | null;
     /**
      * 
      * @type {boolean}
@@ -73,7 +73,7 @@ export interface UpdateFeatureRequestBody {
      * @type {string}
      * @memberof UpdateFeatureRequestBody
      */
-    traitId?: string;
+    traitId?: string | null;
 }
 
 /**

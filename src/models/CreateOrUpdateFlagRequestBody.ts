@@ -43,7 +43,7 @@ export interface CreateOrUpdateFlagRequestBody {
      * @type {string}
      * @memberof CreateOrUpdateFlagRequestBody
      */
-    featureId?: string;
+    featureId?: string | null;
     /**
      * 
      * @type {string}
@@ -55,7 +55,7 @@ export interface CreateOrUpdateFlagRequestBody {
      * @type {string}
      * @memberof CreateOrUpdateFlagRequestBody
      */
-    id?: string;
+    id?: string | null;
     /**
      * 
      * @type {string}

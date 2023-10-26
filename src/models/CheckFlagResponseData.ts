@@ -24,13 +24,13 @@ export interface CheckFlagResponseData {
      * @type {string}
      * @memberof CheckFlagResponseData
      */
-    companyId?: string;
+    companyId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CheckFlagResponseData
      */
-    error?: string;
+    error?: string | null;
     /**
      * 
      * @type {string}
@@ -42,13 +42,13 @@ export interface CheckFlagResponseData {
      * @type {string}
      * @memberof CheckFlagResponseData
      */
-    ruleId?: string;
+    ruleId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CheckFlagResponseData
      */
-    userId?: string;
+    userId?: string | null;
     /**
      * 
      * @type {boolean}

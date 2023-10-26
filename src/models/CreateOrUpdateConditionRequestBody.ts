@@ -30,19 +30,19 @@ export interface CreateOrUpdateConditionRequestBody {
      * @type {string}
      * @memberof CreateOrUpdateConditionRequestBody
      */
-    eventSubtype?: string;
+    eventSubtype?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CreateOrUpdateConditionRequestBody
      */
-    id?: string;
+    id?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CreateOrUpdateConditionRequestBody
      */
-    metricPeriod?: string;
+    metricPeriod?: string | null;
     /**
      * 
      * @type {number}
@@ -66,13 +66,13 @@ export interface CreateOrUpdateConditionRequestBody {
      * @type {string}
      * @memberof CreateOrUpdateConditionRequestBody
      */
-    traitId?: string;
+    traitId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CreateOrUpdateConditionRequestBody
      */
-    traitValue?: string;
+    traitValue?: string | null;
 }
 
 /**

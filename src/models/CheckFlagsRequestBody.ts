@@ -36,7 +36,7 @@ export interface CheckFlagsRequestBody {
      * @type {object}
      * @memberof CheckFlagsRequestBody
      */
-    user?: object;
+    user?: object | null;
 }
 
 /**

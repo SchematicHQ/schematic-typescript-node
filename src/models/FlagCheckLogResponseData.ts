@@ -24,7 +24,7 @@ export interface FlagCheckLogResponseData {
      * @type {string}
      * @memberof FlagCheckLogResponseData
      */
-    companyId?: string;
+    companyId?: string | null;
     /**
      * 
      * @type {Date}
@@ -42,13 +42,13 @@ export interface FlagCheckLogResponseData {
      * @type {string}
      * @memberof FlagCheckLogResponseData
      */
-    error?: string;
+    error?: string | null;
     /**
      * 
      * @type {string}
      * @memberof FlagCheckLogResponseData
      */
-    flagId?: string;
+    flagId?: string | null;
     /**
      * 
      * @type {string}
@@ -84,7 +84,7 @@ export interface FlagCheckLogResponseData {
      * @type {string}
      * @memberof FlagCheckLogResponseData
      */
-    ruleId?: string;
+    ruleId?: string | null;
     /**
      * 
      * @type {Date}
@@ -96,7 +96,7 @@ export interface FlagCheckLogResponseData {
      * @type {string}
      * @memberof FlagCheckLogResponseData
      */
-    userId?: string;
+    userId?: string | null;
     /**
      * 
      * @type {boolean}

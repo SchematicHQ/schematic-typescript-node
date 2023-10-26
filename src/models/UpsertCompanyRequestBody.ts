@@ -24,7 +24,7 @@ export interface UpsertCompanyRequestBody {
      * @type {string}
      * @memberof UpsertCompanyRequestBody
      */
-    id?: string;
+    id?: string | null;
     /**
      * 
      * @type {object}
@@ -42,7 +42,7 @@ export interface UpsertCompanyRequestBody {
      * @type {string}
      * @memberof UpsertCompanyRequestBody
      */
-    name?: string;
+    name?: string | null;
     /**
      * 
      * @type {boolean}

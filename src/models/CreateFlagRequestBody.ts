@@ -43,7 +43,7 @@ export interface CreateFlagRequestBody {
      * @type {string}
      * @memberof CreateFlagRequestBody
      */
-    featureId?: string;
+    featureId?: string | null;
     /**
      * 
      * @type {string}

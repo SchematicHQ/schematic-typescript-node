@@ -42,7 +42,7 @@ export interface FlagResponseData {
      * @type {string}
      * @memberof FlagResponseData
      */
-    featureId?: string;
+    featureId?: string | null;
     /**
      * 
      * @type {string}

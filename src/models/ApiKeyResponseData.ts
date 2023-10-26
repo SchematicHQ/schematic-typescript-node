@@ -30,13 +30,13 @@ export interface ApiKeyResponseData {
      * @type {string}
      * @memberof ApiKeyResponseData
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {string}
      * @memberof ApiKeyResponseData
      */
-    environmentId?: string;
+    environmentId?: string | null;
     /**
      * 
      * @type {string}

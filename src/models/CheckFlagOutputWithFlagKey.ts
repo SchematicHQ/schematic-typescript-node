@@ -24,13 +24,13 @@ export interface CheckFlagOutputWithFlagKey {
      * @type {string}
      * @memberof CheckFlagOutputWithFlagKey
      */
-    companyId?: string;
+    companyId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CheckFlagOutputWithFlagKey
      */
-    error?: string;
+    error?: string | null;
     /**
      * 
      * @type {string}
@@ -48,13 +48,13 @@ export interface CheckFlagOutputWithFlagKey {
      * @type {string}
      * @memberof CheckFlagOutputWithFlagKey
      */
-    ruleId?: string;
+    ruleId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CheckFlagOutputWithFlagKey
      */
-    userId?: string;
+    userId?: string | null;
     /**
      * 
      * @type {boolean}

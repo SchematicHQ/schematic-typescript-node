@@ -42,7 +42,7 @@ export interface EventResponseData {
      * @type {string}
      * @memberof EventResponseData
      */
-    companyId?: string;
+    companyId?: string | null;
     /**
      * 
      * @type {Date}
@@ -54,13 +54,13 @@ export interface EventResponseData {
      * @type {string}
      * @memberof EventResponseData
      */
-    environmentId?: string;
+    environmentId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof EventResponseData
      */
-    featureId?: string;
+    featureId?: string | null;
     /**
      * 
      * @type {string}
@@ -96,7 +96,7 @@ export interface EventResponseData {
      * @type {string}
      * @memberof EventResponseData
      */
-    subtype?: string;
+    subtype?: string | null;
     /**
      * 
      * @type {string}
@@ -114,7 +114,7 @@ export interface EventResponseData {
      * @type {string}
      * @memberof EventResponseData
      */
-    userId?: string;
+    userId?: string | null;
 }
 
 /**

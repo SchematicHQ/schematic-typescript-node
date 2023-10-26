@@ -49,7 +49,7 @@ export interface FeatureDetailResponseData {
      * @type {string}
      * @memberof FeatureDetailResponseData
      */
-    eventSubtype?: string;
+    eventSubtype?: string | null;
     /**
      * 
      * @type {EventSummaryResponseData}
@@ -73,7 +73,7 @@ export interface FeatureDetailResponseData {
      * @type {string}
      * @memberof FeatureDetailResponseData
      */
-    lifecyclePhase?: string;
+    lifecyclePhase?: string | null;
     /**
      * 
      * @type {string}

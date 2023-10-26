@@ -31,13 +31,13 @@ export interface SyncCompanyPlansRequestBody {
      * @type {string}
      * @memberof SyncCompanyPlansRequestBody
      */
-    companyId?: string;
+    companyId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SyncCompanyPlansRequestBody
      */
-    planId?: string;
+    planId?: string | null;
     /**
      * 
      * @type {Array<CreateOrUpdateCompanyPlanRequestBody>}

@@ -37,7 +37,7 @@ export interface CreateOrUpdateRuleRequestBody {
      * @type {string}
      * @memberof CreateOrUpdateRuleRequestBody
      */
-    id?: string;
+    id?: string | null;
     /**
      * 
      * @type {string}

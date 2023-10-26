@@ -48,13 +48,13 @@ export interface EntityFlagValueResponseData {
      * @type {string}
      * @memberof EntityFlagValueResponseData
      */
-    ruleId?: string;
+    ruleId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof EntityFlagValueResponseData
      */
-    userId?: string;
+    userId?: string | null;
     /**
      * 
      * @type {boolean}

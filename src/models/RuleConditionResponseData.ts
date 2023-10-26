@@ -42,7 +42,7 @@ export interface RuleConditionResponseData {
      * @type {string}
      * @memberof RuleConditionResponseData
      */
-    eventSubtype?: string;
+    eventSubtype?: string | null;
     /**
      * 
      * @type {string}
@@ -60,7 +60,7 @@ export interface RuleConditionResponseData {
      * @type {string}
      * @memberof RuleConditionResponseData
      */
-    metricPeriod?: string;
+    metricPeriod?: string | null;
     /**
      * 
      * @type {number}
@@ -90,19 +90,19 @@ export interface RuleConditionResponseData {
      * @type {string}
      * @memberof RuleConditionResponseData
      */
-    traitEntityType?: string;
+    traitEntityType?: string | null;
     /**
      * 
      * @type {string}
      * @memberof RuleConditionResponseData
      */
-    traitId?: string;
+    traitId?: string | null;
     /**
      * 
      * @type {string}
      * @memberof RuleConditionResponseData
      */
-    traitValue?: string;
+    traitValue?: string | null;
     /**
      * 
      * @type {Date}

@@ -37,7 +37,7 @@ export interface CreateFeatureRequestBody {
      * @type {string}
      * @memberof CreateFeatureRequestBody
      */
-    eventSubtype?: string;
+    eventSubtype?: string | null;
     /**
      * 
      * @type {string}
@@ -55,7 +55,7 @@ export interface CreateFeatureRequestBody {
      * @type {string}
      * @memberof CreateFeatureRequestBody
      */
-    lifecyclePhase?: string;
+    lifecyclePhase?: string | null;
     /**
      * 
      * @type {string}
@@ -73,7 +73,7 @@ export interface CreateFeatureRequestBody {
      * @type {string}
      * @memberof CreateFeatureRequestBody
      */
-    traitId?: string;
+    traitId?: string | null;
 }
 
 /**
