@@ -40,15 +40,13 @@ jobs:
         with:
           node-version: 16.x
           registry-url: 'https://npm.pkg.github.com'
+          scope: '@schematichq'
       - name: Set up .npmrc
         run: touch .npmrc && echo "//npm.pkg.github.com/:_authToken=$AUTH_TOKEN" > .npmrc
         env:
           AUTH_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-      - name: .npmrc check
-        run: cat .npmrc
       - name: NPM check
         run: npm whoami --registry https://npm.pkg.github.com
-      - run: yarn
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.CH_PERSONAL_ACCESS_TOKEN }}

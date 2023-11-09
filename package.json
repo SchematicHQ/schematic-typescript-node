@@ -27,7 +27,7 @@
   },
   "main": "dist/schematic.js",
   "modules": false,
-  "name": "schematic-typescript-node",
+  "name": "@schematichq/schematic-typescript-node",
   "publishConfig": {
     "@schematichq:registry": "https://npm.pkg.github.com"
   },
