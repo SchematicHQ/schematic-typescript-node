@@ -58,6 +58,7 @@ models/DeletePlanResponse.ts
 models/DeleteResponse.ts
 models/EntityFlagValueResponseData.ts
 models/EntityKeyResponseData.ts
+models/EntityTraitDefinitionResponseData.ts
 models/EnvironmentDetailResponseData.ts
 models/EnvironmentResponseData.ts
 models/EventBody.ts
@@ -113,6 +114,8 @@ models/SyncCompanyPlansResponse.ts
 models/SyncCompanyPlansResponseData.ts
 models/UpdateApiKeyRequestBody.ts
 models/UpdateApiKeyResponse.ts
+models/UpdateEntityTraitDefinitionRequestBody.ts
+models/UpdateEntityTraitDefinitionResponse.ts
 models/UpdateEnvironmentRequestBody.ts
 models/UpdateEnvironmentResponse.ts
 models/UpdateFeatureRequestBody.ts

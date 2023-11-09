@@ -102,7 +102,7 @@ export interface RuleConditionResponseData {
      * @type {string}
      * @memberof RuleConditionResponseData
      */
-    traitValue?: string | null;
+    traitValue: string;
     /**
      * 
      * @type {Date}
@@ -125,6 +125,7 @@ export function instanceOfRuleConditionResponseData(value: object): boolean {
     isInstance = isInstance && "operator" in value;
     isInstance = isInstance && "resourceIds" in value;
     isInstance = isInstance && "ruleId" in value;
+    isInstance = isInstance && "traitValue" in value;
     isInstance = isInstance && "updatedAt" in value;
 
     return isInstance;
@@ -153,7 +154,7 @@ export function RuleConditionResponseDataFromJSONTyped(json: any, ignoreDiscrimi
         'ruleId': json['rule_id'],
         'traitEntityType': !exists(json, 'trait_entity_type') ? undefined : json['trait_entity_type'],
         'traitId': !exists(json, 'trait_id') ? undefined : json['trait_id'],
-        'traitValue': !exists(json, 'trait_value') ? undefined : json['trait_value'],
+        'traitValue': json['trait_value'],
         'updatedAt': (new Date(json['updated_at'])),
     };
 }

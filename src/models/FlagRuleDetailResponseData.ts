@@ -64,6 +64,12 @@ export interface FlagRuleDetailResponseData {
     name: string;
     /**
      * 
+     * @type {boolean}
+     * @memberof FlagRuleDetailResponseData
+     */
+    permissive: boolean;
+    /**
+     * 
      * @type {number}
      * @memberof FlagRuleDetailResponseData
      */
@@ -93,6 +99,7 @@ export function instanceOfFlagRuleDetailResponseData(value: object): boolean {
     isInstance = isInstance && "flagId" in value;
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "permissive" in value;
     isInstance = isInstance && "priority" in value;
     isInstance = isInstance && "updatedAt" in value;
     isInstance = isInstance && "value" in value;
@@ -116,6 +123,7 @@ export function FlagRuleDetailResponseDataFromJSONTyped(json: any, ignoreDiscrim
         'flagId': json['flag_id'],
         'id': json['id'],
         'name': json['name'],
+        'permissive': json['permissive'],
         'priority': json['priority'],
         'updatedAt': (new Date(json['updated_at'])),
         'value': json['value'],
@@ -137,6 +145,7 @@ export function FlagRuleDetailResponseDataToJSON(value?: FlagRuleDetailResponseD
         'flag_id': value.flagId,
         'id': value.id,
         'name': value.name,
+        'permissive': value.permissive,
         'priority': value.priority,
         'updated_at': (value.updatedAt.toISOString()),
         'value': value.value,

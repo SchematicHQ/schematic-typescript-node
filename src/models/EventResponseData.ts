@@ -24,7 +24,7 @@ export interface EventResponseData {
      * @type {string}
      * @memberof EventResponseData
      */
-    apiKey: string;
+    apiKey?: string | null;
     /**
      * 
      * @type {object}
@@ -122,7 +122,6 @@ export interface EventResponseData {
  */
 export function instanceOfEventResponseData(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "apiKey" in value;
     isInstance = isInstance && "body" in value;
     isInstance = isInstance && "capturedAt" in value;
     isInstance = isInstance && "id" in value;
@@ -143,7 +142,7 @@ export function EventResponseDataFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'apiKey': json['api_key'],
+        'apiKey': !exists(json, 'api_key') ? undefined : json['api_key'],
         'body': json['body'],
         'capturedAt': (new Date(json['captured_at'])),
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],

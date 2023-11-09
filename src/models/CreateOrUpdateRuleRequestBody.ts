@@ -46,6 +46,12 @@ export interface CreateOrUpdateRuleRequestBody {
     name: string;
     /**
      * 
+     * @type {boolean}
+     * @memberof CreateOrUpdateRuleRequestBody
+     */
+    permissive: boolean;
+    /**
+     * 
      * @type {number}
      * @memberof CreateOrUpdateRuleRequestBody
      */
@@ -65,6 +71,7 @@ export function instanceOfCreateOrUpdateRuleRequestBody(value: object): boolean 
     let isInstance = true;
     isInstance = isInstance && "conditions" in value;
     isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "permissive" in value;
     isInstance = isInstance && "priority" in value;
     isInstance = isInstance && "value" in value;
 
@@ -84,6 +91,7 @@ export function CreateOrUpdateRuleRequestBodyFromJSONTyped(json: any, ignoreDisc
         'conditions': ((json['conditions'] as Array<any>).map(CreateOrUpdateConditionRequestBodyFromJSON)),
         'id': !exists(json, 'id') ? undefined : json['id'],
         'name': json['name'],
+        'permissive': json['permissive'],
         'priority': json['priority'],
         'value': json['value'],
     };
@@ -101,6 +109,7 @@ export function CreateOrUpdateRuleRequestBodyToJSON(value?: CreateOrUpdateRuleRe
         'conditions': ((value.conditions as Array<any>).map(CreateOrUpdateConditionRequestBodyToJSON)),
         'id': value.id,
         'name': value.name,
+        'permissive': value.permissive,
         'priority': value.priority,
         'value': value.value,
     };

@@ -20,13 +20,19 @@ import { exists, mapValues } from '../runtime';
  */
 export interface CreateOrUpdateConditionRequestBody {
     /**
+     * Optionally provide a trait ID to compare a metric or trait value against instead of a value
+     * @type {string}
+     * @memberof CreateOrUpdateConditionRequestBody
+     */
+    comparisonTraitId?: string | null;
+    /**
      * 
      * @type {string}
      * @memberof CreateOrUpdateConditionRequestBody
      */
     conditionType: string;
     /**
-     * 
+     * Name of track event type used to measure this condition
      * @type {string}
      * @memberof CreateOrUpdateConditionRequestBody
      */
@@ -38,13 +44,13 @@ export interface CreateOrUpdateConditionRequestBody {
      */
     id?: string | null;
     /**
-     * 
+     * Period of time over which to measure the track event metric
      * @type {string}
      * @memberof CreateOrUpdateConditionRequestBody
      */
     metricPeriod?: string | null;
     /**
-     * 
+     * Value to compare the track event metric against
      * @type {number}
      * @memberof CreateOrUpdateConditionRequestBody
      */
@@ -56,19 +62,19 @@ export interface CreateOrUpdateConditionRequestBody {
      */
     operator: string;
     /**
-     * 
+     * List of resource IDs (companise, users, or plans) targeted by this condition
      * @type {Array<string>}
      * @memberof CreateOrUpdateConditionRequestBody
      */
     resourceIds: Array<string>;
     /**
-     * 
+     * ID of trait to use to measure this condition
      * @type {string}
      * @memberof CreateOrUpdateConditionRequestBody
      */
     traitId?: string | null;
     /**
-     * 
+     * Value to compare the trait value against
      * @type {string}
      * @memberof CreateOrUpdateConditionRequestBody
      */
@@ -98,6 +104,7 @@ export function CreateOrUpdateConditionRequestBodyFromJSONTyped(json: any, ignor
     }
     return {
         
+        'comparisonTraitId': !exists(json, 'comparison_trait_id') ? undefined : json['comparison_trait_id'],
         'conditionType': json['condition_type'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
         'id': !exists(json, 'id') ? undefined : json['id'],
@@ -119,6 +126,7 @@ export function CreateOrUpdateConditionRequestBodyToJSON(value?: CreateOrUpdateC
     }
     return {
         
+        'comparison_trait_id': value.comparisonTraitId,
         'condition_type': value.conditionType,
         'event_subtype': value.eventSubtype,
         'id': value.id,

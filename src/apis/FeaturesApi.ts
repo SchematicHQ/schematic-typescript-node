@@ -139,9 +139,9 @@ export interface GetFlagRequest {
 }
 
 export interface LatestFlagChecksRequest {
-    flagIds: Array<string>;
     xSchematicEnvironmentId?: string;
     flagId?: string;
+    flagIds?: Array<string>;
     limit?: number;
     offset?: number;
     order?: string;
@@ -157,9 +157,9 @@ export interface ListFeaturesRequest {
 }
 
 export interface ListFlagChecksRequest {
-    flagIds: Array<string>;
     xSchematicEnvironmentId?: string;
     flagId?: string;
+    flagIds?: Array<string>;
     limit?: number;
     offset?: number;
     order?: string;
@@ -598,10 +598,6 @@ export class FeaturesApi extends runtime.BaseAPI {
      * Latest flag checks
      */
     async latestFlagChecksRaw(requestParameters: LatestFlagChecksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LatestFlagChecksResponse>> {
-        if (requestParameters.flagIds === null || requestParameters.flagIds === undefined) {
-            throw new runtime.RequiredError('flagIds','Required parameter requestParameters.flagIds was null or undefined when calling latestFlagChecks.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.flagId !== undefined) {
@@ -651,7 +647,7 @@ export class FeaturesApi extends runtime.BaseAPI {
     /**
      * Latest flag checks
      */
-    async latestFlagChecks(requestParameters: LatestFlagChecksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LatestFlagChecksResponse> {
+    async latestFlagChecks(requestParameters: LatestFlagChecksRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LatestFlagChecksResponse> {
         const response = await this.latestFlagChecksRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -710,10 +706,6 @@ export class FeaturesApi extends runtime.BaseAPI {
      * List flag checks
      */
     async listFlagChecksRaw(requestParameters: ListFlagChecksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFlagChecksResponse>> {
-        if (requestParameters.flagIds === null || requestParameters.flagIds === undefined) {
-            throw new runtime.RequiredError('flagIds','Required parameter requestParameters.flagIds was null or undefined when calling listFlagChecks.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.flagId !== undefined) {
@@ -763,7 +755,7 @@ export class FeaturesApi extends runtime.BaseAPI {
     /**
      * List flag checks
      */
-    async listFlagChecks(requestParameters: ListFlagChecksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListFlagChecksResponse> {
+    async listFlagChecks(requestParameters: ListFlagChecksRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListFlagChecksResponse> {
         const response = await this.listFlagChecksRaw(requestParameters, initOverrides);
         return await response.value();
     }

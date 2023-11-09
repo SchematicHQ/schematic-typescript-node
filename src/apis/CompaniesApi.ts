@@ -26,6 +26,8 @@ import type {
   ListCompaniesResponse,
   ListCompanyMembershipsResponse,
   ListUsersResponse,
+  UpdateEntityTraitDefinitionRequestBody,
+  UpdateEntityTraitDefinitionResponse,
   UpsertCompanyRequestBody,
   UpsertUserRequestBody,
 } from '../models';
@@ -52,6 +54,10 @@ import {
     ListCompanyMembershipsResponseToJSON,
     ListUsersResponseFromJSON,
     ListUsersResponseToJSON,
+    UpdateEntityTraitDefinitionRequestBodyFromJSON,
+    UpdateEntityTraitDefinitionRequestBodyToJSON,
+    UpdateEntityTraitDefinitionResponseFromJSON,
+    UpdateEntityTraitDefinitionResponseToJSON,
     UpsertCompanyRequestBodyFromJSON,
     UpsertCompanyRequestBodyToJSON,
     UpsertUserRequestBodyFromJSON,
@@ -114,6 +120,12 @@ export interface ListUsersRequest {
     offset?: number;
     order?: string;
     dir?: string;
+}
+
+export interface UpdateEntityTraitDefinitionRequest {
+    updateEntityTraitDefinitionRequestBody: UpdateEntityTraitDefinitionRequestBody;
+    entityTraitDefinitionId: string;
+    xSchematicEnvironmentId?: string;
 }
 
 /**
@@ -521,6 +533,51 @@ export class CompaniesApi extends runtime.BaseAPI {
      */
     async listUsers(requestParameters: ListUsersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListUsersResponse> {
         const response = await this.listUsersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update entity trait definition
+     */
+    async updateEntityTraitDefinitionRaw(requestParameters: UpdateEntityTraitDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateEntityTraitDefinitionResponse>> {
+        if (requestParameters.updateEntityTraitDefinitionRequestBody === null || requestParameters.updateEntityTraitDefinitionRequestBody === undefined) {
+            throw new runtime.RequiredError('updateEntityTraitDefinitionRequestBody','Required parameter requestParameters.updateEntityTraitDefinitionRequestBody was null or undefined when calling updateEntityTraitDefinition.');
+        }
+
+        if (requestParameters.entityTraitDefinitionId === null || requestParameters.entityTraitDefinitionId === undefined) {
+            throw new runtime.RequiredError('entityTraitDefinitionId','Required parameter requestParameters.entityTraitDefinitionId was null or undefined when calling updateEntityTraitDefinition.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/entity-trait-definitions/{entity_trait_definition_id}`.replace(`{${"entity_trait_definition_id"}}`, encodeURIComponent(String(requestParameters.entityTraitDefinitionId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateEntityTraitDefinitionRequestBodyToJSON(requestParameters.updateEntityTraitDefinitionRequestBody),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateEntityTraitDefinitionResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update entity trait definition
+     */
+    async updateEntityTraitDefinition(requestParameters: UpdateEntityTraitDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateEntityTraitDefinitionResponse> {
+        const response = await this.updateEntityTraitDefinitionRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

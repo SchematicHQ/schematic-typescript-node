@@ -30,6 +30,12 @@ export interface EntityKeyResponseData {
      * @type {string}
      * @memberof EntityKeyResponseData
      */
+    definitionId: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityKeyResponseData
+     */
     entityId: string;
     /**
      * 
@@ -54,13 +60,7 @@ export interface EntityKeyResponseData {
      * @type {string}
      * @memberof EntityKeyResponseData
      */
-    keyType: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof EntityKeyResponseData
-     */
-    keyTypeId: string;
+    key: string;
     /**
      * 
      * @type {Date}
@@ -81,12 +81,12 @@ export interface EntityKeyResponseData {
 export function instanceOfEntityKeyResponseData(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "createdAt" in value;
+    isInstance = isInstance && "definitionId" in value;
     isInstance = isInstance && "entityId" in value;
     isInstance = isInstance && "entityType" in value;
     isInstance = isInstance && "environmentId" in value;
     isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "keyType" in value;
-    isInstance = isInstance && "keyTypeId" in value;
+    isInstance = isInstance && "key" in value;
     isInstance = isInstance && "updatedAt" in value;
     isInstance = isInstance && "value" in value;
 
@@ -104,12 +104,12 @@ export function EntityKeyResponseDataFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'createdAt': (new Date(json['created_at'])),
+        'definitionId': json['definition_id'],
         'entityId': json['entity_id'],
         'entityType': json['entity_type'],
         'environmentId': json['environment_id'],
         'id': json['id'],
-        'keyType': json['key_type'],
-        'keyTypeId': json['key_type_id'],
+        'key': json['key'],
         'updatedAt': (new Date(json['updated_at'])),
         'value': json['value'],
     };
@@ -125,12 +125,12 @@ export function EntityKeyResponseDataToJSON(value?: EntityKeyResponseData | null
     return {
         
         'created_at': (value.createdAt.toISOString()),
+        'definition_id': value.definitionId,
         'entity_id': value.entityId,
         'entity_type': value.entityType,
         'environment_id': value.environmentId,
         'id': value.id,
-        'key_type': value.keyType,
-        'key_type_id': value.keyTypeId,
+        'key': value.key,
         'updated_at': (value.updatedAt.toISOString()),
         'value': value.value,
     };
