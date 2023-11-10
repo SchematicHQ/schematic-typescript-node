@@ -42,6 +42,12 @@ export interface FeatureResponseData {
      * @type {string}
      * @memberof FeatureResponseData
      */
+    featureType: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FeatureResponseData
+     */
     id: string;
     /**
      * 
@@ -70,6 +76,7 @@ export function instanceOfFeatureResponseData(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "createdAt" in value;
     isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "featureType" in value;
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "name" in value;
     isInstance = isInstance && "updatedAt" in value;
@@ -90,6 +97,7 @@ export function FeatureResponseDataFromJSONTyped(json: any, ignoreDiscriminator:
         'createdAt': (new Date(json['created_at'])),
         'description': json['description'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
+        'featureType': json['feature_type'],
         'id': json['id'],
         'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
         'name': json['name'],
@@ -109,6 +117,7 @@ export function FeatureResponseDataToJSON(value?: FeatureResponseData | null): a
         'created_at': (value.createdAt.toISOString()),
         'description': value.description,
         'event_subtype': value.eventSubtype,
+        'feature_type': value.featureType,
         'id': value.id,
         'lifecycle_phase': value.lifecyclePhase,
         'name': value.name,

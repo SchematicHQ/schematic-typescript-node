@@ -58,6 +58,12 @@ export interface FeatureDetailResponseData {
     eventSummary?: EventSummaryResponseData;
     /**
      * 
+     * @type {string}
+     * @memberof FeatureDetailResponseData
+     */
+    featureType: string;
+    /**
+     * 
      * @type {Array<FlagDetailResponseData>}
      * @memberof FeatureDetailResponseData
      */
@@ -95,6 +101,7 @@ export function instanceOfFeatureDetailResponseData(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "createdAt" in value;
     isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "featureType" in value;
     isInstance = isInstance && "flags" in value;
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "name" in value;
@@ -117,6 +124,7 @@ export function FeatureDetailResponseDataFromJSONTyped(json: any, ignoreDiscrimi
         'description': json['description'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
         'eventSummary': !exists(json, 'event_summary') ? undefined : EventSummaryResponseDataFromJSON(json['event_summary']),
+        'featureType': json['feature_type'],
         'flags': ((json['flags'] as Array<any>).map(FlagDetailResponseDataFromJSON)),
         'id': json['id'],
         'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
@@ -138,6 +146,7 @@ export function FeatureDetailResponseDataToJSON(value?: FeatureDetailResponseDat
         'description': value.description,
         'event_subtype': value.eventSubtype,
         'event_summary': EventSummaryResponseDataToJSON(value.eventSummary),
+        'feature_type': value.featureType,
         'flags': ((value.flags as Array<any>).map(FlagDetailResponseDataToJSON)),
         'id': value.id,
         'lifecycle_phase': value.lifecyclePhase,

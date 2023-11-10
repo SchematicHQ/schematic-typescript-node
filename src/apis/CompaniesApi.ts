@@ -123,8 +123,8 @@ export interface ListUsersRequest {
 }
 
 export interface UpdateEntityTraitDefinitionRequest {
-    updateEntityTraitDefinitionRequestBody: UpdateEntityTraitDefinitionRequestBody;
     entityTraitDefinitionId: string;
+    updateEntityTraitDefinitionRequestBody: UpdateEntityTraitDefinitionRequestBody;
     xSchematicEnvironmentId?: string;
 }
 
@@ -540,12 +540,12 @@ export class CompaniesApi extends runtime.BaseAPI {
      * Update entity trait definition
      */
     async updateEntityTraitDefinitionRaw(requestParameters: UpdateEntityTraitDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateEntityTraitDefinitionResponse>> {
-        if (requestParameters.updateEntityTraitDefinitionRequestBody === null || requestParameters.updateEntityTraitDefinitionRequestBody === undefined) {
-            throw new runtime.RequiredError('updateEntityTraitDefinitionRequestBody','Required parameter requestParameters.updateEntityTraitDefinitionRequestBody was null or undefined when calling updateEntityTraitDefinition.');
-        }
-
         if (requestParameters.entityTraitDefinitionId === null || requestParameters.entityTraitDefinitionId === undefined) {
             throw new runtime.RequiredError('entityTraitDefinitionId','Required parameter requestParameters.entityTraitDefinitionId was null or undefined when calling updateEntityTraitDefinition.');
+        }
+
+        if (requestParameters.updateEntityTraitDefinitionRequestBody === null || requestParameters.updateEntityTraitDefinitionRequestBody === undefined) {
+            throw new runtime.RequiredError('updateEntityTraitDefinitionRequestBody','Required parameter requestParameters.updateEntityTraitDefinitionRequestBody was null or undefined when calling updateEntityTraitDefinition.');
         }
 
         const queryParameters: any = {};
