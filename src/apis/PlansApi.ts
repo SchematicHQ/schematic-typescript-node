@@ -84,14 +84,14 @@ export interface SyncCompanyPlansRequest {
 }
 
 export interface UpdatePlanRequest {
-    updatePlanRequestBody: UpdatePlanRequestBody;
     planId: string;
+    updatePlanRequestBody: UpdatePlanRequestBody;
     xSchematicEnvironmentId?: string;
 }
 
 export interface UpsertBillingPeriodRequest {
-    upsertBillingPeriodRequestBody: UpsertBillingPeriodRequestBody;
     key: string;
+    upsertBillingPeriodRequestBody: UpsertBillingPeriodRequestBody;
     xSchematicEnvironmentId?: string;
 }
 
@@ -312,12 +312,12 @@ export class PlansApi extends runtime.BaseAPI {
      * Update plan
      */
     async updatePlanRaw(requestParameters: UpdatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdatePlanResponse>> {
-        if (requestParameters.updatePlanRequestBody === null || requestParameters.updatePlanRequestBody === undefined) {
-            throw new runtime.RequiredError('updatePlanRequestBody','Required parameter requestParameters.updatePlanRequestBody was null or undefined when calling updatePlan.');
-        }
-
         if (requestParameters.planId === null || requestParameters.planId === undefined) {
             throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling updatePlan.');
+        }
+
+        if (requestParameters.updatePlanRequestBody === null || requestParameters.updatePlanRequestBody === undefined) {
+            throw new runtime.RequiredError('updatePlanRequestBody','Required parameter requestParameters.updatePlanRequestBody was null or undefined when calling updatePlan.');
         }
 
         const queryParameters: any = {};
@@ -357,12 +357,12 @@ export class PlansApi extends runtime.BaseAPI {
      * Upsert billing period
      */
     async upsertBillingPeriodRaw(requestParameters: UpsertBillingPeriodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpsertBillingPeriodResponse>> {
-        if (requestParameters.upsertBillingPeriodRequestBody === null || requestParameters.upsertBillingPeriodRequestBody === undefined) {
-            throw new runtime.RequiredError('upsertBillingPeriodRequestBody','Required parameter requestParameters.upsertBillingPeriodRequestBody was null or undefined when calling upsertBillingPeriod.');
-        }
-
         if (requestParameters.key === null || requestParameters.key === undefined) {
             throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling upsertBillingPeriod.');
+        }
+
+        if (requestParameters.upsertBillingPeriodRequestBody === null || requestParameters.upsertBillingPeriodRequestBody === undefined) {
+            throw new runtime.RequiredError('upsertBillingPeriodRequestBody','Required parameter requestParameters.upsertBillingPeriodRequestBody was null or undefined when calling upsertBillingPeriod.');
         }
 
         const queryParameters: any = {};

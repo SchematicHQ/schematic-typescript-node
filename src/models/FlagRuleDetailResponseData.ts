@@ -64,16 +64,16 @@ export interface FlagRuleDetailResponseData {
     name: string;
     /**
      * 
-     * @type {boolean}
+     * @type {number}
      * @memberof FlagRuleDetailResponseData
      */
-    permissive: boolean;
+    priority: number;
     /**
      * 
      * @type {number}
      * @memberof FlagRuleDetailResponseData
      */
-    priority: number;
+    priorityGroup?: number | null;
     /**
      * 
      * @type {Date}
@@ -99,7 +99,6 @@ export function instanceOfFlagRuleDetailResponseData(value: object): boolean {
     isInstance = isInstance && "flagId" in value;
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "permissive" in value;
     isInstance = isInstance && "priority" in value;
     isInstance = isInstance && "updatedAt" in value;
     isInstance = isInstance && "value" in value;
@@ -123,8 +122,8 @@ export function FlagRuleDetailResponseDataFromJSONTyped(json: any, ignoreDiscrim
         'flagId': json['flag_id'],
         'id': json['id'],
         'name': json['name'],
-        'permissive': json['permissive'],
         'priority': json['priority'],
+        'priorityGroup': !exists(json, 'priority_group') ? undefined : json['priority_group'],
         'updatedAt': (new Date(json['updated_at'])),
         'value': json['value'],
     };
@@ -145,8 +144,8 @@ export function FlagRuleDetailResponseDataToJSON(value?: FlagRuleDetailResponseD
         'flag_id': value.flagId,
         'id': value.id,
         'name': value.name,
-        'permissive': value.permissive,
         'priority': value.priority,
+        'priority_group': value.priorityGroup,
         'updated_at': (value.updatedAt.toISOString()),
         'value': value.value,
     };

@@ -46,16 +46,16 @@ export interface CreateOrUpdateRuleRequestBody {
     name: string;
     /**
      * 
-     * @type {boolean}
+     * @type {number}
      * @memberof CreateOrUpdateRuleRequestBody
      */
-    permissive: boolean;
+    priority: number;
     /**
      * 
      * @type {number}
      * @memberof CreateOrUpdateRuleRequestBody
      */
-    priority: number;
+    priorityGroup?: number | null;
     /**
      * 
      * @type {boolean}
@@ -71,7 +71,6 @@ export function instanceOfCreateOrUpdateRuleRequestBody(value: object): boolean 
     let isInstance = true;
     isInstance = isInstance && "conditions" in value;
     isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "permissive" in value;
     isInstance = isInstance && "priority" in value;
     isInstance = isInstance && "value" in value;
 
@@ -91,8 +90,8 @@ export function CreateOrUpdateRuleRequestBodyFromJSONTyped(json: any, ignoreDisc
         'conditions': ((json['conditions'] as Array<any>).map(CreateOrUpdateConditionRequestBodyFromJSON)),
         'id': !exists(json, 'id') ? undefined : json['id'],
         'name': json['name'],
-        'permissive': json['permissive'],
         'priority': json['priority'],
+        'priorityGroup': !exists(json, 'priority_group') ? undefined : json['priority_group'],
         'value': json['value'],
     };
 }
@@ -109,8 +108,8 @@ export function CreateOrUpdateRuleRequestBodyToJSON(value?: CreateOrUpdateRuleRe
         'conditions': ((value.conditions as Array<any>).map(CreateOrUpdateConditionRequestBodyToJSON)),
         'id': value.id,
         'name': value.name,
-        'permissive': value.permissive,
         'priority': value.priority,
+        'priority_group': value.priorityGroup,
         'value': value.value,
     };
 }
