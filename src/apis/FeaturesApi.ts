@@ -86,8 +86,8 @@ import {
 } from '../models';
 
 export interface CheckFlagRequest {
-    key: string;
     checkFlagRequestBody: CheckFlagRequestBody;
+    key: string;
     xSchematicEnvironmentId?: string;
 }
 
@@ -188,14 +188,14 @@ export interface ListFlagsRequest {
 }
 
 export interface UpdateFeatureRequest {
-    featureId: string;
     updateFeatureRequestBody: UpdateFeatureRequestBody;
+    featureId: string;
     xSchematicEnvironmentId?: string;
 }
 
 export interface UpdateFlagRequest {
-    flagId: string;
     createFlagRequestBody: CreateFlagRequestBody;
+    flagId: string;
     xSchematicEnvironmentId?: string;
 }
 
@@ -208,12 +208,12 @@ export class FeaturesApi extends runtime.BaseAPI {
      * Check flag
      */
     async checkFlagRaw(requestParameters: CheckFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckFlagResponse>> {
-        if (requestParameters.key === null || requestParameters.key === undefined) {
-            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling checkFlag.');
-        }
-
         if (requestParameters.checkFlagRequestBody === null || requestParameters.checkFlagRequestBody === undefined) {
             throw new runtime.RequiredError('checkFlagRequestBody','Required parameter requestParameters.checkFlagRequestBody was null or undefined when calling checkFlag.');
+        }
+
+        if (requestParameters.key === null || requestParameters.key === undefined) {
+            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling checkFlag.');
         }
 
         const queryParameters: any = {};
@@ -888,12 +888,12 @@ export class FeaturesApi extends runtime.BaseAPI {
      * Update feature
      */
     async updateFeatureRaw(requestParameters: UpdateFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateFeatureResponse>> {
-        if (requestParameters.featureId === null || requestParameters.featureId === undefined) {
-            throw new runtime.RequiredError('featureId','Required parameter requestParameters.featureId was null or undefined when calling updateFeature.');
-        }
-
         if (requestParameters.updateFeatureRequestBody === null || requestParameters.updateFeatureRequestBody === undefined) {
             throw new runtime.RequiredError('updateFeatureRequestBody','Required parameter requestParameters.updateFeatureRequestBody was null or undefined when calling updateFeature.');
+        }
+
+        if (requestParameters.featureId === null || requestParameters.featureId === undefined) {
+            throw new runtime.RequiredError('featureId','Required parameter requestParameters.featureId was null or undefined when calling updateFeature.');
         }
 
         const queryParameters: any = {};
@@ -933,12 +933,12 @@ export class FeaturesApi extends runtime.BaseAPI {
      * Update flag
      */
     async updateFlagRaw(requestParameters: UpdateFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateFlagResponse>> {
-        if (requestParameters.flagId === null || requestParameters.flagId === undefined) {
-            throw new runtime.RequiredError('flagId','Required parameter requestParameters.flagId was null or undefined when calling updateFlag.');
-        }
-
         if (requestParameters.createFlagRequestBody === null || requestParameters.createFlagRequestBody === undefined) {
             throw new runtime.RequiredError('createFlagRequestBody','Required parameter requestParameters.createFlagRequestBody was null or undefined when calling updateFlag.');
+        }
+
+        if (requestParameters.flagId === null || requestParameters.flagId === undefined) {
+            throw new runtime.RequiredError('flagId','Required parameter requestParameters.flagId was null or undefined when calling updateFlag.');
         }
 
         const queryParameters: any = {};

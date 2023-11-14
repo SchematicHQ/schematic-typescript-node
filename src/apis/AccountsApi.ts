@@ -107,14 +107,14 @@ export interface ListApiKeysRequest {
 }
 
 export interface UpdateApiKeyRequest {
-    apiKeyId: string;
     updateApiKeyRequestBody: UpdateApiKeyRequestBody;
+    apiKeyId: string;
     xSchematicEnvironmentId?: string;
 }
 
 export interface UpdateEnvironmentRequest {
-    environmentId: string;
     updateEnvironmentRequestBody: UpdateEnvironmentRequestBody;
+    environmentId: string;
     xSchematicEnvironmentId?: string;
 }
 
@@ -447,12 +447,12 @@ export class AccountsApi extends runtime.BaseAPI {
      * Update api key
      */
     async updateApiKeyRaw(requestParameters: UpdateApiKeyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateApiKeyResponse>> {
-        if (requestParameters.apiKeyId === null || requestParameters.apiKeyId === undefined) {
-            throw new runtime.RequiredError('apiKeyId','Required parameter requestParameters.apiKeyId was null or undefined when calling updateApiKey.');
-        }
-
         if (requestParameters.updateApiKeyRequestBody === null || requestParameters.updateApiKeyRequestBody === undefined) {
             throw new runtime.RequiredError('updateApiKeyRequestBody','Required parameter requestParameters.updateApiKeyRequestBody was null or undefined when calling updateApiKey.');
+        }
+
+        if (requestParameters.apiKeyId === null || requestParameters.apiKeyId === undefined) {
+            throw new runtime.RequiredError('apiKeyId','Required parameter requestParameters.apiKeyId was null or undefined when calling updateApiKey.');
         }
 
         const queryParameters: any = {};
@@ -492,12 +492,12 @@ export class AccountsApi extends runtime.BaseAPI {
      * Update environment
      */
     async updateEnvironmentRaw(requestParameters: UpdateEnvironmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateEnvironmentResponse>> {
-        if (requestParameters.environmentId === null || requestParameters.environmentId === undefined) {
-            throw new runtime.RequiredError('environmentId','Required parameter requestParameters.environmentId was null or undefined when calling updateEnvironment.');
-        }
-
         if (requestParameters.updateEnvironmentRequestBody === null || requestParameters.updateEnvironmentRequestBody === undefined) {
             throw new runtime.RequiredError('updateEnvironmentRequestBody','Required parameter requestParameters.updateEnvironmentRequestBody was null or undefined when calling updateEnvironment.');
+        }
+
+        if (requestParameters.environmentId === null || requestParameters.environmentId === undefined) {
+            throw new runtime.RequiredError('environmentId','Required parameter requestParameters.environmentId was null or undefined when calling updateEnvironment.');
         }
 
         const queryParameters: any = {};

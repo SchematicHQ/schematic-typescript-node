@@ -88,6 +88,12 @@ export interface FeatureDetailResponseData {
     name: string;
     /**
      * 
+     * @type {string}
+     * @memberof FeatureDetailResponseData
+     */
+    traitId?: string | null;
+    /**
+     * 
      * @type {Date}
      * @memberof FeatureDetailResponseData
      */
@@ -129,6 +135,7 @@ export function FeatureDetailResponseDataFromJSONTyped(json: any, ignoreDiscrimi
         'id': json['id'],
         'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
         'name': json['name'],
+        'traitId': !exists(json, 'trait_id') ? undefined : json['trait_id'],
         'updatedAt': (new Date(json['updated_at'])),
     };
 }
@@ -151,6 +158,7 @@ export function FeatureDetailResponseDataToJSON(value?: FeatureDetailResponseDat
         'id': value.id,
         'lifecycle_phase': value.lifecyclePhase,
         'name': value.name,
+        'trait_id': value.traitId,
         'updated_at': (value.updatedAt.toISOString()),
     };
 }
