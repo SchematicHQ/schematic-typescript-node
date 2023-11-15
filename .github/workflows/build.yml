@@ -10,10 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set Node.js 16.x
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 20
 
       - name: Yarn install
         uses: borales/actions-yarn@v4

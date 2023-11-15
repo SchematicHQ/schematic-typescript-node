@@ -11,16 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set Node.js 16.x
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 16.x
-
+          node-version: 20
       - name: Yarn install
         uses: borales/actions-yarn@v4
         with:
           cmd: install
-
       - name: Build production bundle
         uses: borales/actions-yarn@v4
         with:
@@ -35,21 +32,23 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - name: Set Node.js 16.x
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 20
           registry-url: 'https://npm.pkg.github.com'
           scope: '@schematichq'
       - name: Set up .npmrc
         run: touch .npmrc && echo "//npm.pkg.github.com/:_authToken=$AUTH_TOKEN" > .npmrc
         env:
           AUTH_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-      - name: Build production bundle
+      - name: Build
         uses: borales/actions-yarn@v4
         with:
           cmd: build
-      - run: yarn publish
+      - name: Publish
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.CH_PERSONAL_ACCESS_TOKEN }}
 
