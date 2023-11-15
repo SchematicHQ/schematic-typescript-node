@@ -24,6 +24,8 @@ import type {
   GetEventTypeResponse,
   ListEventTypesResponse,
   ListEventsResponse,
+  ListMetricCountsHourlyResponse,
+  ListMetricCountsResponse,
 } from '../models';
 import {
     ApiErrorFromJSON,
@@ -44,6 +46,10 @@ import {
     ListEventTypesResponseToJSON,
     ListEventsResponseFromJSON,
     ListEventsResponseToJSON,
+    ListMetricCountsHourlyResponseFromJSON,
+    ListMetricCountsHourlyResponseToJSON,
+    ListMetricCountsResponseFromJSON,
+    ListMetricCountsResponseToJSON,
 } from '../models';
 
 export interface CountEventTypesRequest {
@@ -97,6 +103,33 @@ export interface ListEventsRequest {
     userId?: string;
     featureId?: string;
     eventSubtype?: string;
+    limit?: number;
+    offset?: number;
+    order?: string;
+    dir?: string;
+}
+
+export interface ListMetricCountsRequest {
+    eventSubtype: string;
+    xSchematicEnvironmentId?: string;
+    startTime?: Date;
+    endTime?: Date;
+    companyId?: string;
+    userId?: string;
+    limit?: number;
+    offset?: number;
+    order?: string;
+    dir?: string;
+    grouping?: string;
+}
+
+export interface ListMetricCountsHourlyRequest {
+    eventSubtype: string;
+    xSchematicEnvironmentId?: string;
+    startTime?: Date;
+    endTime?: Date;
+    companyId?: string;
+    userId?: string;
     limit?: number;
     offset?: number;
     order?: string;
@@ -462,6 +495,158 @@ export class EventsApi extends runtime.BaseAPI {
      */
     async listEvents(requestParameters: ListEventsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListEventsResponse> {
         const response = await this.listEventsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List metric counts
+     */
+    async listMetricCountsRaw(requestParameters: ListMetricCountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListMetricCountsResponse>> {
+        if (requestParameters.eventSubtype === null || requestParameters.eventSubtype === undefined) {
+            throw new runtime.RequiredError('eventSubtype','Required parameter requestParameters.eventSubtype was null or undefined when calling listMetricCounts.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.startTime !== undefined) {
+            queryParameters['start_time'] = (requestParameters.startTime as any).toISOString();
+        }
+
+        if (requestParameters.endTime !== undefined) {
+            queryParameters['end_time'] = (requestParameters.endTime as any).toISOString();
+        }
+
+        if (requestParameters.eventSubtype !== undefined) {
+            queryParameters['event_subtype'] = requestParameters.eventSubtype;
+        }
+
+        if (requestParameters.companyId !== undefined) {
+            queryParameters['company_id'] = requestParameters.companyId;
+        }
+
+        if (requestParameters.userId !== undefined) {
+            queryParameters['user_id'] = requestParameters.userId;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.order !== undefined) {
+            queryParameters['order'] = requestParameters.order;
+        }
+
+        if (requestParameters.dir !== undefined) {
+            queryParameters['dir'] = requestParameters.dir;
+        }
+
+        if (requestParameters.grouping !== undefined) {
+            queryParameters['grouping'] = requestParameters.grouping;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/metric-counts`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListMetricCountsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List metric counts
+     */
+    async listMetricCounts(requestParameters: ListMetricCountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListMetricCountsResponse> {
+        const response = await this.listMetricCountsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List metric counts hourly
+     */
+    async listMetricCountsHourlyRaw(requestParameters: ListMetricCountsHourlyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListMetricCountsHourlyResponse>> {
+        if (requestParameters.eventSubtype === null || requestParameters.eventSubtype === undefined) {
+            throw new runtime.RequiredError('eventSubtype','Required parameter requestParameters.eventSubtype was null or undefined when calling listMetricCountsHourly.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.startTime !== undefined) {
+            queryParameters['start_time'] = (requestParameters.startTime as any).toISOString();
+        }
+
+        if (requestParameters.endTime !== undefined) {
+            queryParameters['end_time'] = (requestParameters.endTime as any).toISOString();
+        }
+
+        if (requestParameters.eventSubtype !== undefined) {
+            queryParameters['event_subtype'] = requestParameters.eventSubtype;
+        }
+
+        if (requestParameters.companyId !== undefined) {
+            queryParameters['company_id'] = requestParameters.companyId;
+        }
+
+        if (requestParameters.userId !== undefined) {
+            queryParameters['user_id'] = requestParameters.userId;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.order !== undefined) {
+            queryParameters['order'] = requestParameters.order;
+        }
+
+        if (requestParameters.dir !== undefined) {
+            queryParameters['dir'] = requestParameters.dir;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/metric-counts-hourly`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListMetricCountsHourlyResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List metric counts hourly
+     */
+    async listMetricCountsHourly(requestParameters: ListMetricCountsHourlyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListMetricCountsHourlyResponse> {
+        const response = await this.listMetricCountsHourlyRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
