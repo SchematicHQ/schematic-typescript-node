@@ -30,7 +30,7 @@ export interface UpdatePlanRequestBody {
      * @type {boolean}
      * @memberof UpdatePlanRequestBody
      */
-    skipWebhooks: boolean;
+    skipWebhooks?: boolean | null;
 }
 
 /**
@@ -39,7 +39,6 @@ export interface UpdatePlanRequestBody {
 export function instanceOfUpdatePlanRequestBody(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "skipWebhooks" in value;
 
     return isInstance;
 }
@@ -55,7 +54,7 @@ export function UpdatePlanRequestBodyFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'name': json['name'],
-        'skipWebhooks': json['skip_webhooks'],
+        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
     };
 }
 

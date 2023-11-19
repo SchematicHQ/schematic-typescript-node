@@ -30,7 +30,7 @@ export interface CreatePlanRequestBody {
      * @type {boolean}
      * @memberof CreatePlanRequestBody
      */
-    skipWebhooks: boolean;
+    skipWebhooks?: boolean | null;
 }
 
 /**
@@ -39,7 +39,6 @@ export interface CreatePlanRequestBody {
 export function instanceOfCreatePlanRequestBody(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "skipWebhooks" in value;
 
     return isInstance;
 }
@@ -55,7 +54,7 @@ export function CreatePlanRequestBodyFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'name': json['name'],
-        'skipWebhooks': json['skip_webhooks'],
+        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
     };
 }
 

@@ -36,7 +36,7 @@ export interface CreateEnvironmentRequestBody {
      * @type {boolean}
      * @memberof CreateEnvironmentRequestBody
      */
-    skipWebhooks: boolean;
+    skipWebhooks?: boolean | null;
 }
 
 /**
@@ -46,7 +46,6 @@ export function instanceOfCreateEnvironmentRequestBody(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "environmentType" in value;
     isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "skipWebhooks" in value;
 
     return isInstance;
 }
@@ -63,7 +62,7 @@ export function CreateEnvironmentRequestBodyFromJSONTyped(json: any, ignoreDiscr
         
         'environmentType': json['environment_type'],
         'name': json['name'],
-        'skipWebhooks': json['skip_webhooks'],
+        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
     };
 }
 

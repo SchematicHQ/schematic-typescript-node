@@ -67,7 +67,7 @@ export interface CreateFeatureRequestBody {
      * @type {boolean}
      * @memberof CreateFeatureRequestBody
      */
-    skipWebhooks: boolean;
+    skipWebhooks?: boolean | null;
     /**
      * 
      * @type {string}
@@ -84,7 +84,6 @@ export function instanceOfCreateFeatureRequestBody(value: object): boolean {
     isInstance = isInstance && "description" in value;
     isInstance = isInstance && "featureType" in value;
     isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "skipWebhooks" in value;
 
     return isInstance;
 }
@@ -105,7 +104,7 @@ export function CreateFeatureRequestBodyFromJSONTyped(json: any, ignoreDiscrimin
         'flag': !exists(json, 'flag') ? undefined : CreateOrUpdateFlagRequestBodyFromJSON(json['flag']),
         'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
         'name': json['name'],
-        'skipWebhooks': json['skip_webhooks'],
+        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
         'traitId': !exists(json, 'trait_id') ? undefined : json['trait_id'],
     };
 }

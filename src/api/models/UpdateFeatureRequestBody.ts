@@ -67,7 +67,7 @@ export interface UpdateFeatureRequestBody {
      * @type {boolean}
      * @memberof UpdateFeatureRequestBody
      */
-    skipWebhooks: boolean;
+    skipWebhooks?: boolean | null;
     /**
      * 
      * @type {string}
@@ -81,7 +81,6 @@ export interface UpdateFeatureRequestBody {
  */
 export function instanceOfUpdateFeatureRequestBody(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "skipWebhooks" in value;
 
     return isInstance;
 }
@@ -102,7 +101,7 @@ export function UpdateFeatureRequestBodyFromJSONTyped(json: any, ignoreDiscrimin
         'flag': !exists(json, 'flag') ? undefined : CreateOrUpdateFlagRequestBodyFromJSON(json['flag']),
         'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
         'name': !exists(json, 'name') ? undefined : json['name'],
-        'skipWebhooks': json['skip_webhooks'],
+        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
         'traitId': !exists(json, 'trait_id') ? undefined : json['trait_id'],
     };
 }

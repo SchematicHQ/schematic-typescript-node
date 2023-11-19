@@ -54,7 +54,7 @@ export interface UpsertUserRequestBody {
      * @type {boolean}
      * @memberof UpsertUserRequestBody
      */
-    skipWebhooks: boolean;
+    skipWebhooks?: boolean | null;
     /**
      * A map of trait names to trait values
      * @type {object}
@@ -70,7 +70,6 @@ export function instanceOfUpsertUserRequestBody(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "company" in value;
     isInstance = isInstance && "keys" in value;
-    isInstance = isInstance && "skipWebhooks" in value;
 
     return isInstance;
 }
@@ -90,7 +89,7 @@ export function UpsertUserRequestBodyFromJSONTyped(json: any, ignoreDiscriminato
         'keys': json['keys'],
         'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (json['last_seen_at'] === null ? null : new Date(json['last_seen_at'])),
         'name': !exists(json, 'name') ? undefined : json['name'],
-        'skipWebhooks': json['skip_webhooks'],
+        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
         'traits': !exists(json, 'traits') ? undefined : json['traits'],
     };
 }
