@@ -31,9 +31,9 @@
     "@schematichq:registry": "https://npm.pkg.github.com"
   },
   "scripts": {
-    "build": "esbuild src/index.ts --bundle --outfile=dist/schematic.js --platform=node && tsc && api-extractor run",
+    "build": "npx esbuild src/index.ts --bundle --outfile=dist/schematic.js --platform=node && npx tsc && npx api-extractor run",
     "clean": "rm -rf dist",
-    "release": "standard-version && git push --follow-tags && npm publish"
+    "release": "npx standard-version && git push --follow-tags && yarn publish"
   },
   "source": "src/index.ts",
   "targets": {
