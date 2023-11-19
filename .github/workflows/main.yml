@@ -41,6 +41,10 @@ jobs:
         run: touch .npmrc && echo "//npm.pkg.github.com/:_authToken=$AUTH_TOKEN" > .npmrc
         env:
           AUTH_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+      - name: Yarn install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
       - name: Build
         uses: borales/actions-yarn@v4
         with:
