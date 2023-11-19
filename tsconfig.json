@@ -1,14 +1,16 @@
 {
   "compilerOptions": {
+    "declaration": true,
+    "declarationMap": false,
     "esModuleInterop": true,
     "isolatedModules": false,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "moduleResolution": "node",
-    "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
+    "outDir": "./dist",
     "skipLibCheck": true,
     "strict": true,
     "target": "ES2020",

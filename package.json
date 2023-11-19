@@ -6,15 +6,14 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "@parcel/packager-ts": "^2.9.2",
-    "@parcel/transformer-typescript-types": "^2.9.2",
+    "@microsoft/api-extractor": "^7.38.3",
     "@types/node": "^20.3.1",
     "assert": "^2.0.0",
     "browserify-zlib": "^0.2.0",
     "buffer": "^5.5.0||^6.0.0",
+    "esbuild": "^0.19.6",
     "events": "^3.1.0",
     "https-browserify": "^1.0.0",
-    "parcel": "^2.9.2",
     "path-browserify": "^1.0.0",
     "process": "^0.11.10",
     "querystring-es3": "^0.2.1",
@@ -32,12 +31,11 @@
     "@schematichq:registry": "https://npm.pkg.github.com"
   },
   "scripts": {
-    "build": "parcel build",
-    "clean": "rm -rf dist && rm -rf .parcel-cache",
-    "release": "standard-version && git push --follow-tags && npm publish",
-    "watch": "parcel watch"
+    "build": "esbuild src/index.ts --bundle --outfile=dist/schematic.js --platform=node && tsc && api-extractor run",
+    "clean": "rm -rf dist",
+    "release": "standard-version && git push --follow-tags && npm publish"
   },
-  "source": "main.ts",
+  "source": "src/index.ts",
   "targets": {
     "default": {
       "sourceMap": false
