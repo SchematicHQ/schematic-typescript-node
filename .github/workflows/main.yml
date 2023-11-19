@@ -49,6 +49,8 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: build
+      - name: Check build directory
+        run: ls -al ./dist/
       - name: Publish
         uses: borales/actions-yarn@v4
         with:

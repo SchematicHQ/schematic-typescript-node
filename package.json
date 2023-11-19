@@ -24,6 +24,10 @@
     "url": "^0.11.0",
     "util": "^0.12.3"
   },
+  "files": [
+    "dist/schematic.js",
+    "dist/schematic.d.ts"
+  ],
   "main": "dist/schematic.js",
   "modules": false,
   "name": "@schematichq/schematic-typescript-node",
@@ -42,5 +46,5 @@
     }
   },
   "types": "dist/schematic.d.ts",
-  "version": "0.0.4"
+  "version": "0.0.5"
 }
