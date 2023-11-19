@@ -3,31 +3,31 @@ import querystring from "querystring";
 import { v4 as uuidv4 } from "uuid";
 import fetch from "node-fetch";
 
-import { Configuration } from "./src/index";
+import { Configuration } from "./api/index";
 
-type EventType = "identify" | "track";
+type CaptureEventType = "identify" | "track";
 
-type EventBodyCompany = {
+type CaptureEventBodyCompany = {
   keys: Record<string, string>;
   name?: string;
   traits: Record<string, any>;
 };
 
-type EventBodyIdentify = {
-  company?: EventBodyCompany;
+type CaptureEventBodyIdentify = {
+  company?: CaptureEventBodyCompany;
   keys: Record<string, string>;
   name?: string;
   traits: Record<string, any>;
 };
 
-type EventBodyTrack = {
+type CaptureEventBodyTrack = {
   event: string;
   traits: Record<string, any>;
   company?: Record<string, string>;
   user?: Record<string, string>;
 };
 
-type EventBody = EventBodyIdentify | EventBodyTrack;
+type EventBody = CaptureEventBodyIdentify | CaptureEventBodyTrack;
 
 export class EventCapture {
   private apiKey: string;
@@ -42,7 +42,7 @@ export class EventCapture {
   }
 
   private async sendEvent(
-    eventType: EventType,
+    eventType: CaptureEventType,
     eventBody: EventBody,
   ): Promise<void> {
     const event = {
@@ -69,11 +69,11 @@ export class EventCapture {
     await fetch(requestUrl);
   }
 
-  identify(body: EventBodyIdentify): void {
+  identify(body: CaptureEventBodyIdentify): void {
     this.sendEvent("identify", body);
   }
 
-  track(body: EventBodyTrack): void {
+  track(body: CaptureEventBodyTrack): void {
     this.sendEvent("track", body);
   }
 }
