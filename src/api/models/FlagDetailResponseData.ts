@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { FlagRuleDetailResponseData } from './FlagRuleDetailResponseData';
+import type { RuleDetailResponseData } from './RuleDetailResponseData';
 import {
-    FlagRuleDetailResponseDataFromJSON,
-    FlagRuleDetailResponseDataFromJSONTyped,
-    FlagRuleDetailResponseDataToJSON,
-} from './FlagRuleDetailResponseData';
+    RuleDetailResponseDataFromJSON,
+    RuleDetailResponseDataFromJSONTyped,
+    RuleDetailResponseDataToJSON,
+} from './RuleDetailResponseData';
 
 /**
  * The updated resource
@@ -76,10 +76,10 @@ export interface FlagDetailResponseData {
     name: string;
     /**
      * 
-     * @type {Array<FlagRuleDetailResponseData>}
+     * @type {Array<RuleDetailResponseData>}
      * @memberof FlagDetailResponseData
      */
-    rules: Array<FlagRuleDetailResponseData>;
+    rules: Array<RuleDetailResponseData>;
     /**
      * 
      * @type {Date}
@@ -124,7 +124,7 @@ export function FlagDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminat
         'id': json['id'],
         'key': json['key'],
         'name': json['name'],
-        'rules': ((json['rules'] as Array<any>).map(FlagRuleDetailResponseDataFromJSON)),
+        'rules': ((json['rules'] as Array<any>).map(RuleDetailResponseDataFromJSON)),
         'updatedAt': (new Date(json['updated_at'])),
     };
 }
@@ -146,7 +146,7 @@ export function FlagDetailResponseDataToJSON(value?: FlagDetailResponseData | nu
         'id': value.id,
         'key': value.key,
         'name': value.name,
-        'rules': ((value.rules as Array<any>).map(FlagRuleDetailResponseDataToJSON)),
+        'rules': ((value.rules as Array<any>).map(RuleDetailResponseDataToJSON)),
         'updated_at': (value.updatedAt.toISOString()),
     };
 }

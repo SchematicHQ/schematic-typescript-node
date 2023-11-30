@@ -3,7 +3,7 @@
   "mainEntryPointFilePath": "./dist/index.d.ts",
   "dtsRollup": {
     "enabled": true,
-    "publicTrimmedFilePath": "<projectFolder>/dist/schematic.d.ts"
+    "publicTrimmedFilePath": "./dist/schematic.d.ts"
   },
   "docModel": {
     "enabled": false

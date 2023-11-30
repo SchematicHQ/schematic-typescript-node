@@ -23,6 +23,8 @@ import type {
   ListPlansResponse,
   SyncCompanyPlansRequestBody,
   SyncCompanyPlansResponse,
+  UpdateAudienceRequestBody,
+  UpdatePlanAudienceResponse,
   UpdatePlanRequestBody,
   UpdatePlanResponse,
   UpsertBillingPeriodRequestBody,
@@ -45,6 +47,10 @@ import {
     SyncCompanyPlansRequestBodyToJSON,
     SyncCompanyPlansResponseFromJSON,
     SyncCompanyPlansResponseToJSON,
+    UpdateAudienceRequestBodyFromJSON,
+    UpdateAudienceRequestBodyToJSON,
+    UpdatePlanAudienceResponseFromJSON,
+    UpdatePlanAudienceResponseToJSON,
     UpdatePlanRequestBodyFromJSON,
     UpdatePlanRequestBodyToJSON,
     UpdatePlanResponseFromJSON,
@@ -86,6 +92,12 @@ export interface SyncCompanyPlansRequest {
 export interface UpdatePlanRequest {
     updatePlanRequestBody: UpdatePlanRequestBody;
     planId: string;
+    xSchematicEnvironmentId?: string;
+}
+
+export interface UpdatePlanAudienceRequest {
+    updateAudienceRequestBody: UpdateAudienceRequestBody;
+    planAudienceId: string;
     xSchematicEnvironmentId?: string;
 }
 
@@ -350,6 +362,51 @@ export class PlansApi extends runtime.BaseAPI {
      */
     async updatePlan(requestParameters: UpdatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdatePlanResponse> {
         const response = await this.updatePlanRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update plan audience
+     */
+    async updatePlanAudienceRaw(requestParameters: UpdatePlanAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdatePlanAudienceResponse>> {
+        if (requestParameters.updateAudienceRequestBody === null || requestParameters.updateAudienceRequestBody === undefined) {
+            throw new runtime.RequiredError('updateAudienceRequestBody','Required parameter requestParameters.updateAudienceRequestBody was null or undefined when calling updatePlanAudience.');
+        }
+
+        if (requestParameters.planAudienceId === null || requestParameters.planAudienceId === undefined) {
+            throw new runtime.RequiredError('planAudienceId','Required parameter requestParameters.planAudienceId was null or undefined when calling updatePlanAudience.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/plan-audiences/{plan_audience_id}`.replace(`{${"plan_audience_id"}}`, encodeURIComponent(String(requestParameters.planAudienceId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateAudienceRequestBodyToJSON(requestParameters.updateAudienceRequestBody),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdatePlanAudienceResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update plan audience
+     */
+    async updatePlanAudience(requestParameters: UpdatePlanAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdatePlanAudienceResponse> {
+        const response = await this.updatePlanAudienceRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
