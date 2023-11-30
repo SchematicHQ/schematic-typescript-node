@@ -29,57 +29,63 @@ import {
 /**
  * 
  * @export
- * @interface CreateOrUpdateRuleRequestBody
+ * @interface CreateRuleRequestBody
  */
-export interface CreateOrUpdateRuleRequestBody {
+export interface CreateRuleRequestBody {
     /**
      * 
      * @type {Array<CreateOrUpdateConditionGroupRequestBody>}
-     * @memberof CreateOrUpdateRuleRequestBody
+     * @memberof CreateRuleRequestBody
      */
     conditionGroups: Array<CreateOrUpdateConditionGroupRequestBody>;
     /**
      * 
      * @type {Array<CreateOrUpdateConditionRequestBody>}
-     * @memberof CreateOrUpdateRuleRequestBody
+     * @memberof CreateRuleRequestBody
      */
     conditions: Array<CreateOrUpdateConditionRequestBody>;
     /**
      * 
      * @type {string}
-     * @memberof CreateOrUpdateRuleRequestBody
+     * @memberof CreateRuleRequestBody
      */
-    id?: string | null;
+    flagId?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof CreateOrUpdateRuleRequestBody
+     * @memberof CreateRuleRequestBody
      */
     name: string;
     /**
      * 
+     * @type {string}
+     * @memberof CreateRuleRequestBody
+     */
+    planId?: string | null;
+    /**
+     * 
      * @type {number}
-     * @memberof CreateOrUpdateRuleRequestBody
+     * @memberof CreateRuleRequestBody
      */
     priority: number;
     /**
      * 
      * @type {number}
-     * @memberof CreateOrUpdateRuleRequestBody
+     * @memberof CreateRuleRequestBody
      */
     priorityGroup?: number | null;
     /**
      * 
      * @type {boolean}
-     * @memberof CreateOrUpdateRuleRequestBody
+     * @memberof CreateRuleRequestBody
      */
     value: boolean;
 }
 
 /**
- * Check if a given object implements the CreateOrUpdateRuleRequestBody interface.
+ * Check if a given object implements the CreateRuleRequestBody interface.
  */
-export function instanceOfCreateOrUpdateRuleRequestBody(value: object): boolean {
+export function instanceOfCreateRuleRequestBody(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "conditionGroups" in value;
     isInstance = isInstance && "conditions" in value;
@@ -90,11 +96,11 @@ export function instanceOfCreateOrUpdateRuleRequestBody(value: object): boolean 
     return isInstance;
 }
 
-export function CreateOrUpdateRuleRequestBodyFromJSON(json: any): CreateOrUpdateRuleRequestBody {
-    return CreateOrUpdateRuleRequestBodyFromJSONTyped(json, false);
+export function CreateRuleRequestBodyFromJSON(json: any): CreateRuleRequestBody {
+    return CreateRuleRequestBodyFromJSONTyped(json, false);
 }
 
-export function CreateOrUpdateRuleRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateOrUpdateRuleRequestBody {
+export function CreateRuleRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateRuleRequestBody {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -102,15 +108,16 @@ export function CreateOrUpdateRuleRequestBodyFromJSONTyped(json: any, ignoreDisc
         
         'conditionGroups': ((json['condition_groups'] as Array<any>).map(CreateOrUpdateConditionGroupRequestBodyFromJSON)),
         'conditions': ((json['conditions'] as Array<any>).map(CreateOrUpdateConditionRequestBodyFromJSON)),
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
         'name': json['name'],
+        'planId': !exists(json, 'plan_id') ? undefined : json['plan_id'],
         'priority': json['priority'],
         'priorityGroup': !exists(json, 'priority_group') ? undefined : json['priority_group'],
         'value': json['value'],
     };
 }
 
-export function CreateOrUpdateRuleRequestBodyToJSON(value?: CreateOrUpdateRuleRequestBody | null): any {
+export function CreateRuleRequestBodyToJSON(value?: CreateRuleRequestBody | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -121,8 +128,9 @@ export function CreateOrUpdateRuleRequestBodyToJSON(value?: CreateOrUpdateRuleRe
         
         'condition_groups': ((value.conditionGroups as Array<any>).map(CreateOrUpdateConditionGroupRequestBodyToJSON)),
         'conditions': ((value.conditions as Array<any>).map(CreateOrUpdateConditionRequestBodyToJSON)),
-        'id': value.id,
+        'flag_id': value.flagId,
         'name': value.name,
+        'plan_id': value.planId,
         'priority': value.priority,
         'priority_group': value.priorityGroup,
         'value': value.value,

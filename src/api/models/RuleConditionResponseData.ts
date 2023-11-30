@@ -24,6 +24,12 @@ export interface RuleConditionResponseData {
      * @type {string}
      * @memberof RuleConditionResponseData
      */
+    conditionGroupId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof RuleConditionResponseData
+     */
     conditionType: string;
     /**
      * 
@@ -48,7 +54,7 @@ export interface RuleConditionResponseData {
      * @type {string}
      * @memberof RuleConditionResponseData
      */
-    flagId: string;
+    flagId?: string | null;
     /**
      * 
      * @type {string}
@@ -119,7 +125,6 @@ export function instanceOfRuleConditionResponseData(value: object): boolean {
     isInstance = isInstance && "conditionType" in value;
     isInstance = isInstance && "createdAt" in value;
     isInstance = isInstance && "environmentId" in value;
-    isInstance = isInstance && "flagId" in value;
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "metricValue" in value;
     isInstance = isInstance && "operator" in value;
@@ -141,11 +146,12 @@ export function RuleConditionResponseDataFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
+        'conditionGroupId': !exists(json, 'condition_group_id') ? undefined : json['condition_group_id'],
         'conditionType': json['condition_type'],
         'createdAt': (new Date(json['created_at'])),
         'environmentId': json['environment_id'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
-        'flagId': json['flag_id'],
+        'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
         'id': json['id'],
         'metricPeriod': !exists(json, 'metric_period') ? undefined : json['metric_period'],
         'metricValue': json['metric_value'],
@@ -168,6 +174,7 @@ export function RuleConditionResponseDataToJSON(value?: RuleConditionResponseDat
     }
     return {
         
+        'condition_group_id': value.conditionGroupId,
         'condition_type': value.conditionType,
         'created_at': (value.createdAt.toISOString()),
         'environment_id': value.environmentId,
