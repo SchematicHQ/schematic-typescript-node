@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { RuleConditionGroupResponseData } from './RuleConditionGroupResponseData';
+import type { RuleConditionGroupDetailResponseData } from './RuleConditionGroupDetailResponseData';
 import {
-    RuleConditionGroupResponseDataFromJSON,
-    RuleConditionGroupResponseDataFromJSONTyped,
-    RuleConditionGroupResponseDataToJSON,
-} from './RuleConditionGroupResponseData';
+    RuleConditionGroupDetailResponseDataFromJSON,
+    RuleConditionGroupDetailResponseDataFromJSONTyped,
+    RuleConditionGroupDetailResponseDataToJSON,
+} from './RuleConditionGroupDetailResponseData';
 import type { RuleConditionResponseData } from './RuleConditionResponseData';
 import {
     RuleConditionResponseDataFromJSON,
@@ -34,10 +34,10 @@ import {
 export interface RuleDetailResponseData {
     /**
      * 
-     * @type {Array<RuleConditionGroupResponseData>}
+     * @type {Array<RuleConditionGroupDetailResponseData>}
      * @memberof RuleDetailResponseData
      */
-    conditionGroups: Array<RuleConditionGroupResponseData>;
+    conditionGroups: Array<RuleConditionGroupDetailResponseData>;
     /**
      * 
      * @type {Array<RuleConditionResponseData>}
@@ -134,7 +134,7 @@ export function RuleDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'conditionGroups': ((json['condition_groups'] as Array<any>).map(RuleConditionGroupResponseDataFromJSON)),
+        'conditionGroups': ((json['condition_groups'] as Array<any>).map(RuleConditionGroupDetailResponseDataFromJSON)),
         'conditions': ((json['conditions'] as Array<any>).map(RuleConditionResponseDataFromJSON)),
         'createdAt': (new Date(json['created_at'])),
         'environmentId': json['environment_id'],
@@ -158,7 +158,7 @@ export function RuleDetailResponseDataToJSON(value?: RuleDetailResponseData | nu
     }
     return {
         
-        'condition_groups': ((value.conditionGroups as Array<any>).map(RuleConditionGroupResponseDataToJSON)),
+        'condition_groups': ((value.conditionGroups as Array<any>).map(RuleConditionGroupDetailResponseDataToJSON)),
         'conditions': ((value.conditions as Array<any>).map(RuleConditionResponseDataToJSON)),
         'created_at': (value.createdAt.toISOString()),
         'environment_id': value.environmentId,

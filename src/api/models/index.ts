@@ -109,6 +109,7 @@ export * from './ListUsersParams';
 export * from './ListUsersResponse';
 export * from './MetricCountsHourlyResponseData';
 export * from './PlanResponseData';
+export * from './RuleConditionGroupDetailResponseData';
 export * from './RuleConditionGroupResponseData';
 export * from './RuleConditionResponseData';
 export * from './RuleDetailResponseData';
