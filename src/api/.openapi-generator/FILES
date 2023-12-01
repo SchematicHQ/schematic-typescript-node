@@ -114,6 +114,7 @@ models/ListUsersParams.ts
 models/ListUsersResponse.ts
 models/MetricCountsHourlyResponseData.ts
 models/PlanResponseData.ts
+models/RuleConditionGroupDetailResponseData.ts
 models/RuleConditionGroupResponseData.ts
 models/RuleConditionResponseData.ts
 models/RuleDetailResponseData.ts

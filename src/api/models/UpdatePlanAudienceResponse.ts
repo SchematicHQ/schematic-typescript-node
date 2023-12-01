@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { RuleDetailResponseData } from './RuleDetailResponseData';
+import {
+    RuleDetailResponseDataFromJSON,
+    RuleDetailResponseDataFromJSONTyped,
+    RuleDetailResponseDataToJSON,
+} from './RuleDetailResponseData';
+
 /**
  * 
  * @export
@@ -20,11 +27,11 @@ import { exists, mapValues } from '../runtime';
  */
 export interface UpdatePlanAudienceResponse {
     /**
-     * The updated resource
-     * @type {object}
+     * 
+     * @type {RuleDetailResponseData}
      * @memberof UpdatePlanAudienceResponse
      */
-    data: object;
+    data: RuleDetailResponseData;
     /**
      * Input parameters
      * @type {object}
@@ -54,7 +61,7 @@ export function UpdatePlanAudienceResponseFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'data': json['data'],
+        'data': RuleDetailResponseDataFromJSON(json['data']),
         'params': json['params'],
     };
 }
@@ -68,7 +75,7 @@ export function UpdatePlanAudienceResponseToJSON(value?: UpdatePlanAudienceRespo
     }
     return {
         
-        'data': value.data,
+        'data': RuleDetailResponseDataToJSON(value.data),
         'params': value.params,
     };
 }
