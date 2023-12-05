@@ -16,6 +16,7 @@
 import * as runtime from '../runtime';
 import type {
   ApiError,
+  AudienceRequestBody,
   CheckFlagRequestBody,
   CheckFlagResponse,
   CheckFlagsResponse,
@@ -28,9 +29,11 @@ import type {
   CreateRuleResponse,
   DeleteFeatureResponse,
   DeleteFlagResponse,
+  GetCompaniesAudienceResponse,
   GetFeatureResponse,
   GetFlagResponse,
   GetRuleResponse,
+  GetUsersAudienceResponse,
   LatestFlagChecksResponse,
   ListFeaturesResponse,
   ListFlagChecksResponse,
@@ -45,6 +48,8 @@ import type {
 import {
     ApiErrorFromJSON,
     ApiErrorToJSON,
+    AudienceRequestBodyFromJSON,
+    AudienceRequestBodyToJSON,
     CheckFlagRequestBodyFromJSON,
     CheckFlagRequestBodyToJSON,
     CheckFlagResponseFromJSON,
@@ -69,12 +74,16 @@ import {
     DeleteFeatureResponseToJSON,
     DeleteFlagResponseFromJSON,
     DeleteFlagResponseToJSON,
+    GetCompaniesAudienceResponseFromJSON,
+    GetCompaniesAudienceResponseToJSON,
     GetFeatureResponseFromJSON,
     GetFeatureResponseToJSON,
     GetFlagResponseFromJSON,
     GetFlagResponseToJSON,
     GetRuleResponseFromJSON,
     GetRuleResponseToJSON,
+    GetUsersAudienceResponseFromJSON,
+    GetUsersAudienceResponseToJSON,
     LatestFlagChecksResponseFromJSON,
     LatestFlagChecksResponseToJSON,
     ListFeaturesResponseFromJSON,
@@ -145,6 +154,11 @@ export interface DeleteFlagRequest {
     xSchematicEnvironmentId?: string;
 }
 
+export interface GetCompaniesAudienceRequest {
+    audienceRequestBody: AudienceRequestBody;
+    xSchematicEnvironmentId?: string;
+}
+
 export interface GetFeatureRequest {
     featureId: string;
     xSchematicEnvironmentId?: string;
@@ -157,6 +171,11 @@ export interface GetFlagRequest {
 
 export interface GetRuleRequest {
     ruleId: string;
+    xSchematicEnvironmentId?: string;
+}
+
+export interface GetUsersAudienceRequest {
+    audienceRequestBody: AudienceRequestBody;
     xSchematicEnvironmentId?: string;
 }
 
@@ -589,6 +608,47 @@ export class FeaturesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Get Companies audience
+     */
+    async getCompaniesAudienceRaw(requestParameters: GetCompaniesAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCompaniesAudienceResponse>> {
+        if (requestParameters.audienceRequestBody === null || requestParameters.audienceRequestBody === undefined) {
+            throw new runtime.RequiredError('audienceRequestBody','Required parameter requestParameters.audienceRequestBody was null or undefined when calling getCompaniesAudience.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/audience/get-companies`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AudienceRequestBodyToJSON(requestParameters.audienceRequestBody),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetCompaniesAudienceResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get Companies audience
+     */
+    async getCompaniesAudience(requestParameters: GetCompaniesAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCompaniesAudienceResponse> {
+        const response = await this.getCompaniesAudienceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Get feature
      */
     async getFeatureRaw(requestParameters: GetFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFeatureResponse>> {
@@ -699,6 +759,47 @@ export class FeaturesApi extends runtime.BaseAPI {
      */
     async getRule(requestParameters: GetRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetRuleResponse> {
         const response = await this.getRuleRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get Users audience
+     */
+    async getUsersAudienceRaw(requestParameters: GetUsersAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUsersAudienceResponse>> {
+        if (requestParameters.audienceRequestBody === null || requestParameters.audienceRequestBody === undefined) {
+            throw new runtime.RequiredError('audienceRequestBody','Required parameter requestParameters.audienceRequestBody was null or undefined when calling getUsersAudience.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/audience/get-users`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AudienceRequestBodyToJSON(requestParameters.audienceRequestBody),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetUsersAudienceResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get Users audience
+     */
+    async getUsersAudience(requestParameters: GetUsersAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUsersAudienceResponse> {
+        const response = await this.getUsersAudienceRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
