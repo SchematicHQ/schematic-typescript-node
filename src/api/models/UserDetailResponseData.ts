@@ -27,7 +27,7 @@ import {
 } from './EntityKeyResponseData';
 
 /**
- * The returned resource
+ * 
  * @export
  * @interface UserDetailResponseData
  */
