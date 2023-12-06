@@ -19,7 +19,6 @@ models/CheckFlagsResponseData.ts
 models/CompanyDetailResponseData.ts
 models/CompanyMembershipDetailResponseData.ts
 models/CompanyMembershipResponseData.ts
-models/CompanyPlanResponseData.ts
 models/CompanyResponseData.ts
 models/CountApiKeysParams.ts
 models/CountApiKeysResponse.ts
@@ -42,7 +41,6 @@ models/CreateFeatureRequestBody.ts
 models/CreateFeatureResponse.ts
 models/CreateFlagRequestBody.ts
 models/CreateFlagResponse.ts
-models/CreateOrUpdateCompanyPlanRequestBody.ts
 models/CreateOrUpdateConditionGroupRequestBody.ts
 models/CreateOrUpdateConditionRequestBody.ts
 models/CreateOrUpdateFlagRequestBody.ts
@@ -123,9 +121,6 @@ models/RuleConditionGroupResponseData.ts
 models/RuleConditionResponseData.ts
 models/RuleDetailResponseData.ts
 models/RuleResponseData.ts
-models/SyncCompanyPlansRequestBody.ts
-models/SyncCompanyPlansResponse.ts
-models/SyncCompanyPlansResponseData.ts
 models/UpdateApiKeyRequestBody.ts
 models/UpdateApiKeyResponse.ts
 models/UpdateAudienceRequestBody.ts
