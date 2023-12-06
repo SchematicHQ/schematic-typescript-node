@@ -24,6 +24,12 @@ export interface RuleConditionResponseData {
      * @type {string}
      * @memberof RuleConditionResponseData
      */
+    comparisonTraitId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof RuleConditionResponseData
+     */
     conditionGroupId?: string | null;
     /**
      * 
@@ -79,6 +85,12 @@ export interface RuleConditionResponseData {
      * @memberof RuleConditionResponseData
      */
     operator: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RuleConditionResponseData
+     */
+    planId?: string | null;
     /**
      * 
      * @type {Array<string>}
@@ -146,6 +158,7 @@ export function RuleConditionResponseDataFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
+        'comparisonTraitId': !exists(json, 'comparison_trait_id') ? undefined : json['comparison_trait_id'],
         'conditionGroupId': !exists(json, 'condition_group_id') ? undefined : json['condition_group_id'],
         'conditionType': json['condition_type'],
         'createdAt': (new Date(json['created_at'])),
@@ -156,6 +169,7 @@ export function RuleConditionResponseDataFromJSONTyped(json: any, ignoreDiscrimi
         'metricPeriod': !exists(json, 'metric_period') ? undefined : json['metric_period'],
         'metricValue': json['metric_value'],
         'operator': json['operator'],
+        'planId': !exists(json, 'plan_id') ? undefined : json['plan_id'],
         'resourceIds': json['resource_ids'],
         'ruleId': json['rule_id'],
         'traitEntityType': !exists(json, 'trait_entity_type') ? undefined : json['trait_entity_type'],
@@ -174,6 +188,7 @@ export function RuleConditionResponseDataToJSON(value?: RuleConditionResponseDat
     }
     return {
         
+        'comparison_trait_id': value.comparisonTraitId,
         'condition_group_id': value.conditionGroupId,
         'condition_type': value.conditionType,
         'created_at': (value.createdAt.toISOString()),
@@ -184,6 +199,7 @@ export function RuleConditionResponseDataToJSON(value?: RuleConditionResponseDat
         'metric_period': value.metricPeriod,
         'metric_value': value.metricValue,
         'operator': value.operator,
+        'plan_id': value.planId,
         'resource_ids': value.resourceIds,
         'rule_id': value.ruleId,
         'trait_entity_type': value.traitEntityType,
