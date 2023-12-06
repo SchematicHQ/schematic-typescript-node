@@ -19,6 +19,7 @@ models/CheckFlagsResponseData.ts
 models/CompanyDetailResponseData.ts
 models/CompanyMembershipDetailResponseData.ts
 models/CompanyMembershipResponseData.ts
+models/CompanyPlanResponseData.ts
 models/CompanyResponseData.ts
 models/CountApiKeysParams.ts
 models/CountApiKeysResponse.ts
@@ -93,6 +94,8 @@ models/ListCompaniesParams.ts
 models/ListCompaniesResponse.ts
 models/ListCompanyMembershipsParams.ts
 models/ListCompanyMembershipsResponse.ts
+models/ListCompanyPlansParams.ts
+models/ListCompanyPlansResponse.ts
 models/ListEventTypesParams.ts
 models/ListEventTypesResponse.ts
 models/ListEventsParams.ts
