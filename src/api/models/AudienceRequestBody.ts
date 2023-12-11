@@ -68,6 +68,12 @@ export interface AudienceRequestBody {
      * @memberof AudienceRequestBody
      */
     order?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AudienceRequestBody
+     */
+    q?: string | null;
 }
 
 /**
@@ -97,6 +103,7 @@ export function AudienceRequestBodyFromJSONTyped(json: any, ignoreDiscriminator:
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'offset': !exists(json, 'offset') ? undefined : json['offset'],
         'order': !exists(json, 'order') ? undefined : json['order'],
+        'q': !exists(json, 'q') ? undefined : json['q'],
     };
 }
 
@@ -115,6 +122,7 @@ export function AudienceRequestBodyToJSON(value?: AudienceRequestBody | null): a
         'limit': value.limit,
         'offset': value.offset,
         'order': value.order,
+        'q': value.q,
     };
 }
 
