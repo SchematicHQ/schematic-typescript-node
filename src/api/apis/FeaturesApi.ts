@@ -20,7 +20,9 @@ import type {
   CheckFlagRequestBody,
   CheckFlagResponse,
   CheckFlagsResponse,
+  CountCompaniesAudienceResponse,
   CountFlagValuesResponse,
+  CountUsersAudienceResponse,
   CreateFeatureRequestBody,
   CreateFeatureResponse,
   CreateFlagRequestBody,
@@ -56,8 +58,12 @@ import {
     CheckFlagResponseToJSON,
     CheckFlagsResponseFromJSON,
     CheckFlagsResponseToJSON,
+    CountCompaniesAudienceResponseFromJSON,
+    CountCompaniesAudienceResponseToJSON,
     CountFlagValuesResponseFromJSON,
     CountFlagValuesResponseToJSON,
+    CountUsersAudienceResponseFromJSON,
+    CountUsersAudienceResponseToJSON,
     CreateFeatureRequestBodyFromJSON,
     CreateFeatureRequestBodyToJSON,
     CreateFeatureResponseFromJSON,
@@ -117,6 +123,11 @@ export interface CheckFlagsRequest {
     xSchematicEnvironmentId?: string;
 }
 
+export interface CountCompaniesAudienceRequest {
+    audienceRequestBody: AudienceRequestBody;
+    xSchematicEnvironmentId?: string;
+}
+
 export interface CountFlagValuesRequest {
     entityType: number;
     xSchematicEnvironmentId?: string;
@@ -127,6 +138,11 @@ export interface CountFlagValuesRequest {
     offset?: number;
     order?: string;
     dir?: string;
+}
+
+export interface CountUsersAudienceRequest {
+    audienceRequestBody: AudienceRequestBody;
+    xSchematicEnvironmentId?: string;
 }
 
 export interface CreateFeatureRequest {
@@ -339,6 +355,47 @@ export class FeaturesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Count Companies audience
+     */
+    async countCompaniesAudienceRaw(requestParameters: CountCompaniesAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountCompaniesAudienceResponse>> {
+        if (requestParameters.audienceRequestBody === null || requestParameters.audienceRequestBody === undefined) {
+            throw new runtime.RequiredError('audienceRequestBody','Required parameter requestParameters.audienceRequestBody was null or undefined when calling countCompaniesAudience.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/audience/count-companies`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AudienceRequestBodyToJSON(requestParameters.audienceRequestBody),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountCompaniesAudienceResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Count Companies audience
+     */
+    async countCompaniesAudience(requestParameters: CountCompaniesAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountCompaniesAudienceResponse> {
+        const response = await this.countCompaniesAudienceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Count flag values
      */
     async countFlagValuesRaw(requestParameters: CountFlagValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountFlagValuesResponse>> {
@@ -405,6 +462,47 @@ export class FeaturesApi extends runtime.BaseAPI {
      */
     async countFlagValues(requestParameters: CountFlagValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountFlagValuesResponse> {
         const response = await this.countFlagValuesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Count Users audience
+     */
+    async countUsersAudienceRaw(requestParameters: CountUsersAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountUsersAudienceResponse>> {
+        if (requestParameters.audienceRequestBody === null || requestParameters.audienceRequestBody === undefined) {
+            throw new runtime.RequiredError('audienceRequestBody','Required parameter requestParameters.audienceRequestBody was null or undefined when calling countUsersAudience.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/audience/count-users`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AudienceRequestBodyToJSON(requestParameters.audienceRequestBody),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountUsersAudienceResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Count Users audience
+     */
+    async countUsersAudience(requestParameters: CountUsersAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountUsersAudienceResponse> {
+        const response = await this.countUsersAudienceRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

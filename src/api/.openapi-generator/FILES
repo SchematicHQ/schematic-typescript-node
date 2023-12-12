@@ -23,6 +23,7 @@ models/CompanyPlanResponseData.ts
 models/CompanyResponseData.ts
 models/CountApiKeysParams.ts
 models/CountApiKeysResponse.ts
+models/CountCompaniesAudienceResponse.ts
 models/CountEventTypesParams.ts
 models/CountEventTypesResponse.ts
 models/CountEventsParams.ts
@@ -30,6 +31,7 @@ models/CountEventsResponse.ts
 models/CountFlagValuesParams.ts
 models/CountFlagValuesResponse.ts
 models/CountResponse.ts
+models/CountUsersAudienceResponse.ts
 models/CreateApiKeyRequestBody.ts
 models/CreateApiKeyResponse.ts
 models/CreateCompanyMembershipResponse.ts
