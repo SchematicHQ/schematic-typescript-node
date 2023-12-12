@@ -14,17 +14,17 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * 
+ * The created resource
  * @export
  * @interface CountResponse
  */
 export interface CountResponse {
     /**
-     * The number of resources
+     * 
      * @type {number}
      * @memberof CountResponse
      */
-    count?: number;
+    count: number;
 }
 
 /**
@@ -32,6 +32,7 @@ export interface CountResponse {
  */
 export function instanceOfCountResponse(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "count" in value;
 
     return isInstance;
 }
@@ -46,7 +47,7 @@ export function CountResponseFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'count': !exists(json, 'count') ? undefined : json['count'],
+        'count': json['count'],
     };
 }
 
