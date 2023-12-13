@@ -33,9 +33,6 @@
   "main": "dist/schematic.js",
   "modules": false,
   "name": "@schematichq/schematic-typescript-node",
-  "publishConfig": {
-    "@schematichq:registry": "https://npm.pkg.github.com"
-  },
   "repository": "git@github.com:SchematicHQ/schematic-typescript-node.git",
   "scripts": {
     "build": "npx esbuild src/index.ts --bundle --outfile=dist/schematic.js --platform=node && npx tsc && npx api-extractor run",
