@@ -1,0 +1,8 @@
+node_modules
+dist
+.idea
+.parcel-cache
+yarn-error.log
+
+# OpenAPI artifacts to ignore
+src/git_push.sh
