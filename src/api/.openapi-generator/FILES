@@ -24,6 +24,8 @@ models/CompanyPlanResponseData.ts
 models/CompanyResponseData.ts
 models/CountApiKeysParams.ts
 models/CountApiKeysResponse.ts
+models/CountApiRequestsParams.ts
+models/CountApiRequestsResponse.ts
 models/CountCompaniesAudienceResponse.ts
 models/CountEventTypesParams.ts
 models/CountEventTypesResponse.ts

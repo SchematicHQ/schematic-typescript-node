@@ -17,6 +17,7 @@ import * as runtime from '../runtime';
 import type {
   ApiError,
   CountApiKeysResponse,
+  CountApiRequestsResponse,
   CreateApiKeyRequestBody,
   CreateApiKeyResponse,
   CreateEnvironmentRequestBody,
@@ -37,6 +38,8 @@ import {
     ApiErrorToJSON,
     CountApiKeysResponseFromJSON,
     CountApiKeysResponseToJSON,
+    CountApiRequestsResponseFromJSON,
+    CountApiRequestsResponseToJSON,
     CreateApiKeyRequestBodyFromJSON,
     CreateApiKeyRequestBodyToJSON,
     CreateApiKeyResponseFromJSON,
@@ -71,6 +74,15 @@ export interface CountApiKeysRequest {
     requireEnvironment: boolean;
     xSchematicEnvironmentId?: string;
     environmentId?: string;
+    limit?: number;
+    offset?: number;
+    order?: string;
+    dir?: string;
+}
+
+export interface CountApiRequestsRequest {
+    xSchematicEnvironmentId?: string;
+    q?: string;
     limit?: number;
     offset?: number;
     order?: string;
@@ -202,6 +214,60 @@ export class AccountsApi extends runtime.BaseAPI {
      */
     async countApiKeys(requestParameters: CountApiKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountApiKeysResponse> {
         const response = await this.countApiKeysRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Count api requests
+     */
+    async countApiRequestsRaw(requestParameters: CountApiRequestsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountApiRequestsResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.q !== undefined) {
+            queryParameters['q'] = requestParameters.q;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.order !== undefined) {
+            queryParameters['order'] = requestParameters.order;
+        }
+
+        if (requestParameters.dir !== undefined) {
+            queryParameters['dir'] = requestParameters.dir;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/api-requests/count`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountApiRequestsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Count api requests
+     */
+    async countApiRequests(requestParameters: CountApiRequestsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountApiRequestsResponse> {
+        const response = await this.countApiRequestsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

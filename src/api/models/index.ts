@@ -19,6 +19,8 @@ export * from './CompanyPlanResponseData';
 export * from './CompanyResponseData';
 export * from './CountApiKeysParams';
 export * from './CountApiKeysResponse';
+export * from './CountApiRequestsParams';
+export * from './CountApiRequestsResponse';
 export * from './CountCompaniesAudienceResponse';
 export * from './CountEventTypesParams';
 export * from './CountEventTypesResponse';
