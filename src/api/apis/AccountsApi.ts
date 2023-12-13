@@ -24,7 +24,9 @@ import type {
   DeleteApiKeyResponse,
   DeleteEnvironmentResponse,
   GetApiKeyResponse,
+  GetApiRequestResponse,
   ListApiKeysResponse,
+  ListApiRequestsResponse,
   UpdateApiKeyRequestBody,
   UpdateApiKeyResponse,
   UpdateEnvironmentRequestBody,
@@ -49,8 +51,12 @@ import {
     DeleteEnvironmentResponseToJSON,
     GetApiKeyResponseFromJSON,
     GetApiKeyResponseToJSON,
+    GetApiRequestResponseFromJSON,
+    GetApiRequestResponseToJSON,
     ListApiKeysResponseFromJSON,
     ListApiKeysResponseToJSON,
+    ListApiRequestsResponseFromJSON,
+    ListApiRequestsResponseToJSON,
     UpdateApiKeyRequestBodyFromJSON,
     UpdateApiKeyRequestBodyToJSON,
     UpdateApiKeyResponseFromJSON,
@@ -96,10 +102,24 @@ export interface GetApiKeyRequest {
     xSchematicEnvironmentId?: string;
 }
 
+export interface GetApiRequestRequest {
+    apiRequestId: string;
+    xSchematicEnvironmentId?: string;
+}
+
 export interface ListApiKeysRequest {
     requireEnvironment: boolean;
     xSchematicEnvironmentId?: string;
     environmentId?: string;
+    limit?: number;
+    offset?: number;
+    order?: string;
+    dir?: string;
+}
+
+export interface ListApiRequestsRequest {
+    xSchematicEnvironmentId?: string;
+    q?: string;
     limit?: number;
     offset?: number;
     order?: string;
@@ -382,6 +402,44 @@ export class AccountsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Get api request
+     */
+    async getApiRequestRaw(requestParameters: GetApiRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApiRequestResponse>> {
+        if (requestParameters.apiRequestId === null || requestParameters.apiRequestId === undefined) {
+            throw new runtime.RequiredError('apiRequestId','Required parameter requestParameters.apiRequestId was null or undefined when calling getApiRequest.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/api-requests/{api_request_id}`.replace(`{${"api_request_id"}}`, encodeURIComponent(String(requestParameters.apiRequestId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetApiRequestResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get api request
+     */
+    async getApiRequest(requestParameters: GetApiRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetApiRequestResponse> {
+        const response = await this.getApiRequestRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * List api keys
      */
     async listApiKeysRaw(requestParameters: ListApiKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListApiKeysResponse>> {
@@ -440,6 +498,60 @@ export class AccountsApi extends runtime.BaseAPI {
      */
     async listApiKeys(requestParameters: ListApiKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListApiKeysResponse> {
         const response = await this.listApiKeysRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List api requests
+     */
+    async listApiRequestsRaw(requestParameters: ListApiRequestsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListApiRequestsResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.q !== undefined) {
+            queryParameters['q'] = requestParameters.q;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.order !== undefined) {
+            queryParameters['order'] = requestParameters.order;
+        }
+
+        if (requestParameters.dir !== undefined) {
+            queryParameters['dir'] = requestParameters.dir;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/api-requests`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListApiRequestsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List api requests
+     */
+    async listApiRequests(requestParameters: ListApiRequestsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListApiRequestsResponse> {
+        const response = await this.listApiRequestsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

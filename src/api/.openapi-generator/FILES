@@ -7,6 +7,7 @@ apis/index.ts
 index.ts
 models/ApiError.ts
 models/ApiKeyCreateResponseData.ts
+models/ApiKeyRequestResponseData.ts
 models/ApiKeyResponseData.ts
 models/AudienceRequestBody.ts
 models/BillingPeriodResponseData.ts
@@ -77,6 +78,7 @@ models/FlagCheckLogResponseData.ts
 models/FlagDetailResponseData.ts
 models/FlagResponseData.ts
 models/GetApiKeyResponse.ts
+models/GetApiRequestResponse.ts
 models/GetCompaniesAudienceResponse.ts
 models/GetCompanyResponse.ts
 models/GetEventResponse.ts
@@ -92,6 +94,8 @@ models/LatestFlagChecksParams.ts
 models/LatestFlagChecksResponse.ts
 models/ListApiKeysParams.ts
 models/ListApiKeysResponse.ts
+models/ListApiRequestsParams.ts
+models/ListApiRequestsResponse.ts
 models/ListCompaniesParams.ts
 models/ListCompaniesResponse.ts
 models/ListCompanyMembershipsParams.ts
