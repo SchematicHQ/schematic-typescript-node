@@ -33,9 +33,6 @@
     "dist/schematic.d.ts"
   ],
   "license": "MIT",
-  "publishConfig": {
-    "@schematichq:registry": "https://npm.pkg.github.com"
-  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/SchematicHQ/schematic-typescript-node.git"
@@ -48,5 +45,5 @@
     "clean": "rm -rf dist",
     "release": "npx standard-version && git push --follow-tags && yarn publish"
   },
-  "version": "0.0.14"
+  "version": "0.0.15"
 }
