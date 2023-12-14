@@ -31,6 +31,8 @@ models/CountEventTypesParams.ts
 models/CountEventTypesResponse.ts
 models/CountEventsParams.ts
 models/CountEventsResponse.ts
+models/CountFlagChecksParams.ts
+models/CountFlagChecksResponse.ts
 models/CountFlagValuesParams.ts
 models/CountFlagValuesResponse.ts
 models/CountResponse.ts
@@ -86,6 +88,7 @@ models/GetCompanyResponse.ts
 models/GetEventResponse.ts
 models/GetEventTypeResponse.ts
 models/GetFeatureResponse.ts
+models/GetFlagCheckResponse.ts
 models/GetFlagResponse.ts
 models/GetOrCreateCompanyMembershipRequestBody.ts
 models/GetPlanResponse.ts
