@@ -24,6 +24,12 @@ export interface FlagCheckLogResponseData {
      * @type {string}
      * @memberof FlagCheckLogResponseData
      */
+    checkStatus: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FlagCheckLogResponseData
+     */
     companyId?: string | null;
     /**
      * 
@@ -110,6 +116,7 @@ export interface FlagCheckLogResponseData {
  */
 export function instanceOfFlagCheckLogResponseData(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "checkStatus" in value;
     isInstance = isInstance && "createdAt" in value;
     isInstance = isInstance && "environmentId" in value;
     isInstance = isInstance && "flagKey" in value;
@@ -133,6 +140,7 @@ export function FlagCheckLogResponseDataFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
+        'checkStatus': json['check_status'],
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'createdAt': (new Date(json['created_at'])),
         'environmentId': json['environment_id'],
@@ -159,6 +167,7 @@ export function FlagCheckLogResponseDataToJSON(value?: FlagCheckLogResponseData 
     }
     return {
         
+        'check_status': value.checkStatus,
         'company_id': value.companyId,
         'created_at': (value.createdAt.toISOString()),
         'environment_id': value.environmentId,

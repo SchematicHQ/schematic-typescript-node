@@ -21,6 +21,7 @@ import type {
   CheckFlagResponse,
   CheckFlagsResponse,
   CountCompaniesAudienceResponse,
+  CountFlagChecksResponse,
   CountFlagValuesResponse,
   CountUsersAudienceResponse,
   CreateFeatureRequestBody,
@@ -33,6 +34,7 @@ import type {
   DeleteFlagResponse,
   GetCompaniesAudienceResponse,
   GetFeatureResponse,
+  GetFlagCheckResponse,
   GetFlagResponse,
   GetRuleResponse,
   GetUsersAudienceResponse,
@@ -60,6 +62,8 @@ import {
     CheckFlagsResponseToJSON,
     CountCompaniesAudienceResponseFromJSON,
     CountCompaniesAudienceResponseToJSON,
+    CountFlagChecksResponseFromJSON,
+    CountFlagChecksResponseToJSON,
     CountFlagValuesResponseFromJSON,
     CountFlagValuesResponseToJSON,
     CountUsersAudienceResponseFromJSON,
@@ -84,6 +88,8 @@ import {
     GetCompaniesAudienceResponseToJSON,
     GetFeatureResponseFromJSON,
     GetFeatureResponseToJSON,
+    GetFlagCheckResponseFromJSON,
+    GetFlagCheckResponseToJSON,
     GetFlagResponseFromJSON,
     GetFlagResponseToJSON,
     GetRuleResponseFromJSON,
@@ -126,6 +132,16 @@ export interface CheckFlagsRequest {
 export interface CountCompaniesAudienceRequest {
     audienceRequestBody: AudienceRequestBody;
     xSchematicEnvironmentId?: string;
+}
+
+export interface CountFlagChecksRequest {
+    xSchematicEnvironmentId?: string;
+    flagId?: string;
+    flagIds?: Array<string>;
+    limit?: number;
+    offset?: number;
+    order?: string;
+    dir?: string;
 }
 
 export interface CountFlagValuesRequest {
@@ -182,6 +198,11 @@ export interface GetFeatureRequest {
 
 export interface GetFlagRequest {
     flagId: string;
+    xSchematicEnvironmentId?: string;
+}
+
+export interface GetFlagCheckRequest {
+    flagCheckId: string;
     xSchematicEnvironmentId?: string;
 }
 
@@ -392,6 +413,64 @@ export class FeaturesApi extends runtime.BaseAPI {
      */
     async countCompaniesAudience(requestParameters: CountCompaniesAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountCompaniesAudienceResponse> {
         const response = await this.countCompaniesAudienceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Count flag checks
+     */
+    async countFlagChecksRaw(requestParameters: CountFlagChecksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountFlagChecksResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.flagId !== undefined) {
+            queryParameters['flag_id'] = requestParameters.flagId;
+        }
+
+        if (requestParameters.flagIds) {
+            queryParameters['flag_ids'] = requestParameters.flagIds;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.order !== undefined) {
+            queryParameters['order'] = requestParameters.order;
+        }
+
+        if (requestParameters.dir !== undefined) {
+            queryParameters['dir'] = requestParameters.dir;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/flag-checks/count`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountFlagChecksResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Count flag checks
+     */
+    async countFlagChecks(requestParameters: CountFlagChecksRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountFlagChecksResponse> {
+        const response = await this.countFlagChecksRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -819,6 +898,44 @@ export class FeaturesApi extends runtime.BaseAPI {
      */
     async getFlag(requestParameters: GetFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFlagResponse> {
         const response = await this.getFlagRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get flag check
+     */
+    async getFlagCheckRaw(requestParameters: GetFlagCheckRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFlagCheckResponse>> {
+        if (requestParameters.flagCheckId === null || requestParameters.flagCheckId === undefined) {
+            throw new runtime.RequiredError('flagCheckId','Required parameter requestParameters.flagCheckId was null or undefined when calling getFlagCheck.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/flag-checks/{flag_check_id}`.replace(`{${"flag_check_id"}}`, encodeURIComponent(String(requestParameters.flagCheckId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetFlagCheckResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get flag check
+     */
+    async getFlagCheck(requestParameters: GetFlagCheckRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFlagCheckResponse> {
+        const response = await this.getFlagCheckRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
