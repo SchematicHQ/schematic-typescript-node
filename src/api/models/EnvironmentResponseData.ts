@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * The updated resource
+ * The returned resource
  * @export
  * @interface EnvironmentResponseData
  */

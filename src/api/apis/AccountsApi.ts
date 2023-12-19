@@ -26,6 +26,7 @@ import type {
   DeleteEnvironmentResponse,
   GetApiKeyResponse,
   GetApiRequestResponse,
+  GetEnvironmentResponse,
   ListApiKeysResponse,
   ListApiRequestsResponse,
   UpdateApiKeyRequestBody,
@@ -56,6 +57,8 @@ import {
     GetApiKeyResponseToJSON,
     GetApiRequestResponseFromJSON,
     GetApiRequestResponseToJSON,
+    GetEnvironmentResponseFromJSON,
+    GetEnvironmentResponseToJSON,
     ListApiKeysResponseFromJSON,
     ListApiKeysResponseToJSON,
     ListApiRequestsResponseFromJSON,
@@ -116,6 +119,11 @@ export interface GetApiKeyRequest {
 
 export interface GetApiRequestRequest {
     apiRequestId: string;
+    xSchematicEnvironmentId?: string;
+}
+
+export interface GetEnvironmentRequest {
+    environmentId: string;
     xSchematicEnvironmentId?: string;
 }
 
@@ -502,6 +510,44 @@ export class AccountsApi extends runtime.BaseAPI {
      */
     async getApiRequest(requestParameters: GetApiRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetApiRequestResponse> {
         const response = await this.getApiRequestRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get environment
+     */
+    async getEnvironmentRaw(requestParameters: GetEnvironmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEnvironmentResponse>> {
+        if (requestParameters.environmentId === null || requestParameters.environmentId === undefined) {
+            throw new runtime.RequiredError('environmentId','Required parameter requestParameters.environmentId was null or undefined when calling getEnvironment.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/environments/{environment_id}`.replace(`{${"environment_id"}}`, encodeURIComponent(String(requestParameters.environmentId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetEnvironmentResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get environment
+     */
+    async getEnvironment(requestParameters: GetEnvironmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEnvironmentResponse> {
+        const response = await this.getEnvironmentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

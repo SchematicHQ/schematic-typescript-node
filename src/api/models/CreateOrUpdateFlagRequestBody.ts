@@ -74,6 +74,12 @@ export interface CreateOrUpdateFlagRequestBody {
      * @memberof CreateOrUpdateFlagRequestBody
      */
     rules: Array<CreateOrUpdateRuleRequestBody>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateOrUpdateFlagRequestBody
+     */
+    skipWebhooks?: boolean | null;
 }
 
 /**
@@ -109,6 +115,7 @@ export function CreateOrUpdateFlagRequestBodyFromJSONTyped(json: any, ignoreDisc
         'key': json['key'],
         'name': json['name'],
         'rules': ((json['rules'] as Array<any>).map(CreateOrUpdateRuleRequestBodyFromJSON)),
+        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
     };
 }
 
@@ -129,6 +136,7 @@ export function CreateOrUpdateFlagRequestBodyToJSON(value?: CreateOrUpdateFlagRe
         'key': value.key,
         'name': value.name,
         'rules': ((value.rules as Array<any>).map(CreateOrUpdateRuleRequestBodyToJSON)),
+        'skip_webhooks': value.skipWebhooks,
     };
 }
 
