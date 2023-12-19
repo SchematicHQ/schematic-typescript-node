@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { ApiKeyRequestResponseData } from './ApiKeyRequestResponseData';
+import type { ApiKeyRequestListResponseData } from './ApiKeyRequestListResponseData';
 import {
-    ApiKeyRequestResponseDataFromJSON,
-    ApiKeyRequestResponseDataFromJSONTyped,
-    ApiKeyRequestResponseDataToJSON,
-} from './ApiKeyRequestResponseData';
+    ApiKeyRequestListResponseDataFromJSON,
+    ApiKeyRequestListResponseDataFromJSONTyped,
+    ApiKeyRequestListResponseDataToJSON,
+} from './ApiKeyRequestListResponseData';
 import type { ListApiRequestsParams } from './ListApiRequestsParams';
 import {
     ListApiRequestsParamsFromJSON,
@@ -34,10 +34,10 @@ import {
 export interface ListApiRequestsResponse {
     /**
      * The returned resources
-     * @type {Array<ApiKeyRequestResponseData>}
+     * @type {Array<ApiKeyRequestListResponseData>}
      * @memberof ListApiRequestsResponse
      */
-    data: Array<ApiKeyRequestResponseData>;
+    data: Array<ApiKeyRequestListResponseData>;
     /**
      * 
      * @type {ListApiRequestsParams}
@@ -67,7 +67,7 @@ export function ListApiRequestsResponseFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
-        'data': ((json['data'] as Array<any>).map(ApiKeyRequestResponseDataFromJSON)),
+        'data': ((json['data'] as Array<any>).map(ApiKeyRequestListResponseDataFromJSON)),
         'params': ListApiRequestsParamsFromJSON(json['params']),
     };
 }
@@ -81,7 +81,7 @@ export function ListApiRequestsResponseToJSON(value?: ListApiRequestsResponse | 
     }
     return {
         
-        'data': ((value.data as Array<any>).map(ApiKeyRequestResponseDataToJSON)),
+        'data': ((value.data as Array<any>).map(ApiKeyRequestListResponseDataToJSON)),
         'params': ListApiRequestsParamsToJSON(value.params),
     };
 }

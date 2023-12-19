@@ -14,83 +14,71 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * The returned resource
+ * 
  * @export
- * @interface ApiKeyRequestResponseData
+ * @interface ApiKeyRequestListResponseData
  */
-export interface ApiKeyRequestResponseData {
+export interface ApiKeyRequestListResponseData {
     /**
      * 
      * @type {string}
-     * @memberof ApiKeyRequestResponseData
+     * @memberof ApiKeyRequestListResponseData
      */
     apiKeyId: string;
     /**
      * 
      * @type {Date}
-     * @memberof ApiKeyRequestResponseData
+     * @memberof ApiKeyRequestListResponseData
      */
     endedAt?: Date | null;
     /**
      * 
      * @type {string}
-     * @memberof ApiKeyRequestResponseData
+     * @memberof ApiKeyRequestListResponseData
      */
     environmentId?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof ApiKeyRequestResponseData
+     * @memberof ApiKeyRequestListResponseData
      */
     id: string;
     /**
      * 
      * @type {string}
-     * @memberof ApiKeyRequestResponseData
+     * @memberof ApiKeyRequestListResponseData
      */
     method: string;
     /**
      * 
      * @type {string}
-     * @memberof ApiKeyRequestResponseData
+     * @memberof ApiKeyRequestListResponseData
      */
     reqBody?: string | null;
     /**
      * 
-     * @type {string}
-     * @memberof ApiKeyRequestResponseData
-     */
-    respBody?: string | null;
-    /**
-     * 
      * @type {number}
-     * @memberof ApiKeyRequestResponseData
+     * @memberof ApiKeyRequestListResponseData
      */
     respCode?: number | null;
     /**
      * 
      * @type {Date}
-     * @memberof ApiKeyRequestResponseData
+     * @memberof ApiKeyRequestListResponseData
      */
     startedAt: Date;
     /**
      * 
      * @type {string}
-     * @memberof ApiKeyRequestResponseData
+     * @memberof ApiKeyRequestListResponseData
      */
     url: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ApiKeyRequestResponseData
-     */
-    userAgent?: string | null;
 }
 
 /**
- * Check if a given object implements the ApiKeyRequestResponseData interface.
+ * Check if a given object implements the ApiKeyRequestListResponseData interface.
  */
-export function instanceOfApiKeyRequestResponseData(value: object): boolean {
+export function instanceOfApiKeyRequestListResponseData(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "apiKeyId" in value;
     isInstance = isInstance && "id" in value;
@@ -101,11 +89,11 @@ export function instanceOfApiKeyRequestResponseData(value: object): boolean {
     return isInstance;
 }
 
-export function ApiKeyRequestResponseDataFromJSON(json: any): ApiKeyRequestResponseData {
-    return ApiKeyRequestResponseDataFromJSONTyped(json, false);
+export function ApiKeyRequestListResponseDataFromJSON(json: any): ApiKeyRequestListResponseData {
+    return ApiKeyRequestListResponseDataFromJSONTyped(json, false);
 }
 
-export function ApiKeyRequestResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): ApiKeyRequestResponseData {
+export function ApiKeyRequestListResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): ApiKeyRequestListResponseData {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -117,15 +105,13 @@ export function ApiKeyRequestResponseDataFromJSONTyped(json: any, ignoreDiscrimi
         'id': json['id'],
         'method': json['method'],
         'reqBody': !exists(json, 'req_body') ? undefined : json['req_body'],
-        'respBody': !exists(json, 'resp_body') ? undefined : json['resp_body'],
         'respCode': !exists(json, 'resp_code') ? undefined : json['resp_code'],
         'startedAt': (new Date(json['started_at'])),
         'url': json['url'],
-        'userAgent': !exists(json, 'user_agent') ? undefined : json['user_agent'],
     };
 }
 
-export function ApiKeyRequestResponseDataToJSON(value?: ApiKeyRequestResponseData | null): any {
+export function ApiKeyRequestListResponseDataToJSON(value?: ApiKeyRequestListResponseData | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -140,11 +126,9 @@ export function ApiKeyRequestResponseDataToJSON(value?: ApiKeyRequestResponseDat
         'id': value.id,
         'method': value.method,
         'req_body': value.reqBody,
-        'resp_body': value.respBody,
         'resp_code': value.respCode,
         'started_at': (value.startedAt.toISOString()),
         'url': value.url,
-        'user_agent': value.userAgent,
     };
 }
 
