@@ -36,30 +36,6 @@ export interface ListCompanyPlansParams {
      * @type {string}
      * @memberof ListCompanyPlansParams
      */
-    dir?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ListCompanyPlansParams
-     */
-    limit?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ListCompanyPlansParams
-     */
-    offset?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListCompanyPlansParams
-     */
-    order?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListCompanyPlansParams
-     */
     planId?: string;
 }
 
@@ -84,10 +60,6 @@ export function ListCompanyPlansParamsFromJSONTyped(json: any, ignoreDiscriminat
         
         'active': !exists(json, 'active') ? undefined : json['active'],
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'dir': !exists(json, 'dir') ? undefined : json['dir'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'order': !exists(json, 'order') ? undefined : json['order'],
         'planId': !exists(json, 'plan_id') ? undefined : json['plan_id'],
     };
 }
@@ -103,10 +75,6 @@ export function ListCompanyPlansParamsToJSON(value?: ListCompanyPlansParams | nu
         
         'active': value.active,
         'company_id': value.companyId,
-        'dir': value.dir,
-        'limit': value.limit,
-        'offset': value.offset,
-        'order': value.order,
         'plan_id': value.planId,
     };
 }

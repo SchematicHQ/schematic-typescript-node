@@ -140,8 +140,6 @@ export interface CountFlagChecksRequest {
     flagIds?: Array<string>;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface CountFlagValuesRequest {
@@ -152,8 +150,6 @@ export interface CountFlagValuesRequest {
     flagId?: string;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface CountUsersAudienceRequest {
@@ -222,16 +218,12 @@ export interface LatestFlagChecksRequest {
     flagIds?: Array<string>;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface ListFeaturesRequest {
     xSchematicEnvironmentId?: string;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface ListFlagChecksRequest {
@@ -240,8 +232,6 @@ export interface ListFlagChecksRequest {
     flagIds?: Array<string>;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface ListFlagValuesRequest {
@@ -252,8 +242,6 @@ export interface ListFlagValuesRequest {
     flagId?: string;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface ListFlagsRequest {
@@ -262,8 +250,6 @@ export interface ListFlagsRequest {
     flagIds?: Array<string>;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface UpdateFeatureRequest {
@@ -438,14 +424,6 @@ export class FeaturesApi extends runtime.BaseAPI {
             queryParameters['offset'] = requestParameters.offset;
         }
 
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
-        }
-
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
@@ -506,14 +484,6 @@ export class FeaturesApi extends runtime.BaseAPI {
 
         if (requestParameters.offset !== undefined) {
             queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1040,14 +1010,6 @@ export class FeaturesApi extends runtime.BaseAPI {
             queryParameters['offset'] = requestParameters.offset;
         }
 
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
-        }
-
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
@@ -1088,14 +1050,6 @@ export class FeaturesApi extends runtime.BaseAPI {
 
         if (requestParameters.offset !== undefined) {
             queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1146,14 +1100,6 @@ export class FeaturesApi extends runtime.BaseAPI {
 
         if (requestParameters.offset !== undefined) {
             queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1218,14 +1164,6 @@ export class FeaturesApi extends runtime.BaseAPI {
             queryParameters['offset'] = requestParameters.offset;
         }
 
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
-        }
-
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
@@ -1274,14 +1212,6 @@ export class FeaturesApi extends runtime.BaseAPI {
 
         if (requestParameters.offset !== undefined) {
             queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

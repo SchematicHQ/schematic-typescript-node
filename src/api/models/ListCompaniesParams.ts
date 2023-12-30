@@ -21,34 +21,10 @@ import { exists, mapValues } from '../runtime';
 export interface ListCompaniesParams {
     /**
      * 
-     * @type {string}
-     * @memberof ListCompaniesParams
-     */
-    dir?: string;
-    /**
-     * 
      * @type {Array<number>}
      * @memberof ListCompaniesParams
      */
     ids?: Array<number>;
-    /**
-     * 
-     * @type {number}
-     * @memberof ListCompaniesParams
-     */
-    limit?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ListCompaniesParams
-     */
-    offset?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListCompaniesParams
-     */
-    order?: string;
 }
 
 /**
@@ -70,11 +46,7 @@ export function ListCompaniesParamsFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'dir': !exists(json, 'dir') ? undefined : json['dir'],
         'ids': !exists(json, 'ids') ? undefined : json['ids'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'order': !exists(json, 'order') ? undefined : json['order'],
     };
 }
 
@@ -87,11 +59,7 @@ export function ListCompaniesParamsToJSON(value?: ListCompaniesParams | null): a
     }
     return {
         
-        'dir': value.dir,
         'ids': value.ids,
-        'limit': value.limit,
-        'offset': value.offset,
-        'order': value.order,
     };
 }
 

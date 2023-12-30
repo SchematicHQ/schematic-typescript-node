@@ -24,12 +24,6 @@ export interface ListFlagChecksParams {
      * @type {string}
      * @memberof ListFlagChecksParams
      */
-    dir?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListFlagChecksParams
-     */
     flagId?: string;
     /**
      * 
@@ -37,24 +31,6 @@ export interface ListFlagChecksParams {
      * @memberof ListFlagChecksParams
      */
     flagIds?: Array<string>;
-    /**
-     * 
-     * @type {number}
-     * @memberof ListFlagChecksParams
-     */
-    limit?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ListFlagChecksParams
-     */
-    offset?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListFlagChecksParams
-     */
-    order?: string;
 }
 
 /**
@@ -76,12 +52,8 @@ export function ListFlagChecksParamsFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'dir': !exists(json, 'dir') ? undefined : json['dir'],
         'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
         'flagIds': !exists(json, 'flag_ids') ? undefined : json['flag_ids'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'order': !exists(json, 'order') ? undefined : json['order'],
     };
 }
 
@@ -94,12 +66,8 @@ export function ListFlagChecksParamsToJSON(value?: ListFlagChecksParams | null):
     }
     return {
         
-        'dir': value.dir,
         'flag_id': value.flagId,
         'flag_ids': value.flagIds,
-        'limit': value.limit,
-        'offset': value.offset,
-        'order': value.order,
     };
 }
 

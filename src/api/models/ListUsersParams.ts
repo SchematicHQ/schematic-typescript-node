@@ -21,34 +21,10 @@ import { exists, mapValues } from '../runtime';
 export interface ListUsersParams {
     /**
      * 
-     * @type {string}
-     * @memberof ListUsersParams
-     */
-    dir?: string;
-    /**
-     * 
      * @type {Array<number>}
      * @memberof ListUsersParams
      */
     ids?: Array<number>;
-    /**
-     * 
-     * @type {number}
-     * @memberof ListUsersParams
-     */
-    limit?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ListUsersParams
-     */
-    offset?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListUsersParams
-     */
-    order?: string;
 }
 
 /**
@@ -70,11 +46,7 @@ export function ListUsersParamsFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'dir': !exists(json, 'dir') ? undefined : json['dir'],
         'ids': !exists(json, 'ids') ? undefined : json['ids'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'order': !exists(json, 'order') ? undefined : json['order'],
     };
 }
 
@@ -87,11 +59,7 @@ export function ListUsersParamsToJSON(value?: ListUsersParams | null): any {
     }
     return {
         
-        'dir': value.dir,
         'ids': value.ids,
-        'limit': value.limit,
-        'offset': value.offset,
-        'order': value.order,
     };
 }
 
