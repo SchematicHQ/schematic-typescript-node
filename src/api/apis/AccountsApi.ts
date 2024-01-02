@@ -79,8 +79,6 @@ export interface CountApiKeysRequest {
     environmentId?: string;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface CountApiRequestsRequest {
@@ -88,8 +86,6 @@ export interface CountApiRequestsRequest {
     q?: string;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface CreateApiKeyRequest {
@@ -133,8 +129,6 @@ export interface ListApiKeysRequest {
     environmentId?: string;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface ListApiRequestsRequest {
@@ -142,8 +136,6 @@ export interface ListApiRequestsRequest {
     q?: string;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface UpdateApiKeyRequest {
@@ -187,14 +179,6 @@ export class AccountsApi extends runtime.BaseAPI {
 
         if (requestParameters.offset !== undefined) {
             queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -241,14 +225,6 @@ export class AccountsApi extends runtime.BaseAPI {
 
         if (requestParameters.offset !== undefined) {
             queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -577,14 +553,6 @@ export class AccountsApi extends runtime.BaseAPI {
             queryParameters['offset'] = requestParameters.offset;
         }
 
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
-        }
-
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
@@ -629,14 +597,6 @@ export class AccountsApi extends runtime.BaseAPI {
 
         if (requestParameters.offset !== undefined) {
             queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

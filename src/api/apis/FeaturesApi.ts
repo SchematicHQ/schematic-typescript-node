@@ -138,10 +138,9 @@ export interface CountFlagChecksRequest {
     xSchematicEnvironmentId?: string;
     flagId?: string;
     flagIds?: Array<string>;
+    id?: string;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface CountFlagValuesRequest {
@@ -152,8 +151,6 @@ export interface CountFlagValuesRequest {
     flagId?: string;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface CountUsersAudienceRequest {
@@ -220,28 +217,24 @@ export interface LatestFlagChecksRequest {
     xSchematicEnvironmentId?: string;
     flagId?: string;
     flagIds?: Array<string>;
+    id?: string;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface ListFeaturesRequest {
     xSchematicEnvironmentId?: string;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface ListFlagChecksRequest {
     xSchematicEnvironmentId?: string;
     flagId?: string;
     flagIds?: Array<string>;
+    id?: string;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface ListFlagValuesRequest {
@@ -252,8 +245,6 @@ export interface ListFlagValuesRequest {
     flagId?: string;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface ListFlagsRequest {
@@ -262,8 +253,6 @@ export interface ListFlagsRequest {
     flagIds?: Array<string>;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface UpdateFeatureRequest {
@@ -430,20 +419,16 @@ export class FeaturesApi extends runtime.BaseAPI {
             queryParameters['flag_ids'] = requestParameters.flagIds;
         }
 
+        if (requestParameters.id !== undefined) {
+            queryParameters['id'] = requestParameters.id;
+        }
+
         if (requestParameters.limit !== undefined) {
             queryParameters['limit'] = requestParameters.limit;
         }
 
         if (requestParameters.offset !== undefined) {
             queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -506,14 +491,6 @@ export class FeaturesApi extends runtime.BaseAPI {
 
         if (requestParameters.offset !== undefined) {
             queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1032,20 +1009,16 @@ export class FeaturesApi extends runtime.BaseAPI {
             queryParameters['flag_ids'] = requestParameters.flagIds;
         }
 
+        if (requestParameters.id !== undefined) {
+            queryParameters['id'] = requestParameters.id;
+        }
+
         if (requestParameters.limit !== undefined) {
             queryParameters['limit'] = requestParameters.limit;
         }
 
         if (requestParameters.offset !== undefined) {
             queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1090,14 +1063,6 @@ export class FeaturesApi extends runtime.BaseAPI {
             queryParameters['offset'] = requestParameters.offset;
         }
 
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
-        }
-
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
@@ -1140,20 +1105,16 @@ export class FeaturesApi extends runtime.BaseAPI {
             queryParameters['flag_ids'] = requestParameters.flagIds;
         }
 
+        if (requestParameters.id !== undefined) {
+            queryParameters['id'] = requestParameters.id;
+        }
+
         if (requestParameters.limit !== undefined) {
             queryParameters['limit'] = requestParameters.limit;
         }
 
         if (requestParameters.offset !== undefined) {
             queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1218,14 +1179,6 @@ export class FeaturesApi extends runtime.BaseAPI {
             queryParameters['offset'] = requestParameters.offset;
         }
 
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
-        }
-
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
@@ -1274,14 +1227,6 @@ export class FeaturesApi extends runtime.BaseAPI {
 
         if (requestParameters.offset !== undefined) {
             queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

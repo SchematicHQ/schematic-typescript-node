@@ -20,12 +20,6 @@ import { exists, mapValues } from '../runtime';
  */
 export interface PaginationFilter {
     /**
-     * Order direction
-     * @type {string}
-     * @memberof PaginationFilter
-     */
-    dir?: string | null;
-    /**
      * Page limit (default 100)
      * @type {number}
      * @memberof PaginationFilter
@@ -37,12 +31,6 @@ export interface PaginationFilter {
      * @memberof PaginationFilter
      */
     offset?: number | null;
-    /**
-     * Order by column
-     * @type {string}
-     * @memberof PaginationFilter
-     */
-    order?: string | null;
 }
 
 /**
@@ -64,10 +52,8 @@ export function PaginationFilterFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'dir': !exists(json, 'dir') ? undefined : json['dir'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'order': !exists(json, 'order') ? undefined : json['order'],
     };
 }
 
@@ -80,10 +66,8 @@ export function PaginationFilterToJSON(value?: PaginationFilter | null): any {
     }
     return {
         
-        'dir': value.dir,
         'limit': value.limit,
         'offset': value.offset,
-        'order': value.order,
     };
 }
 

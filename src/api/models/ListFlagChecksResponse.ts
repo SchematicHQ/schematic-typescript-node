@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { FlagCheckLogResponseData } from './FlagCheckLogResponseData';
+import type { FlagCheckLogDetailResponseData } from './FlagCheckLogDetailResponseData';
 import {
-    FlagCheckLogResponseDataFromJSON,
-    FlagCheckLogResponseDataFromJSONTyped,
-    FlagCheckLogResponseDataToJSON,
-} from './FlagCheckLogResponseData';
+    FlagCheckLogDetailResponseDataFromJSON,
+    FlagCheckLogDetailResponseDataFromJSONTyped,
+    FlagCheckLogDetailResponseDataToJSON,
+} from './FlagCheckLogDetailResponseData';
 import type { ListFlagChecksParams } from './ListFlagChecksParams';
 import {
     ListFlagChecksParamsFromJSON,
@@ -34,10 +34,10 @@ import {
 export interface ListFlagChecksResponse {
     /**
      * The returned resources
-     * @type {Array<FlagCheckLogResponseData>}
+     * @type {Array<FlagCheckLogDetailResponseData>}
      * @memberof ListFlagChecksResponse
      */
-    data: Array<FlagCheckLogResponseData>;
+    data: Array<FlagCheckLogDetailResponseData>;
     /**
      * 
      * @type {ListFlagChecksParams}
@@ -67,7 +67,7 @@ export function ListFlagChecksResponseFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'data': ((json['data'] as Array<any>).map(FlagCheckLogResponseDataFromJSON)),
+        'data': ((json['data'] as Array<any>).map(FlagCheckLogDetailResponseDataFromJSON)),
         'params': ListFlagChecksParamsFromJSON(json['params']),
     };
 }
@@ -81,7 +81,7 @@ export function ListFlagChecksResponseToJSON(value?: ListFlagChecksResponse | nu
     }
     return {
         
-        'data': ((value.data as Array<any>).map(FlagCheckLogResponseDataToJSON)),
+        'data': ((value.data as Array<any>).map(FlagCheckLogDetailResponseDataToJSON)),
         'params': ListFlagChecksParamsToJSON(value.params),
     };
 }

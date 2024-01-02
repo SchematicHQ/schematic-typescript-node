@@ -24,30 +24,6 @@ export interface CountEventTypesParams {
      * @type {string}
      * @memberof CountEventTypesParams
      */
-    dir?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CountEventTypesParams
-     */
-    limit?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CountEventTypesParams
-     */
-    offset?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CountEventTypesParams
-     */
-    order?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CountEventTypesParams
-     */
     q?: string;
 }
 
@@ -70,10 +46,6 @@ export function CountEventTypesParamsFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'dir': !exists(json, 'dir') ? undefined : json['dir'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'order': !exists(json, 'order') ? undefined : json['order'],
         'q': !exists(json, 'q') ? undefined : json['q'],
     };
 }
@@ -87,10 +59,6 @@ export function CountEventTypesParamsToJSON(value?: CountEventTypesParams | null
     }
     return {
         
-        'dir': value.dir,
-        'limit': value.limit,
-        'offset': value.offset,
-        'order': value.order,
         'q': value.q,
     };
 }

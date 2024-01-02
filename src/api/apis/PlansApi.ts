@@ -80,16 +80,12 @@ export interface ListCompanyPlansRequest {
     active?: boolean;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface ListPlansRequest {
     xSchematicEnvironmentId?: string;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface UpdatePlanRequest {
@@ -258,14 +254,6 @@ export class PlansApi extends runtime.BaseAPI {
             queryParameters['offset'] = requestParameters.offset;
         }
 
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
-        }
-
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
@@ -306,14 +294,6 @@ export class PlansApi extends runtime.BaseAPI {
 
         if (requestParameters.offset !== undefined) {
             queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

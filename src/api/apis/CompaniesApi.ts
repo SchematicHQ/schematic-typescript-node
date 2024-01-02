@@ -96,11 +96,9 @@ export interface GetUserRequest {
 
 export interface ListCompaniesRequest {
     xSchematicEnvironmentId?: string;
-    ids?: Array<number>;
+    ids?: Array<string>;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface ListCompanyMembershipsRequest {
@@ -109,17 +107,13 @@ export interface ListCompanyMembershipsRequest {
     userId?: string;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface ListUsersRequest {
     xSchematicEnvironmentId?: string;
-    ids?: Array<number>;
+    ids?: Array<string>;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface UpdateEntityTraitDefinitionRequest {
@@ -388,14 +382,6 @@ export class CompaniesApi extends runtime.BaseAPI {
             queryParameters['offset'] = requestParameters.offset;
         }
 
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
-        }
-
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
@@ -446,14 +432,6 @@ export class CompaniesApi extends runtime.BaseAPI {
             queryParameters['offset'] = requestParameters.offset;
         }
 
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
-        }
-
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
@@ -498,14 +476,6 @@ export class CompaniesApi extends runtime.BaseAPI {
 
         if (requestParameters.offset !== undefined) {
             queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

@@ -24,31 +24,7 @@ export interface CountApiKeysParams {
      * @type {string}
      * @memberof CountApiKeysParams
      */
-    dir?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CountApiKeysParams
-     */
     environmentId?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CountApiKeysParams
-     */
-    limit?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CountApiKeysParams
-     */
-    offset?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CountApiKeysParams
-     */
-    order?: string;
     /**
      * 
      * @type {boolean}
@@ -76,11 +52,7 @@ export function CountApiKeysParamsFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'dir': !exists(json, 'dir') ? undefined : json['dir'],
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'order': !exists(json, 'order') ? undefined : json['order'],
         'requireEnvironment': !exists(json, 'require_environment') ? undefined : json['require_environment'],
     };
 }
@@ -94,11 +66,7 @@ export function CountApiKeysParamsToJSON(value?: CountApiKeysParams | null): any
     }
     return {
         
-        'dir': value.dir,
         'environment_id': value.environmentId,
-        'limit': value.limit,
-        'offset': value.offset,
-        'order': value.order,
         'require_environment': value.requireEnvironment,
     };
 }

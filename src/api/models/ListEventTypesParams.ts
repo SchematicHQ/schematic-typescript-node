@@ -24,30 +24,6 @@ export interface ListEventTypesParams {
      * @type {string}
      * @memberof ListEventTypesParams
      */
-    dir?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ListEventTypesParams
-     */
-    limit?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ListEventTypesParams
-     */
-    offset?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListEventTypesParams
-     */
-    order?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListEventTypesParams
-     */
     q?: string;
 }
 
@@ -70,10 +46,6 @@ export function ListEventTypesParamsFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'dir': !exists(json, 'dir') ? undefined : json['dir'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'order': !exists(json, 'order') ? undefined : json['order'],
         'q': !exists(json, 'q') ? undefined : json['q'],
     };
 }
@@ -87,10 +59,6 @@ export function ListEventTypesParamsToJSON(value?: ListEventTypesParams | null):
     }
     return {
         
-        'dir': value.dir,
-        'limit': value.limit,
-        'offset': value.offset,
-        'order': value.order,
         'q': value.q,
     };
 }

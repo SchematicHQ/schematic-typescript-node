@@ -24,12 +24,6 @@ export interface LatestFlagChecksParams {
      * @type {string}
      * @memberof LatestFlagChecksParams
      */
-    dir?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof LatestFlagChecksParams
-     */
     flagId?: string;
     /**
      * 
@@ -39,22 +33,10 @@ export interface LatestFlagChecksParams {
     flagIds?: Array<string>;
     /**
      * 
-     * @type {number}
-     * @memberof LatestFlagChecksParams
-     */
-    limit?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof LatestFlagChecksParams
-     */
-    offset?: number;
-    /**
-     * 
      * @type {string}
      * @memberof LatestFlagChecksParams
      */
-    order?: string;
+    id?: string;
 }
 
 /**
@@ -76,12 +58,9 @@ export function LatestFlagChecksParamsFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'dir': !exists(json, 'dir') ? undefined : json['dir'],
         'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
         'flagIds': !exists(json, 'flag_ids') ? undefined : json['flag_ids'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'order': !exists(json, 'order') ? undefined : json['order'],
+        'id': !exists(json, 'id') ? undefined : json['id'],
     };
 }
 
@@ -94,12 +73,9 @@ export function LatestFlagChecksParamsToJSON(value?: LatestFlagChecksParams | nu
     }
     return {
         
-        'dir': value.dir,
         'flag_id': value.flagId,
         'flag_ids': value.flagIds,
-        'limit': value.limit,
-        'offset': value.offset,
-        'order': value.order,
+        'id': value.id,
     };
 }
 

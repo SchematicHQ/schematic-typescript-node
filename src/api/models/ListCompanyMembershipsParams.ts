@@ -30,30 +30,6 @@ export interface ListCompanyMembershipsParams {
      * @type {string}
      * @memberof ListCompanyMembershipsParams
      */
-    dir?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ListCompanyMembershipsParams
-     */
-    limit?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ListCompanyMembershipsParams
-     */
-    offset?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListCompanyMembershipsParams
-     */
-    order?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListCompanyMembershipsParams
-     */
     userId?: string;
 }
 
@@ -77,10 +53,6 @@ export function ListCompanyMembershipsParamsFromJSONTyped(json: any, ignoreDiscr
     return {
         
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'dir': !exists(json, 'dir') ? undefined : json['dir'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'order': !exists(json, 'order') ? undefined : json['order'],
         'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
     };
 }
@@ -95,10 +67,6 @@ export function ListCompanyMembershipsParamsToJSON(value?: ListCompanyMembership
     return {
         
         'company_id': value.companyId,
-        'dir': value.dir,
-        'limit': value.limit,
-        'offset': value.offset,
-        'order': value.order,
         'user_id': value.userId,
     };
 }
