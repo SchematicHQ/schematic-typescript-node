@@ -24,30 +24,6 @@ export interface ListApiRequestsParams {
      * @type {string}
      * @memberof ListApiRequestsParams
      */
-    dir?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ListApiRequestsParams
-     */
-    limit?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ListApiRequestsParams
-     */
-    offset?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListApiRequestsParams
-     */
-    order?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListApiRequestsParams
-     */
     q?: string;
 }
 
@@ -70,10 +46,6 @@ export function ListApiRequestsParamsFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'dir': !exists(json, 'dir') ? undefined : json['dir'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'order': !exists(json, 'order') ? undefined : json['order'],
         'q': !exists(json, 'q') ? undefined : json['q'],
     };
 }
@@ -87,10 +59,6 @@ export function ListApiRequestsParamsToJSON(value?: ListApiRequestsParams | null
     }
     return {
         
-        'dir': value.dir,
-        'limit': value.limit,
-        'offset': value.offset,
-        'order': value.order,
         'q': value.q,
     };
 }

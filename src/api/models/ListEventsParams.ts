@@ -30,12 +30,6 @@ export interface ListEventsParams {
      * @type {string}
      * @memberof ListEventsParams
      */
-    dir?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListEventsParams
-     */
     eventSubtype?: string;
     /**
      * 
@@ -43,24 +37,6 @@ export interface ListEventsParams {
      * @memberof ListEventsParams
      */
     featureId?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ListEventsParams
-     */
-    limit?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ListEventsParams
-     */
-    offset?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListEventsParams
-     */
-    order?: string;
     /**
      * 
      * @type {string}
@@ -89,12 +65,8 @@ export function ListEventsParamsFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'dir': !exists(json, 'dir') ? undefined : json['dir'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
         'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'order': !exists(json, 'order') ? undefined : json['order'],
         'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
     };
 }
@@ -109,12 +81,8 @@ export function ListEventsParamsToJSON(value?: ListEventsParams | null): any {
     return {
         
         'company_id': value.companyId,
-        'dir': value.dir,
         'event_subtype': value.eventSubtype,
         'feature_id': value.featureId,
-        'limit': value.limit,
-        'offset': value.offset,
-        'order': value.order,
         'user_id': value.userId,
     };
 }

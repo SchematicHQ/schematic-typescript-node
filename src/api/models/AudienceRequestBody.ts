@@ -45,12 +45,6 @@ export interface AudienceRequestBody {
      */
     conditions: Array<CreateOrUpdateConditionRequestBody>;
     /**
-     * Order direction
-     * @type {string}
-     * @memberof AudienceRequestBody
-     */
-    dir?: string | null;
-    /**
      * Page limit (default 100)
      * @type {number}
      * @memberof AudienceRequestBody
@@ -62,12 +56,6 @@ export interface AudienceRequestBody {
      * @memberof AudienceRequestBody
      */
     offset?: number | null;
-    /**
-     * Order by column
-     * @type {string}
-     * @memberof AudienceRequestBody
-     */
-    order?: string | null;
     /**
      * 
      * @type {string}
@@ -99,10 +87,8 @@ export function AudienceRequestBodyFromJSONTyped(json: any, ignoreDiscriminator:
         
         'conditionGroups': ((json['condition_groups'] as Array<any>).map(CreateOrUpdateConditionGroupRequestBodyFromJSON)),
         'conditions': ((json['conditions'] as Array<any>).map(CreateOrUpdateConditionRequestBodyFromJSON)),
-        'dir': !exists(json, 'dir') ? undefined : json['dir'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'order': !exists(json, 'order') ? undefined : json['order'],
         'q': !exists(json, 'q') ? undefined : json['q'],
     };
 }
@@ -118,10 +104,8 @@ export function AudienceRequestBodyToJSON(value?: AudienceRequestBody | null): a
         
         'condition_groups': ((value.conditionGroups as Array<any>).map(CreateOrUpdateConditionGroupRequestBodyToJSON)),
         'conditions': ((value.conditions as Array<any>).map(CreateOrUpdateConditionRequestBodyToJSON)),
-        'dir': value.dir,
         'limit': value.limit,
         'offset': value.offset,
-        'order': value.order,
         'q': value.q,
     };
 }

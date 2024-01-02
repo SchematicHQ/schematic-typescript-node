@@ -27,12 +27,6 @@ export interface ListMetricCountsHourlyParams {
     companyId?: string;
     /**
      * 
-     * @type {string}
-     * @memberof ListMetricCountsHourlyParams
-     */
-    dir?: string;
-    /**
-     * 
      * @type {Date}
      * @memberof ListMetricCountsHourlyParams
      */
@@ -43,24 +37,6 @@ export interface ListMetricCountsHourlyParams {
      * @memberof ListMetricCountsHourlyParams
      */
     eventSubtype?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ListMetricCountsHourlyParams
-     */
-    limit?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ListMetricCountsHourlyParams
-     */
-    offset?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListMetricCountsHourlyParams
-     */
-    order?: string;
     /**
      * 
      * @type {Date}
@@ -95,12 +71,8 @@ export function ListMetricCountsHourlyParamsFromJSONTyped(json: any, ignoreDiscr
     return {
         
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'dir': !exists(json, 'dir') ? undefined : json['dir'],
         'endTime': !exists(json, 'end_time') ? undefined : (new Date(json['end_time'])),
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'order': !exists(json, 'order') ? undefined : json['order'],
         'startTime': !exists(json, 'start_time') ? undefined : (new Date(json['start_time'])),
         'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
     };
@@ -116,12 +88,8 @@ export function ListMetricCountsHourlyParamsToJSON(value?: ListMetricCountsHourl
     return {
         
         'company_id': value.companyId,
-        'dir': value.dir,
         'end_time': value.endTime === undefined ? undefined : (value.endTime.toISOString()),
         'event_subtype': value.eventSubtype,
-        'limit': value.limit,
-        'offset': value.offset,
-        'order': value.order,
         'start_time': value.startTime === undefined ? undefined : (value.startTime.toISOString()),
         'user_id': value.userId,
     };

@@ -57,8 +57,6 @@ export interface CountEventTypesRequest {
     q?: string;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface CountEventsRequest {
@@ -69,8 +67,6 @@ export interface CountEventsRequest {
     eventSubtype?: string;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface CreateEventRequest {
@@ -93,8 +89,6 @@ export interface ListEventTypesRequest {
     q?: string;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface ListEventsRequest {
@@ -105,8 +99,6 @@ export interface ListEventsRequest {
     eventSubtype?: string;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 export interface ListMetricCountsRequest {
@@ -118,8 +110,6 @@ export interface ListMetricCountsRequest {
     userId?: string;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
     grouping?: string;
 }
 
@@ -132,8 +122,6 @@ export interface ListMetricCountsHourlyRequest {
     userId?: string;
     limit?: number;
     offset?: number;
-    order?: string;
-    dir?: string;
 }
 
 /**
@@ -157,14 +145,6 @@ export class EventsApi extends runtime.BaseAPI {
 
         if (requestParameters.offset !== undefined) {
             queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -223,14 +203,6 @@ export class EventsApi extends runtime.BaseAPI {
 
         if (requestParameters.offset !== undefined) {
             queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -396,14 +368,6 @@ export class EventsApi extends runtime.BaseAPI {
             queryParameters['offset'] = requestParameters.offset;
         }
 
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
-        }
-
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
@@ -460,14 +424,6 @@ export class EventsApi extends runtime.BaseAPI {
 
         if (requestParameters.offset !== undefined) {
             queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -534,14 +490,6 @@ export class EventsApi extends runtime.BaseAPI {
 
         if (requestParameters.offset !== undefined) {
             queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
         }
 
         if (requestParameters.grouping !== undefined) {
@@ -612,14 +560,6 @@ export class EventsApi extends runtime.BaseAPI {
 
         if (requestParameters.offset !== undefined) {
             queryParameters['offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.order !== undefined) {
-            queryParameters['order'] = requestParameters.order;
-        }
-
-        if (requestParameters.dir !== undefined) {
-            queryParameters['dir'] = requestParameters.dir;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

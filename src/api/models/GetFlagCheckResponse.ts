@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { FlagCheckLogResponseData } from './FlagCheckLogResponseData';
+import type { FlagCheckLogDetailResponseData } from './FlagCheckLogDetailResponseData';
 import {
-    FlagCheckLogResponseDataFromJSON,
-    FlagCheckLogResponseDataFromJSONTyped,
-    FlagCheckLogResponseDataToJSON,
-} from './FlagCheckLogResponseData';
+    FlagCheckLogDetailResponseDataFromJSON,
+    FlagCheckLogDetailResponseDataFromJSONTyped,
+    FlagCheckLogDetailResponseDataToJSON,
+} from './FlagCheckLogDetailResponseData';
 
 /**
  * 
@@ -28,10 +28,10 @@ import {
 export interface GetFlagCheckResponse {
     /**
      * 
-     * @type {FlagCheckLogResponseData}
+     * @type {FlagCheckLogDetailResponseData}
      * @memberof GetFlagCheckResponse
      */
-    data: FlagCheckLogResponseData;
+    data: FlagCheckLogDetailResponseData;
     /**
      * Input parameters
      * @type {object}
@@ -61,7 +61,7 @@ export function GetFlagCheckResponseFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'data': FlagCheckLogResponseDataFromJSON(json['data']),
+        'data': FlagCheckLogDetailResponseDataFromJSON(json['data']),
         'params': json['params'],
     };
 }
@@ -75,7 +75,7 @@ export function GetFlagCheckResponseToJSON(value?: GetFlagCheckResponse | null):
     }
     return {
         
-        'data': FlagCheckLogResponseDataToJSON(value.data),
+        'data': FlagCheckLogDetailResponseDataToJSON(value.data),
         'params': value.params,
     };
 }

@@ -27,12 +27,6 @@ export interface CountFlagValuesParams {
     companyId?: string;
     /**
      * 
-     * @type {string}
-     * @memberof CountFlagValuesParams
-     */
-    dir?: string;
-    /**
-     * 
      * @type {number}
      * @memberof CountFlagValuesParams
      */
@@ -43,24 +37,6 @@ export interface CountFlagValuesParams {
      * @memberof CountFlagValuesParams
      */
     flagId?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CountFlagValuesParams
-     */
-    limit?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CountFlagValuesParams
-     */
-    offset?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CountFlagValuesParams
-     */
-    order?: string;
     /**
      * 
      * @type {string}
@@ -89,12 +65,8 @@ export function CountFlagValuesParamsFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'dir': !exists(json, 'dir') ? undefined : json['dir'],
         'entityType': !exists(json, 'entity_type') ? undefined : json['entity_type'],
         'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'order': !exists(json, 'order') ? undefined : json['order'],
         'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
     };
 }
@@ -109,12 +81,8 @@ export function CountFlagValuesParamsToJSON(value?: CountFlagValuesParams | null
     return {
         
         'company_id': value.companyId,
-        'dir': value.dir,
         'entity_type': value.entityType,
         'flag_id': value.flagId,
-        'limit': value.limit,
-        'offset': value.offset,
-        'order': value.order,
         'user_id': value.userId,
     };
 }

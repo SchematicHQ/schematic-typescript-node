@@ -79,6 +79,7 @@ models/EventResponseData.ts
 models/EventSummaryResponseData.ts
 models/FeatureDetailResponseData.ts
 models/FeatureResponseData.ts
+models/FlagCheckLogDetailResponseData.ts
 models/FlagCheckLogResponseData.ts
 models/FlagDetailResponseData.ts
 models/FlagResponseData.ts
@@ -113,7 +114,6 @@ models/ListEventTypesParams.ts
 models/ListEventTypesResponse.ts
 models/ListEventsParams.ts
 models/ListEventsResponse.ts
-models/ListFeaturesParams.ts
 models/ListFeaturesResponse.ts
 models/ListFlagChecksParams.ts
 models/ListFlagChecksResponse.ts
@@ -125,7 +125,6 @@ models/ListMetricCountsHourlyParams.ts
 models/ListMetricCountsHourlyResponse.ts
 models/ListMetricCountsParams.ts
 models/ListMetricCountsResponse.ts
-models/ListPlansParams.ts
 models/ListPlansResponse.ts
 models/ListUsersParams.ts
 models/ListUsersResponse.ts
