@@ -21,12 +21,6 @@ import { exists, mapValues } from '../runtime';
 export interface ListFeaturesParams {
     /**
      * 
-     * @type {string}
-     * @memberof ListFeaturesParams
-     */
-    dir?: string;
-    /**
-     * 
      * @type {number}
      * @memberof ListFeaturesParams
      */
@@ -37,12 +31,6 @@ export interface ListFeaturesParams {
      * @memberof ListFeaturesParams
      */
     offset?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListFeaturesParams
-     */
-    order?: string;
 }
 
 /**
@@ -64,10 +52,8 @@ export function ListFeaturesParamsFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'dir': !exists(json, 'dir') ? undefined : json['dir'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'order': !exists(json, 'order') ? undefined : json['order'],
     };
 }
 
@@ -80,10 +66,8 @@ export function ListFeaturesParamsToJSON(value?: ListFeaturesParams | null): any
     }
     return {
         
-        'dir': value.dir,
         'limit': value.limit,
         'offset': value.offset,
-        'order': value.order,
     };
 }
 

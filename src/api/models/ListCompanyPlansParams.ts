@@ -33,6 +33,18 @@ export interface ListCompanyPlansParams {
     companyId?: string;
     /**
      * 
+     * @type {number}
+     * @memberof ListCompanyPlansParams
+     */
+    limit?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ListCompanyPlansParams
+     */
+    offset?: number;
+    /**
+     * 
      * @type {string}
      * @memberof ListCompanyPlansParams
      */
@@ -60,6 +72,8 @@ export function ListCompanyPlansParamsFromJSONTyped(json: any, ignoreDiscriminat
         
         'active': !exists(json, 'active') ? undefined : json['active'],
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
+        'limit': !exists(json, 'limit') ? undefined : json['limit'],
+        'offset': !exists(json, 'offset') ? undefined : json['offset'],
         'planId': !exists(json, 'plan_id') ? undefined : json['plan_id'],
     };
 }
@@ -75,6 +89,8 @@ export function ListCompanyPlansParamsToJSON(value?: ListCompanyPlansParams | nu
         
         'active': value.active,
         'company_id': value.companyId,
+        'limit': value.limit,
+        'offset': value.offset,
         'plan_id': value.planId,
     };
 }

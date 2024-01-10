@@ -25,6 +25,18 @@ export interface ListUsersParams {
      * @memberof ListUsersParams
      */
     ids?: Array<string>;
+    /**
+     * 
+     * @type {number}
+     * @memberof ListUsersParams
+     */
+    limit?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ListUsersParams
+     */
+    offset?: number;
 }
 
 /**
@@ -47,6 +59,8 @@ export function ListUsersParamsFromJSONTyped(json: any, ignoreDiscriminator: boo
     return {
         
         'ids': !exists(json, 'ids') ? undefined : json['ids'],
+        'limit': !exists(json, 'limit') ? undefined : json['limit'],
+        'offset': !exists(json, 'offset') ? undefined : json['offset'],
     };
 }
 
@@ -60,6 +74,8 @@ export function ListUsersParamsToJSON(value?: ListUsersParams | null): any {
     return {
         
         'ids': value.ids,
+        'limit': value.limit,
+        'offset': value.offset,
     };
 }
 

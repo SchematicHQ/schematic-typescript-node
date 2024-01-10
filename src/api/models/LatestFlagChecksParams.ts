@@ -37,6 +37,18 @@ export interface LatestFlagChecksParams {
      * @memberof LatestFlagChecksParams
      */
     id?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof LatestFlagChecksParams
+     */
+    limit?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof LatestFlagChecksParams
+     */
+    offset?: number;
 }
 
 /**
@@ -61,6 +73,8 @@ export function LatestFlagChecksParamsFromJSONTyped(json: any, ignoreDiscriminat
         'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
         'flagIds': !exists(json, 'flag_ids') ? undefined : json['flag_ids'],
         'id': !exists(json, 'id') ? undefined : json['id'],
+        'limit': !exists(json, 'limit') ? undefined : json['limit'],
+        'offset': !exists(json, 'offset') ? undefined : json['offset'],
     };
 }
 
@@ -76,6 +90,8 @@ export function LatestFlagChecksParamsToJSON(value?: LatestFlagChecksParams | nu
         'flag_id': value.flagId,
         'flag_ids': value.flagIds,
         'id': value.id,
+        'limit': value.limit,
+        'offset': value.offset,
     };
 }
 

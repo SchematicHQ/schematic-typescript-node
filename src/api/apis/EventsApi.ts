@@ -106,6 +106,7 @@ export interface ListMetricCountsRequest {
     xSchematicEnvironmentId?: string;
     startTime?: Date;
     endTime?: Date;
+    eventSubtypes?: Array<string>;
     companyId?: string;
     userId?: string;
     limit?: number;
@@ -118,6 +119,7 @@ export interface ListMetricCountsHourlyRequest {
     xSchematicEnvironmentId?: string;
     startTime?: Date;
     endTime?: Date;
+    eventSubtypes?: Array<string>;
     companyId?: string;
     userId?: string;
     limit?: number;
@@ -476,6 +478,10 @@ export class EventsApi extends runtime.BaseAPI {
             queryParameters['event_subtype'] = requestParameters.eventSubtype;
         }
 
+        if (requestParameters.eventSubtypes) {
+            queryParameters['event_subtypes'] = requestParameters.eventSubtypes;
+        }
+
         if (requestParameters.companyId !== undefined) {
             queryParameters['company_id'] = requestParameters.companyId;
         }
@@ -544,6 +550,10 @@ export class EventsApi extends runtime.BaseAPI {
 
         if (requestParameters.eventSubtype !== undefined) {
             queryParameters['event_subtype'] = requestParameters.eventSubtype;
+        }
+
+        if (requestParameters.eventSubtypes) {
+            queryParameters['event_subtypes'] = requestParameters.eventSubtypes;
         }
 
         if (requestParameters.companyId !== undefined) {

@@ -27,6 +27,18 @@ export interface CountApiKeysParams {
     environmentId?: string;
     /**
      * 
+     * @type {number}
+     * @memberof CountApiKeysParams
+     */
+    limit?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CountApiKeysParams
+     */
+    offset?: number;
+    /**
+     * 
      * @type {boolean}
      * @memberof CountApiKeysParams
      */
@@ -53,6 +65,8 @@ export function CountApiKeysParamsFromJSONTyped(json: any, ignoreDiscriminator: 
     return {
         
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
+        'limit': !exists(json, 'limit') ? undefined : json['limit'],
+        'offset': !exists(json, 'offset') ? undefined : json['offset'],
         'requireEnvironment': !exists(json, 'require_environment') ? undefined : json['require_environment'],
     };
 }
@@ -67,6 +81,8 @@ export function CountApiKeysParamsToJSON(value?: CountApiKeysParams | null): any
     return {
         
         'environment_id': value.environmentId,
+        'limit': value.limit,
+        'offset': value.offset,
         'require_environment': value.requireEnvironment,
     };
 }

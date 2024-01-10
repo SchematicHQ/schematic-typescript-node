@@ -39,6 +39,18 @@ export interface ListFlagValuesParams {
     flagId?: string;
     /**
      * 
+     * @type {number}
+     * @memberof ListFlagValuesParams
+     */
+    limit?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ListFlagValuesParams
+     */
+    offset?: number;
+    /**
+     * 
      * @type {string}
      * @memberof ListFlagValuesParams
      */
@@ -67,6 +79,8 @@ export function ListFlagValuesParamsFromJSONTyped(json: any, ignoreDiscriminator
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'entityType': !exists(json, 'entity_type') ? undefined : json['entity_type'],
         'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
+        'limit': !exists(json, 'limit') ? undefined : json['limit'],
+        'offset': !exists(json, 'offset') ? undefined : json['offset'],
         'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
     };
 }
@@ -83,6 +97,8 @@ export function ListFlagValuesParamsToJSON(value?: ListFlagValuesParams | null):
         'company_id': value.companyId,
         'entity_type': value.entityType,
         'flag_id': value.flagId,
+        'limit': value.limit,
+        'offset': value.offset,
         'user_id': value.userId,
     };
 }

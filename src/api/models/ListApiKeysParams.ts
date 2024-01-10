@@ -27,6 +27,18 @@ export interface ListApiKeysParams {
     environmentId?: string;
     /**
      * 
+     * @type {number}
+     * @memberof ListApiKeysParams
+     */
+    limit?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ListApiKeysParams
+     */
+    offset?: number;
+    /**
+     * 
      * @type {boolean}
      * @memberof ListApiKeysParams
      */
@@ -53,6 +65,8 @@ export function ListApiKeysParamsFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
+        'limit': !exists(json, 'limit') ? undefined : json['limit'],
+        'offset': !exists(json, 'offset') ? undefined : json['offset'],
         'requireEnvironment': !exists(json, 'require_environment') ? undefined : json['require_environment'],
     };
 }
@@ -67,6 +81,8 @@ export function ListApiKeysParamsToJSON(value?: ListApiKeysParams | null): any {
     return {
         
         'environment_id': value.environmentId,
+        'limit': value.limit,
+        'offset': value.offset,
         'require_environment': value.requireEnvironment,
     };
 }

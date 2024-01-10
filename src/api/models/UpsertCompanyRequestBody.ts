@@ -55,6 +55,12 @@ export interface UpsertCompanyRequestBody {
      * @memberof UpsertCompanyRequestBody
      */
     traits?: object;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpsertCompanyRequestBody
+     */
+    updateOnly?: boolean | null;
 }
 
 /**
@@ -83,6 +89,7 @@ export function UpsertCompanyRequestBodyFromJSONTyped(json: any, ignoreDiscrimin
         'name': !exists(json, 'name') ? undefined : json['name'],
         'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
         'traits': !exists(json, 'traits') ? undefined : json['traits'],
+        'updateOnly': !exists(json, 'update_only') ? undefined : json['update_only'],
     };
 }
 
@@ -101,6 +108,7 @@ export function UpsertCompanyRequestBodyToJSON(value?: UpsertCompanyRequestBody 
         'name': value.name,
         'skip_webhooks': value.skipWebhooks,
         'traits': value.traits,
+        'update_only': value.updateOnly,
     };
 }
 

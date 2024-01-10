@@ -21,6 +21,18 @@ import { exists, mapValues } from '../runtime';
 export interface CountEventTypesParams {
     /**
      * 
+     * @type {number}
+     * @memberof CountEventTypesParams
+     */
+    limit?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CountEventTypesParams
+     */
+    offset?: number;
+    /**
+     * 
      * @type {string}
      * @memberof CountEventTypesParams
      */
@@ -46,6 +58,8 @@ export function CountEventTypesParamsFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
+        'limit': !exists(json, 'limit') ? undefined : json['limit'],
+        'offset': !exists(json, 'offset') ? undefined : json['offset'],
         'q': !exists(json, 'q') ? undefined : json['q'],
     };
 }
@@ -59,6 +73,8 @@ export function CountEventTypesParamsToJSON(value?: CountEventTypesParams | null
     }
     return {
         
+        'limit': value.limit,
+        'offset': value.offset,
         'q': value.q,
     };
 }

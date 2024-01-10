@@ -27,6 +27,18 @@ export interface ListCompanyMembershipsParams {
     companyId?: string;
     /**
      * 
+     * @type {number}
+     * @memberof ListCompanyMembershipsParams
+     */
+    limit?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ListCompanyMembershipsParams
+     */
+    offset?: number;
+    /**
+     * 
      * @type {string}
      * @memberof ListCompanyMembershipsParams
      */
@@ -53,6 +65,8 @@ export function ListCompanyMembershipsParamsFromJSONTyped(json: any, ignoreDiscr
     return {
         
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
+        'limit': !exists(json, 'limit') ? undefined : json['limit'],
+        'offset': !exists(json, 'offset') ? undefined : json['offset'],
         'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
     };
 }
@@ -67,6 +81,8 @@ export function ListCompanyMembershipsParamsToJSON(value?: ListCompanyMembership
     return {
         
         'company_id': value.companyId,
+        'limit': value.limit,
+        'offset': value.offset,
         'user_id': value.userId,
     };
 }

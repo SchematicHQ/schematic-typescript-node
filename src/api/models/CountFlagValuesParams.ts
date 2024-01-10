@@ -39,6 +39,18 @@ export interface CountFlagValuesParams {
     flagId?: string;
     /**
      * 
+     * @type {number}
+     * @memberof CountFlagValuesParams
+     */
+    limit?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CountFlagValuesParams
+     */
+    offset?: number;
+    /**
+     * 
      * @type {string}
      * @memberof CountFlagValuesParams
      */
@@ -67,6 +79,8 @@ export function CountFlagValuesParamsFromJSONTyped(json: any, ignoreDiscriminato
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'entityType': !exists(json, 'entity_type') ? undefined : json['entity_type'],
         'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
+        'limit': !exists(json, 'limit') ? undefined : json['limit'],
+        'offset': !exists(json, 'offset') ? undefined : json['offset'],
         'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
     };
 }
@@ -83,6 +97,8 @@ export function CountFlagValuesParamsToJSON(value?: CountFlagValuesParams | null
         'company_id': value.companyId,
         'entity_type': value.entityType,
         'flag_id': value.flagId,
+        'limit': value.limit,
+        'offset': value.offset,
         'user_id': value.userId,
     };
 }
