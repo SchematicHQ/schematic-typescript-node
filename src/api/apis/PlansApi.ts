@@ -20,7 +20,6 @@ import type {
   CreatePlanResponse,
   DeletePlanResponse,
   GetPlanResponse,
-  ListCompanyPlansResponse,
   ListPlansResponse,
   UpdateAudienceRequestBody,
   UpdatePlanAudienceResponse,
@@ -40,8 +39,6 @@ import {
     DeletePlanResponseToJSON,
     GetPlanResponseFromJSON,
     GetPlanResponseToJSON,
-    ListCompanyPlansResponseFromJSON,
-    ListCompanyPlansResponseToJSON,
     ListPlansResponseFromJSON,
     ListPlansResponseToJSON,
     UpdateAudienceRequestBodyFromJSON,
@@ -71,15 +68,6 @@ export interface DeletePlanRequest {
 export interface GetPlanRequest {
     planId: string;
     xSchematicEnvironmentId?: string;
-}
-
-export interface ListCompanyPlansRequest {
-    xSchematicEnvironmentId?: string;
-    companyId?: string;
-    planId?: string;
-    active?: boolean;
-    limit?: number;
-    offset?: number;
 }
 
 export interface ListPlansRequest {
@@ -225,60 +213,6 @@ export class PlansApi extends runtime.BaseAPI {
      */
     async getPlan(requestParameters: GetPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPlanResponse> {
         const response = await this.getPlanRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * List company plans
-     */
-    async listCompanyPlansRaw(requestParameters: ListCompanyPlansRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListCompanyPlansResponse>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.companyId !== undefined) {
-            queryParameters['company_id'] = requestParameters.companyId;
-        }
-
-        if (requestParameters.planId !== undefined) {
-            queryParameters['plan_id'] = requestParameters.planId;
-        }
-
-        if (requestParameters.active !== undefined) {
-            queryParameters['active'] = requestParameters.active;
-        }
-
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
-        }
-
-        if (requestParameters.offset !== undefined) {
-            queryParameters['offset'] = requestParameters.offset;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/company-plans`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ListCompanyPlansResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * List company plans
-     */
-    async listCompanyPlans(requestParameters: ListCompanyPlansRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListCompanyPlansResponse> {
-        const response = await this.listCompanyPlansRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

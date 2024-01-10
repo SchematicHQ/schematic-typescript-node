@@ -21,6 +21,18 @@ import { exists, mapValues } from '../runtime';
 export interface ListApiRequestsParams {
     /**
      * 
+     * @type {number}
+     * @memberof ListApiRequestsParams
+     */
+    limit?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ListApiRequestsParams
+     */
+    offset?: number;
+    /**
+     * 
      * @type {string}
      * @memberof ListApiRequestsParams
      */
@@ -46,6 +58,8 @@ export function ListApiRequestsParamsFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
+        'limit': !exists(json, 'limit') ? undefined : json['limit'],
+        'offset': !exists(json, 'offset') ? undefined : json['offset'],
         'q': !exists(json, 'q') ? undefined : json['q'],
     };
 }
@@ -59,6 +73,8 @@ export function ListApiRequestsParamsToJSON(value?: ListApiRequestsParams | null
     }
     return {
         
+        'limit': value.limit,
+        'offset': value.offset,
         'q': value.q,
     };
 }

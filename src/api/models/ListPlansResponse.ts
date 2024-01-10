@@ -13,6 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { ListPlansParams } from './ListPlansParams';
+import {
+    ListPlansParamsFromJSON,
+    ListPlansParamsFromJSONTyped,
+    ListPlansParamsToJSON,
+} from './ListPlansParams';
 import type { PlanResponseData } from './PlanResponseData';
 import {
     PlanResponseDataFromJSON,
@@ -33,11 +39,11 @@ export interface ListPlansResponse {
      */
     data: Array<PlanResponseData>;
     /**
-     * Input parameters
-     * @type {object}
+     * 
+     * @type {ListPlansParams}
      * @memberof ListPlansResponse
      */
-    params: object;
+    params: ListPlansParams;
 }
 
 /**
@@ -62,7 +68,7 @@ export function ListPlansResponseFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'data': ((json['data'] as Array<any>).map(PlanResponseDataFromJSON)),
-        'params': json['params'],
+        'params': ListPlansParamsFromJSON(json['params']),
     };
 }
 
@@ -76,7 +82,7 @@ export function ListPlansResponseToJSON(value?: ListPlansResponse | null): any {
     return {
         
         'data': ((value.data as Array<any>).map(PlanResponseDataToJSON)),
-        'params': value.params,
+        'params': ListPlansParamsToJSON(value.params),
     };
 }
 

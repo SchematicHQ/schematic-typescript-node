@@ -25,6 +25,18 @@ export interface ListCompaniesParams {
      * @memberof ListCompaniesParams
      */
     ids?: Array<string>;
+    /**
+     * 
+     * @type {number}
+     * @memberof ListCompaniesParams
+     */
+    limit?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ListCompaniesParams
+     */
+    offset?: number;
 }
 
 /**
@@ -47,6 +59,8 @@ export function ListCompaniesParamsFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'ids': !exists(json, 'ids') ? undefined : json['ids'],
+        'limit': !exists(json, 'limit') ? undefined : json['limit'],
+        'offset': !exists(json, 'offset') ? undefined : json['offset'],
     };
 }
 
@@ -60,6 +74,8 @@ export function ListCompaniesParamsToJSON(value?: ListCompaniesParams | null): a
     return {
         
         'ids': value.ids,
+        'limit': value.limit,
+        'offset': value.offset,
     };
 }
 

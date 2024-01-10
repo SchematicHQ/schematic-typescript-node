@@ -21,12 +21,6 @@ import { exists, mapValues } from '../runtime';
 export interface ListPlansParams {
     /**
      * 
-     * @type {string}
-     * @memberof ListPlansParams
-     */
-    dir?: string;
-    /**
-     * 
      * @type {number}
      * @memberof ListPlansParams
      */
@@ -37,12 +31,6 @@ export interface ListPlansParams {
      * @memberof ListPlansParams
      */
     offset?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListPlansParams
-     */
-    order?: string;
 }
 
 /**
@@ -64,10 +52,8 @@ export function ListPlansParamsFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'dir': !exists(json, 'dir') ? undefined : json['dir'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'order': !exists(json, 'order') ? undefined : json['order'],
     };
 }
 
@@ -80,10 +66,8 @@ export function ListPlansParamsToJSON(value?: ListPlansParams | null): any {
     }
     return {
         
-        'dir': value.dir,
         'limit': value.limit,
         'offset': value.offset,
-        'order': value.order,
     };
 }
 

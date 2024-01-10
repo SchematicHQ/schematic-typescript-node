@@ -19,6 +19,12 @@ import {
     FeatureResponseDataFromJSONTyped,
     FeatureResponseDataToJSON,
 } from './FeatureResponseData';
+import type { ListFeaturesParams } from './ListFeaturesParams';
+import {
+    ListFeaturesParamsFromJSON,
+    ListFeaturesParamsFromJSONTyped,
+    ListFeaturesParamsToJSON,
+} from './ListFeaturesParams';
 
 /**
  * 
@@ -33,11 +39,11 @@ export interface ListFeaturesResponse {
      */
     data: Array<FeatureResponseData>;
     /**
-     * Input parameters
-     * @type {object}
+     * 
+     * @type {ListFeaturesParams}
      * @memberof ListFeaturesResponse
      */
-    params: object;
+    params: ListFeaturesParams;
 }
 
 /**
@@ -62,7 +68,7 @@ export function ListFeaturesResponseFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'data': ((json['data'] as Array<any>).map(FeatureResponseDataFromJSON)),
-        'params': json['params'],
+        'params': ListFeaturesParamsFromJSON(json['params']),
     };
 }
 
@@ -76,7 +82,7 @@ export function ListFeaturesResponseToJSON(value?: ListFeaturesResponse | null):
     return {
         
         'data': ((value.data as Array<any>).map(FeatureResponseDataToJSON)),
-        'params': value.params,
+        'params': ListFeaturesParamsToJSON(value.params),
     };
 }
 

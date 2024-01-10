@@ -21,6 +21,18 @@ import { exists, mapValues } from '../runtime';
 export interface CountApiRequestsParams {
     /**
      * 
+     * @type {number}
+     * @memberof CountApiRequestsParams
+     */
+    limit?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CountApiRequestsParams
+     */
+    offset?: number;
+    /**
+     * 
      * @type {string}
      * @memberof CountApiRequestsParams
      */
@@ -46,6 +58,8 @@ export function CountApiRequestsParamsFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
+        'limit': !exists(json, 'limit') ? undefined : json['limit'],
+        'offset': !exists(json, 'offset') ? undefined : json['offset'],
         'q': !exists(json, 'q') ? undefined : json['q'],
     };
 }
@@ -59,6 +73,8 @@ export function CountApiRequestsParamsToJSON(value?: CountApiRequestsParams | nu
     }
     return {
         
+        'limit': value.limit,
+        'offset': value.offset,
         'q': value.q,
     };
 }
