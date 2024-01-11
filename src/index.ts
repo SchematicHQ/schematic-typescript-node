@@ -4,22 +4,14 @@ import * as api from "./api/index";
 
 const fetchApi: api.FetchAPI = fetch as unknown as api.FetchAPI;
 
-export interface Schematic {
-  Accounts: api.AccountsApi;
-  Companies: api.CompaniesApi;
-  Events: api.EventsApi;
-  Features: api.FeaturesApi;
-  Plans: api.PlansApi;
-}
-
 export interface SchematicOptions {
   basePath?: string;
   environmentId?: string;
 }
 
-export function init(apiKey: string, opts?: SchematicOptions): Schematic {
+export function init(apiKey: string, opts?: SchematicOptions): api.SchematicApi {
   const headers: api.HTTPHeaders = {
-    "User-Agent": "Schematic TypeScript NodeJS Client", // TODO version
+    "User-Agent": "Schematic NodeJS Client",
   };
   if (opts?.environmentId) {
     headers["X-Schematic-Environment-Id"] = opts.environmentId;
@@ -32,13 +24,7 @@ export function init(apiKey: string, opts?: SchematicOptions): Schematic {
     basePath: opts?.basePath,
   });
 
-  return {
-    Accounts: new api.AccountsApi(config),
-    Companies: new api.CompaniesApi(config),
-    Events: new api.EventsApi(config),
-    Features: new api.FeaturesApi(config),
-    Plans: new api.PlansApi(config),
-  };
+  return new api.SchematicApi(config);
 }
 
 export * from "./api/index";

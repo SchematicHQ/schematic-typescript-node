@@ -1,8 +1,5 @@
-apis/AccountsApi.ts
-apis/CompaniesApi.ts
-apis/EventsApi.ts
-apis/FeaturesApi.ts
-apis/PlansApi.ts
+.openapi-generator-ignore
+apis/SchematicApi.ts
 apis/index.ts
 index.ts
 models/ApiError.ts
