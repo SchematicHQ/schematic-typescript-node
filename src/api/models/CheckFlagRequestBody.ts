@@ -24,7 +24,7 @@ export interface CheckFlagRequestBody {
      * @type {object}
      * @memberof CheckFlagRequestBody
      */
-    company: object;
+    company?: object | null;
     /**
      * 
      * @type {object}
@@ -38,7 +38,6 @@ export interface CheckFlagRequestBody {
  */
 export function instanceOfCheckFlagRequestBody(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "company" in value;
 
     return isInstance;
 }
@@ -53,7 +52,7 @@ export function CheckFlagRequestBodyFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'company': json['company'],
+        'company': !exists(json, 'company') ? undefined : json['company'],
         'user': !exists(json, 'user') ? undefined : json['user'],
     };
 }
