@@ -34,8 +34,6 @@ models/CountEventsParams.ts
 models/CountEventsResponse.ts
 models/CountFlagChecksParams.ts
 models/CountFlagChecksResponse.ts
-models/CountFlagValuesParams.ts
-models/CountFlagValuesResponse.ts
 models/CountResponse.ts
 models/CountUsersAudienceResponse.ts
 models/CreateApiKeyRequestBody.ts
@@ -66,7 +64,6 @@ models/DeleteFeatureResponse.ts
 models/DeleteFlagResponse.ts
 models/DeletePlanResponse.ts
 models/DeleteResponse.ts
-models/EntityFlagValueResponseData.ts
 models/EntityKeyResponseData.ts
 models/EntityTraitDefinitionResponseData.ts
 models/EnvironmentDetailResponseData.ts
@@ -118,8 +115,6 @@ models/ListFeaturesParams.ts
 models/ListFeaturesResponse.ts
 models/ListFlagChecksParams.ts
 models/ListFlagChecksResponse.ts
-models/ListFlagValuesParams.ts
-models/ListFlagValuesResponse.ts
 models/ListFlagsParams.ts
 models/ListFlagsResponse.ts
 models/ListMetricCountsHourlyParams.ts

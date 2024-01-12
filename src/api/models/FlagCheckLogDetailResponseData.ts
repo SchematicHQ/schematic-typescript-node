@@ -127,13 +127,13 @@ export interface FlagCheckLogDetailResponseData {
      * @type {object}
      * @memberof FlagCheckLogDetailResponseData
      */
-    reqCompany: object;
+    reqCompany?: object | null;
     /**
      * 
      * @type {object}
      * @memberof FlagCheckLogDetailResponseData
      */
-    reqUser: object;
+    reqUser?: object | null;
     /**
      * 
      * @type {RuleResponseData}
@@ -183,8 +183,6 @@ export function instanceOfFlagCheckLogDetailResponseData(value: object): boolean
     isInstance = isInstance && "flagKey" in value;
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "reason" in value;
-    isInstance = isInstance && "reqCompany" in value;
-    isInstance = isInstance && "reqUser" in value;
     isInstance = isInstance && "updatedAt" in value;
     isInstance = isInstance && "value" in value;
 
@@ -213,8 +211,8 @@ export function FlagCheckLogDetailResponseDataFromJSONTyped(json: any, ignoreDis
         'flagKey': json['flag_key'],
         'id': json['id'],
         'reason': json['reason'],
-        'reqCompany': json['req_company'],
-        'reqUser': json['req_user'],
+        'reqCompany': !exists(json, 'req_company') ? undefined : json['req_company'],
+        'reqUser': !exists(json, 'req_user') ? undefined : json['req_user'],
         'rule': !exists(json, 'rule') ? undefined : RuleResponseDataFromJSON(json['rule']),
         'ruleId': !exists(json, 'rule_id') ? undefined : json['rule_id'],
         'updatedAt': (new Date(json['updated_at'])),

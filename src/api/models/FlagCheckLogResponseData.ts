@@ -78,13 +78,13 @@ export interface FlagCheckLogResponseData {
      * @type {object}
      * @memberof FlagCheckLogResponseData
      */
-    reqCompany: object;
+    reqCompany?: object | null;
     /**
      * 
      * @type {object}
      * @memberof FlagCheckLogResponseData
      */
-    reqUser: object;
+    reqUser?: object | null;
     /**
      * 
      * @type {string}
@@ -122,8 +122,6 @@ export function instanceOfFlagCheckLogResponseData(value: object): boolean {
     isInstance = isInstance && "flagKey" in value;
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "reason" in value;
-    isInstance = isInstance && "reqCompany" in value;
-    isInstance = isInstance && "reqUser" in value;
     isInstance = isInstance && "updatedAt" in value;
     isInstance = isInstance && "value" in value;
 
@@ -149,8 +147,8 @@ export function FlagCheckLogResponseDataFromJSONTyped(json: any, ignoreDiscrimin
         'flagKey': json['flag_key'],
         'id': json['id'],
         'reason': json['reason'],
-        'reqCompany': json['req_company'],
-        'reqUser': json['req_user'],
+        'reqCompany': !exists(json, 'req_company') ? undefined : json['req_company'],
+        'reqUser': !exists(json, 'req_user') ? undefined : json['req_user'],
         'ruleId': !exists(json, 'rule_id') ? undefined : json['rule_id'],
         'updatedAt': (new Date(json['updated_at'])),
         'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
