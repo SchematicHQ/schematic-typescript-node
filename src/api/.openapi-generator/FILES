@@ -133,6 +133,8 @@ models/RuleConditionGroupResponseData.ts
 models/RuleConditionResponseData.ts
 models/RuleDetailResponseData.ts
 models/RuleResponseData.ts
+models/RulesDetailResponseData.ts
+models/RulesFlagResponse.ts
 models/UpdateApiKeyRequestBody.ts
 models/UpdateApiKeyResponse.ts
 models/UpdateAudienceRequestBody.ts
@@ -143,6 +145,7 @@ models/UpdateEnvironmentResponse.ts
 models/UpdateFeatureRequestBody.ts
 models/UpdateFeatureResponse.ts
 models/UpdateFlagResponse.ts
+models/UpdateFlagRulesRequestBody.ts
 models/UpdatePlanAudienceResponse.ts
 models/UpdatePlanRequestBody.ts
 models/UpdatePlanResponse.ts
