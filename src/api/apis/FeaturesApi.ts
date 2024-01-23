@@ -41,9 +41,11 @@ import type {
   ListFeaturesResponse,
   ListFlagChecksResponse,
   ListFlagsResponse,
+  RulesFlagResponse,
   UpdateFeatureRequestBody,
   UpdateFeatureResponse,
   UpdateFlagResponse,
+  UpdateFlagRulesRequestBody,
   UpdateRuleRequestBody,
   UpdateRuleResponse,
 } from '../models';
@@ -100,12 +102,16 @@ import {
     ListFlagChecksResponseToJSON,
     ListFlagsResponseFromJSON,
     ListFlagsResponseToJSON,
+    RulesFlagResponseFromJSON,
+    RulesFlagResponseToJSON,
     UpdateFeatureRequestBodyFromJSON,
     UpdateFeatureRequestBodyToJSON,
     UpdateFeatureResponseFromJSON,
     UpdateFeatureResponseToJSON,
     UpdateFlagResponseFromJSON,
     UpdateFlagResponseToJSON,
+    UpdateFlagRulesRequestBodyFromJSON,
+    UpdateFlagRulesRequestBodyToJSON,
     UpdateRuleRequestBodyFromJSON,
     UpdateRuleRequestBodyToJSON,
     UpdateRuleResponseFromJSON,
@@ -227,6 +233,12 @@ export interface ListFlagsRequest {
     flagIds?: Array<string>;
     limit?: number;
     offset?: number;
+}
+
+export interface RulesFlagRequest {
+    updateFlagRulesRequestBody: UpdateFlagRulesRequestBody;
+    flagId: string;
+    xSchematicEnvironmentId?: string;
 }
 
 export interface UpdateFeatureRequest {
@@ -1104,6 +1116,51 @@ export class FeaturesApi extends runtime.BaseAPI {
      */
     async listFlags(requestParameters: ListFlagsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListFlagsResponse> {
         const response = await this.listFlagsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Rules flag
+     */
+    async rulesFlagRaw(requestParameters: RulesFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RulesFlagResponse>> {
+        if (requestParameters.updateFlagRulesRequestBody === null || requestParameters.updateFlagRulesRequestBody === undefined) {
+            throw new runtime.RequiredError('updateFlagRulesRequestBody','Required parameter requestParameters.updateFlagRulesRequestBody was null or undefined when calling rulesFlag.');
+        }
+
+        if (requestParameters.flagId === null || requestParameters.flagId === undefined) {
+            throw new runtime.RequiredError('flagId','Required parameter requestParameters.flagId was null or undefined when calling rulesFlag.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/flags/{flag_id}/rules`.replace(`{${"flag_id"}}`, encodeURIComponent(String(requestParameters.flagId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateFlagRulesRequestBodyToJSON(requestParameters.updateFlagRulesRequestBody),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => RulesFlagResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Rules flag
+     */
+    async rulesFlag(requestParameters: RulesFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RulesFlagResponse> {
+        const response = await this.rulesFlagRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
