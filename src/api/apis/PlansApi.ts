@@ -25,8 +25,6 @@ import type {
   UpdatePlanAudienceResponse,
   UpdatePlanRequestBody,
   UpdatePlanResponse,
-  UpsertBillingPeriodRequestBody,
-  UpsertBillingPeriodResponse,
 } from '../models';
 import {
     ApiErrorFromJSON,
@@ -49,10 +47,6 @@ import {
     UpdatePlanRequestBodyToJSON,
     UpdatePlanResponseFromJSON,
     UpdatePlanResponseToJSON,
-    UpsertBillingPeriodRequestBodyFromJSON,
-    UpsertBillingPeriodRequestBodyToJSON,
-    UpsertBillingPeriodResponseFromJSON,
-    UpsertBillingPeriodResponseToJSON,
 } from '../models';
 
 export interface CreatePlanRequest {
@@ -85,12 +79,6 @@ export interface UpdatePlanRequest {
 export interface UpdatePlanAudienceRequest {
     updateAudienceRequestBody: UpdateAudienceRequestBody;
     planAudienceId: string;
-    xSchematicEnvironmentId?: string;
-}
-
-export interface UpsertBillingPeriodRequest {
-    upsertBillingPeriodRequestBody: UpsertBillingPeriodRequestBody;
-    key: string;
     xSchematicEnvironmentId?: string;
 }
 
@@ -345,51 +333,6 @@ export class PlansApi extends runtime.BaseAPI {
      */
     async updatePlanAudience(requestParameters: UpdatePlanAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdatePlanAudienceResponse> {
         const response = await this.updatePlanAudienceRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Upsert billing period
-     */
-    async upsertBillingPeriodRaw(requestParameters: UpsertBillingPeriodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpsertBillingPeriodResponse>> {
-        if (requestParameters.upsertBillingPeriodRequestBody === null || requestParameters.upsertBillingPeriodRequestBody === undefined) {
-            throw new runtime.RequiredError('upsertBillingPeriodRequestBody','Required parameter requestParameters.upsertBillingPeriodRequestBody was null or undefined when calling upsertBillingPeriod.');
-        }
-
-        if (requestParameters.key === null || requestParameters.key === undefined) {
-            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling upsertBillingPeriod.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/billing-periods/{key}/upsert`.replace(`{${"key"}}`, encodeURIComponent(String(requestParameters.key))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: UpsertBillingPeriodRequestBodyToJSON(requestParameters.upsertBillingPeriodRequestBody),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UpsertBillingPeriodResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Upsert billing period
-     */
-    async upsertBillingPeriod(requestParameters: UpsertBillingPeriodRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpsertBillingPeriodResponse> {
-        const response = await this.upsertBillingPeriodRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

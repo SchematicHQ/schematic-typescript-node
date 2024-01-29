@@ -7,6 +7,7 @@ const fetchApi: api.FetchAPI = fetch as unknown as api.FetchAPI;
 export interface Schematic {
   Accounts: api.AccountsApi;
   Companies: api.CompaniesApi;
+  Entitlements: api.EntitlementsApi;
   Events: api.EventsApi;
   Features: api.FeaturesApi;
   Plans: api.PlansApi;
@@ -35,6 +36,7 @@ export function init(apiKey: string, opts?: SchematicOptions): Schematic {
   return {
     Accounts: new api.AccountsApi(config),
     Companies: new api.CompaniesApi(config),
+    Entitlements: new api.EntitlementsApi(config),
     Events: new api.EventsApi(config),
     Features: new api.FeaturesApi(config),
     Plans: new api.PlansApi(config),

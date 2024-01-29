@@ -116,7 +116,6 @@ export interface ListCompanyPlansRequest {
     xSchematicEnvironmentId?: string;
     companyId?: string;
     planId?: string;
-    active?: boolean;
     limit?: number;
     offset?: number;
 }
@@ -484,10 +483,6 @@ export class CompaniesApi extends runtime.BaseAPI {
 
         if (requestParameters.planId !== undefined) {
             queryParameters['plan_id'] = requestParameters.planId;
-        }
-
-        if (requestParameters.active !== undefined) {
-            queryParameters['active'] = requestParameters.active;
         }
 
         if (requestParameters.limit !== undefined) {

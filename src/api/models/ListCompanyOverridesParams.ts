@@ -16,62 +16,62 @@ import { exists, mapValues } from '../runtime';
 /**
  * Input parameters
  * @export
- * @interface ListCompanyPlansParams
+ * @interface ListCompanyOverridesParams
  */
-export interface ListCompanyPlansParams {
+export interface ListCompanyOverridesParams {
     /**
      * 
-     * @type {string}
-     * @memberof ListCompanyPlansParams
+     * @type {object}
+     * @memberof ListCompanyOverridesParams
      */
-    companyId?: string;
+    companyId?: object;
+    /**
+     * 
+     * @type {object}
+     * @memberof ListCompanyOverridesParams
+     */
+    featureId?: object;
     /**
      * 
      * @type {number}
-     * @memberof ListCompanyPlansParams
+     * @memberof ListCompanyOverridesParams
      */
     limit?: number;
     /**
      * 
      * @type {number}
-     * @memberof ListCompanyPlansParams
+     * @memberof ListCompanyOverridesParams
      */
     offset?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListCompanyPlansParams
-     */
-    planId?: string;
 }
 
 /**
- * Check if a given object implements the ListCompanyPlansParams interface.
+ * Check if a given object implements the ListCompanyOverridesParams interface.
  */
-export function instanceOfListCompanyPlansParams(value: object): boolean {
+export function instanceOfListCompanyOverridesParams(value: object): boolean {
     let isInstance = true;
 
     return isInstance;
 }
 
-export function ListCompanyPlansParamsFromJSON(json: any): ListCompanyPlansParams {
-    return ListCompanyPlansParamsFromJSONTyped(json, false);
+export function ListCompanyOverridesParamsFromJSON(json: any): ListCompanyOverridesParams {
+    return ListCompanyOverridesParamsFromJSONTyped(json, false);
 }
 
-export function ListCompanyPlansParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListCompanyPlansParams {
+export function ListCompanyOverridesParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListCompanyOverridesParams {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
+        'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'planId': !exists(json, 'plan_id') ? undefined : json['plan_id'],
     };
 }
 
-export function ListCompanyPlansParamsToJSON(value?: ListCompanyPlansParams | null): any {
+export function ListCompanyOverridesParamsToJSON(value?: ListCompanyOverridesParams | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -81,9 +81,9 @@ export function ListCompanyPlansParamsToJSON(value?: ListCompanyPlansParams | nu
     return {
         
         'company_id': value.companyId,
+        'feature_id': value.featureId,
         'limit': value.limit,
         'offset': value.offset,
-        'plan_id': value.planId,
     };
 }
 
