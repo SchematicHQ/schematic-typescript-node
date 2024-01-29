@@ -16,62 +16,62 @@ import { exists, mapValues } from '../runtime';
 /**
  * Input parameters
  * @export
- * @interface ListCompanyPlansParams
+ * @interface ListPlanEntitlementsParams
  */
-export interface ListCompanyPlansParams {
+export interface ListPlanEntitlementsParams {
     /**
      * 
-     * @type {string}
-     * @memberof ListCompanyPlansParams
+     * @type {object}
+     * @memberof ListPlanEntitlementsParams
      */
-    companyId?: string;
+    featureId?: object;
     /**
      * 
      * @type {number}
-     * @memberof ListCompanyPlansParams
+     * @memberof ListPlanEntitlementsParams
      */
     limit?: number;
     /**
      * 
      * @type {number}
-     * @memberof ListCompanyPlansParams
+     * @memberof ListPlanEntitlementsParams
      */
     offset?: number;
     /**
      * 
-     * @type {string}
-     * @memberof ListCompanyPlansParams
+     * @type {object}
+     * @memberof ListPlanEntitlementsParams
      */
-    planId?: string;
+    planId?: object;
 }
 
 /**
- * Check if a given object implements the ListCompanyPlansParams interface.
+ * Check if a given object implements the ListPlanEntitlementsParams interface.
  */
-export function instanceOfListCompanyPlansParams(value: object): boolean {
+export function instanceOfListPlanEntitlementsParams(value: object): boolean {
     let isInstance = true;
 
     return isInstance;
 }
 
-export function ListCompanyPlansParamsFromJSON(json: any): ListCompanyPlansParams {
-    return ListCompanyPlansParamsFromJSONTyped(json, false);
+export function ListPlanEntitlementsParamsFromJSON(json: any): ListPlanEntitlementsParams {
+    return ListPlanEntitlementsParamsFromJSONTyped(json, false);
 }
 
-export function ListCompanyPlansParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListCompanyPlansParams {
+export function ListPlanEntitlementsParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListPlanEntitlementsParams {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
+        'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'offset': !exists(json, 'offset') ? undefined : json['offset'],
         'planId': !exists(json, 'plan_id') ? undefined : json['plan_id'],
     };
 }
 
-export function ListCompanyPlansParamsToJSON(value?: ListCompanyPlansParams | null): any {
+export function ListPlanEntitlementsParamsToJSON(value?: ListPlanEntitlementsParams | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -80,7 +80,7 @@ export function ListCompanyPlansParamsToJSON(value?: ListCompanyPlansParams | nu
     }
     return {
         
-        'company_id': value.companyId,
+        'feature_id': value.featureId,
         'limit': value.limit,
         'offset': value.offset,
         'plan_id': value.planId,

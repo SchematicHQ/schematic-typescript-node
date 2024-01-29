@@ -13,13 +13,6 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { CreateOrUpdateRuleRequestBody } from './CreateOrUpdateRuleRequestBody';
-import {
-    CreateOrUpdateRuleRequestBodyFromJSON,
-    CreateOrUpdateRuleRequestBodyFromJSONTyped,
-    CreateOrUpdateRuleRequestBodyToJSON,
-} from './CreateOrUpdateRuleRequestBody';
-
 /**
  * 
  * @export
@@ -70,12 +63,6 @@ export interface CreateOrUpdateFlagRequestBody {
     name: string;
     /**
      * 
-     * @type {Array<CreateOrUpdateRuleRequestBody>}
-     * @memberof CreateOrUpdateFlagRequestBody
-     */
-    rules: Array<CreateOrUpdateRuleRequestBody>;
-    /**
-     * 
      * @type {boolean}
      * @memberof CreateOrUpdateFlagRequestBody
      */
@@ -92,7 +79,6 @@ export function instanceOfCreateOrUpdateFlagRequestBody(value: object): boolean 
     isInstance = isInstance && "flagType" in value;
     isInstance = isInstance && "key" in value;
     isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "rules" in value;
 
     return isInstance;
 }
@@ -114,7 +100,6 @@ export function CreateOrUpdateFlagRequestBodyFromJSONTyped(json: any, ignoreDisc
         'id': !exists(json, 'id') ? undefined : json['id'],
         'key': json['key'],
         'name': json['name'],
-        'rules': ((json['rules'] as Array<any>).map(CreateOrUpdateRuleRequestBodyFromJSON)),
         'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
     };
 }
@@ -135,7 +120,6 @@ export function CreateOrUpdateFlagRequestBodyToJSON(value?: CreateOrUpdateFlagRe
         'id': value.id,
         'key': value.key,
         'name': value.name,
-        'rules': ((value.rules as Array<any>).map(CreateOrUpdateRuleRequestBodyToJSON)),
         'skip_webhooks': value.skipWebhooks,
     };
 }

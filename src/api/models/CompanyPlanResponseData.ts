@@ -33,12 +33,6 @@ export interface CompanyPlanResponseData {
     createdAt: Date;
     /**
      * 
-     * @type {Date}
-     * @memberof CompanyPlanResponseData
-     */
-    endedAt?: Date | null;
-    /**
-     * 
      * @type {string}
      * @memberof CompanyPlanResponseData
      */
@@ -60,12 +54,6 @@ export interface CompanyPlanResponseData {
      * @type {Date}
      * @memberof CompanyPlanResponseData
      */
-    startedAt: Date;
-    /**
-     * 
-     * @type {Date}
-     * @memberof CompanyPlanResponseData
-     */
     updatedAt: Date;
 }
 
@@ -79,7 +67,6 @@ export function instanceOfCompanyPlanResponseData(value: object): boolean {
     isInstance = isInstance && "environmentId" in value;
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "planId" in value;
-    isInstance = isInstance && "startedAt" in value;
     isInstance = isInstance && "updatedAt" in value;
 
     return isInstance;
@@ -97,11 +84,9 @@ export function CompanyPlanResponseDataFromJSONTyped(json: any, ignoreDiscrimina
         
         'companyId': json['company_id'],
         'createdAt': (new Date(json['created_at'])),
-        'endedAt': !exists(json, 'ended_at') ? undefined : (json['ended_at'] === null ? null : new Date(json['ended_at'])),
         'environmentId': json['environment_id'],
         'id': json['id'],
         'planId': json['plan_id'],
-        'startedAt': (new Date(json['started_at'])),
         'updatedAt': (new Date(json['updated_at'])),
     };
 }
@@ -117,11 +102,9 @@ export function CompanyPlanResponseDataToJSON(value?: CompanyPlanResponseData | 
         
         'company_id': value.companyId,
         'created_at': (value.createdAt.toISOString()),
-        'ended_at': value.endedAt === undefined ? undefined : (value.endedAt === null ? null : value.endedAt.toISOString()),
         'environment_id': value.environmentId,
         'id': value.id,
         'plan_id': value.planId,
-        'started_at': (value.startedAt.toISOString()),
         'updated_at': (value.updatedAt.toISOString()),
     };
 }
