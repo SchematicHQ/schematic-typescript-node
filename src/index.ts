@@ -16,14 +16,19 @@ export interface Schematic {
 export interface SchematicOptions {
   basePath?: string;
   environmentId?: string;
+  headers?: Record<string, string>;
 }
 
 export function init(apiKey: string, opts?: SchematicOptions): Schematic {
+  const version = process.env.SCHEMATIC_CLIENT_VERSION || "unknown";
   const headers: api.HTTPHeaders = {
-    "User-Agent": "Schematic TypeScript NodeJS Client", // TODO version
+    "User-Agent": `schematic-typescript-node@v${version}`,
   };
   if (opts?.environmentId) {
     headers["X-Schematic-Environment-Id"] = opts.environmentId;
+  }
+  if (opts?.headers) {
+    Object.assign(headers, opts.headers);
   }
 
   const config = new api.Configuration({
