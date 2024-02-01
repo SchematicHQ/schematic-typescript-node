@@ -21,10 +21,10 @@ import { exists, mapValues } from '../runtime';
 export interface ListPlanEntitlementsParams {
     /**
      * 
-     * @type {object}
+     * @type {string}
      * @memberof ListPlanEntitlementsParams
      */
-    featureId?: object;
+    featureId?: string;
     /**
      * 
      * @type {number}
@@ -39,10 +39,10 @@ export interface ListPlanEntitlementsParams {
     offset?: number;
     /**
      * 
-     * @type {object}
+     * @type {string}
      * @memberof ListPlanEntitlementsParams
      */
-    planId?: object;
+    planId?: string;
 }
 
 /**

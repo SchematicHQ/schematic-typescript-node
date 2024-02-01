@@ -96,16 +96,16 @@ export interface GetPlanEntitlementRequest {
 
 export interface ListCompanyOverridesRequest {
     xSchematicEnvironmentId?: string;
-    companyId?: object;
-    featureId?: object;
+    companyId?: string;
+    featureId?: string;
     limit?: number;
     offset?: number;
 }
 
 export interface ListPlanEntitlementsRequest {
     xSchematicEnvironmentId?: string;
-    planId?: object;
-    featureId?: object;
+    planId?: string;
+    featureId?: string;
     limit?: number;
     offset?: number;
 }
