@@ -21,16 +21,16 @@ import { exists, mapValues } from '../runtime';
 export interface ListCompanyOverridesParams {
     /**
      * 
-     * @type {object}
+     * @type {string}
      * @memberof ListCompanyOverridesParams
      */
-    companyId?: object;
+    companyId?: string;
     /**
      * 
-     * @type {object}
+     * @type {string}
      * @memberof ListCompanyOverridesParams
      */
-    featureId?: object;
+    featureId?: string;
     /**
      * 
      * @type {number}
