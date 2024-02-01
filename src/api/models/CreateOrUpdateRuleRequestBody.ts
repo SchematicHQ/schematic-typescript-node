@@ -73,12 +73,6 @@ export interface CreateOrUpdateRuleRequestBody {
      * @type {boolean}
      * @memberof CreateOrUpdateRuleRequestBody
      */
-    skipWebhooks?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CreateOrUpdateRuleRequestBody
-     */
     value: boolean;
 }
 
@@ -112,7 +106,6 @@ export function CreateOrUpdateRuleRequestBodyFromJSONTyped(json: any, ignoreDisc
         'name': json['name'],
         'priority': json['priority'],
         'priorityGroup': !exists(json, 'priority_group') ? undefined : json['priority_group'],
-        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
         'value': json['value'],
     };
 }
@@ -132,7 +125,6 @@ export function CreateOrUpdateRuleRequestBodyToJSON(value?: CreateOrUpdateRuleRe
         'name': value.name,
         'priority': value.priority,
         'priority_group': value.priorityGroup,
-        'skip_webhooks': value.skipWebhooks,
         'value': value.value,
     };
 }

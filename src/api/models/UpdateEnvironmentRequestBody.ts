@@ -31,12 +31,6 @@ export interface UpdateEnvironmentRequestBody {
      * @memberof UpdateEnvironmentRequestBody
      */
     name?: string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UpdateEnvironmentRequestBody
-     */
-    skipWebhooks?: boolean | null;
 }
 
 /**
@@ -60,7 +54,6 @@ export function UpdateEnvironmentRequestBodyFromJSONTyped(json: any, ignoreDiscr
         
         'environmentType': !exists(json, 'environment_type') ? undefined : json['environment_type'],
         'name': !exists(json, 'name') ? undefined : json['name'],
-        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
     };
 }
 
@@ -75,7 +68,6 @@ export function UpdateEnvironmentRequestBodyToJSON(value?: UpdateEnvironmentRequ
         
         'environment_type': value.environmentType,
         'name': value.name,
-        'skip_webhooks': value.skipWebhooks,
     };
 }
 

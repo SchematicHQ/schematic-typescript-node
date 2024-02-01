@@ -36,12 +36,6 @@ export interface CreateReqCommon {
      * @type {boolean}
      * @memberof CreateReqCommon
      */
-    skipWebhooks?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CreateReqCommon
-     */
     valueBool?: boolean | null;
     /**
      * 
@@ -86,7 +80,6 @@ export function CreateReqCommonFromJSONTyped(json: any, ignoreDiscriminator: boo
         
         'featureId': json['feature_id'],
         'metricPeriod': !exists(json, 'metric_period') ? undefined : json['metric_period'],
-        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
         'valueBool': !exists(json, 'value_bool') ? undefined : json['value_bool'],
         'valueNumeric': !exists(json, 'value_numeric') ? undefined : json['value_numeric'],
         'valueTraitId': !exists(json, 'value_trait_id') ? undefined : json['value_trait_id'],
@@ -105,7 +98,6 @@ export function CreateReqCommonToJSON(value?: CreateReqCommon | null): any {
         
         'feature_id': value.featureId,
         'metric_period': value.metricPeriod,
-        'skip_webhooks': value.skipWebhooks,
         'value_bool': value.valueBool,
         'value_numeric': value.valueNumeric,
         'value_trait_id': value.valueTraitId,

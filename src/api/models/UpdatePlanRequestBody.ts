@@ -25,12 +25,6 @@ export interface UpdatePlanRequestBody {
      * @memberof UpdatePlanRequestBody
      */
     name: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UpdatePlanRequestBody
-     */
-    skipWebhooks?: boolean | null;
 }
 
 /**
@@ -54,7 +48,6 @@ export function UpdatePlanRequestBodyFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'name': json['name'],
-        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
     };
 }
 
@@ -68,7 +61,6 @@ export function UpdatePlanRequestBodyToJSON(value?: UpdatePlanRequestBody | null
     return {
         
         'name': value.name,
-        'skip_webhooks': value.skipWebhooks,
     };
 }
 

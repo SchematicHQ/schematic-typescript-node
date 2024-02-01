@@ -30,12 +30,6 @@ export interface UpdatePlanEntitlementRequestBody {
      * @type {boolean}
      * @memberof UpdatePlanEntitlementRequestBody
      */
-    skipWebhooks?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UpdatePlanEntitlementRequestBody
-     */
     valueBool?: boolean | null;
     /**
      * 
@@ -78,7 +72,6 @@ export function UpdatePlanEntitlementRequestBodyFromJSONTyped(json: any, ignoreD
     return {
         
         'metricPeriod': !exists(json, 'metric_period') ? undefined : json['metric_period'],
-        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
         'valueBool': !exists(json, 'value_bool') ? undefined : json['value_bool'],
         'valueNumeric': !exists(json, 'value_numeric') ? undefined : json['value_numeric'],
         'valueTraitId': !exists(json, 'value_trait_id') ? undefined : json['value_trait_id'],
@@ -96,7 +89,6 @@ export function UpdatePlanEntitlementRequestBodyToJSON(value?: UpdatePlanEntitle
     return {
         
         'metric_period': value.metricPeriod,
-        'skip_webhooks': value.skipWebhooks,
         'value_bool': value.valueBool,
         'value_numeric': value.valueNumeric,
         'value_trait_id': value.valueTraitId,
