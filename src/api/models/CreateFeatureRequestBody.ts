@@ -64,12 +64,6 @@ export interface CreateFeatureRequestBody {
     name: string;
     /**
      * 
-     * @type {boolean}
-     * @memberof CreateFeatureRequestBody
-     */
-    skipWebhooks?: boolean | null;
-    /**
-     * 
      * @type {string}
      * @memberof CreateFeatureRequestBody
      */
@@ -104,7 +98,6 @@ export function CreateFeatureRequestBodyFromJSONTyped(json: any, ignoreDiscrimin
         'flag': !exists(json, 'flag') ? undefined : CreateOrUpdateFlagRequestBodyFromJSON(json['flag']),
         'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
         'name': json['name'],
-        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
         'traitId': !exists(json, 'trait_id') ? undefined : json['trait_id'],
     };
 }
@@ -124,7 +117,6 @@ export function CreateFeatureRequestBodyToJSON(value?: CreateFeatureRequestBody 
         'flag': CreateOrUpdateFlagRequestBodyToJSON(value.flag),
         'lifecycle_phase': value.lifecyclePhase,
         'name': value.name,
-        'skip_webhooks': value.skipWebhooks,
         'trait_id': value.traitId,
     };
 }

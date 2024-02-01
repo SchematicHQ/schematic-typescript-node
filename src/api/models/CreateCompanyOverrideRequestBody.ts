@@ -42,12 +42,6 @@ export interface CreateCompanyOverrideRequestBody {
      * @type {boolean}
      * @memberof CreateCompanyOverrideRequestBody
      */
-    skipWebhooks?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CreateCompanyOverrideRequestBody
-     */
     valueBool?: boolean | null;
     /**
      * 
@@ -94,7 +88,6 @@ export function CreateCompanyOverrideRequestBodyFromJSONTyped(json: any, ignoreD
         'companyId': json['company_id'],
         'featureId': json['feature_id'],
         'metricPeriod': !exists(json, 'metric_period') ? undefined : json['metric_period'],
-        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
         'valueBool': !exists(json, 'value_bool') ? undefined : json['value_bool'],
         'valueNumeric': !exists(json, 'value_numeric') ? undefined : json['value_numeric'],
         'valueTraitId': !exists(json, 'value_trait_id') ? undefined : json['value_trait_id'],
@@ -114,7 +107,6 @@ export function CreateCompanyOverrideRequestBodyToJSON(value?: CreateCompanyOver
         'company_id': value.companyId,
         'feature_id': value.featureId,
         'metric_period': value.metricPeriod,
-        'skip_webhooks': value.skipWebhooks,
         'value_bool': value.valueBool,
         'value_numeric': value.valueNumeric,
         'value_trait_id': value.valueTraitId,

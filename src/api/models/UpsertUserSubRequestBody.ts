@@ -44,12 +44,6 @@ export interface UpsertUserSubRequestBody {
      */
     name?: string | null;
     /**
-     * 
-     * @type {boolean}
-     * @memberof UpsertUserSubRequestBody
-     */
-    skipWebhooks?: boolean | null;
-    /**
      * A map of trait names to trait values
      * @type {object}
      * @memberof UpsertUserSubRequestBody
@@ -87,7 +81,6 @@ export function UpsertUserSubRequestBodyFromJSONTyped(json: any, ignoreDiscrimin
         'keys': json['keys'],
         'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (json['last_seen_at'] === null ? null : new Date(json['last_seen_at'])),
         'name': !exists(json, 'name') ? undefined : json['name'],
-        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
         'traits': !exists(json, 'traits') ? undefined : json['traits'],
         'updateOnly': !exists(json, 'update_only') ? undefined : json['update_only'],
     };
@@ -106,7 +99,6 @@ export function UpsertUserSubRequestBodyToJSON(value?: UpsertUserSubRequestBody 
         'keys': value.keys,
         'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt === null ? null : value.lastSeenAt.toISOString()),
         'name': value.name,
-        'skip_webhooks': value.skipWebhooks,
         'traits': value.traits,
         'update_only': value.updateOnly,
     };

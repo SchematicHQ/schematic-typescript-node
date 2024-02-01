@@ -44,12 +44,6 @@ export interface UpdateAudienceRequestBody {
      * @memberof UpdateAudienceRequestBody
      */
     conditions: Array<CreateOrUpdateConditionRequestBody>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UpdateAudienceRequestBody
-     */
-    skipWebhooks?: boolean | null;
 }
 
 /**
@@ -75,7 +69,6 @@ export function UpdateAudienceRequestBodyFromJSONTyped(json: any, ignoreDiscrimi
         
         'conditionGroups': ((json['condition_groups'] as Array<any>).map(CreateOrUpdateConditionGroupRequestBodyFromJSON)),
         'conditions': ((json['conditions'] as Array<any>).map(CreateOrUpdateConditionRequestBodyFromJSON)),
-        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
     };
 }
 
@@ -90,7 +83,6 @@ export function UpdateAudienceRequestBodyToJSON(value?: UpdateAudienceRequestBod
         
         'condition_groups': ((value.conditionGroups as Array<any>).map(CreateOrUpdateConditionGroupRequestBodyToJSON)),
         'conditions': ((value.conditions as Array<any>).map(CreateOrUpdateConditionRequestBodyToJSON)),
-        'skip_webhooks': value.skipWebhooks,
     };
 }
 

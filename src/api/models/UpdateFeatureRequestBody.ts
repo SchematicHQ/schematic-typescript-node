@@ -64,12 +64,6 @@ export interface UpdateFeatureRequestBody {
     name?: string | null;
     /**
      * 
-     * @type {boolean}
-     * @memberof UpdateFeatureRequestBody
-     */
-    skipWebhooks?: boolean | null;
-    /**
-     * 
      * @type {string}
      * @memberof UpdateFeatureRequestBody
      */
@@ -101,7 +95,6 @@ export function UpdateFeatureRequestBodyFromJSONTyped(json: any, ignoreDiscrimin
         'flag': !exists(json, 'flag') ? undefined : CreateOrUpdateFlagRequestBodyFromJSON(json['flag']),
         'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
         'name': !exists(json, 'name') ? undefined : json['name'],
-        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
         'traitId': !exists(json, 'trait_id') ? undefined : json['trait_id'],
     };
 }
@@ -121,7 +114,6 @@ export function UpdateFeatureRequestBodyToJSON(value?: UpdateFeatureRequestBody 
         'flag': CreateOrUpdateFlagRequestBodyToJSON(value.flag),
         'lifecycle_phase': value.lifecyclePhase,
         'name': value.name,
-        'skip_webhooks': value.skipWebhooks,
         'trait_id': value.traitId,
     };
 }

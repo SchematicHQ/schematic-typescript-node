@@ -21,12 +21,6 @@ import { exists, mapValues } from '../runtime';
 export interface UpdateEntityTraitDefinitionRequestBody {
     /**
      * 
-     * @type {boolean}
-     * @memberof UpdateEntityTraitDefinitionRequestBody
-     */
-    skipWebhooks?: boolean | null;
-    /**
-     * 
      * @type {string}
      * @memberof UpdateEntityTraitDefinitionRequestBody
      */
@@ -53,7 +47,6 @@ export function UpdateEntityTraitDefinitionRequestBodyFromJSONTyped(json: any, i
     }
     return {
         
-        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
         'traitType': json['trait_type'],
     };
 }
@@ -67,7 +60,6 @@ export function UpdateEntityTraitDefinitionRequestBodyToJSON(value?: UpdateEntit
     }
     return {
         
-        'skip_webhooks': value.skipWebhooks,
         'trait_type': value.traitType,
     };
 }

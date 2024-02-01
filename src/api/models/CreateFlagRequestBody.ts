@@ -55,12 +55,6 @@ export interface CreateFlagRequestBody {
      * @memberof CreateFlagRequestBody
      */
     name: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CreateFlagRequestBody
-     */
-    skipWebhooks?: boolean | null;
 }
 
 /**
@@ -93,7 +87,6 @@ export function CreateFlagRequestBodyFromJSONTyped(json: any, ignoreDiscriminato
         'flagType': json['flag_type'],
         'key': json['key'],
         'name': json['name'],
-        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
     };
 }
 
@@ -112,7 +105,6 @@ export function CreateFlagRequestBodyToJSON(value?: CreateFlagRequestBody | null
         'flag_type': value.flagType,
         'key': value.key,
         'name': value.name,
-        'skip_webhooks': value.skipWebhooks,
     };
 }
 

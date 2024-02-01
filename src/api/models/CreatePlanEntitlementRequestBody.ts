@@ -42,12 +42,6 @@ export interface CreatePlanEntitlementRequestBody {
      * @type {boolean}
      * @memberof CreatePlanEntitlementRequestBody
      */
-    skipWebhooks?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CreatePlanEntitlementRequestBody
-     */
     valueBool?: boolean | null;
     /**
      * 
@@ -94,7 +88,6 @@ export function CreatePlanEntitlementRequestBodyFromJSONTyped(json: any, ignoreD
         'featureId': json['feature_id'],
         'metricPeriod': !exists(json, 'metric_period') ? undefined : json['metric_period'],
         'planId': json['plan_id'],
-        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
         'valueBool': !exists(json, 'value_bool') ? undefined : json['value_bool'],
         'valueNumeric': !exists(json, 'value_numeric') ? undefined : json['value_numeric'],
         'valueTraitId': !exists(json, 'value_trait_id') ? undefined : json['value_trait_id'],
@@ -114,7 +107,6 @@ export function CreatePlanEntitlementRequestBodyToJSON(value?: CreatePlanEntitle
         'feature_id': value.featureId,
         'metric_period': value.metricPeriod,
         'plan_id': value.planId,
-        'skip_webhooks': value.skipWebhooks,
         'value_bool': value.valueBool,
         'value_numeric': value.valueNumeric,
         'value_trait_id': value.valueTraitId,
