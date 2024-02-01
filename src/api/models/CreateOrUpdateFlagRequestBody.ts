@@ -61,12 +61,6 @@ export interface CreateOrUpdateFlagRequestBody {
      * @memberof CreateOrUpdateFlagRequestBody
      */
     name: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CreateOrUpdateFlagRequestBody
-     */
-    skipWebhooks?: boolean | null;
 }
 
 /**
@@ -100,7 +94,6 @@ export function CreateOrUpdateFlagRequestBodyFromJSONTyped(json: any, ignoreDisc
         'id': !exists(json, 'id') ? undefined : json['id'],
         'key': json['key'],
         'name': json['name'],
-        'skipWebhooks': !exists(json, 'skip_webhooks') ? undefined : json['skip_webhooks'],
     };
 }
 
@@ -120,7 +113,6 @@ export function CreateOrUpdateFlagRequestBodyToJSON(value?: CreateOrUpdateFlagRe
         'id': value.id,
         'key': value.key,
         'name': value.name,
-        'skip_webhooks': value.skipWebhooks,
     };
 }
 
