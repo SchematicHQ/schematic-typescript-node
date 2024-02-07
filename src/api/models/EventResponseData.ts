@@ -80,7 +80,7 @@ export interface EventResponseData {
      */
     processedAt?: Date | null;
     /**
-     * 
+     * Deprecated; use status field instead
      * @type {string}
      * @memberof EventResponseData
      */
@@ -91,6 +91,12 @@ export interface EventResponseData {
      * @memberof EventResponseData
      */
     sentAt?: Date | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventResponseData
+     */
+    status: string;
     /**
      * 
      * @type {string}
@@ -126,6 +132,7 @@ export function instanceOfEventResponseData(value: object): boolean {
     isInstance = isInstance && "capturedAt" in value;
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "processingStatus" in value;
+    isInstance = isInstance && "status" in value;
     isInstance = isInstance && "type" in value;
     isInstance = isInstance && "updatedAt" in value;
 
@@ -154,6 +161,7 @@ export function EventResponseDataFromJSONTyped(json: any, ignoreDiscriminator: b
         'processedAt': !exists(json, 'processed_at') ? undefined : (json['processed_at'] === null ? null : new Date(json['processed_at'])),
         'processingStatus': json['processing_status'],
         'sentAt': !exists(json, 'sent_at') ? undefined : (json['sent_at'] === null ? null : new Date(json['sent_at'])),
+        'status': json['status'],
         'subtype': !exists(json, 'subtype') ? undefined : json['subtype'],
         'type': json['type'],
         'updatedAt': (new Date(json['updated_at'])),
@@ -182,6 +190,7 @@ export function EventResponseDataToJSON(value?: EventResponseData | null): any {
         'processed_at': value.processedAt === undefined ? undefined : (value.processedAt === null ? null : value.processedAt.toISOString()),
         'processing_status': value.processingStatus,
         'sent_at': value.sentAt === undefined ? undefined : (value.sentAt === null ? null : value.sentAt.toISOString()),
+        'status': value.status,
         'subtype': value.subtype,
         'type': value.type,
         'updated_at': (value.updatedAt.toISOString()),
