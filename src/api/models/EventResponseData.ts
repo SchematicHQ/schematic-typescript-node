@@ -60,6 +60,12 @@ export interface EventResponseData {
      * @type {string}
      * @memberof EventResponseData
      */
+    errorMessage?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventResponseData
+     */
     featureId?: string | null;
     /**
      * 
@@ -79,12 +85,6 @@ export interface EventResponseData {
      * @memberof EventResponseData
      */
     processedAt?: Date | null;
-    /**
-     * Deprecated; use status field instead
-     * @type {string}
-     * @memberof EventResponseData
-     */
-    processingStatus: string;
     /**
      * 
      * @type {Date}
@@ -131,7 +131,6 @@ export function instanceOfEventResponseData(value: object): boolean {
     isInstance = isInstance && "body" in value;
     isInstance = isInstance && "capturedAt" in value;
     isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "processingStatus" in value;
     isInstance = isInstance && "status" in value;
     isInstance = isInstance && "type" in value;
     isInstance = isInstance && "updatedAt" in value;
@@ -155,11 +154,11 @@ export function EventResponseDataFromJSONTyped(json: any, ignoreDiscriminator: b
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'enrichedAt': !exists(json, 'enriched_at') ? undefined : (json['enriched_at'] === null ? null : new Date(json['enriched_at'])),
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
+        'errorMessage': !exists(json, 'error_message') ? undefined : json['error_message'],
         'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
         'id': json['id'],
         'loadedAt': !exists(json, 'loaded_at') ? undefined : (json['loaded_at'] === null ? null : new Date(json['loaded_at'])),
         'processedAt': !exists(json, 'processed_at') ? undefined : (json['processed_at'] === null ? null : new Date(json['processed_at'])),
-        'processingStatus': json['processing_status'],
         'sentAt': !exists(json, 'sent_at') ? undefined : (json['sent_at'] === null ? null : new Date(json['sent_at'])),
         'status': json['status'],
         'subtype': !exists(json, 'subtype') ? undefined : json['subtype'],
@@ -184,11 +183,11 @@ export function EventResponseDataToJSON(value?: EventResponseData | null): any {
         'company_id': value.companyId,
         'enriched_at': value.enrichedAt === undefined ? undefined : (value.enrichedAt === null ? null : value.enrichedAt.toISOString()),
         'environment_id': value.environmentId,
+        'error_message': value.errorMessage,
         'feature_id': value.featureId,
         'id': value.id,
         'loaded_at': value.loadedAt === undefined ? undefined : (value.loadedAt === null ? null : value.loadedAt.toISOString()),
         'processed_at': value.processedAt === undefined ? undefined : (value.processedAt === null ? null : value.processedAt.toISOString()),
-        'processing_status': value.processingStatus,
         'sent_at': value.sentAt === undefined ? undefined : (value.sentAt === null ? null : value.sentAt.toISOString()),
         'status': value.status,
         'subtype': value.subtype,
