@@ -27,12 +27,6 @@ export interface EventListResponseData {
     apiKey?: string | null;
     /**
      * 
-     * @type {object}
-     * @memberof EventListResponseData
-     */
-    body: object;
-    /**
-     * 
      * @type {string}
      * @memberof EventListResponseData
      */
@@ -134,7 +128,6 @@ export interface EventListResponseData {
  */
 export function instanceOfEventListResponseData(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "body" in value;
     isInstance = isInstance && "bodyPreview" in value;
     isInstance = isInstance && "capturedAt" in value;
     isInstance = isInstance && "id" in value;
@@ -156,7 +149,6 @@ export function EventListResponseDataFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'apiKey': !exists(json, 'api_key') ? undefined : json['api_key'],
-        'body': json['body'],
         'bodyPreview': json['body_preview'],
         'capturedAt': (new Date(json['captured_at'])),
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
@@ -186,7 +178,6 @@ export function EventListResponseDataToJSON(value?: EventListResponseData | null
     return {
         
         'api_key': value.apiKey,
-        'body': value.body,
         'body_preview': value.bodyPreview,
         'captured_at': (value.capturedAt.toISOString()),
         'company_id': value.companyId,
