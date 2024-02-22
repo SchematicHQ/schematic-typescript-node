@@ -80,6 +80,7 @@ models/EventBody.ts
 models/EventBodyIdentify.ts
 models/EventBodyIdentifyCompany.ts
 models/EventBodyTrack.ts
+models/EventListResponseData.ts
 models/EventResponseData.ts
 models/EventSummaryResponseData.ts
 models/FeatureDetailResponseData.ts
@@ -139,10 +140,15 @@ models/ListPlansParams.ts
 models/ListPlansResponse.ts
 models/ListUsersParams.ts
 models/ListUsersResponse.ts
+models/LookupCompanyParams.ts
+models/LookupCompanyResponse.ts
+models/LookupUserParams.ts
+models/LookupUserResponse.ts
 models/MetricCountsHourlyResponseData.ts
 models/PaginationFilter.ts
 models/PlanEntitlementResponseData.ts
 models/PlanResponseData.ts
+models/RawEventResponseData.ts
 models/RuleConditionGroupDetailResponseData.ts
 models/RuleConditionGroupResponseData.ts
 models/RuleConditionResponseData.ts

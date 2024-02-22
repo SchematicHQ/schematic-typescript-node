@@ -75,7 +75,7 @@ export interface CreateEventRequest {
 }
 
 export interface GetEventRequest {
-    eventId: string;
+    key: string;
     xSchematicEnvironmentId?: string;
 }
 
@@ -280,8 +280,8 @@ export class EventsApi extends runtime.BaseAPI {
      * Get event
      */
     async getEventRaw(requestParameters: GetEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEventResponse>> {
-        if (requestParameters.eventId === null || requestParameters.eventId === undefined) {
-            throw new runtime.RequiredError('eventId','Required parameter requestParameters.eventId was null or undefined when calling getEvent.');
+        if (requestParameters.key === null || requestParameters.key === undefined) {
+            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling getEvent.');
         }
 
         const queryParameters: any = {};
@@ -297,7 +297,7 @@ export class EventsApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/events/{event_id}`.replace(`{${"event_id"}}`, encodeURIComponent(String(requestParameters.eventId))),
+            path: `/events/{key}`.replace(`{${"key"}}`, encodeURIComponent(String(requestParameters.key))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

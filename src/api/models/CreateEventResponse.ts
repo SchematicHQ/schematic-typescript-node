@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { EventResponseData } from './EventResponseData';
+import type { RawEventResponseData } from './RawEventResponseData';
 import {
-    EventResponseDataFromJSON,
-    EventResponseDataFromJSONTyped,
-    EventResponseDataToJSON,
-} from './EventResponseData';
+    RawEventResponseDataFromJSON,
+    RawEventResponseDataFromJSONTyped,
+    RawEventResponseDataToJSON,
+} from './RawEventResponseData';
 
 /**
  * 
@@ -28,10 +28,10 @@ import {
 export interface CreateEventResponse {
     /**
      * 
-     * @type {EventResponseData}
+     * @type {RawEventResponseData}
      * @memberof CreateEventResponse
      */
-    data: EventResponseData;
+    data: RawEventResponseData;
     /**
      * Input parameters
      * @type {object}
@@ -61,7 +61,7 @@ export function CreateEventResponseFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'data': EventResponseDataFromJSON(json['data']),
+        'data': RawEventResponseDataFromJSON(json['data']),
         'params': json['params'],
     };
 }
@@ -75,7 +75,7 @@ export function CreateEventResponseToJSON(value?: CreateEventResponse | null): a
     }
     return {
         
-        'data': EventResponseDataToJSON(value.data),
+        'data': RawEventResponseDataToJSON(value.data),
         'params': value.params,
     };
 }

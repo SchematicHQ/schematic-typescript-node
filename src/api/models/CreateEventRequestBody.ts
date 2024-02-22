@@ -37,7 +37,7 @@ export interface CreateEventRequestBody {
      * @type {string}
      * @memberof CreateEventRequestBody
      */
-    eventType: string;
+    eventType: CreateEventRequestBodyEventTypeEnum;
     /**
      * Optionally provide a timestamp at which the event was sent to Schematic
      * @type {Date}
@@ -45,6 +45,17 @@ export interface CreateEventRequestBody {
      */
     sentAt?: Date | null;
 }
+
+
+/**
+ * @export
+ */
+export const CreateEventRequestBodyEventTypeEnum = {
+    Identify: 'identify',
+    Track: 'track'
+} as const;
+export type CreateEventRequestBodyEventTypeEnum = typeof CreateEventRequestBodyEventTypeEnum[keyof typeof CreateEventRequestBodyEventTypeEnum];
+
 
 /**
  * Check if a given object implements the CreateEventRequestBody interface.

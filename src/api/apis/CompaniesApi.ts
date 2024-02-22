@@ -27,6 +27,8 @@ import type {
   ListCompanyMembershipsResponse,
   ListCompanyPlansResponse,
   ListUsersResponse,
+  LookupCompanyResponse,
+  LookupUserResponse,
   UpdateEntityTraitDefinitionRequestBody,
   UpdateEntityTraitDefinitionResponse,
   UpsertCompanyRequestBody,
@@ -57,6 +59,10 @@ import {
     ListCompanyPlansResponseToJSON,
     ListUsersResponseFromJSON,
     ListUsersResponseToJSON,
+    LookupCompanyResponseFromJSON,
+    LookupCompanyResponseToJSON,
+    LookupUserResponseFromJSON,
+    LookupUserResponseToJSON,
     UpdateEntityTraitDefinitionRequestBodyFromJSON,
     UpdateEntityTraitDefinitionRequestBodyToJSON,
     UpdateEntityTraitDefinitionResponseFromJSON,
@@ -125,6 +131,16 @@ export interface ListUsersRequest {
     ids?: Array<string>;
     limit?: number;
     offset?: number;
+}
+
+export interface LookupCompanyRequest {
+    keys: object;
+    xSchematicEnvironmentId?: string;
+}
+
+export interface LookupUserRequest {
+    keys: object;
+    xSchematicEnvironmentId?: string;
 }
 
 export interface UpdateEntityTraitDefinitionRequest {
@@ -564,6 +580,90 @@ export class CompaniesApi extends runtime.BaseAPI {
      */
     async listUsers(requestParameters: ListUsersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListUsersResponse> {
         const response = await this.listUsersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Lookup company
+     */
+    async lookupCompanyRaw(requestParameters: LookupCompanyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LookupCompanyResponse>> {
+        if (requestParameters.keys === null || requestParameters.keys === undefined) {
+            throw new runtime.RequiredError('keys','Required parameter requestParameters.keys was null or undefined when calling lookupCompany.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.keys !== undefined) {
+            queryParameters['keys'] = requestParameters.keys;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/companies/lookup`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => LookupCompanyResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Lookup company
+     */
+    async lookupCompany(requestParameters: LookupCompanyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LookupCompanyResponse> {
+        const response = await this.lookupCompanyRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Lookup user
+     */
+    async lookupUserRaw(requestParameters: LookupUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LookupUserResponse>> {
+        if (requestParameters.keys === null || requestParameters.keys === undefined) {
+            throw new runtime.RequiredError('keys','Required parameter requestParameters.keys was null or undefined when calling lookupUser.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.keys !== undefined) {
+            queryParameters['keys'] = requestParameters.keys;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/users/lookup`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => LookupUserResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Lookup user
+     */
+    async lookupUser(requestParameters: LookupUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LookupUserResponse> {
+        const response = await this.lookupUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

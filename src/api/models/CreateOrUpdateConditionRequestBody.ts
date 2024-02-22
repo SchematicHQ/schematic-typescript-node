@@ -30,7 +30,7 @@ export interface CreateOrUpdateConditionRequestBody {
      * @type {string}
      * @memberof CreateOrUpdateConditionRequestBody
      */
-    conditionType: string;
+    conditionType: CreateOrUpdateConditionRequestBodyConditionTypeEnum;
     /**
      * Name of track event type used to measure this condition
      * @type {string}
@@ -60,9 +60,9 @@ export interface CreateOrUpdateConditionRequestBody {
      * @type {string}
      * @memberof CreateOrUpdateConditionRequestBody
      */
-    operator: string;
+    operator: CreateOrUpdateConditionRequestBodyOperatorEnum;
     /**
-     * List of resource IDs (companise, users, or plans) targeted by this condition
+     * List of resource IDs (companies, users, or plans) targeted by this condition
      * @type {Array<string>}
      * @memberof CreateOrUpdateConditionRequestBody
      */
@@ -80,6 +80,33 @@ export interface CreateOrUpdateConditionRequestBody {
      */
     traitValue?: string | null;
 }
+
+
+/**
+ * @export
+ */
+export const CreateOrUpdateConditionRequestBodyConditionTypeEnum = {
+    Company: 'company',
+    Metric: 'metric',
+    Trait: 'trait',
+    User: 'user',
+    Plan: 'plan'
+} as const;
+export type CreateOrUpdateConditionRequestBodyConditionTypeEnum = typeof CreateOrUpdateConditionRequestBodyConditionTypeEnum[keyof typeof CreateOrUpdateConditionRequestBodyConditionTypeEnum];
+
+/**
+ * @export
+ */
+export const CreateOrUpdateConditionRequestBodyOperatorEnum = {
+    Eq: 'eq',
+    Ne: 'ne',
+    Gt: 'gt',
+    Gte: 'gte',
+    Lt: 'lt',
+    Lte: 'lte'
+} as const;
+export type CreateOrUpdateConditionRequestBodyOperatorEnum = typeof CreateOrUpdateConditionRequestBodyOperatorEnum[keyof typeof CreateOrUpdateConditionRequestBodyOperatorEnum];
+
 
 /**
  * Check if a given object implements the CreateOrUpdateConditionRequestBody interface.

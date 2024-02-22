@@ -14,121 +14,128 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * The returned resource
+ * 
  * @export
- * @interface EventResponseData
+ * @interface EventListResponseData
  */
-export interface EventResponseData {
+export interface EventListResponseData {
     /**
      * 
      * @type {string}
-     * @memberof EventResponseData
+     * @memberof EventListResponseData
      */
     apiKey?: string | null;
     /**
      * 
      * @type {object}
-     * @memberof EventResponseData
+     * @memberof EventListResponseData
      */
     body: object;
     /**
      * 
+     * @type {string}
+     * @memberof EventListResponseData
+     */
+    bodyPreview: string;
+    /**
+     * 
      * @type {Date}
-     * @memberof EventResponseData
+     * @memberof EventListResponseData
      */
     capturedAt: Date;
     /**
      * 
      * @type {string}
-     * @memberof EventResponseData
+     * @memberof EventListResponseData
      */
     companyId?: string | null;
     /**
      * 
      * @type {Date}
-     * @memberof EventResponseData
+     * @memberof EventListResponseData
      */
     enrichedAt?: Date | null;
     /**
      * 
      * @type {string}
-     * @memberof EventResponseData
+     * @memberof EventListResponseData
      */
     environmentId?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof EventResponseData
+     * @memberof EventListResponseData
      */
     errorMessage?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof EventResponseData
+     * @memberof EventListResponseData
      */
     featureId?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof EventResponseData
+     * @memberof EventListResponseData
      */
     id: string;
     /**
      * 
      * @type {Date}
-     * @memberof EventResponseData
+     * @memberof EventListResponseData
      */
     loadedAt?: Date | null;
     /**
      * 
      * @type {Date}
-     * @memberof EventResponseData
+     * @memberof EventListResponseData
      */
     processedAt?: Date | null;
     /**
      * 
      * @type {Date}
-     * @memberof EventResponseData
+     * @memberof EventListResponseData
      */
     sentAt?: Date | null;
     /**
      * 
      * @type {string}
-     * @memberof EventResponseData
+     * @memberof EventListResponseData
      */
     status: string;
     /**
      * 
      * @type {string}
-     * @memberof EventResponseData
+     * @memberof EventListResponseData
      */
     subtype?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof EventResponseData
+     * @memberof EventListResponseData
      */
     type: string;
     /**
      * 
      * @type {Date}
-     * @memberof EventResponseData
+     * @memberof EventListResponseData
      */
     updatedAt: Date;
     /**
      * 
      * @type {string}
-     * @memberof EventResponseData
+     * @memberof EventListResponseData
      */
     userId?: string | null;
 }
 
 /**
- * Check if a given object implements the EventResponseData interface.
+ * Check if a given object implements the EventListResponseData interface.
  */
-export function instanceOfEventResponseData(value: object): boolean {
+export function instanceOfEventListResponseData(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "body" in value;
+    isInstance = isInstance && "bodyPreview" in value;
     isInstance = isInstance && "capturedAt" in value;
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "status" in value;
@@ -138,11 +145,11 @@ export function instanceOfEventResponseData(value: object): boolean {
     return isInstance;
 }
 
-export function EventResponseDataFromJSON(json: any): EventResponseData {
-    return EventResponseDataFromJSONTyped(json, false);
+export function EventListResponseDataFromJSON(json: any): EventListResponseData {
+    return EventListResponseDataFromJSONTyped(json, false);
 }
 
-export function EventResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): EventResponseData {
+export function EventListResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): EventListResponseData {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -150,6 +157,7 @@ export function EventResponseDataFromJSONTyped(json: any, ignoreDiscriminator: b
         
         'apiKey': !exists(json, 'api_key') ? undefined : json['api_key'],
         'body': json['body'],
+        'bodyPreview': json['body_preview'],
         'capturedAt': (new Date(json['captured_at'])),
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'enrichedAt': !exists(json, 'enriched_at') ? undefined : (json['enriched_at'] === null ? null : new Date(json['enriched_at'])),
@@ -168,7 +176,7 @@ export function EventResponseDataFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-export function EventResponseDataToJSON(value?: EventResponseData | null): any {
+export function EventListResponseDataToJSON(value?: EventListResponseData | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -179,6 +187,7 @@ export function EventResponseDataToJSON(value?: EventResponseData | null): any {
         
         'api_key': value.apiKey,
         'body': value.body,
+        'body_preview': value.bodyPreview,
         'captured_at': (value.capturedAt.toISOString()),
         'company_id': value.companyId,
         'enriched_at': value.enrichedAt === undefined ? undefined : (value.enrichedAt === null ? null : value.enrichedAt.toISOString()),
