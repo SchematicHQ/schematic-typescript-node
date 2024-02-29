@@ -24,7 +24,7 @@ export interface UpdateEnvironmentRequestBody {
      * @type {string}
      * @memberof UpdateEnvironmentRequestBody
      */
-    environmentType?: string | null;
+    environmentType?: UpdateEnvironmentRequestBodyEnvironmentTypeEnum;
     /**
      * 
      * @type {string}
@@ -32,6 +32,18 @@ export interface UpdateEnvironmentRequestBody {
      */
     name?: string | null;
 }
+
+
+/**
+ * @export
+ */
+export const UpdateEnvironmentRequestBodyEnvironmentTypeEnum = {
+    Development: 'development',
+    Staging: 'staging',
+    Production: 'production'
+} as const;
+export type UpdateEnvironmentRequestBodyEnvironmentTypeEnum = typeof UpdateEnvironmentRequestBodyEnvironmentTypeEnum[keyof typeof UpdateEnvironmentRequestBodyEnvironmentTypeEnum];
+
 
 /**
  * Check if a given object implements the UpdateEnvironmentRequestBody interface.

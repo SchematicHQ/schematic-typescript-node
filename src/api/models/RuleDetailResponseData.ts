@@ -94,6 +94,12 @@ export interface RuleDetailResponseData {
     priorityGroup?: number | null;
     /**
      * 
+     * @type {string}
+     * @memberof RuleDetailResponseData
+     */
+    ruleType: string;
+    /**
+     * 
      * @type {Date}
      * @memberof RuleDetailResponseData
      */
@@ -118,6 +124,7 @@ export function instanceOfRuleDetailResponseData(value: object): boolean {
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "name" in value;
     isInstance = isInstance && "priority" in value;
+    isInstance = isInstance && "ruleType" in value;
     isInstance = isInstance && "updatedAt" in value;
     isInstance = isInstance && "value" in value;
 
@@ -144,6 +151,7 @@ export function RuleDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminat
         'planId': !exists(json, 'plan_id') ? undefined : json['plan_id'],
         'priority': json['priority'],
         'priorityGroup': !exists(json, 'priority_group') ? undefined : json['priority_group'],
+        'ruleType': json['rule_type'],
         'updatedAt': (new Date(json['updated_at'])),
         'value': json['value'],
     };
@@ -168,6 +176,7 @@ export function RuleDetailResponseDataToJSON(value?: RuleDetailResponseData | nu
         'plan_id': value.planId,
         'priority': value.priority,
         'priority_group': value.priorityGroup,
+        'rule_type': value.ruleType,
         'updated_at': (value.updatedAt.toISOString()),
         'value': value.value,
     };

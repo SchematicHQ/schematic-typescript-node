@@ -24,7 +24,7 @@ export interface UpdateReqCommon {
      * @type {string}
      * @memberof UpdateReqCommon
      */
-    metricPeriod?: string | null;
+    metricPeriod?: UpdateReqCommonMetricPeriodEnum;
     /**
      * 
      * @type {boolean}
@@ -48,8 +48,31 @@ export interface UpdateReqCommon {
      * @type {string}
      * @memberof UpdateReqCommon
      */
-    valueType: string;
+    valueType: UpdateReqCommonValueTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const UpdateReqCommonMetricPeriodEnum = {
+    Month: 'current_month',
+    Week: 'current_week',
+    Day: 'current_day'
+} as const;
+export type UpdateReqCommonMetricPeriodEnum = typeof UpdateReqCommonMetricPeriodEnum[keyof typeof UpdateReqCommonMetricPeriodEnum];
+
+/**
+ * @export
+ */
+export const UpdateReqCommonValueTypeEnum = {
+    Boolean: 'Boolean',
+    Numeric: 'Numeric',
+    Trait: 'Trait',
+    Unlimited: 'Unlimited'
+} as const;
+export type UpdateReqCommonValueTypeEnum = typeof UpdateReqCommonValueTypeEnum[keyof typeof UpdateReqCommonValueTypeEnum];
+
 
 /**
  * Check if a given object implements the UpdateReqCommon interface.

@@ -24,7 +24,7 @@ export interface UpdateCompanyOverrideRequestBody {
      * @type {string}
      * @memberof UpdateCompanyOverrideRequestBody
      */
-    metricPeriod?: string | null;
+    metricPeriod?: UpdateCompanyOverrideRequestBodyMetricPeriodEnum;
     /**
      * 
      * @type {boolean}
@@ -48,8 +48,31 @@ export interface UpdateCompanyOverrideRequestBody {
      * @type {string}
      * @memberof UpdateCompanyOverrideRequestBody
      */
-    valueType: string;
+    valueType: UpdateCompanyOverrideRequestBodyValueTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const UpdateCompanyOverrideRequestBodyMetricPeriodEnum = {
+    Month: 'current_month',
+    Week: 'current_week',
+    Day: 'current_day'
+} as const;
+export type UpdateCompanyOverrideRequestBodyMetricPeriodEnum = typeof UpdateCompanyOverrideRequestBodyMetricPeriodEnum[keyof typeof UpdateCompanyOverrideRequestBodyMetricPeriodEnum];
+
+/**
+ * @export
+ */
+export const UpdateCompanyOverrideRequestBodyValueTypeEnum = {
+    Boolean: 'Boolean',
+    Numeric: 'Numeric',
+    Trait: 'Trait',
+    Unlimited: 'Unlimited'
+} as const;
+export type UpdateCompanyOverrideRequestBodyValueTypeEnum = typeof UpdateCompanyOverrideRequestBodyValueTypeEnum[keyof typeof UpdateCompanyOverrideRequestBodyValueTypeEnum];
+
 
 /**
  * Check if a given object implements the UpdateCompanyOverrideRequestBody interface.

@@ -24,7 +24,7 @@ export interface CreateEnvironmentRequestBody {
      * @type {string}
      * @memberof CreateEnvironmentRequestBody
      */
-    environmentType: string;
+    environmentType: CreateEnvironmentRequestBodyEnvironmentTypeEnum;
     /**
      * 
      * @type {string}
@@ -32,6 +32,18 @@ export interface CreateEnvironmentRequestBody {
      */
     name: string;
 }
+
+
+/**
+ * @export
+ */
+export const CreateEnvironmentRequestBodyEnvironmentTypeEnum = {
+    Development: 'development',
+    Staging: 'staging',
+    Production: 'production'
+} as const;
+export type CreateEnvironmentRequestBodyEnvironmentTypeEnum = typeof CreateEnvironmentRequestBodyEnvironmentTypeEnum[keyof typeof CreateEnvironmentRequestBodyEnvironmentTypeEnum];
+
 
 /**
  * Check if a given object implements the CreateEnvironmentRequestBody interface.

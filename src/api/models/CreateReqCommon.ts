@@ -30,7 +30,7 @@ export interface CreateReqCommon {
      * @type {string}
      * @memberof CreateReqCommon
      */
-    metricPeriod?: string | null;
+    metricPeriod?: CreateReqCommonMetricPeriodEnum;
     /**
      * 
      * @type {boolean}
@@ -54,8 +54,31 @@ export interface CreateReqCommon {
      * @type {string}
      * @memberof CreateReqCommon
      */
-    valueType: string;
+    valueType: CreateReqCommonValueTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const CreateReqCommonMetricPeriodEnum = {
+    Month: 'current_month',
+    Week: 'current_week',
+    Day: 'current_day'
+} as const;
+export type CreateReqCommonMetricPeriodEnum = typeof CreateReqCommonMetricPeriodEnum[keyof typeof CreateReqCommonMetricPeriodEnum];
+
+/**
+ * @export
+ */
+export const CreateReqCommonValueTypeEnum = {
+    Boolean: 'Boolean',
+    Numeric: 'Numeric',
+    Trait: 'Trait',
+    Unlimited: 'Unlimited'
+} as const;
+export type CreateReqCommonValueTypeEnum = typeof CreateReqCommonValueTypeEnum[keyof typeof CreateReqCommonValueTypeEnum];
+
 
 /**
  * Check if a given object implements the CreateReqCommon interface.

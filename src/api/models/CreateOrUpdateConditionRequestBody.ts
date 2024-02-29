@@ -48,7 +48,7 @@ export interface CreateOrUpdateConditionRequestBody {
      * @type {string}
      * @memberof CreateOrUpdateConditionRequestBody
      */
-    metricPeriod?: string | null;
+    metricPeriod?: CreateOrUpdateConditionRequestBodyMetricPeriodEnum;
     /**
      * Value to compare the track event metric against
      * @type {number}
@@ -93,6 +93,16 @@ export const CreateOrUpdateConditionRequestBodyConditionTypeEnum = {
     Plan: 'plan'
 } as const;
 export type CreateOrUpdateConditionRequestBodyConditionTypeEnum = typeof CreateOrUpdateConditionRequestBodyConditionTypeEnum[keyof typeof CreateOrUpdateConditionRequestBodyConditionTypeEnum];
+
+/**
+ * @export
+ */
+export const CreateOrUpdateConditionRequestBodyMetricPeriodEnum = {
+    Month: 'current_month',
+    Week: 'current_week',
+    Day: 'current_day'
+} as const;
+export type CreateOrUpdateConditionRequestBodyMetricPeriodEnum = typeof CreateOrUpdateConditionRequestBodyMetricPeriodEnum[keyof typeof CreateOrUpdateConditionRequestBodyMetricPeriodEnum];
 
 /**
  * @export

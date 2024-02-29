@@ -43,7 +43,7 @@ export interface CreateFeatureRequestBody {
      * @type {string}
      * @memberof CreateFeatureRequestBody
      */
-    featureType: string;
+    featureType: CreateFeatureRequestBodyFeatureTypeEnum;
     /**
      * 
      * @type {CreateOrUpdateFlagRequestBody}
@@ -69,6 +69,18 @@ export interface CreateFeatureRequestBody {
      */
     traitId?: string | null;
 }
+
+
+/**
+ * @export
+ */
+export const CreateFeatureRequestBodyFeatureTypeEnum = {
+    Boolean: 'boolean',
+    Event: 'event',
+    Trait: 'trait'
+} as const;
+export type CreateFeatureRequestBodyFeatureTypeEnum = typeof CreateFeatureRequestBodyFeatureTypeEnum[keyof typeof CreateFeatureRequestBodyFeatureTypeEnum];
+
 
 /**
  * Check if a given object implements the CreateFeatureRequestBody interface.

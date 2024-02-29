@@ -43,7 +43,7 @@ export interface UpdateFeatureRequestBody {
      * @type {string}
      * @memberof UpdateFeatureRequestBody
      */
-    featureType?: string | null;
+    featureType?: UpdateFeatureRequestBodyFeatureTypeEnum;
     /**
      * 
      * @type {CreateOrUpdateFlagRequestBody}
@@ -69,6 +69,18 @@ export interface UpdateFeatureRequestBody {
      */
     traitId?: string | null;
 }
+
+
+/**
+ * @export
+ */
+export const UpdateFeatureRequestBodyFeatureTypeEnum = {
+    Boolean: 'boolean',
+    Event: 'event',
+    Trait: 'trait'
+} as const;
+export type UpdateFeatureRequestBodyFeatureTypeEnum = typeof UpdateFeatureRequestBodyFeatureTypeEnum[keyof typeof UpdateFeatureRequestBodyFeatureTypeEnum];
+
 
 /**
  * Check if a given object implements the UpdateFeatureRequestBody interface.

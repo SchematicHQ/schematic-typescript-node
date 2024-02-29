@@ -20,6 +20,8 @@ import type {
   CreateCompanyResponse,
   CreateUserResponse,
   DeleteCompanyMembershipResponse,
+  DeleteCompanyResponse,
+  DeleteUserResponse,
   GetCompanyResponse,
   GetOrCreateCompanyMembershipRequestBody,
   GetUserResponse,
@@ -45,6 +47,10 @@ import {
     CreateUserResponseToJSON,
     DeleteCompanyMembershipResponseFromJSON,
     DeleteCompanyMembershipResponseToJSON,
+    DeleteCompanyResponseFromJSON,
+    DeleteCompanyResponseToJSON,
+    DeleteUserResponseFromJSON,
+    DeleteUserResponseToJSON,
     GetCompanyResponseFromJSON,
     GetCompanyResponseToJSON,
     GetOrCreateCompanyMembershipRequestBodyFromJSON,
@@ -88,8 +94,18 @@ export interface CreateUserRequest {
     xSchematicEnvironmentId?: string;
 }
 
+export interface DeleteCompanyRequest {
+    companyId: string;
+    xSchematicEnvironmentId?: string;
+}
+
 export interface DeleteCompanyMembershipRequest {
     companyMembershipId: string;
+    xSchematicEnvironmentId?: string;
+}
+
+export interface DeleteUserRequest {
+    userId: string;
     xSchematicEnvironmentId?: string;
 }
 
@@ -278,6 +294,44 @@ export class CompaniesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Delete company
+     */
+    async deleteCompanyRaw(requestParameters: DeleteCompanyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteCompanyResponse>> {
+        if (requestParameters.companyId === null || requestParameters.companyId === undefined) {
+            throw new runtime.RequiredError('companyId','Required parameter requestParameters.companyId was null or undefined when calling deleteCompany.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/companies/{company_id}`.replace(`{${"company_id"}}`, encodeURIComponent(String(requestParameters.companyId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteCompanyResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete company
+     */
+    async deleteCompany(requestParameters: DeleteCompanyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteCompanyResponse> {
+        const response = await this.deleteCompanyRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Delete company membership
      */
     async deleteCompanyMembershipRaw(requestParameters: DeleteCompanyMembershipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteCompanyMembershipResponse>> {
@@ -312,6 +366,44 @@ export class CompaniesApi extends runtime.BaseAPI {
      */
     async deleteCompanyMembership(requestParameters: DeleteCompanyMembershipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteCompanyMembershipResponse> {
         const response = await this.deleteCompanyMembershipRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete user
+     */
+    async deleteUserRaw(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteUserResponse>> {
+        if (requestParameters.userId === null || requestParameters.userId === undefined) {
+            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling deleteUser.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/users/{user_id}`.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters.userId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteUserResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete user
+     */
+    async deleteUser(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteUserResponse> {
+        const response = await this.deleteUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

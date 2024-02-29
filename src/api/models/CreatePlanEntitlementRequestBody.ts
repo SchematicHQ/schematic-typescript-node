@@ -30,7 +30,7 @@ export interface CreatePlanEntitlementRequestBody {
      * @type {string}
      * @memberof CreatePlanEntitlementRequestBody
      */
-    metricPeriod?: string | null;
+    metricPeriod?: CreatePlanEntitlementRequestBodyMetricPeriodEnum;
     /**
      * 
      * @type {string}
@@ -60,8 +60,31 @@ export interface CreatePlanEntitlementRequestBody {
      * @type {string}
      * @memberof CreatePlanEntitlementRequestBody
      */
-    valueType: string;
+    valueType: CreatePlanEntitlementRequestBodyValueTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const CreatePlanEntitlementRequestBodyMetricPeriodEnum = {
+    Month: 'current_month',
+    Week: 'current_week',
+    Day: 'current_day'
+} as const;
+export type CreatePlanEntitlementRequestBodyMetricPeriodEnum = typeof CreatePlanEntitlementRequestBodyMetricPeriodEnum[keyof typeof CreatePlanEntitlementRequestBodyMetricPeriodEnum];
+
+/**
+ * @export
+ */
+export const CreatePlanEntitlementRequestBodyValueTypeEnum = {
+    Boolean: 'Boolean',
+    Numeric: 'Numeric',
+    Trait: 'Trait',
+    Unlimited: 'Unlimited'
+} as const;
+export type CreatePlanEntitlementRequestBodyValueTypeEnum = typeof CreatePlanEntitlementRequestBodyValueTypeEnum[keyof typeof CreatePlanEntitlementRequestBodyValueTypeEnum];
+
 
 /**
  * Check if a given object implements the CreatePlanEntitlementRequestBody interface.
