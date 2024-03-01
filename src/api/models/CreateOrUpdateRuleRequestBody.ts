@@ -70,11 +70,32 @@ export interface CreateOrUpdateRuleRequestBody {
     priorityGroup?: number | null;
     /**
      * 
+     * @type {string}
+     * @memberof CreateOrUpdateRuleRequestBody
+     */
+    ruleType?: CreateOrUpdateRuleRequestBodyRuleTypeEnum;
+    /**
+     * 
      * @type {boolean}
      * @memberof CreateOrUpdateRuleRequestBody
      */
     value: boolean;
 }
+
+
+/**
+ * @export
+ */
+export const CreateOrUpdateRuleRequestBodyRuleTypeEnum = {
+    GlobalOverride: 'global_override',
+    CompanyOverride: 'company_override',
+    PlanEntitlement: 'plan_entitlement',
+    Standard: 'standard',
+    Default: 'default',
+    PlanAudience: 'plan_audience'
+} as const;
+export type CreateOrUpdateRuleRequestBodyRuleTypeEnum = typeof CreateOrUpdateRuleRequestBodyRuleTypeEnum[keyof typeof CreateOrUpdateRuleRequestBodyRuleTypeEnum];
+
 
 /**
  * Check if a given object implements the CreateOrUpdateRuleRequestBody interface.
@@ -106,6 +127,7 @@ export function CreateOrUpdateRuleRequestBodyFromJSONTyped(json: any, ignoreDisc
         'name': json['name'],
         'priority': json['priority'],
         'priorityGroup': !exists(json, 'priority_group') ? undefined : json['priority_group'],
+        'ruleType': !exists(json, 'rule_type') ? undefined : json['rule_type'],
         'value': json['value'],
     };
 }
@@ -125,6 +147,7 @@ export function CreateOrUpdateRuleRequestBodyToJSON(value?: CreateOrUpdateRuleRe
         'name': value.name,
         'priority': value.priority,
         'priority_group': value.priorityGroup,
+        'rule_type': value.ruleType,
         'value': value.value,
     };
 }

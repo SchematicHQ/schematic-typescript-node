@@ -36,7 +36,7 @@ export interface CreateCompanyOverrideRequestBody {
      * @type {string}
      * @memberof CreateCompanyOverrideRequestBody
      */
-    metricPeriod?: string | null;
+    metricPeriod?: CreateCompanyOverrideRequestBodyMetricPeriodEnum;
     /**
      * 
      * @type {boolean}
@@ -60,8 +60,31 @@ export interface CreateCompanyOverrideRequestBody {
      * @type {string}
      * @memberof CreateCompanyOverrideRequestBody
      */
-    valueType: string;
+    valueType: CreateCompanyOverrideRequestBodyValueTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const CreateCompanyOverrideRequestBodyMetricPeriodEnum = {
+    Month: 'current_month',
+    Week: 'current_week',
+    Day: 'current_day'
+} as const;
+export type CreateCompanyOverrideRequestBodyMetricPeriodEnum = typeof CreateCompanyOverrideRequestBodyMetricPeriodEnum[keyof typeof CreateCompanyOverrideRequestBodyMetricPeriodEnum];
+
+/**
+ * @export
+ */
+export const CreateCompanyOverrideRequestBodyValueTypeEnum = {
+    Boolean: 'Boolean',
+    Numeric: 'Numeric',
+    Trait: 'Trait',
+    Unlimited: 'Unlimited'
+} as const;
+export type CreateCompanyOverrideRequestBodyValueTypeEnum = typeof CreateCompanyOverrideRequestBodyValueTypeEnum[keyof typeof CreateCompanyOverrideRequestBodyValueTypeEnum];
+
 
 /**
  * Check if a given object implements the CreateCompanyOverrideRequestBody interface.

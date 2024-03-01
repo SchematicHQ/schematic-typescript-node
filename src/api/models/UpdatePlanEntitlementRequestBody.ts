@@ -24,7 +24,7 @@ export interface UpdatePlanEntitlementRequestBody {
      * @type {string}
      * @memberof UpdatePlanEntitlementRequestBody
      */
-    metricPeriod?: string | null;
+    metricPeriod?: UpdatePlanEntitlementRequestBodyMetricPeriodEnum;
     /**
      * 
      * @type {boolean}
@@ -48,8 +48,31 @@ export interface UpdatePlanEntitlementRequestBody {
      * @type {string}
      * @memberof UpdatePlanEntitlementRequestBody
      */
-    valueType: string;
+    valueType: UpdatePlanEntitlementRequestBodyValueTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const UpdatePlanEntitlementRequestBodyMetricPeriodEnum = {
+    Month: 'current_month',
+    Week: 'current_week',
+    Day: 'current_day'
+} as const;
+export type UpdatePlanEntitlementRequestBodyMetricPeriodEnum = typeof UpdatePlanEntitlementRequestBodyMetricPeriodEnum[keyof typeof UpdatePlanEntitlementRequestBodyMetricPeriodEnum];
+
+/**
+ * @export
+ */
+export const UpdatePlanEntitlementRequestBodyValueTypeEnum = {
+    Boolean: 'Boolean',
+    Numeric: 'Numeric',
+    Trait: 'Trait',
+    Unlimited: 'Unlimited'
+} as const;
+export type UpdatePlanEntitlementRequestBodyValueTypeEnum = typeof UpdatePlanEntitlementRequestBodyValueTypeEnum[keyof typeof UpdatePlanEntitlementRequestBodyValueTypeEnum];
+
 
 /**
  * Check if a given object implements the UpdatePlanEntitlementRequestBody interface.

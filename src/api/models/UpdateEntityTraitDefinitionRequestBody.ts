@@ -24,8 +24,21 @@ export interface UpdateEntityTraitDefinitionRequestBody {
      * @type {string}
      * @memberof UpdateEntityTraitDefinitionRequestBody
      */
-    traitType: string;
+    traitType: UpdateEntityTraitDefinitionRequestBodyTraitTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const UpdateEntityTraitDefinitionRequestBodyTraitTypeEnum = {
+    Bool: 'bool',
+    Date: 'date',
+    Int: 'int',
+    String: 'string'
+} as const;
+export type UpdateEntityTraitDefinitionRequestBodyTraitTypeEnum = typeof UpdateEntityTraitDefinitionRequestBodyTraitTypeEnum[keyof typeof UpdateEntityTraitDefinitionRequestBodyTraitTypeEnum];
+
 
 /**
  * Check if a given object implements the UpdateEntityTraitDefinitionRequestBody interface.

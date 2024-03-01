@@ -60,18 +60,18 @@ models/CreatePlanEntitlementResponse.ts
 models/CreatePlanRequestBody.ts
 models/CreatePlanResponse.ts
 models/CreateReqCommon.ts
-models/CreateRuleRequestBody.ts
-models/CreateRuleResponse.ts
 models/CreateUserResponse.ts
 models/DeleteApiKeyResponse.ts
 models/DeleteCompanyMembershipResponse.ts
 models/DeleteCompanyOverrideResponse.ts
+models/DeleteCompanyResponse.ts
 models/DeleteEnvironmentResponse.ts
 models/DeleteFeatureResponse.ts
 models/DeleteFlagResponse.ts
 models/DeletePlanEntitlementResponse.ts
 models/DeletePlanResponse.ts
 models/DeleteResponse.ts
+models/DeleteUserResponse.ts
 models/EntityKeyResponseData.ts
 models/EntityTraitDefinitionResponseData.ts
 models/EnvironmentDetailResponseData.ts
@@ -103,7 +103,6 @@ models/GetFlagResponse.ts
 models/GetOrCreateCompanyMembershipRequestBody.ts
 models/GetPlanEntitlementResponse.ts
 models/GetPlanResponse.ts
-models/GetRuleResponse.ts
 models/GetUserResponse.ts
 models/GetUsersAudienceResponse.ts
 models/LatestFlagChecksParams.ts
@@ -176,7 +175,6 @@ models/UpdatePlanRequestBody.ts
 models/UpdatePlanResponse.ts
 models/UpdateReqCommon.ts
 models/UpdateRuleRequestBody.ts
-models/UpdateRuleResponse.ts
 models/UpsertCompanyRequestBody.ts
 models/UpsertUserRequestBody.ts
 models/UpsertUserSubRequestBody.ts
