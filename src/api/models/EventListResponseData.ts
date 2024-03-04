@@ -63,10 +63,10 @@ export interface EventListResponseData {
     errorMessage?: string | null;
     /**
      * 
-     * @type {string}
+     * @type {Array<string>}
      * @memberof EventListResponseData
      */
-    featureId?: string | null;
+    featureIds: Array<string>;
     /**
      * 
      * @type {string}
@@ -130,6 +130,7 @@ export function instanceOfEventListResponseData(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "bodyPreview" in value;
     isInstance = isInstance && "capturedAt" in value;
+    isInstance = isInstance && "featureIds" in value;
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "status" in value;
     isInstance = isInstance && "type" in value;
@@ -155,7 +156,7 @@ export function EventListResponseDataFromJSONTyped(json: any, ignoreDiscriminato
         'enrichedAt': !exists(json, 'enriched_at') ? undefined : (json['enriched_at'] === null ? null : new Date(json['enriched_at'])),
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'errorMessage': !exists(json, 'error_message') ? undefined : json['error_message'],
-        'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
+        'featureIds': json['feature_ids'],
         'id': json['id'],
         'loadedAt': !exists(json, 'loaded_at') ? undefined : (json['loaded_at'] === null ? null : new Date(json['loaded_at'])),
         'processedAt': !exists(json, 'processed_at') ? undefined : (json['processed_at'] === null ? null : new Date(json['processed_at'])),
@@ -184,7 +185,7 @@ export function EventListResponseDataToJSON(value?: EventListResponseData | null
         'enriched_at': value.enrichedAt === undefined ? undefined : (value.enrichedAt === null ? null : value.enrichedAt.toISOString()),
         'environment_id': value.environmentId,
         'error_message': value.errorMessage,
-        'feature_id': value.featureId,
+        'feature_ids': value.featureIds,
         'id': value.id,
         'loaded_at': value.loadedAt === undefined ? undefined : (value.loadedAt === null ? null : value.loadedAt.toISOString()),
         'processed_at': value.processedAt === undefined ? undefined : (value.processedAt === null ? null : value.processedAt.toISOString()),
