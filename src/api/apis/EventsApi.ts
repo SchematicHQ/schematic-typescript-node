@@ -63,7 +63,6 @@ export interface CountEventsRequest {
     xSchematicEnvironmentId?: string;
     companyId?: string;
     userId?: string;
-    featureId?: string;
     eventSubtype?: string;
     limit?: number;
     offset?: number;
@@ -95,7 +94,6 @@ export interface ListEventsRequest {
     xSchematicEnvironmentId?: string;
     companyId?: string;
     userId?: string;
-    featureId?: string;
     eventSubtype?: string;
     limit?: number;
     offset?: number;
@@ -189,10 +187,6 @@ export class EventsApi extends runtime.BaseAPI {
 
         if (requestParameters.userId !== undefined) {
             queryParameters['user_id'] = requestParameters.userId;
-        }
-
-        if (requestParameters.featureId !== undefined) {
-            queryParameters['feature_id'] = requestParameters.featureId;
         }
 
         if (requestParameters.eventSubtype !== undefined) {
@@ -410,10 +404,6 @@ export class EventsApi extends runtime.BaseAPI {
 
         if (requestParameters.userId !== undefined) {
             queryParameters['user_id'] = requestParameters.userId;
-        }
-
-        if (requestParameters.featureId !== undefined) {
-            queryParameters['feature_id'] = requestParameters.featureId;
         }
 
         if (requestParameters.eventSubtype !== undefined) {

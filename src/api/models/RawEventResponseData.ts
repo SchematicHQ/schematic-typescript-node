@@ -30,12 +30,6 @@ export interface RawEventResponseData {
      * @type {string}
      * @memberof RawEventResponseData
      */
-    event: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RawEventResponseData
-     */
     remoteAddr: string;
     /**
      * 
@@ -57,7 +51,6 @@ export interface RawEventResponseData {
 export function instanceOfRawEventResponseData(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "capturedAt" in value;
-    isInstance = isInstance && "event" in value;
     isInstance = isInstance && "remoteAddr" in value;
     isInstance = isInstance && "remoteIp" in value;
     isInstance = isInstance && "userAgent" in value;
@@ -76,7 +69,6 @@ export function RawEventResponseDataFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'capturedAt': (new Date(json['captured_at'])),
-        'event': json['event'],
         'remoteAddr': json['remote_addr'],
         'remoteIp': json['remote_ip'],
         'userAgent': json['user_agent'],
@@ -93,7 +85,6 @@ export function RawEventResponseDataToJSON(value?: RawEventResponseData | null):
     return {
         
         'captured_at': (value.capturedAt.toISOString()),
-        'event': value.event,
         'remote_addr': value.remoteAddr,
         'remote_ip': value.remoteIp,
         'user_agent': value.userAgent,
