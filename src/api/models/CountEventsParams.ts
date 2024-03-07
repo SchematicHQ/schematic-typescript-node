@@ -33,12 +33,6 @@ export interface CountEventsParams {
     eventSubtype?: string;
     /**
      * 
-     * @type {string}
-     * @memberof CountEventsParams
-     */
-    featureId?: string;
-    /**
-     * 
      * @type {number}
      * @memberof CountEventsParams
      */
@@ -78,7 +72,6 @@ export function CountEventsParamsFromJSONTyped(json: any, ignoreDiscriminator: b
         
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
-        'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'offset': !exists(json, 'offset') ? undefined : json['offset'],
         'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
@@ -96,7 +89,6 @@ export function CountEventsParamsToJSON(value?: CountEventsParams | null): any {
         
         'company_id': value.companyId,
         'event_subtype': value.eventSubtype,
-        'feature_id': value.featureId,
         'limit': value.limit,
         'offset': value.offset,
         'user_id': value.userId,

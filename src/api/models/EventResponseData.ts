@@ -63,12 +63,6 @@ export interface EventResponseData {
     errorMessage?: string | null;
     /**
      * 
-     * @type {string}
-     * @memberof EventResponseData
-     */
-    featureId?: string | null;
-    /**
-     * 
      * @type {Array<string>}
      * @memberof EventResponseData
      */
@@ -162,7 +156,6 @@ export function EventResponseDataFromJSONTyped(json: any, ignoreDiscriminator: b
         'enrichedAt': !exists(json, 'enriched_at') ? undefined : (json['enriched_at'] === null ? null : new Date(json['enriched_at'])),
         'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
         'errorMessage': !exists(json, 'error_message') ? undefined : json['error_message'],
-        'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
         'featureIds': json['feature_ids'],
         'id': json['id'],
         'loadedAt': !exists(json, 'loaded_at') ? undefined : (json['loaded_at'] === null ? null : new Date(json['loaded_at'])),
@@ -192,7 +185,6 @@ export function EventResponseDataToJSON(value?: EventResponseData | null): any {
         'enriched_at': value.enrichedAt === undefined ? undefined : (value.enrichedAt === null ? null : value.enrichedAt.toISOString()),
         'environment_id': value.environmentId,
         'error_message': value.errorMessage,
-        'feature_id': value.featureId,
         'feature_ids': value.featureIds,
         'id': value.id,
         'loaded_at': value.loadedAt === undefined ? undefined : (value.loadedAt === null ? null : value.loadedAt.toISOString()),
