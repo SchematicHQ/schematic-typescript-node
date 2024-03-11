@@ -18,7 +18,11 @@ import type {
   ApiError,
   CreateCompanyMembershipResponse,
   CreateCompanyResponse,
+  CreateCompanyTraitResponse,
+  CreateEntityTraitDefinitionRequestBody,
+  CreateEntityTraitDefinitionResponse,
   CreateUserResponse,
+  CreateUserTraitResponse,
   DeleteCompanyMembershipResponse,
   DeleteCompanyResponse,
   DeleteUserResponse,
@@ -34,6 +38,7 @@ import type {
   UpdateEntityTraitDefinitionRequestBody,
   UpdateEntityTraitDefinitionResponse,
   UpsertCompanyRequestBody,
+  UpsertTraitRequestBody,
   UpsertUserRequestBody,
 } from '../models';
 import {
@@ -43,8 +48,16 @@ import {
     CreateCompanyMembershipResponseToJSON,
     CreateCompanyResponseFromJSON,
     CreateCompanyResponseToJSON,
+    CreateCompanyTraitResponseFromJSON,
+    CreateCompanyTraitResponseToJSON,
+    CreateEntityTraitDefinitionRequestBodyFromJSON,
+    CreateEntityTraitDefinitionRequestBodyToJSON,
+    CreateEntityTraitDefinitionResponseFromJSON,
+    CreateEntityTraitDefinitionResponseToJSON,
     CreateUserResponseFromJSON,
     CreateUserResponseToJSON,
+    CreateUserTraitResponseFromJSON,
+    CreateUserTraitResponseToJSON,
     DeleteCompanyMembershipResponseFromJSON,
     DeleteCompanyMembershipResponseToJSON,
     DeleteCompanyResponseFromJSON,
@@ -75,6 +88,8 @@ import {
     UpdateEntityTraitDefinitionResponseToJSON,
     UpsertCompanyRequestBodyFromJSON,
     UpsertCompanyRequestBodyToJSON,
+    UpsertTraitRequestBodyFromJSON,
+    UpsertTraitRequestBodyToJSON,
     UpsertUserRequestBodyFromJSON,
     UpsertUserRequestBodyToJSON,
 } from '../models';
@@ -89,8 +104,23 @@ export interface CreateCompanyMembershipRequest {
     xSchematicEnvironmentId?: string;
 }
 
+export interface CreateCompanyTraitRequest {
+    upsertTraitRequestBody: UpsertTraitRequestBody;
+    xSchematicEnvironmentId?: string;
+}
+
+export interface CreateEntityTraitDefinitionRequest {
+    createEntityTraitDefinitionRequestBody: CreateEntityTraitDefinitionRequestBody;
+    xSchematicEnvironmentId?: string;
+}
+
 export interface CreateUserRequest {
     upsertUserRequestBody: UpsertUserRequestBody;
+    xSchematicEnvironmentId?: string;
+}
+
+export interface CreateUserTraitRequest {
+    upsertTraitRequestBody: UpsertTraitRequestBody;
     xSchematicEnvironmentId?: string;
 }
 
@@ -253,6 +283,88 @@ export class CompaniesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Create company trait
+     */
+    async createCompanyTraitRaw(requestParameters: CreateCompanyTraitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCompanyTraitResponse>> {
+        if (requestParameters.upsertTraitRequestBody === null || requestParameters.upsertTraitRequestBody === undefined) {
+            throw new runtime.RequiredError('upsertTraitRequestBody','Required parameter requestParameters.upsertTraitRequestBody was null or undefined when calling createCompanyTrait.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/company-traits`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpsertTraitRequestBodyToJSON(requestParameters.upsertTraitRequestBody),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCompanyTraitResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Create company trait
+     */
+    async createCompanyTrait(requestParameters: CreateCompanyTraitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCompanyTraitResponse> {
+        const response = await this.createCompanyTraitRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Create entity trait definition
+     */
+    async createEntityTraitDefinitionRaw(requestParameters: CreateEntityTraitDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateEntityTraitDefinitionResponse>> {
+        if (requestParameters.createEntityTraitDefinitionRequestBody === null || requestParameters.createEntityTraitDefinitionRequestBody === undefined) {
+            throw new runtime.RequiredError('createEntityTraitDefinitionRequestBody','Required parameter requestParameters.createEntityTraitDefinitionRequestBody was null or undefined when calling createEntityTraitDefinition.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/entity-trait-definitions`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateEntityTraitDefinitionRequestBodyToJSON(requestParameters.createEntityTraitDefinitionRequestBody),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateEntityTraitDefinitionResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Create entity trait definition
+     */
+    async createEntityTraitDefinition(requestParameters: CreateEntityTraitDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateEntityTraitDefinitionResponse> {
+        const response = await this.createEntityTraitDefinitionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Create user
      */
     async createUserRaw(requestParameters: CreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateUserResponse>> {
@@ -290,6 +402,47 @@ export class CompaniesApi extends runtime.BaseAPI {
      */
     async createUser(requestParameters: CreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateUserResponse> {
         const response = await this.createUserRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Create user trait
+     */
+    async createUserTraitRaw(requestParameters: CreateUserTraitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateUserTraitResponse>> {
+        if (requestParameters.upsertTraitRequestBody === null || requestParameters.upsertTraitRequestBody === undefined) {
+            throw new runtime.RequiredError('upsertTraitRequestBody','Required parameter requestParameters.upsertTraitRequestBody was null or undefined when calling createUserTrait.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/user-traits`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpsertTraitRequestBodyToJSON(requestParameters.upsertTraitRequestBody),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateUserTraitResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Create user trait
+     */
+    async createUserTrait(requestParameters: CreateUserTraitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateUserTraitResponse> {
+        const response = await this.createUserTraitRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

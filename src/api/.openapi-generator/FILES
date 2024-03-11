@@ -43,6 +43,9 @@ models/CreateCompanyMembershipResponse.ts
 models/CreateCompanyOverrideRequestBody.ts
 models/CreateCompanyOverrideResponse.ts
 models/CreateCompanyResponse.ts
+models/CreateCompanyTraitResponse.ts
+models/CreateEntityTraitDefinitionRequestBody.ts
+models/CreateEntityTraitDefinitionResponse.ts
 models/CreateEnvironmentRequestBody.ts
 models/CreateEnvironmentResponse.ts
 models/CreateEventRequestBody.ts
@@ -61,6 +64,7 @@ models/CreatePlanRequestBody.ts
 models/CreatePlanResponse.ts
 models/CreateReqCommon.ts
 models/CreateUserResponse.ts
+models/CreateUserTraitResponse.ts
 models/DeleteApiKeyResponse.ts
 models/DeleteCompanyMembershipResponse.ts
 models/DeleteCompanyOverrideResponse.ts
@@ -176,6 +180,7 @@ models/UpdatePlanResponse.ts
 models/UpdateReqCommon.ts
 models/UpdateRuleRequestBody.ts
 models/UpsertCompanyRequestBody.ts
+models/UpsertTraitRequestBody.ts
 models/UpsertUserRequestBody.ts
 models/UpsertUserSubRequestBody.ts
 models/UserDetailResponseData.ts
