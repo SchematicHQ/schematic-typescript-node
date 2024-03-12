@@ -30,6 +30,12 @@ export interface RawEventResponseData {
      * @type {string}
      * @memberof RawEventResponseData
      */
+    eventId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof RawEventResponseData
+     */
     remoteAddr: string;
     /**
      * 
@@ -69,6 +75,7 @@ export function RawEventResponseDataFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'capturedAt': (new Date(json['captured_at'])),
+        'eventId': !exists(json, 'event_id') ? undefined : json['event_id'],
         'remoteAddr': json['remote_addr'],
         'remoteIp': json['remote_ip'],
         'userAgent': json['user_agent'],
@@ -85,6 +92,7 @@ export function RawEventResponseDataToJSON(value?: RawEventResponseData | null):
     return {
         
         'captured_at': (value.capturedAt.toISOString()),
+        'event_id': value.eventId,
         'remote_addr': value.remoteAddr,
         'remote_ip': value.remoteIp,
         'user_agent': value.userAgent,
