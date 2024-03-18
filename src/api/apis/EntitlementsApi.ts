@@ -30,7 +30,7 @@ import type {
   UpdateCompanyOverrideResponse,
   UpdatePlanEntitlementRequestBody,
   UpdatePlanEntitlementResponse,
-} from '../models';
+} from '../models/index';
 import {
     ApiErrorFromJSON,
     ApiErrorToJSON,
@@ -62,7 +62,7 @@ import {
     UpdatePlanEntitlementRequestBodyToJSON,
     UpdatePlanEntitlementResponseFromJSON,
     UpdatePlanEntitlementResponseToJSON,
-} from '../models';
+} from '../models/index';
 
 export interface CreateCompanyOverrideRequest {
     createCompanyOverrideRequestBody: CreateCompanyOverrideRequestBody;
@@ -111,14 +111,14 @@ export interface ListPlanEntitlementsRequest {
 }
 
 export interface UpdateCompanyOverrideRequest {
-    updateCompanyOverrideRequestBody: UpdateCompanyOverrideRequestBody;
     companyOverrideId: string;
+    updateCompanyOverrideRequestBody: UpdateCompanyOverrideRequestBody;
     xSchematicEnvironmentId?: string;
 }
 
 export interface UpdatePlanEntitlementRequest {
-    updatePlanEntitlementRequestBody: UpdatePlanEntitlementRequestBody;
     planEntitlementId: string;
+    updatePlanEntitlementRequestBody: UpdatePlanEntitlementRequestBody;
     xSchematicEnvironmentId?: string;
 }
 
@@ -131,8 +131,11 @@ export class EntitlementsApi extends runtime.BaseAPI {
      * Create company override
      */
     async createCompanyOverrideRaw(requestParameters: CreateCompanyOverrideRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCompanyOverrideResponse>> {
-        if (requestParameters.createCompanyOverrideRequestBody === null || requestParameters.createCompanyOverrideRequestBody === undefined) {
-            throw new runtime.RequiredError('createCompanyOverrideRequestBody','Required parameter requestParameters.createCompanyOverrideRequestBody was null or undefined when calling createCompanyOverride.');
+        if (requestParameters['createCompanyOverrideRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'createCompanyOverrideRequestBody',
+                'Required parameter "createCompanyOverrideRequestBody" was null or undefined when calling createCompanyOverride().'
+            );
         }
 
         const queryParameters: any = {};
@@ -141,12 +144,12 @@ export class EntitlementsApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        if (requestParameters['xSchematicEnvironmentId'] != null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters['xSchematicEnvironmentId']);
         }
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -154,7 +157,7 @@ export class EntitlementsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateCompanyOverrideRequestBodyToJSON(requestParameters.createCompanyOverrideRequestBody),
+            body: CreateCompanyOverrideRequestBodyToJSON(requestParameters['createCompanyOverrideRequestBody']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateCompanyOverrideResponseFromJSON(jsonValue));
@@ -172,8 +175,11 @@ export class EntitlementsApi extends runtime.BaseAPI {
      * Create plan entitlement
      */
     async createPlanEntitlementRaw(requestParameters: CreatePlanEntitlementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePlanEntitlementResponse>> {
-        if (requestParameters.createPlanEntitlementRequestBody === null || requestParameters.createPlanEntitlementRequestBody === undefined) {
-            throw new runtime.RequiredError('createPlanEntitlementRequestBody','Required parameter requestParameters.createPlanEntitlementRequestBody was null or undefined when calling createPlanEntitlement.');
+        if (requestParameters['createPlanEntitlementRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'createPlanEntitlementRequestBody',
+                'Required parameter "createPlanEntitlementRequestBody" was null or undefined when calling createPlanEntitlement().'
+            );
         }
 
         const queryParameters: any = {};
@@ -182,12 +188,12 @@ export class EntitlementsApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        if (requestParameters['xSchematicEnvironmentId'] != null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters['xSchematicEnvironmentId']);
         }
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -195,7 +201,7 @@ export class EntitlementsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreatePlanEntitlementRequestBodyToJSON(requestParameters.createPlanEntitlementRequestBody),
+            body: CreatePlanEntitlementRequestBodyToJSON(requestParameters['createPlanEntitlementRequestBody']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreatePlanEntitlementResponseFromJSON(jsonValue));
@@ -213,24 +219,27 @@ export class EntitlementsApi extends runtime.BaseAPI {
      * Delete company override
      */
     async deleteCompanyOverrideRaw(requestParameters: DeleteCompanyOverrideRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteCompanyOverrideResponse>> {
-        if (requestParameters.companyOverrideId === null || requestParameters.companyOverrideId === undefined) {
-            throw new runtime.RequiredError('companyOverrideId','Required parameter requestParameters.companyOverrideId was null or undefined when calling deleteCompanyOverride.');
+        if (requestParameters['companyOverrideId'] == null) {
+            throw new runtime.RequiredError(
+                'companyOverrideId',
+                'Required parameter "companyOverrideId" was null or undefined when calling deleteCompanyOverride().'
+            );
         }
 
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        if (requestParameters['xSchematicEnvironmentId'] != null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters['xSchematicEnvironmentId']);
         }
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/company-overrides/{company_override_id}`.replace(`{${"company_override_id"}}`, encodeURIComponent(String(requestParameters.companyOverrideId))),
+            path: `/company-overrides/{company_override_id}`.replace(`{${"company_override_id"}}`, encodeURIComponent(String(requestParameters['companyOverrideId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -251,24 +260,27 @@ export class EntitlementsApi extends runtime.BaseAPI {
      * Delete plan entitlement
      */
     async deletePlanEntitlementRaw(requestParameters: DeletePlanEntitlementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletePlanEntitlementResponse>> {
-        if (requestParameters.planEntitlementId === null || requestParameters.planEntitlementId === undefined) {
-            throw new runtime.RequiredError('planEntitlementId','Required parameter requestParameters.planEntitlementId was null or undefined when calling deletePlanEntitlement.');
+        if (requestParameters['planEntitlementId'] == null) {
+            throw new runtime.RequiredError(
+                'planEntitlementId',
+                'Required parameter "planEntitlementId" was null or undefined when calling deletePlanEntitlement().'
+            );
         }
 
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        if (requestParameters['xSchematicEnvironmentId'] != null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters['xSchematicEnvironmentId']);
         }
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/plan-entitlements/{plan_entitlement_id}`.replace(`{${"plan_entitlement_id"}}`, encodeURIComponent(String(requestParameters.planEntitlementId))),
+            path: `/plan-entitlements/{plan_entitlement_id}`.replace(`{${"plan_entitlement_id"}}`, encodeURIComponent(String(requestParameters['planEntitlementId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -289,24 +301,27 @@ export class EntitlementsApi extends runtime.BaseAPI {
      * Get company override
      */
     async getCompanyOverrideRaw(requestParameters: GetCompanyOverrideRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCompanyOverrideResponse>> {
-        if (requestParameters.companyOverrideId === null || requestParameters.companyOverrideId === undefined) {
-            throw new runtime.RequiredError('companyOverrideId','Required parameter requestParameters.companyOverrideId was null or undefined when calling getCompanyOverride.');
+        if (requestParameters['companyOverrideId'] == null) {
+            throw new runtime.RequiredError(
+                'companyOverrideId',
+                'Required parameter "companyOverrideId" was null or undefined when calling getCompanyOverride().'
+            );
         }
 
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        if (requestParameters['xSchematicEnvironmentId'] != null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters['xSchematicEnvironmentId']);
         }
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/company-overrides/{company_override_id}`.replace(`{${"company_override_id"}}`, encodeURIComponent(String(requestParameters.companyOverrideId))),
+            path: `/company-overrides/{company_override_id}`.replace(`{${"company_override_id"}}`, encodeURIComponent(String(requestParameters['companyOverrideId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -327,24 +342,27 @@ export class EntitlementsApi extends runtime.BaseAPI {
      * Get plan entitlement
      */
     async getPlanEntitlementRaw(requestParameters: GetPlanEntitlementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPlanEntitlementResponse>> {
-        if (requestParameters.planEntitlementId === null || requestParameters.planEntitlementId === undefined) {
-            throw new runtime.RequiredError('planEntitlementId','Required parameter requestParameters.planEntitlementId was null or undefined when calling getPlanEntitlement.');
+        if (requestParameters['planEntitlementId'] == null) {
+            throw new runtime.RequiredError(
+                'planEntitlementId',
+                'Required parameter "planEntitlementId" was null or undefined when calling getPlanEntitlement().'
+            );
         }
 
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        if (requestParameters['xSchematicEnvironmentId'] != null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters['xSchematicEnvironmentId']);
         }
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/plan-entitlements/{plan_entitlement_id}`.replace(`{${"plan_entitlement_id"}}`, encodeURIComponent(String(requestParameters.planEntitlementId))),
+            path: `/plan-entitlements/{plan_entitlement_id}`.replace(`{${"plan_entitlement_id"}}`, encodeURIComponent(String(requestParameters['planEntitlementId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -367,30 +385,30 @@ export class EntitlementsApi extends runtime.BaseAPI {
     async listCompanyOverridesRaw(requestParameters: ListCompanyOverridesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListCompanyOverridesResponse>> {
         const queryParameters: any = {};
 
-        if (requestParameters.companyId !== undefined) {
-            queryParameters['company_id'] = requestParameters.companyId;
+        if (requestParameters['companyId'] != null) {
+            queryParameters['company_id'] = requestParameters['companyId'];
         }
 
-        if (requestParameters.featureId !== undefined) {
-            queryParameters['feature_id'] = requestParameters.featureId;
+        if (requestParameters['featureId'] != null) {
+            queryParameters['feature_id'] = requestParameters['featureId'];
         }
 
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
-        if (requestParameters.offset !== undefined) {
-            queryParameters['offset'] = requestParameters.offset;
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        if (requestParameters['xSchematicEnvironmentId'] != null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters['xSchematicEnvironmentId']);
         }
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -417,30 +435,30 @@ export class EntitlementsApi extends runtime.BaseAPI {
     async listPlanEntitlementsRaw(requestParameters: ListPlanEntitlementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListPlanEntitlementsResponse>> {
         const queryParameters: any = {};
 
-        if (requestParameters.planId !== undefined) {
-            queryParameters['plan_id'] = requestParameters.planId;
+        if (requestParameters['planId'] != null) {
+            queryParameters['plan_id'] = requestParameters['planId'];
         }
 
-        if (requestParameters.featureId !== undefined) {
-            queryParameters['feature_id'] = requestParameters.featureId;
+        if (requestParameters['featureId'] != null) {
+            queryParameters['feature_id'] = requestParameters['featureId'];
         }
 
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
-        if (requestParameters.offset !== undefined) {
-            queryParameters['offset'] = requestParameters.offset;
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        if (requestParameters['xSchematicEnvironmentId'] != null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters['xSchematicEnvironmentId']);
         }
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -465,12 +483,18 @@ export class EntitlementsApi extends runtime.BaseAPI {
      * Update company override
      */
     async updateCompanyOverrideRaw(requestParameters: UpdateCompanyOverrideRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateCompanyOverrideResponse>> {
-        if (requestParameters.updateCompanyOverrideRequestBody === null || requestParameters.updateCompanyOverrideRequestBody === undefined) {
-            throw new runtime.RequiredError('updateCompanyOverrideRequestBody','Required parameter requestParameters.updateCompanyOverrideRequestBody was null or undefined when calling updateCompanyOverride.');
+        if (requestParameters['companyOverrideId'] == null) {
+            throw new runtime.RequiredError(
+                'companyOverrideId',
+                'Required parameter "companyOverrideId" was null or undefined when calling updateCompanyOverride().'
+            );
         }
 
-        if (requestParameters.companyOverrideId === null || requestParameters.companyOverrideId === undefined) {
-            throw new runtime.RequiredError('companyOverrideId','Required parameter requestParameters.companyOverrideId was null or undefined when calling updateCompanyOverride.');
+        if (requestParameters['updateCompanyOverrideRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'updateCompanyOverrideRequestBody',
+                'Required parameter "updateCompanyOverrideRequestBody" was null or undefined when calling updateCompanyOverride().'
+            );
         }
 
         const queryParameters: any = {};
@@ -479,20 +503,20 @@ export class EntitlementsApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        if (requestParameters['xSchematicEnvironmentId'] != null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters['xSchematicEnvironmentId']);
         }
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/company-overrides/{company_override_id}`.replace(`{${"company_override_id"}}`, encodeURIComponent(String(requestParameters.companyOverrideId))),
+            path: `/company-overrides/{company_override_id}`.replace(`{${"company_override_id"}}`, encodeURIComponent(String(requestParameters['companyOverrideId']))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateCompanyOverrideRequestBodyToJSON(requestParameters.updateCompanyOverrideRequestBody),
+            body: UpdateCompanyOverrideRequestBodyToJSON(requestParameters['updateCompanyOverrideRequestBody']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateCompanyOverrideResponseFromJSON(jsonValue));
@@ -510,12 +534,18 @@ export class EntitlementsApi extends runtime.BaseAPI {
      * Update plan entitlement
      */
     async updatePlanEntitlementRaw(requestParameters: UpdatePlanEntitlementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdatePlanEntitlementResponse>> {
-        if (requestParameters.updatePlanEntitlementRequestBody === null || requestParameters.updatePlanEntitlementRequestBody === undefined) {
-            throw new runtime.RequiredError('updatePlanEntitlementRequestBody','Required parameter requestParameters.updatePlanEntitlementRequestBody was null or undefined when calling updatePlanEntitlement.');
+        if (requestParameters['planEntitlementId'] == null) {
+            throw new runtime.RequiredError(
+                'planEntitlementId',
+                'Required parameter "planEntitlementId" was null or undefined when calling updatePlanEntitlement().'
+            );
         }
 
-        if (requestParameters.planEntitlementId === null || requestParameters.planEntitlementId === undefined) {
-            throw new runtime.RequiredError('planEntitlementId','Required parameter requestParameters.planEntitlementId was null or undefined when calling updatePlanEntitlement.');
+        if (requestParameters['updatePlanEntitlementRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'updatePlanEntitlementRequestBody',
+                'Required parameter "updatePlanEntitlementRequestBody" was null or undefined when calling updatePlanEntitlement().'
+            );
         }
 
         const queryParameters: any = {};
@@ -524,20 +554,20 @@ export class EntitlementsApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        if (requestParameters['xSchematicEnvironmentId'] != null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters['xSchematicEnvironmentId']);
         }
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/plan-entitlements/{plan_entitlement_id}`.replace(`{${"plan_entitlement_id"}}`, encodeURIComponent(String(requestParameters.planEntitlementId))),
+            path: `/plan-entitlements/{plan_entitlement_id}`.replace(`{${"plan_entitlement_id"}}`, encodeURIComponent(String(requestParameters['planEntitlementId']))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdatePlanEntitlementRequestBodyToJSON(requestParameters.updatePlanEntitlementRequestBody),
+            body: UpdatePlanEntitlementRequestBodyToJSON(requestParameters['updatePlanEntitlementRequestBody']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdatePlanEntitlementResponseFromJSON(jsonValue));

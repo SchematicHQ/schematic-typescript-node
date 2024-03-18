@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { EventSummaryResponseData } from './EventSummaryResponseData';
 import {
     EventSummaryResponseDataFromJSON,
@@ -49,7 +49,7 @@ export interface FeatureDetailResponseData {
      * @type {string}
      * @memberof FeatureDetailResponseData
      */
-    eventSubtype?: string | null;
+    eventSubtype?: string;
     /**
      * 
      * @type {EventSummaryResponseData}
@@ -79,7 +79,7 @@ export interface FeatureDetailResponseData {
      * @type {string}
      * @memberof FeatureDetailResponseData
      */
-    lifecyclePhase?: string | null;
+    lifecyclePhase?: string;
     /**
      * 
      * @type {string}
@@ -91,7 +91,7 @@ export interface FeatureDetailResponseData {
      * @type {string}
      * @memberof FeatureDetailResponseData
      */
-    traitId?: string | null;
+    traitId?: string;
     /**
      * 
      * @type {Date}
@@ -104,16 +104,14 @@ export interface FeatureDetailResponseData {
  * Check if a given object implements the FeatureDetailResponseData interface.
  */
 export function instanceOfFeatureDetailResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "featureType" in value;
-    isInstance = isInstance && "flags" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "updatedAt" in value;
-
-    return isInstance;
+    if (!('createdAt' in value)) return false;
+    if (!('description' in value)) return false;
+    if (!('featureType' in value)) return false;
+    if (!('flags' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('updatedAt' in value)) return false;
+    return true;
 }
 
 export function FeatureDetailResponseDataFromJSON(json: any): FeatureDetailResponseData {
@@ -121,45 +119,42 @@ export function FeatureDetailResponseDataFromJSON(json: any): FeatureDetailRespo
 }
 
 export function FeatureDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): FeatureDetailResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'createdAt': (new Date(json['created_at'])),
         'description': json['description'],
-        'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
-        'eventSummary': !exists(json, 'event_summary') ? undefined : EventSummaryResponseDataFromJSON(json['event_summary']),
+        'eventSubtype': json['event_subtype'] == null ? undefined : json['event_subtype'],
+        'eventSummary': json['event_summary'] == null ? undefined : EventSummaryResponseDataFromJSON(json['event_summary']),
         'featureType': json['feature_type'],
         'flags': ((json['flags'] as Array<any>).map(FlagDetailResponseDataFromJSON)),
         'id': json['id'],
-        'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
+        'lifecyclePhase': json['lifecycle_phase'] == null ? undefined : json['lifecycle_phase'],
         'name': json['name'],
-        'traitId': !exists(json, 'trait_id') ? undefined : json['trait_id'],
+        'traitId': json['trait_id'] == null ? undefined : json['trait_id'],
         'updatedAt': (new Date(json['updated_at'])),
     };
 }
 
 export function FeatureDetailResponseDataToJSON(value?: FeatureDetailResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'created_at': (value.createdAt.toISOString()),
-        'description': value.description,
-        'event_subtype': value.eventSubtype,
-        'event_summary': EventSummaryResponseDataToJSON(value.eventSummary),
-        'feature_type': value.featureType,
-        'flags': ((value.flags as Array<any>).map(FlagDetailResponseDataToJSON)),
-        'id': value.id,
-        'lifecycle_phase': value.lifecyclePhase,
-        'name': value.name,
-        'trait_id': value.traitId,
-        'updated_at': (value.updatedAt.toISOString()),
+        'created_at': ((value['createdAt']).toISOString()),
+        'description': value['description'],
+        'event_subtype': value['eventSubtype'],
+        'event_summary': EventSummaryResponseDataToJSON(value['eventSummary']),
+        'feature_type': value['featureType'],
+        'flags': ((value['flags'] as Array<any>).map(FlagDetailResponseDataToJSON)),
+        'id': value['id'],
+        'lifecycle_phase': value['lifecyclePhase'],
+        'name': value['name'],
+        'trait_id': value['traitId'],
+        'updated_at': ((value['updatedAt']).toISOString()),
     };
 }
 

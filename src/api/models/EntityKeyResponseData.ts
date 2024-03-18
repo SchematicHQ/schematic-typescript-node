@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -79,18 +79,16 @@ export interface EntityKeyResponseData {
  * Check if a given object implements the EntityKeyResponseData interface.
  */
 export function instanceOfEntityKeyResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "definitionId" in value;
-    isInstance = isInstance && "entityId" in value;
-    isInstance = isInstance && "entityType" in value;
-    isInstance = isInstance && "environmentId" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "key" in value;
-    isInstance = isInstance && "updatedAt" in value;
-    isInstance = isInstance && "value" in value;
-
-    return isInstance;
+    if (!('createdAt' in value)) return false;
+    if (!('definitionId' in value)) return false;
+    if (!('entityId' in value)) return false;
+    if (!('entityType' in value)) return false;
+    if (!('environmentId' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('key' in value)) return false;
+    if (!('updatedAt' in value)) return false;
+    if (!('value' in value)) return false;
+    return true;
 }
 
 export function EntityKeyResponseDataFromJSON(json: any): EntityKeyResponseData {
@@ -98,7 +96,7 @@ export function EntityKeyResponseDataFromJSON(json: any): EntityKeyResponseData 
 }
 
 export function EntityKeyResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): EntityKeyResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -116,23 +114,20 @@ export function EntityKeyResponseDataFromJSONTyped(json: any, ignoreDiscriminato
 }
 
 export function EntityKeyResponseDataToJSON(value?: EntityKeyResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'created_at': (value.createdAt.toISOString()),
-        'definition_id': value.definitionId,
-        'entity_id': value.entityId,
-        'entity_type': value.entityType,
-        'environment_id': value.environmentId,
-        'id': value.id,
-        'key': value.key,
-        'updated_at': (value.updatedAt.toISOString()),
-        'value': value.value,
+        'created_at': ((value['createdAt']).toISOString()),
+        'definition_id': value['definitionId'],
+        'entity_id': value['entityId'],
+        'entity_type': value['entityType'],
+        'environment_id': value['environmentId'],
+        'id': value['id'],
+        'key': value['key'],
+        'updated_at': ((value['updatedAt']).toISOString()),
+        'value': value['value'],
     };
 }
 

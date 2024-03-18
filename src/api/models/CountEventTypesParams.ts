@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Input parameters
  * @export
@@ -43,9 +43,7 @@ export interface CountEventTypesParams {
  * Check if a given object implements the CountEventTypesParams interface.
  */
 export function instanceOfCountEventTypesParams(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CountEventTypesParamsFromJSON(json: any): CountEventTypesParams {
@@ -53,29 +51,26 @@ export function CountEventTypesParamsFromJSON(json: any): CountEventTypesParams 
 }
 
 export function CountEventTypesParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): CountEventTypesParams {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'q': !exists(json, 'q') ? undefined : json['q'],
+        'limit': json['limit'] == null ? undefined : json['limit'],
+        'offset': json['offset'] == null ? undefined : json['offset'],
+        'q': json['q'] == null ? undefined : json['q'],
     };
 }
 
 export function CountEventTypesParamsToJSON(value?: CountEventTypesParams | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'limit': value.limit,
-        'offset': value.offset,
-        'q': value.q,
+        'limit': value['limit'],
+        'offset': value['offset'],
+        'q': value['q'],
     };
 }
 

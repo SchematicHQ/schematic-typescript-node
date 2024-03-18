@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PlanResponseData } from './PlanResponseData';
 import {
     PlanResponseDataFromJSON,
@@ -44,11 +44,9 @@ export interface UpdatePlanResponse {
  * Check if a given object implements the UpdatePlanResponse interface.
  */
 export function instanceOfUpdatePlanResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function UpdatePlanResponseFromJSON(json: any): UpdatePlanResponse {
@@ -56,7 +54,7 @@ export function UpdatePlanResponseFromJSON(json: any): UpdatePlanResponse {
 }
 
 export function UpdatePlanResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdatePlanResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function UpdatePlanResponseFromJSONTyped(json: any, ignoreDiscriminator: 
 }
 
 export function UpdatePlanResponseToJSON(value?: UpdatePlanResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': PlanResponseDataToJSON(value.data),
-        'params': value.params,
+        'data': PlanResponseDataToJSON(value['data']),
+        'params': value['params'],
     };
 }
 

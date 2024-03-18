@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The returned resource
  * @export
@@ -30,13 +30,13 @@ export interface ApiKeyRequestResponseData {
      * @type {Date}
      * @memberof ApiKeyRequestResponseData
      */
-    endedAt?: Date | null;
+    endedAt?: Date;
     /**
      * 
      * @type {string}
      * @memberof ApiKeyRequestResponseData
      */
-    environmentId?: string | null;
+    environmentId?: string;
     /**
      * 
      * @type {string}
@@ -54,19 +54,19 @@ export interface ApiKeyRequestResponseData {
      * @type {string}
      * @memberof ApiKeyRequestResponseData
      */
-    reqBody?: string | null;
+    reqBody?: string;
     /**
      * 
      * @type {string}
      * @memberof ApiKeyRequestResponseData
      */
-    respBody?: string | null;
+    respBody?: string;
     /**
      * 
      * @type {number}
      * @memberof ApiKeyRequestResponseData
      */
-    respCode?: number | null;
+    respCode?: number;
     /**
      * 
      * @type {Date}
@@ -84,21 +84,19 @@ export interface ApiKeyRequestResponseData {
      * @type {string}
      * @memberof ApiKeyRequestResponseData
      */
-    userAgent?: string | null;
+    userAgent?: string;
 }
 
 /**
  * Check if a given object implements the ApiKeyRequestResponseData interface.
  */
 export function instanceOfApiKeyRequestResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "apiKeyId" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "method" in value;
-    isInstance = isInstance && "startedAt" in value;
-    isInstance = isInstance && "url" in value;
-
-    return isInstance;
+    if (!('apiKeyId' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('method' in value)) return false;
+    if (!('startedAt' in value)) return false;
+    if (!('url' in value)) return false;
+    return true;
 }
 
 export function ApiKeyRequestResponseDataFromJSON(json: any): ApiKeyRequestResponseData {
@@ -106,45 +104,42 @@ export function ApiKeyRequestResponseDataFromJSON(json: any): ApiKeyRequestRespo
 }
 
 export function ApiKeyRequestResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): ApiKeyRequestResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'apiKeyId': json['api_key_id'],
-        'endedAt': !exists(json, 'ended_at') ? undefined : (json['ended_at'] === null ? null : new Date(json['ended_at'])),
-        'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
+        'endedAt': json['ended_at'] == null ? undefined : (new Date(json['ended_at'])),
+        'environmentId': json['environment_id'] == null ? undefined : json['environment_id'],
         'id': json['id'],
         'method': json['method'],
-        'reqBody': !exists(json, 'req_body') ? undefined : json['req_body'],
-        'respBody': !exists(json, 'resp_body') ? undefined : json['resp_body'],
-        'respCode': !exists(json, 'resp_code') ? undefined : json['resp_code'],
+        'reqBody': json['req_body'] == null ? undefined : json['req_body'],
+        'respBody': json['resp_body'] == null ? undefined : json['resp_body'],
+        'respCode': json['resp_code'] == null ? undefined : json['resp_code'],
         'startedAt': (new Date(json['started_at'])),
         'url': json['url'],
-        'userAgent': !exists(json, 'user_agent') ? undefined : json['user_agent'],
+        'userAgent': json['user_agent'] == null ? undefined : json['user_agent'],
     };
 }
 
 export function ApiKeyRequestResponseDataToJSON(value?: ApiKeyRequestResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'api_key_id': value.apiKeyId,
-        'ended_at': value.endedAt === undefined ? undefined : (value.endedAt === null ? null : value.endedAt.toISOString()),
-        'environment_id': value.environmentId,
-        'id': value.id,
-        'method': value.method,
-        'req_body': value.reqBody,
-        'resp_body': value.respBody,
-        'resp_code': value.respCode,
-        'started_at': (value.startedAt.toISOString()),
-        'url': value.url,
-        'user_agent': value.userAgent,
+        'api_key_id': value['apiKeyId'],
+        'ended_at': value['endedAt'] == null ? undefined : ((value['endedAt'] as any).toISOString()),
+        'environment_id': value['environmentId'],
+        'id': value['id'],
+        'method': value['method'],
+        'req_body': value['reqBody'],
+        'resp_body': value['respBody'],
+        'resp_code': value['respCode'],
+        'started_at': ((value['startedAt']).toISOString()),
+        'url': value['url'],
+        'user_agent': value['userAgent'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -24,22 +24,20 @@ export interface PaginationFilter {
      * @type {number}
      * @memberof PaginationFilter
      */
-    limit?: number | null;
+    limit?: number;
     /**
      * Page offset (default 0)
      * @type {number}
      * @memberof PaginationFilter
      */
-    offset?: number | null;
+    offset?: number;
 }
 
 /**
  * Check if a given object implements the PaginationFilter interface.
  */
 export function instanceOfPaginationFilter(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function PaginationFilterFromJSON(json: any): PaginationFilter {
@@ -47,27 +45,24 @@ export function PaginationFilterFromJSON(json: any): PaginationFilter {
 }
 
 export function PaginationFilterFromJSONTyped(json: any, ignoreDiscriminator: boolean): PaginationFilter {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
+        'limit': json['limit'] == null ? undefined : json['limit'],
+        'offset': json['offset'] == null ? undefined : json['offset'],
     };
 }
 
 export function PaginationFilterToJSON(value?: PaginationFilter | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'limit': value.limit,
-        'offset': value.offset,
+        'limit': value['limit'],
+        'offset': value['offset'],
     };
 }
 

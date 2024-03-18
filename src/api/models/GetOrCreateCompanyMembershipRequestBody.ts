@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,11 +37,9 @@ export interface GetOrCreateCompanyMembershipRequestBody {
  * Check if a given object implements the GetOrCreateCompanyMembershipRequestBody interface.
  */
 export function instanceOfGetOrCreateCompanyMembershipRequestBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "companyId" in value;
-    isInstance = isInstance && "userId" in value;
-
-    return isInstance;
+    if (!('companyId' in value)) return false;
+    if (!('userId' in value)) return false;
+    return true;
 }
 
 export function GetOrCreateCompanyMembershipRequestBodyFromJSON(json: any): GetOrCreateCompanyMembershipRequestBody {
@@ -49,7 +47,7 @@ export function GetOrCreateCompanyMembershipRequestBodyFromJSON(json: any): GetO
 }
 
 export function GetOrCreateCompanyMembershipRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetOrCreateCompanyMembershipRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -60,16 +58,13 @@ export function GetOrCreateCompanyMembershipRequestBodyFromJSONTyped(json: any, 
 }
 
 export function GetOrCreateCompanyMembershipRequestBodyToJSON(value?: GetOrCreateCompanyMembershipRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'company_id': value.companyId,
-        'user_id': value.userId,
+        'company_id': value['companyId'],
+        'user_id': value['userId'],
     };
 }
 

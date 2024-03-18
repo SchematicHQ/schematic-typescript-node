@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Input parameters
  * @export
@@ -55,9 +55,7 @@ export interface CountEventsParams {
  * Check if a given object implements the CountEventsParams interface.
  */
 export function instanceOfCountEventsParams(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CountEventsParamsFromJSON(json: any): CountEventsParams {
@@ -65,33 +63,30 @@ export function CountEventsParamsFromJSON(json: any): CountEventsParams {
 }
 
 export function CountEventsParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): CountEventsParams {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
+        'companyId': json['company_id'] == null ? undefined : json['company_id'],
+        'eventSubtype': json['event_subtype'] == null ? undefined : json['event_subtype'],
+        'limit': json['limit'] == null ? undefined : json['limit'],
+        'offset': json['offset'] == null ? undefined : json['offset'],
+        'userId': json['user_id'] == null ? undefined : json['user_id'],
     };
 }
 
 export function CountEventsParamsToJSON(value?: CountEventsParams | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'company_id': value.companyId,
-        'event_subtype': value.eventSubtype,
-        'limit': value.limit,
-        'offset': value.offset,
-        'user_id': value.userId,
+        'company_id': value['companyId'],
+        'event_subtype': value['eventSubtype'],
+        'limit': value['limit'],
+        'offset': value['offset'],
+        'user_id': value['userId'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FlagCheckLogDetailResponseData } from './FlagCheckLogDetailResponseData';
 import {
     FlagCheckLogDetailResponseDataFromJSON,
@@ -50,11 +50,9 @@ export interface ListFlagChecksResponse {
  * Check if a given object implements the ListFlagChecksResponse interface.
  */
 export function instanceOfListFlagChecksResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function ListFlagChecksResponseFromJSON(json: any): ListFlagChecksResponse {
@@ -62,7 +60,7 @@ export function ListFlagChecksResponseFromJSON(json: any): ListFlagChecksRespons
 }
 
 export function ListFlagChecksResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListFlagChecksResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function ListFlagChecksResponseFromJSONTyped(json: any, ignoreDiscriminat
 }
 
 export function ListFlagChecksResponseToJSON(value?: ListFlagChecksResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': ((value.data as Array<any>).map(FlagCheckLogDetailResponseDataToJSON)),
-        'params': ListFlagChecksParamsToJSON(value.params),
+        'data': ((value['data'] as Array<any>).map(FlagCheckLogDetailResponseDataToJSON)),
+        'params': ListFlagChecksParamsToJSON(value['params']),
     };
 }
 

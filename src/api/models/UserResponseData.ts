@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -42,7 +42,7 @@ export interface UserResponseData {
      * @type {Date}
      * @memberof UserResponseData
      */
-    lastSeenAt?: Date | null;
+    lastSeenAt?: Date;
     /**
      * 
      * @type {string}
@@ -61,14 +61,12 @@ export interface UserResponseData {
  * Check if a given object implements the UserResponseData interface.
  */
 export function instanceOfUserResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "environmentId" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "updatedAt" in value;
-
-    return isInstance;
+    if (!('createdAt' in value)) return false;
+    if (!('environmentId' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('updatedAt' in value)) return false;
+    return true;
 }
 
 export function UserResponseDataFromJSON(json: any): UserResponseData {
@@ -76,7 +74,7 @@ export function UserResponseDataFromJSON(json: any): UserResponseData {
 }
 
 export function UserResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -84,27 +82,24 @@ export function UserResponseDataFromJSONTyped(json: any, ignoreDiscriminator: bo
         'createdAt': (new Date(json['created_at'])),
         'environmentId': json['environment_id'],
         'id': json['id'],
-        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (json['last_seen_at'] === null ? null : new Date(json['last_seen_at'])),
+        'lastSeenAt': json['last_seen_at'] == null ? undefined : (new Date(json['last_seen_at'])),
         'name': json['name'],
         'updatedAt': (new Date(json['updated_at'])),
     };
 }
 
 export function UserResponseDataToJSON(value?: UserResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'created_at': (value.createdAt.toISOString()),
-        'environment_id': value.environmentId,
-        'id': value.id,
-        'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt === null ? null : value.lastSeenAt.toISOString()),
-        'name': value.name,
-        'updated_at': (value.updatedAt.toISOString()),
+        'created_at': ((value['createdAt']).toISOString()),
+        'environment_id': value['environmentId'],
+        'id': value['id'],
+        'last_seen_at': value['lastSeenAt'] == null ? undefined : ((value['lastSeenAt'] as any).toISOString()),
+        'name': value['name'],
+        'updated_at': ((value['updatedAt']).toISOString()),
     };
 }
 

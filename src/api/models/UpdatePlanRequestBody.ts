@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,10 +31,8 @@ export interface UpdatePlanRequestBody {
  * Check if a given object implements the UpdatePlanRequestBody interface.
  */
 export function instanceOfUpdatePlanRequestBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "name" in value;
-
-    return isInstance;
+    if (!('name' in value)) return false;
+    return true;
 }
 
 export function UpdatePlanRequestBodyFromJSON(json: any): UpdatePlanRequestBody {
@@ -42,7 +40,7 @@ export function UpdatePlanRequestBodyFromJSON(json: any): UpdatePlanRequestBody 
 }
 
 export function UpdatePlanRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdatePlanRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -52,15 +50,12 @@ export function UpdatePlanRequestBodyFromJSONTyped(json: any, ignoreDiscriminato
 }
 
 export function UpdatePlanRequestBodyToJSON(value?: UpdatePlanRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'name': value.name,
+        'name': value['name'],
     };
 }
 

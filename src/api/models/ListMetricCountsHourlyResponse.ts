@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ListMetricCountsHourlyParams } from './ListMetricCountsHourlyParams';
 import {
     ListMetricCountsHourlyParamsFromJSON,
@@ -50,11 +50,9 @@ export interface ListMetricCountsHourlyResponse {
  * Check if a given object implements the ListMetricCountsHourlyResponse interface.
  */
 export function instanceOfListMetricCountsHourlyResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function ListMetricCountsHourlyResponseFromJSON(json: any): ListMetricCountsHourlyResponse {
@@ -62,7 +60,7 @@ export function ListMetricCountsHourlyResponseFromJSON(json: any): ListMetricCou
 }
 
 export function ListMetricCountsHourlyResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListMetricCountsHourlyResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function ListMetricCountsHourlyResponseFromJSONTyped(json: any, ignoreDis
 }
 
 export function ListMetricCountsHourlyResponseToJSON(value?: ListMetricCountsHourlyResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': ((value.data as Array<any>).map(MetricCountsHourlyResponseDataToJSON)),
-        'params': ListMetricCountsHourlyParamsToJSON(value.params),
+        'data': ((value['data'] as Array<any>).map(MetricCountsHourlyResponseDataToJSON)),
+        'params': ListMetricCountsHourlyParamsToJSON(value['params']),
     };
 }
 

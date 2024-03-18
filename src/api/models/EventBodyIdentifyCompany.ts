@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Information about the company associated with the user; required only if it is a new user
  * @export
@@ -43,10 +43,8 @@ export interface EventBodyIdentifyCompany {
  * Check if a given object implements the EventBodyIdentifyCompany interface.
  */
 export function instanceOfEventBodyIdentifyCompany(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "keys" in value;
-
-    return isInstance;
+    if (!('keys' in value)) return false;
+    return true;
 }
 
 export function EventBodyIdentifyCompanyFromJSON(json: any): EventBodyIdentifyCompany {
@@ -54,29 +52,26 @@ export function EventBodyIdentifyCompanyFromJSON(json: any): EventBodyIdentifyCo
 }
 
 export function EventBodyIdentifyCompanyFromJSONTyped(json: any, ignoreDiscriminator: boolean): EventBodyIdentifyCompany {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'keys': json['keys'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'traits': !exists(json, 'traits') ? undefined : json['traits'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'traits': json['traits'] == null ? undefined : json['traits'],
     };
 }
 
 export function EventBodyIdentifyCompanyToJSON(value?: EventBodyIdentifyCompany | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'keys': value.keys,
-        'name': value.name,
-        'traits': value.traits,
+        'keys': value['keys'],
+        'name': value['name'],
+        'traits': value['traits'],
     };
 }
 

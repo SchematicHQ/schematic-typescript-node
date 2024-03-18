@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { EventSummaryResponseData } from './EventSummaryResponseData';
 import {
     EventSummaryResponseDataFromJSON,
@@ -50,11 +50,9 @@ export interface ListEventTypesResponse {
  * Check if a given object implements the ListEventTypesResponse interface.
  */
 export function instanceOfListEventTypesResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function ListEventTypesResponseFromJSON(json: any): ListEventTypesResponse {
@@ -62,7 +60,7 @@ export function ListEventTypesResponseFromJSON(json: any): ListEventTypesRespons
 }
 
 export function ListEventTypesResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListEventTypesResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function ListEventTypesResponseFromJSONTyped(json: any, ignoreDiscriminat
 }
 
 export function ListEventTypesResponseToJSON(value?: ListEventTypesResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': ((value.data as Array<any>).map(EventSummaryResponseDataToJSON)),
-        'params': ListEventTypesParamsToJSON(value.params),
+        'data': ((value['data'] as Array<any>).map(EventSummaryResponseDataToJSON)),
+        'params': ListEventTypesParamsToJSON(value['params']),
     };
 }
 

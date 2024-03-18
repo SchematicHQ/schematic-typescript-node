@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { RuleDetailResponseData } from './RuleDetailResponseData';
 import {
     RuleDetailResponseDataFromJSON,
@@ -49,7 +49,7 @@ export interface FlagDetailResponseData {
      * @type {string}
      * @memberof FlagDetailResponseData
      */
-    featureId?: string | null;
+    featureId?: string;
     /**
      * 
      * @type {string}
@@ -92,18 +92,16 @@ export interface FlagDetailResponseData {
  * Check if a given object implements the FlagDetailResponseData interface.
  */
 export function instanceOfFlagDetailResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "defaultValue" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "flagType" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "key" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "rules" in value;
-    isInstance = isInstance && "updatedAt" in value;
-
-    return isInstance;
+    if (!('createdAt' in value)) return false;
+    if (!('defaultValue' in value)) return false;
+    if (!('description' in value)) return false;
+    if (!('flagType' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('key' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('rules' in value)) return false;
+    if (!('updatedAt' in value)) return false;
+    return true;
 }
 
 export function FlagDetailResponseDataFromJSON(json: any): FlagDetailResponseData {
@@ -111,7 +109,7 @@ export function FlagDetailResponseDataFromJSON(json: any): FlagDetailResponseDat
 }
 
 export function FlagDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): FlagDetailResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -119,7 +117,7 @@ export function FlagDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminat
         'createdAt': (new Date(json['created_at'])),
         'defaultValue': json['default_value'],
         'description': json['description'],
-        'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
+        'featureId': json['feature_id'] == null ? undefined : json['feature_id'],
         'flagType': json['flag_type'],
         'id': json['id'],
         'key': json['key'],
@@ -130,24 +128,21 @@ export function FlagDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminat
 }
 
 export function FlagDetailResponseDataToJSON(value?: FlagDetailResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'created_at': (value.createdAt.toISOString()),
-        'default_value': value.defaultValue,
-        'description': value.description,
-        'feature_id': value.featureId,
-        'flag_type': value.flagType,
-        'id': value.id,
-        'key': value.key,
-        'name': value.name,
-        'rules': ((value.rules as Array<any>).map(RuleDetailResponseDataToJSON)),
-        'updated_at': (value.updatedAt.toISOString()),
+        'created_at': ((value['createdAt']).toISOString()),
+        'default_value': value['defaultValue'],
+        'description': value['description'],
+        'feature_id': value['featureId'],
+        'flag_type': value['flagType'],
+        'id': value['id'],
+        'key': value['key'],
+        'name': value['name'],
+        'rules': ((value['rules'] as Array<any>).map(RuleDetailResponseDataToJSON)),
+        'updated_at': ((value['updatedAt']).toISOString()),
     };
 }
 

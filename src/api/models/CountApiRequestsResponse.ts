@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CountApiRequestsParams } from './CountApiRequestsParams';
 import {
     CountApiRequestsParamsFromJSON,
@@ -50,11 +50,9 @@ export interface CountApiRequestsResponse {
  * Check if a given object implements the CountApiRequestsResponse interface.
  */
 export function instanceOfCountApiRequestsResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function CountApiRequestsResponseFromJSON(json: any): CountApiRequestsResponse {
@@ -62,7 +60,7 @@ export function CountApiRequestsResponseFromJSON(json: any): CountApiRequestsRes
 }
 
 export function CountApiRequestsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CountApiRequestsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function CountApiRequestsResponseFromJSONTyped(json: any, ignoreDiscrimin
 }
 
 export function CountApiRequestsResponseToJSON(value?: CountApiRequestsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': CountResponseToJSON(value.data),
-        'params': CountApiRequestsParamsToJSON(value.params),
+        'data': CountResponseToJSON(value['data']),
+        'params': CountApiRequestsParamsToJSON(value['params']),
     };
 }
 

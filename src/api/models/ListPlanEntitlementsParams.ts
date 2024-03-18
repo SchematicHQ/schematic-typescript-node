@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Input parameters
  * @export
@@ -49,9 +49,7 @@ export interface ListPlanEntitlementsParams {
  * Check if a given object implements the ListPlanEntitlementsParams interface.
  */
 export function instanceOfListPlanEntitlementsParams(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ListPlanEntitlementsParamsFromJSON(json: any): ListPlanEntitlementsParams {
@@ -59,31 +57,28 @@ export function ListPlanEntitlementsParamsFromJSON(json: any): ListPlanEntitleme
 }
 
 export function ListPlanEntitlementsParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListPlanEntitlementsParams {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'planId': !exists(json, 'plan_id') ? undefined : json['plan_id'],
+        'featureId': json['feature_id'] == null ? undefined : json['feature_id'],
+        'limit': json['limit'] == null ? undefined : json['limit'],
+        'offset': json['offset'] == null ? undefined : json['offset'],
+        'planId': json['plan_id'] == null ? undefined : json['plan_id'],
     };
 }
 
 export function ListPlanEntitlementsParamsToJSON(value?: ListPlanEntitlementsParams | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'feature_id': value.featureId,
-        'limit': value.limit,
-        'offset': value.offset,
-        'plan_id': value.planId,
+        'feature_id': value['featureId'],
+        'limit': value['limit'],
+        'offset': value['offset'],
+        'plan_id': value['planId'],
     };
 }
 

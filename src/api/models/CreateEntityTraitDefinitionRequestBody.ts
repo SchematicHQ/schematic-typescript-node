@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -43,12 +43,10 @@ export interface CreateEntityTraitDefinitionRequestBody {
  * Check if a given object implements the CreateEntityTraitDefinitionRequestBody interface.
  */
 export function instanceOfCreateEntityTraitDefinitionRequestBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "entityType" in value;
-    isInstance = isInstance && "hierarchy" in value;
-    isInstance = isInstance && "traitType" in value;
-
-    return isInstance;
+    if (!('entityType' in value)) return false;
+    if (!('hierarchy' in value)) return false;
+    if (!('traitType' in value)) return false;
+    return true;
 }
 
 export function CreateEntityTraitDefinitionRequestBodyFromJSON(json: any): CreateEntityTraitDefinitionRequestBody {
@@ -56,7 +54,7 @@ export function CreateEntityTraitDefinitionRequestBodyFromJSON(json: any): Creat
 }
 
 export function CreateEntityTraitDefinitionRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateEntityTraitDefinitionRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -68,17 +66,14 @@ export function CreateEntityTraitDefinitionRequestBodyFromJSONTyped(json: any, i
 }
 
 export function CreateEntityTraitDefinitionRequestBodyToJSON(value?: CreateEntityTraitDefinitionRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'entity_type': value.entityType,
-        'hierarchy': value.hierarchy,
-        'trait_type': value.traitType,
+        'entity_type': value['entityType'],
+        'hierarchy': value['hierarchy'],
+        'trait_type': value['traitType'],
     };
 }
 

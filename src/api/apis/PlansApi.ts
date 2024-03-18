@@ -18,6 +18,7 @@ import type {
   ApiError,
   CreatePlanRequestBody,
   CreatePlanResponse,
+  DeletePlanAudienceResponse,
   DeletePlanResponse,
   GetPlanResponse,
   ListPlansResponse,
@@ -25,7 +26,7 @@ import type {
   UpdatePlanAudienceResponse,
   UpdatePlanRequestBody,
   UpdatePlanResponse,
-} from '../models';
+} from '../models/index';
 import {
     ApiErrorFromJSON,
     ApiErrorToJSON,
@@ -33,6 +34,8 @@ import {
     CreatePlanRequestBodyToJSON,
     CreatePlanResponseFromJSON,
     CreatePlanResponseToJSON,
+    DeletePlanAudienceResponseFromJSON,
+    DeletePlanAudienceResponseToJSON,
     DeletePlanResponseFromJSON,
     DeletePlanResponseToJSON,
     GetPlanResponseFromJSON,
@@ -47,7 +50,7 @@ import {
     UpdatePlanRequestBodyToJSON,
     UpdatePlanResponseFromJSON,
     UpdatePlanResponseToJSON,
-} from '../models';
+} from '../models/index';
 
 export interface CreatePlanRequest {
     createPlanRequestBody: CreatePlanRequestBody;
@@ -56,6 +59,11 @@ export interface CreatePlanRequest {
 
 export interface DeletePlanRequest {
     planId: string;
+    xSchematicEnvironmentId?: string;
+}
+
+export interface DeletePlanAudienceRequest {
+    planAudienceId: string;
     xSchematicEnvironmentId?: string;
 }
 
@@ -71,14 +79,14 @@ export interface ListPlansRequest {
 }
 
 export interface UpdatePlanRequest {
-    updatePlanRequestBody: UpdatePlanRequestBody;
     planId: string;
+    updatePlanRequestBody: UpdatePlanRequestBody;
     xSchematicEnvironmentId?: string;
 }
 
 export interface UpdatePlanAudienceRequest {
-    updateAudienceRequestBody: UpdateAudienceRequestBody;
     planAudienceId: string;
+    updateAudienceRequestBody: UpdateAudienceRequestBody;
     xSchematicEnvironmentId?: string;
 }
 
@@ -91,8 +99,11 @@ export class PlansApi extends runtime.BaseAPI {
      * Create plan
      */
     async createPlanRaw(requestParameters: CreatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePlanResponse>> {
-        if (requestParameters.createPlanRequestBody === null || requestParameters.createPlanRequestBody === undefined) {
-            throw new runtime.RequiredError('createPlanRequestBody','Required parameter requestParameters.createPlanRequestBody was null or undefined when calling createPlan.');
+        if (requestParameters['createPlanRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'createPlanRequestBody',
+                'Required parameter "createPlanRequestBody" was null or undefined when calling createPlan().'
+            );
         }
 
         const queryParameters: any = {};
@@ -101,12 +112,12 @@ export class PlansApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        if (requestParameters['xSchematicEnvironmentId'] != null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters['xSchematicEnvironmentId']);
         }
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -114,7 +125,7 @@ export class PlansApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreatePlanRequestBodyToJSON(requestParameters.createPlanRequestBody),
+            body: CreatePlanRequestBodyToJSON(requestParameters['createPlanRequestBody']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreatePlanResponseFromJSON(jsonValue));
@@ -132,24 +143,27 @@ export class PlansApi extends runtime.BaseAPI {
      * Delete plan
      */
     async deletePlanRaw(requestParameters: DeletePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletePlanResponse>> {
-        if (requestParameters.planId === null || requestParameters.planId === undefined) {
-            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling deletePlan.');
+        if (requestParameters['planId'] == null) {
+            throw new runtime.RequiredError(
+                'planId',
+                'Required parameter "planId" was null or undefined when calling deletePlan().'
+            );
         }
 
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        if (requestParameters['xSchematicEnvironmentId'] != null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters['xSchematicEnvironmentId']);
         }
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/plans/{plan_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
+            path: `/plans/{plan_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters['planId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -167,27 +181,71 @@ export class PlansApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get plan
+     * Delete plan audience
      */
-    async getPlanRaw(requestParameters: GetPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPlanResponse>> {
-        if (requestParameters.planId === null || requestParameters.planId === undefined) {
-            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling getPlan.');
+    async deletePlanAudienceRaw(requestParameters: DeletePlanAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletePlanAudienceResponse>> {
+        if (requestParameters['planAudienceId'] == null) {
+            throw new runtime.RequiredError(
+                'planAudienceId',
+                'Required parameter "planAudienceId" was null or undefined when calling deletePlanAudience().'
+            );
         }
 
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        if (requestParameters['xSchematicEnvironmentId'] != null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters['xSchematicEnvironmentId']);
         }
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/plans/{plan_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
+            path: `/plan-audiences/{plan_audience_id}`.replace(`{${"plan_audience_id"}}`, encodeURIComponent(String(requestParameters['planAudienceId']))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeletePlanAudienceResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete plan audience
+     */
+    async deletePlanAudience(requestParameters: DeletePlanAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletePlanAudienceResponse> {
+        const response = await this.deletePlanAudienceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get plan
+     */
+    async getPlanRaw(requestParameters: GetPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPlanResponse>> {
+        if (requestParameters['planId'] == null) {
+            throw new runtime.RequiredError(
+                'planId',
+                'Required parameter "planId" was null or undefined when calling getPlan().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['xSchematicEnvironmentId'] != null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters['xSchematicEnvironmentId']);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/plans/{plan_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters['planId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -210,22 +268,22 @@ export class PlansApi extends runtime.BaseAPI {
     async listPlansRaw(requestParameters: ListPlansRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListPlansResponse>> {
         const queryParameters: any = {};
 
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
-        if (requestParameters.offset !== undefined) {
-            queryParameters['offset'] = requestParameters.offset;
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        if (requestParameters['xSchematicEnvironmentId'] != null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters['xSchematicEnvironmentId']);
         }
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -250,12 +308,18 @@ export class PlansApi extends runtime.BaseAPI {
      * Update plan
      */
     async updatePlanRaw(requestParameters: UpdatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdatePlanResponse>> {
-        if (requestParameters.updatePlanRequestBody === null || requestParameters.updatePlanRequestBody === undefined) {
-            throw new runtime.RequiredError('updatePlanRequestBody','Required parameter requestParameters.updatePlanRequestBody was null or undefined when calling updatePlan.');
+        if (requestParameters['planId'] == null) {
+            throw new runtime.RequiredError(
+                'planId',
+                'Required parameter "planId" was null or undefined when calling updatePlan().'
+            );
         }
 
-        if (requestParameters.planId === null || requestParameters.planId === undefined) {
-            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling updatePlan.');
+        if (requestParameters['updatePlanRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'updatePlanRequestBody',
+                'Required parameter "updatePlanRequestBody" was null or undefined when calling updatePlan().'
+            );
         }
 
         const queryParameters: any = {};
@@ -264,20 +328,20 @@ export class PlansApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        if (requestParameters['xSchematicEnvironmentId'] != null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters['xSchematicEnvironmentId']);
         }
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/plans/{plan_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
+            path: `/plans/{plan_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters['planId']))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdatePlanRequestBodyToJSON(requestParameters.updatePlanRequestBody),
+            body: UpdatePlanRequestBodyToJSON(requestParameters['updatePlanRequestBody']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdatePlanResponseFromJSON(jsonValue));
@@ -295,12 +359,18 @@ export class PlansApi extends runtime.BaseAPI {
      * Update plan audience
      */
     async updatePlanAudienceRaw(requestParameters: UpdatePlanAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdatePlanAudienceResponse>> {
-        if (requestParameters.updateAudienceRequestBody === null || requestParameters.updateAudienceRequestBody === undefined) {
-            throw new runtime.RequiredError('updateAudienceRequestBody','Required parameter requestParameters.updateAudienceRequestBody was null or undefined when calling updatePlanAudience.');
+        if (requestParameters['planAudienceId'] == null) {
+            throw new runtime.RequiredError(
+                'planAudienceId',
+                'Required parameter "planAudienceId" was null or undefined when calling updatePlanAudience().'
+            );
         }
 
-        if (requestParameters.planAudienceId === null || requestParameters.planAudienceId === undefined) {
-            throw new runtime.RequiredError('planAudienceId','Required parameter requestParameters.planAudienceId was null or undefined when calling updatePlanAudience.');
+        if (requestParameters['updateAudienceRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'updateAudienceRequestBody',
+                'Required parameter "updateAudienceRequestBody" was null or undefined when calling updatePlanAudience().'
+            );
         }
 
         const queryParameters: any = {};
@@ -309,20 +379,20 @@ export class PlansApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        if (requestParameters['xSchematicEnvironmentId'] != null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters['xSchematicEnvironmentId']);
         }
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/plan-audiences/{plan_audience_id}`.replace(`{${"plan_audience_id"}}`, encodeURIComponent(String(requestParameters.planAudienceId))),
+            path: `/plan-audiences/{plan_audience_id}`.replace(`{${"plan_audience_id"}}`, encodeURIComponent(String(requestParameters['planAudienceId']))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateAudienceRequestBodyToJSON(requestParameters.updateAudienceRequestBody),
+            body: UpdateAudienceRequestBodyToJSON(requestParameters['updateAudienceRequestBody']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdatePlanAudienceResponseFromJSON(jsonValue));

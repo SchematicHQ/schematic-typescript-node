@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The returned resource
  * @export
@@ -24,13 +24,13 @@ export interface CheckFlagResponseData {
      * @type {string}
      * @memberof CheckFlagResponseData
      */
-    companyId?: string | null;
+    companyId?: string;
     /**
      * 
      * @type {string}
      * @memberof CheckFlagResponseData
      */
-    error?: string | null;
+    error?: string;
     /**
      * 
      * @type {string}
@@ -42,13 +42,13 @@ export interface CheckFlagResponseData {
      * @type {string}
      * @memberof CheckFlagResponseData
      */
-    ruleId?: string | null;
+    ruleId?: string;
     /**
      * 
      * @type {string}
      * @memberof CheckFlagResponseData
      */
-    userId?: string | null;
+    userId?: string;
     /**
      * 
      * @type {boolean}
@@ -61,11 +61,9 @@ export interface CheckFlagResponseData {
  * Check if a given object implements the CheckFlagResponseData interface.
  */
 export function instanceOfCheckFlagResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "reason" in value;
-    isInstance = isInstance && "value" in value;
-
-    return isInstance;
+    if (!('reason' in value)) return false;
+    if (!('value' in value)) return false;
+    return true;
 }
 
 export function CheckFlagResponseDataFromJSON(json: any): CheckFlagResponseData {
@@ -73,35 +71,32 @@ export function CheckFlagResponseDataFromJSON(json: any): CheckFlagResponseData 
 }
 
 export function CheckFlagResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): CheckFlagResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'error': !exists(json, 'error') ? undefined : json['error'],
+        'companyId': json['company_id'] == null ? undefined : json['company_id'],
+        'error': json['error'] == null ? undefined : json['error'],
         'reason': json['reason'],
-        'ruleId': !exists(json, 'rule_id') ? undefined : json['rule_id'],
-        'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
+        'ruleId': json['rule_id'] == null ? undefined : json['rule_id'],
+        'userId': json['user_id'] == null ? undefined : json['user_id'],
         'value': json['value'],
     };
 }
 
 export function CheckFlagResponseDataToJSON(value?: CheckFlagResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'company_id': value.companyId,
-        'error': value.error,
-        'reason': value.reason,
-        'rule_id': value.ruleId,
-        'user_id': value.userId,
-        'value': value.value,
+        'company_id': value['companyId'],
+        'error': value['error'],
+        'reason': value['reason'],
+        'rule_id': value['ruleId'],
+        'user_id': value['userId'],
+        'value': value['value'],
     };
 }
 

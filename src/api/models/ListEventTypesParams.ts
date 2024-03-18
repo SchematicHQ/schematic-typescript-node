@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Input parameters
  * @export
@@ -43,9 +43,7 @@ export interface ListEventTypesParams {
  * Check if a given object implements the ListEventTypesParams interface.
  */
 export function instanceOfListEventTypesParams(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ListEventTypesParamsFromJSON(json: any): ListEventTypesParams {
@@ -53,29 +51,26 @@ export function ListEventTypesParamsFromJSON(json: any): ListEventTypesParams {
 }
 
 export function ListEventTypesParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListEventTypesParams {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'q': !exists(json, 'q') ? undefined : json['q'],
+        'limit': json['limit'] == null ? undefined : json['limit'],
+        'offset': json['offset'] == null ? undefined : json['offset'],
+        'q': json['q'] == null ? undefined : json['q'],
     };
 }
 
 export function ListEventTypesParamsToJSON(value?: ListEventTypesParams | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'limit': value.limit,
-        'offset': value.offset,
-        'q': value.q,
+        'limit': value['limit'],
+        'offset': value['offset'],
+        'q': value['q'],
     };
 }
 

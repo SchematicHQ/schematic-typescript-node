@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { LookupUserParams } from './LookupUserParams';
 import {
     LookupUserParamsFromJSON,
@@ -50,11 +50,9 @@ export interface LookupUserResponse {
  * Check if a given object implements the LookupUserResponse interface.
  */
 export function instanceOfLookupUserResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function LookupUserResponseFromJSON(json: any): LookupUserResponse {
@@ -62,7 +60,7 @@ export function LookupUserResponseFromJSON(json: any): LookupUserResponse {
 }
 
 export function LookupUserResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): LookupUserResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function LookupUserResponseFromJSONTyped(json: any, ignoreDiscriminator: 
 }
 
 export function LookupUserResponseToJSON(value?: LookupUserResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': UserDetailResponseDataToJSON(value.data),
-        'params': LookupUserParamsToJSON(value.params),
+        'data': UserDetailResponseDataToJSON(value['data']),
+        'params': LookupUserParamsToJSON(value['params']),
     };
 }
 

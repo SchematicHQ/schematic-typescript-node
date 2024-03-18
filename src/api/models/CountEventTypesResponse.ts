@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CountEventTypesParams } from './CountEventTypesParams';
 import {
     CountEventTypesParamsFromJSON,
@@ -50,11 +50,9 @@ export interface CountEventTypesResponse {
  * Check if a given object implements the CountEventTypesResponse interface.
  */
 export function instanceOfCountEventTypesResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function CountEventTypesResponseFromJSON(json: any): CountEventTypesResponse {
@@ -62,7 +60,7 @@ export function CountEventTypesResponseFromJSON(json: any): CountEventTypesRespo
 }
 
 export function CountEventTypesResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CountEventTypesResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function CountEventTypesResponseFromJSONTyped(json: any, ignoreDiscrimina
 }
 
 export function CountEventTypesResponseToJSON(value?: CountEventTypesResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': CountResponseToJSON(value.data),
-        'params': CountEventTypesParamsToJSON(value.params),
+        'data': CountResponseToJSON(value['data']),
+        'params': CountEventTypesParamsToJSON(value['params']),
     };
 }
 

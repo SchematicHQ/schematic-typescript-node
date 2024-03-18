@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CheckFlagOutputWithFlagKey } from './CheckFlagOutputWithFlagKey';
 import {
     CheckFlagOutputWithFlagKeyFromJSON,
@@ -38,10 +38,8 @@ export interface CheckFlagsResponseData {
  * Check if a given object implements the CheckFlagsResponseData interface.
  */
 export function instanceOfCheckFlagsResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "flags" in value;
-
-    return isInstance;
+    if (!('flags' in value)) return false;
+    return true;
 }
 
 export function CheckFlagsResponseDataFromJSON(json: any): CheckFlagsResponseData {
@@ -49,7 +47,7 @@ export function CheckFlagsResponseDataFromJSON(json: any): CheckFlagsResponseDat
 }
 
 export function CheckFlagsResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): CheckFlagsResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,15 +57,12 @@ export function CheckFlagsResponseDataFromJSONTyped(json: any, ignoreDiscriminat
 }
 
 export function CheckFlagsResponseDataToJSON(value?: CheckFlagsResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'flags': ((value.flags as Array<any>).map(CheckFlagOutputWithFlagKeyToJSON)),
+        'flags': ((value['flags'] as Array<any>).map(CheckFlagOutputWithFlagKeyToJSON)),
     };
 }
 

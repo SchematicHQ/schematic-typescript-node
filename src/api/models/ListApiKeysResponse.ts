@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ApiKeyResponseData } from './ApiKeyResponseData';
 import {
     ApiKeyResponseDataFromJSON,
@@ -50,11 +50,9 @@ export interface ListApiKeysResponse {
  * Check if a given object implements the ListApiKeysResponse interface.
  */
 export function instanceOfListApiKeysResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function ListApiKeysResponseFromJSON(json: any): ListApiKeysResponse {
@@ -62,7 +60,7 @@ export function ListApiKeysResponseFromJSON(json: any): ListApiKeysResponse {
 }
 
 export function ListApiKeysResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListApiKeysResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function ListApiKeysResponseFromJSONTyped(json: any, ignoreDiscriminator:
 }
 
 export function ListApiKeysResponseToJSON(value?: ListApiKeysResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': ((value.data as Array<any>).map(ApiKeyResponseDataToJSON)),
-        'params': ListApiKeysParamsToJSON(value.params),
+        'data': ((value['data'] as Array<any>).map(ApiKeyResponseDataToJSON)),
+        'params': ListApiKeysParamsToJSON(value['params']),
     };
 }
 

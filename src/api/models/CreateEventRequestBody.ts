@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { EventBody } from './EventBody';
 import {
     EventBodyFromJSON,
@@ -43,28 +43,25 @@ export interface CreateEventRequestBody {
      * @type {Date}
      * @memberof CreateEventRequestBody
      */
-    sentAt?: Date | null;
+    sentAt?: Date;
 }
 
-
 /**
- * @export
- */
-export const CreateEventRequestBodyEventTypeEnum = {
-    Identify: 'identify',
-    Track: 'track'
-} as const;
-export type CreateEventRequestBodyEventTypeEnum = typeof CreateEventRequestBodyEventTypeEnum[keyof typeof CreateEventRequestBodyEventTypeEnum];
+* @export
+* @enum {string}
+*/
+export enum CreateEventRequestBodyEventTypeEnum {
+    Identify = 'identify',
+    Track = 'track'
+}
 
 
 /**
  * Check if a given object implements the CreateEventRequestBody interface.
  */
 export function instanceOfCreateEventRequestBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "eventType" in value;
-
-    return isInstance;
+    if (!('eventType' in value)) return false;
+    return true;
 }
 
 export function CreateEventRequestBodyFromJSON(json: any): CreateEventRequestBody {
@@ -72,29 +69,26 @@ export function CreateEventRequestBodyFromJSON(json: any): CreateEventRequestBod
 }
 
 export function CreateEventRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateEventRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'body': !exists(json, 'body') ? undefined : EventBodyFromJSON(json['body']),
+        'body': json['body'] == null ? undefined : EventBodyFromJSON(json['body']),
         'eventType': json['event_type'],
-        'sentAt': !exists(json, 'sent_at') ? undefined : (json['sent_at'] === null ? null : new Date(json['sent_at'])),
+        'sentAt': json['sent_at'] == null ? undefined : (new Date(json['sent_at'])),
     };
 }
 
 export function CreateEventRequestBodyToJSON(value?: CreateEventRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'body': EventBodyToJSON(value.body),
-        'event_type': value.eventType,
-        'sent_at': value.sentAt === undefined ? undefined : (value.sentAt === null ? null : value.sentAt.toISOString()),
+        'body': EventBodyToJSON(value['body']),
+        'event_type': value['eventType'],
+        'sent_at': value['sentAt'] == null ? undefined : ((value['sentAt'] as any).toISOString()),
     };
 }
 

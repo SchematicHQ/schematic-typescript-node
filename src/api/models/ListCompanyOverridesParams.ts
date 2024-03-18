@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Input parameters
  * @export
@@ -49,9 +49,7 @@ export interface ListCompanyOverridesParams {
  * Check if a given object implements the ListCompanyOverridesParams interface.
  */
 export function instanceOfListCompanyOverridesParams(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ListCompanyOverridesParamsFromJSON(json: any): ListCompanyOverridesParams {
@@ -59,31 +57,28 @@ export function ListCompanyOverridesParamsFromJSON(json: any): ListCompanyOverri
 }
 
 export function ListCompanyOverridesParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListCompanyOverridesParams {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
+        'companyId': json['company_id'] == null ? undefined : json['company_id'],
+        'featureId': json['feature_id'] == null ? undefined : json['feature_id'],
+        'limit': json['limit'] == null ? undefined : json['limit'],
+        'offset': json['offset'] == null ? undefined : json['offset'],
     };
 }
 
 export function ListCompanyOverridesParamsToJSON(value?: ListCompanyOverridesParams | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'company_id': value.companyId,
-        'feature_id': value.featureId,
-        'limit': value.limit,
-        'offset': value.offset,
+        'company_id': value['companyId'],
+        'feature_id': value['featureId'],
+        'limit': value['limit'],
+        'offset': value['offset'],
     };
 }
 

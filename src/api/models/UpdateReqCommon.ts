@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -30,19 +30,19 @@ export interface UpdateReqCommon {
      * @type {boolean}
      * @memberof UpdateReqCommon
      */
-    valueBool?: boolean | null;
+    valueBool?: boolean;
     /**
      * 
      * @type {number}
      * @memberof UpdateReqCommon
      */
-    valueNumeric?: number | null;
+    valueNumeric?: number;
     /**
      * 
      * @type {string}
      * @memberof UpdateReqCommon
      */
-    valueTraitId?: string | null;
+    valueTraitId?: string;
     /**
      * 
      * @type {string}
@@ -51,37 +51,33 @@ export interface UpdateReqCommon {
     valueType: UpdateReqCommonValueTypeEnum;
 }
 
-
 /**
- * @export
- */
-export const UpdateReqCommonMetricPeriodEnum = {
-    Month: 'current_month',
-    Week: 'current_week',
-    Day: 'current_day'
-} as const;
-export type UpdateReqCommonMetricPeriodEnum = typeof UpdateReqCommonMetricPeriodEnum[keyof typeof UpdateReqCommonMetricPeriodEnum];
-
+* @export
+* @enum {string}
+*/
+export enum UpdateReqCommonMetricPeriodEnum {
+    Month = 'current_month',
+    Week = 'current_week',
+    Day = 'current_day'
+}
 /**
- * @export
- */
-export const UpdateReqCommonValueTypeEnum = {
-    Boolean: 'Boolean',
-    Numeric: 'Numeric',
-    Trait: 'Trait',
-    Unlimited: 'Unlimited'
-} as const;
-export type UpdateReqCommonValueTypeEnum = typeof UpdateReqCommonValueTypeEnum[keyof typeof UpdateReqCommonValueTypeEnum];
+* @export
+* @enum {string}
+*/
+export enum UpdateReqCommonValueTypeEnum {
+    Boolean = 'Boolean',
+    Numeric = 'Numeric',
+    Trait = 'Trait',
+    Unlimited = 'Unlimited'
+}
 
 
 /**
  * Check if a given object implements the UpdateReqCommon interface.
  */
 export function instanceOfUpdateReqCommon(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "valueType" in value;
-
-    return isInstance;
+    if (!('valueType' in value)) return false;
+    return true;
 }
 
 export function UpdateReqCommonFromJSON(json: any): UpdateReqCommon {
@@ -89,33 +85,30 @@ export function UpdateReqCommonFromJSON(json: any): UpdateReqCommon {
 }
 
 export function UpdateReqCommonFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateReqCommon {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'metricPeriod': !exists(json, 'metric_period') ? undefined : json['metric_period'],
-        'valueBool': !exists(json, 'value_bool') ? undefined : json['value_bool'],
-        'valueNumeric': !exists(json, 'value_numeric') ? undefined : json['value_numeric'],
-        'valueTraitId': !exists(json, 'value_trait_id') ? undefined : json['value_trait_id'],
+        'metricPeriod': json['metric_period'] == null ? undefined : json['metric_period'],
+        'valueBool': json['value_bool'] == null ? undefined : json['value_bool'],
+        'valueNumeric': json['value_numeric'] == null ? undefined : json['value_numeric'],
+        'valueTraitId': json['value_trait_id'] == null ? undefined : json['value_trait_id'],
         'valueType': json['value_type'],
     };
 }
 
 export function UpdateReqCommonToJSON(value?: UpdateReqCommon | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'metric_period': value.metricPeriod,
-        'value_bool': value.valueBool,
-        'value_numeric': value.valueNumeric,
-        'value_trait_id': value.valueTraitId,
-        'value_type': value.valueType,
+        'metric_period': value['metricPeriod'],
+        'value_bool': value['valueBool'],
+        'value_numeric': value['valueNumeric'],
+        'value_trait_id': value['valueTraitId'],
+        'value_type': value['valueType'],
     };
 }
 

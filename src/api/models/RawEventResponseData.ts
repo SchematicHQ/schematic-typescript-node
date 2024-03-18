@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The created resource
  * @export
@@ -30,7 +30,7 @@ export interface RawEventResponseData {
      * @type {string}
      * @memberof RawEventResponseData
      */
-    eventId?: string | null;
+    eventId?: string;
     /**
      * 
      * @type {string}
@@ -55,13 +55,11 @@ export interface RawEventResponseData {
  * Check if a given object implements the RawEventResponseData interface.
  */
 export function instanceOfRawEventResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "capturedAt" in value;
-    isInstance = isInstance && "remoteAddr" in value;
-    isInstance = isInstance && "remoteIp" in value;
-    isInstance = isInstance && "userAgent" in value;
-
-    return isInstance;
+    if (!('capturedAt' in value)) return false;
+    if (!('remoteAddr' in value)) return false;
+    if (!('remoteIp' in value)) return false;
+    if (!('userAgent' in value)) return false;
+    return true;
 }
 
 export function RawEventResponseDataFromJSON(json: any): RawEventResponseData {
@@ -69,13 +67,13 @@ export function RawEventResponseDataFromJSON(json: any): RawEventResponseData {
 }
 
 export function RawEventResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): RawEventResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'capturedAt': (new Date(json['captured_at'])),
-        'eventId': !exists(json, 'event_id') ? undefined : json['event_id'],
+        'eventId': json['event_id'] == null ? undefined : json['event_id'],
         'remoteAddr': json['remote_addr'],
         'remoteIp': json['remote_ip'],
         'userAgent': json['user_agent'],
@@ -83,19 +81,16 @@ export function RawEventResponseDataFromJSONTyped(json: any, ignoreDiscriminator
 }
 
 export function RawEventResponseDataToJSON(value?: RawEventResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'captured_at': (value.capturedAt.toISOString()),
-        'event_id': value.eventId,
-        'remote_addr': value.remoteAddr,
-        'remote_ip': value.remoteIp,
-        'user_agent': value.userAgent,
+        'captured_at': ((value['capturedAt']).toISOString()),
+        'event_id': value['eventId'],
+        'remote_addr': value['remoteAddr'],
+        'remote_ip': value['remoteIp'],
+        'user_agent': value['userAgent'],
     };
 }
 

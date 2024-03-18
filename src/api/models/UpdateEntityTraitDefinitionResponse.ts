@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { EntityTraitDefinitionResponseData } from './EntityTraitDefinitionResponseData';
 import {
     EntityTraitDefinitionResponseDataFromJSON,
@@ -44,11 +44,9 @@ export interface UpdateEntityTraitDefinitionResponse {
  * Check if a given object implements the UpdateEntityTraitDefinitionResponse interface.
  */
 export function instanceOfUpdateEntityTraitDefinitionResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function UpdateEntityTraitDefinitionResponseFromJSON(json: any): UpdateEntityTraitDefinitionResponse {
@@ -56,7 +54,7 @@ export function UpdateEntityTraitDefinitionResponseFromJSON(json: any): UpdateEn
 }
 
 export function UpdateEntityTraitDefinitionResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateEntityTraitDefinitionResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function UpdateEntityTraitDefinitionResponseFromJSONTyped(json: any, igno
 }
 
 export function UpdateEntityTraitDefinitionResponseToJSON(value?: UpdateEntityTraitDefinitionResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': EntityTraitDefinitionResponseDataToJSON(value.data),
-        'params': value.params,
+        'data': EntityTraitDefinitionResponseDataToJSON(value['data']),
+        'params': value['params'],
     };
 }
 

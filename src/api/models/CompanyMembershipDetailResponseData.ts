@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CompanyResponseData } from './CompanyResponseData';
 import {
     CompanyResponseDataFromJSON,
@@ -68,14 +68,12 @@ export interface CompanyMembershipDetailResponseData {
  * Check if a given object implements the CompanyMembershipDetailResponseData interface.
  */
 export function instanceOfCompanyMembershipDetailResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "companyId" in value;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "updatedAt" in value;
-    isInstance = isInstance && "userId" in value;
-
-    return isInstance;
+    if (!('companyId' in value)) return false;
+    if (!('createdAt' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('updatedAt' in value)) return false;
+    if (!('userId' in value)) return false;
+    return true;
 }
 
 export function CompanyMembershipDetailResponseDataFromJSON(json: any): CompanyMembershipDetailResponseData {
@@ -83,12 +81,12 @@ export function CompanyMembershipDetailResponseDataFromJSON(json: any): CompanyM
 }
 
 export function CompanyMembershipDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): CompanyMembershipDetailResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'company': !exists(json, 'company') ? undefined : CompanyResponseDataFromJSON(json['company']),
+        'company': json['company'] == null ? undefined : CompanyResponseDataFromJSON(json['company']),
         'companyId': json['company_id'],
         'createdAt': (new Date(json['created_at'])),
         'id': json['id'],
@@ -98,20 +96,17 @@ export function CompanyMembershipDetailResponseDataFromJSONTyped(json: any, igno
 }
 
 export function CompanyMembershipDetailResponseDataToJSON(value?: CompanyMembershipDetailResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'company': CompanyResponseDataToJSON(value.company),
-        'company_id': value.companyId,
-        'created_at': (value.createdAt.toISOString()),
-        'id': value.id,
-        'updated_at': (value.updatedAt.toISOString()),
-        'user_id': value.userId,
+        'company': CompanyResponseDataToJSON(value['company']),
+        'company_id': value['companyId'],
+        'created_at': ((value['createdAt']).toISOString()),
+        'id': value['id'],
+        'updated_at': ((value['updatedAt']).toISOString()),
+        'user_id': value['userId'],
     };
 }
 

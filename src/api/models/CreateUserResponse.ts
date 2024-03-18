@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { UserDetailResponseData } from './UserDetailResponseData';
 import {
     UserDetailResponseDataFromJSON,
@@ -44,11 +44,9 @@ export interface CreateUserResponse {
  * Check if a given object implements the CreateUserResponse interface.
  */
 export function instanceOfCreateUserResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function CreateUserResponseFromJSON(json: any): CreateUserResponse {
@@ -56,7 +54,7 @@ export function CreateUserResponseFromJSON(json: any): CreateUserResponse {
 }
 
 export function CreateUserResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateUserResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function CreateUserResponseFromJSONTyped(json: any, ignoreDiscriminator: 
 }
 
 export function CreateUserResponseToJSON(value?: CreateUserResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': UserDetailResponseDataToJSON(value.data),
-        'params': value.params,
+        'data': UserDetailResponseDataToJSON(value['data']),
+        'params': value['params'],
     };
 }
 

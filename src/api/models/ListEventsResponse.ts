@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { EventListResponseData } from './EventListResponseData';
 import {
     EventListResponseDataFromJSON,
@@ -50,11 +50,9 @@ export interface ListEventsResponse {
  * Check if a given object implements the ListEventsResponse interface.
  */
 export function instanceOfListEventsResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function ListEventsResponseFromJSON(json: any): ListEventsResponse {
@@ -62,7 +60,7 @@ export function ListEventsResponseFromJSON(json: any): ListEventsResponse {
 }
 
 export function ListEventsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListEventsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function ListEventsResponseFromJSONTyped(json: any, ignoreDiscriminator: 
 }
 
 export function ListEventsResponseToJSON(value?: ListEventsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': ((value.data as Array<any>).map(EventListResponseDataToJSON)),
-        'params': ListEventsParamsToJSON(value.params),
+        'data': ((value['data'] as Array<any>).map(EventListResponseDataToJSON)),
+        'params': ListEventsParamsToJSON(value['params']),
     };
 }
 

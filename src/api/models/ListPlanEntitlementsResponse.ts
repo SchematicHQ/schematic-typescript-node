@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ListPlanEntitlementsParams } from './ListPlanEntitlementsParams';
 import {
     ListPlanEntitlementsParamsFromJSON,
@@ -50,11 +50,9 @@ export interface ListPlanEntitlementsResponse {
  * Check if a given object implements the ListPlanEntitlementsResponse interface.
  */
 export function instanceOfListPlanEntitlementsResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function ListPlanEntitlementsResponseFromJSON(json: any): ListPlanEntitlementsResponse {
@@ -62,7 +60,7 @@ export function ListPlanEntitlementsResponseFromJSON(json: any): ListPlanEntitle
 }
 
 export function ListPlanEntitlementsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListPlanEntitlementsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function ListPlanEntitlementsResponseFromJSONTyped(json: any, ignoreDiscr
 }
 
 export function ListPlanEntitlementsResponseToJSON(value?: ListPlanEntitlementsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': ((value.data as Array<any>).map(PlanEntitlementResponseDataToJSON)),
-        'params': ListPlanEntitlementsParamsToJSON(value.params),
+        'data': ((value['data'] as Array<any>).map(PlanEntitlementResponseDataToJSON)),
+        'params': ListPlanEntitlementsParamsToJSON(value['params']),
     };
 }
 

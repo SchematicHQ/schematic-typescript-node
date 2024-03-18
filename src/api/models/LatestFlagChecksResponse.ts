@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FlagCheckLogResponseData } from './FlagCheckLogResponseData';
 import {
     FlagCheckLogResponseDataFromJSON,
@@ -50,11 +50,9 @@ export interface LatestFlagChecksResponse {
  * Check if a given object implements the LatestFlagChecksResponse interface.
  */
 export function instanceOfLatestFlagChecksResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function LatestFlagChecksResponseFromJSON(json: any): LatestFlagChecksResponse {
@@ -62,7 +60,7 @@ export function LatestFlagChecksResponseFromJSON(json: any): LatestFlagChecksRes
 }
 
 export function LatestFlagChecksResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): LatestFlagChecksResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function LatestFlagChecksResponseFromJSONTyped(json: any, ignoreDiscrimin
 }
 
 export function LatestFlagChecksResponseToJSON(value?: LatestFlagChecksResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': ((value.data as Array<any>).map(FlagCheckLogResponseDataToJSON)),
-        'params': LatestFlagChecksParamsToJSON(value.params),
+        'data': ((value['data'] as Array<any>).map(FlagCheckLogResponseDataToJSON)),
+        'params': LatestFlagChecksParamsToJSON(value['params']),
     };
 }
 

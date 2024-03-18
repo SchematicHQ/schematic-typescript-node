@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Input parameters
  * @export
@@ -55,9 +55,7 @@ export interface LatestFlagChecksParams {
  * Check if a given object implements the LatestFlagChecksParams interface.
  */
 export function instanceOfLatestFlagChecksParams(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function LatestFlagChecksParamsFromJSON(json: any): LatestFlagChecksParams {
@@ -65,33 +63,30 @@ export function LatestFlagChecksParamsFromJSON(json: any): LatestFlagChecksParam
 }
 
 export function LatestFlagChecksParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): LatestFlagChecksParams {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
-        'flagIds': !exists(json, 'flag_ids') ? undefined : json['flag_ids'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
+        'flagId': json['flag_id'] == null ? undefined : json['flag_id'],
+        'flagIds': json['flag_ids'] == null ? undefined : json['flag_ids'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'limit': json['limit'] == null ? undefined : json['limit'],
+        'offset': json['offset'] == null ? undefined : json['offset'],
     };
 }
 
 export function LatestFlagChecksParamsToJSON(value?: LatestFlagChecksParams | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'flag_id': value.flagId,
-        'flag_ids': value.flagIds,
-        'id': value.id,
-        'limit': value.limit,
-        'offset': value.offset,
+        'flag_id': value['flagId'],
+        'flag_ids': value['flagIds'],
+        'id': value['id'],
+        'limit': value['limit'],
+        'offset': value['offset'],
     };
 }
 

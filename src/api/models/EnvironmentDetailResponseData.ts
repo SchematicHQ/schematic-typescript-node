@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ApiKeyResponseData } from './ApiKeyResponseData';
 import {
     ApiKeyResponseDataFromJSON,
@@ -68,15 +68,13 @@ export interface EnvironmentDetailResponseData {
  * Check if a given object implements the EnvironmentDetailResponseData interface.
  */
 export function instanceOfEnvironmentDetailResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "apiKeys" in value;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "environmentType" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "updatedAt" in value;
-
-    return isInstance;
+    if (!('apiKeys' in value)) return false;
+    if (!('createdAt' in value)) return false;
+    if (!('environmentType' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('updatedAt' in value)) return false;
+    return true;
 }
 
 export function EnvironmentDetailResponseDataFromJSON(json: any): EnvironmentDetailResponseData {
@@ -84,7 +82,7 @@ export function EnvironmentDetailResponseDataFromJSON(json: any): EnvironmentDet
 }
 
 export function EnvironmentDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): EnvironmentDetailResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -99,20 +97,17 @@ export function EnvironmentDetailResponseDataFromJSONTyped(json: any, ignoreDisc
 }
 
 export function EnvironmentDetailResponseDataToJSON(value?: EnvironmentDetailResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'api_keys': ((value.apiKeys as Array<any>).map(ApiKeyResponseDataToJSON)),
-        'created_at': (value.createdAt.toISOString()),
-        'environment_type': value.environmentType,
-        'id': value.id,
-        'name': value.name,
-        'updated_at': (value.updatedAt.toISOString()),
+        'api_keys': ((value['apiKeys'] as Array<any>).map(ApiKeyResponseDataToJSON)),
+        'created_at': ((value['createdAt']).toISOString()),
+        'environment_type': value['environmentType'],
+        'id': value['id'],
+        'name': value['name'],
+        'updated_at': ((value['updatedAt']).toISOString()),
     };
 }
 

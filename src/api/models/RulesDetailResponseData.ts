@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { RuleDetailResponseData } from './RuleDetailResponseData';
 import {
     RuleDetailResponseDataFromJSON,
@@ -38,10 +38,8 @@ export interface RulesDetailResponseData {
  * Check if a given object implements the RulesDetailResponseData interface.
  */
 export function instanceOfRulesDetailResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "rules" in value;
-
-    return isInstance;
+    if (!('rules' in value)) return false;
+    return true;
 }
 
 export function RulesDetailResponseDataFromJSON(json: any): RulesDetailResponseData {
@@ -49,7 +47,7 @@ export function RulesDetailResponseDataFromJSON(json: any): RulesDetailResponseD
 }
 
 export function RulesDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): RulesDetailResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,15 +57,12 @@ export function RulesDetailResponseDataFromJSONTyped(json: any, ignoreDiscrimina
 }
 
 export function RulesDetailResponseDataToJSON(value?: RulesDetailResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'rules': ((value.rules as Array<any>).map(RuleDetailResponseDataToJSON)),
+        'rules': ((value['rules'] as Array<any>).map(RuleDetailResponseDataToJSON)),
     };
 }
 

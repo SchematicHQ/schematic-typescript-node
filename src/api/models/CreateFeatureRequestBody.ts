@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CreateOrUpdateFlagRequestBody } from './CreateOrUpdateFlagRequestBody';
 import {
     CreateOrUpdateFlagRequestBodyFromJSON,
@@ -37,7 +37,7 @@ export interface CreateFeatureRequestBody {
      * @type {string}
      * @memberof CreateFeatureRequestBody
      */
-    eventSubtype?: string | null;
+    eventSubtype?: string;
     /**
      * 
      * @type {string}
@@ -55,7 +55,7 @@ export interface CreateFeatureRequestBody {
      * @type {string}
      * @memberof CreateFeatureRequestBody
      */
-    lifecyclePhase?: string | null;
+    lifecyclePhase?: string;
     /**
      * 
      * @type {string}
@@ -67,31 +67,28 @@ export interface CreateFeatureRequestBody {
      * @type {string}
      * @memberof CreateFeatureRequestBody
      */
-    traitId?: string | null;
+    traitId?: string;
 }
 
-
 /**
- * @export
- */
-export const CreateFeatureRequestBodyFeatureTypeEnum = {
-    Boolean: 'boolean',
-    Event: 'event',
-    Trait: 'trait'
-} as const;
-export type CreateFeatureRequestBodyFeatureTypeEnum = typeof CreateFeatureRequestBodyFeatureTypeEnum[keyof typeof CreateFeatureRequestBodyFeatureTypeEnum];
+* @export
+* @enum {string}
+*/
+export enum CreateFeatureRequestBodyFeatureTypeEnum {
+    Boolean = 'boolean',
+    Event = 'event',
+    Trait = 'trait'
+}
 
 
 /**
  * Check if a given object implements the CreateFeatureRequestBody interface.
  */
 export function instanceOfCreateFeatureRequestBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "featureType" in value;
-    isInstance = isInstance && "name" in value;
-
-    return isInstance;
+    if (!('description' in value)) return false;
+    if (!('featureType' in value)) return false;
+    if (!('name' in value)) return false;
+    return true;
 }
 
 export function CreateFeatureRequestBodyFromJSON(json: any): CreateFeatureRequestBody {
@@ -99,37 +96,34 @@ export function CreateFeatureRequestBodyFromJSON(json: any): CreateFeatureReques
 }
 
 export function CreateFeatureRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateFeatureRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'description': json['description'],
-        'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
+        'eventSubtype': json['event_subtype'] == null ? undefined : json['event_subtype'],
         'featureType': json['feature_type'],
-        'flag': !exists(json, 'flag') ? undefined : CreateOrUpdateFlagRequestBodyFromJSON(json['flag']),
-        'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
+        'flag': json['flag'] == null ? undefined : CreateOrUpdateFlagRequestBodyFromJSON(json['flag']),
+        'lifecyclePhase': json['lifecycle_phase'] == null ? undefined : json['lifecycle_phase'],
         'name': json['name'],
-        'traitId': !exists(json, 'trait_id') ? undefined : json['trait_id'],
+        'traitId': json['trait_id'] == null ? undefined : json['trait_id'],
     };
 }
 
 export function CreateFeatureRequestBodyToJSON(value?: CreateFeatureRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'description': value.description,
-        'event_subtype': value.eventSubtype,
-        'feature_type': value.featureType,
-        'flag': CreateOrUpdateFlagRequestBodyToJSON(value.flag),
-        'lifecycle_phase': value.lifecyclePhase,
-        'name': value.name,
-        'trait_id': value.traitId,
+        'description': value['description'],
+        'event_subtype': value['eventSubtype'],
+        'feature_type': value['featureType'],
+        'flag': CreateOrUpdateFlagRequestBodyToJSON(value['flag']),
+        'lifecycle_phase': value['lifecyclePhase'],
+        'name': value['name'],
+        'trait_id': value['traitId'],
     };
 }
 

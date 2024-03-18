@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Input parameters
  * @export
@@ -37,9 +37,7 @@ export interface ListFeaturesParams {
  * Check if a given object implements the ListFeaturesParams interface.
  */
 export function instanceOfListFeaturesParams(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ListFeaturesParamsFromJSON(json: any): ListFeaturesParams {
@@ -47,27 +45,24 @@ export function ListFeaturesParamsFromJSON(json: any): ListFeaturesParams {
 }
 
 export function ListFeaturesParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListFeaturesParams {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
+        'limit': json['limit'] == null ? undefined : json['limit'],
+        'offset': json['offset'] == null ? undefined : json['offset'],
     };
 }
 
 export function ListFeaturesParamsToJSON(value?: ListFeaturesParams | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'limit': value.limit,
-        'offset': value.offset,
+        'limit': value['limit'],
+        'offset': value['offset'],
     };
 }
 

@@ -23,37 +23,37 @@ import {
 /**
  * 
  * @export
- * @interface DeletePlanEntitlementResponse
+ * @interface DeletePlanAudienceResponse
  */
-export interface DeletePlanEntitlementResponse {
+export interface DeletePlanAudienceResponse {
     /**
      * 
      * @type {DeleteResponse}
-     * @memberof DeletePlanEntitlementResponse
+     * @memberof DeletePlanAudienceResponse
      */
     data: DeleteResponse;
     /**
      * Input parameters
      * @type {object}
-     * @memberof DeletePlanEntitlementResponse
+     * @memberof DeletePlanAudienceResponse
      */
     params: object;
 }
 
 /**
- * Check if a given object implements the DeletePlanEntitlementResponse interface.
+ * Check if a given object implements the DeletePlanAudienceResponse interface.
  */
-export function instanceOfDeletePlanEntitlementResponse(value: object): boolean {
+export function instanceOfDeletePlanAudienceResponse(value: object): boolean {
     if (!('data' in value)) return false;
     if (!('params' in value)) return false;
     return true;
 }
 
-export function DeletePlanEntitlementResponseFromJSON(json: any): DeletePlanEntitlementResponse {
-    return DeletePlanEntitlementResponseFromJSONTyped(json, false);
+export function DeletePlanAudienceResponseFromJSON(json: any): DeletePlanAudienceResponse {
+    return DeletePlanAudienceResponseFromJSONTyped(json, false);
 }
 
-export function DeletePlanEntitlementResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): DeletePlanEntitlementResponse {
+export function DeletePlanAudienceResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): DeletePlanAudienceResponse {
     if (json == null) {
         return json;
     }
@@ -64,7 +64,7 @@ export function DeletePlanEntitlementResponseFromJSONTyped(json: any, ignoreDisc
     };
 }
 
-export function DeletePlanEntitlementResponseToJSON(value?: DeletePlanEntitlementResponse | null): any {
+export function DeletePlanAudienceResponseToJSON(value?: DeletePlanAudienceResponse | null): any {
     if (value == null) {
         return value;
     }

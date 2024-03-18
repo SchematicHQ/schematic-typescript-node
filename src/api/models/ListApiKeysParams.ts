@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Input parameters
  * @export
@@ -49,9 +49,7 @@ export interface ListApiKeysParams {
  * Check if a given object implements the ListApiKeysParams interface.
  */
 export function instanceOfListApiKeysParams(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ListApiKeysParamsFromJSON(json: any): ListApiKeysParams {
@@ -59,31 +57,28 @@ export function ListApiKeysParamsFromJSON(json: any): ListApiKeysParams {
 }
 
 export function ListApiKeysParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListApiKeysParams {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'requireEnvironment': !exists(json, 'require_environment') ? undefined : json['require_environment'],
+        'environmentId': json['environment_id'] == null ? undefined : json['environment_id'],
+        'limit': json['limit'] == null ? undefined : json['limit'],
+        'offset': json['offset'] == null ? undefined : json['offset'],
+        'requireEnvironment': json['require_environment'] == null ? undefined : json['require_environment'],
     };
 }
 
 export function ListApiKeysParamsToJSON(value?: ListApiKeysParams | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'environment_id': value.environmentId,
-        'limit': value.limit,
-        'offset': value.offset,
-        'require_environment': value.requireEnvironment,
+        'environment_id': value['environmentId'],
+        'limit': value['limit'],
+        'offset': value['offset'],
+        'require_environment': value['requireEnvironment'],
     };
 }
 

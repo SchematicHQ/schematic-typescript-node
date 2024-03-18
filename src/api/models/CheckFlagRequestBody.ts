@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -24,22 +24,20 @@ export interface CheckFlagRequestBody {
      * @type {object}
      * @memberof CheckFlagRequestBody
      */
-    company?: object | null;
+    company?: object;
     /**
      * 
      * @type {object}
      * @memberof CheckFlagRequestBody
      */
-    user?: object | null;
+    user?: object;
 }
 
 /**
  * Check if a given object implements the CheckFlagRequestBody interface.
  */
 export function instanceOfCheckFlagRequestBody(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CheckFlagRequestBodyFromJSON(json: any): CheckFlagRequestBody {
@@ -47,27 +45,24 @@ export function CheckFlagRequestBodyFromJSON(json: any): CheckFlagRequestBody {
 }
 
 export function CheckFlagRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): CheckFlagRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'company': !exists(json, 'company') ? undefined : json['company'],
-        'user': !exists(json, 'user') ? undefined : json['user'],
+        'company': json['company'] == null ? undefined : json['company'],
+        'user': json['user'] == null ? undefined : json['user'],
     };
 }
 
 export function CheckFlagRequestBodyToJSON(value?: CheckFlagRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'company': value.company,
-        'user': value.user,
+        'company': value['company'],
+        'user': value['user'],
     };
 }
 

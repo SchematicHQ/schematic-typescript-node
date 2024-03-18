@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,7 +36,7 @@ export interface CreateFlagRequestBody {
      * @type {string}
      * @memberof CreateFlagRequestBody
      */
-    featureId?: string | null;
+    featureId?: string;
     /**
      * 
      * @type {string}
@@ -61,14 +61,12 @@ export interface CreateFlagRequestBody {
  * Check if a given object implements the CreateFlagRequestBody interface.
  */
 export function instanceOfCreateFlagRequestBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "defaultValue" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "flagType" in value;
-    isInstance = isInstance && "key" in value;
-    isInstance = isInstance && "name" in value;
-
-    return isInstance;
+    if (!('defaultValue' in value)) return false;
+    if (!('description' in value)) return false;
+    if (!('flagType' in value)) return false;
+    if (!('key' in value)) return false;
+    if (!('name' in value)) return false;
+    return true;
 }
 
 export function CreateFlagRequestBodyFromJSON(json: any): CreateFlagRequestBody {
@@ -76,14 +74,14 @@ export function CreateFlagRequestBodyFromJSON(json: any): CreateFlagRequestBody 
 }
 
 export function CreateFlagRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateFlagRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'defaultValue': json['default_value'],
         'description': json['description'],
-        'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
+        'featureId': json['feature_id'] == null ? undefined : json['feature_id'],
         'flagType': json['flag_type'],
         'key': json['key'],
         'name': json['name'],
@@ -91,20 +89,17 @@ export function CreateFlagRequestBodyFromJSONTyped(json: any, ignoreDiscriminato
 }
 
 export function CreateFlagRequestBodyToJSON(value?: CreateFlagRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'default_value': value.defaultValue,
-        'description': value.description,
-        'feature_id': value.featureId,
-        'flag_type': value.flagType,
-        'key': value.key,
-        'name': value.name,
+        'default_value': value['defaultValue'],
+        'description': value['description'],
+        'feature_id': value['featureId'],
+        'flag_type': value['flagType'],
+        'key': value['key'],
+        'name': value['name'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CompanyResponseData } from './CompanyResponseData';
 import {
     CompanyResponseDataFromJSON,
@@ -50,11 +50,9 @@ export interface ListCompaniesResponse {
  * Check if a given object implements the ListCompaniesResponse interface.
  */
 export function instanceOfListCompaniesResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function ListCompaniesResponseFromJSON(json: any): ListCompaniesResponse {
@@ -62,7 +60,7 @@ export function ListCompaniesResponseFromJSON(json: any): ListCompaniesResponse 
 }
 
 export function ListCompaniesResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListCompaniesResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function ListCompaniesResponseFromJSONTyped(json: any, ignoreDiscriminato
 }
 
 export function ListCompaniesResponseToJSON(value?: ListCompaniesResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': ((value.data as Array<any>).map(CompanyResponseDataToJSON)),
-        'params': ListCompaniesParamsToJSON(value.params),
+        'data': ((value['data'] as Array<any>).map(CompanyResponseDataToJSON)),
+        'params': ListCompaniesParamsToJSON(value['params']),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The updated resource
  * @export
@@ -61,15 +61,13 @@ export interface EntityTraitDefinitionResponseData {
  * Check if a given object implements the EntityTraitDefinitionResponseData interface.
  */
 export function instanceOfEntityTraitDefinitionResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "entityType" in value;
-    isInstance = isInstance && "hierarchy" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "traitType" in value;
-    isInstance = isInstance && "updatedAt" in value;
-
-    return isInstance;
+    if (!('createdAt' in value)) return false;
+    if (!('entityType' in value)) return false;
+    if (!('hierarchy' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('traitType' in value)) return false;
+    if (!('updatedAt' in value)) return false;
+    return true;
 }
 
 export function EntityTraitDefinitionResponseDataFromJSON(json: any): EntityTraitDefinitionResponseData {
@@ -77,7 +75,7 @@ export function EntityTraitDefinitionResponseDataFromJSON(json: any): EntityTrai
 }
 
 export function EntityTraitDefinitionResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): EntityTraitDefinitionResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -92,20 +90,17 @@ export function EntityTraitDefinitionResponseDataFromJSONTyped(json: any, ignore
 }
 
 export function EntityTraitDefinitionResponseDataToJSON(value?: EntityTraitDefinitionResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'created_at': (value.createdAt.toISOString()),
-        'entity_type': value.entityType,
-        'hierarchy': value.hierarchy,
-        'id': value.id,
-        'trait_type': value.traitType,
-        'updated_at': (value.updatedAt.toISOString()),
+        'created_at': ((value['createdAt']).toISOString()),
+        'entity_type': value['entityType'],
+        'hierarchy': value['hierarchy'],
+        'id': value['id'],
+        'trait_type': value['traitType'],
+        'updated_at': ((value['updatedAt']).toISOString()),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CompanyOverrideResponseData } from './CompanyOverrideResponseData';
 import {
     CompanyOverrideResponseDataFromJSON,
@@ -44,11 +44,9 @@ export interface GetCompanyOverrideResponse {
  * Check if a given object implements the GetCompanyOverrideResponse interface.
  */
 export function instanceOfGetCompanyOverrideResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function GetCompanyOverrideResponseFromJSON(json: any): GetCompanyOverrideResponse {
@@ -56,7 +54,7 @@ export function GetCompanyOverrideResponseFromJSON(json: any): GetCompanyOverrid
 }
 
 export function GetCompanyOverrideResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetCompanyOverrideResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function GetCompanyOverrideResponseFromJSONTyped(json: any, ignoreDiscrim
 }
 
 export function GetCompanyOverrideResponseToJSON(value?: GetCompanyOverrideResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': CompanyOverrideResponseDataToJSON(value.data),
-        'params': value.params,
+        'data': CompanyOverrideResponseDataToJSON(value['data']),
+        'params': value['params'],
     };
 }
 
