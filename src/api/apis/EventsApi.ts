@@ -74,7 +74,7 @@ export interface CreateEventRequest {
 }
 
 export interface GetEventRequest {
-    key: string;
+    eventId: string;
     xSchematicEnvironmentId?: string;
 }
 
@@ -100,12 +100,13 @@ export interface ListEventsRequest {
 }
 
 export interface ListMetricCountsRequest {
-    eventSubtype: string;
     xSchematicEnvironmentId?: string;
     startTime?: Date;
     endTime?: Date;
+    eventSubtype?: string;
     eventSubtypes?: Array<string>;
     companyId?: string;
+    companyIds?: Array<string>;
     userId?: string;
     limit?: number;
     offset?: number;
@@ -113,12 +114,13 @@ export interface ListMetricCountsRequest {
 }
 
 export interface ListMetricCountsHourlyRequest {
-    eventSubtype: string;
     xSchematicEnvironmentId?: string;
     startTime?: Date;
     endTime?: Date;
+    eventSubtype?: string;
     eventSubtypes?: Array<string>;
     companyId?: string;
+    companyIds?: Array<string>;
     userId?: string;
     limit?: number;
     offset?: number;
@@ -274,8 +276,8 @@ export class EventsApi extends runtime.BaseAPI {
      * Get event
      */
     async getEventRaw(requestParameters: GetEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEventResponse>> {
-        if (requestParameters.key === null || requestParameters.key === undefined) {
-            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling getEvent.');
+        if (requestParameters.eventId === null || requestParameters.eventId === undefined) {
+            throw new runtime.RequiredError('eventId','Required parameter requestParameters.eventId was null or undefined when calling getEvent.');
         }
 
         const queryParameters: any = {};
@@ -291,7 +293,7 @@ export class EventsApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/events/{key}`.replace(`{${"key"}}`, encodeURIComponent(String(requestParameters.key))),
+            path: `/events/{event_id}`.replace(`{${"event_id"}}`, encodeURIComponent(String(requestParameters.eventId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -450,10 +452,6 @@ export class EventsApi extends runtime.BaseAPI {
      * List metric counts
      */
     async listMetricCountsRaw(requestParameters: ListMetricCountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListMetricCountsResponse>> {
-        if (requestParameters.eventSubtype === null || requestParameters.eventSubtype === undefined) {
-            throw new runtime.RequiredError('eventSubtype','Required parameter requestParameters.eventSubtype was null or undefined when calling listMetricCounts.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.startTime !== undefined) {
@@ -474,6 +472,10 @@ export class EventsApi extends runtime.BaseAPI {
 
         if (requestParameters.companyId !== undefined) {
             queryParameters['company_id'] = requestParameters.companyId;
+        }
+
+        if (requestParameters.companyIds) {
+            queryParameters['company_ids'] = requestParameters.companyIds;
         }
 
         if (requestParameters.userId !== undefined) {
@@ -515,7 +517,7 @@ export class EventsApi extends runtime.BaseAPI {
     /**
      * List metric counts
      */
-    async listMetricCounts(requestParameters: ListMetricCountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListMetricCountsResponse> {
+    async listMetricCounts(requestParameters: ListMetricCountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListMetricCountsResponse> {
         const response = await this.listMetricCountsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -524,10 +526,6 @@ export class EventsApi extends runtime.BaseAPI {
      * List metric counts hourly
      */
     async listMetricCountsHourlyRaw(requestParameters: ListMetricCountsHourlyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListMetricCountsHourlyResponse>> {
-        if (requestParameters.eventSubtype === null || requestParameters.eventSubtype === undefined) {
-            throw new runtime.RequiredError('eventSubtype','Required parameter requestParameters.eventSubtype was null or undefined when calling listMetricCountsHourly.');
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters.startTime !== undefined) {
@@ -548,6 +546,10 @@ export class EventsApi extends runtime.BaseAPI {
 
         if (requestParameters.companyId !== undefined) {
             queryParameters['company_id'] = requestParameters.companyId;
+        }
+
+        if (requestParameters.companyIds) {
+            queryParameters['company_ids'] = requestParameters.companyIds;
         }
 
         if (requestParameters.userId !== undefined) {
@@ -585,7 +587,7 @@ export class EventsApi extends runtime.BaseAPI {
     /**
      * List metric counts hourly
      */
-    async listMetricCountsHourly(requestParameters: ListMetricCountsHourlyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListMetricCountsHourlyResponse> {
+    async listMetricCountsHourly(requestParameters: ListMetricCountsHourlyRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListMetricCountsHourlyResponse> {
         const response = await this.listMetricCountsHourlyRaw(requestParameters, initOverrides);
         return await response.value();
     }

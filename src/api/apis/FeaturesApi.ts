@@ -169,7 +169,7 @@ export interface GetFlagRequest {
 }
 
 export interface GetFlagCheckRequest {
-    key: string;
+    flagCheckId: string;
     xSchematicEnvironmentId?: string;
 }
 
@@ -734,8 +734,8 @@ export class FeaturesApi extends runtime.BaseAPI {
      * Get flag check
      */
     async getFlagCheckRaw(requestParameters: GetFlagCheckRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFlagCheckResponse>> {
-        if (requestParameters.key === null || requestParameters.key === undefined) {
-            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling getFlagCheck.');
+        if (requestParameters.flagCheckId === null || requestParameters.flagCheckId === undefined) {
+            throw new runtime.RequiredError('flagCheckId','Required parameter requestParameters.flagCheckId was null or undefined when calling getFlagCheck.');
         }
 
         const queryParameters: any = {};
@@ -751,7 +751,7 @@ export class FeaturesApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/flag-checks/{key}`.replace(`{${"key"}}`, encodeURIComponent(String(requestParameters.key))),
+            path: `/flag-checks/{flag_check_id}`.replace(`{${"flag_check_id"}}`, encodeURIComponent(String(requestParameters.flagCheckId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

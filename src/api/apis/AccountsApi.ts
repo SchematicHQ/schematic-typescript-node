@@ -114,7 +114,7 @@ export interface GetApiKeyRequest {
 }
 
 export interface GetApiRequestRequest {
-    key: string;
+    apiRequestId: string;
     xSchematicEnvironmentId?: string;
 }
 
@@ -455,8 +455,8 @@ export class AccountsApi extends runtime.BaseAPI {
      * Get api request
      */
     async getApiRequestRaw(requestParameters: GetApiRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetApiRequestResponse>> {
-        if (requestParameters.key === null || requestParameters.key === undefined) {
-            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling getApiRequest.');
+        if (requestParameters.apiRequestId === null || requestParameters.apiRequestId === undefined) {
+            throw new runtime.RequiredError('apiRequestId','Required parameter requestParameters.apiRequestId was null or undefined when calling getApiRequest.');
         }
 
         const queryParameters: any = {};
@@ -472,7 +472,7 @@ export class AccountsApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/api-requests/{key}`.replace(`{${"key"}}`, encodeURIComponent(String(requestParameters.key))),
+            path: `/api-requests/{api_request_id}`.replace(`{${"api_request_id"}}`, encodeURIComponent(String(requestParameters.apiRequestId))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
