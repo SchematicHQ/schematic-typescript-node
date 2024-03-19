@@ -5,13 +5,14 @@
   "types": "dist/schematic.d.ts",
   "author": "Ben Papillon <ben@schematichq.com>",
   "dependencies": {
+    "cross-env": "^7.0.3",
     "node-fetch": "^3.3.1"
   },
   "devDependencies": {
-    "browserify-zlib": "^0.2.0",
     "@microsoft/api-extractor": "^7.38.3",
     "@types/node": "^20.3.1",
     "assert": "^2.0.0",
+    "browserify-zlib": "^0.2.0",
     "buffer": "^5.5.0||^6.0.0",
     "esbuild": "^0.19.6",
     "events": "^3.1.0",
@@ -45,5 +46,5 @@
     "clean": "rm -rf dist",
     "release": "npx standard-version && git push --follow-tags && yarn publish"
   },
-  "version": "0.0.38"
+  "version": "0.0.39"
 }

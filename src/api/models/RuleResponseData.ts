@@ -63,12 +63,6 @@ export interface RuleResponseData {
     priority: number;
     /**
      * 
-     * @type {number}
-     * @memberof RuleResponseData
-     */
-    priorityGroup?: number | null;
-    /**
-     * 
      * @type {string}
      * @memberof RuleResponseData
      */
@@ -121,7 +115,6 @@ export function RuleResponseDataFromJSONTyped(json: any, ignoreDiscriminator: bo
         'name': json['name'],
         'planId': !exists(json, 'plan_id') ? undefined : json['plan_id'],
         'priority': json['priority'],
-        'priorityGroup': !exists(json, 'priority_group') ? undefined : json['priority_group'],
         'ruleType': json['rule_type'],
         'updatedAt': (new Date(json['updated_at'])),
         'value': json['value'],
@@ -144,7 +137,6 @@ export function RuleResponseDataToJSON(value?: RuleResponseData | null): any {
         'name': value.name,
         'plan_id': value.planId,
         'priority': value.priority,
-        'priority_group': value.priorityGroup,
         'rule_type': value.ruleType,
         'updated_at': (value.updatedAt.toISOString()),
         'value': value.value,
