@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * The created resource
+ * 
  * @export
  * @interface RawEventResponseData
  */

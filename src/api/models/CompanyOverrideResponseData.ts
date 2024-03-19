@@ -13,12 +13,31 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { CompanyResponseData } from './CompanyResponseData';
+import {
+    CompanyResponseDataFromJSON,
+    CompanyResponseDataFromJSONTyped,
+    CompanyResponseDataToJSON,
+} from './CompanyResponseData';
+import type { FeatureResponseData } from './FeatureResponseData';
+import {
+    FeatureResponseDataFromJSON,
+    FeatureResponseDataFromJSONTyped,
+    FeatureResponseDataToJSON,
+} from './FeatureResponseData';
+
 /**
  * The updated resource
  * @export
  * @interface CompanyOverrideResponseData
  */
 export interface CompanyOverrideResponseData {
+    /**
+     * 
+     * @type {CompanyResponseData}
+     * @memberof CompanyOverrideResponseData
+     */
+    company?: CompanyResponseData;
     /**
      * 
      * @type {string}
@@ -37,6 +56,12 @@ export interface CompanyOverrideResponseData {
      * @memberof CompanyOverrideResponseData
      */
     environmentId: string;
+    /**
+     * 
+     * @type {FeatureResponseData}
+     * @memberof CompanyOverrideResponseData
+     */
+    feature?: FeatureResponseData;
     /**
      * 
      * @type {string}
@@ -120,9 +145,11 @@ export function CompanyOverrideResponseDataFromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
+        'company': !exists(json, 'company') ? undefined : CompanyResponseDataFromJSON(json['company']),
         'companyId': json['company_id'],
         'createdAt': (new Date(json['created_at'])),
         'environmentId': json['environment_id'],
+        'feature': !exists(json, 'feature') ? undefined : FeatureResponseDataFromJSON(json['feature']),
         'featureId': json['feature_id'],
         'id': json['id'],
         'metricPeriod': !exists(json, 'metric_period') ? undefined : json['metric_period'],
@@ -144,9 +171,11 @@ export function CompanyOverrideResponseDataToJSON(value?: CompanyOverrideRespons
     }
     return {
         
+        'company': CompanyResponseDataToJSON(value.company),
         'company_id': value.companyId,
         'created_at': (value.createdAt.toISOString()),
         'environment_id': value.environmentId,
+        'feature': FeatureResponseDataToJSON(value.feature),
         'feature_id': value.featureId,
         'id': value.id,
         'metric_period': value.metricPeriod,

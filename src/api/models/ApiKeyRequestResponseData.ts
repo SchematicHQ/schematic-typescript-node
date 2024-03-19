@@ -60,6 +60,36 @@ export interface ApiKeyRequestResponseData {
      * @type {string}
      * @memberof ApiKeyRequestResponseData
      */
+    requestType?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ApiKeyRequestResponseData
+     */
+    resourceId?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiKeyRequestResponseData
+     */
+    resourceIdString?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiKeyRequestResponseData
+     */
+    resourceName?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiKeyRequestResponseData
+     */
+    resourceType?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiKeyRequestResponseData
+     */
     respBody?: string | null;
     /**
      * 
@@ -67,6 +97,12 @@ export interface ApiKeyRequestResponseData {
      * @memberof ApiKeyRequestResponseData
      */
     respCode?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiKeyRequestResponseData
+     */
+    secondaryResource?: string | null;
     /**
      * 
      * @type {Date}
@@ -85,6 +121,18 @@ export interface ApiKeyRequestResponseData {
      * @memberof ApiKeyRequestResponseData
      */
     userAgent?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiKeyRequestResponseData
+     */
+    userId?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiKeyRequestResponseData
+     */
+    userName?: string | null;
 }
 
 /**
@@ -117,11 +165,19 @@ export function ApiKeyRequestResponseDataFromJSONTyped(json: any, ignoreDiscrimi
         'id': json['id'],
         'method': json['method'],
         'reqBody': !exists(json, 'req_body') ? undefined : json['req_body'],
+        'requestType': !exists(json, 'request_type') ? undefined : json['request_type'],
+        'resourceId': !exists(json, 'resource_id') ? undefined : json['resource_id'],
+        'resourceIdString': !exists(json, 'resource_id_string') ? undefined : json['resource_id_string'],
+        'resourceName': !exists(json, 'resource_name') ? undefined : json['resource_name'],
+        'resourceType': !exists(json, 'resource_type') ? undefined : json['resource_type'],
         'respBody': !exists(json, 'resp_body') ? undefined : json['resp_body'],
         'respCode': !exists(json, 'resp_code') ? undefined : json['resp_code'],
+        'secondaryResource': !exists(json, 'secondary_resource') ? undefined : json['secondary_resource'],
         'startedAt': (new Date(json['started_at'])),
         'url': json['url'],
         'userAgent': !exists(json, 'user_agent') ? undefined : json['user_agent'],
+        'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
+        'userName': !exists(json, 'user_name') ? undefined : json['user_name'],
     };
 }
 
@@ -140,11 +196,19 @@ export function ApiKeyRequestResponseDataToJSON(value?: ApiKeyRequestResponseDat
         'id': value.id,
         'method': value.method,
         'req_body': value.reqBody,
+        'request_type': value.requestType,
+        'resource_id': value.resourceId,
+        'resource_id_string': value.resourceIdString,
+        'resource_name': value.resourceName,
+        'resource_type': value.resourceType,
         'resp_body': value.respBody,
         'resp_code': value.respCode,
+        'secondary_resource': value.secondaryResource,
         'started_at': (value.startedAt.toISOString()),
         'url': value.url,
         'user_agent': value.userAgent,
+        'user_id': value.userId,
+        'user_name': value.userName,
     };
 }
 
