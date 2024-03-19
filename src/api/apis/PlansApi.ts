@@ -18,6 +18,7 @@ import type {
   ApiError,
   CreatePlanRequestBody,
   CreatePlanResponse,
+  DeletePlanAudienceResponse,
   DeletePlanResponse,
   GetPlanResponse,
   ListPlansResponse,
@@ -33,6 +34,8 @@ import {
     CreatePlanRequestBodyToJSON,
     CreatePlanResponseFromJSON,
     CreatePlanResponseToJSON,
+    DeletePlanAudienceResponseFromJSON,
+    DeletePlanAudienceResponseToJSON,
     DeletePlanResponseFromJSON,
     DeletePlanResponseToJSON,
     GetPlanResponseFromJSON,
@@ -56,6 +59,11 @@ export interface CreatePlanRequest {
 
 export interface DeletePlanRequest {
     planId: string;
+    xSchematicEnvironmentId?: string;
+}
+
+export interface DeletePlanAudienceRequest {
+    planAudienceId: string;
     xSchematicEnvironmentId?: string;
 }
 
@@ -163,6 +171,44 @@ export class PlansApi extends runtime.BaseAPI {
      */
     async deletePlan(requestParameters: DeletePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletePlanResponse> {
         const response = await this.deletePlanRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete plan audience
+     */
+    async deletePlanAudienceRaw(requestParameters: DeletePlanAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletePlanAudienceResponse>> {
+        if (requestParameters.planAudienceId === null || requestParameters.planAudienceId === undefined) {
+            throw new runtime.RequiredError('planAudienceId','Required parameter requestParameters.planAudienceId was null or undefined when calling deletePlanAudience.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
+            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/plan-audiences/{plan_audience_id}`.replace(`{${"plan_audience_id"}}`, encodeURIComponent(String(requestParameters.planAudienceId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeletePlanAudienceResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete plan audience
+     */
+    async deletePlanAudience(requestParameters: DeletePlanAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletePlanAudienceResponse> {
+        const response = await this.deletePlanAudienceRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

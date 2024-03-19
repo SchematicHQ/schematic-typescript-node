@@ -66,6 +66,7 @@ export * from './DeleteCompanyResponse';
 export * from './DeleteEnvironmentResponse';
 export * from './DeleteFeatureResponse';
 export * from './DeleteFlagResponse';
+export * from './DeletePlanAudienceResponse';
 export * from './DeletePlanEntitlementResponse';
 export * from './DeletePlanResponse';
 export * from './DeleteResponse';

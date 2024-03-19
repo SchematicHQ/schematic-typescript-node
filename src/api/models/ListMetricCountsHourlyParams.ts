@@ -27,6 +27,12 @@ export interface ListMetricCountsHourlyParams {
     companyId?: string;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof ListMetricCountsHourlyParams
+     */
+    companyIds?: Array<string>;
+    /**
+     * 
      * @type {Date}
      * @memberof ListMetricCountsHourlyParams
      */
@@ -89,6 +95,7 @@ export function ListMetricCountsHourlyParamsFromJSONTyped(json: any, ignoreDiscr
     return {
         
         'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
+        'companyIds': !exists(json, 'company_ids') ? undefined : json['company_ids'],
         'endTime': !exists(json, 'end_time') ? undefined : (new Date(json['end_time'])),
         'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
         'eventSubtypes': !exists(json, 'event_subtypes') ? undefined : json['event_subtypes'],
@@ -109,6 +116,7 @@ export function ListMetricCountsHourlyParamsToJSON(value?: ListMetricCountsHourl
     return {
         
         'company_id': value.companyId,
+        'company_ids': value.companyIds,
         'end_time': value.endTime === undefined ? undefined : (value.endTime.toISOString()),
         'event_subtype': value.eventSubtype,
         'event_subtypes': value.eventSubtypes,
