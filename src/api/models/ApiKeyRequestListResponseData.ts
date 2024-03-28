@@ -57,6 +57,36 @@ export interface ApiKeyRequestListResponseData {
     reqBody?: string | null;
     /**
      * 
+     * @type {string}
+     * @memberof ApiKeyRequestListResponseData
+     */
+    requestType?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ApiKeyRequestListResponseData
+     */
+    resourceId?: number | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiKeyRequestListResponseData
+     */
+    resourceIdString?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiKeyRequestListResponseData
+     */
+    resourceName?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiKeyRequestListResponseData
+     */
+    resourceType?: string | null;
+    /**
+     * 
      * @type {number}
      * @memberof ApiKeyRequestListResponseData
      */
@@ -73,6 +103,12 @@ export interface ApiKeyRequestListResponseData {
      * @memberof ApiKeyRequestListResponseData
      */
     url: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiKeyRequestListResponseData
+     */
+    userName?: string | null;
 }
 
 /**
@@ -105,9 +141,15 @@ export function ApiKeyRequestListResponseDataFromJSONTyped(json: any, ignoreDisc
         'id': json['id'],
         'method': json['method'],
         'reqBody': !exists(json, 'req_body') ? undefined : json['req_body'],
+        'requestType': !exists(json, 'request_type') ? undefined : json['request_type'],
+        'resourceId': !exists(json, 'resource_id') ? undefined : json['resource_id'],
+        'resourceIdString': !exists(json, 'resource_id_string') ? undefined : json['resource_id_string'],
+        'resourceName': !exists(json, 'resource_name') ? undefined : json['resource_name'],
+        'resourceType': !exists(json, 'resource_type') ? undefined : json['resource_type'],
         'respCode': !exists(json, 'resp_code') ? undefined : json['resp_code'],
         'startedAt': (new Date(json['started_at'])),
         'url': json['url'],
+        'userName': !exists(json, 'user_name') ? undefined : json['user_name'],
     };
 }
 
@@ -126,9 +168,15 @@ export function ApiKeyRequestListResponseDataToJSON(value?: ApiKeyRequestListRes
         'id': value.id,
         'method': value.method,
         'req_body': value.reqBody,
+        'request_type': value.requestType,
+        'resource_id': value.resourceId,
+        'resource_id_string': value.resourceIdString,
+        'resource_name': value.resourceName,
+        'resource_type': value.resourceType,
         'resp_code': value.respCode,
         'started_at': (value.startedAt.toISOString()),
         'url': value.url,
+        'user_name': value.userName,
     };
 }
 

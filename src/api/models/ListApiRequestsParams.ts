@@ -37,6 +37,12 @@ export interface ListApiRequestsParams {
      * @memberof ListApiRequestsParams
      */
     q?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListApiRequestsParams
+     */
+    requestType?: string;
 }
 
 /**
@@ -61,6 +67,7 @@ export function ListApiRequestsParamsFromJSONTyped(json: any, ignoreDiscriminato
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'offset': !exists(json, 'offset') ? undefined : json['offset'],
         'q': !exists(json, 'q') ? undefined : json['q'],
+        'requestType': !exists(json, 'request_type') ? undefined : json['request_type'],
     };
 }
 
@@ -76,6 +83,7 @@ export function ListApiRequestsParamsToJSON(value?: ListApiRequestsParams | null
         'limit': value.limit,
         'offset': value.offset,
         'q': value.q,
+        'request_type': value.requestType,
     };
 }
 

@@ -64,12 +64,6 @@ export interface CreateOrUpdateRuleRequestBody {
     priority: number;
     /**
      * 
-     * @type {number}
-     * @memberof CreateOrUpdateRuleRequestBody
-     */
-    priorityGroup?: number | null;
-    /**
-     * 
      * @type {string}
      * @memberof CreateOrUpdateRuleRequestBody
      */
@@ -126,7 +120,6 @@ export function CreateOrUpdateRuleRequestBodyFromJSONTyped(json: any, ignoreDisc
         'id': !exists(json, 'id') ? undefined : json['id'],
         'name': json['name'],
         'priority': json['priority'],
-        'priorityGroup': !exists(json, 'priority_group') ? undefined : json['priority_group'],
         'ruleType': !exists(json, 'rule_type') ? undefined : json['rule_type'],
         'value': json['value'],
     };
@@ -146,7 +139,6 @@ export function CreateOrUpdateRuleRequestBodyToJSON(value?: CreateOrUpdateRuleRe
         'id': value.id,
         'name': value.name,
         'priority': value.priority,
-        'priority_group': value.priorityGroup,
         'rule_type': value.ruleType,
         'value': value.value,
     };
