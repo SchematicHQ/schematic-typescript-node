@@ -54,26 +54,21 @@ import {
 
 export interface CreatePlanRequest {
     createPlanRequestBody: CreatePlanRequestBody;
-    xSchematicEnvironmentId?: string;
 }
 
 export interface DeletePlanRequest {
     planId: string;
-    xSchematicEnvironmentId?: string;
 }
 
 export interface DeletePlanAudienceRequest {
     planAudienceId: string;
-    xSchematicEnvironmentId?: string;
 }
 
 export interface GetPlanRequest {
     planId: string;
-    xSchematicEnvironmentId?: string;
 }
 
 export interface ListPlansRequest {
-    xSchematicEnvironmentId?: string;
     limit?: number;
     offset?: number;
 }
@@ -81,13 +76,11 @@ export interface ListPlansRequest {
 export interface UpdatePlanRequest {
     updatePlanRequestBody: UpdatePlanRequestBody;
     planId: string;
-    xSchematicEnvironmentId?: string;
 }
 
 export interface UpdatePlanAudienceRequest {
     updateAudienceRequestBody: UpdateAudienceRequestBody;
     planAudienceId: string;
-    xSchematicEnvironmentId?: string;
 }
 
 /**
@@ -108,10 +101,6 @@ export class PlansApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
 
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
@@ -148,10 +137,6 @@ export class PlansApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
-
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
@@ -186,10 +171,6 @@ export class PlansApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
-
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
@@ -223,10 +204,6 @@ export class PlansApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
 
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
@@ -265,10 +242,6 @@ export class PlansApi extends runtime.BaseAPI {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
 
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
@@ -310,10 +283,6 @@ export class PlansApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
-
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
@@ -354,10 +323,6 @@ export class PlansApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
-
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
 
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication

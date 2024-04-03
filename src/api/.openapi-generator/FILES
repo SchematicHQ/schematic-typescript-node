@@ -48,6 +48,8 @@ models/CreateEntityTraitDefinitionRequestBody.ts
 models/CreateEntityTraitDefinitionResponse.ts
 models/CreateEnvironmentRequestBody.ts
 models/CreateEnvironmentResponse.ts
+models/CreateEventBatchRequestBody.ts
+models/CreateEventBatchResponse.ts
 models/CreateEventRequestBody.ts
 models/CreateEventResponse.ts
 models/CreateFeatureRequestBody.ts
@@ -152,6 +154,7 @@ models/MetricCountsHourlyResponseData.ts
 models/PaginationFilter.ts
 models/PlanEntitlementResponseData.ts
 models/PlanResponseData.ts
+models/RawEventBatchResponseData.ts
 models/RawEventResponseData.ts
 models/RuleConditionGroupDetailResponseData.ts
 models/RuleConditionGroupResponseData.ts

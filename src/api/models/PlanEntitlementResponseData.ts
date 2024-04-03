@@ -13,6 +13,19 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { FeatureResponseData } from './FeatureResponseData';
+import {
+    FeatureResponseDataFromJSON,
+    FeatureResponseDataFromJSONTyped,
+    FeatureResponseDataToJSON,
+} from './FeatureResponseData';
+import type { PlanResponseData } from './PlanResponseData';
+import {
+    PlanResponseDataFromJSON,
+    PlanResponseDataFromJSONTyped,
+    PlanResponseDataToJSON,
+} from './PlanResponseData';
+
 /**
  * The updated resource
  * @export
@@ -33,6 +46,12 @@ export interface PlanEntitlementResponseData {
     environmentId: string;
     /**
      * 
+     * @type {FeatureResponseData}
+     * @memberof PlanEntitlementResponseData
+     */
+    feature?: FeatureResponseData;
+    /**
+     * 
      * @type {string}
      * @memberof PlanEntitlementResponseData
      */
@@ -49,6 +68,12 @@ export interface PlanEntitlementResponseData {
      * @memberof PlanEntitlementResponseData
      */
     metricPeriod?: string | null;
+    /**
+     * 
+     * @type {PlanResponseData}
+     * @memberof PlanEntitlementResponseData
+     */
+    plan?: PlanResponseData;
     /**
      * 
      * @type {string}
@@ -122,9 +147,11 @@ export function PlanEntitlementResponseDataFromJSONTyped(json: any, ignoreDiscri
         
         'createdAt': (new Date(json['created_at'])),
         'environmentId': json['environment_id'],
+        'feature': !exists(json, 'feature') ? undefined : FeatureResponseDataFromJSON(json['feature']),
         'featureId': json['feature_id'],
         'id': json['id'],
         'metricPeriod': !exists(json, 'metric_period') ? undefined : json['metric_period'],
+        'plan': !exists(json, 'plan') ? undefined : PlanResponseDataFromJSON(json['plan']),
         'planId': json['plan_id'],
         'ruleId': json['rule_id'],
         'updatedAt': (new Date(json['updated_at'])),
@@ -146,9 +173,11 @@ export function PlanEntitlementResponseDataToJSON(value?: PlanEntitlementRespons
         
         'created_at': (value.createdAt.toISOString()),
         'environment_id': value.environmentId,
+        'feature': FeatureResponseDataToJSON(value.feature),
         'feature_id': value.featureId,
         'id': value.id,
         'metric_period': value.metricPeriod,
+        'plan': PlanResponseDataToJSON(value.plan),
         'plan_id': value.planId,
         'rule_id': value.ruleId,
         'updated_at': (value.updatedAt.toISOString()),
