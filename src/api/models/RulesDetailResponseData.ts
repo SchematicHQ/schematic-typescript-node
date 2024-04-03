@@ -13,6 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { FlagResponseData } from './FlagResponseData';
+import {
+    FlagResponseDataFromJSON,
+    FlagResponseDataFromJSONTyped,
+    FlagResponseDataToJSON,
+} from './FlagResponseData';
 import type { RuleDetailResponseData } from './RuleDetailResponseData';
 import {
     RuleDetailResponseDataFromJSON,
@@ -26,6 +32,12 @@ import {
  * @interface RulesDetailResponseData
  */
 export interface RulesDetailResponseData {
+    /**
+     * 
+     * @type {FlagResponseData}
+     * @memberof RulesDetailResponseData
+     */
+    flag?: FlagResponseData;
     /**
      * 
      * @type {Array<RuleDetailResponseData>}
@@ -54,6 +66,7 @@ export function RulesDetailResponseDataFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
+        'flag': !exists(json, 'Flag') ? undefined : FlagResponseDataFromJSON(json['Flag']),
         'rules': ((json['rules'] as Array<any>).map(RuleDetailResponseDataFromJSON)),
     };
 }
@@ -67,6 +80,7 @@ export function RulesDetailResponseDataToJSON(value?: RulesDetailResponseData | 
     }
     return {
         
+        'Flag': FlagResponseDataToJSON(value.flag),
         'rules': ((value.rules as Array<any>).map(RuleDetailResponseDataToJSON)),
     };
 }

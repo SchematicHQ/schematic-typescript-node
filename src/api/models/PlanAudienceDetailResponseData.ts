@@ -27,89 +27,89 @@ import {
 } from './RuleConditionResponseData';
 
 /**
- * 
+ * The updated resource
  * @export
- * @interface RuleDetailResponseData
+ * @interface PlanAudienceDetailResponseData
  */
-export interface RuleDetailResponseData {
+export interface PlanAudienceDetailResponseData {
     /**
      * 
      * @type {Array<RuleConditionGroupDetailResponseData>}
-     * @memberof RuleDetailResponseData
+     * @memberof PlanAudienceDetailResponseData
      */
     conditionGroups: Array<RuleConditionGroupDetailResponseData>;
     /**
      * 
      * @type {Array<RuleConditionResponseData>}
-     * @memberof RuleDetailResponseData
+     * @memberof PlanAudienceDetailResponseData
      */
     conditions: Array<RuleConditionResponseData>;
     /**
      * 
      * @type {Date}
-     * @memberof RuleDetailResponseData
+     * @memberof PlanAudienceDetailResponseData
      */
     createdAt: Date;
     /**
      * 
      * @type {string}
-     * @memberof RuleDetailResponseData
+     * @memberof PlanAudienceDetailResponseData
      */
     environmentId: string;
     /**
      * 
      * @type {string}
-     * @memberof RuleDetailResponseData
+     * @memberof PlanAudienceDetailResponseData
      */
     flagId?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof RuleDetailResponseData
+     * @memberof PlanAudienceDetailResponseData
      */
     id: string;
     /**
      * 
      * @type {string}
-     * @memberof RuleDetailResponseData
+     * @memberof PlanAudienceDetailResponseData
      */
     name: string;
     /**
      * 
      * @type {string}
-     * @memberof RuleDetailResponseData
+     * @memberof PlanAudienceDetailResponseData
      */
     planId?: string | null;
     /**
      * 
      * @type {number}
-     * @memberof RuleDetailResponseData
+     * @memberof PlanAudienceDetailResponseData
      */
     priority: number;
     /**
      * 
      * @type {string}
-     * @memberof RuleDetailResponseData
+     * @memberof PlanAudienceDetailResponseData
      */
     ruleType: string;
     /**
      * 
      * @type {Date}
-     * @memberof RuleDetailResponseData
+     * @memberof PlanAudienceDetailResponseData
      */
     updatedAt: Date;
     /**
      * 
      * @type {boolean}
-     * @memberof RuleDetailResponseData
+     * @memberof PlanAudienceDetailResponseData
      */
     value: boolean;
 }
 
 /**
- * Check if a given object implements the RuleDetailResponseData interface.
+ * Check if a given object implements the PlanAudienceDetailResponseData interface.
  */
-export function instanceOfRuleDetailResponseData(value: object): boolean {
+export function instanceOfPlanAudienceDetailResponseData(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "conditionGroups" in value;
     isInstance = isInstance && "conditions" in value;
@@ -125,11 +125,11 @@ export function instanceOfRuleDetailResponseData(value: object): boolean {
     return isInstance;
 }
 
-export function RuleDetailResponseDataFromJSON(json: any): RuleDetailResponseData {
-    return RuleDetailResponseDataFromJSONTyped(json, false);
+export function PlanAudienceDetailResponseDataFromJSON(json: any): PlanAudienceDetailResponseData {
+    return PlanAudienceDetailResponseDataFromJSONTyped(json, false);
 }
 
-export function RuleDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): RuleDetailResponseData {
+export function PlanAudienceDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlanAudienceDetailResponseData {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -150,7 +150,7 @@ export function RuleDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminat
     };
 }
 
-export function RuleDetailResponseDataToJSON(value?: RuleDetailResponseData | null): any {
+export function PlanAudienceDetailResponseDataToJSON(value?: PlanAudienceDetailResponseData | null): any {
     if (value === undefined) {
         return undefined;
     }

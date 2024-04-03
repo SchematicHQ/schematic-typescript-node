@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { RuleDetailResponseData } from './RuleDetailResponseData';
+import type { PlanAudienceDetailResponseData } from './PlanAudienceDetailResponseData';
 import {
-    RuleDetailResponseDataFromJSON,
-    RuleDetailResponseDataFromJSONTyped,
-    RuleDetailResponseDataToJSON,
-} from './RuleDetailResponseData';
+    PlanAudienceDetailResponseDataFromJSON,
+    PlanAudienceDetailResponseDataFromJSONTyped,
+    PlanAudienceDetailResponseDataToJSON,
+} from './PlanAudienceDetailResponseData';
 
 /**
  * 
@@ -28,10 +28,10 @@ import {
 export interface UpdatePlanAudienceResponse {
     /**
      * 
-     * @type {RuleDetailResponseData}
+     * @type {PlanAudienceDetailResponseData}
      * @memberof UpdatePlanAudienceResponse
      */
-    data: RuleDetailResponseData;
+    data: PlanAudienceDetailResponseData;
     /**
      * Input parameters
      * @type {object}
@@ -61,7 +61,7 @@ export function UpdatePlanAudienceResponseFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'data': RuleDetailResponseDataFromJSON(json['data']),
+        'data': PlanAudienceDetailResponseDataFromJSON(json['data']),
         'params': json['params'],
     };
 }
@@ -75,7 +75,7 @@ export function UpdatePlanAudienceResponseToJSON(value?: UpdatePlanAudienceRespo
     }
     return {
         
-        'data': RuleDetailResponseDataToJSON(value.data),
+        'data': PlanAudienceDetailResponseDataToJSON(value.data),
         'params': value.params,
     };
 }

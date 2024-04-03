@@ -16,75 +16,75 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface RuleResponseData
+ * @interface PlanAudienceResponseData
  */
-export interface RuleResponseData {
+export interface PlanAudienceResponseData {
     /**
      * 
      * @type {Date}
-     * @memberof RuleResponseData
+     * @memberof PlanAudienceResponseData
      */
     createdAt: Date;
     /**
      * 
      * @type {string}
-     * @memberof RuleResponseData
+     * @memberof PlanAudienceResponseData
      */
     environmentId: string;
     /**
      * 
      * @type {string}
-     * @memberof RuleResponseData
+     * @memberof PlanAudienceResponseData
      */
     flagId?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof RuleResponseData
+     * @memberof PlanAudienceResponseData
      */
     id: string;
     /**
      * 
      * @type {string}
-     * @memberof RuleResponseData
+     * @memberof PlanAudienceResponseData
      */
     name: string;
     /**
      * 
      * @type {string}
-     * @memberof RuleResponseData
+     * @memberof PlanAudienceResponseData
      */
     planId?: string | null;
     /**
      * 
      * @type {number}
-     * @memberof RuleResponseData
+     * @memberof PlanAudienceResponseData
      */
     priority: number;
     /**
      * 
      * @type {string}
-     * @memberof RuleResponseData
+     * @memberof PlanAudienceResponseData
      */
     ruleType: string;
     /**
      * 
      * @type {Date}
-     * @memberof RuleResponseData
+     * @memberof PlanAudienceResponseData
      */
     updatedAt: Date;
     /**
      * 
      * @type {boolean}
-     * @memberof RuleResponseData
+     * @memberof PlanAudienceResponseData
      */
     value: boolean;
 }
 
 /**
- * Check if a given object implements the RuleResponseData interface.
+ * Check if a given object implements the PlanAudienceResponseData interface.
  */
-export function instanceOfRuleResponseData(value: object): boolean {
+export function instanceOfPlanAudienceResponseData(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "createdAt" in value;
     isInstance = isInstance && "environmentId" in value;
@@ -98,11 +98,11 @@ export function instanceOfRuleResponseData(value: object): boolean {
     return isInstance;
 }
 
-export function RuleResponseDataFromJSON(json: any): RuleResponseData {
-    return RuleResponseDataFromJSONTyped(json, false);
+export function PlanAudienceResponseDataFromJSON(json: any): PlanAudienceResponseData {
+    return PlanAudienceResponseDataFromJSONTyped(json, false);
 }
 
-export function RuleResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): RuleResponseData {
+export function PlanAudienceResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlanAudienceResponseData {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -121,7 +121,7 @@ export function RuleResponseDataFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-export function RuleResponseDataToJSON(value?: RuleResponseData | null): any {
+export function PlanAudienceResponseDataToJSON(value?: PlanAudienceResponseData | null): any {
     if (value === undefined) {
         return undefined;
     }

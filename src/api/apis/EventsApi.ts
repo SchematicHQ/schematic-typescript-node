@@ -18,6 +18,8 @@ import type {
   ApiError,
   CountEventTypesResponse,
   CountEventsResponse,
+  CreateEventBatchRequestBody,
+  CreateEventBatchResponse,
   CreateEventRequestBody,
   CreateEventResponse,
   GetEventResponse,
@@ -34,6 +36,10 @@ import {
     CountEventTypesResponseToJSON,
     CountEventsResponseFromJSON,
     CountEventsResponseToJSON,
+    CreateEventBatchRequestBodyFromJSON,
+    CreateEventBatchRequestBodyToJSON,
+    CreateEventBatchResponseFromJSON,
+    CreateEventBatchResponseToJSON,
     CreateEventRequestBodyFromJSON,
     CreateEventRequestBodyToJSON,
     CreateEventResponseFromJSON,
@@ -53,14 +59,12 @@ import {
 } from '../models';
 
 export interface CountEventTypesRequest {
-    xSchematicEnvironmentId?: string;
     q?: string;
     limit?: number;
     offset?: number;
 }
 
 export interface CountEventsRequest {
-    xSchematicEnvironmentId?: string;
     companyId?: string;
     userId?: string;
     eventSubtype?: string;
@@ -70,28 +74,27 @@ export interface CountEventsRequest {
 
 export interface CreateEventRequest {
     createEventRequestBody: CreateEventRequestBody;
-    xSchematicEnvironmentId?: string;
+}
+
+export interface CreateEventBatchRequest {
+    createEventBatchRequestBody: CreateEventBatchRequestBody;
 }
 
 export interface GetEventRequest {
     eventId: string;
-    xSchematicEnvironmentId?: string;
 }
 
 export interface GetEventTypeRequest {
     key: string;
-    xSchematicEnvironmentId?: string;
 }
 
 export interface ListEventTypesRequest {
-    xSchematicEnvironmentId?: string;
     q?: string;
     limit?: number;
     offset?: number;
 }
 
 export interface ListEventsRequest {
-    xSchematicEnvironmentId?: string;
     companyId?: string;
     userId?: string;
     eventSubtype?: string;
@@ -100,7 +103,6 @@ export interface ListEventsRequest {
 }
 
 export interface ListMetricCountsRequest {
-    xSchematicEnvironmentId?: string;
     startTime?: Date;
     endTime?: Date;
     eventSubtype?: string;
@@ -114,7 +116,6 @@ export interface ListMetricCountsRequest {
 }
 
 export interface ListMetricCountsHourlyRequest {
-    xSchematicEnvironmentId?: string;
     startTime?: Date;
     endTime?: Date;
     eventSubtype?: string;
@@ -150,10 +151,6 @@ export class EventsApi extends runtime.BaseAPI {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
 
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
@@ -205,10 +202,6 @@ export class EventsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
-
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
@@ -245,10 +238,6 @@ export class EventsApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
-
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
@@ -273,6 +262,43 @@ export class EventsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Create event batch
+     */
+    async createEventBatchRaw(requestParameters: CreateEventBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateEventBatchResponse>> {
+        if (requestParameters.createEventBatchRequestBody === null || requestParameters.createEventBatchRequestBody === undefined) {
+            throw new runtime.RequiredError('createEventBatchRequestBody','Required parameter requestParameters.createEventBatchRequestBody was null or undefined when calling createEventBatch.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/event-batch`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateEventBatchRequestBodyToJSON(requestParameters.createEventBatchRequestBody),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateEventBatchResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Create event batch
+     */
+    async createEventBatch(requestParameters: CreateEventBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateEventBatchResponse> {
+        const response = await this.createEventBatchRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Get event
      */
     async getEventRaw(requestParameters: GetEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEventResponse>> {
@@ -283,10 +309,6 @@ export class EventsApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
 
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
@@ -321,10 +343,6 @@ export class EventsApi extends runtime.BaseAPI {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
 
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
@@ -367,10 +385,6 @@ export class EventsApi extends runtime.BaseAPI {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
 
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
@@ -421,10 +435,6 @@ export class EventsApi extends runtime.BaseAPI {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
 
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
@@ -496,10 +506,6 @@ export class EventsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
-
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
@@ -565,10 +571,6 @@ export class EventsApi extends runtime.BaseAPI {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (requestParameters.xSchematicEnvironmentId !== undefined && requestParameters.xSchematicEnvironmentId !== null) {
-            headerParameters['X-Schematic-Environment-Id'] = String(requestParameters.xSchematicEnvironmentId);
-        }
 
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
