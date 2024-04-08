@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,7 +36,7 @@ export interface CreateOrUpdateFlagRequestBody {
      * @type {string}
      * @memberof CreateOrUpdateFlagRequestBody
      */
-    featureId?: string | null;
+    featureId?: string;
     /**
      * 
      * @type {string}
@@ -48,7 +48,7 @@ export interface CreateOrUpdateFlagRequestBody {
      * @type {string}
      * @memberof CreateOrUpdateFlagRequestBody
      */
-    id?: string | null;
+    id?: string;
     /**
      * 
      * @type {string}
@@ -67,14 +67,12 @@ export interface CreateOrUpdateFlagRequestBody {
  * Check if a given object implements the CreateOrUpdateFlagRequestBody interface.
  */
 export function instanceOfCreateOrUpdateFlagRequestBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "defaultValue" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "flagType" in value;
-    isInstance = isInstance && "key" in value;
-    isInstance = isInstance && "name" in value;
-
-    return isInstance;
+    if (!('defaultValue' in value)) return false;
+    if (!('description' in value)) return false;
+    if (!('flagType' in value)) return false;
+    if (!('key' in value)) return false;
+    if (!('name' in value)) return false;
+    return true;
 }
 
 export function CreateOrUpdateFlagRequestBodyFromJSON(json: any): CreateOrUpdateFlagRequestBody {
@@ -82,37 +80,34 @@ export function CreateOrUpdateFlagRequestBodyFromJSON(json: any): CreateOrUpdate
 }
 
 export function CreateOrUpdateFlagRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateOrUpdateFlagRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'defaultValue': json['default_value'],
         'description': json['description'],
-        'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
+        'featureId': json['feature_id'] == null ? undefined : json['feature_id'],
         'flagType': json['flag_type'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'key': json['key'],
         'name': json['name'],
     };
 }
 
 export function CreateOrUpdateFlagRequestBodyToJSON(value?: CreateOrUpdateFlagRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'default_value': value.defaultValue,
-        'description': value.description,
-        'feature_id': value.featureId,
-        'flag_type': value.flagType,
-        'id': value.id,
-        'key': value.key,
-        'name': value.name,
+        'default_value': value['defaultValue'],
+        'description': value['description'],
+        'feature_id': value['featureId'],
+        'flag_type': value['flagType'],
+        'id': value['id'],
+        'key': value['key'],
+        'name': value['name'],
     };
 }
 

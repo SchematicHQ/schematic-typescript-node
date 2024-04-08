@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -61,15 +61,13 @@ export interface CompanyPlanResponseData {
  * Check if a given object implements the CompanyPlanResponseData interface.
  */
 export function instanceOfCompanyPlanResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "companyId" in value;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "environmentId" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "planId" in value;
-    isInstance = isInstance && "updatedAt" in value;
-
-    return isInstance;
+    if (!('companyId' in value)) return false;
+    if (!('createdAt' in value)) return false;
+    if (!('environmentId' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('planId' in value)) return false;
+    if (!('updatedAt' in value)) return false;
+    return true;
 }
 
 export function CompanyPlanResponseDataFromJSON(json: any): CompanyPlanResponseData {
@@ -77,7 +75,7 @@ export function CompanyPlanResponseDataFromJSON(json: any): CompanyPlanResponseD
 }
 
 export function CompanyPlanResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): CompanyPlanResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -92,20 +90,17 @@ export function CompanyPlanResponseDataFromJSONTyped(json: any, ignoreDiscrimina
 }
 
 export function CompanyPlanResponseDataToJSON(value?: CompanyPlanResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'company_id': value.companyId,
-        'created_at': (value.createdAt.toISOString()),
-        'environment_id': value.environmentId,
-        'id': value.id,
-        'plan_id': value.planId,
-        'updated_at': (value.updatedAt.toISOString()),
+        'company_id': value['companyId'],
+        'created_at': ((value['createdAt']).toISOString()),
+        'environment_id': value['environmentId'],
+        'id': value['id'],
+        'plan_id': value['planId'],
+        'updated_at': ((value['updatedAt']).toISOString()),
     };
 }
 

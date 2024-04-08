@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CompanyResponseData } from './CompanyResponseData';
 import {
     CompanyResponseDataFromJSON,
@@ -79,7 +79,7 @@ export interface CompanyOverrideResponseData {
      * @type {string}
      * @memberof CompanyOverrideResponseData
      */
-    metricPeriod?: string | null;
+    metricPeriod?: string;
     /**
      * 
      * @type {string}
@@ -97,19 +97,19 @@ export interface CompanyOverrideResponseData {
      * @type {boolean}
      * @memberof CompanyOverrideResponseData
      */
-    valueBool?: boolean | null;
+    valueBool?: boolean;
     /**
      * 
      * @type {number}
      * @memberof CompanyOverrideResponseData
      */
-    valueNumeric?: number | null;
+    valueNumeric?: number;
     /**
      * 
      * @type {string}
      * @memberof CompanyOverrideResponseData
      */
-    valueTraitId?: string | null;
+    valueTraitId?: string;
     /**
      * 
      * @type {string}
@@ -122,17 +122,15 @@ export interface CompanyOverrideResponseData {
  * Check if a given object implements the CompanyOverrideResponseData interface.
  */
 export function instanceOfCompanyOverrideResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "companyId" in value;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "environmentId" in value;
-    isInstance = isInstance && "featureId" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "ruleId" in value;
-    isInstance = isInstance && "updatedAt" in value;
-    isInstance = isInstance && "valueType" in value;
-
-    return isInstance;
+    if (!('companyId' in value)) return false;
+    if (!('createdAt' in value)) return false;
+    if (!('environmentId' in value)) return false;
+    if (!('featureId' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('ruleId' in value)) return false;
+    if (!('updatedAt' in value)) return false;
+    if (!('valueType' in value)) return false;
+    return true;
 }
 
 export function CompanyOverrideResponseDataFromJSON(json: any): CompanyOverrideResponseData {
@@ -140,51 +138,48 @@ export function CompanyOverrideResponseDataFromJSON(json: any): CompanyOverrideR
 }
 
 export function CompanyOverrideResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): CompanyOverrideResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'company': !exists(json, 'company') ? undefined : CompanyResponseDataFromJSON(json['company']),
+        'company': json['company'] == null ? undefined : CompanyResponseDataFromJSON(json['company']),
         'companyId': json['company_id'],
         'createdAt': (new Date(json['created_at'])),
         'environmentId': json['environment_id'],
-        'feature': !exists(json, 'feature') ? undefined : FeatureResponseDataFromJSON(json['feature']),
+        'feature': json['feature'] == null ? undefined : FeatureResponseDataFromJSON(json['feature']),
         'featureId': json['feature_id'],
         'id': json['id'],
-        'metricPeriod': !exists(json, 'metric_period') ? undefined : json['metric_period'],
+        'metricPeriod': json['metric_period'] == null ? undefined : json['metric_period'],
         'ruleId': json['rule_id'],
         'updatedAt': (new Date(json['updated_at'])),
-        'valueBool': !exists(json, 'value_bool') ? undefined : json['value_bool'],
-        'valueNumeric': !exists(json, 'value_numeric') ? undefined : json['value_numeric'],
-        'valueTraitId': !exists(json, 'value_trait_id') ? undefined : json['value_trait_id'],
+        'valueBool': json['value_bool'] == null ? undefined : json['value_bool'],
+        'valueNumeric': json['value_numeric'] == null ? undefined : json['value_numeric'],
+        'valueTraitId': json['value_trait_id'] == null ? undefined : json['value_trait_id'],
         'valueType': json['value_type'],
     };
 }
 
 export function CompanyOverrideResponseDataToJSON(value?: CompanyOverrideResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'company': CompanyResponseDataToJSON(value.company),
-        'company_id': value.companyId,
-        'created_at': (value.createdAt.toISOString()),
-        'environment_id': value.environmentId,
-        'feature': FeatureResponseDataToJSON(value.feature),
-        'feature_id': value.featureId,
-        'id': value.id,
-        'metric_period': value.metricPeriod,
-        'rule_id': value.ruleId,
-        'updated_at': (value.updatedAt.toISOString()),
-        'value_bool': value.valueBool,
-        'value_numeric': value.valueNumeric,
-        'value_trait_id': value.valueTraitId,
-        'value_type': value.valueType,
+        'company': CompanyResponseDataToJSON(value['company']),
+        'company_id': value['companyId'],
+        'created_at': ((value['createdAt']).toISOString()),
+        'environment_id': value['environmentId'],
+        'feature': FeatureResponseDataToJSON(value['feature']),
+        'feature_id': value['featureId'],
+        'id': value['id'],
+        'metric_period': value['metricPeriod'],
+        'rule_id': value['ruleId'],
+        'updated_at': ((value['updatedAt']).toISOString()),
+        'value_bool': value['valueBool'],
+        'value_numeric': value['valueNumeric'],
+        'value_trait_id': value['valueTraitId'],
+        'value_type': value['valueType'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ListUsersParams } from './ListUsersParams';
 import {
     ListUsersParamsFromJSON,
@@ -50,11 +50,9 @@ export interface ListUsersResponse {
  * Check if a given object implements the ListUsersResponse interface.
  */
 export function instanceOfListUsersResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function ListUsersResponseFromJSON(json: any): ListUsersResponse {
@@ -62,7 +60,7 @@ export function ListUsersResponseFromJSON(json: any): ListUsersResponse {
 }
 
 export function ListUsersResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListUsersResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function ListUsersResponseFromJSONTyped(json: any, ignoreDiscriminator: b
 }
 
 export function ListUsersResponseToJSON(value?: ListUsersResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': ((value.data as Array<any>).map(UserResponseDataToJSON)),
-        'params': ListUsersParamsToJSON(value.params),
+        'data': ((value['data'] as Array<any>).map(UserResponseDataToJSON)),
+        'params': ListUsersParamsToJSON(value['params']),
     };
 }
 

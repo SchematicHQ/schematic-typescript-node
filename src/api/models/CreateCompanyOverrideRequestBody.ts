@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -42,19 +42,19 @@ export interface CreateCompanyOverrideRequestBody {
      * @type {boolean}
      * @memberof CreateCompanyOverrideRequestBody
      */
-    valueBool?: boolean | null;
+    valueBool?: boolean;
     /**
      * 
      * @type {number}
      * @memberof CreateCompanyOverrideRequestBody
      */
-    valueNumeric?: number | null;
+    valueNumeric?: number;
     /**
      * 
      * @type {string}
      * @memberof CreateCompanyOverrideRequestBody
      */
-    valueTraitId?: string | null;
+    valueTraitId?: string;
     /**
      * 
      * @type {string}
@@ -90,12 +90,10 @@ export type CreateCompanyOverrideRequestBodyValueTypeEnum = typeof CreateCompany
  * Check if a given object implements the CreateCompanyOverrideRequestBody interface.
  */
 export function instanceOfCreateCompanyOverrideRequestBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "companyId" in value;
-    isInstance = isInstance && "featureId" in value;
-    isInstance = isInstance && "valueType" in value;
-
-    return isInstance;
+    if (!('companyId' in value)) return false;
+    if (!('featureId' in value)) return false;
+    if (!('valueType' in value)) return false;
+    return true;
 }
 
 export function CreateCompanyOverrideRequestBodyFromJSON(json: any): CreateCompanyOverrideRequestBody {
@@ -103,37 +101,34 @@ export function CreateCompanyOverrideRequestBodyFromJSON(json: any): CreateCompa
 }
 
 export function CreateCompanyOverrideRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateCompanyOverrideRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'companyId': json['company_id'],
         'featureId': json['feature_id'],
-        'metricPeriod': !exists(json, 'metric_period') ? undefined : json['metric_period'],
-        'valueBool': !exists(json, 'value_bool') ? undefined : json['value_bool'],
-        'valueNumeric': !exists(json, 'value_numeric') ? undefined : json['value_numeric'],
-        'valueTraitId': !exists(json, 'value_trait_id') ? undefined : json['value_trait_id'],
+        'metricPeriod': json['metric_period'] == null ? undefined : json['metric_period'],
+        'valueBool': json['value_bool'] == null ? undefined : json['value_bool'],
+        'valueNumeric': json['value_numeric'] == null ? undefined : json['value_numeric'],
+        'valueTraitId': json['value_trait_id'] == null ? undefined : json['value_trait_id'],
         'valueType': json['value_type'],
     };
 }
 
 export function CreateCompanyOverrideRequestBodyToJSON(value?: CreateCompanyOverrideRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'company_id': value.companyId,
-        'feature_id': value.featureId,
-        'metric_period': value.metricPeriod,
-        'value_bool': value.valueBool,
-        'value_numeric': value.valueNumeric,
-        'value_trait_id': value.valueTraitId,
-        'value_type': value.valueType,
+        'company_id': value['companyId'],
+        'feature_id': value['featureId'],
+        'metric_period': value['metricPeriod'],
+        'value_bool': value['valueBool'],
+        'value_numeric': value['valueNumeric'],
+        'value_trait_id': value['valueTraitId'],
+        'value_type': value['valueType'],
     };
 }
 

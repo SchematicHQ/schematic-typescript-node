@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -24,7 +24,7 @@ export interface MetricCountsHourlyResponseData {
      * @type {string}
      * @memberof MetricCountsHourlyResponseData
      */
-    companyId?: string | null;
+    companyId?: string;
     /**
      * 
      * @type {Date}
@@ -54,7 +54,7 @@ export interface MetricCountsHourlyResponseData {
      * @type {string}
      * @memberof MetricCountsHourlyResponseData
      */
-    userId?: string | null;
+    userId?: string;
     /**
      * 
      * @type {number}
@@ -67,14 +67,12 @@ export interface MetricCountsHourlyResponseData {
  * Check if a given object implements the MetricCountsHourlyResponseData interface.
  */
 export function instanceOfMetricCountsHourlyResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "environmentId" in value;
-    isInstance = isInstance && "eventSubtype" in value;
-    isInstance = isInstance && "startTime" in value;
-    isInstance = isInstance && "value" in value;
-
-    return isInstance;
+    if (!('createdAt' in value)) return false;
+    if (!('environmentId' in value)) return false;
+    if (!('eventSubtype' in value)) return false;
+    if (!('startTime' in value)) return false;
+    if (!('value' in value)) return false;
+    return true;
 }
 
 export function MetricCountsHourlyResponseDataFromJSON(json: any): MetricCountsHourlyResponseData {
@@ -82,37 +80,34 @@ export function MetricCountsHourlyResponseDataFromJSON(json: any): MetricCountsH
 }
 
 export function MetricCountsHourlyResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): MetricCountsHourlyResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
+        'companyId': json['company_id'] == null ? undefined : json['company_id'],
         'createdAt': (new Date(json['created_at'])),
         'environmentId': json['environment_id'],
         'eventSubtype': json['event_subtype'],
         'startTime': (new Date(json['start_time'])),
-        'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
+        'userId': json['user_id'] == null ? undefined : json['user_id'],
         'value': json['value'],
     };
 }
 
 export function MetricCountsHourlyResponseDataToJSON(value?: MetricCountsHourlyResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'company_id': value.companyId,
-        'created_at': (value.createdAt.toISOString()),
-        'environment_id': value.environmentId,
-        'event_subtype': value.eventSubtype,
-        'start_time': (value.startTime.toISOString()),
-        'user_id': value.userId,
-        'value': value.value,
+        'company_id': value['companyId'],
+        'created_at': ((value['createdAt']).toISOString()),
+        'environment_id': value['environmentId'],
+        'event_subtype': value['eventSubtype'],
+        'start_time': ((value['startTime']).toISOString()),
+        'user_id': value['userId'],
+        'value': value['value'],
     };
 }
 

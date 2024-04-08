@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -24,13 +24,13 @@ export interface RuleConditionResponseData {
      * @type {string}
      * @memberof RuleConditionResponseData
      */
-    comparisonTraitId?: string | null;
+    comparisonTraitId?: string;
     /**
      * 
      * @type {string}
      * @memberof RuleConditionResponseData
      */
-    conditionGroupId?: string | null;
+    conditionGroupId?: string;
     /**
      * 
      * @type {string}
@@ -54,13 +54,13 @@ export interface RuleConditionResponseData {
      * @type {string}
      * @memberof RuleConditionResponseData
      */
-    eventSubtype?: string | null;
+    eventSubtype?: string;
     /**
      * 
      * @type {string}
      * @memberof RuleConditionResponseData
      */
-    flagId?: string | null;
+    flagId?: string;
     /**
      * 
      * @type {string}
@@ -72,7 +72,7 @@ export interface RuleConditionResponseData {
      * @type {string}
      * @memberof RuleConditionResponseData
      */
-    metricPeriod?: string | null;
+    metricPeriod?: string;
     /**
      * 
      * @type {number}
@@ -90,7 +90,7 @@ export interface RuleConditionResponseData {
      * @type {string}
      * @memberof RuleConditionResponseData
      */
-    planId?: string | null;
+    planId?: string;
     /**
      * 
      * @type {Array<string>}
@@ -108,13 +108,13 @@ export interface RuleConditionResponseData {
      * @type {string}
      * @memberof RuleConditionResponseData
      */
-    traitEntityType?: string | null;
+    traitEntityType?: string;
     /**
      * 
      * @type {string}
      * @memberof RuleConditionResponseData
      */
-    traitId?: string | null;
+    traitId?: string;
     /**
      * 
      * @type {string}
@@ -133,19 +133,17 @@ export interface RuleConditionResponseData {
  * Check if a given object implements the RuleConditionResponseData interface.
  */
 export function instanceOfRuleConditionResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "conditionType" in value;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "environmentId" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "metricValue" in value;
-    isInstance = isInstance && "operator" in value;
-    isInstance = isInstance && "resourceIds" in value;
-    isInstance = isInstance && "ruleId" in value;
-    isInstance = isInstance && "traitValue" in value;
-    isInstance = isInstance && "updatedAt" in value;
-
-    return isInstance;
+    if (!('conditionType' in value)) return false;
+    if (!('createdAt' in value)) return false;
+    if (!('environmentId' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('metricValue' in value)) return false;
+    if (!('operator' in value)) return false;
+    if (!('resourceIds' in value)) return false;
+    if (!('ruleId' in value)) return false;
+    if (!('traitValue' in value)) return false;
+    if (!('updatedAt' in value)) return false;
+    return true;
 }
 
 export function RuleConditionResponseDataFromJSON(json: any): RuleConditionResponseData {
@@ -153,59 +151,56 @@ export function RuleConditionResponseDataFromJSON(json: any): RuleConditionRespo
 }
 
 export function RuleConditionResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): RuleConditionResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'comparisonTraitId': !exists(json, 'comparison_trait_id') ? undefined : json['comparison_trait_id'],
-        'conditionGroupId': !exists(json, 'condition_group_id') ? undefined : json['condition_group_id'],
+        'comparisonTraitId': json['comparison_trait_id'] == null ? undefined : json['comparison_trait_id'],
+        'conditionGroupId': json['condition_group_id'] == null ? undefined : json['condition_group_id'],
         'conditionType': json['condition_type'],
         'createdAt': (new Date(json['created_at'])),
         'environmentId': json['environment_id'],
-        'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
-        'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
+        'eventSubtype': json['event_subtype'] == null ? undefined : json['event_subtype'],
+        'flagId': json['flag_id'] == null ? undefined : json['flag_id'],
         'id': json['id'],
-        'metricPeriod': !exists(json, 'metric_period') ? undefined : json['metric_period'],
+        'metricPeriod': json['metric_period'] == null ? undefined : json['metric_period'],
         'metricValue': json['metric_value'],
         'operator': json['operator'],
-        'planId': !exists(json, 'plan_id') ? undefined : json['plan_id'],
+        'planId': json['plan_id'] == null ? undefined : json['plan_id'],
         'resourceIds': json['resource_ids'],
         'ruleId': json['rule_id'],
-        'traitEntityType': !exists(json, 'trait_entity_type') ? undefined : json['trait_entity_type'],
-        'traitId': !exists(json, 'trait_id') ? undefined : json['trait_id'],
+        'traitEntityType': json['trait_entity_type'] == null ? undefined : json['trait_entity_type'],
+        'traitId': json['trait_id'] == null ? undefined : json['trait_id'],
         'traitValue': json['trait_value'],
         'updatedAt': (new Date(json['updated_at'])),
     };
 }
 
 export function RuleConditionResponseDataToJSON(value?: RuleConditionResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'comparison_trait_id': value.comparisonTraitId,
-        'condition_group_id': value.conditionGroupId,
-        'condition_type': value.conditionType,
-        'created_at': (value.createdAt.toISOString()),
-        'environment_id': value.environmentId,
-        'event_subtype': value.eventSubtype,
-        'flag_id': value.flagId,
-        'id': value.id,
-        'metric_period': value.metricPeriod,
-        'metric_value': value.metricValue,
-        'operator': value.operator,
-        'plan_id': value.planId,
-        'resource_ids': value.resourceIds,
-        'rule_id': value.ruleId,
-        'trait_entity_type': value.traitEntityType,
-        'trait_id': value.traitId,
-        'trait_value': value.traitValue,
-        'updated_at': (value.updatedAt.toISOString()),
+        'comparison_trait_id': value['comparisonTraitId'],
+        'condition_group_id': value['conditionGroupId'],
+        'condition_type': value['conditionType'],
+        'created_at': ((value['createdAt']).toISOString()),
+        'environment_id': value['environmentId'],
+        'event_subtype': value['eventSubtype'],
+        'flag_id': value['flagId'],
+        'id': value['id'],
+        'metric_period': value['metricPeriod'],
+        'metric_value': value['metricValue'],
+        'operator': value['operator'],
+        'plan_id': value['planId'],
+        'resource_ids': value['resourceIds'],
+        'rule_id': value['ruleId'],
+        'trait_entity_type': value['traitEntityType'],
+        'trait_id': value['traitId'],
+        'trait_value': value['traitValue'],
+        'updated_at': ((value['updatedAt']).toISOString()),
     };
 }
 

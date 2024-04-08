@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The returned resource
  * @export
@@ -24,7 +24,7 @@ export interface EventResponseData {
      * @type {string}
      * @memberof EventResponseData
      */
-    apiKey?: string | null;
+    apiKey?: string;
     /**
      * 
      * @type {object}
@@ -42,25 +42,25 @@ export interface EventResponseData {
      * @type {string}
      * @memberof EventResponseData
      */
-    companyId?: string | null;
+    companyId?: string;
     /**
      * 
      * @type {Date}
      * @memberof EventResponseData
      */
-    enrichedAt?: Date | null;
+    enrichedAt?: Date;
     /**
      * 
      * @type {string}
      * @memberof EventResponseData
      */
-    environmentId?: string | null;
+    environmentId?: string;
     /**
      * 
      * @type {string}
      * @memberof EventResponseData
      */
-    errorMessage?: string | null;
+    errorMessage?: string;
     /**
      * 
      * @type {Array<string>}
@@ -78,19 +78,19 @@ export interface EventResponseData {
      * @type {Date}
      * @memberof EventResponseData
      */
-    loadedAt?: Date | null;
+    loadedAt?: Date;
     /**
      * 
      * @type {Date}
      * @memberof EventResponseData
      */
-    processedAt?: Date | null;
+    processedAt?: Date;
     /**
      * 
      * @type {Date}
      * @memberof EventResponseData
      */
-    sentAt?: Date | null;
+    sentAt?: Date;
     /**
      * 
      * @type {string}
@@ -102,7 +102,7 @@ export interface EventResponseData {
      * @type {string}
      * @memberof EventResponseData
      */
-    subtype?: string | null;
+    subtype?: string;
     /**
      * 
      * @type {string}
@@ -120,23 +120,21 @@ export interface EventResponseData {
      * @type {string}
      * @memberof EventResponseData
      */
-    userId?: string | null;
+    userId?: string;
 }
 
 /**
  * Check if a given object implements the EventResponseData interface.
  */
 export function instanceOfEventResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "body" in value;
-    isInstance = isInstance && "capturedAt" in value;
-    isInstance = isInstance && "featureIds" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "status" in value;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "updatedAt" in value;
-
-    return isInstance;
+    if (!('body' in value)) return false;
+    if (!('capturedAt' in value)) return false;
+    if (!('featureIds' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('status' in value)) return false;
+    if (!('type' in value)) return false;
+    if (!('updatedAt' in value)) return false;
+    return true;
 }
 
 export function EventResponseDataFromJSON(json: any): EventResponseData {
@@ -144,57 +142,54 @@ export function EventResponseDataFromJSON(json: any): EventResponseData {
 }
 
 export function EventResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): EventResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'apiKey': !exists(json, 'api_key') ? undefined : json['api_key'],
+        'apiKey': json['api_key'] == null ? undefined : json['api_key'],
         'body': json['body'],
         'capturedAt': (new Date(json['captured_at'])),
-        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'enrichedAt': !exists(json, 'enriched_at') ? undefined : (json['enriched_at'] === null ? null : new Date(json['enriched_at'])),
-        'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
-        'errorMessage': !exists(json, 'error_message') ? undefined : json['error_message'],
+        'companyId': json['company_id'] == null ? undefined : json['company_id'],
+        'enrichedAt': json['enriched_at'] == null ? undefined : (new Date(json['enriched_at'])),
+        'environmentId': json['environment_id'] == null ? undefined : json['environment_id'],
+        'errorMessage': json['error_message'] == null ? undefined : json['error_message'],
         'featureIds': json['feature_ids'],
         'id': json['id'],
-        'loadedAt': !exists(json, 'loaded_at') ? undefined : (json['loaded_at'] === null ? null : new Date(json['loaded_at'])),
-        'processedAt': !exists(json, 'processed_at') ? undefined : (json['processed_at'] === null ? null : new Date(json['processed_at'])),
-        'sentAt': !exists(json, 'sent_at') ? undefined : (json['sent_at'] === null ? null : new Date(json['sent_at'])),
+        'loadedAt': json['loaded_at'] == null ? undefined : (new Date(json['loaded_at'])),
+        'processedAt': json['processed_at'] == null ? undefined : (new Date(json['processed_at'])),
+        'sentAt': json['sent_at'] == null ? undefined : (new Date(json['sent_at'])),
         'status': json['status'],
-        'subtype': !exists(json, 'subtype') ? undefined : json['subtype'],
+        'subtype': json['subtype'] == null ? undefined : json['subtype'],
         'type': json['type'],
         'updatedAt': (new Date(json['updated_at'])),
-        'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
+        'userId': json['user_id'] == null ? undefined : json['user_id'],
     };
 }
 
 export function EventResponseDataToJSON(value?: EventResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'api_key': value.apiKey,
-        'body': value.body,
-        'captured_at': (value.capturedAt.toISOString()),
-        'company_id': value.companyId,
-        'enriched_at': value.enrichedAt === undefined ? undefined : (value.enrichedAt === null ? null : value.enrichedAt.toISOString()),
-        'environment_id': value.environmentId,
-        'error_message': value.errorMessage,
-        'feature_ids': value.featureIds,
-        'id': value.id,
-        'loaded_at': value.loadedAt === undefined ? undefined : (value.loadedAt === null ? null : value.loadedAt.toISOString()),
-        'processed_at': value.processedAt === undefined ? undefined : (value.processedAt === null ? null : value.processedAt.toISOString()),
-        'sent_at': value.sentAt === undefined ? undefined : (value.sentAt === null ? null : value.sentAt.toISOString()),
-        'status': value.status,
-        'subtype': value.subtype,
-        'type': value.type,
-        'updated_at': (value.updatedAt.toISOString()),
-        'user_id': value.userId,
+        'api_key': value['apiKey'],
+        'body': value['body'],
+        'captured_at': ((value['capturedAt']).toISOString()),
+        'company_id': value['companyId'],
+        'enriched_at': value['enrichedAt'] == null ? undefined : ((value['enrichedAt'] as any).toISOString()),
+        'environment_id': value['environmentId'],
+        'error_message': value['errorMessage'],
+        'feature_ids': value['featureIds'],
+        'id': value['id'],
+        'loaded_at': value['loadedAt'] == null ? undefined : ((value['loadedAt'] as any).toISOString()),
+        'processed_at': value['processedAt'] == null ? undefined : ((value['processedAt'] as any).toISOString()),
+        'sent_at': value['sentAt'] == null ? undefined : ((value['sentAt'] as any).toISOString()),
+        'status': value['status'],
+        'subtype': value['subtype'],
+        'type': value['type'],
+        'updated_at': ((value['updatedAt']).toISOString()),
+        'user_id': value['userId'],
     };
 }
 

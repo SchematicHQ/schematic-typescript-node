@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The returned resource
  * @export
@@ -30,13 +30,13 @@ export interface ApiKeyRequestResponseData {
      * @type {Date}
      * @memberof ApiKeyRequestResponseData
      */
-    endedAt?: Date | null;
+    endedAt?: Date;
     /**
      * 
      * @type {string}
      * @memberof ApiKeyRequestResponseData
      */
-    environmentId?: string | null;
+    environmentId?: string;
     /**
      * 
      * @type {string}
@@ -54,55 +54,55 @@ export interface ApiKeyRequestResponseData {
      * @type {string}
      * @memberof ApiKeyRequestResponseData
      */
-    reqBody?: string | null;
+    reqBody?: string;
     /**
      * 
      * @type {string}
      * @memberof ApiKeyRequestResponseData
      */
-    requestType?: string | null;
+    requestType?: string;
     /**
      * 
      * @type {number}
      * @memberof ApiKeyRequestResponseData
      */
-    resourceId?: number | null;
+    resourceId?: number;
     /**
      * 
      * @type {string}
      * @memberof ApiKeyRequestResponseData
      */
-    resourceIdString?: string | null;
+    resourceIdString?: string;
     /**
      * 
      * @type {string}
      * @memberof ApiKeyRequestResponseData
      */
-    resourceName?: string | null;
+    resourceName?: string;
     /**
      * 
      * @type {string}
      * @memberof ApiKeyRequestResponseData
      */
-    resourceType?: string | null;
+    resourceType?: string;
     /**
      * 
      * @type {string}
      * @memberof ApiKeyRequestResponseData
      */
-    respBody?: string | null;
+    respBody?: string;
     /**
      * 
      * @type {number}
      * @memberof ApiKeyRequestResponseData
      */
-    respCode?: number | null;
+    respCode?: number;
     /**
      * 
      * @type {string}
      * @memberof ApiKeyRequestResponseData
      */
-    secondaryResource?: string | null;
+    secondaryResource?: string;
     /**
      * 
      * @type {Date}
@@ -120,33 +120,31 @@ export interface ApiKeyRequestResponseData {
      * @type {string}
      * @memberof ApiKeyRequestResponseData
      */
-    userAgent?: string | null;
+    userAgent?: string;
     /**
      * 
      * @type {string}
      * @memberof ApiKeyRequestResponseData
      */
-    userId?: string | null;
+    userId?: string;
     /**
      * 
      * @type {string}
      * @memberof ApiKeyRequestResponseData
      */
-    userName?: string | null;
+    userName?: string;
 }
 
 /**
  * Check if a given object implements the ApiKeyRequestResponseData interface.
  */
 export function instanceOfApiKeyRequestResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "apiKeyId" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "method" in value;
-    isInstance = isInstance && "startedAt" in value;
-    isInstance = isInstance && "url" in value;
-
-    return isInstance;
+    if (!('apiKeyId' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('method' in value)) return false;
+    if (!('startedAt' in value)) return false;
+    if (!('url' in value)) return false;
+    return true;
 }
 
 export function ApiKeyRequestResponseDataFromJSON(json: any): ApiKeyRequestResponseData {
@@ -154,61 +152,58 @@ export function ApiKeyRequestResponseDataFromJSON(json: any): ApiKeyRequestRespo
 }
 
 export function ApiKeyRequestResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): ApiKeyRequestResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'apiKeyId': json['api_key_id'],
-        'endedAt': !exists(json, 'ended_at') ? undefined : (json['ended_at'] === null ? null : new Date(json['ended_at'])),
-        'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
+        'endedAt': json['ended_at'] == null ? undefined : (new Date(json['ended_at'])),
+        'environmentId': json['environment_id'] == null ? undefined : json['environment_id'],
         'id': json['id'],
         'method': json['method'],
-        'reqBody': !exists(json, 'req_body') ? undefined : json['req_body'],
-        'requestType': !exists(json, 'request_type') ? undefined : json['request_type'],
-        'resourceId': !exists(json, 'resource_id') ? undefined : json['resource_id'],
-        'resourceIdString': !exists(json, 'resource_id_string') ? undefined : json['resource_id_string'],
-        'resourceName': !exists(json, 'resource_name') ? undefined : json['resource_name'],
-        'resourceType': !exists(json, 'resource_type') ? undefined : json['resource_type'],
-        'respBody': !exists(json, 'resp_body') ? undefined : json['resp_body'],
-        'respCode': !exists(json, 'resp_code') ? undefined : json['resp_code'],
-        'secondaryResource': !exists(json, 'secondary_resource') ? undefined : json['secondary_resource'],
+        'reqBody': json['req_body'] == null ? undefined : json['req_body'],
+        'requestType': json['request_type'] == null ? undefined : json['request_type'],
+        'resourceId': json['resource_id'] == null ? undefined : json['resource_id'],
+        'resourceIdString': json['resource_id_string'] == null ? undefined : json['resource_id_string'],
+        'resourceName': json['resource_name'] == null ? undefined : json['resource_name'],
+        'resourceType': json['resource_type'] == null ? undefined : json['resource_type'],
+        'respBody': json['resp_body'] == null ? undefined : json['resp_body'],
+        'respCode': json['resp_code'] == null ? undefined : json['resp_code'],
+        'secondaryResource': json['secondary_resource'] == null ? undefined : json['secondary_resource'],
         'startedAt': (new Date(json['started_at'])),
         'url': json['url'],
-        'userAgent': !exists(json, 'user_agent') ? undefined : json['user_agent'],
-        'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
-        'userName': !exists(json, 'user_name') ? undefined : json['user_name'],
+        'userAgent': json['user_agent'] == null ? undefined : json['user_agent'],
+        'userId': json['user_id'] == null ? undefined : json['user_id'],
+        'userName': json['user_name'] == null ? undefined : json['user_name'],
     };
 }
 
 export function ApiKeyRequestResponseDataToJSON(value?: ApiKeyRequestResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'api_key_id': value.apiKeyId,
-        'ended_at': value.endedAt === undefined ? undefined : (value.endedAt === null ? null : value.endedAt.toISOString()),
-        'environment_id': value.environmentId,
-        'id': value.id,
-        'method': value.method,
-        'req_body': value.reqBody,
-        'request_type': value.requestType,
-        'resource_id': value.resourceId,
-        'resource_id_string': value.resourceIdString,
-        'resource_name': value.resourceName,
-        'resource_type': value.resourceType,
-        'resp_body': value.respBody,
-        'resp_code': value.respCode,
-        'secondary_resource': value.secondaryResource,
-        'started_at': (value.startedAt.toISOString()),
-        'url': value.url,
-        'user_agent': value.userAgent,
-        'user_id': value.userId,
-        'user_name': value.userName,
+        'api_key_id': value['apiKeyId'],
+        'ended_at': value['endedAt'] == null ? undefined : ((value['endedAt'] as any).toISOString()),
+        'environment_id': value['environmentId'],
+        'id': value['id'],
+        'method': value['method'],
+        'req_body': value['reqBody'],
+        'request_type': value['requestType'],
+        'resource_id': value['resourceId'],
+        'resource_id_string': value['resourceIdString'],
+        'resource_name': value['resourceName'],
+        'resource_type': value['resourceType'],
+        'resp_body': value['respBody'],
+        'resp_code': value['respCode'],
+        'secondary_resource': value['secondaryResource'],
+        'started_at': ((value['startedAt']).toISOString()),
+        'url': value['url'],
+        'user_agent': value['userAgent'],
+        'user_id': value['userId'],
+        'user_name': value['userName'],
     };
 }
 

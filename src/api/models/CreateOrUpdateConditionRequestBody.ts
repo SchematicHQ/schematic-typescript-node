@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -24,7 +24,7 @@ export interface CreateOrUpdateConditionRequestBody {
      * @type {string}
      * @memberof CreateOrUpdateConditionRequestBody
      */
-    comparisonTraitId?: string | null;
+    comparisonTraitId?: string;
     /**
      * 
      * @type {string}
@@ -36,13 +36,13 @@ export interface CreateOrUpdateConditionRequestBody {
      * @type {string}
      * @memberof CreateOrUpdateConditionRequestBody
      */
-    eventSubtype?: string | null;
+    eventSubtype?: string;
     /**
      * 
      * @type {string}
      * @memberof CreateOrUpdateConditionRequestBody
      */
-    id?: string | null;
+    id?: string;
     /**
      * Period of time over which to measure the track event metric
      * @type {string}
@@ -72,13 +72,13 @@ export interface CreateOrUpdateConditionRequestBody {
      * @type {string}
      * @memberof CreateOrUpdateConditionRequestBody
      */
-    traitId?: string | null;
+    traitId?: string;
     /**
      * Value to compare the trait value against
      * @type {string}
      * @memberof CreateOrUpdateConditionRequestBody
      */
-    traitValue?: string | null;
+    traitValue?: string;
 }
 
 
@@ -122,13 +122,11 @@ export type CreateOrUpdateConditionRequestBodyOperatorEnum = typeof CreateOrUpda
  * Check if a given object implements the CreateOrUpdateConditionRequestBody interface.
  */
 export function instanceOfCreateOrUpdateConditionRequestBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "conditionType" in value;
-    isInstance = isInstance && "metricValue" in value;
-    isInstance = isInstance && "operator" in value;
-    isInstance = isInstance && "resourceIds" in value;
-
-    return isInstance;
+    if (!('conditionType' in value)) return false;
+    if (!('metricValue' in value)) return false;
+    if (!('operator' in value)) return false;
+    if (!('resourceIds' in value)) return false;
+    return true;
 }
 
 export function CreateOrUpdateConditionRequestBodyFromJSON(json: any): CreateOrUpdateConditionRequestBody {
@@ -136,43 +134,40 @@ export function CreateOrUpdateConditionRequestBodyFromJSON(json: any): CreateOrU
 }
 
 export function CreateOrUpdateConditionRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateOrUpdateConditionRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'comparisonTraitId': !exists(json, 'comparison_trait_id') ? undefined : json['comparison_trait_id'],
+        'comparisonTraitId': json['comparison_trait_id'] == null ? undefined : json['comparison_trait_id'],
         'conditionType': json['condition_type'],
-        'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'metricPeriod': !exists(json, 'metric_period') ? undefined : json['metric_period'],
+        'eventSubtype': json['event_subtype'] == null ? undefined : json['event_subtype'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'metricPeriod': json['metric_period'] == null ? undefined : json['metric_period'],
         'metricValue': json['metric_value'],
         'operator': json['operator'],
         'resourceIds': json['resource_ids'],
-        'traitId': !exists(json, 'trait_id') ? undefined : json['trait_id'],
-        'traitValue': !exists(json, 'trait_value') ? undefined : json['trait_value'],
+        'traitId': json['trait_id'] == null ? undefined : json['trait_id'],
+        'traitValue': json['trait_value'] == null ? undefined : json['trait_value'],
     };
 }
 
 export function CreateOrUpdateConditionRequestBodyToJSON(value?: CreateOrUpdateConditionRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'comparison_trait_id': value.comparisonTraitId,
-        'condition_type': value.conditionType,
-        'event_subtype': value.eventSubtype,
-        'id': value.id,
-        'metric_period': value.metricPeriod,
-        'metric_value': value.metricValue,
-        'operator': value.operator,
-        'resource_ids': value.resourceIds,
-        'trait_id': value.traitId,
-        'trait_value': value.traitValue,
+        'comparison_trait_id': value['comparisonTraitId'],
+        'condition_type': value['conditionType'],
+        'event_subtype': value['eventSubtype'],
+        'id': value['id'],
+        'metric_period': value['metricPeriod'],
+        'metric_value': value['metricValue'],
+        'operator': value['operator'],
+        'resource_ids': value['resourceIds'],
+        'trait_id': value['traitId'],
+        'trait_value': value['traitValue'],
     };
 }
 

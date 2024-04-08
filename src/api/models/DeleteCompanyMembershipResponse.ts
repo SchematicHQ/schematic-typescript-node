@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { DeleteResponse } from './DeleteResponse';
 import {
     DeleteResponseFromJSON,
@@ -44,11 +44,9 @@ export interface DeleteCompanyMembershipResponse {
  * Check if a given object implements the DeleteCompanyMembershipResponse interface.
  */
 export function instanceOfDeleteCompanyMembershipResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function DeleteCompanyMembershipResponseFromJSON(json: any): DeleteCompanyMembershipResponse {
@@ -56,7 +54,7 @@ export function DeleteCompanyMembershipResponseFromJSON(json: any): DeleteCompan
 }
 
 export function DeleteCompanyMembershipResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): DeleteCompanyMembershipResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function DeleteCompanyMembershipResponseFromJSONTyped(json: any, ignoreDi
 }
 
 export function DeleteCompanyMembershipResponseToJSON(value?: DeleteCompanyMembershipResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': DeleteResponseToJSON(value.data),
-        'params': value.params,
+        'data': DeleteResponseToJSON(value['data']),
+        'params': value['params'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CompanyDetailResponseData } from './CompanyDetailResponseData';
 import {
     CompanyDetailResponseDataFromJSON,
@@ -44,11 +44,9 @@ export interface GetCompanyResponse {
  * Check if a given object implements the GetCompanyResponse interface.
  */
 export function instanceOfGetCompanyResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function GetCompanyResponseFromJSON(json: any): GetCompanyResponse {
@@ -56,7 +54,7 @@ export function GetCompanyResponseFromJSON(json: any): GetCompanyResponse {
 }
 
 export function GetCompanyResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetCompanyResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function GetCompanyResponseFromJSONTyped(json: any, ignoreDiscriminator: 
 }
 
 export function GetCompanyResponseToJSON(value?: GetCompanyResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': CompanyDetailResponseDataToJSON(value.data),
-        'params': value.params,
+        'data': CompanyDetailResponseDataToJSON(value['data']),
+        'params': value['params'],
     };
 }
 

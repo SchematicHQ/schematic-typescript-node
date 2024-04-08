@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CreateOrUpdateConditionGroupRequestBody } from './CreateOrUpdateConditionGroupRequestBody';
 import {
     CreateOrUpdateConditionGroupRequestBodyFromJSON,
@@ -50,11 +50,9 @@ export interface UpdateAudienceRequestBody {
  * Check if a given object implements the UpdateAudienceRequestBody interface.
  */
 export function instanceOfUpdateAudienceRequestBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "conditionGroups" in value;
-    isInstance = isInstance && "conditions" in value;
-
-    return isInstance;
+    if (!('conditionGroups' in value)) return false;
+    if (!('conditions' in value)) return false;
+    return true;
 }
 
 export function UpdateAudienceRequestBodyFromJSON(json: any): UpdateAudienceRequestBody {
@@ -62,7 +60,7 @@ export function UpdateAudienceRequestBodyFromJSON(json: any): UpdateAudienceRequ
 }
 
 export function UpdateAudienceRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateAudienceRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function UpdateAudienceRequestBodyFromJSONTyped(json: any, ignoreDiscrimi
 }
 
 export function UpdateAudienceRequestBodyToJSON(value?: UpdateAudienceRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'condition_groups': ((value.conditionGroups as Array<any>).map(CreateOrUpdateConditionGroupRequestBodyToJSON)),
-        'conditions': ((value.conditions as Array<any>).map(CreateOrUpdateConditionRequestBodyToJSON)),
+        'condition_groups': ((value['conditionGroups'] as Array<any>).map(CreateOrUpdateConditionGroupRequestBodyToJSON)),
+        'conditions': ((value['conditions'] as Array<any>).map(CreateOrUpdateConditionRequestBodyToJSON)),
     };
 }
 

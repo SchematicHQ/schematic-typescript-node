@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -30,7 +30,7 @@ export interface UpdateEnvironmentRequestBody {
      * @type {string}
      * @memberof UpdateEnvironmentRequestBody
      */
-    name?: string | null;
+    name?: string;
 }
 
 
@@ -49,9 +49,7 @@ export type UpdateEnvironmentRequestBodyEnvironmentTypeEnum = typeof UpdateEnvir
  * Check if a given object implements the UpdateEnvironmentRequestBody interface.
  */
 export function instanceOfUpdateEnvironmentRequestBody(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function UpdateEnvironmentRequestBodyFromJSON(json: any): UpdateEnvironmentRequestBody {
@@ -59,27 +57,24 @@ export function UpdateEnvironmentRequestBodyFromJSON(json: any): UpdateEnvironme
 }
 
 export function UpdateEnvironmentRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateEnvironmentRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'environmentType': !exists(json, 'environment_type') ? undefined : json['environment_type'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
+        'environmentType': json['environment_type'] == null ? undefined : json['environment_type'],
+        'name': json['name'] == null ? undefined : json['name'],
     };
 }
 
 export function UpdateEnvironmentRequestBodyToJSON(value?: UpdateEnvironmentRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'environment_type': value.environmentType,
-        'name': value.name,
+        'environment_type': value['environmentType'],
+        'name': value['name'],
     };
 }
 

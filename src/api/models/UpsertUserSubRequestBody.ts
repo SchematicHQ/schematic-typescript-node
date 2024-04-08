@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -24,7 +24,7 @@ export interface UpsertUserSubRequestBody {
      * @type {string}
      * @memberof UpsertUserSubRequestBody
      */
-    companyId?: string | null;
+    companyId?: string;
     /**
      * 
      * @type {object}
@@ -36,13 +36,13 @@ export interface UpsertUserSubRequestBody {
      * @type {Date}
      * @memberof UpsertUserSubRequestBody
      */
-    lastSeenAt?: Date | null;
+    lastSeenAt?: Date;
     /**
      * 
      * @type {string}
      * @memberof UpsertUserSubRequestBody
      */
-    name?: string | null;
+    name?: string;
     /**
      * A map of trait names to trait values
      * @type {object}
@@ -54,17 +54,15 @@ export interface UpsertUserSubRequestBody {
      * @type {boolean}
      * @memberof UpsertUserSubRequestBody
      */
-    updateOnly?: boolean | null;
+    updateOnly?: boolean;
 }
 
 /**
  * Check if a given object implements the UpsertUserSubRequestBody interface.
  */
 export function instanceOfUpsertUserSubRequestBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "keys" in value;
-
-    return isInstance;
+    if (!('keys' in value)) return false;
+    return true;
 }
 
 export function UpsertUserSubRequestBodyFromJSON(json: any): UpsertUserSubRequestBody {
@@ -72,35 +70,32 @@ export function UpsertUserSubRequestBodyFromJSON(json: any): UpsertUserSubReques
 }
 
 export function UpsertUserSubRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpsertUserSubRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
+        'companyId': json['company_id'] == null ? undefined : json['company_id'],
         'keys': json['keys'],
-        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (json['last_seen_at'] === null ? null : new Date(json['last_seen_at'])),
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'traits': !exists(json, 'traits') ? undefined : json['traits'],
-        'updateOnly': !exists(json, 'update_only') ? undefined : json['update_only'],
+        'lastSeenAt': json['last_seen_at'] == null ? undefined : (new Date(json['last_seen_at'])),
+        'name': json['name'] == null ? undefined : json['name'],
+        'traits': json['traits'] == null ? undefined : json['traits'],
+        'updateOnly': json['update_only'] == null ? undefined : json['update_only'],
     };
 }
 
 export function UpsertUserSubRequestBodyToJSON(value?: UpsertUserSubRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'company_id': value.companyId,
-        'keys': value.keys,
-        'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt === null ? null : value.lastSeenAt.toISOString()),
-        'name': value.name,
-        'traits': value.traits,
-        'update_only': value.updateOnly,
+        'company_id': value['companyId'],
+        'keys': value['keys'],
+        'last_seen_at': value['lastSeenAt'] == null ? undefined : ((value['lastSeenAt'] as any).toISOString()),
+        'name': value['name'],
+        'traits': value['traits'],
+        'update_only': value['updateOnly'],
     };
 }
 

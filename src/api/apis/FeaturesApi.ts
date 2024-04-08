@@ -20,30 +20,30 @@ import type {
   CheckFlagRequestBody,
   CheckFlagResponse,
   CheckFlagsResponse,
-  CountCompaniesAudienceResponse,
+  CountAudienceCompaniesResponse,
+  CountAudienceUsersResponse,
   CountFlagChecksResponse,
-  CountUsersAudienceResponse,
   CreateFeatureRequestBody,
   CreateFeatureResponse,
   CreateFlagRequestBody,
   CreateFlagResponse,
   DeleteFeatureResponse,
   DeleteFlagResponse,
-  GetCompaniesAudienceResponse,
   GetFeatureResponse,
   GetFlagCheckResponse,
   GetFlagResponse,
-  GetUsersAudienceResponse,
-  LatestFlagChecksResponse,
+  GetLatestFlagChecksResponse,
+  ListAudienceCompaniesResponse,
+  ListAudienceUsersResponse,
   ListFeaturesResponse,
   ListFlagChecksResponse,
   ListFlagsResponse,
-  RulesFlagResponse,
   UpdateFeatureRequestBody,
   UpdateFeatureResponse,
   UpdateFlagResponse,
   UpdateFlagRulesRequestBody,
-} from '../models';
+  UpdateFlagRulesResponse,
+} from '../models/index';
 import {
     ApiErrorFromJSON,
     ApiErrorToJSON,
@@ -55,12 +55,12 @@ import {
     CheckFlagResponseToJSON,
     CheckFlagsResponseFromJSON,
     CheckFlagsResponseToJSON,
-    CountCompaniesAudienceResponseFromJSON,
-    CountCompaniesAudienceResponseToJSON,
+    CountAudienceCompaniesResponseFromJSON,
+    CountAudienceCompaniesResponseToJSON,
+    CountAudienceUsersResponseFromJSON,
+    CountAudienceUsersResponseToJSON,
     CountFlagChecksResponseFromJSON,
     CountFlagChecksResponseToJSON,
-    CountUsersAudienceResponseFromJSON,
-    CountUsersAudienceResponseToJSON,
     CreateFeatureRequestBodyFromJSON,
     CreateFeatureRequestBodyToJSON,
     CreateFeatureResponseFromJSON,
@@ -73,26 +73,24 @@ import {
     DeleteFeatureResponseToJSON,
     DeleteFlagResponseFromJSON,
     DeleteFlagResponseToJSON,
-    GetCompaniesAudienceResponseFromJSON,
-    GetCompaniesAudienceResponseToJSON,
     GetFeatureResponseFromJSON,
     GetFeatureResponseToJSON,
     GetFlagCheckResponseFromJSON,
     GetFlagCheckResponseToJSON,
     GetFlagResponseFromJSON,
     GetFlagResponseToJSON,
-    GetUsersAudienceResponseFromJSON,
-    GetUsersAudienceResponseToJSON,
-    LatestFlagChecksResponseFromJSON,
-    LatestFlagChecksResponseToJSON,
+    GetLatestFlagChecksResponseFromJSON,
+    GetLatestFlagChecksResponseToJSON,
+    ListAudienceCompaniesResponseFromJSON,
+    ListAudienceCompaniesResponseToJSON,
+    ListAudienceUsersResponseFromJSON,
+    ListAudienceUsersResponseToJSON,
     ListFeaturesResponseFromJSON,
     ListFeaturesResponseToJSON,
     ListFlagChecksResponseFromJSON,
     ListFlagChecksResponseToJSON,
     ListFlagsResponseFromJSON,
     ListFlagsResponseToJSON,
-    RulesFlagResponseFromJSON,
-    RulesFlagResponseToJSON,
     UpdateFeatureRequestBodyFromJSON,
     UpdateFeatureRequestBodyToJSON,
     UpdateFeatureResponseFromJSON,
@@ -101,7 +99,9 @@ import {
     UpdateFlagResponseToJSON,
     UpdateFlagRulesRequestBodyFromJSON,
     UpdateFlagRulesRequestBodyToJSON,
-} from '../models';
+    UpdateFlagRulesResponseFromJSON,
+    UpdateFlagRulesResponseToJSON,
+} from '../models/index';
 
 export interface CheckFlagRequest {
     checkFlagRequestBody: CheckFlagRequestBody;
@@ -112,7 +112,11 @@ export interface CheckFlagsRequest {
     checkFlagRequestBody: CheckFlagRequestBody;
 }
 
-export interface CountCompaniesAudienceRequest {
+export interface CountAudienceCompaniesRequest {
+    audienceRequestBody: AudienceRequestBody;
+}
+
+export interface CountAudienceUsersRequest {
     audienceRequestBody: AudienceRequestBody;
 }
 
@@ -122,10 +126,6 @@ export interface CountFlagChecksRequest {
     id?: string;
     limit?: number;
     offset?: number;
-}
-
-export interface CountUsersAudienceRequest {
-    audienceRequestBody: AudienceRequestBody;
 }
 
 export interface CreateFeatureRequest {
@@ -144,10 +144,6 @@ export interface DeleteFlagRequest {
     flagId: string;
 }
 
-export interface GetCompaniesAudienceRequest {
-    audienceRequestBody: AudienceRequestBody;
-}
-
 export interface GetFeatureRequest {
     featureId: string;
 }
@@ -160,16 +156,20 @@ export interface GetFlagCheckRequest {
     flagCheckId: string;
 }
 
-export interface GetUsersAudienceRequest {
-    audienceRequestBody: AudienceRequestBody;
-}
-
-export interface LatestFlagChecksRequest {
+export interface GetLatestFlagChecksRequest {
     flagId?: string;
     flagIds?: Array<string>;
     id?: string;
     limit?: number;
     offset?: number;
+}
+
+export interface ListAudienceCompaniesRequest {
+    audienceRequestBody: AudienceRequestBody;
+}
+
+export interface ListAudienceUsersRequest {
+    audienceRequestBody: AudienceRequestBody;
 }
 
 export interface ListFeaturesRequest {
@@ -192,11 +192,6 @@ export interface ListFlagsRequest {
     offset?: number;
 }
 
-export interface RulesFlagRequest {
-    updateFlagRulesRequestBody: UpdateFlagRulesRequestBody;
-    flagId: string;
-}
-
 export interface UpdateFeatureRequest {
     updateFeatureRequestBody: UpdateFeatureRequestBody;
     featureId: string;
@@ -204,6 +199,11 @@ export interface UpdateFeatureRequest {
 
 export interface UpdateFlagRequest {
     createFlagRequestBody: CreateFlagRequestBody;
+    flagId: string;
+}
+
+export interface UpdateFlagRulesRequest {
+    updateFlagRulesRequestBody: UpdateFlagRulesRequestBody;
     flagId: string;
 }
 
@@ -216,12 +216,18 @@ export class FeaturesApi extends runtime.BaseAPI {
      * Check flag
      */
     async checkFlagRaw(requestParameters: CheckFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckFlagResponse>> {
-        if (requestParameters.checkFlagRequestBody === null || requestParameters.checkFlagRequestBody === undefined) {
-            throw new runtime.RequiredError('checkFlagRequestBody','Required parameter requestParameters.checkFlagRequestBody was null or undefined when calling checkFlag.');
+        if (requestParameters['checkFlagRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'checkFlagRequestBody',
+                'Required parameter "checkFlagRequestBody" was null or undefined when calling checkFlag().'
+            );
         }
 
-        if (requestParameters.key === null || requestParameters.key === undefined) {
-            throw new runtime.RequiredError('key','Required parameter requestParameters.key was null or undefined when calling checkFlag.');
+        if (requestParameters['key'] == null) {
+            throw new runtime.RequiredError(
+                'key',
+                'Required parameter "key" was null or undefined when calling checkFlag().'
+            );
         }
 
         const queryParameters: any = {};
@@ -231,15 +237,15 @@ export class FeaturesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/flags/{key}/check`.replace(`{${"key"}}`, encodeURIComponent(String(requestParameters.key))),
+            path: `/flags/{key}/check`.replace(`{${"key"}}`, encodeURIComponent(String(requestParameters['key']))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CheckFlagRequestBodyToJSON(requestParameters.checkFlagRequestBody),
+            body: CheckFlagRequestBodyToJSON(requestParameters['checkFlagRequestBody']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CheckFlagResponseFromJSON(jsonValue));
@@ -257,8 +263,11 @@ export class FeaturesApi extends runtime.BaseAPI {
      * Check flags
      */
     async checkFlagsRaw(requestParameters: CheckFlagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckFlagsResponse>> {
-        if (requestParameters.checkFlagRequestBody === null || requestParameters.checkFlagRequestBody === undefined) {
-            throw new runtime.RequiredError('checkFlagRequestBody','Required parameter requestParameters.checkFlagRequestBody was null or undefined when calling checkFlags.');
+        if (requestParameters['checkFlagRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'checkFlagRequestBody',
+                'Required parameter "checkFlagRequestBody" was null or undefined when calling checkFlags().'
+            );
         }
 
         const queryParameters: any = {};
@@ -268,7 +277,7 @@ export class FeaturesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -276,7 +285,7 @@ export class FeaturesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CheckFlagRequestBodyToJSON(requestParameters.checkFlagRequestBody),
+            body: CheckFlagRequestBodyToJSON(requestParameters['checkFlagRequestBody']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CheckFlagsResponseFromJSON(jsonValue));
@@ -291,11 +300,14 @@ export class FeaturesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Count Companies audience
+     * Count audience companies
      */
-    async countCompaniesAudienceRaw(requestParameters: CountCompaniesAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountCompaniesAudienceResponse>> {
-        if (requestParameters.audienceRequestBody === null || requestParameters.audienceRequestBody === undefined) {
-            throw new runtime.RequiredError('audienceRequestBody','Required parameter requestParameters.audienceRequestBody was null or undefined when calling countCompaniesAudience.');
+    async countAudienceCompaniesRaw(requestParameters: CountAudienceCompaniesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountAudienceCompaniesResponse>> {
+        if (requestParameters['audienceRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'audienceRequestBody',
+                'Required parameter "audienceRequestBody" was null or undefined when calling countAudienceCompanies().'
+            );
         }
 
         const queryParameters: any = {};
@@ -305,7 +317,7 @@ export class FeaturesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -313,17 +325,57 @@ export class FeaturesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: AudienceRequestBodyToJSON(requestParameters.audienceRequestBody),
+            body: AudienceRequestBodyToJSON(requestParameters['audienceRequestBody']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CountCompaniesAudienceResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountAudienceCompaniesResponseFromJSON(jsonValue));
     }
 
     /**
-     * Count Companies audience
+     * Count audience companies
      */
-    async countCompaniesAudience(requestParameters: CountCompaniesAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountCompaniesAudienceResponse> {
-        const response = await this.countCompaniesAudienceRaw(requestParameters, initOverrides);
+    async countAudienceCompanies(requestParameters: CountAudienceCompaniesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountAudienceCompaniesResponse> {
+        const response = await this.countAudienceCompaniesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Count audience users
+     */
+    async countAudienceUsersRaw(requestParameters: CountAudienceUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountAudienceUsersResponse>> {
+        if (requestParameters['audienceRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'audienceRequestBody',
+                'Required parameter "audienceRequestBody" was null or undefined when calling countAudienceUsers().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/audience/count-users`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AudienceRequestBodyToJSON(requestParameters['audienceRequestBody']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountAudienceUsersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Count audience users
+     */
+    async countAudienceUsers(requestParameters: CountAudienceUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountAudienceUsersResponse> {
+        const response = await this.countAudienceUsersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -333,30 +385,30 @@ export class FeaturesApi extends runtime.BaseAPI {
     async countFlagChecksRaw(requestParameters: CountFlagChecksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountFlagChecksResponse>> {
         const queryParameters: any = {};
 
-        if (requestParameters.flagId !== undefined) {
-            queryParameters['flag_id'] = requestParameters.flagId;
+        if (requestParameters['flagId'] != null) {
+            queryParameters['flag_id'] = requestParameters['flagId'];
         }
 
-        if (requestParameters.flagIds) {
-            queryParameters['flag_ids'] = requestParameters.flagIds;
+        if (requestParameters['flagIds'] != null) {
+            queryParameters['flag_ids'] = requestParameters['flagIds'];
         }
 
-        if (requestParameters.id !== undefined) {
-            queryParameters['id'] = requestParameters.id;
+        if (requestParameters['id'] != null) {
+            queryParameters['id'] = requestParameters['id'];
         }
 
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
-        if (requestParameters.offset !== undefined) {
-            queryParameters['offset'] = requestParameters.offset;
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -378,48 +430,14 @@ export class FeaturesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Count Users audience
-     */
-    async countUsersAudienceRaw(requestParameters: CountUsersAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountUsersAudienceResponse>> {
-        if (requestParameters.audienceRequestBody === null || requestParameters.audienceRequestBody === undefined) {
-            throw new runtime.RequiredError('audienceRequestBody','Required parameter requestParameters.audienceRequestBody was null or undefined when calling countUsersAudience.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/audience/count-users`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: AudienceRequestBodyToJSON(requestParameters.audienceRequestBody),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => CountUsersAudienceResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Count Users audience
-     */
-    async countUsersAudience(requestParameters: CountUsersAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountUsersAudienceResponse> {
-        const response = await this.countUsersAudienceRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
      * Create feature
      */
     async createFeatureRaw(requestParameters: CreateFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateFeatureResponse>> {
-        if (requestParameters.createFeatureRequestBody === null || requestParameters.createFeatureRequestBody === undefined) {
-            throw new runtime.RequiredError('createFeatureRequestBody','Required parameter requestParameters.createFeatureRequestBody was null or undefined when calling createFeature.');
+        if (requestParameters['createFeatureRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'createFeatureRequestBody',
+                'Required parameter "createFeatureRequestBody" was null or undefined when calling createFeature().'
+            );
         }
 
         const queryParameters: any = {};
@@ -429,7 +447,7 @@ export class FeaturesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -437,7 +455,7 @@ export class FeaturesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateFeatureRequestBodyToJSON(requestParameters.createFeatureRequestBody),
+            body: CreateFeatureRequestBodyToJSON(requestParameters['createFeatureRequestBody']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateFeatureResponseFromJSON(jsonValue));
@@ -455,8 +473,11 @@ export class FeaturesApi extends runtime.BaseAPI {
      * Create flag
      */
     async createFlagRaw(requestParameters: CreateFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateFlagResponse>> {
-        if (requestParameters.createFlagRequestBody === null || requestParameters.createFlagRequestBody === undefined) {
-            throw new runtime.RequiredError('createFlagRequestBody','Required parameter requestParameters.createFlagRequestBody was null or undefined when calling createFlag.');
+        if (requestParameters['createFlagRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'createFlagRequestBody',
+                'Required parameter "createFlagRequestBody" was null or undefined when calling createFlag().'
+            );
         }
 
         const queryParameters: any = {};
@@ -466,7 +487,7 @@ export class FeaturesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -474,7 +495,7 @@ export class FeaturesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateFlagRequestBodyToJSON(requestParameters.createFlagRequestBody),
+            body: CreateFlagRequestBodyToJSON(requestParameters['createFlagRequestBody']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateFlagResponseFromJSON(jsonValue));
@@ -492,8 +513,11 @@ export class FeaturesApi extends runtime.BaseAPI {
      * Delete feature
      */
     async deleteFeatureRaw(requestParameters: DeleteFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteFeatureResponse>> {
-        if (requestParameters.featureId === null || requestParameters.featureId === undefined) {
-            throw new runtime.RequiredError('featureId','Required parameter requestParameters.featureId was null or undefined when calling deleteFeature.');
+        if (requestParameters['featureId'] == null) {
+            throw new runtime.RequiredError(
+                'featureId',
+                'Required parameter "featureId" was null or undefined when calling deleteFeature().'
+            );
         }
 
         const queryParameters: any = {};
@@ -501,11 +525,11 @@ export class FeaturesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/features/{feature_id}`.replace(`{${"feature_id"}}`, encodeURIComponent(String(requestParameters.featureId))),
+            path: `/features/{feature_id}`.replace(`{${"feature_id"}}`, encodeURIComponent(String(requestParameters['featureId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -526,8 +550,11 @@ export class FeaturesApi extends runtime.BaseAPI {
      * Delete flag
      */
     async deleteFlagRaw(requestParameters: DeleteFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteFlagResponse>> {
-        if (requestParameters.flagId === null || requestParameters.flagId === undefined) {
-            throw new runtime.RequiredError('flagId','Required parameter requestParameters.flagId was null or undefined when calling deleteFlag.');
+        if (requestParameters['flagId'] == null) {
+            throw new runtime.RequiredError(
+                'flagId',
+                'Required parameter "flagId" was null or undefined when calling deleteFlag().'
+            );
         }
 
         const queryParameters: any = {};
@@ -535,11 +562,11 @@ export class FeaturesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/flags/{flag_id}`.replace(`{${"flag_id"}}`, encodeURIComponent(String(requestParameters.flagId))),
+            path: `/flags/{flag_id}`.replace(`{${"flag_id"}}`, encodeURIComponent(String(requestParameters['flagId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -557,48 +584,14 @@ export class FeaturesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get Companies audience
-     */
-    async getCompaniesAudienceRaw(requestParameters: GetCompaniesAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCompaniesAudienceResponse>> {
-        if (requestParameters.audienceRequestBody === null || requestParameters.audienceRequestBody === undefined) {
-            throw new runtime.RequiredError('audienceRequestBody','Required parameter requestParameters.audienceRequestBody was null or undefined when calling getCompaniesAudience.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/audience/get-companies`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: AudienceRequestBodyToJSON(requestParameters.audienceRequestBody),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetCompaniesAudienceResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Get Companies audience
-     */
-    async getCompaniesAudience(requestParameters: GetCompaniesAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCompaniesAudienceResponse> {
-        const response = await this.getCompaniesAudienceRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
      * Get feature
      */
     async getFeatureRaw(requestParameters: GetFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFeatureResponse>> {
-        if (requestParameters.featureId === null || requestParameters.featureId === undefined) {
-            throw new runtime.RequiredError('featureId','Required parameter requestParameters.featureId was null or undefined when calling getFeature.');
+        if (requestParameters['featureId'] == null) {
+            throw new runtime.RequiredError(
+                'featureId',
+                'Required parameter "featureId" was null or undefined when calling getFeature().'
+            );
         }
 
         const queryParameters: any = {};
@@ -606,11 +599,11 @@ export class FeaturesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/features/{feature_id}`.replace(`{${"feature_id"}}`, encodeURIComponent(String(requestParameters.featureId))),
+            path: `/features/{feature_id}`.replace(`{${"feature_id"}}`, encodeURIComponent(String(requestParameters['featureId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -631,8 +624,11 @@ export class FeaturesApi extends runtime.BaseAPI {
      * Get flag
      */
     async getFlagRaw(requestParameters: GetFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFlagResponse>> {
-        if (requestParameters.flagId === null || requestParameters.flagId === undefined) {
-            throw new runtime.RequiredError('flagId','Required parameter requestParameters.flagId was null or undefined when calling getFlag.');
+        if (requestParameters['flagId'] == null) {
+            throw new runtime.RequiredError(
+                'flagId',
+                'Required parameter "flagId" was null or undefined when calling getFlag().'
+            );
         }
 
         const queryParameters: any = {};
@@ -640,11 +636,11 @@ export class FeaturesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/flags/{flag_id}`.replace(`{${"flag_id"}}`, encodeURIComponent(String(requestParameters.flagId))),
+            path: `/flags/{flag_id}`.replace(`{${"flag_id"}}`, encodeURIComponent(String(requestParameters['flagId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -665,8 +661,11 @@ export class FeaturesApi extends runtime.BaseAPI {
      * Get flag check
      */
     async getFlagCheckRaw(requestParameters: GetFlagCheckRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFlagCheckResponse>> {
-        if (requestParameters.flagCheckId === null || requestParameters.flagCheckId === undefined) {
-            throw new runtime.RequiredError('flagCheckId','Required parameter requestParameters.flagCheckId was null or undefined when calling getFlagCheck.');
+        if (requestParameters['flagCheckId'] == null) {
+            throw new runtime.RequiredError(
+                'flagCheckId',
+                'Required parameter "flagCheckId" was null or undefined when calling getFlagCheck().'
+            );
         }
 
         const queryParameters: any = {};
@@ -674,11 +673,11 @@ export class FeaturesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/flag-checks/{flag_check_id}`.replace(`{${"flag_check_id"}}`, encodeURIComponent(String(requestParameters.flagCheckId))),
+            path: `/flag-checks/{flag_check_id}`.replace(`{${"flag_check_id"}}`, encodeURIComponent(String(requestParameters['flagCheckId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -696,72 +695,35 @@ export class FeaturesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get Users audience
+     * Get latest flag checks
      */
-    async getUsersAudienceRaw(requestParameters: GetUsersAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUsersAudienceResponse>> {
-        if (requestParameters.audienceRequestBody === null || requestParameters.audienceRequestBody === undefined) {
-            throw new runtime.RequiredError('audienceRequestBody','Required parameter requestParameters.audienceRequestBody was null or undefined when calling getUsersAudience.');
-        }
-
+    async getLatestFlagChecksRaw(requestParameters: GetLatestFlagChecksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLatestFlagChecksResponse>> {
         const queryParameters: any = {};
 
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        if (requestParameters['flagId'] != null) {
+            queryParameters['flag_id'] = requestParameters['flagId'];
         }
 
-        const response = await this.request({
-            path: `/audience/get-users`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: AudienceRequestBodyToJSON(requestParameters.audienceRequestBody),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetUsersAudienceResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Get Users audience
-     */
-    async getUsersAudience(requestParameters: GetUsersAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUsersAudienceResponse> {
-        const response = await this.getUsersAudienceRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Latest flag checks
-     */
-    async latestFlagChecksRaw(requestParameters: LatestFlagChecksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LatestFlagChecksResponse>> {
-        const queryParameters: any = {};
-
-        if (requestParameters.flagId !== undefined) {
-            queryParameters['flag_id'] = requestParameters.flagId;
+        if (requestParameters['flagIds'] != null) {
+            queryParameters['flag_ids'] = requestParameters['flagIds'];
         }
 
-        if (requestParameters.flagIds) {
-            queryParameters['flag_ids'] = requestParameters.flagIds;
+        if (requestParameters['id'] != null) {
+            queryParameters['id'] = requestParameters['id'];
         }
 
-        if (requestParameters.id !== undefined) {
-            queryParameters['id'] = requestParameters.id;
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
-        }
-
-        if (requestParameters.offset !== undefined) {
-            queryParameters['offset'] = requestParameters.offset;
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -771,14 +733,94 @@ export class FeaturesApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => LatestFlagChecksResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetLatestFlagChecksResponseFromJSON(jsonValue));
     }
 
     /**
-     * Latest flag checks
+     * Get latest flag checks
      */
-    async latestFlagChecks(requestParameters: LatestFlagChecksRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LatestFlagChecksResponse> {
-        const response = await this.latestFlagChecksRaw(requestParameters, initOverrides);
+    async getLatestFlagChecks(requestParameters: GetLatestFlagChecksRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetLatestFlagChecksResponse> {
+        const response = await this.getLatestFlagChecksRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List audience companies
+     */
+    async listAudienceCompaniesRaw(requestParameters: ListAudienceCompaniesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListAudienceCompaniesResponse>> {
+        if (requestParameters['audienceRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'audienceRequestBody',
+                'Required parameter "audienceRequestBody" was null or undefined when calling listAudienceCompanies().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/audience/get-companies`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AudienceRequestBodyToJSON(requestParameters['audienceRequestBody']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListAudienceCompaniesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List audience companies
+     */
+    async listAudienceCompanies(requestParameters: ListAudienceCompaniesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListAudienceCompaniesResponse> {
+        const response = await this.listAudienceCompaniesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List audience users
+     */
+    async listAudienceUsersRaw(requestParameters: ListAudienceUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListAudienceUsersResponse>> {
+        if (requestParameters['audienceRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'audienceRequestBody',
+                'Required parameter "audienceRequestBody" was null or undefined when calling listAudienceUsers().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/audience/get-users`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AudienceRequestBodyToJSON(requestParameters['audienceRequestBody']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListAudienceUsersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List audience users
+     */
+    async listAudienceUsers(requestParameters: ListAudienceUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListAudienceUsersResponse> {
+        const response = await this.listAudienceUsersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -788,18 +830,18 @@ export class FeaturesApi extends runtime.BaseAPI {
     async listFeaturesRaw(requestParameters: ListFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFeaturesResponse>> {
         const queryParameters: any = {};
 
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
-        if (requestParameters.offset !== undefined) {
-            queryParameters['offset'] = requestParameters.offset;
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -826,30 +868,30 @@ export class FeaturesApi extends runtime.BaseAPI {
     async listFlagChecksRaw(requestParameters: ListFlagChecksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFlagChecksResponse>> {
         const queryParameters: any = {};
 
-        if (requestParameters.flagId !== undefined) {
-            queryParameters['flag_id'] = requestParameters.flagId;
+        if (requestParameters['flagId'] != null) {
+            queryParameters['flag_id'] = requestParameters['flagId'];
         }
 
-        if (requestParameters.flagIds) {
-            queryParameters['flag_ids'] = requestParameters.flagIds;
+        if (requestParameters['flagIds'] != null) {
+            queryParameters['flag_ids'] = requestParameters['flagIds'];
         }
 
-        if (requestParameters.id !== undefined) {
-            queryParameters['id'] = requestParameters.id;
+        if (requestParameters['id'] != null) {
+            queryParameters['id'] = requestParameters['id'];
         }
 
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
-        if (requestParameters.offset !== undefined) {
-            queryParameters['offset'] = requestParameters.offset;
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -876,26 +918,26 @@ export class FeaturesApi extends runtime.BaseAPI {
     async listFlagsRaw(requestParameters: ListFlagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFlagsResponse>> {
         const queryParameters: any = {};
 
-        if (requestParameters.featureId !== undefined) {
-            queryParameters['feature_id'] = requestParameters.featureId;
+        if (requestParameters['featureId'] != null) {
+            queryParameters['feature_id'] = requestParameters['featureId'];
         }
 
-        if (requestParameters.flagIds) {
-            queryParameters['flag_ids'] = requestParameters.flagIds;
+        if (requestParameters['flagIds'] != null) {
+            queryParameters['flag_ids'] = requestParameters['flagIds'];
         }
 
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
-        if (requestParameters.offset !== undefined) {
-            queryParameters['offset'] = requestParameters.offset;
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -917,56 +959,21 @@ export class FeaturesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Rules flag
-     */
-    async rulesFlagRaw(requestParameters: RulesFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RulesFlagResponse>> {
-        if (requestParameters.updateFlagRulesRequestBody === null || requestParameters.updateFlagRulesRequestBody === undefined) {
-            throw new runtime.RequiredError('updateFlagRulesRequestBody','Required parameter requestParameters.updateFlagRulesRequestBody was null or undefined when calling rulesFlag.');
-        }
-
-        if (requestParameters.flagId === null || requestParameters.flagId === undefined) {
-            throw new runtime.RequiredError('flagId','Required parameter requestParameters.flagId was null or undefined when calling rulesFlag.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/flags/{flag_id}/rules`.replace(`{${"flag_id"}}`, encodeURIComponent(String(requestParameters.flagId))),
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: UpdateFlagRulesRequestBodyToJSON(requestParameters.updateFlagRulesRequestBody),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => RulesFlagResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Rules flag
-     */
-    async rulesFlag(requestParameters: RulesFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RulesFlagResponse> {
-        const response = await this.rulesFlagRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
      * Update feature
      */
     async updateFeatureRaw(requestParameters: UpdateFeatureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateFeatureResponse>> {
-        if (requestParameters.updateFeatureRequestBody === null || requestParameters.updateFeatureRequestBody === undefined) {
-            throw new runtime.RequiredError('updateFeatureRequestBody','Required parameter requestParameters.updateFeatureRequestBody was null or undefined when calling updateFeature.');
+        if (requestParameters['updateFeatureRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'updateFeatureRequestBody',
+                'Required parameter "updateFeatureRequestBody" was null or undefined when calling updateFeature().'
+            );
         }
 
-        if (requestParameters.featureId === null || requestParameters.featureId === undefined) {
-            throw new runtime.RequiredError('featureId','Required parameter requestParameters.featureId was null or undefined when calling updateFeature.');
+        if (requestParameters['featureId'] == null) {
+            throw new runtime.RequiredError(
+                'featureId',
+                'Required parameter "featureId" was null or undefined when calling updateFeature().'
+            );
         }
 
         const queryParameters: any = {};
@@ -976,15 +983,15 @@ export class FeaturesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/features/{feature_id}`.replace(`{${"feature_id"}}`, encodeURIComponent(String(requestParameters.featureId))),
+            path: `/features/{feature_id}`.replace(`{${"feature_id"}}`, encodeURIComponent(String(requestParameters['featureId']))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateFeatureRequestBodyToJSON(requestParameters.updateFeatureRequestBody),
+            body: UpdateFeatureRequestBodyToJSON(requestParameters['updateFeatureRequestBody']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateFeatureResponseFromJSON(jsonValue));
@@ -1002,12 +1009,18 @@ export class FeaturesApi extends runtime.BaseAPI {
      * Update flag
      */
     async updateFlagRaw(requestParameters: UpdateFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateFlagResponse>> {
-        if (requestParameters.createFlagRequestBody === null || requestParameters.createFlagRequestBody === undefined) {
-            throw new runtime.RequiredError('createFlagRequestBody','Required parameter requestParameters.createFlagRequestBody was null or undefined when calling updateFlag.');
+        if (requestParameters['createFlagRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'createFlagRequestBody',
+                'Required parameter "createFlagRequestBody" was null or undefined when calling updateFlag().'
+            );
         }
 
-        if (requestParameters.flagId === null || requestParameters.flagId === undefined) {
-            throw new runtime.RequiredError('flagId','Required parameter requestParameters.flagId was null or undefined when calling updateFlag.');
+        if (requestParameters['flagId'] == null) {
+            throw new runtime.RequiredError(
+                'flagId',
+                'Required parameter "flagId" was null or undefined when calling updateFlag().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1017,15 +1030,15 @@ export class FeaturesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/flags/{flag_id}`.replace(`{${"flag_id"}}`, encodeURIComponent(String(requestParameters.flagId))),
+            path: `/flags/{flag_id}`.replace(`{${"flag_id"}}`, encodeURIComponent(String(requestParameters['flagId']))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateFlagRequestBodyToJSON(requestParameters.createFlagRequestBody),
+            body: CreateFlagRequestBodyToJSON(requestParameters['createFlagRequestBody']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateFlagResponseFromJSON(jsonValue));
@@ -1036,6 +1049,53 @@ export class FeaturesApi extends runtime.BaseAPI {
      */
     async updateFlag(requestParameters: UpdateFlagRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateFlagResponse> {
         const response = await this.updateFlagRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update flag rules
+     */
+    async updateFlagRulesRaw(requestParameters: UpdateFlagRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateFlagRulesResponse>> {
+        if (requestParameters['updateFlagRulesRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'updateFlagRulesRequestBody',
+                'Required parameter "updateFlagRulesRequestBody" was null or undefined when calling updateFlagRules().'
+            );
+        }
+
+        if (requestParameters['flagId'] == null) {
+            throw new runtime.RequiredError(
+                'flagId',
+                'Required parameter "flagId" was null or undefined when calling updateFlagRules().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/flags/{flag_id}/rules`.replace(`{${"flag_id"}}`, encodeURIComponent(String(requestParameters['flagId']))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateFlagRulesRequestBodyToJSON(requestParameters['updateFlagRulesRequestBody']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateFlagRulesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update flag rules
+     */
+    async updateFlagRules(requestParameters: UpdateFlagRulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateFlagRulesResponse> {
+        const response = await this.updateFlagRulesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

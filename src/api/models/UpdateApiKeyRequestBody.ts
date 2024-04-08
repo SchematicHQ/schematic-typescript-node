@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -24,22 +24,20 @@ export interface UpdateApiKeyRequestBody {
      * @type {string}
      * @memberof UpdateApiKeyRequestBody
      */
-    description?: string | null;
+    description?: string;
     /**
      * 
      * @type {string}
      * @memberof UpdateApiKeyRequestBody
      */
-    name?: string | null;
+    name?: string;
 }
 
 /**
  * Check if a given object implements the UpdateApiKeyRequestBody interface.
  */
 export function instanceOfUpdateApiKeyRequestBody(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function UpdateApiKeyRequestBodyFromJSON(json: any): UpdateApiKeyRequestBody {
@@ -47,27 +45,24 @@ export function UpdateApiKeyRequestBodyFromJSON(json: any): UpdateApiKeyRequestB
 }
 
 export function UpdateApiKeyRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateApiKeyRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'name': json['name'] == null ? undefined : json['name'],
     };
 }
 
 export function UpdateApiKeyRequestBodyToJSON(value?: UpdateApiKeyRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'description': value.description,
-        'name': value.name,
+        'description': value['description'],
+        'name': value['name'],
     };
 }
 

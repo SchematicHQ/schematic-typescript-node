@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { RuleConditionGroupDetailResponseData } from './RuleConditionGroupDetailResponseData';
 import {
     RuleConditionGroupDetailResponseDataFromJSON,
@@ -27,7 +27,7 @@ import {
 } from './RuleConditionResponseData';
 
 /**
- * The updated resource
+ * 
  * @export
  * @interface RuleDetailResponseData
  */
@@ -61,7 +61,7 @@ export interface RuleDetailResponseData {
      * @type {string}
      * @memberof RuleDetailResponseData
      */
-    flagId?: string | null;
+    flagId?: string;
     /**
      * 
      * @type {string}
@@ -79,7 +79,7 @@ export interface RuleDetailResponseData {
      * @type {string}
      * @memberof RuleDetailResponseData
      */
-    planId?: string | null;
+    planId?: string;
     /**
      * 
      * @type {number}
@@ -110,19 +110,17 @@ export interface RuleDetailResponseData {
  * Check if a given object implements the RuleDetailResponseData interface.
  */
 export function instanceOfRuleDetailResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "conditionGroups" in value;
-    isInstance = isInstance && "conditions" in value;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "environmentId" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "priority" in value;
-    isInstance = isInstance && "ruleType" in value;
-    isInstance = isInstance && "updatedAt" in value;
-    isInstance = isInstance && "value" in value;
-
-    return isInstance;
+    if (!('conditionGroups' in value)) return false;
+    if (!('conditions' in value)) return false;
+    if (!('createdAt' in value)) return false;
+    if (!('environmentId' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('priority' in value)) return false;
+    if (!('ruleType' in value)) return false;
+    if (!('updatedAt' in value)) return false;
+    if (!('value' in value)) return false;
+    return true;
 }
 
 export function RuleDetailResponseDataFromJSON(json: any): RuleDetailResponseData {
@@ -130,7 +128,7 @@ export function RuleDetailResponseDataFromJSON(json: any): RuleDetailResponseDat
 }
 
 export function RuleDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): RuleDetailResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -139,10 +137,10 @@ export function RuleDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminat
         'conditions': ((json['conditions'] as Array<any>).map(RuleConditionResponseDataFromJSON)),
         'createdAt': (new Date(json['created_at'])),
         'environmentId': json['environment_id'],
-        'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
+        'flagId': json['flag_id'] == null ? undefined : json['flag_id'],
         'id': json['id'],
         'name': json['name'],
-        'planId': !exists(json, 'plan_id') ? undefined : json['plan_id'],
+        'planId': json['plan_id'] == null ? undefined : json['plan_id'],
         'priority': json['priority'],
         'ruleType': json['rule_type'],
         'updatedAt': (new Date(json['updated_at'])),
@@ -151,26 +149,23 @@ export function RuleDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminat
 }
 
 export function RuleDetailResponseDataToJSON(value?: RuleDetailResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'condition_groups': ((value.conditionGroups as Array<any>).map(RuleConditionGroupDetailResponseDataToJSON)),
-        'conditions': ((value.conditions as Array<any>).map(RuleConditionResponseDataToJSON)),
-        'created_at': (value.createdAt.toISOString()),
-        'environment_id': value.environmentId,
-        'flag_id': value.flagId,
-        'id': value.id,
-        'name': value.name,
-        'plan_id': value.planId,
-        'priority': value.priority,
-        'rule_type': value.ruleType,
-        'updated_at': (value.updatedAt.toISOString()),
-        'value': value.value,
+        'condition_groups': ((value['conditionGroups'] as Array<any>).map(RuleConditionGroupDetailResponseDataToJSON)),
+        'conditions': ((value['conditions'] as Array<any>).map(RuleConditionResponseDataToJSON)),
+        'created_at': ((value['createdAt']).toISOString()),
+        'environment_id': value['environmentId'],
+        'flag_id': value['flagId'],
+        'id': value['id'],
+        'name': value['name'],
+        'plan_id': value['planId'],
+        'priority': value['priority'],
+        'rule_type': value['ruleType'],
+        'updated_at': ((value['updatedAt']).toISOString()),
+        'value': value['value'],
     };
 }
 

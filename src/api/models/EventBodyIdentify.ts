@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { EventBodyIdentifyCompany } from './EventBodyIdentifyCompany';
 import {
     EventBodyIdentifyCompanyFromJSON,
@@ -56,10 +56,8 @@ export interface EventBodyIdentify {
  * Check if a given object implements the EventBodyIdentify interface.
  */
 export function instanceOfEventBodyIdentify(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "keys" in value;
-
-    return isInstance;
+    if (!('keys' in value)) return false;
+    return true;
 }
 
 export function EventBodyIdentifyFromJSON(json: any): EventBodyIdentify {
@@ -67,31 +65,28 @@ export function EventBodyIdentifyFromJSON(json: any): EventBodyIdentify {
 }
 
 export function EventBodyIdentifyFromJSONTyped(json: any, ignoreDiscriminator: boolean): EventBodyIdentify {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'company': !exists(json, 'company') ? undefined : EventBodyIdentifyCompanyFromJSON(json['company']),
+        'company': json['company'] == null ? undefined : EventBodyIdentifyCompanyFromJSON(json['company']),
         'keys': json['keys'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'traits': !exists(json, 'traits') ? undefined : json['traits'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'traits': json['traits'] == null ? undefined : json['traits'],
     };
 }
 
 export function EventBodyIdentifyToJSON(value?: EventBodyIdentify | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'company': EventBodyIdentifyCompanyToJSON(value.company),
-        'keys': value.keys,
-        'name': value.name,
-        'traits': value.traits,
+        'company': EventBodyIdentifyCompanyToJSON(value['company']),
+        'keys': value['keys'],
+        'name': value['name'],
+        'traits': value['traits'],
     };
 }
 

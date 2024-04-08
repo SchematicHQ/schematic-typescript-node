@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CountFlagChecksParams } from './CountFlagChecksParams';
 import {
     CountFlagChecksParamsFromJSON,
@@ -50,11 +50,9 @@ export interface CountFlagChecksResponse {
  * Check if a given object implements the CountFlagChecksResponse interface.
  */
 export function instanceOfCountFlagChecksResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function CountFlagChecksResponseFromJSON(json: any): CountFlagChecksResponse {
@@ -62,7 +60,7 @@ export function CountFlagChecksResponseFromJSON(json: any): CountFlagChecksRespo
 }
 
 export function CountFlagChecksResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CountFlagChecksResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function CountFlagChecksResponseFromJSONTyped(json: any, ignoreDiscrimina
 }
 
 export function CountFlagChecksResponseToJSON(value?: CountFlagChecksResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': CountResponseToJSON(value.data),
-        'params': CountFlagChecksParamsToJSON(value.params),
+        'data': CountResponseToJSON(value['data']),
+        'params': CountFlagChecksParamsToJSON(value['params']),
     };
 }
 

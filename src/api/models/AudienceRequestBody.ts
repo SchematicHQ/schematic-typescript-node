@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CreateOrUpdateConditionGroupRequestBody } from './CreateOrUpdateConditionGroupRequestBody';
 import {
     CreateOrUpdateConditionGroupRequestBodyFromJSON,
@@ -49,30 +49,28 @@ export interface AudienceRequestBody {
      * @type {number}
      * @memberof AudienceRequestBody
      */
-    limit?: number | null;
+    limit?: number;
     /**
      * Page offset (default 0)
      * @type {number}
      * @memberof AudienceRequestBody
      */
-    offset?: number | null;
+    offset?: number;
     /**
      * 
      * @type {string}
      * @memberof AudienceRequestBody
      */
-    q?: string | null;
+    q?: string;
 }
 
 /**
  * Check if a given object implements the AudienceRequestBody interface.
  */
 export function instanceOfAudienceRequestBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "conditionGroups" in value;
-    isInstance = isInstance && "conditions" in value;
-
-    return isInstance;
+    if (!('conditionGroups' in value)) return false;
+    if (!('conditions' in value)) return false;
+    return true;
 }
 
 export function AudienceRequestBodyFromJSON(json: any): AudienceRequestBody {
@@ -80,33 +78,30 @@ export function AudienceRequestBodyFromJSON(json: any): AudienceRequestBody {
 }
 
 export function AudienceRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): AudienceRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'conditionGroups': ((json['condition_groups'] as Array<any>).map(CreateOrUpdateConditionGroupRequestBodyFromJSON)),
         'conditions': ((json['conditions'] as Array<any>).map(CreateOrUpdateConditionRequestBodyFromJSON)),
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'q': !exists(json, 'q') ? undefined : json['q'],
+        'limit': json['limit'] == null ? undefined : json['limit'],
+        'offset': json['offset'] == null ? undefined : json['offset'],
+        'q': json['q'] == null ? undefined : json['q'],
     };
 }
 
 export function AudienceRequestBodyToJSON(value?: AudienceRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'condition_groups': ((value.conditionGroups as Array<any>).map(CreateOrUpdateConditionGroupRequestBodyToJSON)),
-        'conditions': ((value.conditions as Array<any>).map(CreateOrUpdateConditionRequestBodyToJSON)),
-        'limit': value.limit,
-        'offset': value.offset,
-        'q': value.q,
+        'condition_groups': ((value['conditionGroups'] as Array<any>).map(CreateOrUpdateConditionGroupRequestBodyToJSON)),
+        'conditions': ((value['conditions'] as Array<any>).map(CreateOrUpdateConditionRequestBodyToJSON)),
+        'limit': value['limit'],
+        'offset': value['offset'],
+        'q': value['q'],
     };
 }
 

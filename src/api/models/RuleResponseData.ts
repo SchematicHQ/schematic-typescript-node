@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,7 +36,7 @@ export interface RuleResponseData {
      * @type {string}
      * @memberof RuleResponseData
      */
-    flagId?: string | null;
+    flagId?: string;
     /**
      * 
      * @type {string}
@@ -54,7 +54,7 @@ export interface RuleResponseData {
      * @type {string}
      * @memberof RuleResponseData
      */
-    planId?: string | null;
+    planId?: string;
     /**
      * 
      * @type {number}
@@ -85,17 +85,15 @@ export interface RuleResponseData {
  * Check if a given object implements the RuleResponseData interface.
  */
 export function instanceOfRuleResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "environmentId" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "priority" in value;
-    isInstance = isInstance && "ruleType" in value;
-    isInstance = isInstance && "updatedAt" in value;
-    isInstance = isInstance && "value" in value;
-
-    return isInstance;
+    if (!('createdAt' in value)) return false;
+    if (!('environmentId' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('priority' in value)) return false;
+    if (!('ruleType' in value)) return false;
+    if (!('updatedAt' in value)) return false;
+    if (!('value' in value)) return false;
+    return true;
 }
 
 export function RuleResponseDataFromJSON(json: any): RuleResponseData {
@@ -103,17 +101,17 @@ export function RuleResponseDataFromJSON(json: any): RuleResponseData {
 }
 
 export function RuleResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): RuleResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'createdAt': (new Date(json['created_at'])),
         'environmentId': json['environment_id'],
-        'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
+        'flagId': json['flag_id'] == null ? undefined : json['flag_id'],
         'id': json['id'],
         'name': json['name'],
-        'planId': !exists(json, 'plan_id') ? undefined : json['plan_id'],
+        'planId': json['plan_id'] == null ? undefined : json['plan_id'],
         'priority': json['priority'],
         'ruleType': json['rule_type'],
         'updatedAt': (new Date(json['updated_at'])),
@@ -122,24 +120,21 @@ export function RuleResponseDataFromJSONTyped(json: any, ignoreDiscriminator: bo
 }
 
 export function RuleResponseDataToJSON(value?: RuleResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'created_at': (value.createdAt.toISOString()),
-        'environment_id': value.environmentId,
-        'flag_id': value.flagId,
-        'id': value.id,
-        'name': value.name,
-        'plan_id': value.planId,
-        'priority': value.priority,
-        'rule_type': value.ruleType,
-        'updated_at': (value.updatedAt.toISOString()),
-        'value': value.value,
+        'created_at': ((value['createdAt']).toISOString()),
+        'environment_id': value['environmentId'],
+        'flag_id': value['flagId'],
+        'id': value['id'],
+        'name': value['name'],
+        'plan_id': value['planId'],
+        'priority': value['priority'],
+        'rule_type': value['ruleType'],
+        'updated_at': ((value['updatedAt']).toISOString()),
+        'value': value['value'],
     };
 }
 

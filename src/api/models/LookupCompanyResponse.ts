@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CompanyDetailResponseData } from './CompanyDetailResponseData';
 import {
     CompanyDetailResponseDataFromJSON,
@@ -50,11 +50,9 @@ export interface LookupCompanyResponse {
  * Check if a given object implements the LookupCompanyResponse interface.
  */
 export function instanceOfLookupCompanyResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function LookupCompanyResponseFromJSON(json: any): LookupCompanyResponse {
@@ -62,7 +60,7 @@ export function LookupCompanyResponseFromJSON(json: any): LookupCompanyResponse 
 }
 
 export function LookupCompanyResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): LookupCompanyResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function LookupCompanyResponseFromJSONTyped(json: any, ignoreDiscriminato
 }
 
 export function LookupCompanyResponseToJSON(value?: LookupCompanyResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': CompanyDetailResponseDataToJSON(value.data),
-        'params': LookupCompanyParamsToJSON(value.params),
+        'data': CompanyDetailResponseDataToJSON(value['data']),
+        'params': LookupCompanyParamsToJSON(value['params']),
     };
 }
 

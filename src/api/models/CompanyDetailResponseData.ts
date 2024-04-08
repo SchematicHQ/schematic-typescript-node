@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { EntityKeyResponseData } from './EntityKeyResponseData';
 import {
     EntityKeyResponseDataFromJSON,
@@ -55,7 +55,7 @@ export interface CompanyDetailResponseData {
      * @type {Date}
      * @memberof CompanyDetailResponseData
      */
-    lastSeenAt?: Date | null;
+    lastSeenAt?: Date;
     /**
      * 
      * @type {string}
@@ -80,15 +80,13 @@ export interface CompanyDetailResponseData {
  * Check if a given object implements the CompanyDetailResponseData interface.
  */
 export function instanceOfCompanyDetailResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "environmentId" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "keys" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "updatedAt" in value;
-
-    return isInstance;
+    if (!('createdAt' in value)) return false;
+    if (!('environmentId' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('keys' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('updatedAt' in value)) return false;
+    return true;
 }
 
 export function CompanyDetailResponseDataFromJSON(json: any): CompanyDetailResponseData {
@@ -96,7 +94,7 @@ export function CompanyDetailResponseDataFromJSON(json: any): CompanyDetailRespo
 }
 
 export function CompanyDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): CompanyDetailResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -105,30 +103,27 @@ export function CompanyDetailResponseDataFromJSONTyped(json: any, ignoreDiscrimi
         'environmentId': json['environment_id'],
         'id': json['id'],
         'keys': ((json['keys'] as Array<any>).map(EntityKeyResponseDataFromJSON)),
-        'lastSeenAt': !exists(json, 'last_seen_at') ? undefined : (json['last_seen_at'] === null ? null : new Date(json['last_seen_at'])),
+        'lastSeenAt': json['last_seen_at'] == null ? undefined : (new Date(json['last_seen_at'])),
         'name': json['name'],
-        'traits': !exists(json, 'traits') ? undefined : json['traits'],
+        'traits': json['traits'] == null ? undefined : json['traits'],
         'updatedAt': (new Date(json['updated_at'])),
     };
 }
 
 export function CompanyDetailResponseDataToJSON(value?: CompanyDetailResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'created_at': (value.createdAt.toISOString()),
-        'environment_id': value.environmentId,
-        'id': value.id,
-        'keys': ((value.keys as Array<any>).map(EntityKeyResponseDataToJSON)),
-        'last_seen_at': value.lastSeenAt === undefined ? undefined : (value.lastSeenAt === null ? null : value.lastSeenAt.toISOString()),
-        'name': value.name,
-        'traits': value.traits,
-        'updated_at': (value.updatedAt.toISOString()),
+        'created_at': ((value['createdAt']).toISOString()),
+        'environment_id': value['environmentId'],
+        'id': value['id'],
+        'keys': ((value['keys'] as Array<any>).map(EntityKeyResponseDataToJSON)),
+        'last_seen_at': value['lastSeenAt'] == null ? undefined : ((value['lastSeenAt'] as any).toISOString()),
+        'name': value['name'],
+        'traits': value['traits'],
+        'updated_at': ((value['updatedAt']).toISOString()),
     };
 }
 

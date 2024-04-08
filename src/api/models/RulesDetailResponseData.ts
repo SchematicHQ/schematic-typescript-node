@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FlagResponseData } from './FlagResponseData';
 import {
     FlagResponseDataFromJSON,
@@ -50,10 +50,8 @@ export interface RulesDetailResponseData {
  * Check if a given object implements the RulesDetailResponseData interface.
  */
 export function instanceOfRulesDetailResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "rules" in value;
-
-    return isInstance;
+    if (!('rules' in value)) return false;
+    return true;
 }
 
 export function RulesDetailResponseDataFromJSON(json: any): RulesDetailResponseData {
@@ -61,27 +59,24 @@ export function RulesDetailResponseDataFromJSON(json: any): RulesDetailResponseD
 }
 
 export function RulesDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): RulesDetailResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'flag': !exists(json, 'Flag') ? undefined : FlagResponseDataFromJSON(json['Flag']),
+        'flag': json['Flag'] == null ? undefined : FlagResponseDataFromJSON(json['Flag']),
         'rules': ((json['rules'] as Array<any>).map(RuleDetailResponseDataFromJSON)),
     };
 }
 
 export function RulesDetailResponseDataToJSON(value?: RulesDetailResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'Flag': FlagResponseDataToJSON(value.flag),
-        'rules': ((value.rules as Array<any>).map(RuleDetailResponseDataToJSON)),
+        'Flag': FlagResponseDataToJSON(value['flag']),
+        'rules': ((value['rules'] as Array<any>).map(RuleDetailResponseDataToJSON)),
     };
 }
 

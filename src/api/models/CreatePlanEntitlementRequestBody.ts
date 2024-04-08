@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -42,19 +42,19 @@ export interface CreatePlanEntitlementRequestBody {
      * @type {boolean}
      * @memberof CreatePlanEntitlementRequestBody
      */
-    valueBool?: boolean | null;
+    valueBool?: boolean;
     /**
      * 
      * @type {number}
      * @memberof CreatePlanEntitlementRequestBody
      */
-    valueNumeric?: number | null;
+    valueNumeric?: number;
     /**
      * 
      * @type {string}
      * @memberof CreatePlanEntitlementRequestBody
      */
-    valueTraitId?: string | null;
+    valueTraitId?: string;
     /**
      * 
      * @type {string}
@@ -90,12 +90,10 @@ export type CreatePlanEntitlementRequestBodyValueTypeEnum = typeof CreatePlanEnt
  * Check if a given object implements the CreatePlanEntitlementRequestBody interface.
  */
 export function instanceOfCreatePlanEntitlementRequestBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "featureId" in value;
-    isInstance = isInstance && "planId" in value;
-    isInstance = isInstance && "valueType" in value;
-
-    return isInstance;
+    if (!('featureId' in value)) return false;
+    if (!('planId' in value)) return false;
+    if (!('valueType' in value)) return false;
+    return true;
 }
 
 export function CreatePlanEntitlementRequestBodyFromJSON(json: any): CreatePlanEntitlementRequestBody {
@@ -103,37 +101,34 @@ export function CreatePlanEntitlementRequestBodyFromJSON(json: any): CreatePlanE
 }
 
 export function CreatePlanEntitlementRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreatePlanEntitlementRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'featureId': json['feature_id'],
-        'metricPeriod': !exists(json, 'metric_period') ? undefined : json['metric_period'],
+        'metricPeriod': json['metric_period'] == null ? undefined : json['metric_period'],
         'planId': json['plan_id'],
-        'valueBool': !exists(json, 'value_bool') ? undefined : json['value_bool'],
-        'valueNumeric': !exists(json, 'value_numeric') ? undefined : json['value_numeric'],
-        'valueTraitId': !exists(json, 'value_trait_id') ? undefined : json['value_trait_id'],
+        'valueBool': json['value_bool'] == null ? undefined : json['value_bool'],
+        'valueNumeric': json['value_numeric'] == null ? undefined : json['value_numeric'],
+        'valueTraitId': json['value_trait_id'] == null ? undefined : json['value_trait_id'],
         'valueType': json['value_type'],
     };
 }
 
 export function CreatePlanEntitlementRequestBodyToJSON(value?: CreatePlanEntitlementRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'feature_id': value.featureId,
-        'metric_period': value.metricPeriod,
-        'plan_id': value.planId,
-        'value_bool': value.valueBool,
-        'value_numeric': value.valueNumeric,
-        'value_trait_id': value.valueTraitId,
-        'value_type': value.valueType,
+        'feature_id': value['featureId'],
+        'metric_period': value['metricPeriod'],
+        'plan_id': value['planId'],
+        'value_bool': value['valueBool'],
+        'value_numeric': value['valueNumeric'],
+        'value_trait_id': value['valueTraitId'],
+        'value_type': value['valueType'],
     };
 }
 

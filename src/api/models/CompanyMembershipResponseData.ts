@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -55,14 +55,12 @@ export interface CompanyMembershipResponseData {
  * Check if a given object implements the CompanyMembershipResponseData interface.
  */
 export function instanceOfCompanyMembershipResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "companyId" in value;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "updatedAt" in value;
-    isInstance = isInstance && "userId" in value;
-
-    return isInstance;
+    if (!('companyId' in value)) return false;
+    if (!('createdAt' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('updatedAt' in value)) return false;
+    if (!('userId' in value)) return false;
+    return true;
 }
 
 export function CompanyMembershipResponseDataFromJSON(json: any): CompanyMembershipResponseData {
@@ -70,7 +68,7 @@ export function CompanyMembershipResponseDataFromJSON(json: any): CompanyMembers
 }
 
 export function CompanyMembershipResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): CompanyMembershipResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -84,19 +82,16 @@ export function CompanyMembershipResponseDataFromJSONTyped(json: any, ignoreDisc
 }
 
 export function CompanyMembershipResponseDataToJSON(value?: CompanyMembershipResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'company_id': value.companyId,
-        'created_at': (value.createdAt.toISOString()),
-        'id': value.id,
-        'updated_at': (value.updatedAt.toISOString()),
-        'user_id': value.userId,
+        'company_id': value['companyId'],
+        'created_at': ((value['createdAt']).toISOString()),
+        'id': value['id'],
+        'updated_at': ((value['updatedAt']).toISOString()),
+        'user_id': value['userId'],
     };
 }
 

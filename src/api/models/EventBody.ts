@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  */
 
+import type { EventBodyIdentify } from './EventBodyIdentify';
 import {
-    EventBodyIdentify,
     instanceOfEventBodyIdentify,
     EventBodyIdentifyFromJSON,
     EventBodyIdentifyFromJSONTyped,
     EventBodyIdentifyToJSON,
 } from './EventBodyIdentify';
+import type { EventBodyTrack } from './EventBodyTrack';
 import {
-    EventBodyTrack,
     instanceOfEventBodyTrack,
     EventBodyTrackFromJSON,
     EventBodyTrackFromJSONTyped,
@@ -39,18 +39,15 @@ export function EventBodyFromJSON(json: any): EventBody {
 }
 
 export function EventBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): EventBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return { ...EventBodyIdentifyFromJSONTyped(json, true), ...EventBodyTrackFromJSONTyped(json, true) };
 }
 
 export function EventBodyToJSON(value?: EventBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
 
     if (instanceOfEventBodyIdentify(value)) {
