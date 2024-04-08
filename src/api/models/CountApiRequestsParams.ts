@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Input parameters
  * @export
@@ -49,9 +49,7 @@ export interface CountApiRequestsParams {
  * Check if a given object implements the CountApiRequestsParams interface.
  */
 export function instanceOfCountApiRequestsParams(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CountApiRequestsParamsFromJSON(json: any): CountApiRequestsParams {
@@ -59,31 +57,28 @@ export function CountApiRequestsParamsFromJSON(json: any): CountApiRequestsParam
 }
 
 export function CountApiRequestsParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): CountApiRequestsParams {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'q': !exists(json, 'q') ? undefined : json['q'],
-        'requestType': !exists(json, 'request_type') ? undefined : json['request_type'],
+        'limit': json['limit'] == null ? undefined : json['limit'],
+        'offset': json['offset'] == null ? undefined : json['offset'],
+        'q': json['q'] == null ? undefined : json['q'],
+        'requestType': json['request_type'] == null ? undefined : json['request_type'],
     };
 }
 
 export function CountApiRequestsParamsToJSON(value?: CountApiRequestsParams | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'limit': value.limit,
-        'offset': value.offset,
-        'q': value.q,
-        'request_type': value.requestType,
+        'limit': value['limit'],
+        'offset': value['offset'],
+        'q': value['q'],
+        'request_type': value['requestType'],
     };
 }
 

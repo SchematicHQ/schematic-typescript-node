@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The created resource
  * @export
@@ -30,13 +30,13 @@ export interface ApiKeyCreateResponseData {
      * @type {string}
      * @memberof ApiKeyCreateResponseData
      */
-    description?: string | null;
+    description?: string;
     /**
      * 
      * @type {string}
      * @memberof ApiKeyCreateResponseData
      */
-    environmentId?: string | null;
+    environmentId?: string;
     /**
      * 
      * @type {string}
@@ -48,7 +48,7 @@ export interface ApiKeyCreateResponseData {
      * @type {Date}
      * @memberof ApiKeyCreateResponseData
      */
-    lastUsedAt?: Date | null;
+    lastUsedAt?: Date;
     /**
      * 
      * @type {string}
@@ -79,15 +79,13 @@ export interface ApiKeyCreateResponseData {
  * Check if a given object implements the ApiKeyCreateResponseData interface.
  */
 export function instanceOfApiKeyCreateResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "scopes" in value;
-    isInstance = isInstance && "secret" in value;
-    isInstance = isInstance && "updatedAt" in value;
-
-    return isInstance;
+    if (!('createdAt' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('scopes' in value)) return false;
+    if (!('secret' in value)) return false;
+    if (!('updatedAt' in value)) return false;
+    return true;
 }
 
 export function ApiKeyCreateResponseDataFromJSON(json: any): ApiKeyCreateResponseData {
@@ -95,16 +93,16 @@ export function ApiKeyCreateResponseDataFromJSON(json: any): ApiKeyCreateRespons
 }
 
 export function ApiKeyCreateResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): ApiKeyCreateResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'createdAt': (new Date(json['created_at'])),
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'environmentId': json['environment_id'] == null ? undefined : json['environment_id'],
         'id': json['id'],
-        'lastUsedAt': !exists(json, 'last_used_at') ? undefined : (json['last_used_at'] === null ? null : new Date(json['last_used_at'])),
+        'lastUsedAt': json['last_used_at'] == null ? undefined : (new Date(json['last_used_at'])),
         'name': json['name'],
         'scopes': json['scopes'],
         'secret': json['secret'],
@@ -113,23 +111,20 @@ export function ApiKeyCreateResponseDataFromJSONTyped(json: any, ignoreDiscrimin
 }
 
 export function ApiKeyCreateResponseDataToJSON(value?: ApiKeyCreateResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'created_at': (value.createdAt.toISOString()),
-        'description': value.description,
-        'environment_id': value.environmentId,
-        'id': value.id,
-        'last_used_at': value.lastUsedAt === undefined ? undefined : (value.lastUsedAt === null ? null : value.lastUsedAt.toISOString()),
-        'name': value.name,
-        'scopes': value.scopes,
-        'secret': value.secret,
-        'updated_at': (value.updatedAt.toISOString()),
+        'created_at': ((value['createdAt']).toISOString()),
+        'description': value['description'],
+        'environment_id': value['environmentId'],
+        'id': value['id'],
+        'last_used_at': value['lastUsedAt'] == null ? undefined : ((value['lastUsedAt'] as any).toISOString()),
+        'name': value['name'],
+        'scopes': value['scopes'],
+        'secret': value['secret'],
+        'updated_at': ((value['updatedAt']).toISOString()),
     };
 }
 

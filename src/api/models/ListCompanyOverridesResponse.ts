@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CompanyOverrideResponseData } from './CompanyOverrideResponseData';
 import {
     CompanyOverrideResponseDataFromJSON,
@@ -50,11 +50,9 @@ export interface ListCompanyOverridesResponse {
  * Check if a given object implements the ListCompanyOverridesResponse interface.
  */
 export function instanceOfListCompanyOverridesResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function ListCompanyOverridesResponseFromJSON(json: any): ListCompanyOverridesResponse {
@@ -62,7 +60,7 @@ export function ListCompanyOverridesResponseFromJSON(json: any): ListCompanyOver
 }
 
 export function ListCompanyOverridesResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListCompanyOverridesResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function ListCompanyOverridesResponseFromJSONTyped(json: any, ignoreDiscr
 }
 
 export function ListCompanyOverridesResponseToJSON(value?: ListCompanyOverridesResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': ((value.data as Array<any>).map(CompanyOverrideResponseDataToJSON)),
-        'params': ListCompanyOverridesParamsToJSON(value.params),
+        'data': ((value['data'] as Array<any>).map(CompanyOverrideResponseDataToJSON)),
+        'params': ListCompanyOverridesParamsToJSON(value['params']),
     };
 }
 

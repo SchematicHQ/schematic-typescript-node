@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PlanEntitlementResponseData } from './PlanEntitlementResponseData';
 import {
     PlanEntitlementResponseDataFromJSON,
@@ -44,11 +44,9 @@ export interface CreatePlanEntitlementResponse {
  * Check if a given object implements the CreatePlanEntitlementResponse interface.
  */
 export function instanceOfCreatePlanEntitlementResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function CreatePlanEntitlementResponseFromJSON(json: any): CreatePlanEntitlementResponse {
@@ -56,7 +54,7 @@ export function CreatePlanEntitlementResponseFromJSON(json: any): CreatePlanEnti
 }
 
 export function CreatePlanEntitlementResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreatePlanEntitlementResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function CreatePlanEntitlementResponseFromJSONTyped(json: any, ignoreDisc
 }
 
 export function CreatePlanEntitlementResponseToJSON(value?: CreatePlanEntitlementResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': PlanEntitlementResponseDataToJSON(value.data),
-        'params': value.params,
+        'data': PlanEntitlementResponseDataToJSON(value['data']),
+        'params': value['params'],
     };
 }
 

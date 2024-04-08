@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CreateOrUpdateConditionGroupRequestBody } from './CreateOrUpdateConditionGroupRequestBody';
 import {
     CreateOrUpdateConditionGroupRequestBodyFromJSON,
@@ -49,7 +49,7 @@ export interface CreateOrUpdateRuleRequestBody {
      * @type {string}
      * @memberof CreateOrUpdateRuleRequestBody
      */
-    id?: string | null;
+    id?: string;
     /**
      * 
      * @type {string}
@@ -95,14 +95,12 @@ export type CreateOrUpdateRuleRequestBodyRuleTypeEnum = typeof CreateOrUpdateRul
  * Check if a given object implements the CreateOrUpdateRuleRequestBody interface.
  */
 export function instanceOfCreateOrUpdateRuleRequestBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "conditionGroups" in value;
-    isInstance = isInstance && "conditions" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "priority" in value;
-    isInstance = isInstance && "value" in value;
-
-    return isInstance;
+    if (!('conditionGroups' in value)) return false;
+    if (!('conditions' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('priority' in value)) return false;
+    if (!('value' in value)) return false;
+    return true;
 }
 
 export function CreateOrUpdateRuleRequestBodyFromJSON(json: any): CreateOrUpdateRuleRequestBody {
@@ -110,37 +108,34 @@ export function CreateOrUpdateRuleRequestBodyFromJSON(json: any): CreateOrUpdate
 }
 
 export function CreateOrUpdateRuleRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateOrUpdateRuleRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'conditionGroups': ((json['condition_groups'] as Array<any>).map(CreateOrUpdateConditionGroupRequestBodyFromJSON)),
         'conditions': ((json['conditions'] as Array<any>).map(CreateOrUpdateConditionRequestBodyFromJSON)),
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'name': json['name'],
         'priority': json['priority'],
-        'ruleType': !exists(json, 'rule_type') ? undefined : json['rule_type'],
+        'ruleType': json['rule_type'] == null ? undefined : json['rule_type'],
         'value': json['value'],
     };
 }
 
 export function CreateOrUpdateRuleRequestBodyToJSON(value?: CreateOrUpdateRuleRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'condition_groups': ((value.conditionGroups as Array<any>).map(CreateOrUpdateConditionGroupRequestBodyToJSON)),
-        'conditions': ((value.conditions as Array<any>).map(CreateOrUpdateConditionRequestBodyToJSON)),
-        'id': value.id,
-        'name': value.name,
-        'priority': value.priority,
-        'rule_type': value.ruleType,
-        'value': value.value,
+        'condition_groups': ((value['conditionGroups'] as Array<any>).map(CreateOrUpdateConditionGroupRequestBodyToJSON)),
+        'conditions': ((value['conditions'] as Array<any>).map(CreateOrUpdateConditionRequestBodyToJSON)),
+        'id': value['id'],
+        'name': value['name'],
+        'priority': value['priority'],
+        'rule_type': value['ruleType'],
+        'value': value['value'],
     };
 }
 

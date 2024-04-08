@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -49,10 +49,8 @@ export interface EventBodyTrack {
  * Check if a given object implements the EventBodyTrack interface.
  */
 export function instanceOfEventBodyTrack(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "event" in value;
-
-    return isInstance;
+    if (!('event' in value)) return false;
+    return true;
 }
 
 export function EventBodyTrackFromJSON(json: any): EventBodyTrack {
@@ -60,31 +58,28 @@ export function EventBodyTrackFromJSON(json: any): EventBodyTrack {
 }
 
 export function EventBodyTrackFromJSONTyped(json: any, ignoreDiscriminator: boolean): EventBodyTrack {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'company': !exists(json, 'company') ? undefined : json['company'],
+        'company': json['company'] == null ? undefined : json['company'],
         'event': json['event'],
-        'traits': !exists(json, 'traits') ? undefined : json['traits'],
-        'user': !exists(json, 'user') ? undefined : json['user'],
+        'traits': json['traits'] == null ? undefined : json['traits'],
+        'user': json['user'] == null ? undefined : json['user'],
     };
 }
 
 export function EventBodyTrackToJSON(value?: EventBodyTrack | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'company': value.company,
-        'event': value.event,
-        'traits': value.traits,
-        'user': value.user,
+        'company': value['company'],
+        'event': value['event'],
+        'traits': value['traits'],
+        'user': value['user'],
     };
 }
 

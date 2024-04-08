@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { RawEventResponseData } from './RawEventResponseData';
 import {
     RawEventResponseDataFromJSON,
@@ -38,10 +38,8 @@ export interface RawEventBatchResponseData {
  * Check if a given object implements the RawEventBatchResponseData interface.
  */
 export function instanceOfRawEventBatchResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "events" in value;
-
-    return isInstance;
+    if (!('events' in value)) return false;
+    return true;
 }
 
 export function RawEventBatchResponseDataFromJSON(json: any): RawEventBatchResponseData {
@@ -49,7 +47,7 @@ export function RawEventBatchResponseDataFromJSON(json: any): RawEventBatchRespo
 }
 
 export function RawEventBatchResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): RawEventBatchResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,15 +57,12 @@ export function RawEventBatchResponseDataFromJSONTyped(json: any, ignoreDiscrimi
 }
 
 export function RawEventBatchResponseDataToJSON(value?: RawEventBatchResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'events': ((value.events as Array<any>).map(RawEventResponseDataToJSON)),
+        'events': ((value['events'] as Array<any>).map(RawEventResponseDataToJSON)),
     };
 }
 

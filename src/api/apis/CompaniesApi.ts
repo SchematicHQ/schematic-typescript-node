@@ -16,19 +16,20 @@
 import * as runtime from '../runtime';
 import type {
   ApiError,
-  CreateCompanyMembershipResponse,
   CreateCompanyResponse,
-  CreateCompanyTraitResponse,
   CreateEntityTraitDefinitionRequestBody,
-  CreateEntityTraitDefinitionResponse,
   CreateUserResponse,
-  CreateUserTraitResponse,
+  DeleteCompanyByKeysResponse,
   DeleteCompanyMembershipResponse,
   DeleteCompanyResponse,
+  DeleteUserByKeysResponse,
   DeleteUserResponse,
   GetCompanyResponse,
   GetOrCreateCompanyMembershipRequestBody,
+  GetOrCreateCompanyMembershipResponse,
+  GetOrCreateEntityTraitDefinitionResponse,
   GetUserResponse,
+  KeysRequestBody,
   ListCompaniesResponse,
   ListCompanyMembershipsResponse,
   ListCompanyPlansResponse,
@@ -38,38 +39,44 @@ import type {
   UpdateEntityTraitDefinitionRequestBody,
   UpdateEntityTraitDefinitionResponse,
   UpsertCompanyRequestBody,
+  UpsertCompanyResponse,
+  UpsertCompanyTraitResponse,
   UpsertTraitRequestBody,
   UpsertUserRequestBody,
-} from '../models';
+  UpsertUserResponse,
+  UpsertUserTraitResponse,
+} from '../models/index';
 import {
     ApiErrorFromJSON,
     ApiErrorToJSON,
-    CreateCompanyMembershipResponseFromJSON,
-    CreateCompanyMembershipResponseToJSON,
     CreateCompanyResponseFromJSON,
     CreateCompanyResponseToJSON,
-    CreateCompanyTraitResponseFromJSON,
-    CreateCompanyTraitResponseToJSON,
     CreateEntityTraitDefinitionRequestBodyFromJSON,
     CreateEntityTraitDefinitionRequestBodyToJSON,
-    CreateEntityTraitDefinitionResponseFromJSON,
-    CreateEntityTraitDefinitionResponseToJSON,
     CreateUserResponseFromJSON,
     CreateUserResponseToJSON,
-    CreateUserTraitResponseFromJSON,
-    CreateUserTraitResponseToJSON,
+    DeleteCompanyByKeysResponseFromJSON,
+    DeleteCompanyByKeysResponseToJSON,
     DeleteCompanyMembershipResponseFromJSON,
     DeleteCompanyMembershipResponseToJSON,
     DeleteCompanyResponseFromJSON,
     DeleteCompanyResponseToJSON,
+    DeleteUserByKeysResponseFromJSON,
+    DeleteUserByKeysResponseToJSON,
     DeleteUserResponseFromJSON,
     DeleteUserResponseToJSON,
     GetCompanyResponseFromJSON,
     GetCompanyResponseToJSON,
     GetOrCreateCompanyMembershipRequestBodyFromJSON,
     GetOrCreateCompanyMembershipRequestBodyToJSON,
+    GetOrCreateCompanyMembershipResponseFromJSON,
+    GetOrCreateCompanyMembershipResponseToJSON,
+    GetOrCreateEntityTraitDefinitionResponseFromJSON,
+    GetOrCreateEntityTraitDefinitionResponseToJSON,
     GetUserResponseFromJSON,
     GetUserResponseToJSON,
+    KeysRequestBodyFromJSON,
+    KeysRequestBodyToJSON,
     ListCompaniesResponseFromJSON,
     ListCompaniesResponseToJSON,
     ListCompanyMembershipsResponseFromJSON,
@@ -88,38 +95,34 @@ import {
     UpdateEntityTraitDefinitionResponseToJSON,
     UpsertCompanyRequestBodyFromJSON,
     UpsertCompanyRequestBodyToJSON,
+    UpsertCompanyResponseFromJSON,
+    UpsertCompanyResponseToJSON,
+    UpsertCompanyTraitResponseFromJSON,
+    UpsertCompanyTraitResponseToJSON,
     UpsertTraitRequestBodyFromJSON,
     UpsertTraitRequestBodyToJSON,
     UpsertUserRequestBodyFromJSON,
     UpsertUserRequestBodyToJSON,
-} from '../models';
+    UpsertUserResponseFromJSON,
+    UpsertUserResponseToJSON,
+    UpsertUserTraitResponseFromJSON,
+    UpsertUserTraitResponseToJSON,
+} from '../models/index';
 
 export interface CreateCompanyRequest {
     upsertCompanyRequestBody: UpsertCompanyRequestBody;
-}
-
-export interface CreateCompanyMembershipRequest {
-    getOrCreateCompanyMembershipRequestBody: GetOrCreateCompanyMembershipRequestBody;
-}
-
-export interface CreateCompanyTraitRequest {
-    upsertTraitRequestBody: UpsertTraitRequestBody;
-}
-
-export interface CreateEntityTraitDefinitionRequest {
-    createEntityTraitDefinitionRequestBody: CreateEntityTraitDefinitionRequestBody;
 }
 
 export interface CreateUserRequest {
     upsertUserRequestBody: UpsertUserRequestBody;
 }
 
-export interface CreateUserTraitRequest {
-    upsertTraitRequestBody: UpsertTraitRequestBody;
-}
-
 export interface DeleteCompanyRequest {
     companyId: string;
+}
+
+export interface DeleteCompanyByKeysRequest {
+    keysRequestBody: KeysRequestBody;
 }
 
 export interface DeleteCompanyMembershipRequest {
@@ -130,8 +133,20 @@ export interface DeleteUserRequest {
     userId: string;
 }
 
+export interface DeleteUserByKeysRequest {
+    keysRequestBody: KeysRequestBody;
+}
+
 export interface GetCompanyRequest {
     companyId: string;
+}
+
+export interface GetOrCreateCompanyMembershipRequest {
+    getOrCreateCompanyMembershipRequestBody: GetOrCreateCompanyMembershipRequestBody;
+}
+
+export interface GetOrCreateEntityTraitDefinitionRequest {
+    createEntityTraitDefinitionRequestBody: CreateEntityTraitDefinitionRequestBody;
 }
 
 export interface GetUserRequest {
@@ -177,6 +192,22 @@ export interface UpdateEntityTraitDefinitionRequest {
     entityTraitDefinitionId: string;
 }
 
+export interface UpsertCompanyRequest {
+    upsertCompanyRequestBody: UpsertCompanyRequestBody;
+}
+
+export interface UpsertCompanyTraitRequest {
+    upsertTraitRequestBody: UpsertTraitRequestBody;
+}
+
+export interface UpsertUserRequest {
+    upsertUserRequestBody: UpsertUserRequestBody;
+}
+
+export interface UpsertUserTraitRequest {
+    upsertTraitRequestBody: UpsertTraitRequestBody;
+}
+
 /**
  * 
  */
@@ -186,8 +217,11 @@ export class CompaniesApi extends runtime.BaseAPI {
      * Create company
      */
     async createCompanyRaw(requestParameters: CreateCompanyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCompanyResponse>> {
-        if (requestParameters.upsertCompanyRequestBody === null || requestParameters.upsertCompanyRequestBody === undefined) {
-            throw new runtime.RequiredError('upsertCompanyRequestBody','Required parameter requestParameters.upsertCompanyRequestBody was null or undefined when calling createCompany.');
+        if (requestParameters['upsertCompanyRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'upsertCompanyRequestBody',
+                'Required parameter "upsertCompanyRequestBody" was null or undefined when calling createCompany().'
+            );
         }
 
         const queryParameters: any = {};
@@ -197,15 +231,15 @@ export class CompaniesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/companies`,
+            path: `/companies/create`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: UpsertCompanyRequestBodyToJSON(requestParameters.upsertCompanyRequestBody),
+            body: UpsertCompanyRequestBodyToJSON(requestParameters['upsertCompanyRequestBody']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateCompanyResponseFromJSON(jsonValue));
@@ -220,122 +254,14 @@ export class CompaniesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create company membership
-     */
-    async createCompanyMembershipRaw(requestParameters: CreateCompanyMembershipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCompanyMembershipResponse>> {
-        if (requestParameters.getOrCreateCompanyMembershipRequestBody === null || requestParameters.getOrCreateCompanyMembershipRequestBody === undefined) {
-            throw new runtime.RequiredError('getOrCreateCompanyMembershipRequestBody','Required parameter requestParameters.getOrCreateCompanyMembershipRequestBody was null or undefined when calling createCompanyMembership.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/company-memberships`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: GetOrCreateCompanyMembershipRequestBodyToJSON(requestParameters.getOrCreateCompanyMembershipRequestBody),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCompanyMembershipResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Create company membership
-     */
-    async createCompanyMembership(requestParameters: CreateCompanyMembershipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCompanyMembershipResponse> {
-        const response = await this.createCompanyMembershipRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Create company trait
-     */
-    async createCompanyTraitRaw(requestParameters: CreateCompanyTraitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCompanyTraitResponse>> {
-        if (requestParameters.upsertTraitRequestBody === null || requestParameters.upsertTraitRequestBody === undefined) {
-            throw new runtime.RequiredError('upsertTraitRequestBody','Required parameter requestParameters.upsertTraitRequestBody was null or undefined when calling createCompanyTrait.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/company-traits`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: UpsertTraitRequestBodyToJSON(requestParameters.upsertTraitRequestBody),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCompanyTraitResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Create company trait
-     */
-    async createCompanyTrait(requestParameters: CreateCompanyTraitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCompanyTraitResponse> {
-        const response = await this.createCompanyTraitRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Create entity trait definition
-     */
-    async createEntityTraitDefinitionRaw(requestParameters: CreateEntityTraitDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateEntityTraitDefinitionResponse>> {
-        if (requestParameters.createEntityTraitDefinitionRequestBody === null || requestParameters.createEntityTraitDefinitionRequestBody === undefined) {
-            throw new runtime.RequiredError('createEntityTraitDefinitionRequestBody','Required parameter requestParameters.createEntityTraitDefinitionRequestBody was null or undefined when calling createEntityTraitDefinition.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/entity-trait-definitions`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: CreateEntityTraitDefinitionRequestBodyToJSON(requestParameters.createEntityTraitDefinitionRequestBody),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateEntityTraitDefinitionResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Create entity trait definition
-     */
-    async createEntityTraitDefinition(requestParameters: CreateEntityTraitDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateEntityTraitDefinitionResponse> {
-        const response = await this.createEntityTraitDefinitionRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
      * Create user
      */
     async createUserRaw(requestParameters: CreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateUserResponse>> {
-        if (requestParameters.upsertUserRequestBody === null || requestParameters.upsertUserRequestBody === undefined) {
-            throw new runtime.RequiredError('upsertUserRequestBody','Required parameter requestParameters.upsertUserRequestBody was null or undefined when calling createUser.');
+        if (requestParameters['upsertUserRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'upsertUserRequestBody',
+                'Required parameter "upsertUserRequestBody" was null or undefined when calling createUser().'
+            );
         }
 
         const queryParameters: any = {};
@@ -345,15 +271,15 @@ export class CompaniesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/users`,
+            path: `/users/create`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: UpsertUserRequestBodyToJSON(requestParameters.upsertUserRequestBody),
+            body: UpsertUserRequestBodyToJSON(requestParameters['upsertUserRequestBody']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateUserResponseFromJSON(jsonValue));
@@ -368,48 +294,14 @@ export class CompaniesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create user trait
-     */
-    async createUserTraitRaw(requestParameters: CreateUserTraitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateUserTraitResponse>> {
-        if (requestParameters.upsertTraitRequestBody === null || requestParameters.upsertTraitRequestBody === undefined) {
-            throw new runtime.RequiredError('upsertTraitRequestBody','Required parameter requestParameters.upsertTraitRequestBody was null or undefined when calling createUserTrait.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/user-traits`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: UpsertTraitRequestBodyToJSON(requestParameters.upsertTraitRequestBody),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateUserTraitResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Create user trait
-     */
-    async createUserTrait(requestParameters: CreateUserTraitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateUserTraitResponse> {
-        const response = await this.createUserTraitRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
      * Delete company
      */
     async deleteCompanyRaw(requestParameters: DeleteCompanyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteCompanyResponse>> {
-        if (requestParameters.companyId === null || requestParameters.companyId === undefined) {
-            throw new runtime.RequiredError('companyId','Required parameter requestParameters.companyId was null or undefined when calling deleteCompany.');
+        if (requestParameters['companyId'] == null) {
+            throw new runtime.RequiredError(
+                'companyId',
+                'Required parameter "companyId" was null or undefined when calling deleteCompany().'
+            );
         }
 
         const queryParameters: any = {};
@@ -417,11 +309,11 @@ export class CompaniesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/companies/{company_id}`.replace(`{${"company_id"}}`, encodeURIComponent(String(requestParameters.companyId))),
+            path: `/companies/{company_id}`.replace(`{${"company_id"}}`, encodeURIComponent(String(requestParameters['companyId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -439,11 +331,54 @@ export class CompaniesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Delete company by keys
+     */
+    async deleteCompanyByKeysRaw(requestParameters: DeleteCompanyByKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteCompanyByKeysResponse>> {
+        if (requestParameters['keysRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'keysRequestBody',
+                'Required parameter "keysRequestBody" was null or undefined when calling deleteCompanyByKeys().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/companies/delete`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: KeysRequestBodyToJSON(requestParameters['keysRequestBody']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteCompanyByKeysResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete company by keys
+     */
+    async deleteCompanyByKeys(requestParameters: DeleteCompanyByKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteCompanyByKeysResponse> {
+        const response = await this.deleteCompanyByKeysRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Delete company membership
      */
     async deleteCompanyMembershipRaw(requestParameters: DeleteCompanyMembershipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteCompanyMembershipResponse>> {
-        if (requestParameters.companyMembershipId === null || requestParameters.companyMembershipId === undefined) {
-            throw new runtime.RequiredError('companyMembershipId','Required parameter requestParameters.companyMembershipId was null or undefined when calling deleteCompanyMembership.');
+        if (requestParameters['companyMembershipId'] == null) {
+            throw new runtime.RequiredError(
+                'companyMembershipId',
+                'Required parameter "companyMembershipId" was null or undefined when calling deleteCompanyMembership().'
+            );
         }
 
         const queryParameters: any = {};
@@ -451,11 +386,11 @@ export class CompaniesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/company-memberships/{company_membership_id}`.replace(`{${"company_membership_id"}}`, encodeURIComponent(String(requestParameters.companyMembershipId))),
+            path: `/company-memberships/{company_membership_id}`.replace(`{${"company_membership_id"}}`, encodeURIComponent(String(requestParameters['companyMembershipId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -476,8 +411,11 @@ export class CompaniesApi extends runtime.BaseAPI {
      * Delete user
      */
     async deleteUserRaw(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteUserResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling deleteUser.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling deleteUser().'
+            );
         }
 
         const queryParameters: any = {};
@@ -485,11 +423,11 @@ export class CompaniesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/users/{user_id}`.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/users/{user_id}`.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -507,11 +445,54 @@ export class CompaniesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Delete user by keys
+     */
+    async deleteUserByKeysRaw(requestParameters: DeleteUserByKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteUserByKeysResponse>> {
+        if (requestParameters['keysRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'keysRequestBody',
+                'Required parameter "keysRequestBody" was null or undefined when calling deleteUserByKeys().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/users/delete`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: KeysRequestBodyToJSON(requestParameters['keysRequestBody']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteUserByKeysResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete user by keys
+     */
+    async deleteUserByKeys(requestParameters: DeleteUserByKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteUserByKeysResponse> {
+        const response = await this.deleteUserByKeysRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Get company
      */
     async getCompanyRaw(requestParameters: GetCompanyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCompanyResponse>> {
-        if (requestParameters.companyId === null || requestParameters.companyId === undefined) {
-            throw new runtime.RequiredError('companyId','Required parameter requestParameters.companyId was null or undefined when calling getCompany.');
+        if (requestParameters['companyId'] == null) {
+            throw new runtime.RequiredError(
+                'companyId',
+                'Required parameter "companyId" was null or undefined when calling getCompany().'
+            );
         }
 
         const queryParameters: any = {};
@@ -519,11 +500,11 @@ export class CompaniesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/companies/{company_id}`.replace(`{${"company_id"}}`, encodeURIComponent(String(requestParameters.companyId))),
+            path: `/companies/{company_id}`.replace(`{${"company_id"}}`, encodeURIComponent(String(requestParameters['companyId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -541,11 +522,94 @@ export class CompaniesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Get or create company membership
+     */
+    async getOrCreateCompanyMembershipRaw(requestParameters: GetOrCreateCompanyMembershipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetOrCreateCompanyMembershipResponse>> {
+        if (requestParameters['getOrCreateCompanyMembershipRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'getOrCreateCompanyMembershipRequestBody',
+                'Required parameter "getOrCreateCompanyMembershipRequestBody" was null or undefined when calling getOrCreateCompanyMembership().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/company-memberships`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: GetOrCreateCompanyMembershipRequestBodyToJSON(requestParameters['getOrCreateCompanyMembershipRequestBody']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetOrCreateCompanyMembershipResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get or create company membership
+     */
+    async getOrCreateCompanyMembership(requestParameters: GetOrCreateCompanyMembershipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetOrCreateCompanyMembershipResponse> {
+        const response = await this.getOrCreateCompanyMembershipRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get or create entity trait definition
+     */
+    async getOrCreateEntityTraitDefinitionRaw(requestParameters: GetOrCreateEntityTraitDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetOrCreateEntityTraitDefinitionResponse>> {
+        if (requestParameters['createEntityTraitDefinitionRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'createEntityTraitDefinitionRequestBody',
+                'Required parameter "createEntityTraitDefinitionRequestBody" was null or undefined when calling getOrCreateEntityTraitDefinition().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/entity-trait-definitions`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateEntityTraitDefinitionRequestBodyToJSON(requestParameters['createEntityTraitDefinitionRequestBody']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetOrCreateEntityTraitDefinitionResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get or create entity trait definition
+     */
+    async getOrCreateEntityTraitDefinition(requestParameters: GetOrCreateEntityTraitDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetOrCreateEntityTraitDefinitionResponse> {
+        const response = await this.getOrCreateEntityTraitDefinitionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Get user
      */
     async getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getUser.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getUser().'
+            );
         }
 
         const queryParameters: any = {};
@@ -553,11 +617,11 @@ export class CompaniesApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/users/{user_id}`.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/users/{user_id}`.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -580,22 +644,22 @@ export class CompaniesApi extends runtime.BaseAPI {
     async listCompaniesRaw(requestParameters: ListCompaniesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListCompaniesResponse>> {
         const queryParameters: any = {};
 
-        if (requestParameters.ids) {
-            queryParameters['ids'] = requestParameters.ids;
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
         }
 
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
-        if (requestParameters.offset !== undefined) {
-            queryParameters['offset'] = requestParameters.offset;
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -622,26 +686,26 @@ export class CompaniesApi extends runtime.BaseAPI {
     async listCompanyMembershipsRaw(requestParameters: ListCompanyMembershipsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListCompanyMembershipsResponse>> {
         const queryParameters: any = {};
 
-        if (requestParameters.companyId !== undefined) {
-            queryParameters['company_id'] = requestParameters.companyId;
+        if (requestParameters['companyId'] != null) {
+            queryParameters['company_id'] = requestParameters['companyId'];
         }
 
-        if (requestParameters.userId !== undefined) {
-            queryParameters['user_id'] = requestParameters.userId;
+        if (requestParameters['userId'] != null) {
+            queryParameters['user_id'] = requestParameters['userId'];
         }
 
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
-        if (requestParameters.offset !== undefined) {
-            queryParameters['offset'] = requestParameters.offset;
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -668,26 +732,26 @@ export class CompaniesApi extends runtime.BaseAPI {
     async listCompanyPlansRaw(requestParameters: ListCompanyPlansRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListCompanyPlansResponse>> {
         const queryParameters: any = {};
 
-        if (requestParameters.companyId !== undefined) {
-            queryParameters['company_id'] = requestParameters.companyId;
+        if (requestParameters['companyId'] != null) {
+            queryParameters['company_id'] = requestParameters['companyId'];
         }
 
-        if (requestParameters.planId !== undefined) {
-            queryParameters['plan_id'] = requestParameters.planId;
+        if (requestParameters['planId'] != null) {
+            queryParameters['plan_id'] = requestParameters['planId'];
         }
 
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
-        if (requestParameters.offset !== undefined) {
-            queryParameters['offset'] = requestParameters.offset;
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -714,22 +778,22 @@ export class CompaniesApi extends runtime.BaseAPI {
     async listUsersRaw(requestParameters: ListUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListUsersResponse>> {
         const queryParameters: any = {};
 
-        if (requestParameters.ids) {
-            queryParameters['ids'] = requestParameters.ids;
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
         }
 
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
-        if (requestParameters.offset !== undefined) {
-            queryParameters['offset'] = requestParameters.offset;
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -754,20 +818,23 @@ export class CompaniesApi extends runtime.BaseAPI {
      * Lookup company
      */
     async lookupCompanyRaw(requestParameters: LookupCompanyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LookupCompanyResponse>> {
-        if (requestParameters.keys === null || requestParameters.keys === undefined) {
-            throw new runtime.RequiredError('keys','Required parameter requestParameters.keys was null or undefined when calling lookupCompany.');
+        if (requestParameters['keys'] == null) {
+            throw new runtime.RequiredError(
+                'keys',
+                'Required parameter "keys" was null or undefined when calling lookupCompany().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.keys !== undefined) {
-            queryParameters['keys'] = requestParameters.keys;
+        if (requestParameters['keys'] != null) {
+            queryParameters['keys'] = requestParameters['keys'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -792,20 +859,23 @@ export class CompaniesApi extends runtime.BaseAPI {
      * Lookup user
      */
     async lookupUserRaw(requestParameters: LookupUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LookupUserResponse>> {
-        if (requestParameters.keys === null || requestParameters.keys === undefined) {
-            throw new runtime.RequiredError('keys','Required parameter requestParameters.keys was null or undefined when calling lookupUser.');
+        if (requestParameters['keys'] == null) {
+            throw new runtime.RequiredError(
+                'keys',
+                'Required parameter "keys" was null or undefined when calling lookupUser().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.keys !== undefined) {
-            queryParameters['keys'] = requestParameters.keys;
+        if (requestParameters['keys'] != null) {
+            queryParameters['keys'] = requestParameters['keys'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -830,12 +900,18 @@ export class CompaniesApi extends runtime.BaseAPI {
      * Update entity trait definition
      */
     async updateEntityTraitDefinitionRaw(requestParameters: UpdateEntityTraitDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateEntityTraitDefinitionResponse>> {
-        if (requestParameters.updateEntityTraitDefinitionRequestBody === null || requestParameters.updateEntityTraitDefinitionRequestBody === undefined) {
-            throw new runtime.RequiredError('updateEntityTraitDefinitionRequestBody','Required parameter requestParameters.updateEntityTraitDefinitionRequestBody was null or undefined when calling updateEntityTraitDefinition.');
+        if (requestParameters['updateEntityTraitDefinitionRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'updateEntityTraitDefinitionRequestBody',
+                'Required parameter "updateEntityTraitDefinitionRequestBody" was null or undefined when calling updateEntityTraitDefinition().'
+            );
         }
 
-        if (requestParameters.entityTraitDefinitionId === null || requestParameters.entityTraitDefinitionId === undefined) {
-            throw new runtime.RequiredError('entityTraitDefinitionId','Required parameter requestParameters.entityTraitDefinitionId was null or undefined when calling updateEntityTraitDefinition.');
+        if (requestParameters['entityTraitDefinitionId'] == null) {
+            throw new runtime.RequiredError(
+                'entityTraitDefinitionId',
+                'Required parameter "entityTraitDefinitionId" was null or undefined when calling updateEntityTraitDefinition().'
+            );
         }
 
         const queryParameters: any = {};
@@ -845,15 +921,15 @@ export class CompaniesApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/entity-trait-definitions/{entity_trait_definition_id}`.replace(`{${"entity_trait_definition_id"}}`, encodeURIComponent(String(requestParameters.entityTraitDefinitionId))),
+            path: `/entity-trait-definitions/{entity_trait_definition_id}`.replace(`{${"entity_trait_definition_id"}}`, encodeURIComponent(String(requestParameters['entityTraitDefinitionId']))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateEntityTraitDefinitionRequestBodyToJSON(requestParameters.updateEntityTraitDefinitionRequestBody),
+            body: UpdateEntityTraitDefinitionRequestBodyToJSON(requestParameters['updateEntityTraitDefinitionRequestBody']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateEntityTraitDefinitionResponseFromJSON(jsonValue));
@@ -864,6 +940,166 @@ export class CompaniesApi extends runtime.BaseAPI {
      */
     async updateEntityTraitDefinition(requestParameters: UpdateEntityTraitDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateEntityTraitDefinitionResponse> {
         const response = await this.updateEntityTraitDefinitionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Upsert company
+     */
+    async upsertCompanyRaw(requestParameters: UpsertCompanyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpsertCompanyResponse>> {
+        if (requestParameters['upsertCompanyRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'upsertCompanyRequestBody',
+                'Required parameter "upsertCompanyRequestBody" was null or undefined when calling upsertCompany().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/companies`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpsertCompanyRequestBodyToJSON(requestParameters['upsertCompanyRequestBody']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpsertCompanyResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Upsert company
+     */
+    async upsertCompany(requestParameters: UpsertCompanyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpsertCompanyResponse> {
+        const response = await this.upsertCompanyRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Upsert company trait
+     */
+    async upsertCompanyTraitRaw(requestParameters: UpsertCompanyTraitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpsertCompanyTraitResponse>> {
+        if (requestParameters['upsertTraitRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'upsertTraitRequestBody',
+                'Required parameter "upsertTraitRequestBody" was null or undefined when calling upsertCompanyTrait().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/company-traits`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpsertTraitRequestBodyToJSON(requestParameters['upsertTraitRequestBody']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpsertCompanyTraitResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Upsert company trait
+     */
+    async upsertCompanyTrait(requestParameters: UpsertCompanyTraitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpsertCompanyTraitResponse> {
+        const response = await this.upsertCompanyTraitRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Upsert user
+     */
+    async upsertUserRaw(requestParameters: UpsertUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpsertUserResponse>> {
+        if (requestParameters['upsertUserRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'upsertUserRequestBody',
+                'Required parameter "upsertUserRequestBody" was null or undefined when calling upsertUser().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/users`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpsertUserRequestBodyToJSON(requestParameters['upsertUserRequestBody']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpsertUserResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Upsert user
+     */
+    async upsertUser(requestParameters: UpsertUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpsertUserResponse> {
+        const response = await this.upsertUserRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Upsert user trait
+     */
+    async upsertUserTraitRaw(requestParameters: UpsertUserTraitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpsertUserTraitResponse>> {
+        if (requestParameters['upsertTraitRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'upsertTraitRequestBody',
+                'Required parameter "upsertTraitRequestBody" was null or undefined when calling upsertUserTrait().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/user-traits`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpsertTraitRequestBodyToJSON(requestParameters['upsertTraitRequestBody']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpsertUserTraitResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Upsert user trait
+     */
+    async upsertUserTrait(requestParameters: UpsertUserTraitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpsertUserTraitResponse> {
+        const response = await this.upsertUserTraitRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CreateOrUpdateConditionGroupRequestBody } from './CreateOrUpdateConditionGroupRequestBody';
 import {
     CreateOrUpdateConditionGroupRequestBodyFromJSON,
@@ -68,14 +68,12 @@ export interface UpdateRuleRequestBody {
  * Check if a given object implements the UpdateRuleRequestBody interface.
  */
 export function instanceOfUpdateRuleRequestBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "conditionGroups" in value;
-    isInstance = isInstance && "conditions" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "priority" in value;
-    isInstance = isInstance && "value" in value;
-
-    return isInstance;
+    if (!('conditionGroups' in value)) return false;
+    if (!('conditions' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('priority' in value)) return false;
+    if (!('value' in value)) return false;
+    return true;
 }
 
 export function UpdateRuleRequestBodyFromJSON(json: any): UpdateRuleRequestBody {
@@ -83,7 +81,7 @@ export function UpdateRuleRequestBodyFromJSON(json: any): UpdateRuleRequestBody 
 }
 
 export function UpdateRuleRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateRuleRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -97,19 +95,16 @@ export function UpdateRuleRequestBodyFromJSONTyped(json: any, ignoreDiscriminato
 }
 
 export function UpdateRuleRequestBodyToJSON(value?: UpdateRuleRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'condition_groups': ((value.conditionGroups as Array<any>).map(CreateOrUpdateConditionGroupRequestBodyToJSON)),
-        'conditions': ((value.conditions as Array<any>).map(CreateOrUpdateConditionRequestBodyToJSON)),
-        'name': value.name,
-        'priority': value.priority,
-        'value': value.value,
+        'condition_groups': ((value['conditionGroups'] as Array<any>).map(CreateOrUpdateConditionGroupRequestBodyToJSON)),
+        'conditions': ((value['conditions'] as Array<any>).map(CreateOrUpdateConditionRequestBodyToJSON)),
+        'name': value['name'],
+        'priority': value['priority'],
+        'value': value['value'],
     };
 }
 

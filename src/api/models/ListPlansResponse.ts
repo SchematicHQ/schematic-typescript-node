@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ListPlansParams } from './ListPlansParams';
 import {
     ListPlansParamsFromJSON,
@@ -50,11 +50,9 @@ export interface ListPlansResponse {
  * Check if a given object implements the ListPlansResponse interface.
  */
 export function instanceOfListPlansResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function ListPlansResponseFromJSON(json: any): ListPlansResponse {
@@ -62,7 +60,7 @@ export function ListPlansResponseFromJSON(json: any): ListPlansResponse {
 }
 
 export function ListPlansResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListPlansResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function ListPlansResponseFromJSONTyped(json: any, ignoreDiscriminator: b
 }
 
 export function ListPlansResponseToJSON(value?: ListPlansResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': ((value.data as Array<any>).map(PlanResponseDataToJSON)),
-        'params': ListPlansParamsToJSON(value.params),
+        'data': ((value['data'] as Array<any>).map(PlanResponseDataToJSON)),
+        'params': ListPlansParamsToJSON(value['params']),
     };
 }
 

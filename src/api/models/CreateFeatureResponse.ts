@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FeatureDetailResponseData } from './FeatureDetailResponseData';
 import {
     FeatureDetailResponseDataFromJSON,
@@ -44,11 +44,9 @@ export interface CreateFeatureResponse {
  * Check if a given object implements the CreateFeatureResponse interface.
  */
 export function instanceOfCreateFeatureResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function CreateFeatureResponseFromJSON(json: any): CreateFeatureResponse {
@@ -56,7 +54,7 @@ export function CreateFeatureResponseFromJSON(json: any): CreateFeatureResponse 
 }
 
 export function CreateFeatureResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateFeatureResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function CreateFeatureResponseFromJSONTyped(json: any, ignoreDiscriminato
 }
 
 export function CreateFeatureResponseToJSON(value?: CreateFeatureResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': FeatureDetailResponseDataToJSON(value.data),
-        'params': value.params,
+        'data': FeatureDetailResponseDataToJSON(value['data']),
+        'params': value['params'],
     };
 }
 

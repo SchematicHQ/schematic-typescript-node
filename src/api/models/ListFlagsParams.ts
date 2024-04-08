@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Input parameters
  * @export
@@ -49,9 +49,7 @@ export interface ListFlagsParams {
  * Check if a given object implements the ListFlagsParams interface.
  */
 export function instanceOfListFlagsParams(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ListFlagsParamsFromJSON(json: any): ListFlagsParams {
@@ -59,31 +57,28 @@ export function ListFlagsParamsFromJSON(json: any): ListFlagsParams {
 }
 
 export function ListFlagsParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListFlagsParams {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'featureId': !exists(json, 'feature_id') ? undefined : json['feature_id'],
-        'flagIds': !exists(json, 'flag_ids') ? undefined : json['flag_ids'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
+        'featureId': json['feature_id'] == null ? undefined : json['feature_id'],
+        'flagIds': json['flag_ids'] == null ? undefined : json['flag_ids'],
+        'limit': json['limit'] == null ? undefined : json['limit'],
+        'offset': json['offset'] == null ? undefined : json['offset'],
     };
 }
 
 export function ListFlagsParamsToJSON(value?: ListFlagsParams | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'feature_id': value.featureId,
-        'flag_ids': value.flagIds,
-        'limit': value.limit,
-        'offset': value.offset,
+        'feature_id': value['featureId'],
+        'flag_ids': value['flagIds'],
+        'limit': value['limit'],
+        'offset': value['offset'],
     };
 }
 

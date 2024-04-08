@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -55,14 +55,12 @@ export interface EventSummaryResponseData {
  * Check if a given object implements the EventSummaryResponseData interface.
  */
 export function instanceOfEventSummaryResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "environmentId" in value;
-    isInstance = isInstance && "eventSubtype" in value;
-    isInstance = isInstance && "last30CompanyCount" in value;
-    isInstance = isInstance && "last30Count" in value;
-    isInstance = isInstance && "last30UserCount" in value;
-
-    return isInstance;
+    if (!('environmentId' in value)) return false;
+    if (!('eventSubtype' in value)) return false;
+    if (!('last30CompanyCount' in value)) return false;
+    if (!('last30Count' in value)) return false;
+    if (!('last30UserCount' in value)) return false;
+    return true;
 }
 
 export function EventSummaryResponseDataFromJSON(json: any): EventSummaryResponseData {
@@ -70,7 +68,7 @@ export function EventSummaryResponseDataFromJSON(json: any): EventSummaryRespons
 }
 
 export function EventSummaryResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): EventSummaryResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -84,19 +82,16 @@ export function EventSummaryResponseDataFromJSONTyped(json: any, ignoreDiscrimin
 }
 
 export function EventSummaryResponseDataToJSON(value?: EventSummaryResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'environment_id': value.environmentId,
-        'event_subtype': value.eventSubtype,
-        'last_30_company_count': value.last30CompanyCount,
-        'last_30_count': value.last30Count,
-        'last_30_user_count': value.last30UserCount,
+        'environment_id': value['environmentId'],
+        'event_subtype': value['eventSubtype'],
+        'last_30_company_count': value['last30CompanyCount'],
+        'last_30_count': value['last30Count'],
+        'last_30_user_count': value['last30UserCount'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Input parameters
  * @export
@@ -85,9 +85,7 @@ export interface ListMetricCountsParams {
  * Check if a given object implements the ListMetricCountsParams interface.
  */
 export function instanceOfListMetricCountsParams(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ListMetricCountsParamsFromJSON(json: any): ListMetricCountsParams {
@@ -95,43 +93,40 @@ export function ListMetricCountsParamsFromJSON(json: any): ListMetricCountsParam
 }
 
 export function ListMetricCountsParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListMetricCountsParams {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'companyId': !exists(json, 'company_id') ? undefined : json['company_id'],
-        'companyIds': !exists(json, 'company_ids') ? undefined : json['company_ids'],
-        'endTime': !exists(json, 'end_time') ? undefined : (new Date(json['end_time'])),
-        'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
-        'eventSubtypes': !exists(json, 'event_subtypes') ? undefined : json['event_subtypes'],
-        'grouping': !exists(json, 'grouping') ? undefined : json['grouping'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'startTime': !exists(json, 'start_time') ? undefined : (new Date(json['start_time'])),
-        'userId': !exists(json, 'user_id') ? undefined : json['user_id'],
+        'companyId': json['company_id'] == null ? undefined : json['company_id'],
+        'companyIds': json['company_ids'] == null ? undefined : json['company_ids'],
+        'endTime': json['end_time'] == null ? undefined : (new Date(json['end_time'])),
+        'eventSubtype': json['event_subtype'] == null ? undefined : json['event_subtype'],
+        'eventSubtypes': json['event_subtypes'] == null ? undefined : json['event_subtypes'],
+        'grouping': json['grouping'] == null ? undefined : json['grouping'],
+        'limit': json['limit'] == null ? undefined : json['limit'],
+        'offset': json['offset'] == null ? undefined : json['offset'],
+        'startTime': json['start_time'] == null ? undefined : (new Date(json['start_time'])),
+        'userId': json['user_id'] == null ? undefined : json['user_id'],
     };
 }
 
 export function ListMetricCountsParamsToJSON(value?: ListMetricCountsParams | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'company_id': value.companyId,
-        'company_ids': value.companyIds,
-        'end_time': value.endTime === undefined ? undefined : (value.endTime.toISOString()),
-        'event_subtype': value.eventSubtype,
-        'event_subtypes': value.eventSubtypes,
-        'grouping': value.grouping,
-        'limit': value.limit,
-        'offset': value.offset,
-        'start_time': value.startTime === undefined ? undefined : (value.startTime.toISOString()),
-        'user_id': value.userId,
+        'company_id': value['companyId'],
+        'company_ids': value['companyIds'],
+        'end_time': value['endTime'] == null ? undefined : ((value['endTime']).toISOString()),
+        'event_subtype': value['eventSubtype'],
+        'event_subtypes': value['eventSubtypes'],
+        'grouping': value['grouping'],
+        'limit': value['limit'],
+        'offset': value['offset'],
+        'start_time': value['startTime'] == null ? undefined : ((value['startTime']).toISOString()),
+        'user_id': value['userId'],
     };
 }
 

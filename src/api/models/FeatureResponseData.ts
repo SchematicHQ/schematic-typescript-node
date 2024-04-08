@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,7 +36,7 @@ export interface FeatureResponseData {
      * @type {string}
      * @memberof FeatureResponseData
      */
-    eventSubtype?: string | null;
+    eventSubtype?: string;
     /**
      * 
      * @type {string}
@@ -54,7 +54,7 @@ export interface FeatureResponseData {
      * @type {string}
      * @memberof FeatureResponseData
      */
-    lifecyclePhase?: string | null;
+    lifecyclePhase?: string;
     /**
      * 
      * @type {string}
@@ -66,7 +66,7 @@ export interface FeatureResponseData {
      * @type {string}
      * @memberof FeatureResponseData
      */
-    traitId?: string | null;
+    traitId?: string;
     /**
      * 
      * @type {Date}
@@ -79,15 +79,13 @@ export interface FeatureResponseData {
  * Check if a given object implements the FeatureResponseData interface.
  */
 export function instanceOfFeatureResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "featureType" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "updatedAt" in value;
-
-    return isInstance;
+    if (!('createdAt' in value)) return false;
+    if (!('description' in value)) return false;
+    if (!('featureType' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('updatedAt' in value)) return false;
+    return true;
 }
 
 export function FeatureResponseDataFromJSON(json: any): FeatureResponseData {
@@ -95,41 +93,38 @@ export function FeatureResponseDataFromJSON(json: any): FeatureResponseData {
 }
 
 export function FeatureResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): FeatureResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'createdAt': (new Date(json['created_at'])),
         'description': json['description'],
-        'eventSubtype': !exists(json, 'event_subtype') ? undefined : json['event_subtype'],
+        'eventSubtype': json['event_subtype'] == null ? undefined : json['event_subtype'],
         'featureType': json['feature_type'],
         'id': json['id'],
-        'lifecyclePhase': !exists(json, 'lifecycle_phase') ? undefined : json['lifecycle_phase'],
+        'lifecyclePhase': json['lifecycle_phase'] == null ? undefined : json['lifecycle_phase'],
         'name': json['name'],
-        'traitId': !exists(json, 'trait_id') ? undefined : json['trait_id'],
+        'traitId': json['trait_id'] == null ? undefined : json['trait_id'],
         'updatedAt': (new Date(json['updated_at'])),
     };
 }
 
 export function FeatureResponseDataToJSON(value?: FeatureResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'created_at': (value.createdAt.toISOString()),
-        'description': value.description,
-        'event_subtype': value.eventSubtype,
-        'feature_type': value.featureType,
-        'id': value.id,
-        'lifecycle_phase': value.lifecyclePhase,
-        'name': value.name,
-        'trait_id': value.traitId,
-        'updated_at': (value.updatedAt.toISOString()),
+        'created_at': ((value['createdAt']).toISOString()),
+        'description': value['description'],
+        'event_subtype': value['eventSubtype'],
+        'feature_type': value['featureType'],
+        'id': value['id'],
+        'lifecycle_phase': value['lifecyclePhase'],
+        'name': value['name'],
+        'trait_id': value['traitId'],
+        'updated_at': ((value['updatedAt']).toISOString()),
     };
 }
 

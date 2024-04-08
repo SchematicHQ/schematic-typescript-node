@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ApiKeyRequestResponseData } from './ApiKeyRequestResponseData';
 import {
     ApiKeyRequestResponseDataFromJSON,
@@ -44,11 +44,9 @@ export interface GetApiRequestResponse {
  * Check if a given object implements the GetApiRequestResponse interface.
  */
 export function instanceOfGetApiRequestResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function GetApiRequestResponseFromJSON(json: any): GetApiRequestResponse {
@@ -56,7 +54,7 @@ export function GetApiRequestResponseFromJSON(json: any): GetApiRequestResponse 
 }
 
 export function GetApiRequestResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetApiRequestResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function GetApiRequestResponseFromJSONTyped(json: any, ignoreDiscriminato
 }
 
 export function GetApiRequestResponseToJSON(value?: GetApiRequestResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': ApiKeyRequestResponseDataToJSON(value.data),
-        'params': value.params,
+        'data': ApiKeyRequestResponseDataToJSON(value['data']),
+        'params': value['params'],
     };
 }
 

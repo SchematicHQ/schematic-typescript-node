@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CreateOrUpdateConditionRequestBody } from './CreateOrUpdateConditionRequestBody';
 import {
     CreateOrUpdateConditionRequestBodyFromJSON,
@@ -37,29 +37,27 @@ export interface CreateOrUpdateConditionGroupRequestBody {
      * @type {string}
      * @memberof CreateOrUpdateConditionGroupRequestBody
      */
-    flagId?: string | null;
+    flagId?: string;
     /**
      * 
      * @type {string}
      * @memberof CreateOrUpdateConditionGroupRequestBody
      */
-    id?: string | null;
+    id?: string;
     /**
      * 
      * @type {string}
      * @memberof CreateOrUpdateConditionGroupRequestBody
      */
-    planId?: string | null;
+    planId?: string;
 }
 
 /**
  * Check if a given object implements the CreateOrUpdateConditionGroupRequestBody interface.
  */
 export function instanceOfCreateOrUpdateConditionGroupRequestBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "conditions" in value;
-
-    return isInstance;
+    if (!('conditions' in value)) return false;
+    return true;
 }
 
 export function CreateOrUpdateConditionGroupRequestBodyFromJSON(json: any): CreateOrUpdateConditionGroupRequestBody {
@@ -67,31 +65,28 @@ export function CreateOrUpdateConditionGroupRequestBodyFromJSON(json: any): Crea
 }
 
 export function CreateOrUpdateConditionGroupRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateOrUpdateConditionGroupRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'conditions': ((json['conditions'] as Array<any>).map(CreateOrUpdateConditionRequestBodyFromJSON)),
-        'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'planId': !exists(json, 'plan_id') ? undefined : json['plan_id'],
+        'flagId': json['flag_id'] == null ? undefined : json['flag_id'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'planId': json['plan_id'] == null ? undefined : json['plan_id'],
     };
 }
 
 export function CreateOrUpdateConditionGroupRequestBodyToJSON(value?: CreateOrUpdateConditionGroupRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'conditions': ((value.conditions as Array<any>).map(CreateOrUpdateConditionRequestBodyToJSON)),
-        'flag_id': value.flagId,
-        'id': value.id,
-        'plan_id': value.planId,
+        'conditions': ((value['conditions'] as Array<any>).map(CreateOrUpdateConditionRequestBodyToJSON)),
+        'flag_id': value['flagId'],
+        'id': value['id'],
+        'plan_id': value['planId'],
     };
 }
 

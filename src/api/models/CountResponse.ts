@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The created resource
  * @export
@@ -31,10 +31,8 @@ export interface CountResponse {
  * Check if a given object implements the CountResponse interface.
  */
 export function instanceOfCountResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "count" in value;
-
-    return isInstance;
+    if (!('count' in value)) return false;
+    return true;
 }
 
 export function CountResponseFromJSON(json: any): CountResponse {
@@ -42,7 +40,7 @@ export function CountResponseFromJSON(json: any): CountResponse {
 }
 
 export function CountResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CountResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -52,15 +50,12 @@ export function CountResponseFromJSONTyped(json: any, ignoreDiscriminator: boole
 }
 
 export function CountResponseToJSON(value?: CountResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'count': value.count,
+        'count': value['count'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Input parameters
  * @export
@@ -43,9 +43,7 @@ export interface ListUsersParams {
  * Check if a given object implements the ListUsersParams interface.
  */
 export function instanceOfListUsersParams(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ListUsersParamsFromJSON(json: any): ListUsersParams {
@@ -53,29 +51,26 @@ export function ListUsersParamsFromJSON(json: any): ListUsersParams {
 }
 
 export function ListUsersParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListUsersParams {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'ids': !exists(json, 'ids') ? undefined : json['ids'],
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
+        'ids': json['ids'] == null ? undefined : json['ids'],
+        'limit': json['limit'] == null ? undefined : json['limit'],
+        'offset': json['offset'] == null ? undefined : json['offset'],
     };
 }
 
 export function ListUsersParamsToJSON(value?: ListUsersParams | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'ids': value.ids,
-        'limit': value.limit,
-        'offset': value.offset,
+        'ids': value['ids'],
+        'limit': value['limit'],
+        'offset': value['offset'],
     };
 }
 

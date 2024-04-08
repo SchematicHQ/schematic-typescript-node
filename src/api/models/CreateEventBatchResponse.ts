@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { RawEventBatchResponseData } from './RawEventBatchResponseData';
 import {
     RawEventBatchResponseDataFromJSON,
@@ -44,11 +44,9 @@ export interface CreateEventBatchResponse {
  * Check if a given object implements the CreateEventBatchResponse interface.
  */
 export function instanceOfCreateEventBatchResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "params" in value;
-
-    return isInstance;
+    if (!('data' in value)) return false;
+    if (!('params' in value)) return false;
+    return true;
 }
 
 export function CreateEventBatchResponseFromJSON(json: any): CreateEventBatchResponse {
@@ -56,7 +54,7 @@ export function CreateEventBatchResponseFromJSON(json: any): CreateEventBatchRes
 }
 
 export function CreateEventBatchResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateEventBatchResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function CreateEventBatchResponseFromJSONTyped(json: any, ignoreDiscrimin
 }
 
 export function CreateEventBatchResponseToJSON(value?: CreateEventBatchResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': RawEventBatchResponseDataToJSON(value.data),
-        'params': value.params,
+        'data': RawEventBatchResponseDataToJSON(value['data']),
+        'params': value['params'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,19 +36,19 @@ export interface CreateReqCommon {
      * @type {boolean}
      * @memberof CreateReqCommon
      */
-    valueBool?: boolean | null;
+    valueBool?: boolean;
     /**
      * 
      * @type {number}
      * @memberof CreateReqCommon
      */
-    valueNumeric?: number | null;
+    valueNumeric?: number;
     /**
      * 
      * @type {string}
      * @memberof CreateReqCommon
      */
-    valueTraitId?: string | null;
+    valueTraitId?: string;
     /**
      * 
      * @type {string}
@@ -84,11 +84,9 @@ export type CreateReqCommonValueTypeEnum = typeof CreateReqCommonValueTypeEnum[k
  * Check if a given object implements the CreateReqCommon interface.
  */
 export function instanceOfCreateReqCommon(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "featureId" in value;
-    isInstance = isInstance && "valueType" in value;
-
-    return isInstance;
+    if (!('featureId' in value)) return false;
+    if (!('valueType' in value)) return false;
+    return true;
 }
 
 export function CreateReqCommonFromJSON(json: any): CreateReqCommon {
@@ -96,35 +94,32 @@ export function CreateReqCommonFromJSON(json: any): CreateReqCommon {
 }
 
 export function CreateReqCommonFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateReqCommon {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'featureId': json['feature_id'],
-        'metricPeriod': !exists(json, 'metric_period') ? undefined : json['metric_period'],
-        'valueBool': !exists(json, 'value_bool') ? undefined : json['value_bool'],
-        'valueNumeric': !exists(json, 'value_numeric') ? undefined : json['value_numeric'],
-        'valueTraitId': !exists(json, 'value_trait_id') ? undefined : json['value_trait_id'],
+        'metricPeriod': json['metric_period'] == null ? undefined : json['metric_period'],
+        'valueBool': json['value_bool'] == null ? undefined : json['value_bool'],
+        'valueNumeric': json['value_numeric'] == null ? undefined : json['value_numeric'],
+        'valueTraitId': json['value_trait_id'] == null ? undefined : json['value_trait_id'],
         'valueType': json['value_type'],
     };
 }
 
 export function CreateReqCommonToJSON(value?: CreateReqCommon | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'feature_id': value.featureId,
-        'metric_period': value.metricPeriod,
-        'value_bool': value.valueBool,
-        'value_numeric': value.valueNumeric,
-        'value_trait_id': value.valueTraitId,
-        'value_type': value.valueType,
+        'feature_id': value['featureId'],
+        'metric_period': value['metricPeriod'],
+        'value_bool': value['valueBool'],
+        'value_numeric': value['valueNumeric'],
+        'value_trait_id': value['valueTraitId'],
+        'value_type': value['valueType'],
     };
 }
 

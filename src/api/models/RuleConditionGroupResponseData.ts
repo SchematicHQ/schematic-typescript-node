@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,7 +36,7 @@ export interface RuleConditionGroupResponseData {
      * @type {string}
      * @memberof RuleConditionGroupResponseData
      */
-    flagId?: string | null;
+    flagId?: string;
     /**
      * 
      * @type {string}
@@ -48,7 +48,7 @@ export interface RuleConditionGroupResponseData {
      * @type {string}
      * @memberof RuleConditionGroupResponseData
      */
-    planId?: string | null;
+    planId?: string;
     /**
      * 
      * @type {string}
@@ -67,14 +67,12 @@ export interface RuleConditionGroupResponseData {
  * Check if a given object implements the RuleConditionGroupResponseData interface.
  */
 export function instanceOfRuleConditionGroupResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "environmentId" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "ruleId" in value;
-    isInstance = isInstance && "updatedAt" in value;
-
-    return isInstance;
+    if (!('createdAt' in value)) return false;
+    if (!('environmentId' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('ruleId' in value)) return false;
+    if (!('updatedAt' in value)) return false;
+    return true;
 }
 
 export function RuleConditionGroupResponseDataFromJSON(json: any): RuleConditionGroupResponseData {
@@ -82,37 +80,34 @@ export function RuleConditionGroupResponseDataFromJSON(json: any): RuleCondition
 }
 
 export function RuleConditionGroupResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): RuleConditionGroupResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'createdAt': (new Date(json['created_at'])),
         'environmentId': json['environment_id'],
-        'flagId': !exists(json, 'flag_id') ? undefined : json['flag_id'],
+        'flagId': json['flag_id'] == null ? undefined : json['flag_id'],
         'id': json['id'],
-        'planId': !exists(json, 'plan_id') ? undefined : json['plan_id'],
+        'planId': json['plan_id'] == null ? undefined : json['plan_id'],
         'ruleId': json['rule_id'],
         'updatedAt': (new Date(json['updated_at'])),
     };
 }
 
 export function RuleConditionGroupResponseDataToJSON(value?: RuleConditionGroupResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'created_at': (value.createdAt.toISOString()),
-        'environment_id': value.environmentId,
-        'flag_id': value.flagId,
-        'id': value.id,
-        'plan_id': value.planId,
-        'rule_id': value.ruleId,
-        'updated_at': (value.updatedAt.toISOString()),
+        'created_at': ((value['createdAt']).toISOString()),
+        'environment_id': value['environmentId'],
+        'flag_id': value['flagId'],
+        'id': value['id'],
+        'plan_id': value['planId'],
+        'rule_id': value['ruleId'],
+        'updated_at': ((value['updatedAt']).toISOString()),
     };
 }
 

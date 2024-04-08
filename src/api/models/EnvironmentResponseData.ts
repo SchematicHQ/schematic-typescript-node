@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -55,14 +55,12 @@ export interface EnvironmentResponseData {
  * Check if a given object implements the EnvironmentResponseData interface.
  */
 export function instanceOfEnvironmentResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "environmentType" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "updatedAt" in value;
-
-    return isInstance;
+    if (!('createdAt' in value)) return false;
+    if (!('environmentType' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('updatedAt' in value)) return false;
+    return true;
 }
 
 export function EnvironmentResponseDataFromJSON(json: any): EnvironmentResponseData {
@@ -70,7 +68,7 @@ export function EnvironmentResponseDataFromJSON(json: any): EnvironmentResponseD
 }
 
 export function EnvironmentResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): EnvironmentResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -84,19 +82,16 @@ export function EnvironmentResponseDataFromJSONTyped(json: any, ignoreDiscrimina
 }
 
 export function EnvironmentResponseDataToJSON(value?: EnvironmentResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'created_at': (value.createdAt.toISOString()),
-        'environment_type': value.environmentType,
-        'id': value.id,
-        'name': value.name,
-        'updated_at': (value.updatedAt.toISOString()),
+        'created_at': ((value['createdAt']).toISOString()),
+        'environment_type': value['environmentType'],
+        'id': value['id'],
+        'name': value['name'],
+        'updated_at': ((value['updatedAt']).toISOString()),
     };
 }
 

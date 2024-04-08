@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -44,10 +44,8 @@ export type UpdateEntityTraitDefinitionRequestBodyTraitTypeEnum = typeof UpdateE
  * Check if a given object implements the UpdateEntityTraitDefinitionRequestBody interface.
  */
 export function instanceOfUpdateEntityTraitDefinitionRequestBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "traitType" in value;
-
-    return isInstance;
+    if (!('traitType' in value)) return false;
+    return true;
 }
 
 export function UpdateEntityTraitDefinitionRequestBodyFromJSON(json: any): UpdateEntityTraitDefinitionRequestBody {
@@ -55,7 +53,7 @@ export function UpdateEntityTraitDefinitionRequestBodyFromJSON(json: any): Updat
 }
 
 export function UpdateEntityTraitDefinitionRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateEntityTraitDefinitionRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -65,15 +63,12 @@ export function UpdateEntityTraitDefinitionRequestBodyFromJSONTyped(json: any, i
 }
 
 export function UpdateEntityTraitDefinitionRequestBodyToJSON(value?: UpdateEntityTraitDefinitionRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'trait_type': value.traitType,
+        'trait_type': value['traitType'],
     };
 }
 

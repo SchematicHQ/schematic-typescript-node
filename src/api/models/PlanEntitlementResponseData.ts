@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FeatureResponseData } from './FeatureResponseData';
 import {
     FeatureResponseDataFromJSON,
@@ -67,7 +67,7 @@ export interface PlanEntitlementResponseData {
      * @type {string}
      * @memberof PlanEntitlementResponseData
      */
-    metricPeriod?: string | null;
+    metricPeriod?: string;
     /**
      * 
      * @type {PlanResponseData}
@@ -97,19 +97,19 @@ export interface PlanEntitlementResponseData {
      * @type {boolean}
      * @memberof PlanEntitlementResponseData
      */
-    valueBool?: boolean | null;
+    valueBool?: boolean;
     /**
      * 
      * @type {number}
      * @memberof PlanEntitlementResponseData
      */
-    valueNumeric?: number | null;
+    valueNumeric?: number;
     /**
      * 
      * @type {string}
      * @memberof PlanEntitlementResponseData
      */
-    valueTraitId?: string | null;
+    valueTraitId?: string;
     /**
      * 
      * @type {string}
@@ -122,17 +122,15 @@ export interface PlanEntitlementResponseData {
  * Check if a given object implements the PlanEntitlementResponseData interface.
  */
 export function instanceOfPlanEntitlementResponseData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "createdAt" in value;
-    isInstance = isInstance && "environmentId" in value;
-    isInstance = isInstance && "featureId" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "planId" in value;
-    isInstance = isInstance && "ruleId" in value;
-    isInstance = isInstance && "updatedAt" in value;
-    isInstance = isInstance && "valueType" in value;
-
-    return isInstance;
+    if (!('createdAt' in value)) return false;
+    if (!('environmentId' in value)) return false;
+    if (!('featureId' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('planId' in value)) return false;
+    if (!('ruleId' in value)) return false;
+    if (!('updatedAt' in value)) return false;
+    if (!('valueType' in value)) return false;
+    return true;
 }
 
 export function PlanEntitlementResponseDataFromJSON(json: any): PlanEntitlementResponseData {
@@ -140,51 +138,48 @@ export function PlanEntitlementResponseDataFromJSON(json: any): PlanEntitlementR
 }
 
 export function PlanEntitlementResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlanEntitlementResponseData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'createdAt': (new Date(json['created_at'])),
         'environmentId': json['environment_id'],
-        'feature': !exists(json, 'feature') ? undefined : FeatureResponseDataFromJSON(json['feature']),
+        'feature': json['feature'] == null ? undefined : FeatureResponseDataFromJSON(json['feature']),
         'featureId': json['feature_id'],
         'id': json['id'],
-        'metricPeriod': !exists(json, 'metric_period') ? undefined : json['metric_period'],
-        'plan': !exists(json, 'plan') ? undefined : PlanResponseDataFromJSON(json['plan']),
+        'metricPeriod': json['metric_period'] == null ? undefined : json['metric_period'],
+        'plan': json['plan'] == null ? undefined : PlanResponseDataFromJSON(json['plan']),
         'planId': json['plan_id'],
         'ruleId': json['rule_id'],
         'updatedAt': (new Date(json['updated_at'])),
-        'valueBool': !exists(json, 'value_bool') ? undefined : json['value_bool'],
-        'valueNumeric': !exists(json, 'value_numeric') ? undefined : json['value_numeric'],
-        'valueTraitId': !exists(json, 'value_trait_id') ? undefined : json['value_trait_id'],
+        'valueBool': json['value_bool'] == null ? undefined : json['value_bool'],
+        'valueNumeric': json['value_numeric'] == null ? undefined : json['value_numeric'],
+        'valueTraitId': json['value_trait_id'] == null ? undefined : json['value_trait_id'],
         'valueType': json['value_type'],
     };
 }
 
 export function PlanEntitlementResponseDataToJSON(value?: PlanEntitlementResponseData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'created_at': (value.createdAt.toISOString()),
-        'environment_id': value.environmentId,
-        'feature': FeatureResponseDataToJSON(value.feature),
-        'feature_id': value.featureId,
-        'id': value.id,
-        'metric_period': value.metricPeriod,
-        'plan': PlanResponseDataToJSON(value.plan),
-        'plan_id': value.planId,
-        'rule_id': value.ruleId,
-        'updated_at': (value.updatedAt.toISOString()),
-        'value_bool': value.valueBool,
-        'value_numeric': value.valueNumeric,
-        'value_trait_id': value.valueTraitId,
-        'value_type': value.valueType,
+        'created_at': ((value['createdAt']).toISOString()),
+        'environment_id': value['environmentId'],
+        'feature': FeatureResponseDataToJSON(value['feature']),
+        'feature_id': value['featureId'],
+        'id': value['id'],
+        'metric_period': value['metricPeriod'],
+        'plan': PlanResponseDataToJSON(value['plan']),
+        'plan_id': value['planId'],
+        'rule_id': value['ruleId'],
+        'updated_at': ((value['updatedAt']).toISOString()),
+        'value_bool': value['valueBool'],
+        'value_numeric': value['valueNumeric'],
+        'value_trait_id': value['valueTraitId'],
+        'value_type': value['valueType'],
     };
 }
 

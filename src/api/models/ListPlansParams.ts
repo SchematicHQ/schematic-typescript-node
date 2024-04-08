@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Input parameters
  * @export
@@ -37,9 +37,7 @@ export interface ListPlansParams {
  * Check if a given object implements the ListPlansParams interface.
  */
 export function instanceOfListPlansParams(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ListPlansParamsFromJSON(json: any): ListPlansParams {
@@ -47,27 +45,24 @@ export function ListPlansParamsFromJSON(json: any): ListPlansParams {
 }
 
 export function ListPlansParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListPlansParams {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
+        'limit': json['limit'] == null ? undefined : json['limit'],
+        'offset': json['offset'] == null ? undefined : json['offset'],
     };
 }
 
 export function ListPlansParamsToJSON(value?: ListPlansParams | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'limit': value.limit,
-        'offset': value.offset,
+        'limit': value['limit'],
+        'offset': value['offset'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -24,7 +24,7 @@ export interface UpsertTraitRequestBody {
      * @type {number}
      * @memberof UpsertTraitRequestBody
      */
-    incr?: number | null;
+    incr?: number;
     /**
      * Key/value pairs too identify a company or user
      * @type {object}
@@ -36,7 +36,7 @@ export interface UpsertTraitRequestBody {
      * @type {string}
      * @memberof UpsertTraitRequestBody
      */
-    set?: string | null;
+    set?: string;
     /**
      * Name of the trait to update
      * @type {string}
@@ -48,18 +48,16 @@ export interface UpsertTraitRequestBody {
      * @type {boolean}
      * @memberof UpsertTraitRequestBody
      */
-    updateOnly?: boolean | null;
+    updateOnly?: boolean;
 }
 
 /**
  * Check if a given object implements the UpsertTraitRequestBody interface.
  */
 export function instanceOfUpsertTraitRequestBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "keys" in value;
-    isInstance = isInstance && "trait" in value;
-
-    return isInstance;
+    if (!('keys' in value)) return false;
+    if (!('trait' in value)) return false;
+    return true;
 }
 
 export function UpsertTraitRequestBodyFromJSON(json: any): UpsertTraitRequestBody {
@@ -67,33 +65,30 @@ export function UpsertTraitRequestBodyFromJSON(json: any): UpsertTraitRequestBod
 }
 
 export function UpsertTraitRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpsertTraitRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'incr': !exists(json, 'incr') ? undefined : json['incr'],
+        'incr': json['incr'] == null ? undefined : json['incr'],
         'keys': json['keys'],
-        'set': !exists(json, 'set') ? undefined : json['set'],
+        'set': json['set'] == null ? undefined : json['set'],
         'trait': json['trait'],
-        'updateOnly': !exists(json, 'update_only') ? undefined : json['update_only'],
+        'updateOnly': json['update_only'] == null ? undefined : json['update_only'],
     };
 }
 
 export function UpsertTraitRequestBodyToJSON(value?: UpsertTraitRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'incr': value.incr,
-        'keys': value.keys,
-        'set': value.set,
-        'trait': value.trait,
-        'update_only': value.updateOnly,
+        'incr': value['incr'],
+        'keys': value['keys'],
+        'set': value['set'],
+        'trait': value['trait'],
+        'update_only': value['updateOnly'],
     };
 }
 

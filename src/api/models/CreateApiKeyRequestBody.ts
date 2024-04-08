@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -24,13 +24,13 @@ export interface CreateApiKeyRequestBody {
      * @type {string}
      * @memberof CreateApiKeyRequestBody
      */
-    description?: string | null;
+    description?: string;
     /**
      * 
      * @type {string}
      * @memberof CreateApiKeyRequestBody
      */
-    environmentId?: string | null;
+    environmentId?: string;
     /**
      * 
      * @type {string}
@@ -43,10 +43,8 @@ export interface CreateApiKeyRequestBody {
  * Check if a given object implements the CreateApiKeyRequestBody interface.
  */
 export function instanceOfCreateApiKeyRequestBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "name" in value;
-
-    return isInstance;
+    if (!('name' in value)) return false;
+    return true;
 }
 
 export function CreateApiKeyRequestBodyFromJSON(json: any): CreateApiKeyRequestBody {
@@ -54,29 +52,26 @@ export function CreateApiKeyRequestBodyFromJSON(json: any): CreateApiKeyRequestB
 }
 
 export function CreateApiKeyRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateApiKeyRequestBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'environmentId': !exists(json, 'environment_id') ? undefined : json['environment_id'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'environmentId': json['environment_id'] == null ? undefined : json['environment_id'],
         'name': json['name'],
     };
 }
 
 export function CreateApiKeyRequestBodyToJSON(value?: CreateApiKeyRequestBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'description': value.description,
-        'environment_id': value.environmentId,
-        'name': value.name,
+        'description': value['description'],
+        'environment_id': value['environmentId'],
+        'name': value['name'],
     };
 }
 

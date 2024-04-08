@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Input parameters
  * @export
@@ -31,9 +31,7 @@ export interface LookupUserParams {
  * Check if a given object implements the LookupUserParams interface.
  */
 export function instanceOfLookupUserParams(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function LookupUserParamsFromJSON(json: any): LookupUserParams {
@@ -41,25 +39,22 @@ export function LookupUserParamsFromJSON(json: any): LookupUserParams {
 }
 
 export function LookupUserParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): LookupUserParams {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'keys': !exists(json, 'keys') ? undefined : json['keys'],
+        'keys': json['keys'] == null ? undefined : json['keys'],
     };
 }
 
 export function LookupUserParamsToJSON(value?: LookupUserParams | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'keys': value.keys,
+        'keys': value['keys'],
     };
 }
 

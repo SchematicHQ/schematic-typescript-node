@@ -18,15 +18,15 @@ import type {
   ApiError,
   CreatePlanRequestBody,
   CreatePlanResponse,
-  DeletePlanAudienceResponse,
+  DeleteAudienceResponse,
   DeletePlanResponse,
   GetPlanResponse,
   ListPlansResponse,
   UpdateAudienceRequestBody,
-  UpdatePlanAudienceResponse,
+  UpdateAudienceResponse,
   UpdatePlanRequestBody,
   UpdatePlanResponse,
-} from '../models';
+} from '../models/index';
 import {
     ApiErrorFromJSON,
     ApiErrorToJSON,
@@ -34,8 +34,8 @@ import {
     CreatePlanRequestBodyToJSON,
     CreatePlanResponseFromJSON,
     CreatePlanResponseToJSON,
-    DeletePlanAudienceResponseFromJSON,
-    DeletePlanAudienceResponseToJSON,
+    DeleteAudienceResponseFromJSON,
+    DeleteAudienceResponseToJSON,
     DeletePlanResponseFromJSON,
     DeletePlanResponseToJSON,
     GetPlanResponseFromJSON,
@@ -44,24 +44,24 @@ import {
     ListPlansResponseToJSON,
     UpdateAudienceRequestBodyFromJSON,
     UpdateAudienceRequestBodyToJSON,
-    UpdatePlanAudienceResponseFromJSON,
-    UpdatePlanAudienceResponseToJSON,
+    UpdateAudienceResponseFromJSON,
+    UpdateAudienceResponseToJSON,
     UpdatePlanRequestBodyFromJSON,
     UpdatePlanRequestBodyToJSON,
     UpdatePlanResponseFromJSON,
     UpdatePlanResponseToJSON,
-} from '../models';
+} from '../models/index';
 
 export interface CreatePlanRequest {
     createPlanRequestBody: CreatePlanRequestBody;
 }
 
-export interface DeletePlanRequest {
-    planId: string;
+export interface DeleteAudienceRequest {
+    planAudienceId: string;
 }
 
-export interface DeletePlanAudienceRequest {
-    planAudienceId: string;
+export interface DeletePlanRequest {
+    planId: string;
 }
 
 export interface GetPlanRequest {
@@ -73,14 +73,14 @@ export interface ListPlansRequest {
     offset?: number;
 }
 
+export interface UpdateAudienceRequest {
+    updateAudienceRequestBody: UpdateAudienceRequestBody;
+    planAudienceId: string;
+}
+
 export interface UpdatePlanRequest {
     updatePlanRequestBody: UpdatePlanRequestBody;
     planId: string;
-}
-
-export interface UpdatePlanAudienceRequest {
-    updateAudienceRequestBody: UpdateAudienceRequestBody;
-    planAudienceId: string;
 }
 
 /**
@@ -92,8 +92,11 @@ export class PlansApi extends runtime.BaseAPI {
      * Create plan
      */
     async createPlanRaw(requestParameters: CreatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePlanResponse>> {
-        if (requestParameters.createPlanRequestBody === null || requestParameters.createPlanRequestBody === undefined) {
-            throw new runtime.RequiredError('createPlanRequestBody','Required parameter requestParameters.createPlanRequestBody was null or undefined when calling createPlan.');
+        if (requestParameters['createPlanRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'createPlanRequestBody',
+                'Required parameter "createPlanRequestBody" was null or undefined when calling createPlan().'
+            );
         }
 
         const queryParameters: any = {};
@@ -103,7 +106,7 @@ export class PlansApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -111,7 +114,7 @@ export class PlansApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreatePlanRequestBodyToJSON(requestParameters.createPlanRequestBody),
+            body: CreatePlanRequestBodyToJSON(requestParameters['createPlanRequestBody']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreatePlanResponseFromJSON(jsonValue));
@@ -126,11 +129,14 @@ export class PlansApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete plan
+     * Delete audience
      */
-    async deletePlanRaw(requestParameters: DeletePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletePlanResponse>> {
-        if (requestParameters.planId === null || requestParameters.planId === undefined) {
-            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling deletePlan.');
+    async deleteAudienceRaw(requestParameters: DeleteAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteAudienceResponse>> {
+        if (requestParameters['planAudienceId'] == null) {
+            throw new runtime.RequiredError(
+                'planAudienceId',
+                'Required parameter "planAudienceId" was null or undefined when calling deleteAudience().'
+            );
         }
 
         const queryParameters: any = {};
@@ -138,11 +144,48 @@ export class PlansApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/plans/{plan_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
+            path: `/plan-audiences/{plan_audience_id}`.replace(`{${"plan_audience_id"}}`, encodeURIComponent(String(requestParameters['planAudienceId']))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteAudienceResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete audience
+     */
+    async deleteAudience(requestParameters: DeleteAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteAudienceResponse> {
+        const response = await this.deleteAudienceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete plan
+     */
+    async deletePlanRaw(requestParameters: DeletePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletePlanResponse>> {
+        if (requestParameters['planId'] == null) {
+            throw new runtime.RequiredError(
+                'planId',
+                'Required parameter "planId" was null or undefined when calling deletePlan().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/plans/{plan_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters['planId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -160,45 +203,14 @@ export class PlansApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete plan audience
-     */
-    async deletePlanAudienceRaw(requestParameters: DeletePlanAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletePlanAudienceResponse>> {
-        if (requestParameters.planAudienceId === null || requestParameters.planAudienceId === undefined) {
-            throw new runtime.RequiredError('planAudienceId','Required parameter requestParameters.planAudienceId was null or undefined when calling deletePlanAudience.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/plan-audiences/{plan_audience_id}`.replace(`{${"plan_audience_id"}}`, encodeURIComponent(String(requestParameters.planAudienceId))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => DeletePlanAudienceResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Delete plan audience
-     */
-    async deletePlanAudience(requestParameters: DeletePlanAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletePlanAudienceResponse> {
-        const response = await this.deletePlanAudienceRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
      * Get plan
      */
     async getPlanRaw(requestParameters: GetPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPlanResponse>> {
-        if (requestParameters.planId === null || requestParameters.planId === undefined) {
-            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling getPlan.');
+        if (requestParameters['planId'] == null) {
+            throw new runtime.RequiredError(
+                'planId',
+                'Required parameter "planId" was null or undefined when calling getPlan().'
+            );
         }
 
         const queryParameters: any = {};
@@ -206,11 +218,11 @@ export class PlansApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/plans/{plan_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
+            path: `/plans/{plan_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters['planId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -233,18 +245,18 @@ export class PlansApi extends runtime.BaseAPI {
     async listPlansRaw(requestParameters: ListPlansRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListPlansResponse>> {
         const queryParameters: any = {};
 
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
-        if (requestParameters.offset !== undefined) {
-            queryParameters['offset'] = requestParameters.offset;
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -266,15 +278,21 @@ export class PlansApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update plan
+     * Update audience
      */
-    async updatePlanRaw(requestParameters: UpdatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdatePlanResponse>> {
-        if (requestParameters.updatePlanRequestBody === null || requestParameters.updatePlanRequestBody === undefined) {
-            throw new runtime.RequiredError('updatePlanRequestBody','Required parameter requestParameters.updatePlanRequestBody was null or undefined when calling updatePlan.');
+    async updateAudienceRaw(requestParameters: UpdateAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateAudienceResponse>> {
+        if (requestParameters['updateAudienceRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'updateAudienceRequestBody',
+                'Required parameter "updateAudienceRequestBody" was null or undefined when calling updateAudience().'
+            );
         }
 
-        if (requestParameters.planId === null || requestParameters.planId === undefined) {
-            throw new runtime.RequiredError('planId','Required parameter requestParameters.planId was null or undefined when calling updatePlan.');
+        if (requestParameters['planAudienceId'] == null) {
+            throw new runtime.RequiredError(
+                'planAudienceId',
+                'Required parameter "planAudienceId" was null or undefined when calling updateAudience().'
+            );
         }
 
         const queryParameters: any = {};
@@ -284,15 +302,62 @@ export class PlansApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/plans/{plan_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters.planId))),
+            path: `/plan-audiences/{plan_audience_id}`.replace(`{${"plan_audience_id"}}`, encodeURIComponent(String(requestParameters['planAudienceId']))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdatePlanRequestBodyToJSON(requestParameters.updatePlanRequestBody),
+            body: UpdateAudienceRequestBodyToJSON(requestParameters['updateAudienceRequestBody']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateAudienceResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update audience
+     */
+    async updateAudience(requestParameters: UpdateAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateAudienceResponse> {
+        const response = await this.updateAudienceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update plan
+     */
+    async updatePlanRaw(requestParameters: UpdatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdatePlanResponse>> {
+        if (requestParameters['updatePlanRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'updatePlanRequestBody',
+                'Required parameter "updatePlanRequestBody" was null or undefined when calling updatePlan().'
+            );
+        }
+
+        if (requestParameters['planId'] == null) {
+            throw new runtime.RequiredError(
+                'planId',
+                'Required parameter "planId" was null or undefined when calling updatePlan().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/plans/{plan_id}`.replace(`{${"plan_id"}}`, encodeURIComponent(String(requestParameters['planId']))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdatePlanRequestBodyToJSON(requestParameters['updatePlanRequestBody']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdatePlanResponseFromJSON(jsonValue));
@@ -303,47 +368,6 @@ export class PlansApi extends runtime.BaseAPI {
      */
     async updatePlan(requestParameters: UpdatePlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdatePlanResponse> {
         const response = await this.updatePlanRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Update plan audience
-     */
-    async updatePlanAudienceRaw(requestParameters: UpdatePlanAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdatePlanAudienceResponse>> {
-        if (requestParameters.updateAudienceRequestBody === null || requestParameters.updateAudienceRequestBody === undefined) {
-            throw new runtime.RequiredError('updateAudienceRequestBody','Required parameter requestParameters.updateAudienceRequestBody was null or undefined when calling updatePlanAudience.');
-        }
-
-        if (requestParameters.planAudienceId === null || requestParameters.planAudienceId === undefined) {
-            throw new runtime.RequiredError('planAudienceId','Required parameter requestParameters.planAudienceId was null or undefined when calling updatePlanAudience.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/plan-audiences/{plan_audience_id}`.replace(`{${"plan_audience_id"}}`, encodeURIComponent(String(requestParameters.planAudienceId))),
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: UpdateAudienceRequestBodyToJSON(requestParameters.updateAudienceRequestBody),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UpdatePlanAudienceResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Update plan audience
-     */
-    async updatePlanAudience(requestParameters: UpdatePlanAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdatePlanAudienceResponse> {
-        const response = await this.updatePlanAudienceRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
