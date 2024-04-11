@@ -27,7 +27,7 @@ import {
 } from './FlagDetailResponseData';
 
 /**
- * The updated resource
+ * 
  * @export
  * @interface FeatureDetailResponseData
  */

@@ -21,6 +21,12 @@ import { mapValues } from '../runtime';
 export interface ListFeaturesParams {
     /**
      * 
+     * @type {Array<string>}
+     * @memberof ListFeaturesParams
+     */
+    ids?: Array<string>;
+    /**
+     * 
      * @type {number}
      * @memberof ListFeaturesParams
      */
@@ -50,6 +56,7 @@ export function ListFeaturesParamsFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
+        'ids': json['ids'] == null ? undefined : json['ids'],
         'limit': json['limit'] == null ? undefined : json['limit'],
         'offset': json['offset'] == null ? undefined : json['offset'],
     };
@@ -61,6 +68,7 @@ export function ListFeaturesParamsToJSON(value?: ListFeaturesParams | null): any
     }
     return {
         
+        'ids': value['ids'],
         'limit': value['limit'],
         'offset': value['offset'],
     };
