@@ -21,7 +21,7 @@ import {
 } from './RuleDetailResponseData';
 
 /**
- * The updated resource
+ * 
  * @export
  * @interface FlagDetailResponseData
  */

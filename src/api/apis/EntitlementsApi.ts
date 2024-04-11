@@ -23,6 +23,7 @@ import type {
   DeleteCompanyOverrideResponse,
   DeletePlanEntitlementResponse,
   GetCompanyOverrideResponse,
+  GetFeatureUsageByCompanyResponse,
   GetPlanEntitlementResponse,
   ListCompanyOverridesResponse,
   ListPlanEntitlementsResponse,
@@ -48,6 +49,8 @@ import {
     DeletePlanEntitlementResponseToJSON,
     GetCompanyOverrideResponseFromJSON,
     GetCompanyOverrideResponseToJSON,
+    GetFeatureUsageByCompanyResponseFromJSON,
+    GetFeatureUsageByCompanyResponseToJSON,
     GetPlanEntitlementResponseFromJSON,
     GetPlanEntitlementResponseToJSON,
     ListCompanyOverridesResponseFromJSON,
@@ -84,6 +87,10 @@ export interface GetCompanyOverrideRequest {
     companyOverrideId: string;
 }
 
+export interface GetFeatureUsageByCompanyRequest {
+    keys: object;
+}
+
 export interface GetPlanEntitlementRequest {
     planEntitlementId: string;
 }
@@ -97,6 +104,7 @@ export interface ListCompanyOverridesRequest {
 
 export interface ListPlanEntitlementsRequest {
     planId?: string;
+    planIds?: Array<string>;
     featureId?: string;
     limit?: number;
     offset?: number;
@@ -309,6 +317,47 @@ export class EntitlementsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Get feature usage by company
+     */
+    async getFeatureUsageByCompanyRaw(requestParameters: GetFeatureUsageByCompanyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFeatureUsageByCompanyResponse>> {
+        if (requestParameters['keys'] == null) {
+            throw new runtime.RequiredError(
+                'keys',
+                'Required parameter "keys" was null or undefined when calling getFeatureUsageByCompany().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['keys'] != null) {
+            queryParameters['keys'] = requestParameters['keys'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/usage-by-company`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetFeatureUsageByCompanyResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get feature usage by company
+     */
+    async getFeatureUsageByCompany(requestParameters: GetFeatureUsageByCompanyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFeatureUsageByCompanyResponse> {
+        const response = await this.getFeatureUsageByCompanyRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Get plan entitlement
      */
     async getPlanEntitlementRaw(requestParameters: GetPlanEntitlementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPlanEntitlementResponse>> {
@@ -399,6 +448,10 @@ export class EntitlementsApi extends runtime.BaseAPI {
 
         if (requestParameters['planId'] != null) {
             queryParameters['plan_id'] = requestParameters['planId'];
+        }
+
+        if (requestParameters['planIds'] != null) {
+            queryParameters['plan_ids'] = requestParameters['planIds'];
         }
 
         if (requestParameters['featureId'] != null) {

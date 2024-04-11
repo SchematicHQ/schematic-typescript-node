@@ -173,6 +173,7 @@ export interface ListAudienceUsersRequest {
 }
 
 export interface ListFeaturesRequest {
+    ids?: Array<string>;
     limit?: number;
     offset?: number;
 }
@@ -829,6 +830,10 @@ export class FeaturesApi extends runtime.BaseAPI {
      */
     async listFeaturesRaw(requestParameters: ListFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFeaturesResponse>> {
         const queryParameters: any = {};
+
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
 
         if (requestParameters['limit'] != null) {
             queryParameters['limit'] = requestParameters['limit'];

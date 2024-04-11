@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 apis/AccountsApi.ts
 apis/CompaniesApi.ts
 apis/EntitlementsApi.ts
@@ -91,6 +90,8 @@ models/EventResponseData.ts
 models/EventSummaryResponseData.ts
 models/FeatureDetailResponseData.ts
 models/FeatureResponseData.ts
+models/FeatureUsageDetailResponseData.ts
+models/FeatureUsageResponseData.ts
 models/FlagCheckLogDetailResponseData.ts
 models/FlagCheckLogResponseData.ts
 models/FlagDetailResponseData.ts
@@ -105,6 +106,8 @@ models/GetEventSummariesParams.ts
 models/GetEventSummariesResponse.ts
 models/GetEventSummaryBySubtypeResponse.ts
 models/GetFeatureResponse.ts
+models/GetFeatureUsageByCompanyParams.ts
+models/GetFeatureUsageByCompanyResponse.ts
 models/GetFlagCheckResponse.ts
 models/GetFlagResponse.ts
 models/GetLatestFlagChecksParams.ts
