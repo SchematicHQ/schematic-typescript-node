@@ -16,61 +16,77 @@ import { mapValues } from '../runtime';
 /**
  * Input parameters
  * @export
- * @interface ListPlansParams
+ * @interface CountFlagsParams
  */
-export interface ListPlansParams {
+export interface CountFlagsParams {
+    /**
+     * 
+     * @type {string}
+     * @memberof CountFlagsParams
+     */
+    featureId?: string;
     /**
      * 
      * @type {Array<string>}
-     * @memberof ListPlansParams
+     * @memberof CountFlagsParams
      */
     ids?: Array<string>;
     /**
      * 
      * @type {number}
-     * @memberof ListPlansParams
+     * @memberof CountFlagsParams
      */
     limit?: number;
     /**
      * 
      * @type {number}
-     * @memberof ListPlansParams
+     * @memberof CountFlagsParams
      */
     offset?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CountFlagsParams
+     */
+    q?: string;
 }
 
 /**
- * Check if a given object implements the ListPlansParams interface.
+ * Check if a given object implements the CountFlagsParams interface.
  */
-export function instanceOfListPlansParams(value: object): boolean {
+export function instanceOfCountFlagsParams(value: object): boolean {
     return true;
 }
 
-export function ListPlansParamsFromJSON(json: any): ListPlansParams {
-    return ListPlansParamsFromJSONTyped(json, false);
+export function CountFlagsParamsFromJSON(json: any): CountFlagsParams {
+    return CountFlagsParamsFromJSONTyped(json, false);
 }
 
-export function ListPlansParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListPlansParams {
+export function CountFlagsParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): CountFlagsParams {
     if (json == null) {
         return json;
     }
     return {
         
+        'featureId': json['feature_id'] == null ? undefined : json['feature_id'],
         'ids': json['ids'] == null ? undefined : json['ids'],
         'limit': json['limit'] == null ? undefined : json['limit'],
         'offset': json['offset'] == null ? undefined : json['offset'],
+        'q': json['q'] == null ? undefined : json['q'],
     };
 }
 
-export function ListPlansParamsToJSON(value?: ListPlansParams | null): any {
+export function CountFlagsParamsToJSON(value?: CountFlagsParams | null): any {
     if (value == null) {
         return value;
     }
     return {
         
+        'feature_id': value['featureId'],
         'ids': value['ids'],
         'limit': value['limit'],
         'offset': value['offset'],
+        'q': value['q'],
     };
 }
 

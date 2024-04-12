@@ -13,12 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
-import type { RuleConditionResponseData } from './RuleConditionResponseData';
+import type { RuleConditionDetailResponseData } from './RuleConditionDetailResponseData';
 import {
-    RuleConditionResponseDataFromJSON,
-    RuleConditionResponseDataFromJSONTyped,
-    RuleConditionResponseDataToJSON,
-} from './RuleConditionResponseData';
+    RuleConditionDetailResponseDataFromJSON,
+    RuleConditionDetailResponseDataFromJSONTyped,
+    RuleConditionDetailResponseDataToJSON,
+} from './RuleConditionDetailResponseData';
 
 /**
  * 
@@ -28,10 +28,10 @@ import {
 export interface RuleConditionGroupDetailResponseData {
     /**
      * 
-     * @type {Array<RuleConditionResponseData>}
+     * @type {Array<RuleConditionDetailResponseData>}
      * @memberof RuleConditionGroupDetailResponseData
      */
-    conditions: Array<RuleConditionResponseData>;
+    conditions: Array<RuleConditionDetailResponseData>;
     /**
      * 
      * @type {Date}
@@ -99,7 +99,7 @@ export function RuleConditionGroupDetailResponseDataFromJSONTyped(json: any, ign
     }
     return {
         
-        'conditions': ((json['conditions'] as Array<any>).map(RuleConditionResponseDataFromJSON)),
+        'conditions': ((json['conditions'] as Array<any>).map(RuleConditionDetailResponseDataFromJSON)),
         'createdAt': (new Date(json['created_at'])),
         'environmentId': json['environment_id'],
         'flagId': json['flag_id'] == null ? undefined : json['flag_id'],
@@ -116,7 +116,7 @@ export function RuleConditionGroupDetailResponseDataToJSON(value?: RuleCondition
     }
     return {
         
-        'conditions': ((value['conditions'] as Array<any>).map(RuleConditionResponseDataToJSON)),
+        'conditions': ((value['conditions'] as Array<any>).map(RuleConditionDetailResponseDataToJSON)),
         'created_at': ((value['createdAt']).toISOString()),
         'environment_id': value['environmentId'],
         'flag_id': value['flagId'],

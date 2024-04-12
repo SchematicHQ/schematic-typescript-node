@@ -13,6 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
+import type { FeatureResponseData } from './FeatureResponseData';
+import {
+    FeatureResponseDataFromJSON,
+    FeatureResponseDataFromJSONTyped,
+    FeatureResponseDataToJSON,
+} from './FeatureResponseData';
+import type { FlagCheckLogResponseData } from './FlagCheckLogResponseData';
+import {
+    FlagCheckLogResponseDataFromJSON,
+    FlagCheckLogResponseDataFromJSONTyped,
+    FlagCheckLogResponseDataToJSON,
+} from './FlagCheckLogResponseData';
 import type { RuleDetailResponseData } from './RuleDetailResponseData';
 import {
     RuleDetailResponseDataFromJSON,
@@ -46,6 +58,12 @@ export interface FlagDetailResponseData {
     description: string;
     /**
      * 
+     * @type {FeatureResponseData}
+     * @memberof FlagDetailResponseData
+     */
+    feature?: FeatureResponseData;
+    /**
+     * 
      * @type {string}
      * @memberof FlagDetailResponseData
      */
@@ -68,6 +86,12 @@ export interface FlagDetailResponseData {
      * @memberof FlagDetailResponseData
      */
     key: string;
+    /**
+     * 
+     * @type {FlagCheckLogResponseData}
+     * @memberof FlagDetailResponseData
+     */
+    latestCheck?: FlagCheckLogResponseData;
     /**
      * 
      * @type {string}
@@ -117,10 +141,12 @@ export function FlagDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminat
         'createdAt': (new Date(json['created_at'])),
         'defaultValue': json['default_value'],
         'description': json['description'],
+        'feature': json['feature'] == null ? undefined : FeatureResponseDataFromJSON(json['feature']),
         'featureId': json['feature_id'] == null ? undefined : json['feature_id'],
         'flagType': json['flag_type'],
         'id': json['id'],
         'key': json['key'],
+        'latestCheck': json['latest_check'] == null ? undefined : FlagCheckLogResponseDataFromJSON(json['latest_check']),
         'name': json['name'],
         'rules': ((json['rules'] as Array<any>).map(RuleDetailResponseDataFromJSON)),
         'updatedAt': (new Date(json['updated_at'])),
@@ -136,10 +162,12 @@ export function FlagDetailResponseDataToJSON(value?: FlagDetailResponseData | nu
         'created_at': ((value['createdAt']).toISOString()),
         'default_value': value['defaultValue'],
         'description': value['description'],
+        'feature': FeatureResponseDataToJSON(value['feature']),
         'feature_id': value['featureId'],
         'flag_type': value['flagType'],
         'id': value['id'],
         'key': value['key'],
+        'latest_check': FlagCheckLogResponseDataToJSON(value['latestCheck']),
         'name': value['name'],
         'rules': ((value['rules'] as Array<any>).map(RuleDetailResponseDataToJSON)),
         'updated_at': ((value['updatedAt']).toISOString()),

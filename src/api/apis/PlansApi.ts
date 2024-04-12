@@ -20,6 +20,7 @@ import type {
   CreatePlanResponse,
   DeleteAudienceResponse,
   DeletePlanResponse,
+  GetAudienceResponse,
   GetPlanResponse,
   ListPlansResponse,
   UpdateAudienceRequestBody,
@@ -38,6 +39,8 @@ import {
     DeleteAudienceResponseToJSON,
     DeletePlanResponseFromJSON,
     DeletePlanResponseToJSON,
+    GetAudienceResponseFromJSON,
+    GetAudienceResponseToJSON,
     GetPlanResponseFromJSON,
     GetPlanResponseToJSON,
     ListPlansResponseFromJSON,
@@ -64,11 +67,16 @@ export interface DeletePlanRequest {
     planId: string;
 }
 
+export interface GetAudienceRequest {
+    planAudienceId: string;
+}
+
 export interface GetPlanRequest {
     planId: string;
 }
 
 export interface ListPlansRequest {
+    ids?: Array<string>;
     limit?: number;
     offset?: number;
 }
@@ -203,6 +211,43 @@ export class PlansApi extends runtime.BaseAPI {
     }
 
     /**
+     * Get audience
+     */
+    async getAudienceRaw(requestParameters: GetAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAudienceResponse>> {
+        if (requestParameters['planAudienceId'] == null) {
+            throw new runtime.RequiredError(
+                'planAudienceId',
+                'Required parameter "planAudienceId" was null or undefined when calling getAudience().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/plan-audiences/{plan_audience_id}`.replace(`{${"plan_audience_id"}}`, encodeURIComponent(String(requestParameters['planAudienceId']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetAudienceResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get audience
+     */
+    async getAudience(requestParameters: GetAudienceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetAudienceResponse> {
+        const response = await this.getAudienceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Get plan
      */
     async getPlanRaw(requestParameters: GetPlanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPlanResponse>> {
@@ -244,6 +289,10 @@ export class PlansApi extends runtime.BaseAPI {
      */
     async listPlansRaw(requestParameters: ListPlansRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListPlansResponse>> {
         const queryParameters: any = {};
+
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
 
         if (requestParameters['limit'] != null) {
             queryParameters['limit'] = requestParameters['limit'];

@@ -34,8 +34,12 @@ models/CountEventSummariesParams.ts
 models/CountEventSummariesResponse.ts
 models/CountEventsParams.ts
 models/CountEventsResponse.ts
+models/CountFeaturesParams.ts
+models/CountFeaturesResponse.ts
 models/CountFlagChecksParams.ts
 models/CountFlagChecksResponse.ts
+models/CountFlagsParams.ts
+models/CountFlagsResponse.ts
 models/CountResponse.ts
 models/CreateApiKeyRequestBody.ts
 models/CreateApiKeyResponse.ts
@@ -98,6 +102,7 @@ models/FlagDetailResponseData.ts
 models/FlagResponseData.ts
 models/GetApiKeyResponse.ts
 models/GetApiRequestResponse.ts
+models/GetAudienceResponse.ts
 models/GetCompanyOverrideResponse.ts
 models/GetCompanyResponse.ts
 models/GetEnvironmentResponse.ts
@@ -161,8 +166,10 @@ models/PlanEntitlementResponseData.ts
 models/PlanResponseData.ts
 models/RawEventBatchResponseData.ts
 models/RawEventResponseData.ts
+models/RuleConditionDetailResponseData.ts
 models/RuleConditionGroupDetailResponseData.ts
 models/RuleConditionGroupResponseData.ts
+models/RuleConditionResourceResponseData.ts
 models/RuleConditionResponseData.ts
 models/RuleDetailResponseData.ts
 models/RuleResponseData.ts

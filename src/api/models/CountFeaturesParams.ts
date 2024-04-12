@@ -16,41 +16,41 @@ import { mapValues } from '../runtime';
 /**
  * Input parameters
  * @export
- * @interface ListPlansParams
+ * @interface CountFeaturesParams
  */
-export interface ListPlansParams {
+export interface CountFeaturesParams {
     /**
      * 
      * @type {Array<string>}
-     * @memberof ListPlansParams
+     * @memberof CountFeaturesParams
      */
     ids?: Array<string>;
     /**
      * 
      * @type {number}
-     * @memberof ListPlansParams
+     * @memberof CountFeaturesParams
      */
     limit?: number;
     /**
      * 
      * @type {number}
-     * @memberof ListPlansParams
+     * @memberof CountFeaturesParams
      */
     offset?: number;
 }
 
 /**
- * Check if a given object implements the ListPlansParams interface.
+ * Check if a given object implements the CountFeaturesParams interface.
  */
-export function instanceOfListPlansParams(value: object): boolean {
+export function instanceOfCountFeaturesParams(value: object): boolean {
     return true;
 }
 
-export function ListPlansParamsFromJSON(json: any): ListPlansParams {
-    return ListPlansParamsFromJSONTyped(json, false);
+export function CountFeaturesParamsFromJSON(json: any): CountFeaturesParams {
+    return CountFeaturesParamsFromJSONTyped(json, false);
 }
 
-export function ListPlansParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListPlansParams {
+export function CountFeaturesParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): CountFeaturesParams {
     if (json == null) {
         return json;
     }
@@ -62,7 +62,7 @@ export function ListPlansParamsFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-export function ListPlansParamsToJSON(value?: ListPlansParams | null): any {
+export function CountFeaturesParamsToJSON(value?: CountFeaturesParams | null): any {
     if (value == null) {
         return value;
     }

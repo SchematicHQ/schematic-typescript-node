@@ -30,7 +30,7 @@ export interface ListFlagsParams {
      * @type {Array<string>}
      * @memberof ListFlagsParams
      */
-    flagIds?: Array<string>;
+    ids?: Array<string>;
     /**
      * 
      * @type {number}
@@ -43,6 +43,12 @@ export interface ListFlagsParams {
      * @memberof ListFlagsParams
      */
     offset?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListFlagsParams
+     */
+    q?: string;
 }
 
 /**
@@ -63,9 +69,10 @@ export function ListFlagsParamsFromJSONTyped(json: any, ignoreDiscriminator: boo
     return {
         
         'featureId': json['feature_id'] == null ? undefined : json['feature_id'],
-        'flagIds': json['flag_ids'] == null ? undefined : json['flag_ids'],
+        'ids': json['ids'] == null ? undefined : json['ids'],
         'limit': json['limit'] == null ? undefined : json['limit'],
         'offset': json['offset'] == null ? undefined : json['offset'],
+        'q': json['q'] == null ? undefined : json['q'],
     };
 }
 
@@ -76,9 +83,10 @@ export function ListFlagsParamsToJSON(value?: ListFlagsParams | null): any {
     return {
         
         'feature_id': value['featureId'],
-        'flag_ids': value['flagIds'],
+        'ids': value['ids'],
         'limit': value['limit'],
         'offset': value['offset'],
+        'q': value['q'],
     };
 }
 
