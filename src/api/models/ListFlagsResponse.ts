@@ -13,12 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
-import type { FlagResponseData } from './FlagResponseData';
+import type { FlagDetailResponseData } from './FlagDetailResponseData';
 import {
-    FlagResponseDataFromJSON,
-    FlagResponseDataFromJSONTyped,
-    FlagResponseDataToJSON,
-} from './FlagResponseData';
+    FlagDetailResponseDataFromJSON,
+    FlagDetailResponseDataFromJSONTyped,
+    FlagDetailResponseDataToJSON,
+} from './FlagDetailResponseData';
 import type { ListFlagsParams } from './ListFlagsParams';
 import {
     ListFlagsParamsFromJSON,
@@ -34,10 +34,10 @@ import {
 export interface ListFlagsResponse {
     /**
      * The returned resources
-     * @type {Array<FlagResponseData>}
+     * @type {Array<FlagDetailResponseData>}
      * @memberof ListFlagsResponse
      */
-    data: Array<FlagResponseData>;
+    data: Array<FlagDetailResponseData>;
     /**
      * 
      * @type {ListFlagsParams}
@@ -65,7 +65,7 @@ export function ListFlagsResponseFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'data': ((json['data'] as Array<any>).map(FlagResponseDataFromJSON)),
+        'data': ((json['data'] as Array<any>).map(FlagDetailResponseDataFromJSON)),
         'params': ListFlagsParamsFromJSON(json['params']),
     };
 }
@@ -76,7 +76,7 @@ export function ListFlagsResponseToJSON(value?: ListFlagsResponse | null): any {
     }
     return {
         
-        'data': ((value['data'] as Array<any>).map(FlagResponseDataToJSON)),
+        'data': ((value['data'] as Array<any>).map(FlagDetailResponseDataToJSON)),
         'params': ListFlagsParamsToJSON(value['params']),
     };
 }

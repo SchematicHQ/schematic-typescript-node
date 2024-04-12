@@ -22,7 +22,9 @@ import type {
   CheckFlagsResponse,
   CountAudienceCompaniesResponse,
   CountAudienceUsersResponse,
+  CountFeaturesResponse,
   CountFlagChecksResponse,
+  CountFlagsResponse,
   CreateFeatureRequestBody,
   CreateFeatureResponse,
   CreateFlagRequestBody,
@@ -59,8 +61,12 @@ import {
     CountAudienceCompaniesResponseToJSON,
     CountAudienceUsersResponseFromJSON,
     CountAudienceUsersResponseToJSON,
+    CountFeaturesResponseFromJSON,
+    CountFeaturesResponseToJSON,
     CountFlagChecksResponseFromJSON,
     CountFlagChecksResponseToJSON,
+    CountFlagsResponseFromJSON,
+    CountFlagsResponseToJSON,
     CreateFeatureRequestBodyFromJSON,
     CreateFeatureRequestBodyToJSON,
     CreateFeatureResponseFromJSON,
@@ -120,10 +126,24 @@ export interface CountAudienceUsersRequest {
     audienceRequestBody: AudienceRequestBody;
 }
 
+export interface CountFeaturesRequest {
+    ids?: Array<string>;
+    limit?: number;
+    offset?: number;
+}
+
 export interface CountFlagChecksRequest {
     flagId?: string;
     flagIds?: Array<string>;
     id?: string;
+    limit?: number;
+    offset?: number;
+}
+
+export interface CountFlagsRequest {
+    featureId?: string;
+    ids?: Array<string>;
+    q?: string;
     limit?: number;
     offset?: number;
 }
@@ -188,7 +208,8 @@ export interface ListFlagChecksRequest {
 
 export interface ListFlagsRequest {
     featureId?: string;
-    flagIds?: Array<string>;
+    ids?: Array<string>;
+    q?: string;
     limit?: number;
     offset?: number;
 }
@@ -381,6 +402,48 @@ export class FeaturesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Count features
+     */
+    async countFeaturesRaw(requestParameters: CountFeaturesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountFeaturesResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/features/count`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountFeaturesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Count features
+     */
+    async countFeatures(requestParameters: CountFeaturesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountFeaturesResponse> {
+        const response = await this.countFeaturesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Count flag checks
      */
     async countFlagChecksRaw(requestParameters: CountFlagChecksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountFlagChecksResponse>> {
@@ -427,6 +490,56 @@ export class FeaturesApi extends runtime.BaseAPI {
      */
     async countFlagChecks(requestParameters: CountFlagChecksRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountFlagChecksResponse> {
         const response = await this.countFlagChecksRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Count flags
+     */
+    async countFlagsRaw(requestParameters: CountFlagsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountFlagsResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['featureId'] != null) {
+            queryParameters['feature_id'] = requestParameters['featureId'];
+        }
+
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/flags/count`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountFlagsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Count flags
+     */
+    async countFlags(requestParameters: CountFlagsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountFlagsResponse> {
+        const response = await this.countFlagsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -927,8 +1040,12 @@ export class FeaturesApi extends runtime.BaseAPI {
             queryParameters['feature_id'] = requestParameters['featureId'];
         }
 
-        if (requestParameters['flagIds'] != null) {
-            queryParameters['flag_ids'] = requestParameters['flagIds'];
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
         }
 
         if (requestParameters['limit'] != null) {
