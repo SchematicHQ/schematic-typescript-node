@@ -19,6 +19,12 @@ import {
     EntityKeyResponseDataFromJSONTyped,
     EntityKeyResponseDataToJSON,
 } from './EntityKeyResponseData';
+import type { EntityTraitDetailResponseData } from './EntityTraitDetailResponseData';
+import {
+    EntityTraitDetailResponseDataFromJSON,
+    EntityTraitDetailResponseDataFromJSONTyped,
+    EntityTraitDetailResponseDataToJSON,
+} from './EntityTraitDetailResponseData';
 
 /**
  * 
@@ -32,6 +38,12 @@ export interface CompanyDetailResponseData {
      * @memberof CompanyDetailResponseData
      */
     createdAt: Date;
+    /**
+     * 
+     * @type {Array<EntityTraitDetailResponseData>}
+     * @memberof CompanyDetailResponseData
+     */
+    entityTraits: Array<EntityTraitDetailResponseData>;
     /**
      * 
      * @type {string}
@@ -81,6 +93,7 @@ export interface CompanyDetailResponseData {
  */
 export function instanceOfCompanyDetailResponseData(value: object): boolean {
     if (!('createdAt' in value)) return false;
+    if (!('entityTraits' in value)) return false;
     if (!('environmentId' in value)) return false;
     if (!('id' in value)) return false;
     if (!('keys' in value)) return false;
@@ -100,6 +113,7 @@ export function CompanyDetailResponseDataFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'createdAt': (new Date(json['created_at'])),
+        'entityTraits': ((json['entity_traits'] as Array<any>).map(EntityTraitDetailResponseDataFromJSON)),
         'environmentId': json['environment_id'],
         'id': json['id'],
         'keys': ((json['keys'] as Array<any>).map(EntityKeyResponseDataFromJSON)),
@@ -117,6 +131,7 @@ export function CompanyDetailResponseDataToJSON(value?: CompanyDetailResponseDat
     return {
         
         'created_at': ((value['createdAt']).toISOString()),
+        'entity_traits': ((value['entityTraits'] as Array<any>).map(EntityTraitDetailResponseDataToJSON)),
         'environment_id': value['environmentId'],
         'id': value['id'],
         'keys': ((value['keys'] as Array<any>).map(EntityKeyResponseDataToJSON)),

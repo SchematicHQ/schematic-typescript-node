@@ -25,6 +25,12 @@ import {
     EntityKeyResponseDataFromJSONTyped,
     EntityKeyResponseDataToJSON,
 } from './EntityKeyResponseData';
+import type { EntityTraitDetailResponseData } from './EntityTraitDetailResponseData';
+import {
+    EntityTraitDetailResponseDataFromJSON,
+    EntityTraitDetailResponseDataFromJSONTyped,
+    EntityTraitDetailResponseDataToJSON,
+} from './EntityTraitDetailResponseData';
 
 /**
  * 
@@ -44,6 +50,12 @@ export interface UserDetailResponseData {
      * @memberof UserDetailResponseData
      */
     createdAt: Date;
+    /**
+     * 
+     * @type {Array<EntityTraitDetailResponseData>}
+     * @memberof UserDetailResponseData
+     */
+    entityTraits: Array<EntityTraitDetailResponseData>;
     /**
      * 
      * @type {string}
@@ -94,6 +106,7 @@ export interface UserDetailResponseData {
 export function instanceOfUserDetailResponseData(value: object): boolean {
     if (!('companyMemberships' in value)) return false;
     if (!('createdAt' in value)) return false;
+    if (!('entityTraits' in value)) return false;
     if (!('environmentId' in value)) return false;
     if (!('id' in value)) return false;
     if (!('keys' in value)) return false;
@@ -114,6 +127,7 @@ export function UserDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminat
         
         'companyMemberships': ((json['company_memberships'] as Array<any>).map(CompanyMembershipDetailResponseDataFromJSON)),
         'createdAt': (new Date(json['created_at'])),
+        'entityTraits': ((json['entity_traits'] as Array<any>).map(EntityTraitDetailResponseDataFromJSON)),
         'environmentId': json['environment_id'],
         'id': json['id'],
         'keys': ((json['keys'] as Array<any>).map(EntityKeyResponseDataFromJSON)),
@@ -132,6 +146,7 @@ export function UserDetailResponseDataToJSON(value?: UserDetailResponseData | nu
         
         'company_memberships': ((value['companyMemberships'] as Array<any>).map(CompanyMembershipDetailResponseDataToJSON)),
         'created_at': ((value['createdAt']).toISOString()),
+        'entity_traits': ((value['entityTraits'] as Array<any>).map(EntityTraitDetailResponseDataToJSON)),
         'environment_id': value['environmentId'],
         'id': value['id'],
         'keys': ((value['keys'] as Array<any>).map(EntityKeyResponseDataToJSON)),

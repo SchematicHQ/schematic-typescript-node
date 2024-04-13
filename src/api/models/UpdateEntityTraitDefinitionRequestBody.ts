@@ -24,6 +24,12 @@ export interface UpdateEntityTraitDefinitionRequestBody {
      * @type {string}
      * @memberof UpdateEntityTraitDefinitionRequestBody
      */
+    displayName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateEntityTraitDefinitionRequestBody
+     */
     traitType: UpdateEntityTraitDefinitionRequestBodyTraitTypeEnum;
 }
 
@@ -58,6 +64,7 @@ export function UpdateEntityTraitDefinitionRequestBodyFromJSONTyped(json: any, i
     }
     return {
         
+        'displayName': json['display_name'] == null ? undefined : json['display_name'],
         'traitType': json['trait_type'],
     };
 }
@@ -68,6 +75,7 @@ export function UpdateEntityTraitDefinitionRequestBodyToJSON(value?: UpdateEntit
     }
     return {
         
+        'display_name': value['displayName'],
         'trait_type': value['traitType'],
     };
 }
