@@ -16,6 +16,7 @@
 import * as runtime from '../runtime';
 import type {
   ApiError,
+  CountEntityTraitDefinitionsResponse,
   CreateCompanyResponse,
   CreateEntityTraitDefinitionRequestBody,
   CreateUserResponse,
@@ -25,6 +26,7 @@ import type {
   DeleteUserByKeysResponse,
   DeleteUserResponse,
   GetCompanyResponse,
+  GetEntityTraitDefinitionResponse,
   GetOrCreateCompanyMembershipRequestBody,
   GetOrCreateCompanyMembershipResponse,
   GetOrCreateEntityTraitDefinitionResponse,
@@ -33,6 +35,7 @@ import type {
   ListCompaniesResponse,
   ListCompanyMembershipsResponse,
   ListCompanyPlansResponse,
+  ListEntityTraitDefinitionsResponse,
   ListUsersResponse,
   LookupCompanyResponse,
   LookupUserResponse,
@@ -49,6 +52,8 @@ import type {
 import {
     ApiErrorFromJSON,
     ApiErrorToJSON,
+    CountEntityTraitDefinitionsResponseFromJSON,
+    CountEntityTraitDefinitionsResponseToJSON,
     CreateCompanyResponseFromJSON,
     CreateCompanyResponseToJSON,
     CreateEntityTraitDefinitionRequestBodyFromJSON,
@@ -67,6 +72,8 @@ import {
     DeleteUserResponseToJSON,
     GetCompanyResponseFromJSON,
     GetCompanyResponseToJSON,
+    GetEntityTraitDefinitionResponseFromJSON,
+    GetEntityTraitDefinitionResponseToJSON,
     GetOrCreateCompanyMembershipRequestBodyFromJSON,
     GetOrCreateCompanyMembershipRequestBodyToJSON,
     GetOrCreateCompanyMembershipResponseFromJSON,
@@ -83,6 +90,8 @@ import {
     ListCompanyMembershipsResponseToJSON,
     ListCompanyPlansResponseFromJSON,
     ListCompanyPlansResponseToJSON,
+    ListEntityTraitDefinitionsResponseFromJSON,
+    ListEntityTraitDefinitionsResponseToJSON,
     ListUsersResponseFromJSON,
     ListUsersResponseToJSON,
     LookupCompanyResponseFromJSON,
@@ -108,6 +117,15 @@ import {
     UpsertUserTraitResponseFromJSON,
     UpsertUserTraitResponseToJSON,
 } from '../models/index';
+
+export interface CountEntityTraitDefinitionsRequest {
+    entityType?: string;
+    hierarchy?: Array<string>;
+    ids?: Array<string>;
+    traitType?: string;
+    limit?: number;
+    offset?: number;
+}
 
 export interface CreateCompanyRequest {
     upsertCompanyRequestBody: UpsertCompanyRequestBody;
@@ -141,6 +159,10 @@ export interface GetCompanyRequest {
     companyId: string;
 }
 
+export interface GetEntityTraitDefinitionRequest {
+    entityTraitDefinitionId: string;
+}
+
 export interface GetOrCreateCompanyMembershipRequest {
     getOrCreateCompanyMembershipRequestBody: GetOrCreateCompanyMembershipRequestBody;
 }
@@ -169,6 +191,15 @@ export interface ListCompanyMembershipsRequest {
 export interface ListCompanyPlansRequest {
     companyId?: string;
     planId?: string;
+    limit?: number;
+    offset?: number;
+}
+
+export interface ListEntityTraitDefinitionsRequest {
+    entityType?: string;
+    hierarchy?: Array<string>;
+    ids?: Array<string>;
+    traitType?: string;
     limit?: number;
     offset?: number;
 }
@@ -212,6 +243,60 @@ export interface UpsertUserTraitRequest {
  * 
  */
 export class CompaniesApi extends runtime.BaseAPI {
+
+    /**
+     * Count entity trait definitions
+     */
+    async countEntityTraitDefinitionsRaw(requestParameters: CountEntityTraitDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountEntityTraitDefinitionsResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['entityType'] != null) {
+            queryParameters['entity_type'] = requestParameters['entityType'];
+        }
+
+        if (requestParameters['hierarchy'] != null) {
+            queryParameters['hierarchy'] = requestParameters['hierarchy'];
+        }
+
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['traitType'] != null) {
+            queryParameters['trait_type'] = requestParameters['traitType'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/entity-trait-definitions/count`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountEntityTraitDefinitionsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Count entity trait definitions
+     */
+    async countEntityTraitDefinitions(requestParameters: CountEntityTraitDefinitionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountEntityTraitDefinitionsResponse> {
+        const response = await this.countEntityTraitDefinitionsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Create company
@@ -522,6 +607,43 @@ export class CompaniesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Get entity trait definition
+     */
+    async getEntityTraitDefinitionRaw(requestParameters: GetEntityTraitDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEntityTraitDefinitionResponse>> {
+        if (requestParameters['entityTraitDefinitionId'] == null) {
+            throw new runtime.RequiredError(
+                'entityTraitDefinitionId',
+                'Required parameter "entityTraitDefinitionId" was null or undefined when calling getEntityTraitDefinition().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/entity-trait-definitions/{entity_trait_definition_id}`.replace(`{${"entity_trait_definition_id"}}`, encodeURIComponent(String(requestParameters['entityTraitDefinitionId']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetEntityTraitDefinitionResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get entity trait definition
+     */
+    async getEntityTraitDefinition(requestParameters: GetEntityTraitDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEntityTraitDefinitionResponse> {
+        const response = await this.getEntityTraitDefinitionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Get or create company membership
      */
     async getOrCreateCompanyMembershipRaw(requestParameters: GetOrCreateCompanyMembershipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetOrCreateCompanyMembershipResponse>> {
@@ -769,6 +891,60 @@ export class CompaniesApi extends runtime.BaseAPI {
      */
     async listCompanyPlans(requestParameters: ListCompanyPlansRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListCompanyPlansResponse> {
         const response = await this.listCompanyPlansRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List entity trait definitions
+     */
+    async listEntityTraitDefinitionsRaw(requestParameters: ListEntityTraitDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListEntityTraitDefinitionsResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['entityType'] != null) {
+            queryParameters['entity_type'] = requestParameters['entityType'];
+        }
+
+        if (requestParameters['hierarchy'] != null) {
+            queryParameters['hierarchy'] = requestParameters['hierarchy'];
+        }
+
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['traitType'] != null) {
+            queryParameters['trait_type'] = requestParameters['traitType'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/entity-trait-definitions`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListEntityTraitDefinitionsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List entity trait definitions
+     */
+    async listEntityTraitDefinitions(requestParameters: ListEntityTraitDefinitionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListEntityTraitDefinitionsResponse> {
+        const response = await this.listEntityTraitDefinitionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

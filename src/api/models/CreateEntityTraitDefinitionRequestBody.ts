@@ -24,6 +24,12 @@ export interface CreateEntityTraitDefinitionRequestBody {
      * @type {string}
      * @memberof CreateEntityTraitDefinitionRequestBody
      */
+    displayName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateEntityTraitDefinitionRequestBody
+     */
     entityType: string;
     /**
      * 
@@ -59,6 +65,7 @@ export function CreateEntityTraitDefinitionRequestBodyFromJSONTyped(json: any, i
     }
     return {
         
+        'displayName': json['display_name'] == null ? undefined : json['display_name'],
         'entityType': json['entity_type'],
         'hierarchy': json['hierarchy'],
         'traitType': json['trait_type'],
@@ -71,6 +78,7 @@ export function CreateEntityTraitDefinitionRequestBodyToJSON(value?: CreateEntit
     }
     return {
         
+        'display_name': value['displayName'],
         'entity_type': value['entityType'],
         'hierarchy': value['hierarchy'],
         'trait_type': value['traitType'],
