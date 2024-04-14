@@ -30,6 +30,12 @@ export interface EntityTraitDefinitionResponseData {
      * @type {string}
      * @memberof EntityTraitDefinitionResponseData
      */
+    displayName: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EntityTraitDefinitionResponseData
+     */
     entityType: string;
     /**
      * 
@@ -62,6 +68,7 @@ export interface EntityTraitDefinitionResponseData {
  */
 export function instanceOfEntityTraitDefinitionResponseData(value: object): boolean {
     if (!('createdAt' in value)) return false;
+    if (!('displayName' in value)) return false;
     if (!('entityType' in value)) return false;
     if (!('hierarchy' in value)) return false;
     if (!('id' in value)) return false;
@@ -81,6 +88,7 @@ export function EntityTraitDefinitionResponseDataFromJSONTyped(json: any, ignore
     return {
         
         'createdAt': (new Date(json['created_at'])),
+        'displayName': json['display_name'],
         'entityType': json['entity_type'],
         'hierarchy': json['hierarchy'],
         'id': json['id'],
@@ -96,6 +104,7 @@ export function EntityTraitDefinitionResponseDataToJSON(value?: EntityTraitDefin
     return {
         
         'created_at': ((value['createdAt']).toISOString()),
+        'display_name': value['displayName'],
         'entity_type': value['entityType'],
         'hierarchy': value['hierarchy'],
         'id': value['id'],
