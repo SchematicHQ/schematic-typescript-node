@@ -30,7 +30,7 @@ export interface CreateEntityTraitDefinitionRequestBody {
      * @type {string}
      * @memberof CreateEntityTraitDefinitionRequestBody
      */
-    entityType: string;
+    entityType: CreateEntityTraitDefinitionRequestBodyEntityTypeEnum;
     /**
      * 
      * @type {Array<string>}
@@ -42,8 +42,32 @@ export interface CreateEntityTraitDefinitionRequestBody {
      * @type {string}
      * @memberof CreateEntityTraitDefinitionRequestBody
      */
-    traitType: string;
+    traitType: CreateEntityTraitDefinitionRequestBodyTraitTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const CreateEntityTraitDefinitionRequestBodyEntityTypeEnum = {
+    Company: 'company',
+    User: 'user'
+} as const;
+export type CreateEntityTraitDefinitionRequestBodyEntityTypeEnum = typeof CreateEntityTraitDefinitionRequestBodyEntityTypeEnum[keyof typeof CreateEntityTraitDefinitionRequestBodyEntityTypeEnum];
+
+/**
+ * @export
+ */
+export const CreateEntityTraitDefinitionRequestBodyTraitTypeEnum = {
+    Boolean: 'boolean',
+    Currency: 'currency',
+    Date: 'date',
+    Number: 'number',
+    String: 'string',
+    Url: 'url'
+} as const;
+export type CreateEntityTraitDefinitionRequestBodyTraitTypeEnum = typeof CreateEntityTraitDefinitionRequestBodyTraitTypeEnum[keyof typeof CreateEntityTraitDefinitionRequestBodyTraitTypeEnum];
+
 
 /**
  * Check if a given object implements the CreateEntityTraitDefinitionRequestBody interface.

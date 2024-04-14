@@ -38,10 +38,12 @@ export interface UpdateEntityTraitDefinitionRequestBody {
  * @export
  */
 export const UpdateEntityTraitDefinitionRequestBodyTraitTypeEnum = {
-    Bool: 'bool',
+    Boolean: 'boolean',
+    Currency: 'currency',
     Date: 'date',
-    Int: 'int',
-    String: 'string'
+    Number: 'number',
+    String: 'string',
+    Url: 'url'
 } as const;
 export type UpdateEntityTraitDefinitionRequestBodyTraitTypeEnum = typeof UpdateEntityTraitDefinitionRequestBodyTraitTypeEnum[keyof typeof UpdateEntityTraitDefinitionRequestBodyTraitTypeEnum];
 

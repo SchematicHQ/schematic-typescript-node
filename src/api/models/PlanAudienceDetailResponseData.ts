@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
+import type { RuleConditionDetailResponseData } from './RuleConditionDetailResponseData';
+import {
+    RuleConditionDetailResponseDataFromJSON,
+    RuleConditionDetailResponseDataFromJSONTyped,
+    RuleConditionDetailResponseDataToJSON,
+} from './RuleConditionDetailResponseData';
 import type { RuleConditionGroupDetailResponseData } from './RuleConditionGroupDetailResponseData';
 import {
     RuleConditionGroupDetailResponseDataFromJSON,
     RuleConditionGroupDetailResponseDataFromJSONTyped,
     RuleConditionGroupDetailResponseDataToJSON,
 } from './RuleConditionGroupDetailResponseData';
-import type { RuleConditionResponseData } from './RuleConditionResponseData';
-import {
-    RuleConditionResponseDataFromJSON,
-    RuleConditionResponseDataFromJSONTyped,
-    RuleConditionResponseDataToJSON,
-} from './RuleConditionResponseData';
 
 /**
  * The updated resource
@@ -40,10 +40,10 @@ export interface PlanAudienceDetailResponseData {
     conditionGroups: Array<RuleConditionGroupDetailResponseData>;
     /**
      * 
-     * @type {Array<RuleConditionResponseData>}
+     * @type {Array<RuleConditionDetailResponseData>}
      * @memberof PlanAudienceDetailResponseData
      */
-    conditions: Array<RuleConditionResponseData>;
+    conditions: Array<RuleConditionDetailResponseData>;
     /**
      * 
      * @type {Date}
@@ -134,7 +134,7 @@ export function PlanAudienceDetailResponseDataFromJSONTyped(json: any, ignoreDis
     return {
         
         'conditionGroups': ((json['condition_groups'] as Array<any>).map(RuleConditionGroupDetailResponseDataFromJSON)),
-        'conditions': ((json['conditions'] as Array<any>).map(RuleConditionResponseDataFromJSON)),
+        'conditions': ((json['conditions'] as Array<any>).map(RuleConditionDetailResponseDataFromJSON)),
         'createdAt': (new Date(json['created_at'])),
         'environmentId': json['environment_id'],
         'flagId': json['flag_id'] == null ? undefined : json['flag_id'],
@@ -155,7 +155,7 @@ export function PlanAudienceDetailResponseDataToJSON(value?: PlanAudienceDetailR
     return {
         
         'condition_groups': ((value['conditionGroups'] as Array<any>).map(RuleConditionGroupDetailResponseDataToJSON)),
-        'conditions': ((value['conditions'] as Array<any>).map(RuleConditionResponseDataToJSON)),
+        'conditions': ((value['conditions'] as Array<any>).map(RuleConditionDetailResponseDataToJSON)),
         'created_at': ((value['createdAt']).toISOString()),
         'environment_id': value['environmentId'],
         'flag_id': value['flagId'],
