@@ -120,9 +120,9 @@ import {
 
 export interface CountEntityTraitDefinitionsRequest {
     entityType?: string;
-    hierarchy?: Array<string>;
     ids?: Array<string>;
     traitType?: string;
+    q?: string;
     limit?: number;
     offset?: number;
 }
@@ -197,9 +197,9 @@ export interface ListCompanyPlansRequest {
 
 export interface ListEntityTraitDefinitionsRequest {
     entityType?: string;
-    hierarchy?: Array<string>;
     ids?: Array<string>;
     traitType?: string;
+    q?: string;
     limit?: number;
     offset?: number;
 }
@@ -254,16 +254,16 @@ export class CompaniesApi extends runtime.BaseAPI {
             queryParameters['entity_type'] = requestParameters['entityType'];
         }
 
-        if (requestParameters['hierarchy'] != null) {
-            queryParameters['hierarchy'] = requestParameters['hierarchy'];
-        }
-
         if (requestParameters['ids'] != null) {
             queryParameters['ids'] = requestParameters['ids'];
         }
 
         if (requestParameters['traitType'] != null) {
             queryParameters['trait_type'] = requestParameters['traitType'];
+        }
+
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
         }
 
         if (requestParameters['limit'] != null) {
@@ -904,16 +904,16 @@ export class CompaniesApi extends runtime.BaseAPI {
             queryParameters['entity_type'] = requestParameters['entityType'];
         }
 
-        if (requestParameters['hierarchy'] != null) {
-            queryParameters['hierarchy'] = requestParameters['hierarchy'];
-        }
-
         if (requestParameters['ids'] != null) {
             queryParameters['ids'] = requestParameters['ids'];
         }
 
         if (requestParameters['traitType'] != null) {
             queryParameters['trait_type'] = requestParameters['traitType'];
+        }
+
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
         }
 
         if (requestParameters['limit'] != null) {

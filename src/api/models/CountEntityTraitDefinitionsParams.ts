@@ -30,12 +30,6 @@ export interface CountEntityTraitDefinitionsParams {
      * @type {Array<string>}
      * @memberof CountEntityTraitDefinitionsParams
      */
-    hierarchy?: Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof CountEntityTraitDefinitionsParams
-     */
     ids?: Array<string>;
     /**
      * 
@@ -49,6 +43,12 @@ export interface CountEntityTraitDefinitionsParams {
      * @memberof CountEntityTraitDefinitionsParams
      */
     offset?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CountEntityTraitDefinitionsParams
+     */
+    q?: string;
     /**
      * 
      * @type {string}
@@ -75,10 +75,10 @@ export function CountEntityTraitDefinitionsParamsFromJSONTyped(json: any, ignore
     return {
         
         'entityType': json['entity_type'] == null ? undefined : json['entity_type'],
-        'hierarchy': json['hierarchy'] == null ? undefined : json['hierarchy'],
         'ids': json['ids'] == null ? undefined : json['ids'],
         'limit': json['limit'] == null ? undefined : json['limit'],
         'offset': json['offset'] == null ? undefined : json['offset'],
+        'q': json['q'] == null ? undefined : json['q'],
         'traitType': json['trait_type'] == null ? undefined : json['trait_type'],
     };
 }
@@ -90,10 +90,10 @@ export function CountEntityTraitDefinitionsParamsToJSON(value?: CountEntityTrait
     return {
         
         'entity_type': value['entityType'],
-        'hierarchy': value['hierarchy'],
         'ids': value['ids'],
         'limit': value['limit'],
         'offset': value['offset'],
+        'q': value['q'],
         'trait_type': value['traitType'],
     };
 }
