@@ -30,12 +30,6 @@ export interface ListEntityTraitDefinitionsParams {
      * @type {Array<string>}
      * @memberof ListEntityTraitDefinitionsParams
      */
-    hierarchy?: Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof ListEntityTraitDefinitionsParams
-     */
     ids?: Array<string>;
     /**
      * 
@@ -49,6 +43,12 @@ export interface ListEntityTraitDefinitionsParams {
      * @memberof ListEntityTraitDefinitionsParams
      */
     offset?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListEntityTraitDefinitionsParams
+     */
+    q?: string;
     /**
      * 
      * @type {string}
@@ -75,10 +75,10 @@ export function ListEntityTraitDefinitionsParamsFromJSONTyped(json: any, ignoreD
     return {
         
         'entityType': json['entity_type'] == null ? undefined : json['entity_type'],
-        'hierarchy': json['hierarchy'] == null ? undefined : json['hierarchy'],
         'ids': json['ids'] == null ? undefined : json['ids'],
         'limit': json['limit'] == null ? undefined : json['limit'],
         'offset': json['offset'] == null ? undefined : json['offset'],
+        'q': json['q'] == null ? undefined : json['q'],
         'traitType': json['trait_type'] == null ? undefined : json['trait_type'],
     };
 }
@@ -90,10 +90,10 @@ export function ListEntityTraitDefinitionsParamsToJSON(value?: ListEntityTraitDe
     return {
         
         'entity_type': value['entityType'],
-        'hierarchy': value['hierarchy'],
         'ids': value['ids'],
         'limit': value['limit'],
         'offset': value['offset'],
+        'q': value['q'],
         'trait_type': value['traitType'],
     };
 }
