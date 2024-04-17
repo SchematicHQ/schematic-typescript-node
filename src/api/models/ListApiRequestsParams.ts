@@ -21,6 +21,12 @@ import { mapValues } from '../runtime';
 export interface ListApiRequestsParams {
     /**
      * 
+     * @type {string}
+     * @memberof ListApiRequestsParams
+     */
+    environmentId?: string;
+    /**
+     * 
      * @type {number}
      * @memberof ListApiRequestsParams
      */
@@ -62,6 +68,7 @@ export function ListApiRequestsParamsFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
+        'environmentId': json['environment_id'] == null ? undefined : json['environment_id'],
         'limit': json['limit'] == null ? undefined : json['limit'],
         'offset': json['offset'] == null ? undefined : json['offset'],
         'q': json['q'] == null ? undefined : json['q'],
@@ -75,6 +82,7 @@ export function ListApiRequestsParamsToJSON(value?: ListApiRequestsParams | null
     }
     return {
         
+        'environment_id': value['environmentId'],
         'limit': value['limit'],
         'offset': value['offset'],
         'q': value['q'],

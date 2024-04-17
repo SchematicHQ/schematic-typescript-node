@@ -83,6 +83,7 @@ export interface CountApiKeysRequest {
 export interface CountApiRequestsRequest {
     q?: string;
     requestType?: string;
+    environmentId?: string;
     limit?: number;
     offset?: number;
 }
@@ -125,6 +126,7 @@ export interface ListApiKeysRequest {
 export interface ListApiRequestsRequest {
     q?: string;
     requestType?: string;
+    environmentId?: string;
     limit?: number;
     offset?: number;
 }
@@ -209,6 +211,10 @@ export class AccountsApi extends runtime.BaseAPI {
 
         if (requestParameters['requestType'] != null) {
             queryParameters['request_type'] = requestParameters['requestType'];
+        }
+
+        if (requestParameters['environmentId'] != null) {
+            queryParameters['environment_id'] = requestParameters['environmentId'];
         }
 
         if (requestParameters['limit'] != null) {
@@ -573,6 +579,10 @@ export class AccountsApi extends runtime.BaseAPI {
 
         if (requestParameters['requestType'] != null) {
             queryParameters['request_type'] = requestParameters['requestType'];
+        }
+
+        if (requestParameters['environmentId'] != null) {
+            queryParameters['environment_id'] = requestParameters['environmentId'];
         }
 
         if (requestParameters['limit'] != null) {
