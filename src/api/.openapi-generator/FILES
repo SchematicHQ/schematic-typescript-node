@@ -32,10 +32,6 @@ models/CountAudienceCompaniesResponse.ts
 models/CountAudienceUsersResponse.ts
 models/CountEntityTraitDefinitionsParams.ts
 models/CountEntityTraitDefinitionsResponse.ts
-models/CountEventSummariesParams.ts
-models/CountEventSummariesResponse.ts
-models/CountEventsParams.ts
-models/CountEventsResponse.ts
 models/CountFeaturesParams.ts
 models/CountFeaturesResponse.ts
 models/CountFlagChecksParams.ts

@@ -16,8 +16,6 @@
 import * as runtime from '../runtime';
 import type {
   ApiError,
-  CountEventSummariesResponse,
-  CountEventsResponse,
   CreateEventBatchRequestBody,
   CreateEventBatchResponse,
   CreateEventRequestBody,
@@ -31,10 +29,6 @@ import type {
 import {
     ApiErrorFromJSON,
     ApiErrorToJSON,
-    CountEventSummariesResponseFromJSON,
-    CountEventSummariesResponseToJSON,
-    CountEventsResponseFromJSON,
-    CountEventsResponseToJSON,
     CreateEventBatchRequestBodyFromJSON,
     CreateEventBatchRequestBodyToJSON,
     CreateEventBatchResponseFromJSON,
@@ -54,20 +48,6 @@ import {
     ListMetricCountsResponseFromJSON,
     ListMetricCountsResponseToJSON,
 } from '../models/index';
-
-export interface CountEventSummariesRequest {
-    q?: string;
-    limit?: number;
-    offset?: number;
-}
-
-export interface CountEventsRequest {
-    companyId?: string;
-    userId?: string;
-    eventSubtype?: string;
-    limit?: number;
-    offset?: number;
-}
 
 export interface CreateEventRequest {
     createEventRequestBody: CreateEventRequestBody;
@@ -116,98 +96,6 @@ export interface ListMetricCountsRequest {
  * 
  */
 export class EventsApi extends runtime.BaseAPI {
-
-    /**
-     * Count event summaries
-     */
-    async countEventSummariesRaw(requestParameters: CountEventSummariesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountEventSummariesResponse>> {
-        const queryParameters: any = {};
-
-        if (requestParameters['q'] != null) {
-            queryParameters['q'] = requestParameters['q'];
-        }
-
-        if (requestParameters['limit'] != null) {
-            queryParameters['limit'] = requestParameters['limit'];
-        }
-
-        if (requestParameters['offset'] != null) {
-            queryParameters['offset'] = requestParameters['offset'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/event-types/count`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => CountEventSummariesResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Count event summaries
-     */
-    async countEventSummaries(requestParameters: CountEventSummariesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountEventSummariesResponse> {
-        const response = await this.countEventSummariesRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Count events
-     */
-    async countEventsRaw(requestParameters: CountEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountEventsResponse>> {
-        const queryParameters: any = {};
-
-        if (requestParameters['companyId'] != null) {
-            queryParameters['company_id'] = requestParameters['companyId'];
-        }
-
-        if (requestParameters['userId'] != null) {
-            queryParameters['user_id'] = requestParameters['userId'];
-        }
-
-        if (requestParameters['eventSubtype'] != null) {
-            queryParameters['event_subtype'] = requestParameters['eventSubtype'];
-        }
-
-        if (requestParameters['limit'] != null) {
-            queryParameters['limit'] = requestParameters['limit'];
-        }
-
-        if (requestParameters['offset'] != null) {
-            queryParameters['offset'] = requestParameters['offset'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
-        }
-
-        const response = await this.request({
-            path: `/events/count`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => CountEventsResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Count events
-     */
-    async countEvents(requestParameters: CountEventsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountEventsResponse> {
-        const response = await this.countEventsRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
 
     /**
      * Create event
