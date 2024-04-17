@@ -21,10 +21,22 @@ import { mapValues } from '../runtime';
 export interface EventSummaryResponseData {
     /**
      * 
+     * @type {number}
+     * @memberof EventSummaryResponseData
+     */
+    companyCount: number;
+    /**
+     * 
      * @type {string}
      * @memberof EventSummaryResponseData
      */
     environmentId: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof EventSummaryResponseData
+     */
+    eventCount: number;
     /**
      * 
      * @type {string}
@@ -49,17 +61,33 @@ export interface EventSummaryResponseData {
      * @memberof EventSummaryResponseData
      */
     last30UserCount: number;
+    /**
+     * 
+     * @type {Date}
+     * @memberof EventSummaryResponseData
+     */
+    lastSeenAt: Date;
+    /**
+     * 
+     * @type {number}
+     * @memberof EventSummaryResponseData
+     */
+    userCount: number;
 }
 
 /**
  * Check if a given object implements the EventSummaryResponseData interface.
  */
 export function instanceOfEventSummaryResponseData(value: object): boolean {
+    if (!('companyCount' in value)) return false;
     if (!('environmentId' in value)) return false;
+    if (!('eventCount' in value)) return false;
     if (!('eventSubtype' in value)) return false;
     if (!('last30CompanyCount' in value)) return false;
     if (!('last30Count' in value)) return false;
     if (!('last30UserCount' in value)) return false;
+    if (!('lastSeenAt' in value)) return false;
+    if (!('userCount' in value)) return false;
     return true;
 }
 
@@ -73,11 +101,15 @@ export function EventSummaryResponseDataFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
+        'companyCount': json['company_count'],
         'environmentId': json['environment_id'],
+        'eventCount': json['event_count'],
         'eventSubtype': json['event_subtype'],
         'last30CompanyCount': json['last_30_company_count'],
         'last30Count': json['last_30_count'],
         'last30UserCount': json['last_30_user_count'],
+        'lastSeenAt': (new Date(json['last_seen_at'])),
+        'userCount': json['user_count'],
     };
 }
 
@@ -87,11 +119,15 @@ export function EventSummaryResponseDataToJSON(value?: EventSummaryResponseData 
     }
     return {
         
+        'company_count': value['companyCount'],
         'environment_id': value['environmentId'],
+        'event_count': value['eventCount'],
         'event_subtype': value['eventSubtype'],
         'last_30_company_count': value['last30CompanyCount'],
         'last_30_count': value['last30Count'],
         'last_30_user_count': value['last30UserCount'],
+        'last_seen_at': ((value['lastSeenAt']).toISOString()),
+        'user_count': value['userCount'],
     };
 }
 
