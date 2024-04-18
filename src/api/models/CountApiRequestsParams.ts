@@ -21,6 +21,12 @@ import { mapValues } from '../runtime';
 export interface CountApiRequestsParams {
     /**
      * 
+     * @type {string}
+     * @memberof CountApiRequestsParams
+     */
+    environmentId?: string;
+    /**
+     * 
      * @type {number}
      * @memberof CountApiRequestsParams
      */
@@ -62,6 +68,7 @@ export function CountApiRequestsParamsFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
+        'environmentId': json['environment_id'] == null ? undefined : json['environment_id'],
         'limit': json['limit'] == null ? undefined : json['limit'],
         'offset': json['offset'] == null ? undefined : json['offset'],
         'q': json['q'] == null ? undefined : json['q'],
@@ -75,6 +82,7 @@ export function CountApiRequestsParamsToJSON(value?: CountApiRequestsParams | nu
     }
     return {
         
+        'environment_id': value['environmentId'],
         'limit': value['limit'],
         'offset': value['offset'],
         'q': value['q'],
