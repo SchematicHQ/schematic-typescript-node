@@ -63,6 +63,12 @@ export interface FeatureUsageResponseData {
      */
     feature?: FeatureDetailResponseData;
     /**
+     * The period over which usage is measured.
+     * @type {string}
+     * @memberof FeatureUsageResponseData
+     */
+    period?: string;
+    /**
      * 
      * @type {PlanResponseData}
      * @memberof FeatureUsageResponseData
@@ -101,6 +107,7 @@ export function FeatureUsageResponseDataFromJSONTyped(json: any, ignoreDiscrimin
         'entitlementId': json['entitlement_id'],
         'entitlementType': json['entitlement_type'],
         'feature': json['feature'] == null ? undefined : FeatureDetailResponseDataFromJSON(json['feature']),
+        'period': json['period'] == null ? undefined : json['period'],
         'plan': json['plan'] == null ? undefined : PlanResponseDataFromJSON(json['plan']),
         'usage': json['usage'] == null ? undefined : json['usage'],
     };
@@ -117,6 +124,7 @@ export function FeatureUsageResponseDataToJSON(value?: FeatureUsageResponseData 
         'entitlement_id': value['entitlementId'],
         'entitlement_type': value['entitlementType'],
         'feature': FeatureDetailResponseDataToJSON(value['feature']),
+        'period': value['period'],
         'plan': PlanResponseDataToJSON(value['plan']),
         'usage': value['usage'],
     };
