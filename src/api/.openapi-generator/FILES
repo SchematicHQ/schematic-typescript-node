@@ -30,6 +30,8 @@ models/CountApiRequestsParams.ts
 models/CountApiRequestsResponse.ts
 models/CountAudienceCompaniesResponse.ts
 models/CountAudienceUsersResponse.ts
+models/CountCompaniesParams.ts
+models/CountCompaniesResponse.ts
 models/CountEntityTraitDefinitionsParams.ts
 models/CountEntityTraitDefinitionsResponse.ts
 models/CountFeaturesParams.ts
@@ -39,6 +41,8 @@ models/CountFlagChecksResponse.ts
 models/CountFlagsParams.ts
 models/CountFlagsResponse.ts
 models/CountResponse.ts
+models/CountUsersParams.ts
+models/CountUsersResponse.ts
 models/CreateApiKeyRequestBody.ts
 models/CreateApiKeyResponse.ts
 models/CreateCompanyOverrideRequestBody.ts
@@ -79,6 +83,8 @@ models/DeletePlanResponse.ts
 models/DeleteResponse.ts
 models/DeleteUserByKeysResponse.ts
 models/DeleteUserResponse.ts
+models/EntityKeyDefinitionResponseData.ts
+models/EntityKeyDetailResponseData.ts
 models/EntityKeyResponseData.ts
 models/EntityTraitDefinitionResponseData.ts
 models/EntityTraitDetailResponseData.ts
@@ -143,6 +149,8 @@ models/ListEntityTraitDefinitionsParams.ts
 models/ListEntityTraitDefinitionsResponse.ts
 models/ListEventsParams.ts
 models/ListEventsResponse.ts
+models/ListFeatureUsageParams.ts
+models/ListFeatureUsageResponse.ts
 models/ListFeaturesParams.ts
 models/ListFeaturesResponse.ts
 models/ListFlagChecksParams.ts

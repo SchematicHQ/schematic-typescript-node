@@ -26,6 +26,7 @@ import type {
   GetFeatureUsageByCompanyResponse,
   GetPlanEntitlementResponse,
   ListCompanyOverridesResponse,
+  ListFeatureUsageResponse,
   ListPlanEntitlementsResponse,
   UpdateCompanyOverrideRequestBody,
   UpdateCompanyOverrideResponse,
@@ -55,6 +56,8 @@ import {
     GetPlanEntitlementResponseToJSON,
     ListCompanyOverridesResponseFromJSON,
     ListCompanyOverridesResponseToJSON,
+    ListFeatureUsageResponseFromJSON,
+    ListFeatureUsageResponseToJSON,
     ListPlanEntitlementsResponseFromJSON,
     ListPlanEntitlementsResponseToJSON,
     UpdateCompanyOverrideRequestBodyFromJSON,
@@ -98,6 +101,14 @@ export interface GetPlanEntitlementRequest {
 export interface ListCompanyOverridesRequest {
     companyId?: string;
     featureId?: string;
+    featureIds?: Array<string>;
+    limit?: number;
+    offset?: number;
+}
+
+export interface ListFeatureUsageRequest {
+    companyId?: string;
+    companyKeys?: object;
     limit?: number;
     offset?: number;
 }
@@ -106,6 +117,7 @@ export interface ListPlanEntitlementsRequest {
     planId?: string;
     planIds?: Array<string>;
     featureId?: string;
+    featureIds?: Array<string>;
     limit?: number;
     offset?: number;
 }
@@ -408,6 +420,10 @@ export class EntitlementsApi extends runtime.BaseAPI {
             queryParameters['feature_id'] = requestParameters['featureId'];
         }
 
+        if (requestParameters['featureIds'] != null) {
+            queryParameters['feature_ids'] = requestParameters['featureIds'];
+        }
+
         if (requestParameters['limit'] != null) {
             queryParameters['limit'] = requestParameters['limit'];
         }
@@ -441,6 +457,52 @@ export class EntitlementsApi extends runtime.BaseAPI {
     }
 
     /**
+     * List feature usage
+     */
+    async listFeatureUsageRaw(requestParameters: ListFeatureUsageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFeatureUsageResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['companyId'] != null) {
+            queryParameters['company_id'] = requestParameters['companyId'];
+        }
+
+        if (requestParameters['companyKeys'] != null) {
+            queryParameters['company_keys'] = requestParameters['companyKeys'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/feature-usage`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListFeatureUsageResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List feature usage
+     */
+    async listFeatureUsage(requestParameters: ListFeatureUsageRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListFeatureUsageResponse> {
+        const response = await this.listFeatureUsageRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * List plan entitlements
      */
     async listPlanEntitlementsRaw(requestParameters: ListPlanEntitlementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListPlanEntitlementsResponse>> {
@@ -456,6 +518,10 @@ export class EntitlementsApi extends runtime.BaseAPI {
 
         if (requestParameters['featureId'] != null) {
             queryParameters['feature_id'] = requestParameters['featureId'];
+        }
+
+        if (requestParameters['featureIds'] != null) {
+            queryParameters['feature_ids'] = requestParameters['featureIds'];
         }
 
         if (requestParameters['limit'] != null) {

@@ -19,12 +19,12 @@ import {
     CompanyMembershipDetailResponseDataFromJSONTyped,
     CompanyMembershipDetailResponseDataToJSON,
 } from './CompanyMembershipDetailResponseData';
-import type { EntityKeyResponseData } from './EntityKeyResponseData';
+import type { EntityKeyDetailResponseData } from './EntityKeyDetailResponseData';
 import {
-    EntityKeyResponseDataFromJSON,
-    EntityKeyResponseDataFromJSONTyped,
-    EntityKeyResponseDataToJSON,
-} from './EntityKeyResponseData';
+    EntityKeyDetailResponseDataFromJSON,
+    EntityKeyDetailResponseDataFromJSONTyped,
+    EntityKeyDetailResponseDataToJSON,
+} from './EntityKeyDetailResponseData';
 import type { EntityTraitDetailResponseData } from './EntityTraitDetailResponseData';
 import {
     EntityTraitDetailResponseDataFromJSON,
@@ -70,10 +70,10 @@ export interface UserDetailResponseData {
     id: string;
     /**
      * 
-     * @type {Array<EntityKeyResponseData>}
+     * @type {Array<EntityKeyDetailResponseData>}
      * @memberof UserDetailResponseData
      */
-    keys: Array<EntityKeyResponseData>;
+    keys: Array<EntityKeyDetailResponseData>;
     /**
      * 
      * @type {Date}
@@ -130,7 +130,7 @@ export function UserDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminat
         'entityTraits': ((json['entity_traits'] as Array<any>).map(EntityTraitDetailResponseDataFromJSON)),
         'environmentId': json['environment_id'],
         'id': json['id'],
-        'keys': ((json['keys'] as Array<any>).map(EntityKeyResponseDataFromJSON)),
+        'keys': ((json['keys'] as Array<any>).map(EntityKeyDetailResponseDataFromJSON)),
         'lastSeenAt': json['last_seen_at'] == null ? undefined : (new Date(json['last_seen_at'])),
         'name': json['name'],
         'traits': json['traits'] == null ? undefined : json['traits'],
@@ -149,7 +149,7 @@ export function UserDetailResponseDataToJSON(value?: UserDetailResponseData | nu
         'entity_traits': ((value['entityTraits'] as Array<any>).map(EntityTraitDetailResponseDataToJSON)),
         'environment_id': value['environmentId'],
         'id': value['id'],
-        'keys': ((value['keys'] as Array<any>).map(EntityKeyResponseDataToJSON)),
+        'keys': ((value['keys'] as Array<any>).map(EntityKeyDetailResponseDataToJSON)),
         'last_seen_at': value['lastSeenAt'] == null ? undefined : ((value['lastSeenAt'] as any).toISOString()),
         'name': value['name'],
         'traits': value['traits'],
