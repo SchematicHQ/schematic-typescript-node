@@ -16,7 +16,9 @@
 import * as runtime from '../runtime';
 import type {
   ApiError,
+  CountCompaniesResponse,
   CountEntityTraitDefinitionsResponse,
+  CountUsersResponse,
   CreateCompanyResponse,
   CreateEntityTraitDefinitionRequestBody,
   CreateUserResponse,
@@ -52,8 +54,12 @@ import type {
 import {
     ApiErrorFromJSON,
     ApiErrorToJSON,
+    CountCompaniesResponseFromJSON,
+    CountCompaniesResponseToJSON,
     CountEntityTraitDefinitionsResponseFromJSON,
     CountEntityTraitDefinitionsResponseToJSON,
+    CountUsersResponseFromJSON,
+    CountUsersResponseToJSON,
     CreateCompanyResponseFromJSON,
     CreateCompanyResponseToJSON,
     CreateEntityTraitDefinitionRequestBodyFromJSON,
@@ -118,11 +124,23 @@ import {
     UpsertUserTraitResponseToJSON,
 } from '../models/index';
 
+export interface CountCompaniesRequest {
+    ids?: Array<string>;
+    limit?: number;
+    offset?: number;
+}
+
 export interface CountEntityTraitDefinitionsRequest {
     entityType?: string;
     ids?: Array<string>;
     traitType?: string;
     q?: string;
+    limit?: number;
+    offset?: number;
+}
+
+export interface CountUsersRequest {
+    ids?: Array<string>;
     limit?: number;
     offset?: number;
 }
@@ -245,6 +263,48 @@ export interface UpsertUserTraitRequest {
 export class CompaniesApi extends runtime.BaseAPI {
 
     /**
+     * Count companies
+     */
+    async countCompaniesRaw(requestParameters: CountCompaniesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountCompaniesResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/companies/count`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountCompaniesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Count companies
+     */
+    async countCompanies(requestParameters: CountCompaniesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountCompaniesResponse> {
+        const response = await this.countCompaniesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Count entity trait definitions
      */
     async countEntityTraitDefinitionsRaw(requestParameters: CountEntityTraitDefinitionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountEntityTraitDefinitionsResponse>> {
@@ -295,6 +355,48 @@ export class CompaniesApi extends runtime.BaseAPI {
      */
     async countEntityTraitDefinitions(requestParameters: CountEntityTraitDefinitionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountEntityTraitDefinitionsResponse> {
         const response = await this.countEntityTraitDefinitionsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Count users
+     */
+    async countUsersRaw(requestParameters: CountUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountUsersResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/users/count`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountUsersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Count users
+     */
+    async countUsers(requestParameters: CountUsersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountUsersResponse> {
+        const response = await this.countUsersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

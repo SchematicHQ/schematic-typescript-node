@@ -19,6 +19,12 @@ import {
     FeatureDetailResponseDataFromJSONTyped,
     FeatureDetailResponseDataToJSON,
 } from './FeatureDetailResponseData';
+import type { PlanResponseData } from './PlanResponseData';
+import {
+    PlanResponseDataFromJSON,
+    PlanResponseDataFromJSONTyped,
+    PlanResponseDataToJSON,
+} from './PlanResponseData';
 
 /**
  * 
@@ -57,6 +63,12 @@ export interface FeatureUsageResponseData {
      */
     feature?: FeatureDetailResponseData;
     /**
+     * 
+     * @type {PlanResponseData}
+     * @memberof FeatureUsageResponseData
+     */
+    plan?: PlanResponseData;
+    /**
      * The amount of usage that has been consumed; a null value indicates that usage is not being measured.
      * @type {number}
      * @memberof FeatureUsageResponseData
@@ -89,6 +101,7 @@ export function FeatureUsageResponseDataFromJSONTyped(json: any, ignoreDiscrimin
         'entitlementId': json['entitlement_id'],
         'entitlementType': json['entitlement_type'],
         'feature': json['feature'] == null ? undefined : FeatureDetailResponseDataFromJSON(json['feature']),
+        'plan': json['plan'] == null ? undefined : PlanResponseDataFromJSON(json['plan']),
         'usage': json['usage'] == null ? undefined : json['usage'],
     };
 }
@@ -104,6 +117,7 @@ export function FeatureUsageResponseDataToJSON(value?: FeatureUsageResponseData 
         'entitlement_id': value['entitlementId'],
         'entitlement_type': value['entitlementType'],
         'feature': FeatureDetailResponseDataToJSON(value['feature']),
+        'plan': PlanResponseDataToJSON(value['plan']),
         'usage': value['usage'],
     };
 }
