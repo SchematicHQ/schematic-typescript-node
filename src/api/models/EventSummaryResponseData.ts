@@ -48,7 +48,7 @@ export interface EventSummaryResponseData {
      * @type {Date}
      * @memberof EventSummaryResponseData
      */
-    lastSeenAt: Date;
+    lastSeenAt?: Date;
     /**
      * 
      * @type {number}
@@ -65,7 +65,6 @@ export function instanceOfEventSummaryResponseData(value: object): boolean {
     if (!('environmentId' in value)) return false;
     if (!('eventCount' in value)) return false;
     if (!('eventSubtype' in value)) return false;
-    if (!('lastSeenAt' in value)) return false;
     if (!('userCount' in value)) return false;
     return true;
 }
@@ -84,7 +83,7 @@ export function EventSummaryResponseDataFromJSONTyped(json: any, ignoreDiscrimin
         'environmentId': json['environment_id'],
         'eventCount': json['event_count'],
         'eventSubtype': json['event_subtype'],
-        'lastSeenAt': (new Date(json['last_seen_at'])),
+        'lastSeenAt': json['last_seen_at'] == null ? undefined : (new Date(json['last_seen_at'])),
         'userCount': json['user_count'],
     };
 }
@@ -99,7 +98,7 @@ export function EventSummaryResponseDataToJSON(value?: EventSummaryResponseData 
         'environment_id': value['environmentId'],
         'event_count': value['eventCount'],
         'event_subtype': value['eventSubtype'],
-        'last_seen_at': ((value['lastSeenAt']).toISOString()),
+        'last_seen_at': value['lastSeenAt'] == null ? undefined : ((value['lastSeenAt'] as any).toISOString()),
         'user_count': value['userCount'],
     };
 }
