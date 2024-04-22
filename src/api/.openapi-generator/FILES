@@ -34,6 +34,8 @@ models/CountCompaniesParams.ts
 models/CountCompaniesResponse.ts
 models/CountEntityTraitDefinitionsParams.ts
 models/CountEntityTraitDefinitionsResponse.ts
+models/CountFeatureUsageParams.ts
+models/CountFeatureUsageResponse.ts
 models/CountFeaturesParams.ts
 models/CountFeaturesResponse.ts
 models/CountFlagChecksParams.ts

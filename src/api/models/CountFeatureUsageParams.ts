@@ -16,53 +16,53 @@ import { mapValues } from '../runtime';
 /**
  * Input parameters
  * @export
- * @interface ListFeatureUsageParams
+ * @interface CountFeatureUsageParams
  */
-export interface ListFeatureUsageParams {
+export interface CountFeatureUsageParams {
     /**
      * 
      * @type {string}
-     * @memberof ListFeatureUsageParams
+     * @memberof CountFeatureUsageParams
      */
     companyId?: string;
     /**
      * 
      * @type {object}
-     * @memberof ListFeatureUsageParams
+     * @memberof CountFeatureUsageParams
      */
     companyKeys?: object;
     /**
      * 
      * @type {Array<string>}
-     * @memberof ListFeatureUsageParams
+     * @memberof CountFeatureUsageParams
      */
     featureIds?: Array<string>;
     /**
      * 
      * @type {number}
-     * @memberof ListFeatureUsageParams
+     * @memberof CountFeatureUsageParams
      */
     limit?: number;
     /**
      * 
      * @type {number}
-     * @memberof ListFeatureUsageParams
+     * @memberof CountFeatureUsageParams
      */
     offset?: number;
 }
 
 /**
- * Check if a given object implements the ListFeatureUsageParams interface.
+ * Check if a given object implements the CountFeatureUsageParams interface.
  */
-export function instanceOfListFeatureUsageParams(value: object): boolean {
+export function instanceOfCountFeatureUsageParams(value: object): boolean {
     return true;
 }
 
-export function ListFeatureUsageParamsFromJSON(json: any): ListFeatureUsageParams {
-    return ListFeatureUsageParamsFromJSONTyped(json, false);
+export function CountFeatureUsageParamsFromJSON(json: any): CountFeatureUsageParams {
+    return CountFeatureUsageParamsFromJSONTyped(json, false);
 }
 
-export function ListFeatureUsageParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListFeatureUsageParams {
+export function CountFeatureUsageParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): CountFeatureUsageParams {
     if (json == null) {
         return json;
     }
@@ -76,7 +76,7 @@ export function ListFeatureUsageParamsFromJSONTyped(json: any, ignoreDiscriminat
     };
 }
 
-export function ListFeatureUsageParamsToJSON(value?: ListFeatureUsageParams | null): any {
+export function CountFeatureUsageParamsToJSON(value?: CountFeatureUsageParams | null): any {
     if (value == null) {
         return value;
     }

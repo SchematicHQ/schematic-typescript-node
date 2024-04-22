@@ -28,6 +28,8 @@ export * from './CountCompaniesParams';
 export * from './CountCompaniesResponse';
 export * from './CountEntityTraitDefinitionsParams';
 export * from './CountEntityTraitDefinitionsResponse';
+export * from './CountFeatureUsageParams';
+export * from './CountFeatureUsageResponse';
 export * from './CountFeaturesParams';
 export * from './CountFeaturesResponse';
 export * from './CountFlagChecksParams';
