@@ -73,6 +73,12 @@ export interface CompanyDetailResponseData {
      * @type {string}
      * @memberof CompanyDetailResponseData
      */
+    logoUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CompanyDetailResponseData
+     */
     name: string;
     /**
      * A map of trait names to trait values
@@ -118,6 +124,7 @@ export function CompanyDetailResponseDataFromJSONTyped(json: any, ignoreDiscrimi
         'id': json['id'],
         'keys': ((json['keys'] as Array<any>).map(EntityKeyDetailResponseDataFromJSON)),
         'lastSeenAt': json['last_seen_at'] == null ? undefined : (new Date(json['last_seen_at'])),
+        'logoUrl': json['logo_url'] == null ? undefined : json['logo_url'],
         'name': json['name'],
         'traits': json['traits'] == null ? undefined : json['traits'],
         'updatedAt': (new Date(json['updated_at'])),
@@ -136,6 +143,7 @@ export function CompanyDetailResponseDataToJSON(value?: CompanyDetailResponseDat
         'id': value['id'],
         'keys': ((value['keys'] as Array<any>).map(EntityKeyDetailResponseDataToJSON)),
         'last_seen_at': value['lastSeenAt'] == null ? undefined : ((value['lastSeenAt'] as any).toISOString()),
+        'logo_url': value['logoUrl'],
         'name': value['name'],
         'traits': value['traits'],
         'updated_at': ((value['updatedAt']).toISOString()),

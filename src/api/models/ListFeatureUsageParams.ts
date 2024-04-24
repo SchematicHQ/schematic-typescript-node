@@ -49,6 +49,12 @@ export interface ListFeatureUsageParams {
      * @memberof ListFeatureUsageParams
      */
     offset?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListFeatureUsageParams
+     */
+    q?: string;
 }
 
 /**
@@ -73,6 +79,7 @@ export function ListFeatureUsageParamsFromJSONTyped(json: any, ignoreDiscriminat
         'featureIds': json['feature_ids'] == null ? undefined : json['feature_ids'],
         'limit': json['limit'] == null ? undefined : json['limit'],
         'offset': json['offset'] == null ? undefined : json['offset'],
+        'q': json['q'] == null ? undefined : json['q'],
     };
 }
 
@@ -87,6 +94,7 @@ export function ListFeatureUsageParamsToJSON(value?: ListFeatureUsageParams | nu
         'feature_ids': value['featureIds'],
         'limit': value['limit'],
         'offset': value['offset'],
+        'q': value['q'],
     };
 }
 

@@ -48,6 +48,12 @@ export interface CompanyResponseData {
      * @type {string}
      * @memberof CompanyResponseData
      */
+    logoUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CompanyResponseData
+     */
     name: string;
     /**
      * 
@@ -83,6 +89,7 @@ export function CompanyResponseDataFromJSONTyped(json: any, ignoreDiscriminator:
         'environmentId': json['environment_id'],
         'id': json['id'],
         'lastSeenAt': json['last_seen_at'] == null ? undefined : (new Date(json['last_seen_at'])),
+        'logoUrl': json['logo_url'] == null ? undefined : json['logo_url'],
         'name': json['name'],
         'updatedAt': (new Date(json['updated_at'])),
     };
@@ -98,6 +105,7 @@ export function CompanyResponseDataToJSON(value?: CompanyResponseData | null): a
         'environment_id': value['environmentId'],
         'id': value['id'],
         'last_seen_at': value['lastSeenAt'] == null ? undefined : ((value['lastSeenAt'] as any).toISOString()),
+        'logo_url': value['logoUrl'],
         'name': value['name'],
         'updated_at': ((value['updatedAt']).toISOString()),
     };

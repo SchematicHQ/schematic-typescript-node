@@ -77,6 +77,7 @@ export interface CountFeatureUsageRequest {
     companyId?: string;
     companyKeys?: object;
     featureIds?: Array<string>;
+    q?: string;
     limit?: number;
     offset?: number;
 }
@@ -121,6 +122,7 @@ export interface ListFeatureUsageRequest {
     companyId?: string;
     companyKeys?: object;
     featureIds?: Array<string>;
+    q?: string;
     limit?: number;
     offset?: number;
 }
@@ -165,6 +167,10 @@ export class EntitlementsApi extends runtime.BaseAPI {
 
         if (requestParameters['featureIds'] != null) {
             queryParameters['feature_ids'] = requestParameters['featureIds'];
+        }
+
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
         }
 
         if (requestParameters['limit'] != null) {
@@ -534,6 +540,10 @@ export class EntitlementsApi extends runtime.BaseAPI {
 
         if (requestParameters['featureIds'] != null) {
             queryParameters['feature_ids'] = requestParameters['featureIds'];
+        }
+
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
         }
 
         if (requestParameters['limit'] != null) {
