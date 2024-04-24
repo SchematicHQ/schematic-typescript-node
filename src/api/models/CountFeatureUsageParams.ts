@@ -49,6 +49,12 @@ export interface CountFeatureUsageParams {
      * @memberof CountFeatureUsageParams
      */
     offset?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CountFeatureUsageParams
+     */
+    q?: string;
 }
 
 /**
@@ -73,6 +79,7 @@ export function CountFeatureUsageParamsFromJSONTyped(json: any, ignoreDiscrimina
         'featureIds': json['feature_ids'] == null ? undefined : json['feature_ids'],
         'limit': json['limit'] == null ? undefined : json['limit'],
         'offset': json['offset'] == null ? undefined : json['offset'],
+        'q': json['q'] == null ? undefined : json['q'],
     };
 }
 
@@ -87,6 +94,7 @@ export function CountFeatureUsageParamsToJSON(value?: CountFeatureUsageParams | 
         'feature_ids': value['featureIds'],
         'limit': value['limit'],
         'offset': value['offset'],
+        'q': value['q'],
     };
 }
 
