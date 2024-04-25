@@ -13,12 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
-import type { CompanyResponseData } from './CompanyResponseData';
+import type { CompanyDetailResponseData } from './CompanyDetailResponseData';
 import {
-    CompanyResponseDataFromJSON,
-    CompanyResponseDataFromJSONTyped,
-    CompanyResponseDataToJSON,
-} from './CompanyResponseData';
+    CompanyDetailResponseDataFromJSON,
+    CompanyDetailResponseDataFromJSONTyped,
+    CompanyDetailResponseDataToJSON,
+} from './CompanyDetailResponseData';
 import type { ListCompaniesParams } from './ListCompaniesParams';
 import {
     ListCompaniesParamsFromJSON,
@@ -34,10 +34,10 @@ import {
 export interface ListCompaniesResponse {
     /**
      * The returned resources
-     * @type {Array<CompanyResponseData>}
+     * @type {Array<CompanyDetailResponseData>}
      * @memberof ListCompaniesResponse
      */
-    data: Array<CompanyResponseData>;
+    data: Array<CompanyDetailResponseData>;
     /**
      * 
      * @type {ListCompaniesParams}
@@ -65,7 +65,7 @@ export function ListCompaniesResponseFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'data': ((json['data'] as Array<any>).map(CompanyResponseDataFromJSON)),
+        'data': ((json['data'] as Array<any>).map(CompanyDetailResponseDataFromJSON)),
         'params': ListCompaniesParamsFromJSON(json['params']),
     };
 }
@@ -76,7 +76,7 @@ export function ListCompaniesResponseToJSON(value?: ListCompaniesResponse | null
     }
     return {
         
-        'data': ((value['data'] as Array<any>).map(CompanyResponseDataToJSON)),
+        'data': ((value['data'] as Array<any>).map(CompanyDetailResponseDataToJSON)),
         'params': ListCompaniesParamsToJSON(value['params']),
     };
 }

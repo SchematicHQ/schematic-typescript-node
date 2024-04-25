@@ -16,7 +16,9 @@
 import * as runtime from '../runtime';
 import type {
   ApiError,
+  CountFeatureCompaniesResponse,
   CountFeatureUsageResponse,
+  CountFeatureUsersResponse,
   CreateCompanyOverrideRequestBody,
   CreateCompanyOverrideResponse,
   CreatePlanEntitlementRequestBody,
@@ -27,7 +29,9 @@ import type {
   GetFeatureUsageByCompanyResponse,
   GetPlanEntitlementResponse,
   ListCompanyOverridesResponse,
+  ListFeatureCompaniesResponse,
   ListFeatureUsageResponse,
+  ListFeatureUsersResponse,
   ListPlanEntitlementsResponse,
   UpdateCompanyOverrideRequestBody,
   UpdateCompanyOverrideResponse,
@@ -37,8 +41,12 @@ import type {
 import {
     ApiErrorFromJSON,
     ApiErrorToJSON,
+    CountFeatureCompaniesResponseFromJSON,
+    CountFeatureCompaniesResponseToJSON,
     CountFeatureUsageResponseFromJSON,
     CountFeatureUsageResponseToJSON,
+    CountFeatureUsersResponseFromJSON,
+    CountFeatureUsersResponseToJSON,
     CreateCompanyOverrideRequestBodyFromJSON,
     CreateCompanyOverrideRequestBodyToJSON,
     CreateCompanyOverrideResponseFromJSON,
@@ -59,8 +67,12 @@ import {
     GetPlanEntitlementResponseToJSON,
     ListCompanyOverridesResponseFromJSON,
     ListCompanyOverridesResponseToJSON,
+    ListFeatureCompaniesResponseFromJSON,
+    ListFeatureCompaniesResponseToJSON,
     ListFeatureUsageResponseFromJSON,
     ListFeatureUsageResponseToJSON,
+    ListFeatureUsersResponseFromJSON,
+    ListFeatureUsersResponseToJSON,
     ListPlanEntitlementsResponseFromJSON,
     ListPlanEntitlementsResponseToJSON,
     UpdateCompanyOverrideRequestBodyFromJSON,
@@ -73,10 +85,24 @@ import {
     UpdatePlanEntitlementResponseToJSON,
 } from '../models/index';
 
+export interface CountFeatureCompaniesRequest {
+    featureId: string;
+    q?: string;
+    limit?: number;
+    offset?: number;
+}
+
 export interface CountFeatureUsageRequest {
     companyId?: string;
     companyKeys?: object;
     featureIds?: Array<string>;
+    q?: string;
+    limit?: number;
+    offset?: number;
+}
+
+export interface CountFeatureUsersRequest {
+    featureId: string;
     q?: string;
     limit?: number;
     offset?: number;
@@ -112,8 +138,16 @@ export interface GetPlanEntitlementRequest {
 
 export interface ListCompanyOverridesRequest {
     companyId?: string;
+    companyIds?: Array<string>;
     featureId?: string;
     featureIds?: Array<string>;
+    limit?: number;
+    offset?: number;
+}
+
+export interface ListFeatureCompaniesRequest {
+    featureId: string;
+    q?: string;
     limit?: number;
     offset?: number;
 }
@@ -122,6 +156,13 @@ export interface ListFeatureUsageRequest {
     companyId?: string;
     companyKeys?: object;
     featureIds?: Array<string>;
+    q?: string;
+    limit?: number;
+    offset?: number;
+}
+
+export interface ListFeatureUsersRequest {
+    featureId: string;
     q?: string;
     limit?: number;
     offset?: number;
@@ -150,6 +191,59 @@ export interface UpdatePlanEntitlementRequest {
  * 
  */
 export class EntitlementsApi extends runtime.BaseAPI {
+
+    /**
+     * Count feature companies
+     */
+    async countFeatureCompaniesRaw(requestParameters: CountFeatureCompaniesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountFeatureCompaniesResponse>> {
+        if (requestParameters['featureId'] == null) {
+            throw new runtime.RequiredError(
+                'featureId',
+                'Required parameter "featureId" was null or undefined when calling countFeatureCompanies().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['featureId'] != null) {
+            queryParameters['feature_id'] = requestParameters['featureId'];
+        }
+
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/feature-companies/count`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountFeatureCompaniesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Count feature companies
+     */
+    async countFeatureCompanies(requestParameters: CountFeatureCompaniesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountFeatureCompaniesResponse> {
+        const response = await this.countFeatureCompaniesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Count feature usage
@@ -202,6 +296,59 @@ export class EntitlementsApi extends runtime.BaseAPI {
      */
     async countFeatureUsage(requestParameters: CountFeatureUsageRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountFeatureUsageResponse> {
         const response = await this.countFeatureUsageRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Count feature users
+     */
+    async countFeatureUsersRaw(requestParameters: CountFeatureUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountFeatureUsersResponse>> {
+        if (requestParameters['featureId'] == null) {
+            throw new runtime.RequiredError(
+                'featureId',
+                'Required parameter "featureId" was null or undefined when calling countFeatureUsers().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['featureId'] != null) {
+            queryParameters['feature_id'] = requestParameters['featureId'];
+        }
+
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/feature-users/count`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountFeatureUsersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Count feature users
+     */
+    async countFeatureUsers(requestParameters: CountFeatureUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountFeatureUsersResponse> {
+        const response = await this.countFeatureUsersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -484,6 +631,10 @@ export class EntitlementsApi extends runtime.BaseAPI {
             queryParameters['company_id'] = requestParameters['companyId'];
         }
 
+        if (requestParameters['companyIds'] != null) {
+            queryParameters['company_ids'] = requestParameters['companyIds'];
+        }
+
         if (requestParameters['featureId'] != null) {
             queryParameters['feature_id'] = requestParameters['featureId'];
         }
@@ -521,6 +672,59 @@ export class EntitlementsApi extends runtime.BaseAPI {
      */
     async listCompanyOverrides(requestParameters: ListCompanyOverridesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListCompanyOverridesResponse> {
         const response = await this.listCompanyOverridesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List feature companies
+     */
+    async listFeatureCompaniesRaw(requestParameters: ListFeatureCompaniesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFeatureCompaniesResponse>> {
+        if (requestParameters['featureId'] == null) {
+            throw new runtime.RequiredError(
+                'featureId',
+                'Required parameter "featureId" was null or undefined when calling listFeatureCompanies().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['featureId'] != null) {
+            queryParameters['feature_id'] = requestParameters['featureId'];
+        }
+
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/feature-companies`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListFeatureCompaniesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List feature companies
+     */
+    async listFeatureCompanies(requestParameters: ListFeatureCompaniesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListFeatureCompaniesResponse> {
+        const response = await this.listFeatureCompaniesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -575,6 +779,59 @@ export class EntitlementsApi extends runtime.BaseAPI {
      */
     async listFeatureUsage(requestParameters: ListFeatureUsageRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListFeatureUsageResponse> {
         const response = await this.listFeatureUsageRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List feature users
+     */
+    async listFeatureUsersRaw(requestParameters: ListFeatureUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFeatureUsersResponse>> {
+        if (requestParameters['featureId'] == null) {
+            throw new runtime.RequiredError(
+                'featureId',
+                'Required parameter "featureId" was null or undefined when calling listFeatureUsers().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['featureId'] != null) {
+            queryParameters['feature_id'] = requestParameters['featureId'];
+        }
+
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/feature-users`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListFeatureUsersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List feature users
+     */
+    async listFeatureUsers(requestParameters: ListFeatureUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListFeatureUsersResponse> {
+        const response = await this.listFeatureUsersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -19,12 +19,12 @@ import {
     ListUsersParamsFromJSONTyped,
     ListUsersParamsToJSON,
 } from './ListUsersParams';
-import type { UserResponseData } from './UserResponseData';
+import type { UserDetailResponseData } from './UserDetailResponseData';
 import {
-    UserResponseDataFromJSON,
-    UserResponseDataFromJSONTyped,
-    UserResponseDataToJSON,
-} from './UserResponseData';
+    UserDetailResponseDataFromJSON,
+    UserDetailResponseDataFromJSONTyped,
+    UserDetailResponseDataToJSON,
+} from './UserDetailResponseData';
 
 /**
  * 
@@ -34,10 +34,10 @@ import {
 export interface ListUsersResponse {
     /**
      * The returned resources
-     * @type {Array<UserResponseData>}
+     * @type {Array<UserDetailResponseData>}
      * @memberof ListUsersResponse
      */
-    data: Array<UserResponseData>;
+    data: Array<UserDetailResponseData>;
     /**
      * 
      * @type {ListUsersParams}
@@ -65,7 +65,7 @@ export function ListUsersResponseFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'data': ((json['data'] as Array<any>).map(UserResponseDataFromJSON)),
+        'data': ((json['data'] as Array<any>).map(UserDetailResponseDataFromJSON)),
         'params': ListUsersParamsFromJSON(json['params']),
     };
 }
@@ -76,7 +76,7 @@ export function ListUsersResponseToJSON(value?: ListUsersResponse | null): any {
     }
     return {
         
-        'data': ((value['data'] as Array<any>).map(UserResponseDataToJSON)),
+        'data': ((value['data'] as Array<any>).map(UserDetailResponseDataToJSON)),
         'params': ListUsersParamsToJSON(value['params']),
     };
 }
