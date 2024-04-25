@@ -13,130 +13,156 @@
  */
 
 import { mapValues } from '../runtime';
+import type { PreviewObject } from './PreviewObject';
+import {
+    PreviewObjectFromJSON,
+    PreviewObjectFromJSONTyped,
+    PreviewObjectToJSON,
+} from './PreviewObject';
+
 /**
  * 
  * @export
- * @interface EventResponseData
+ * @interface EventDetailResponseData
  */
-export interface EventResponseData {
+export interface EventDetailResponseData {
     /**
      * 
      * @type {string}
-     * @memberof EventResponseData
+     * @memberof EventDetailResponseData
      */
     apiKey?: string;
     /**
      * 
      * @type {object}
-     * @memberof EventResponseData
+     * @memberof EventDetailResponseData
      */
     body: object;
     /**
      * 
      * @type {string}
-     * @memberof EventResponseData
+     * @memberof EventDetailResponseData
      */
     bodyPreview: string;
     /**
      * 
      * @type {Date}
-     * @memberof EventResponseData
+     * @memberof EventDetailResponseData
      */
     capturedAt: Date;
     /**
      * 
+     * @type {PreviewObject}
+     * @memberof EventDetailResponseData
+     */
+    company?: PreviewObject;
+    /**
+     * 
      * @type {string}
-     * @memberof EventResponseData
+     * @memberof EventDetailResponseData
      */
     companyId?: string;
     /**
      * 
      * @type {Date}
-     * @memberof EventResponseData
+     * @memberof EventDetailResponseData
      */
     enrichedAt?: Date;
     /**
      * 
      * @type {string}
-     * @memberof EventResponseData
+     * @memberof EventDetailResponseData
      */
     environmentId?: string;
     /**
      * 
      * @type {string}
-     * @memberof EventResponseData
+     * @memberof EventDetailResponseData
      */
     errorMessage?: string;
     /**
      * 
      * @type {Array<string>}
-     * @memberof EventResponseData
+     * @memberof EventDetailResponseData
      */
     featureIds: Array<string>;
     /**
      * 
+     * @type {Array<PreviewObject>}
+     * @memberof EventDetailResponseData
+     */
+    features: Array<PreviewObject>;
+    /**
+     * 
      * @type {string}
-     * @memberof EventResponseData
+     * @memberof EventDetailResponseData
      */
     id: string;
     /**
      * 
      * @type {Date}
-     * @memberof EventResponseData
+     * @memberof EventDetailResponseData
      */
     loadedAt?: Date;
     /**
      * 
      * @type {Date}
-     * @memberof EventResponseData
+     * @memberof EventDetailResponseData
      */
     processedAt?: Date;
     /**
      * 
      * @type {Date}
-     * @memberof EventResponseData
+     * @memberof EventDetailResponseData
      */
     sentAt?: Date;
     /**
      * 
      * @type {string}
-     * @memberof EventResponseData
+     * @memberof EventDetailResponseData
      */
     status: string;
     /**
      * 
      * @type {string}
-     * @memberof EventResponseData
+     * @memberof EventDetailResponseData
      */
     subtype?: string;
     /**
      * 
      * @type {string}
-     * @memberof EventResponseData
+     * @memberof EventDetailResponseData
      */
     type: string;
     /**
      * 
      * @type {Date}
-     * @memberof EventResponseData
+     * @memberof EventDetailResponseData
      */
     updatedAt: Date;
     /**
      * 
+     * @type {PreviewObject}
+     * @memberof EventDetailResponseData
+     */
+    user?: PreviewObject;
+    /**
+     * 
      * @type {string}
-     * @memberof EventResponseData
+     * @memberof EventDetailResponseData
      */
     userId?: string;
 }
 
 /**
- * Check if a given object implements the EventResponseData interface.
+ * Check if a given object implements the EventDetailResponseData interface.
  */
-export function instanceOfEventResponseData(value: object): boolean {
+export function instanceOfEventDetailResponseData(value: object): boolean {
     if (!('body' in value)) return false;
     if (!('bodyPreview' in value)) return false;
     if (!('capturedAt' in value)) return false;
     if (!('featureIds' in value)) return false;
+    if (!('features' in value)) return false;
     if (!('id' in value)) return false;
     if (!('status' in value)) return false;
     if (!('type' in value)) return false;
@@ -144,11 +170,11 @@ export function instanceOfEventResponseData(value: object): boolean {
     return true;
 }
 
-export function EventResponseDataFromJSON(json: any): EventResponseData {
-    return EventResponseDataFromJSONTyped(json, false);
+export function EventDetailResponseDataFromJSON(json: any): EventDetailResponseData {
+    return EventDetailResponseDataFromJSONTyped(json, false);
 }
 
-export function EventResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): EventResponseData {
+export function EventDetailResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): EventDetailResponseData {
     if (json == null) {
         return json;
     }
@@ -158,11 +184,13 @@ export function EventResponseDataFromJSONTyped(json: any, ignoreDiscriminator: b
         'body': json['body'],
         'bodyPreview': json['body_preview'],
         'capturedAt': (new Date(json['captured_at'])),
+        'company': json['company'] == null ? undefined : PreviewObjectFromJSON(json['company']),
         'companyId': json['company_id'] == null ? undefined : json['company_id'],
         'enrichedAt': json['enriched_at'] == null ? undefined : (new Date(json['enriched_at'])),
         'environmentId': json['environment_id'] == null ? undefined : json['environment_id'],
         'errorMessage': json['error_message'] == null ? undefined : json['error_message'],
         'featureIds': json['feature_ids'],
+        'features': ((json['features'] as Array<any>).map(PreviewObjectFromJSON)),
         'id': json['id'],
         'loadedAt': json['loaded_at'] == null ? undefined : (new Date(json['loaded_at'])),
         'processedAt': json['processed_at'] == null ? undefined : (new Date(json['processed_at'])),
@@ -171,11 +199,12 @@ export function EventResponseDataFromJSONTyped(json: any, ignoreDiscriminator: b
         'subtype': json['subtype'] == null ? undefined : json['subtype'],
         'type': json['type'],
         'updatedAt': (new Date(json['updated_at'])),
+        'user': json['user'] == null ? undefined : PreviewObjectFromJSON(json['user']),
         'userId': json['user_id'] == null ? undefined : json['user_id'],
     };
 }
 
-export function EventResponseDataToJSON(value?: EventResponseData | null): any {
+export function EventDetailResponseDataToJSON(value?: EventDetailResponseData | null): any {
     if (value == null) {
         return value;
     }
@@ -185,11 +214,13 @@ export function EventResponseDataToJSON(value?: EventResponseData | null): any {
         'body': value['body'],
         'body_preview': value['bodyPreview'],
         'captured_at': ((value['capturedAt']).toISOString()),
+        'company': PreviewObjectToJSON(value['company']),
         'company_id': value['companyId'],
         'enriched_at': value['enrichedAt'] == null ? undefined : ((value['enrichedAt'] as any).toISOString()),
         'environment_id': value['environmentId'],
         'error_message': value['errorMessage'],
         'feature_ids': value['featureIds'],
+        'features': ((value['features'] as Array<any>).map(PreviewObjectToJSON)),
         'id': value['id'],
         'loaded_at': value['loadedAt'] == null ? undefined : ((value['loadedAt'] as any).toISOString()),
         'processed_at': value['processedAt'] == null ? undefined : ((value['processedAt'] as any).toISOString()),
@@ -198,6 +229,7 @@ export function EventResponseDataToJSON(value?: EventResponseData | null): any {
         'subtype': value['subtype'],
         'type': value['type'],
         'updated_at': ((value['updatedAt']).toISOString()),
+        'user': PreviewObjectToJSON(value['user']),
         'user_id': value['userId'],
     };
 }
