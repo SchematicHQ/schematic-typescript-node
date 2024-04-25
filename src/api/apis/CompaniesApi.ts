@@ -126,6 +126,7 @@ import {
 
 export interface CountCompaniesRequest {
     ids?: Array<string>;
+    q?: string;
     limit?: number;
     offset?: number;
 }
@@ -141,6 +142,7 @@ export interface CountEntityTraitDefinitionsRequest {
 
 export interface CountUsersRequest {
     ids?: Array<string>;
+    q?: string;
     limit?: number;
     offset?: number;
 }
@@ -195,6 +197,7 @@ export interface GetUserRequest {
 
 export interface ListCompaniesRequest {
     ids?: Array<string>;
+    q?: string;
     limit?: number;
     offset?: number;
 }
@@ -224,6 +227,7 @@ export interface ListEntityTraitDefinitionsRequest {
 
 export interface ListUsersRequest {
     ids?: Array<string>;
+    q?: string;
     limit?: number;
     offset?: number;
 }
@@ -270,6 +274,10 @@ export class CompaniesApi extends runtime.BaseAPI {
 
         if (requestParameters['ids'] != null) {
             queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
         }
 
         if (requestParameters['limit'] != null) {
@@ -366,6 +374,10 @@ export class CompaniesApi extends runtime.BaseAPI {
 
         if (requestParameters['ids'] != null) {
             queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
         }
 
         if (requestParameters['limit'] != null) {
@@ -872,6 +884,10 @@ export class CompaniesApi extends runtime.BaseAPI {
             queryParameters['ids'] = requestParameters['ids'];
         }
 
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
+        }
+
         if (requestParameters['limit'] != null) {
             queryParameters['limit'] = requestParameters['limit'];
         }
@@ -1058,6 +1074,10 @@ export class CompaniesApi extends runtime.BaseAPI {
 
         if (requestParameters['ids'] != null) {
             queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
         }
 
         if (requestParameters['limit'] != null) {

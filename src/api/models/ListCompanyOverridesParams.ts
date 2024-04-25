@@ -27,6 +27,12 @@ export interface ListCompanyOverridesParams {
     companyId?: string;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof ListCompanyOverridesParams
+     */
+    companyIds?: Array<string>;
+    /**
+     * 
      * @type {string}
      * @memberof ListCompanyOverridesParams
      */
@@ -69,6 +75,7 @@ export function ListCompanyOverridesParamsFromJSONTyped(json: any, ignoreDiscrim
     return {
         
         'companyId': json['company_id'] == null ? undefined : json['company_id'],
+        'companyIds': json['company_ids'] == null ? undefined : json['company_ids'],
         'featureId': json['feature_id'] == null ? undefined : json['feature_id'],
         'featureIds': json['feature_ids'] == null ? undefined : json['feature_ids'],
         'limit': json['limit'] == null ? undefined : json['limit'],
@@ -83,6 +90,7 @@ export function ListCompanyOverridesParamsToJSON(value?: ListCompanyOverridesPar
     return {
         
         'company_id': value['companyId'],
+        'company_ids': value['companyIds'],
         'feature_id': value['featureId'],
         'feature_ids': value['featureIds'],
         'limit': value['limit'],

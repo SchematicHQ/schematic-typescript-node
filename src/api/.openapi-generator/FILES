@@ -34,8 +34,12 @@ models/CountCompaniesParams.ts
 models/CountCompaniesResponse.ts
 models/CountEntityTraitDefinitionsParams.ts
 models/CountEntityTraitDefinitionsResponse.ts
+models/CountFeatureCompaniesParams.ts
+models/CountFeatureCompaniesResponse.ts
 models/CountFeatureUsageParams.ts
 models/CountFeatureUsageResponse.ts
+models/CountFeatureUsersParams.ts
+models/CountFeatureUsersResponse.ts
 models/CountFeaturesParams.ts
 models/CountFeaturesResponse.ts
 models/CountFlagChecksParams.ts
@@ -100,6 +104,8 @@ models/EventBodyTrack.ts
 models/EventListResponseData.ts
 models/EventResponseData.ts
 models/EventSummaryResponseData.ts
+models/FeatureCompanyResponseData.ts
+models/FeatureCompanyUserResponseData.ts
 models/FeatureDetailResponseData.ts
 models/FeatureResponseData.ts
 models/FeatureUsageDetailResponseData.ts
@@ -151,8 +157,12 @@ models/ListEntityTraitDefinitionsParams.ts
 models/ListEntityTraitDefinitionsResponse.ts
 models/ListEventsParams.ts
 models/ListEventsResponse.ts
+models/ListFeatureCompaniesParams.ts
+models/ListFeatureCompaniesResponse.ts
 models/ListFeatureUsageParams.ts
 models/ListFeatureUsageResponse.ts
+models/ListFeatureUsersParams.ts
+models/ListFeatureUsersResponse.ts
 models/ListFeaturesParams.ts
 models/ListFeaturesResponse.ts
 models/ListFlagChecksParams.ts

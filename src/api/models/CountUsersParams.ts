@@ -37,6 +37,12 @@ export interface CountUsersParams {
      * @memberof CountUsersParams
      */
     offset?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CountUsersParams
+     */
+    q?: string;
 }
 
 /**
@@ -59,6 +65,7 @@ export function CountUsersParamsFromJSONTyped(json: any, ignoreDiscriminator: bo
         'ids': json['ids'] == null ? undefined : json['ids'],
         'limit': json['limit'] == null ? undefined : json['limit'],
         'offset': json['offset'] == null ? undefined : json['offset'],
+        'q': json['q'] == null ? undefined : json['q'],
     };
 }
 
@@ -71,6 +78,7 @@ export function CountUsersParamsToJSON(value?: CountUsersParams | null): any {
         'ids': value['ids'],
         'limit': value['limit'],
         'offset': value['offset'],
+        'q': value['q'],
     };
 }
 

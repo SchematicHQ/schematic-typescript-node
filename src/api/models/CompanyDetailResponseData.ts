@@ -92,6 +92,12 @@ export interface CompanyDetailResponseData {
      * @memberof CompanyDetailResponseData
      */
     updatedAt: Date;
+    /**
+     * 
+     * @type {number}
+     * @memberof CompanyDetailResponseData
+     */
+    userCount: number;
 }
 
 /**
@@ -105,6 +111,7 @@ export function instanceOfCompanyDetailResponseData(value: object): boolean {
     if (!('keys' in value)) return false;
     if (!('name' in value)) return false;
     if (!('updatedAt' in value)) return false;
+    if (!('userCount' in value)) return false;
     return true;
 }
 
@@ -128,6 +135,7 @@ export function CompanyDetailResponseDataFromJSONTyped(json: any, ignoreDiscrimi
         'name': json['name'],
         'traits': json['traits'] == null ? undefined : json['traits'],
         'updatedAt': (new Date(json['updated_at'])),
+        'userCount': json['user_count'],
     };
 }
 
@@ -147,6 +155,7 @@ export function CompanyDetailResponseDataToJSON(value?: CompanyDetailResponseDat
         'name': value['name'],
         'traits': value['traits'],
         'updated_at': ((value['updatedAt']).toISOString()),
+        'user_count': value['userCount'],
     };
 }
 

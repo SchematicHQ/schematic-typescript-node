@@ -13,12 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
-import type { FeatureResponseData } from './FeatureResponseData';
+import type { FeatureDetailResponseData } from './FeatureDetailResponseData';
 import {
-    FeatureResponseDataFromJSON,
-    FeatureResponseDataFromJSONTyped,
-    FeatureResponseDataToJSON,
-} from './FeatureResponseData';
+    FeatureDetailResponseDataFromJSON,
+    FeatureDetailResponseDataFromJSONTyped,
+    FeatureDetailResponseDataToJSON,
+} from './FeatureDetailResponseData';
 import type { ListFeaturesParams } from './ListFeaturesParams';
 import {
     ListFeaturesParamsFromJSON,
@@ -34,10 +34,10 @@ import {
 export interface ListFeaturesResponse {
     /**
      * The returned resources
-     * @type {Array<FeatureResponseData>}
+     * @type {Array<FeatureDetailResponseData>}
      * @memberof ListFeaturesResponse
      */
-    data: Array<FeatureResponseData>;
+    data: Array<FeatureDetailResponseData>;
     /**
      * 
      * @type {ListFeaturesParams}
@@ -65,7 +65,7 @@ export function ListFeaturesResponseFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'data': ((json['data'] as Array<any>).map(FeatureResponseDataFromJSON)),
+        'data': ((json['data'] as Array<any>).map(FeatureDetailResponseDataFromJSON)),
         'params': ListFeaturesParamsFromJSON(json['params']),
     };
 }
@@ -76,7 +76,7 @@ export function ListFeaturesResponseToJSON(value?: ListFeaturesResponse | null):
     }
     return {
         
-        'data': ((value['data'] as Array<any>).map(FeatureResponseDataToJSON)),
+        'data': ((value['data'] as Array<any>).map(FeatureDetailResponseDataToJSON)),
         'params': ListFeaturesParamsToJSON(value['params']),
     };
 }

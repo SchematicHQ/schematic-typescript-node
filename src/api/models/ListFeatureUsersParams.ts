@@ -16,66 +16,66 @@ import { mapValues } from '../runtime';
 /**
  * Input parameters
  * @export
- * @interface CountCompaniesParams
+ * @interface ListFeatureUsersParams
  */
-export interface CountCompaniesParams {
+export interface ListFeatureUsersParams {
     /**
      * 
-     * @type {Array<string>}
-     * @memberof CountCompaniesParams
+     * @type {string}
+     * @memberof ListFeatureUsersParams
      */
-    ids?: Array<string>;
+    featureId?: string;
     /**
      * 
      * @type {number}
-     * @memberof CountCompaniesParams
+     * @memberof ListFeatureUsersParams
      */
     limit?: number;
     /**
      * 
      * @type {number}
-     * @memberof CountCompaniesParams
+     * @memberof ListFeatureUsersParams
      */
     offset?: number;
     /**
      * 
      * @type {string}
-     * @memberof CountCompaniesParams
+     * @memberof ListFeatureUsersParams
      */
     q?: string;
 }
 
 /**
- * Check if a given object implements the CountCompaniesParams interface.
+ * Check if a given object implements the ListFeatureUsersParams interface.
  */
-export function instanceOfCountCompaniesParams(value: object): boolean {
+export function instanceOfListFeatureUsersParams(value: object): boolean {
     return true;
 }
 
-export function CountCompaniesParamsFromJSON(json: any): CountCompaniesParams {
-    return CountCompaniesParamsFromJSONTyped(json, false);
+export function ListFeatureUsersParamsFromJSON(json: any): ListFeatureUsersParams {
+    return ListFeatureUsersParamsFromJSONTyped(json, false);
 }
 
-export function CountCompaniesParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): CountCompaniesParams {
+export function ListFeatureUsersParamsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListFeatureUsersParams {
     if (json == null) {
         return json;
     }
     return {
         
-        'ids': json['ids'] == null ? undefined : json['ids'],
+        'featureId': json['feature_id'] == null ? undefined : json['feature_id'],
         'limit': json['limit'] == null ? undefined : json['limit'],
         'offset': json['offset'] == null ? undefined : json['offset'],
         'q': json['q'] == null ? undefined : json['q'],
     };
 }
 
-export function CountCompaniesParamsToJSON(value?: CountCompaniesParams | null): any {
+export function ListFeatureUsersParamsToJSON(value?: ListFeatureUsersParams | null): any {
     if (value == null) {
         return value;
     }
     return {
         
-        'ids': value['ids'],
+        'feature_id': value['featureId'],
         'limit': value['limit'],
         'offset': value['offset'],
         'q': value['q'],
