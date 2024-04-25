@@ -25,6 +25,12 @@ import {
     EntityTraitDetailResponseDataFromJSONTyped,
     EntityTraitDetailResponseDataToJSON,
 } from './EntityTraitDetailResponseData';
+import type { PreviewObject } from './PreviewObject';
+import {
+    PreviewObjectFromJSON,
+    PreviewObjectFromJSONTyped,
+    PreviewObjectToJSON,
+} from './PreviewObject';
 
 /**
  * 
@@ -81,6 +87,12 @@ export interface CompanyDetailResponseData {
      */
     name: string;
     /**
+     * 
+     * @type {Array<PreviewObject>}
+     * @memberof CompanyDetailResponseData
+     */
+    plans: Array<PreviewObject>;
+    /**
      * A map of trait names to trait values
      * @type {object}
      * @memberof CompanyDetailResponseData
@@ -110,6 +122,7 @@ export function instanceOfCompanyDetailResponseData(value: object): boolean {
     if (!('id' in value)) return false;
     if (!('keys' in value)) return false;
     if (!('name' in value)) return false;
+    if (!('plans' in value)) return false;
     if (!('updatedAt' in value)) return false;
     if (!('userCount' in value)) return false;
     return true;
@@ -133,6 +146,7 @@ export function CompanyDetailResponseDataFromJSONTyped(json: any, ignoreDiscrimi
         'lastSeenAt': json['last_seen_at'] == null ? undefined : (new Date(json['last_seen_at'])),
         'logoUrl': json['logo_url'] == null ? undefined : json['logo_url'],
         'name': json['name'],
+        'plans': ((json['plans'] as Array<any>).map(PreviewObjectFromJSON)),
         'traits': json['traits'] == null ? undefined : json['traits'],
         'updatedAt': (new Date(json['updated_at'])),
         'userCount': json['user_count'],
@@ -153,6 +167,7 @@ export function CompanyDetailResponseDataToJSON(value?: CompanyDetailResponseDat
         'last_seen_at': value['lastSeenAt'] == null ? undefined : ((value['lastSeenAt'] as any).toISOString()),
         'logo_url': value['logoUrl'],
         'name': value['name'],
+        'plans': ((value['plans'] as Array<any>).map(PreviewObjectToJSON)),
         'traits': value['traits'],
         'updated_at': ((value['updatedAt']).toISOString()),
         'user_count': value['userCount'],

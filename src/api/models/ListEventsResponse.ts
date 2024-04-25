@@ -13,12 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
-import type { EventListResponseData } from './EventListResponseData';
+import type { EventDetailResponseData } from './EventDetailResponseData';
 import {
-    EventListResponseDataFromJSON,
-    EventListResponseDataFromJSONTyped,
-    EventListResponseDataToJSON,
-} from './EventListResponseData';
+    EventDetailResponseDataFromJSON,
+    EventDetailResponseDataFromJSONTyped,
+    EventDetailResponseDataToJSON,
+} from './EventDetailResponseData';
 import type { ListEventsParams } from './ListEventsParams';
 import {
     ListEventsParamsFromJSON,
@@ -34,10 +34,10 @@ import {
 export interface ListEventsResponse {
     /**
      * The returned resources
-     * @type {Array<EventListResponseData>}
+     * @type {Array<EventDetailResponseData>}
      * @memberof ListEventsResponse
      */
-    data: Array<EventListResponseData>;
+    data: Array<EventDetailResponseData>;
     /**
      * 
      * @type {ListEventsParams}
@@ -65,7 +65,7 @@ export function ListEventsResponseFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'data': ((json['data'] as Array<any>).map(EventListResponseDataFromJSON)),
+        'data': ((json['data'] as Array<any>).map(EventDetailResponseDataFromJSON)),
         'params': ListEventsParamsFromJSON(json['params']),
     };
 }
@@ -76,7 +76,7 @@ export function ListEventsResponseToJSON(value?: ListEventsResponse | null): any
     }
     return {
         
-        'data': ((value['data'] as Array<any>).map(EventListResponseDataToJSON)),
+        'data': ((value['data'] as Array<any>).map(EventDetailResponseDataToJSON)),
         'params': ListEventsParamsToJSON(value['params']),
     };
 }

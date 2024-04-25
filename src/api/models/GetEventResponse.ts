@@ -13,12 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
-import type { EventResponseData } from './EventResponseData';
+import type { EventDetailResponseData } from './EventDetailResponseData';
 import {
-    EventResponseDataFromJSON,
-    EventResponseDataFromJSONTyped,
-    EventResponseDataToJSON,
-} from './EventResponseData';
+    EventDetailResponseDataFromJSON,
+    EventDetailResponseDataFromJSONTyped,
+    EventDetailResponseDataToJSON,
+} from './EventDetailResponseData';
 
 /**
  * 
@@ -28,10 +28,10 @@ import {
 export interface GetEventResponse {
     /**
      * 
-     * @type {EventResponseData}
+     * @type {EventDetailResponseData}
      * @memberof GetEventResponse
      */
-    data: EventResponseData;
+    data: EventDetailResponseData;
     /**
      * Input parameters
      * @type {object}
@@ -59,7 +59,7 @@ export function GetEventResponseFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'data': EventResponseDataFromJSON(json['data']),
+        'data': EventDetailResponseDataFromJSON(json['data']),
         'params': json['params'],
     };
 }
@@ -70,7 +70,7 @@ export function GetEventResponseToJSON(value?: GetEventResponse | null): any {
     }
     return {
         
-        'data': EventResponseDataToJSON(value['data']),
+        'data': EventDetailResponseDataToJSON(value['data']),
         'params': value['params'],
     };
 }

@@ -101,7 +101,7 @@ models/EventBody.ts
 models/EventBodyIdentify.ts
 models/EventBodyIdentifyCompany.ts
 models/EventBodyTrack.ts
-models/EventListResponseData.ts
+models/EventDetailResponseData.ts
 models/EventResponseData.ts
 models/EventSummaryResponseData.ts
 models/FeatureCompanyResponseData.ts
@@ -187,6 +187,7 @@ models/PlanAudienceDetailResponseData.ts
 models/PlanAudienceResponseData.ts
 models/PlanEntitlementResponseData.ts
 models/PlanResponseData.ts
+models/PreviewObject.ts
 models/RawEventBatchResponseData.ts
 models/RawEventResponseData.ts
 models/RuleConditionDetailResponseData.ts
