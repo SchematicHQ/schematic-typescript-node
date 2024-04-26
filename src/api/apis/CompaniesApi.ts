@@ -126,6 +126,7 @@ import {
 
 export interface CountCompaniesRequest {
     ids?: Array<string>;
+    planId?: string;
     q?: string;
     limit?: number;
     offset?: number;
@@ -141,7 +142,9 @@ export interface CountEntityTraitDefinitionsRequest {
 }
 
 export interface CountUsersRequest {
+    companyId?: string;
     ids?: Array<string>;
+    planId?: string;
     q?: string;
     limit?: number;
     offset?: number;
@@ -197,6 +200,7 @@ export interface GetUserRequest {
 
 export interface ListCompaniesRequest {
     ids?: Array<string>;
+    planId?: string;
     q?: string;
     limit?: number;
     offset?: number;
@@ -226,7 +230,9 @@ export interface ListEntityTraitDefinitionsRequest {
 }
 
 export interface ListUsersRequest {
+    companyId?: string;
     ids?: Array<string>;
+    planId?: string;
     q?: string;
     limit?: number;
     offset?: number;
@@ -274,6 +280,10 @@ export class CompaniesApi extends runtime.BaseAPI {
 
         if (requestParameters['ids'] != null) {
             queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['planId'] != null) {
+            queryParameters['plan_id'] = requestParameters['planId'];
         }
 
         if (requestParameters['q'] != null) {
@@ -372,8 +382,16 @@ export class CompaniesApi extends runtime.BaseAPI {
     async countUsersRaw(requestParameters: CountUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountUsersResponse>> {
         const queryParameters: any = {};
 
+        if (requestParameters['companyId'] != null) {
+            queryParameters['company_id'] = requestParameters['companyId'];
+        }
+
         if (requestParameters['ids'] != null) {
             queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['planId'] != null) {
+            queryParameters['plan_id'] = requestParameters['planId'];
         }
 
         if (requestParameters['q'] != null) {
@@ -884,6 +902,10 @@ export class CompaniesApi extends runtime.BaseAPI {
             queryParameters['ids'] = requestParameters['ids'];
         }
 
+        if (requestParameters['planId'] != null) {
+            queryParameters['plan_id'] = requestParameters['planId'];
+        }
+
         if (requestParameters['q'] != null) {
             queryParameters['q'] = requestParameters['q'];
         }
@@ -1072,8 +1094,16 @@ export class CompaniesApi extends runtime.BaseAPI {
     async listUsersRaw(requestParameters: ListUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListUsersResponse>> {
         const queryParameters: any = {};
 
+        if (requestParameters['companyId'] != null) {
+            queryParameters['company_id'] = requestParameters['companyId'];
+        }
+
         if (requestParameters['ids'] != null) {
             queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['planId'] != null) {
+            queryParameters['plan_id'] = requestParameters['planId'];
         }
 
         if (requestParameters['q'] != null) {

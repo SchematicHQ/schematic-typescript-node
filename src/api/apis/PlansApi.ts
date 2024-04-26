@@ -76,7 +76,9 @@ export interface GetPlanRequest {
 }
 
 export interface ListPlansRequest {
+    companyId?: string;
     ids?: Array<string>;
+    q?: string;
     limit?: number;
     offset?: number;
 }
@@ -290,8 +292,16 @@ export class PlansApi extends runtime.BaseAPI {
     async listPlansRaw(requestParameters: ListPlansRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListPlansResponse>> {
         const queryParameters: any = {};
 
+        if (requestParameters['companyId'] != null) {
+            queryParameters['company_id'] = requestParameters['companyId'];
+        }
+
         if (requestParameters['ids'] != null) {
             queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
         }
 
         if (requestParameters['limit'] != null) {

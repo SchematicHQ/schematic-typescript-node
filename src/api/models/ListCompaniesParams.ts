@@ -42,6 +42,12 @@ export interface ListCompaniesParams {
      * @type {string}
      * @memberof ListCompaniesParams
      */
+    planId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListCompaniesParams
+     */
     q?: string;
 }
 
@@ -65,6 +71,7 @@ export function ListCompaniesParamsFromJSONTyped(json: any, ignoreDiscriminator:
         'ids': json['ids'] == null ? undefined : json['ids'],
         'limit': json['limit'] == null ? undefined : json['limit'],
         'offset': json['offset'] == null ? undefined : json['offset'],
+        'planId': json['plan_id'] == null ? undefined : json['plan_id'],
         'q': json['q'] == null ? undefined : json['q'],
     };
 }
@@ -78,6 +85,7 @@ export function ListCompaniesParamsToJSON(value?: ListCompaniesParams | null): a
         'ids': value['ids'],
         'limit': value['limit'],
         'offset': value['offset'],
+        'plan_id': value['planId'],
         'q': value['q'],
     };
 }
