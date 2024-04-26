@@ -21,6 +21,12 @@ import { mapValues } from '../runtime';
 export interface ListPlansParams {
     /**
      * 
+     * @type {string}
+     * @memberof ListPlansParams
+     */
+    companyId?: string;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof ListPlansParams
      */
@@ -37,6 +43,12 @@ export interface ListPlansParams {
      * @memberof ListPlansParams
      */
     offset?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListPlansParams
+     */
+    q?: string;
 }
 
 /**
@@ -56,9 +68,11 @@ export function ListPlansParamsFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
+        'companyId': json['company_id'] == null ? undefined : json['company_id'],
         'ids': json['ids'] == null ? undefined : json['ids'],
         'limit': json['limit'] == null ? undefined : json['limit'],
         'offset': json['offset'] == null ? undefined : json['offset'],
+        'q': json['q'] == null ? undefined : json['q'],
     };
 }
 
@@ -68,9 +82,11 @@ export function ListPlansParamsToJSON(value?: ListPlansParams | null): any {
     }
     return {
         
+        'company_id': value['companyId'],
         'ids': value['ids'],
         'limit': value['limit'],
         'offset': value['offset'],
+        'q': value['q'],
     };
 }
 

@@ -21,6 +21,12 @@ import { mapValues } from '../runtime';
 export interface ListUsersParams {
     /**
      * 
+     * @type {string}
+     * @memberof ListUsersParams
+     */
+    companyId?: string;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof ListUsersParams
      */
@@ -37,6 +43,12 @@ export interface ListUsersParams {
      * @memberof ListUsersParams
      */
     offset?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListUsersParams
+     */
+    planId?: string;
     /**
      * 
      * @type {string}
@@ -62,9 +74,11 @@ export function ListUsersParamsFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
+        'companyId': json['company_id'] == null ? undefined : json['company_id'],
         'ids': json['ids'] == null ? undefined : json['ids'],
         'limit': json['limit'] == null ? undefined : json['limit'],
         'offset': json['offset'] == null ? undefined : json['offset'],
+        'planId': json['plan_id'] == null ? undefined : json['plan_id'],
         'q': json['q'] == null ? undefined : json['q'],
     };
 }
@@ -75,9 +89,11 @@ export function ListUsersParamsToJSON(value?: ListUsersParams | null): any {
     }
     return {
         
+        'company_id': value['companyId'],
         'ids': value['ids'],
         'limit': value['limit'],
         'offset': value['offset'],
+        'plan_id': value['planId'],
         'q': value['q'],
     };
 }

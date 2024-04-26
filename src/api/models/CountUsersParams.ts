@@ -21,6 +21,12 @@ import { mapValues } from '../runtime';
 export interface CountUsersParams {
     /**
      * 
+     * @type {string}
+     * @memberof CountUsersParams
+     */
+    companyId?: string;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof CountUsersParams
      */
@@ -37,6 +43,12 @@ export interface CountUsersParams {
      * @memberof CountUsersParams
      */
     offset?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CountUsersParams
+     */
+    planId?: string;
     /**
      * 
      * @type {string}
@@ -62,9 +74,11 @@ export function CountUsersParamsFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
+        'companyId': json['company_id'] == null ? undefined : json['company_id'],
         'ids': json['ids'] == null ? undefined : json['ids'],
         'limit': json['limit'] == null ? undefined : json['limit'],
         'offset': json['offset'] == null ? undefined : json['offset'],
+        'planId': json['plan_id'] == null ? undefined : json['plan_id'],
         'q': json['q'] == null ? undefined : json['q'],
     };
 }
@@ -75,9 +89,11 @@ export function CountUsersParamsToJSON(value?: CountUsersParams | null): any {
     }
     return {
         
+        'company_id': value['companyId'],
         'ids': value['ids'],
         'limit': value['limit'],
         'offset': value['offset'],
+        'plan_id': value['planId'],
         'q': value['q'],
     };
 }
