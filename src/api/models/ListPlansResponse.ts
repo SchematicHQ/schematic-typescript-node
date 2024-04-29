@@ -19,12 +19,12 @@ import {
     ListPlansParamsFromJSONTyped,
     ListPlansParamsToJSON,
 } from './ListPlansParams';
-import type { PlanResponseData } from './PlanResponseData';
+import type { PlanDetailResponseData } from './PlanDetailResponseData';
 import {
-    PlanResponseDataFromJSON,
-    PlanResponseDataFromJSONTyped,
-    PlanResponseDataToJSON,
-} from './PlanResponseData';
+    PlanDetailResponseDataFromJSON,
+    PlanDetailResponseDataFromJSONTyped,
+    PlanDetailResponseDataToJSON,
+} from './PlanDetailResponseData';
 
 /**
  * 
@@ -34,10 +34,10 @@ import {
 export interface ListPlansResponse {
     /**
      * The returned resources
-     * @type {Array<PlanResponseData>}
+     * @type {Array<PlanDetailResponseData>}
      * @memberof ListPlansResponse
      */
-    data: Array<PlanResponseData>;
+    data: Array<PlanDetailResponseData>;
     /**
      * 
      * @type {ListPlansParams}
@@ -65,7 +65,7 @@ export function ListPlansResponseFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'data': ((json['data'] as Array<any>).map(PlanResponseDataFromJSON)),
+        'data': ((json['data'] as Array<any>).map(PlanDetailResponseDataFromJSON)),
         'params': ListPlansParamsFromJSON(json['params']),
     };
 }
@@ -76,7 +76,7 @@ export function ListPlansResponseToJSON(value?: ListPlansResponse | null): any {
     }
     return {
         
-        'data': ((value['data'] as Array<any>).map(PlanResponseDataToJSON)),
+        'data': ((value['data'] as Array<any>).map(PlanDetailResponseDataToJSON)),
         'params': ListPlansParamsToJSON(value['params']),
     };
 }

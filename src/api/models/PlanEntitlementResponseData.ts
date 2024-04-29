@@ -13,6 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
+import type { EntityTraitDefinitionResponseData } from './EntityTraitDefinitionResponseData';
+import {
+    EntityTraitDefinitionResponseDataFromJSON,
+    EntityTraitDefinitionResponseDataFromJSONTyped,
+    EntityTraitDefinitionResponseDataToJSON,
+} from './EntityTraitDefinitionResponseData';
 import type { FeatureResponseData } from './FeatureResponseData';
 import {
     FeatureResponseDataFromJSON,
@@ -106,6 +112,12 @@ export interface PlanEntitlementResponseData {
     valueNumeric?: number;
     /**
      * 
+     * @type {EntityTraitDefinitionResponseData}
+     * @memberof PlanEntitlementResponseData
+     */
+    valueTrait?: EntityTraitDefinitionResponseData;
+    /**
+     * 
      * @type {string}
      * @memberof PlanEntitlementResponseData
      */
@@ -155,6 +167,7 @@ export function PlanEntitlementResponseDataFromJSONTyped(json: any, ignoreDiscri
         'updatedAt': (new Date(json['updated_at'])),
         'valueBool': json['value_bool'] == null ? undefined : json['value_bool'],
         'valueNumeric': json['value_numeric'] == null ? undefined : json['value_numeric'],
+        'valueTrait': json['value_trait'] == null ? undefined : EntityTraitDefinitionResponseDataFromJSON(json['value_trait']),
         'valueTraitId': json['value_trait_id'] == null ? undefined : json['value_trait_id'],
         'valueType': json['value_type'],
     };
@@ -178,6 +191,7 @@ export function PlanEntitlementResponseDataToJSON(value?: PlanEntitlementRespons
         'updated_at': ((value['updatedAt']).toISOString()),
         'value_bool': value['valueBool'],
         'value_numeric': value['valueNumeric'],
+        'value_trait': EntityTraitDefinitionResponseDataToJSON(value['valueTrait']),
         'value_trait_id': value['valueTraitId'],
         'value_type': value['valueType'],
     };

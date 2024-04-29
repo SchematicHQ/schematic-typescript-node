@@ -46,5 +46,5 @@
     "clean": "rm -rf dist",
     "release": "npx standard-version && git push --follow-tags && yarn publish"
   },
-  "version": "0.1.16"
+  "version": "0.1.17"
 }

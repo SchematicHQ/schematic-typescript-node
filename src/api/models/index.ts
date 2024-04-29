@@ -179,6 +179,7 @@ export * from './MetricCountsHourlyResponseData';
 export * from './PaginationFilter';
 export * from './PlanAudienceDetailResponseData';
 export * from './PlanAudienceResponseData';
+export * from './PlanDetailResponseData';
 export * from './PlanEntitlementResponseData';
 export * from './PlanResponseData';
 export * from './PreviewObject';

@@ -49,6 +49,12 @@ export interface ListPlansParams {
      * @memberof ListPlansParams
      */
     q?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListPlansParams
+     */
+    withoutEntitlementFor?: string;
 }
 
 /**
@@ -73,6 +79,7 @@ export function ListPlansParamsFromJSONTyped(json: any, ignoreDiscriminator: boo
         'limit': json['limit'] == null ? undefined : json['limit'],
         'offset': json['offset'] == null ? undefined : json['offset'],
         'q': json['q'] == null ? undefined : json['q'],
+        'withoutEntitlementFor': json['without_entitlement_for'] == null ? undefined : json['without_entitlement_for'],
     };
 }
 
@@ -87,6 +94,7 @@ export function ListPlansParamsToJSON(value?: ListPlansParams | null): any {
         'limit': value['limit'],
         'offset': value['offset'],
         'q': value['q'],
+        'without_entitlement_for': value['withoutEntitlementFor'],
     };
 }
 

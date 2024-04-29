@@ -24,14 +24,43 @@ export interface CreatePlanRequestBody {
      * @type {string}
      * @memberof CreatePlanRequestBody
      */
+    description: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreatePlanRequestBody
+     */
     name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreatePlanRequestBody
+     */
+    planType: CreatePlanRequestBodyPlanTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const CreatePlanRequestBodyPlanTypeEnum = {
+    Product: 'product',
+    PricingPlan: 'pricing_plan',
+    AddOn: 'add_on',
+    Overage: 'overage',
+    BillableMetric: 'billable_metric',
+    Other: 'other'
+} as const;
+export type CreatePlanRequestBodyPlanTypeEnum = typeof CreatePlanRequestBodyPlanTypeEnum[keyof typeof CreatePlanRequestBodyPlanTypeEnum];
+
 
 /**
  * Check if a given object implements the CreatePlanRequestBody interface.
  */
 export function instanceOfCreatePlanRequestBody(value: object): boolean {
+    if (!('description' in value)) return false;
     if (!('name' in value)) return false;
+    if (!('planType' in value)) return false;
     return true;
 }
 
@@ -45,7 +74,9 @@ export function CreatePlanRequestBodyFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
+        'description': json['description'],
         'name': json['name'],
+        'planType': json['plan_type'],
     };
 }
 
@@ -55,7 +86,9 @@ export function CreatePlanRequestBodyToJSON(value?: CreatePlanRequestBody | null
     }
     return {
         
+        'description': value['description'],
         'name': value['name'],
+        'plan_type': value['planType'],
     };
 }
 

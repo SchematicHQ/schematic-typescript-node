@@ -30,6 +30,12 @@ export interface PlanResponseData {
      * @type {string}
      * @memberof PlanResponseData
      */
+    description: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PlanResponseData
+     */
     id: string;
     /**
      * 
@@ -37,6 +43,12 @@ export interface PlanResponseData {
      * @memberof PlanResponseData
      */
     name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PlanResponseData
+     */
+    planType: string;
     /**
      * 
      * @type {Date}
@@ -50,8 +62,10 @@ export interface PlanResponseData {
  */
 export function instanceOfPlanResponseData(value: object): boolean {
     if (!('createdAt' in value)) return false;
+    if (!('description' in value)) return false;
     if (!('id' in value)) return false;
     if (!('name' in value)) return false;
+    if (!('planType' in value)) return false;
     if (!('updatedAt' in value)) return false;
     return true;
 }
@@ -67,8 +81,10 @@ export function PlanResponseDataFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'createdAt': (new Date(json['created_at'])),
+        'description': json['description'],
         'id': json['id'],
         'name': json['name'],
+        'planType': json['plan_type'],
         'updatedAt': (new Date(json['updated_at'])),
     };
 }
@@ -80,8 +96,10 @@ export function PlanResponseDataToJSON(value?: PlanResponseData | null): any {
     return {
         
         'created_at': ((value['createdAt']).toISOString()),
+        'description': value['description'],
         'id': value['id'],
         'name': value['name'],
+        'plan_type': value['planType'],
         'updated_at': ((value['updatedAt']).toISOString()),
     };
 }

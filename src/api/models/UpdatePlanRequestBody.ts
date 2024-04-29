@@ -24,8 +24,35 @@ export interface UpdatePlanRequestBody {
      * @type {string}
      * @memberof UpdatePlanRequestBody
      */
+    description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdatePlanRequestBody
+     */
     name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdatePlanRequestBody
+     */
+    planType?: UpdatePlanRequestBodyPlanTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const UpdatePlanRequestBodyPlanTypeEnum = {
+    Product: 'product',
+    PricingPlan: 'pricing_plan',
+    AddOn: 'add_on',
+    Overage: 'overage',
+    BillableMetric: 'billable_metric',
+    Other: 'other'
+} as const;
+export type UpdatePlanRequestBodyPlanTypeEnum = typeof UpdatePlanRequestBodyPlanTypeEnum[keyof typeof UpdatePlanRequestBodyPlanTypeEnum];
+
 
 /**
  * Check if a given object implements the UpdatePlanRequestBody interface.
@@ -45,7 +72,9 @@ export function UpdatePlanRequestBodyFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
+        'description': json['description'] == null ? undefined : json['description'],
         'name': json['name'],
+        'planType': json['plan_type'] == null ? undefined : json['plan_type'],
     };
 }
 
@@ -55,7 +84,9 @@ export function UpdatePlanRequestBodyToJSON(value?: UpdatePlanRequestBody | null
     }
     return {
         
+        'description': value['description'],
         'name': value['name'],
+        'plan_type': value['planType'],
     };
 }
 

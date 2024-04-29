@@ -128,6 +128,9 @@ export interface CountAudienceUsersRequest {
 
 export interface CountFeaturesRequest {
     ids?: Array<string>;
+    q?: string;
+    withoutCompanyOverrideFor?: string;
+    withoutPlanEntitlementFor?: string;
     limit?: number;
     offset?: number;
 }
@@ -194,6 +197,9 @@ export interface ListAudienceUsersRequest {
 
 export interface ListFeaturesRequest {
     ids?: Array<string>;
+    q?: string;
+    withoutCompanyOverrideFor?: string;
+    withoutPlanEntitlementFor?: string;
     limit?: number;
     offset?: number;
 }
@@ -409,6 +415,18 @@ export class FeaturesApi extends runtime.BaseAPI {
 
         if (requestParameters['ids'] != null) {
             queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
+        }
+
+        if (requestParameters['withoutCompanyOverrideFor'] != null) {
+            queryParameters['without_company_override_for'] = requestParameters['withoutCompanyOverrideFor'];
+        }
+
+        if (requestParameters['withoutPlanEntitlementFor'] != null) {
+            queryParameters['without_plan_entitlement_for'] = requestParameters['withoutPlanEntitlementFor'];
         }
 
         if (requestParameters['limit'] != null) {
@@ -946,6 +964,18 @@ export class FeaturesApi extends runtime.BaseAPI {
 
         if (requestParameters['ids'] != null) {
             queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
+        }
+
+        if (requestParameters['withoutCompanyOverrideFor'] != null) {
+            queryParameters['without_company_override_for'] = requestParameters['withoutCompanyOverrideFor'];
+        }
+
+        if (requestParameters['withoutPlanEntitlementFor'] != null) {
+            queryParameters['without_plan_entitlement_for'] = requestParameters['withoutPlanEntitlementFor'];
         }
 
         if (requestParameters['limit'] != null) {
