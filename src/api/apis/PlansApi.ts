@@ -16,6 +16,7 @@
 import * as runtime from '../runtime';
 import type {
   ApiError,
+  CountPlansResponse,
   CreatePlanRequestBody,
   CreatePlanResponse,
   DeleteAudienceResponse,
@@ -31,6 +32,8 @@ import type {
 import {
     ApiErrorFromJSON,
     ApiErrorToJSON,
+    CountPlansResponseFromJSON,
+    CountPlansResponseToJSON,
     CreatePlanRequestBodyFromJSON,
     CreatePlanRequestBodyToJSON,
     CreatePlanResponseFromJSON,
@@ -54,6 +57,15 @@ import {
     UpdatePlanResponseFromJSON,
     UpdatePlanResponseToJSON,
 } from '../models/index';
+
+export interface CountPlansRequest {
+    companyId?: string;
+    ids?: Array<string>;
+    q?: string;
+    withoutEntitlementFor?: string;
+    limit?: number;
+    offset?: number;
+}
 
 export interface CreatePlanRequest {
     createPlanRequestBody: CreatePlanRequestBody;
@@ -98,6 +110,60 @@ export interface UpdatePlanRequest {
  * 
  */
 export class PlansApi extends runtime.BaseAPI {
+
+    /**
+     * Count plans
+     */
+    async countPlansRaw(requestParameters: CountPlansRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountPlansResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['companyId'] != null) {
+            queryParameters['company_id'] = requestParameters['companyId'];
+        }
+
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
+        }
+
+        if (requestParameters['withoutEntitlementFor'] != null) {
+            queryParameters['without_entitlement_for'] = requestParameters['withoutEntitlementFor'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/plans/count`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountPlansResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Count plans
+     */
+    async countPlans(requestParameters: CountPlansRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountPlansResponse> {
+        const response = await this.countPlansRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Create plan
