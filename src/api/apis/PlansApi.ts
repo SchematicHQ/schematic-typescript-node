@@ -79,6 +79,7 @@ export interface ListPlansRequest {
     companyId?: string;
     ids?: Array<string>;
     q?: string;
+    withoutEntitlementFor?: string;
     limit?: number;
     offset?: number;
 }
@@ -302,6 +303,10 @@ export class PlansApi extends runtime.BaseAPI {
 
         if (requestParameters['q'] != null) {
             queryParameters['q'] = requestParameters['q'];
+        }
+
+        if (requestParameters['withoutEntitlementFor'] != null) {
+            queryParameters['without_entitlement_for'] = requestParameters['withoutEntitlementFor'];
         }
 
         if (requestParameters['limit'] != null) {

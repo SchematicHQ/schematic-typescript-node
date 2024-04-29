@@ -49,6 +49,12 @@ export interface CountCompaniesParams {
      * @memberof CountCompaniesParams
      */
     q?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CountCompaniesParams
+     */
+    withoutFeatureOverrideFor?: string;
 }
 
 /**
@@ -73,6 +79,7 @@ export function CountCompaniesParamsFromJSONTyped(json: any, ignoreDiscriminator
         'offset': json['offset'] == null ? undefined : json['offset'],
         'planId': json['plan_id'] == null ? undefined : json['plan_id'],
         'q': json['q'] == null ? undefined : json['q'],
+        'withoutFeatureOverrideFor': json['without_feature_override_for'] == null ? undefined : json['without_feature_override_for'],
     };
 }
 
@@ -87,6 +94,7 @@ export function CountCompaniesParamsToJSON(value?: CountCompaniesParams | null):
         'offset': value['offset'],
         'plan_id': value['planId'],
         'q': value['q'],
+        'without_feature_override_for': value['withoutFeatureOverrideFor'],
     };
 }
 

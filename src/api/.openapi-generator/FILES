@@ -185,6 +185,7 @@ models/MetricCountsHourlyResponseData.ts
 models/PaginationFilter.ts
 models/PlanAudienceDetailResponseData.ts
 models/PlanAudienceResponseData.ts
+models/PlanDetailResponseData.ts
 models/PlanEntitlementResponseData.ts
 models/PlanResponseData.ts
 models/PreviewObject.ts

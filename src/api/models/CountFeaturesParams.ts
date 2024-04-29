@@ -37,6 +37,24 @@ export interface CountFeaturesParams {
      * @memberof CountFeaturesParams
      */
     offset?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CountFeaturesParams
+     */
+    q?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CountFeaturesParams
+     */
+    withoutCompanyOverrideFor?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CountFeaturesParams
+     */
+    withoutPlanEntitlementFor?: string;
 }
 
 /**
@@ -59,6 +77,9 @@ export function CountFeaturesParamsFromJSONTyped(json: any, ignoreDiscriminator:
         'ids': json['ids'] == null ? undefined : json['ids'],
         'limit': json['limit'] == null ? undefined : json['limit'],
         'offset': json['offset'] == null ? undefined : json['offset'],
+        'q': json['q'] == null ? undefined : json['q'],
+        'withoutCompanyOverrideFor': json['without_company_override_for'] == null ? undefined : json['without_company_override_for'],
+        'withoutPlanEntitlementFor': json['without_plan_entitlement_for'] == null ? undefined : json['without_plan_entitlement_for'],
     };
 }
 
@@ -71,6 +92,9 @@ export function CountFeaturesParamsToJSON(value?: CountFeaturesParams | null): a
         'ids': value['ids'],
         'limit': value['limit'],
         'offset': value['offset'],
+        'q': value['q'],
+        'without_company_override_for': value['withoutCompanyOverrideFor'],
+        'without_plan_entitlement_for': value['withoutPlanEntitlementFor'],
     };
 }
 

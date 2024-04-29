@@ -13,12 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PlanResponseData } from './PlanResponseData';
+import type { PlanDetailResponseData } from './PlanDetailResponseData';
 import {
-    PlanResponseDataFromJSON,
-    PlanResponseDataFromJSONTyped,
-    PlanResponseDataToJSON,
-} from './PlanResponseData';
+    PlanDetailResponseDataFromJSON,
+    PlanDetailResponseDataFromJSONTyped,
+    PlanDetailResponseDataToJSON,
+} from './PlanDetailResponseData';
 
 /**
  * 
@@ -28,10 +28,10 @@ import {
 export interface GetPlanResponse {
     /**
      * 
-     * @type {PlanResponseData}
+     * @type {PlanDetailResponseData}
      * @memberof GetPlanResponse
      */
-    data: PlanResponseData;
+    data: PlanDetailResponseData;
     /**
      * Input parameters
      * @type {object}
@@ -59,7 +59,7 @@ export function GetPlanResponseFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'data': PlanResponseDataFromJSON(json['data']),
+        'data': PlanDetailResponseDataFromJSON(json['data']),
         'params': json['params'],
     };
 }
@@ -70,7 +70,7 @@ export function GetPlanResponseToJSON(value?: GetPlanResponse | null): any {
     }
     return {
         
-        'data': PlanResponseDataToJSON(value['data']),
+        'data': PlanDetailResponseDataToJSON(value['data']),
         'params': value['params'],
     };
 }

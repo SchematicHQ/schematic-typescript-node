@@ -128,6 +128,7 @@ export interface CountCompaniesRequest {
     ids?: Array<string>;
     planId?: string;
     q?: string;
+    withoutFeatureOverrideFor?: string;
     limit?: number;
     offset?: number;
 }
@@ -202,6 +203,7 @@ export interface ListCompaniesRequest {
     ids?: Array<string>;
     planId?: string;
     q?: string;
+    withoutFeatureOverrideFor?: string;
     limit?: number;
     offset?: number;
 }
@@ -288,6 +290,10 @@ export class CompaniesApi extends runtime.BaseAPI {
 
         if (requestParameters['q'] != null) {
             queryParameters['q'] = requestParameters['q'];
+        }
+
+        if (requestParameters['withoutFeatureOverrideFor'] != null) {
+            queryParameters['without_feature_override_for'] = requestParameters['withoutFeatureOverrideFor'];
         }
 
         if (requestParameters['limit'] != null) {
@@ -908,6 +914,10 @@ export class CompaniesApi extends runtime.BaseAPI {
 
         if (requestParameters['q'] != null) {
             queryParameters['q'] = requestParameters['q'];
+        }
+
+        if (requestParameters['withoutFeatureOverrideFor'] != null) {
+            queryParameters['without_feature_override_for'] = requestParameters['withoutFeatureOverrideFor'];
         }
 
         if (requestParameters['limit'] != null) {

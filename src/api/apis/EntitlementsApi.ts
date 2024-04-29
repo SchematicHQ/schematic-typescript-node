@@ -141,6 +141,7 @@ export interface ListCompanyOverridesRequest {
     companyIds?: Array<string>;
     featureId?: string;
     featureIds?: Array<string>;
+    ids?: Array<string>;
     limit?: number;
     offset?: number;
 }
@@ -169,10 +170,11 @@ export interface ListFeatureUsersRequest {
 }
 
 export interface ListPlanEntitlementsRequest {
-    planId?: string;
-    planIds?: Array<string>;
     featureId?: string;
     featureIds?: Array<string>;
+    ids?: Array<string>;
+    planId?: string;
+    planIds?: Array<string>;
     limit?: number;
     offset?: number;
 }
@@ -643,6 +645,10 @@ export class EntitlementsApi extends runtime.BaseAPI {
             queryParameters['feature_ids'] = requestParameters['featureIds'];
         }
 
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
+
         if (requestParameters['limit'] != null) {
             queryParameters['limit'] = requestParameters['limit'];
         }
@@ -841,20 +847,24 @@ export class EntitlementsApi extends runtime.BaseAPI {
     async listPlanEntitlementsRaw(requestParameters: ListPlanEntitlementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListPlanEntitlementsResponse>> {
         const queryParameters: any = {};
 
-        if (requestParameters['planId'] != null) {
-            queryParameters['plan_id'] = requestParameters['planId'];
-        }
-
-        if (requestParameters['planIds'] != null) {
-            queryParameters['plan_ids'] = requestParameters['planIds'];
-        }
-
         if (requestParameters['featureId'] != null) {
             queryParameters['feature_id'] = requestParameters['featureId'];
         }
 
         if (requestParameters['featureIds'] != null) {
             queryParameters['feature_ids'] = requestParameters['featureIds'];
+        }
+
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['planId'] != null) {
+            queryParameters['plan_id'] = requestParameters['planId'];
+        }
+
+        if (requestParameters['planIds'] != null) {
+            queryParameters['plan_ids'] = requestParameters['planIds'];
         }
 
         if (requestParameters['limit'] != null) {
