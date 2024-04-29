@@ -32,6 +32,8 @@ models/CountAudienceCompaniesResponse.ts
 models/CountAudienceUsersResponse.ts
 models/CountCompaniesParams.ts
 models/CountCompaniesResponse.ts
+models/CountCompanyOverridesParams.ts
+models/CountCompanyOverridesResponse.ts
 models/CountEntityTraitDefinitionsParams.ts
 models/CountEntityTraitDefinitionsResponse.ts
 models/CountFeatureCompaniesParams.ts
@@ -46,6 +48,10 @@ models/CountFlagChecksParams.ts
 models/CountFlagChecksResponse.ts
 models/CountFlagsParams.ts
 models/CountFlagsResponse.ts
+models/CountPlanEntitlementsParams.ts
+models/CountPlanEntitlementsResponse.ts
+models/CountPlansParams.ts
+models/CountPlansResponse.ts
 models/CountResponse.ts
 models/CountUsersParams.ts
 models/CountUsersResponse.ts

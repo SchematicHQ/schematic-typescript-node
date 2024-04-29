@@ -16,9 +16,11 @@
 import * as runtime from '../runtime';
 import type {
   ApiError,
+  CountCompanyOverridesResponse,
   CountFeatureCompaniesResponse,
   CountFeatureUsageResponse,
   CountFeatureUsersResponse,
+  CountPlanEntitlementsResponse,
   CreateCompanyOverrideRequestBody,
   CreateCompanyOverrideResponse,
   CreatePlanEntitlementRequestBody,
@@ -41,12 +43,16 @@ import type {
 import {
     ApiErrorFromJSON,
     ApiErrorToJSON,
+    CountCompanyOverridesResponseFromJSON,
+    CountCompanyOverridesResponseToJSON,
     CountFeatureCompaniesResponseFromJSON,
     CountFeatureCompaniesResponseToJSON,
     CountFeatureUsageResponseFromJSON,
     CountFeatureUsageResponseToJSON,
     CountFeatureUsersResponseFromJSON,
     CountFeatureUsersResponseToJSON,
+    CountPlanEntitlementsResponseFromJSON,
+    CountPlanEntitlementsResponseToJSON,
     CreateCompanyOverrideRequestBodyFromJSON,
     CreateCompanyOverrideRequestBodyToJSON,
     CreateCompanyOverrideResponseFromJSON,
@@ -85,6 +91,16 @@ import {
     UpdatePlanEntitlementResponseToJSON,
 } from '../models/index';
 
+export interface CountCompanyOverridesRequest {
+    companyId?: string;
+    companyIds?: Array<string>;
+    featureId?: string;
+    featureIds?: Array<string>;
+    ids?: Array<string>;
+    limit?: number;
+    offset?: number;
+}
+
 export interface CountFeatureCompaniesRequest {
     featureId: string;
     q?: string;
@@ -104,6 +120,16 @@ export interface CountFeatureUsageRequest {
 export interface CountFeatureUsersRequest {
     featureId: string;
     q?: string;
+    limit?: number;
+    offset?: number;
+}
+
+export interface CountPlanEntitlementsRequest {
+    featureId?: string;
+    featureIds?: Array<string>;
+    ids?: Array<string>;
+    planId?: string;
+    planIds?: Array<string>;
     limit?: number;
     offset?: number;
 }
@@ -193,6 +219,64 @@ export interface UpdatePlanEntitlementRequest {
  * 
  */
 export class EntitlementsApi extends runtime.BaseAPI {
+
+    /**
+     * Count company overrides
+     */
+    async countCompanyOverridesRaw(requestParameters: CountCompanyOverridesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountCompanyOverridesResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['companyId'] != null) {
+            queryParameters['company_id'] = requestParameters['companyId'];
+        }
+
+        if (requestParameters['companyIds'] != null) {
+            queryParameters['company_ids'] = requestParameters['companyIds'];
+        }
+
+        if (requestParameters['featureId'] != null) {
+            queryParameters['feature_id'] = requestParameters['featureId'];
+        }
+
+        if (requestParameters['featureIds'] != null) {
+            queryParameters['feature_ids'] = requestParameters['featureIds'];
+        }
+
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/company-overrides/count`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountCompanyOverridesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Count company overrides
+     */
+    async countCompanyOverrides(requestParameters: CountCompanyOverridesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountCompanyOverridesResponse> {
+        const response = await this.countCompanyOverridesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Count feature companies
@@ -351,6 +435,64 @@ export class EntitlementsApi extends runtime.BaseAPI {
      */
     async countFeatureUsers(requestParameters: CountFeatureUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountFeatureUsersResponse> {
         const response = await this.countFeatureUsersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Count plan entitlements
+     */
+    async countPlanEntitlementsRaw(requestParameters: CountPlanEntitlementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CountPlanEntitlementsResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['featureId'] != null) {
+            queryParameters['feature_id'] = requestParameters['featureId'];
+        }
+
+        if (requestParameters['featureIds'] != null) {
+            queryParameters['feature_ids'] = requestParameters['featureIds'];
+        }
+
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['planId'] != null) {
+            queryParameters['plan_id'] = requestParameters['planId'];
+        }
+
+        if (requestParameters['planIds'] != null) {
+            queryParameters['plan_ids'] = requestParameters['planIds'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/plan-entitlements/count`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CountPlanEntitlementsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Count plan entitlements
+     */
+    async countPlanEntitlements(requestParameters: CountPlanEntitlementsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CountPlanEntitlementsResponse> {
+        const response = await this.countPlanEntitlementsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
