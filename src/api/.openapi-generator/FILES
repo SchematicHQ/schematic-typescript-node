@@ -34,6 +34,8 @@ models/CountCompaniesParams.ts
 models/CountCompaniesResponse.ts
 models/CountCompanyOverridesParams.ts
 models/CountCompanyOverridesResponse.ts
+models/CountEntityKeyDefinitionsParams.ts
+models/CountEntityKeyDefinitionsResponse.ts
 models/CountEntityTraitDefinitionsParams.ts
 models/CountEntityTraitDefinitionsResponse.ts
 models/CountFeatureCompaniesParams.ts
@@ -101,6 +103,7 @@ models/EntityKeyResponseData.ts
 models/EntityTraitDefinitionResponseData.ts
 models/EntityTraitDetailResponseData.ts
 models/EntityTraitResponseData.ts
+models/EntityTraitValue.ts
 models/EnvironmentDetailResponseData.ts
 models/EnvironmentResponseData.ts
 models/EventBody.ts
@@ -126,6 +129,8 @@ models/GetAudienceResponse.ts
 models/GetCompanyOverrideResponse.ts
 models/GetCompanyResponse.ts
 models/GetEntityTraitDefinitionResponse.ts
+models/GetEntityTraitValuesParams.ts
+models/GetEntityTraitValuesResponse.ts
 models/GetEnvironmentResponse.ts
 models/GetEventResponse.ts
 models/GetEventSummariesParams.ts
@@ -159,6 +164,8 @@ models/ListCompanyOverridesParams.ts
 models/ListCompanyOverridesResponse.ts
 models/ListCompanyPlansParams.ts
 models/ListCompanyPlansResponse.ts
+models/ListEntityKeyDefinitionsParams.ts
+models/ListEntityKeyDefinitionsResponse.ts
 models/ListEntityTraitDefinitionsParams.ts
 models/ListEntityTraitDefinitionsResponse.ts
 models/ListEventsParams.ts
