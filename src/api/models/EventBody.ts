@@ -42,7 +42,7 @@ export function EventBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     if (json == null) {
         return json;
     }
-    return { ...EventBodyIdentifyFromJSONTyped(json, true), ...EventBodyTrackFromJSONTyped(json, true) };
+    return EventBodyIdentifyFromJSONTyped(json, true) || EventBodyTrackFromJSONTyped(json, true);
 }
 
 export function EventBodyToJSON(value?: EventBody | null): any {

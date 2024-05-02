@@ -13,12 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
-import type { CompanyResponseData } from './CompanyResponseData';
+import type { CompanyDetailResponseData } from './CompanyDetailResponseData';
 import {
-    CompanyResponseDataFromJSON,
-    CompanyResponseDataFromJSONTyped,
-    CompanyResponseDataToJSON,
-} from './CompanyResponseData';
+    CompanyDetailResponseDataFromJSON,
+    CompanyDetailResponseDataFromJSONTyped,
+    CompanyDetailResponseDataToJSON,
+} from './CompanyDetailResponseData';
 import type { FeatureDetailResponseData } from './FeatureDetailResponseData';
 import {
     FeatureDetailResponseDataFromJSON,
@@ -58,10 +58,10 @@ export interface FeatureCompanyUserResponseData {
     allocation?: number;
     /**
      * 
-     * @type {CompanyResponseData}
+     * @type {CompanyDetailResponseData}
      * @memberof FeatureCompanyUserResponseData
      */
-    company?: CompanyResponseData;
+    company?: CompanyDetailResponseData;
     /**
      * 
      * @type {string}
@@ -128,7 +128,7 @@ export function FeatureCompanyUserResponseDataFromJSONTyped(json: any, ignoreDis
         
         'access': json['access'],
         'allocation': json['allocation'] == null ? undefined : json['allocation'],
-        'company': json['company'] == null ? undefined : CompanyResponseDataFromJSON(json['company']),
+        'company': json['company'] == null ? undefined : CompanyDetailResponseDataFromJSON(json['company']),
         'entitlementId': json['entitlement_id'],
         'entitlementType': json['entitlement_type'],
         'feature': json['feature'] == null ? undefined : FeatureDetailResponseDataFromJSON(json['feature']),
@@ -147,7 +147,7 @@ export function FeatureCompanyUserResponseDataToJSON(value?: FeatureCompanyUserR
         
         'access': value['access'],
         'allocation': value['allocation'],
-        'company': CompanyResponseDataToJSON(value['company']),
+        'company': CompanyDetailResponseDataToJSON(value['company']),
         'entitlement_id': value['entitlementId'],
         'entitlement_type': value['entitlementType'],
         'feature': FeatureDetailResponseDataToJSON(value['feature']),
