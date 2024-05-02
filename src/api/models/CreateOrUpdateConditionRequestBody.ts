@@ -90,7 +90,8 @@ export const CreateOrUpdateConditionRequestBodyConditionTypeEnum = {
     Metric: 'metric',
     Trait: 'trait',
     User: 'user',
-    Plan: 'plan'
+    Plan: 'plan',
+    BillingProduct: 'billing_product'
 } as const;
 export type CreateOrUpdateConditionRequestBodyConditionTypeEnum = typeof CreateOrUpdateConditionRequestBodyConditionTypeEnum[keyof typeof CreateOrUpdateConditionRequestBodyConditionTypeEnum];
 

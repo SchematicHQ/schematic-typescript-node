@@ -1,4 +1,5 @@
 apis/AccountsApi.ts
+apis/BillingApi.ts
 apis/CompaniesApi.ts
 apis/EntitlementsApi.ts
 apis/EventsApi.ts
@@ -12,6 +13,8 @@ models/ApiKeyRequestListResponseData.ts
 models/ApiKeyRequestResponseData.ts
 models/ApiKeyResponseData.ts
 models/AudienceRequestBody.ts
+models/BillingProductResponseData.ts
+models/BillingSubscriptionResponseData.ts
 models/CheckFlagOutputWithFlagKey.ts
 models/CheckFlagRequestBody.ts
 models/CheckFlagResponse.ts
@@ -24,6 +27,7 @@ models/CompanyMembershipResponseData.ts
 models/CompanyOverrideResponseData.ts
 models/CompanyPlanResponseData.ts
 models/CompanyResponseData.ts
+models/CompanySubscriptionResponseData.ts
 models/CountApiKeysParams.ts
 models/CountApiKeysResponse.ts
 models/CountApiRequestsParams.ts
@@ -59,6 +63,8 @@ models/CountUsersParams.ts
 models/CountUsersResponse.ts
 models/CreateApiKeyRequestBody.ts
 models/CreateApiKeyResponse.ts
+models/CreateBillingProductRequestBody.ts
+models/CreateBillingSubscriptionsRequestBody.ts
 models/CreateCompanyOverrideRequestBody.ts
 models/CreateCompanyOverrideResponse.ts
 models/CreateCompanyResponse.ts
@@ -123,6 +129,8 @@ models/FlagCheckLogDetailResponseData.ts
 models/FlagCheckLogResponseData.ts
 models/FlagDetailResponseData.ts
 models/FlagResponseData.ts
+models/GetActiveCompanySubscriptionParams.ts
+models/GetActiveCompanySubscriptionResponse.ts
 models/GetApiKeyResponse.ts
 models/GetApiRequestResponse.ts
 models/GetAudienceResponse.ts
@@ -188,6 +196,8 @@ models/ListPlanEntitlementsParams.ts
 models/ListPlanEntitlementsResponse.ts
 models/ListPlansParams.ts
 models/ListPlansResponse.ts
+models/ListProductsParams.ts
+models/ListProductsResponse.ts
 models/ListUsersParams.ts
 models/ListUsersResponse.ts
 models/LookupCompanyParams.ts
@@ -233,6 +243,8 @@ models/UpdatePlanRequestBody.ts
 models/UpdatePlanResponse.ts
 models/UpdateReqCommon.ts
 models/UpdateRuleRequestBody.ts
+models/UpsertBillingProductResponse.ts
+models/UpsertBillingSubscriptionResponse.ts
 models/UpsertCompanyRequestBody.ts
 models/UpsertCompanyResponse.ts
 models/UpsertCompanyTraitResponse.ts

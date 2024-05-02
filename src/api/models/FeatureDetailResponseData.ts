@@ -13,6 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
+import type { EntityTraitDefinitionResponseData } from './EntityTraitDefinitionResponseData';
+import {
+    EntityTraitDefinitionResponseDataFromJSON,
+    EntityTraitDefinitionResponseDataFromJSONTyped,
+    EntityTraitDefinitionResponseDataToJSON,
+} from './EntityTraitDefinitionResponseData';
 import type { EventSummaryResponseData } from './EventSummaryResponseData';
 import {
     EventSummaryResponseDataFromJSON,
@@ -88,6 +94,12 @@ export interface FeatureDetailResponseData {
     name: string;
     /**
      * 
+     * @type {EntityTraitDefinitionResponseData}
+     * @memberof FeatureDetailResponseData
+     */
+    trait?: EntityTraitDefinitionResponseData;
+    /**
+     * 
      * @type {string}
      * @memberof FeatureDetailResponseData
      */
@@ -133,6 +145,7 @@ export function FeatureDetailResponseDataFromJSONTyped(json: any, ignoreDiscrimi
         'id': json['id'],
         'lifecyclePhase': json['lifecycle_phase'] == null ? undefined : json['lifecycle_phase'],
         'name': json['name'],
+        'trait': json['trait'] == null ? undefined : EntityTraitDefinitionResponseDataFromJSON(json['trait']),
         'traitId': json['trait_id'] == null ? undefined : json['trait_id'],
         'updatedAt': (new Date(json['updated_at'])),
     };
@@ -153,6 +166,7 @@ export function FeatureDetailResponseDataToJSON(value?: FeatureDetailResponseDat
         'id': value['id'],
         'lifecycle_phase': value['lifecyclePhase'],
         'name': value['name'],
+        'trait': EntityTraitDefinitionResponseDataToJSON(value['trait']),
         'trait_id': value['traitId'],
         'updated_at': ((value['updatedAt']).toISOString()),
     };

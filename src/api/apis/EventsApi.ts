@@ -63,6 +63,7 @@ export interface GetEventRequest {
 
 export interface GetEventSummariesRequest {
     q?: string;
+    eventSubtypes?: Array<string>;
     limit?: number;
     offset?: number;
 }
@@ -222,6 +223,10 @@ export class EventsApi extends runtime.BaseAPI {
 
         if (requestParameters['q'] != null) {
             queryParameters['q'] = requestParameters['q'];
+        }
+
+        if (requestParameters['eventSubtypes'] != null) {
+            queryParameters['event_subtypes'] = requestParameters['eventSubtypes'];
         }
 
         if (requestParameters['limit'] != null) {
