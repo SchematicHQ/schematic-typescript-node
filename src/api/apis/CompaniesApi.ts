@@ -28,6 +28,7 @@ import type {
   DeleteCompanyResponse,
   DeleteUserByKeysResponse,
   DeleteUserResponse,
+  GetActiveCompanySubscriptionResponse,
   GetCompanyResponse,
   GetEntityTraitDefinitionResponse,
   GetEntityTraitValuesResponse,
@@ -81,6 +82,8 @@ import {
     DeleteUserByKeysResponseToJSON,
     DeleteUserResponseFromJSON,
     DeleteUserResponseToJSON,
+    GetActiveCompanySubscriptionResponseFromJSON,
+    GetActiveCompanySubscriptionResponseToJSON,
     GetCompanyResponseFromJSON,
     GetCompanyResponseToJSON,
     GetEntityTraitDefinitionResponseFromJSON,
@@ -194,6 +197,12 @@ export interface DeleteUserRequest {
 
 export interface DeleteUserByKeysRequest {
     keysRequestBody: KeysRequestBody;
+}
+
+export interface GetActiveCompanySubscriptionRequest {
+    companyId: string;
+    limit?: number;
+    offset?: number;
 }
 
 export interface GetCompanyRequest {
@@ -786,6 +795,55 @@ export class CompaniesApi extends runtime.BaseAPI {
      */
     async deleteUserByKeys(requestParameters: DeleteUserByKeysRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteUserByKeysResponse> {
         const response = await this.deleteUserByKeysRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get active company subscription
+     */
+    async getActiveCompanySubscriptionRaw(requestParameters: GetActiveCompanySubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetActiveCompanySubscriptionResponse>> {
+        if (requestParameters['companyId'] == null) {
+            throw new runtime.RequiredError(
+                'companyId',
+                'Required parameter "companyId" was null or undefined when calling getActiveCompanySubscription().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['companyId'] != null) {
+            queryParameters['company_id'] = requestParameters['companyId'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/company-subscriptions`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetActiveCompanySubscriptionResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get active company subscription
+     */
+    async getActiveCompanySubscription(requestParameters: GetActiveCompanySubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetActiveCompanySubscriptionResponse> {
+        const response = await this.getActiveCompanySubscriptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

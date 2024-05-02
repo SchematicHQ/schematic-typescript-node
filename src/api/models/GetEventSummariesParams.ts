@@ -21,6 +21,12 @@ import { mapValues } from '../runtime';
 export interface GetEventSummariesParams {
     /**
      * 
+     * @type {Array<string>}
+     * @memberof GetEventSummariesParams
+     */
+    eventSubtypes?: Array<string>;
+    /**
+     * 
      * @type {number}
      * @memberof GetEventSummariesParams
      */
@@ -56,6 +62,7 @@ export function GetEventSummariesParamsFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
+        'eventSubtypes': json['event_subtypes'] == null ? undefined : json['event_subtypes'],
         'limit': json['limit'] == null ? undefined : json['limit'],
         'offset': json['offset'] == null ? undefined : json['offset'],
         'q': json['q'] == null ? undefined : json['q'],
@@ -68,6 +75,7 @@ export function GetEventSummariesParamsToJSON(value?: GetEventSummariesParams | 
     }
     return {
         
+        'event_subtypes': value['eventSubtypes'],
         'limit': value['limit'],
         'offset': value['offset'],
         'q': value['q'],

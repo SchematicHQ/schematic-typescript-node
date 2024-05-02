@@ -13,12 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
-import type { CompanyResponseData } from './CompanyResponseData';
+import type { CompanyDetailResponseData } from './CompanyDetailResponseData';
 import {
-    CompanyResponseDataFromJSON,
-    CompanyResponseDataFromJSONTyped,
-    CompanyResponseDataToJSON,
-} from './CompanyResponseData';
+    CompanyDetailResponseDataFromJSON,
+    CompanyDetailResponseDataFromJSONTyped,
+    CompanyDetailResponseDataToJSON,
+} from './CompanyDetailResponseData';
 import type { EntityTraitDefinitionResponseData } from './EntityTraitDefinitionResponseData';
 import {
     EntityTraitDefinitionResponseDataFromJSON,
@@ -40,10 +40,10 @@ import {
 export interface CompanyOverrideResponseData {
     /**
      * 
-     * @type {CompanyResponseData}
+     * @type {CompanyDetailResponseData}
      * @memberof CompanyOverrideResponseData
      */
-    company?: CompanyResponseData;
+    company?: CompanyDetailResponseData;
     /**
      * 
      * @type {string}
@@ -155,7 +155,7 @@ export function CompanyOverrideResponseDataFromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
-        'company': json['company'] == null ? undefined : CompanyResponseDataFromJSON(json['company']),
+        'company': json['company'] == null ? undefined : CompanyDetailResponseDataFromJSON(json['company']),
         'companyId': json['company_id'],
         'createdAt': (new Date(json['created_at'])),
         'environmentId': json['environment_id'],
@@ -179,7 +179,7 @@ export function CompanyOverrideResponseDataToJSON(value?: CompanyOverrideRespons
     }
     return {
         
-        'company': CompanyResponseDataToJSON(value['company']),
+        'company': CompanyDetailResponseDataToJSON(value['company']),
         'company_id': value['companyId'],
         'created_at': ((value['createdAt']).toISOString()),
         'environment_id': value['environmentId'],

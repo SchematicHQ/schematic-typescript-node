@@ -11,6 +11,7 @@ export interface Schematic {
   Events: api.EventsApi;
   Features: api.FeaturesApi;
   Plans: api.PlansApi;
+  Billing: api.BillingApi;
 }
 
 export interface SchematicOptions {
@@ -45,6 +46,7 @@ export function init(apiKey: string, opts?: SchematicOptions): Schematic {
     Events: new api.EventsApi(config),
     Features: new api.FeaturesApi(config),
     Plans: new api.PlansApi(config),
+    Billing: new api.BillingApi(config),
   };
 }
 
