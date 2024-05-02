@@ -48,7 +48,7 @@ export interface BillingSubscriptionResponseData {
      * @type {number}
      * @memberof BillingSubscriptionResponseData
      */
-    iD: number;
+    id: number;
     /**
      * 
      * @type {Date}
@@ -63,7 +63,7 @@ export interface BillingSubscriptionResponseData {
 export function instanceOfBillingSubscriptionResponseData(value: object): boolean {
     if (!('createdAt' in value)) return false;
     if (!('externalId' in value)) return false;
-    if (!('iD' in value)) return false;
+    if (!('id' in value)) return false;
     if (!('updatedAt' in value)) return false;
     return true;
 }
@@ -78,12 +78,12 @@ export function BillingSubscriptionResponseDataFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'createdAt': (new Date(json['CreatedAt'])),
-        'deletedAt': json['DeletedAt'] == null ? undefined : (new Date(json['DeletedAt'])),
-        'expiredAt': json['ExpiredAt'] == null ? undefined : (new Date(json['ExpiredAt'])),
-        'externalId': json['ExternalId'],
-        'iD': json['ID'],
-        'updatedAt': (new Date(json['UpdatedAt'])),
+        'createdAt': (new Date(json['created_at'])),
+        'deletedAt': json['deleted_at'] == null ? undefined : (new Date(json['deleted_at'])),
+        'expiredAt': json['expired_at'] == null ? undefined : (new Date(json['expired_at'])),
+        'externalId': json['external_id'],
+        'id': json['id'],
+        'updatedAt': (new Date(json['updated_at'])),
     };
 }
 
@@ -93,12 +93,12 @@ export function BillingSubscriptionResponseDataToJSON(value?: BillingSubscriptio
     }
     return {
         
-        'CreatedAt': ((value['createdAt']).toISOString()),
-        'DeletedAt': value['deletedAt'] == null ? undefined : ((value['deletedAt'] as any).toISOString()),
-        'ExpiredAt': value['expiredAt'] == null ? undefined : ((value['expiredAt'] as any).toISOString()),
-        'ExternalId': value['externalId'],
-        'ID': value['iD'],
-        'UpdatedAt': ((value['updatedAt']).toISOString()),
+        'created_at': ((value['createdAt']).toISOString()),
+        'deleted_at': value['deletedAt'] == null ? undefined : ((value['deletedAt'] as any).toISOString()),
+        'expired_at': value['expiredAt'] == null ? undefined : ((value['expiredAt'] as any).toISOString()),
+        'external_id': value['externalId'],
+        'id': value['id'],
+        'updated_at': ((value['updatedAt']).toISOString()),
     };
 }
 
