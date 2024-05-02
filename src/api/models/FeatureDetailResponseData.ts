@@ -31,6 +31,12 @@ import {
     FlagDetailResponseDataFromJSONTyped,
     FlagDetailResponseDataToJSON,
 } from './FlagDetailResponseData';
+import type { PreviewObject } from './PreviewObject';
+import {
+    PreviewObjectFromJSON,
+    PreviewObjectFromJSONTyped,
+    PreviewObjectToJSON,
+} from './PreviewObject';
 
 /**
  * 
@@ -94,6 +100,12 @@ export interface FeatureDetailResponseData {
     name: string;
     /**
      * 
+     * @type {Array<PreviewObject>}
+     * @memberof FeatureDetailResponseData
+     */
+    plans: Array<PreviewObject>;
+    /**
+     * 
      * @type {EntityTraitDefinitionResponseData}
      * @memberof FeatureDetailResponseData
      */
@@ -122,6 +134,7 @@ export function instanceOfFeatureDetailResponseData(value: object): boolean {
     if (!('flags' in value)) return false;
     if (!('id' in value)) return false;
     if (!('name' in value)) return false;
+    if (!('plans' in value)) return false;
     if (!('updatedAt' in value)) return false;
     return true;
 }
@@ -145,6 +158,7 @@ export function FeatureDetailResponseDataFromJSONTyped(json: any, ignoreDiscrimi
         'id': json['id'],
         'lifecyclePhase': json['lifecycle_phase'] == null ? undefined : json['lifecycle_phase'],
         'name': json['name'],
+        'plans': ((json['plans'] as Array<any>).map(PreviewObjectFromJSON)),
         'trait': json['trait'] == null ? undefined : EntityTraitDefinitionResponseDataFromJSON(json['trait']),
         'traitId': json['trait_id'] == null ? undefined : json['trait_id'],
         'updatedAt': (new Date(json['updated_at'])),
@@ -166,6 +180,7 @@ export function FeatureDetailResponseDataToJSON(value?: FeatureDetailResponseDat
         'id': value['id'],
         'lifecycle_phase': value['lifecyclePhase'],
         'name': value['name'],
+        'plans': ((value['plans'] as Array<any>).map(PreviewObjectToJSON)),
         'trait': EntityTraitDefinitionResponseDataToJSON(value['trait']),
         'trait_id': value['traitId'],
         'updated_at': ((value['updatedAt']).toISOString()),
