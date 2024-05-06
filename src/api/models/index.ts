@@ -169,6 +169,8 @@ export * from './ListEntityKeyDefinitionsParams';
 export * from './ListEntityKeyDefinitionsResponse';
 export * from './ListEntityTraitDefinitionsParams';
 export * from './ListEntityTraitDefinitionsResponse';
+export * from './ListEnvironmentsParams';
+export * from './ListEnvironmentsResponse';
 export * from './ListEventsParams';
 export * from './ListEventsResponse';
 export * from './ListFeatureCompaniesParams';

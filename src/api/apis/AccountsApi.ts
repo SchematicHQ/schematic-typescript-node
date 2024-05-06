@@ -29,6 +29,7 @@ import type {
   GetEnvironmentResponse,
   ListApiKeysResponse,
   ListApiRequestsResponse,
+  ListEnvironmentsResponse,
   UpdateApiKeyRequestBody,
   UpdateApiKeyResponse,
   UpdateEnvironmentRequestBody,
@@ -63,6 +64,8 @@ import {
     ListApiKeysResponseToJSON,
     ListApiRequestsResponseFromJSON,
     ListApiRequestsResponseToJSON,
+    ListEnvironmentsResponseFromJSON,
+    ListEnvironmentsResponseToJSON,
     UpdateApiKeyRequestBodyFromJSON,
     UpdateApiKeyRequestBodyToJSON,
     UpdateApiKeyResponseFromJSON,
@@ -127,6 +130,12 @@ export interface ListApiRequestsRequest {
     q?: string;
     requestType?: string;
     environmentId?: string;
+    limit?: number;
+    offset?: number;
+}
+
+export interface ListEnvironmentsRequest {
+    ids?: Array<string>;
     limit?: number;
     offset?: number;
 }
@@ -614,6 +623,48 @@ export class AccountsApi extends runtime.BaseAPI {
      */
     async listApiRequests(requestParameters: ListApiRequestsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListApiRequestsResponse> {
         const response = await this.listApiRequestsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List environments
+     */
+    async listEnvironmentsRaw(requestParameters: ListEnvironmentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListEnvironmentsResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey("X-Schematic-Api-Key"); // ApiKeyAuth authentication
+        }
+
+        const response = await this.request({
+            path: `/environments`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListEnvironmentsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List environments
+     */
+    async listEnvironments(requestParameters: ListEnvironmentsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListEnvironmentsResponse> {
+        const response = await this.listEnvironmentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

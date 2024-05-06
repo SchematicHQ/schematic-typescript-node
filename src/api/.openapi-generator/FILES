@@ -176,6 +176,8 @@ models/ListEntityKeyDefinitionsParams.ts
 models/ListEntityKeyDefinitionsResponse.ts
 models/ListEntityTraitDefinitionsParams.ts
 models/ListEntityTraitDefinitionsResponse.ts
+models/ListEnvironmentsParams.ts
+models/ListEnvironmentsResponse.ts
 models/ListEventsParams.ts
 models/ListEventsResponse.ts
 models/ListFeatureCompaniesParams.ts
