@@ -4,22 +4,26 @@ on:
   pull_request:
 
 jobs:
-  build:
-    name: Build
+  lint:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - run: yarn install
+      - run: npx tsc
+      - run: yarn lint
 
-      - name: Yarn install
-        uses: borales/actions-yarn@v4
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          cmd: install
+          node-version: 20
+      - run: yarn install
+      - run: yarn test
 
-      - name: Build production bundle
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: build
