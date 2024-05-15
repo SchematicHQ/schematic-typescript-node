@@ -33,6 +33,12 @@ export interface BillingProductResponseData {
     createdAt: Date;
     /**
      * 
+     * @type {string}
+     * @memberof BillingProductResponseData
+     */
+    currency: string;
+    /**
+     * 
      * @type {Date}
      * @memberof BillingProductResponseData
      */
@@ -87,6 +93,7 @@ export interface BillingProductResponseData {
 export function instanceOfBillingProductResponseData(value: object): boolean {
     if (!('accountId' in value)) return false;
     if (!('createdAt' in value)) return false;
+    if (!('currency' in value)) return false;
     if (!('environmentId' in value)) return false;
     if (!('externalId' in value)) return false;
     if (!('name' in value)) return false;
@@ -109,6 +116,7 @@ export function BillingProductResponseDataFromJSONTyped(json: any, ignoreDiscrim
         
         'accountId': json['account_id'],
         'createdAt': (new Date(json['created_at'])),
+        'currency': json['currency'],
         'deletedAt': json['deleted_at'] == null ? undefined : (new Date(json['deleted_at'])),
         'environmentId': json['environment_id'],
         'externalId': json['external_id'],
@@ -128,6 +136,7 @@ export function BillingProductResponseDataToJSON(value?: BillingProductResponseD
         
         'account_id': value['accountId'],
         'created_at': ((value['createdAt']).toISOString()),
+        'currency': value['currency'],
         'deleted_at': value['deletedAt'] == null ? undefined : ((value['deletedAt'] as any).toISOString()),
         'environment_id': value['environmentId'],
         'external_id': value['externalId'],

@@ -40,6 +40,12 @@ export interface CompanySubscriptionResponseData {
     expiredAt?: Date;
     /**
      * 
+     * @type {string}
+     * @memberof CompanySubscriptionResponseData
+     */
+    interval: string;
+    /**
+     * 
      * @type {Array<BillingProductResponseData>}
      * @memberof CompanySubscriptionResponseData
      */
@@ -57,6 +63,7 @@ export interface CompanySubscriptionResponseData {
  */
 export function instanceOfCompanySubscriptionResponseData(value: object): boolean {
     if (!('customerExternalId' in value)) return false;
+    if (!('interval' in value)) return false;
     if (!('products' in value)) return false;
     if (!('subscriptionExternalId' in value)) return false;
     return true;
@@ -74,6 +81,7 @@ export function CompanySubscriptionResponseDataFromJSONTyped(json: any, ignoreDi
         
         'customerExternalId': json['customer_external_id'],
         'expiredAt': json['expired_at'] == null ? undefined : (new Date(json['expired_at'])),
+        'interval': json['interval'],
         'products': ((json['products'] as Array<any>).map(BillingProductResponseDataFromJSON)),
         'subscriptionExternalId': json['subscription_external_id'],
     };
@@ -87,6 +95,7 @@ export function CompanySubscriptionResponseDataToJSON(value?: CompanySubscriptio
         
         'customer_external_id': value['customerExternalId'],
         'expired_at': value['expiredAt'] == null ? undefined : ((value['expiredAt'] as any).toISOString()),
+        'interval': value['interval'],
         'products': ((value['products'] as Array<any>).map(BillingProductResponseDataToJSON)),
         'subscription_external_id': value['subscriptionExternalId'],
     };
