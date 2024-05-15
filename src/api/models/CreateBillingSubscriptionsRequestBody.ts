@@ -33,6 +33,12 @@ export interface CreateBillingSubscriptionsRequestBody {
     expiredAt: Date;
     /**
      * 
+     * @type {string}
+     * @memberof CreateBillingSubscriptionsRequestBody
+     */
+    interval?: string;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof CreateBillingSubscriptionsRequestBody
      */
@@ -68,6 +74,7 @@ export function CreateBillingSubscriptionsRequestBodyFromJSONTyped(json: any, ig
         
         'customerExternalId': json['customer_external_id'],
         'expiredAt': (new Date(json['expired_at'])),
+        'interval': json['interval'] == null ? undefined : json['interval'],
         'productExternalIds': json['product_external_ids'],
         'subscriptionExternalId': json['subscription_external_id'],
     };
@@ -81,6 +88,7 @@ export function CreateBillingSubscriptionsRequestBodyToJSON(value?: CreateBillin
         
         'customer_external_id': value['customerExternalId'],
         'expired_at': ((value['expiredAt']).toISOString()),
+        'interval': value['interval'],
         'product_external_ids': value['productExternalIds'],
         'subscription_external_id': value['subscriptionExternalId'],
     };

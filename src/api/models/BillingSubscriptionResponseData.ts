@@ -24,12 +24,6 @@ export interface BillingSubscriptionResponseData {
      * @type {Date}
      * @memberof BillingSubscriptionResponseData
      */
-    createdAt: Date;
-    /**
-     * 
-     * @type {Date}
-     * @memberof BillingSubscriptionResponseData
-     */
     deletedAt?: Date;
     /**
      * 
@@ -61,7 +55,6 @@ export interface BillingSubscriptionResponseData {
  * Check if a given object implements the BillingSubscriptionResponseData interface.
  */
 export function instanceOfBillingSubscriptionResponseData(value: object): boolean {
-    if (!('createdAt' in value)) return false;
     if (!('externalId' in value)) return false;
     if (!('id' in value)) return false;
     if (!('updatedAt' in value)) return false;
@@ -78,7 +71,6 @@ export function BillingSubscriptionResponseDataFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'createdAt': (new Date(json['created_at'])),
         'deletedAt': json['deleted_at'] == null ? undefined : (new Date(json['deleted_at'])),
         'expiredAt': json['expired_at'] == null ? undefined : (new Date(json['expired_at'])),
         'externalId': json['external_id'],
@@ -93,7 +85,6 @@ export function BillingSubscriptionResponseDataToJSON(value?: BillingSubscriptio
     }
     return {
         
-        'created_at': ((value['createdAt']).toISOString()),
         'deleted_at': value['deletedAt'] == null ? undefined : ((value['deletedAt'] as any).toISOString()),
         'expired_at': value['expiredAt'] == null ? undefined : ((value['expiredAt'] as any).toISOString()),
         'external_id': value['externalId'],
