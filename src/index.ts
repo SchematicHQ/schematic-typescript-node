@@ -5,7 +5,6 @@ import { EventBuffer } from "./events";
 import { fetchApi, offlineFetchApi } from "./fetch";
 
 export interface SchematicOptions {
-  apiKey: string;
   basePath?: string;
   cacheProviders?: {
     flagChecks?: CacheProvider<boolean>[];
