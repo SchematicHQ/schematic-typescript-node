@@ -6,7 +6,10 @@
 
 ```bash
 npm install @schematichq/schematic-typescript-node
+# or
 yarn add @schematichq/schematic-typescript-node
+# or
+pnpm add @schematichq/schematic-typescript-node
 ```
 
 2. [Issue an API key](https://docs.schematichq.com/quickstart#create-an-api-key) for the appropriate environment using the [Schematic app](https://app.schematichq.com/settings/api-keys). Be sure to capture the secret key when you issue the API key; you'll only see this key once, and this is what you'll use with schematic-typescript-node.
@@ -91,11 +94,10 @@ import { Schematic, api } from "@schematichq/schematic-typescript-node";
 const client = new Schematic(process.env.SCHEMATIC_API_KEY);
 
 client.identify({
-  event: "some-action",
   company: {
     id: "your-company-id",
   },
-  user: {
+  keys: {
     email: "wcoyote@acme.net",
     userId: "your-user-id",
   },
@@ -244,7 +246,7 @@ The Schematic API supports many operations beyond these, accessible via the API 
 
 ## Testing
 
-### Offline Mode
+### Offline mode
 
 In development or testing environments, you may want to avoid making network requests to the Schematic API. You can run Schematic in offline mode by specifying the `offline` option; in this case, it does not matter what API key you specify:
 
@@ -266,6 +268,7 @@ const client = new Schematic("", {
   offline: true,
 });
 
-// Remember to close the client when done
+// interactions with the client
+
 client.close();
 ```
