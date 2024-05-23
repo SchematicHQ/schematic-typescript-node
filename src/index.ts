@@ -176,4 +176,5 @@ export function init(apiKey: string, opts?: SchematicOptions): Schematic {
   return new Schematic(apiKey, opts);
 }
 
+export { LocalCache } from "./cache";
 export * from "./api/index";

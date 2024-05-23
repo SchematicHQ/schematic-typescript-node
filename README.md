@@ -89,7 +89,7 @@ client.close();
 Create or update users and companies using identify events.
 
 ```ts
-import { Schematic, api } from "@schematichq/schematic-typescript-node";
+import { Schematic } from "@schematichq/schematic-typescript-node";
 
 const client = new Schematic(process.env.SCHEMATIC_API_KEY);
 
@@ -144,11 +144,11 @@ This call is non-blocking and there is no response to check.
 Although it is faster to create companies and users via identify events, if you need to handle a response, you can use the companies API to upsert companies. Because you use your own identifiers to identify companies, rather than a Schematic company ID, creating and updating companies are both done via the same upsert operation:
 
 ```ts
-import { Schematic, api } from "@schematichq/schematic-typescript-node";
+import { Schematic } from "@schematichq/schematic-typescript-node";
 
 const client = new Schematic(process.env.SCHEMATIC_API_KEY);
 
-const body: api.UpsertCompanyRequestBody = {
+const body = {
   keys: {
     id: "your-company-id",
   },
@@ -178,11 +178,11 @@ You can also define any number of company traits; these can then be used as targ
 Similarly, you can upsert users using the Schematic API, as an alternative to using identify events. Because you use your own identifiers to identify users, rather than a Schematic user ID, creating and updating users are both done via the same upsert operation:
 
 ```ts
-import { Schematic, api } from "@schematichq/schematic-typescript-node";
+import { Schematic } from "@schematichq/schematic-typescript-node";
 
 const client = new Schematic(process.env.SCHEMATIC_API_KEY);
 
-const body: api.UpsertUserRequestBody = {
+const body = {
   keys: {
     email: "wcoyote@acme.net",
     userId: "your-user-id",
@@ -214,11 +214,11 @@ You can also define any number of user traits; these can then be used as targeti
 When checking a flag, you'll provide keys for a company and/or keys for a user. You can also provide no keys at all, in which case you'll get the default value for the flag.
 
 ```ts
-import { Schematic, api } from "@schematichq/schematic-typescript-node";
+import { Schematic } from "@schematichq/schematic-typescript-node";
 
 const client = new Schematic(process.env.SCHEMATIC_API_KEY);
 
-const evaluationCtx: api.CheckFlagRequestBody = {
+const evaluationCtx = {
   company: { id: "your-company-id" },
   user: {
     email: "wcoyote@acme.net",
