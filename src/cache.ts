@@ -13,6 +13,11 @@ type CacheItem<T> = {
   timeoutId?: ReturnType<typeof setTimeout>;
 };
 
+export interface CacheOptions {
+  size?: number;
+  ttl?: number;
+}
+
 class LocalCache<T> implements CacheProvider<T> {
   private cache: Map<string, CacheItem<T>>;
   private maxSize: number;
@@ -20,10 +25,10 @@ class LocalCache<T> implements CacheProvider<T> {
   private accessCounter: number = 0;
   private defaultTTL: number;
 
-  constructor(maxSize: number = 10 * 1024, defaultTTL: number = 5000) {
+  constructor({ size = 10 * 1024, ttl = 5000 }: CacheOptions = {}) {
     this.cache = new Map();
-    this.maxSize = maxSize;
-    this.defaultTTL = defaultTTL;
+    this.maxSize = size;
+    this.defaultTTL = ttl;
   }
 
   async get(key: string): Promise<T | undefined> {
