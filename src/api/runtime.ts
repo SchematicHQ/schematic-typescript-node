@@ -12,7 +12,12 @@
  * Do not edit the class manually.
  */
 
+import fetch, { RequestInfo, RequestInit, Response } from "node-fetch";
+import FormData from "form-data";
+
 export const BASE_PATH = "https://api.schematichq.com".replace(/\/+$/, "");
+
+type RequestCredentials = "omit" | "same-origin" | "include";
 
 export interface ConfigurationParameters {
   basePath?: string; // override base path
@@ -227,8 +232,26 @@ export class BaseAPI {
     return { url, init };
   }
 
-  private fetchApi = async (url: string, init: RequestInit) => {
-    let fetchParams = { url, init };
+  private fetchUrl = (info: RequestInfo | URL): string => {
+    if (typeof info === "string") {
+      return info;
+    }
+    if (typeof info === "object" && "url" in info) {
+      return info.url;
+    }
+    if (info instanceof URL) {
+      return info.toString();
+    }
+
+    throw new Error("Invalid URL object");
+  };
+
+  private fetchApi = async (
+    info: RequestInfo | URL,
+    init?: RequestInit,
+  ): Promise<Response> => {
+    const url = this.fetchUrl(info);
+    let fetchParams = { url, init: init || {} };
     for (const middleware of this.middleware) {
       if (middleware.pre) {
         fetchParams =
@@ -339,7 +362,7 @@ export const COLLECTION_FORMATS = {
   pipes: "|",
 };
 
-export type FetchAPI = WindowOrWorkerGlobalScope["fetch"];
+export type FetchAPI = typeof fetch;
 
 export type Json = any;
 export type HTTPMethod =

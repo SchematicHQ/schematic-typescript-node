@@ -1,7 +1,7 @@
 import { FetchAPI } from "./api";
-import fetch from "node-fetch";
+import fetch, { Headers, RequestInfo, RequestInit, Response } from "node-fetch";
 
-const fetchApi: FetchAPI = fetch as unknown as FetchAPI;
+const fetchApi: FetchAPI = fetch as FetchAPI;
 
 const offlineFetchApi: FetchAPI = async (
   /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
