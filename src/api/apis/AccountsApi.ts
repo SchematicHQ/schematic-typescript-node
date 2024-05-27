@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { RequestInit } from "node-fetch";
 import * as runtime from "../runtime";
 import type {
   ApiError,

@@ -8,7 +8,7 @@ describe("LocalCache", () => {
   let cache: LocalCache<any>;
 
   beforeEach(() => {
-    cache = new LocalCache(100, 5000); // maxSize: 100 bytes, defaultTTL: 5 seconds
+    cache = new LocalCache({ size: 100, ttl: 5000 });
   });
 
   afterEach(() => {
@@ -30,7 +30,7 @@ describe("LocalCache", () => {
   });
 
   it("should evict least recently used item when maxSize is exceeded", async () => {
-    const smallCache = new LocalCache(60, 5000); // Small maxSize to force eviction
+    const smallCache = new LocalCache({ size: 60, ttl: 5000 }); // Small maxSize to force eviction
 
     await smallCache.set("key1", { data: "value1" });
     await smallCache.set("key2", { data: "value2" });
@@ -81,7 +81,7 @@ describe("LocalCache", () => {
   });
 
   it("should not store items if maxSize is 0", async () => {
-    const zeroSizeCache = new LocalCache(0, 5000);
+    const zeroSizeCache = new LocalCache({ size: 0 });
     await zeroSizeCache.set("key1", { data: "value1" });
     const value = await zeroSizeCache.get("key1");
     expect(value).toBeUndefined();
