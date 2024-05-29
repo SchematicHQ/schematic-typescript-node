@@ -5,6 +5,7 @@ apis/EntitlementsApi.ts
 apis/EventsApi.ts
 apis/FeaturesApi.ts
 apis/PlansApi.ts
+apis/WebhooksApi.ts
 apis/index.ts
 index.ts
 models/ApiError.ts
@@ -61,6 +62,10 @@ models/CountPlansResponse.ts
 models/CountResponse.ts
 models/CountUsersParams.ts
 models/CountUsersResponse.ts
+models/CountWebhookEventsParams.ts
+models/CountWebhookEventsResponse.ts
+models/CountWebhooksParams.ts
+models/CountWebhooksResponse.ts
 models/CreateApiKeyRequestBody.ts
 models/CreateApiKeyResponse.ts
 models/CreateBillingProductRequestBody.ts
@@ -89,6 +94,8 @@ models/CreatePlanRequestBody.ts
 models/CreatePlanResponse.ts
 models/CreateReqCommon.ts
 models/CreateUserResponse.ts
+models/CreateWebhookRequestBody.ts
+models/CreateWebhookResponse.ts
 models/DeleteApiKeyResponse.ts
 models/DeleteAudienceResponse.ts
 models/DeleteCompanyByKeysResponse.ts
@@ -103,6 +110,7 @@ models/DeletePlanResponse.ts
 models/DeleteResponse.ts
 models/DeleteUserByKeysResponse.ts
 models/DeleteUserResponse.ts
+models/DeleteWebhookResponse.ts
 models/EntityKeyDefinitionResponseData.ts
 models/EntityKeyDetailResponseData.ts
 models/EntityKeyResponseData.ts
@@ -156,7 +164,10 @@ models/GetOrCreateCompanyMembershipResponse.ts
 models/GetOrCreateEntityTraitDefinitionResponse.ts
 models/GetPlanEntitlementResponse.ts
 models/GetPlanResponse.ts
+models/GetSegmentIntegrationStatusResponse.ts
 models/GetUserResponse.ts
+models/GetWebhookEventResponse.ts
+models/GetWebhookResponse.ts
 models/KeysRequestBody.ts
 models/ListApiKeysParams.ts
 models/ListApiKeysResponse.ts
@@ -202,6 +213,10 @@ models/ListProductsParams.ts
 models/ListProductsResponse.ts
 models/ListUsersParams.ts
 models/ListUsersResponse.ts
+models/ListWebhookEventsParams.ts
+models/ListWebhookEventsResponse.ts
+models/ListWebhooksParams.ts
+models/ListWebhooksResponse.ts
 models/LookupCompanyParams.ts
 models/LookupCompanyResponse.ts
 models/LookupUserParams.ts
@@ -224,6 +239,7 @@ models/RuleConditionResponseData.ts
 models/RuleDetailResponseData.ts
 models/RuleResponseData.ts
 models/RulesDetailResponseData.ts
+models/SegmentStatusResp.ts
 models/UpdateApiKeyRequestBody.ts
 models/UpdateApiKeyResponse.ts
 models/UpdateAudienceRequestBody.ts
@@ -245,6 +261,8 @@ models/UpdatePlanRequestBody.ts
 models/UpdatePlanResponse.ts
 models/UpdateReqCommon.ts
 models/UpdateRuleRequestBody.ts
+models/UpdateWebhookRequestBody.ts
+models/UpdateWebhookResponse.ts
 models/UpsertBillingProductResponse.ts
 models/UpsertBillingSubscriptionResponse.ts
 models/UpsertCompanyRequestBody.ts
@@ -257,5 +275,7 @@ models/UpsertUserSubRequestBody.ts
 models/UpsertUserTraitResponse.ts
 models/UserDetailResponseData.ts
 models/UserResponseData.ts
+models/WebhookEventResponseData.ts
+models/WebhookResponseData.ts
 models/index.ts
 runtime.ts

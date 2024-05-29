@@ -7,3 +7,4 @@ export * from "./EntitlementsApi";
 export * from "./EventsApi";
 export * from "./FeaturesApi";
 export * from "./PlansApi";
+export * from "./WebhooksApi";

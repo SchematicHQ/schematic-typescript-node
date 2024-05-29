@@ -23,6 +23,7 @@ import type {
   GetEventResponse,
   GetEventSummariesResponse,
   GetEventSummaryBySubtypeResponse,
+  GetSegmentIntegrationStatusResponse,
   ListEventsResponse,
   ListMetricCountsResponse,
 } from "../models/index";
@@ -43,6 +44,8 @@ import {
   GetEventSummariesResponseToJSON,
   GetEventSummaryBySubtypeResponseFromJSON,
   GetEventSummaryBySubtypeResponseToJSON,
+  GetSegmentIntegrationStatusResponseFromJSON,
+  GetSegmentIntegrationStatusResponseToJSON,
   ListEventsResponseFromJSON,
   ListEventsResponseToJSON,
   ListMetricCountsResponseFromJSON,
@@ -381,6 +384,47 @@ export class EventsApi extends runtime.BaseAPI {
       requestParameters,
       initOverrides,
     );
+    return await response.value();
+  }
+
+  /**
+   * Get segment integration status
+   */
+  async getSegmentIntegrationStatusRaw(
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<GetSegmentIntegrationStatusResponse>> {
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    if (this.configuration && this.configuration.apiKey) {
+      headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey(
+        "X-Schematic-Api-Key",
+      ); // ApiKeyAuth authentication
+    }
+
+    const response = await this.request(
+      {
+        path: `/segment-integration`,
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+
+    return new runtime.JSONApiResponse(response, (jsonValue) =>
+      GetSegmentIntegrationStatusResponseFromJSON(jsonValue),
+    );
+  }
+
+  /**
+   * Get segment integration status
+   */
+  async getSegmentIntegrationStatus(
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<GetSegmentIntegrationStatusResponse> {
+    const response = await this.getSegmentIntegrationStatusRaw(initOverrides);
     return await response.value();
   }
 
