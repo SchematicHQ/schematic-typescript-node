@@ -26,6 +26,7 @@ export class Schematic {
   public Features: api.FeaturesApi;
   public Plans: api.PlansApi;
   public Webhooks: api.WebhooksApi;
+  public Crm: api.CrmApi;
 
   private flagDefaults: { [key: string]: boolean };
   private flagCheckCacheProviders: CacheProvider<boolean>[];
@@ -83,6 +84,7 @@ export class Schematic {
     this.Features = new api.FeaturesApi(config);
     this.Plans = new api.PlansApi(config);
     this.Webhooks = new api.WebhooksApi(config);
+    this.Crm = new api.CrmApi(config);
   }
 
   async checkFlag(
