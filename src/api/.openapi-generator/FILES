@@ -1,6 +1,7 @@
 apis/AccountsApi.ts
 apis/BillingApi.ts
 apis/CompaniesApi.ts
+apis/CrmApi.ts
 apis/EntitlementsApi.ts
 apis/EventsApi.ts
 apis/FeaturesApi.ts
@@ -16,6 +17,8 @@ models/ApiKeyResponseData.ts
 models/AudienceRequestBody.ts
 models/BillingProductResponseData.ts
 models/BillingSubscriptionResponseData.ts
+models/CRMDealResponseData.ts
+models/CRMProductResponseData.ts
 models/CheckFlagOutputWithFlagKey.ts
 models/CheckFlagRequestBody.ts
 models/CheckFlagResponse.ts
@@ -70,6 +73,8 @@ models/CreateApiKeyRequestBody.ts
 models/CreateApiKeyResponse.ts
 models/CreateBillingProductRequestBody.ts
 models/CreateBillingSubscriptionsRequestBody.ts
+models/CreateCRMDealRequestBody.ts
+models/CreateCRMProductRequestBody.ts
 models/CreateCompanyOverrideRequestBody.ts
 models/CreateCompanyOverrideResponse.ts
 models/CreateCompanyResponse.ts
@@ -175,6 +180,8 @@ models/ListApiRequestsParams.ts
 models/ListApiRequestsResponse.ts
 models/ListAudienceCompaniesResponse.ts
 models/ListAudienceUsersResponse.ts
+models/ListCRMProductsParams.ts
+models/ListCRMProductsResponse.ts
 models/ListCompaniesParams.ts
 models/ListCompaniesResponse.ts
 models/ListCompanyMembershipsParams.ts
@@ -265,6 +272,8 @@ models/UpdateWebhookRequestBody.ts
 models/UpdateWebhookResponse.ts
 models/UpsertBillingProductResponse.ts
 models/UpsertBillingSubscriptionResponse.ts
+models/UpsertCRMDealResponse.ts
+models/UpsertCRMProductResponse.ts
 models/UpsertCompanyRequestBody.ts
 models/UpsertCompanyResponse.ts
 models/UpsertCompanyTraitResponse.ts
