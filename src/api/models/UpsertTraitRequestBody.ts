@@ -38,7 +38,7 @@ export interface UpsertTraitRequestBody {
    */
   set?: string;
   /**
-   * Name of the trait to update
+   * DealName of the trait to update
    * @type {string}
    * @memberof UpsertTraitRequestBody
    */
