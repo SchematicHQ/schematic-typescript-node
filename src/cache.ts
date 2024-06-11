@@ -93,8 +93,7 @@ class LocalCache<T> implements CacheProvider<T> {
   }
 
   private getObjectSize(value: T): number {
-    const clone = structuredClone(value);
-    return new Blob([JSON.stringify(clone)]).size;
+    return new Blob([JSON.stringify(value)]).size;
   }
 
   private evictItem(key: string, item: CacheItem<T>): void {
