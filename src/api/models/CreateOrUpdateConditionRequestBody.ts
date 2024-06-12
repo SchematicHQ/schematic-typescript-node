@@ -32,7 +32,7 @@ export interface CreateOrUpdateConditionRequestBody {
    */
   conditionType: CreateOrUpdateConditionRequestBodyConditionTypeEnum;
   /**
-   * Name of track event type used to measure this condition
+   * DealName of track event type used to measure this condition
    * @type {string}
    * @memberof CreateOrUpdateConditionRequestBody
    */
@@ -91,6 +91,7 @@ export const CreateOrUpdateConditionRequestBodyConditionTypeEnum = {
   User: "user",
   Plan: "plan",
   BillingProduct: "billing_product",
+  CrmProduct: "crm_product",
 } as const;
 export type CreateOrUpdateConditionRequestBodyConditionTypeEnum =
   (typeof CreateOrUpdateConditionRequestBodyConditionTypeEnum)[keyof typeof CreateOrUpdateConditionRequestBodyConditionTypeEnum];
