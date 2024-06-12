@@ -29,6 +29,7 @@ import type {
   DeleteUserByKeysResponse,
   DeleteUserResponse,
   GetActiveCompanySubscriptionResponse,
+  GetActiveDealsResponse,
   GetCompanyResponse,
   GetEntityTraitDefinitionResponse,
   GetEntityTraitValuesResponse,
@@ -84,6 +85,8 @@ import {
   DeleteUserResponseToJSON,
   GetActiveCompanySubscriptionResponseFromJSON,
   GetActiveCompanySubscriptionResponseToJSON,
+  GetActiveDealsResponseFromJSON,
+  GetActiveDealsResponseToJSON,
   GetCompanyResponseFromJSON,
   GetCompanyResponseToJSON,
   GetEntityTraitDefinitionResponseFromJSON,
@@ -201,6 +204,13 @@ export interface DeleteUserByKeysRequest {
 
 export interface GetActiveCompanySubscriptionRequest {
   companyId: string;
+  limit?: number;
+  offset?: number;
+}
+
+export interface GetActiveDealsRequest {
+  companyId: string;
+  dealStage: string;
   limit?: number;
   offset?: number;
 }
@@ -1037,6 +1047,82 @@ export class CompaniesApi extends runtime.BaseAPI {
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<GetActiveCompanySubscriptionResponse> {
     const response = await this.getActiveCompanySubscriptionRaw(
+      requestParameters,
+      initOverrides,
+    );
+    return await response.value();
+  }
+
+  /**
+   * Get active deals
+   */
+  async getActiveDealsRaw(
+    requestParameters: GetActiveDealsRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<GetActiveDealsResponse>> {
+    if (requestParameters["companyId"] == null) {
+      throw new runtime.RequiredError(
+        "companyId",
+        'Required parameter "companyId" was null or undefined when calling getActiveDeals().',
+      );
+    }
+
+    if (requestParameters["dealStage"] == null) {
+      throw new runtime.RequiredError(
+        "dealStage",
+        'Required parameter "dealStage" was null or undefined when calling getActiveDeals().',
+      );
+    }
+
+    const queryParameters: any = {};
+
+    if (requestParameters["companyId"] != null) {
+      queryParameters["company_id"] = requestParameters["companyId"];
+    }
+
+    if (requestParameters["dealStage"] != null) {
+      queryParameters["deal_stage"] = requestParameters["dealStage"];
+    }
+
+    if (requestParameters["limit"] != null) {
+      queryParameters["limit"] = requestParameters["limit"];
+    }
+
+    if (requestParameters["offset"] != null) {
+      queryParameters["offset"] = requestParameters["offset"];
+    }
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    if (this.configuration && this.configuration.apiKey) {
+      headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey(
+        "X-Schematic-Api-Key",
+      ); // ApiKeyAuth authentication
+    }
+
+    const response = await this.request(
+      {
+        path: `/company-crm-deals`,
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+
+    return new runtime.JSONApiResponse(response, (jsonValue) =>
+      GetActiveDealsResponseFromJSON(jsonValue),
+    );
+  }
+
+  /**
+   * Get active deals
+   */
+  async getActiveDeals(
+    requestParameters: GetActiveDealsRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<GetActiveDealsResponse> {
+    const response = await this.getActiveDealsRaw(
       requestParameters,
       initOverrides,
     );

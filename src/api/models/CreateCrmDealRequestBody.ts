@@ -16,85 +16,118 @@ import { mapValues } from "../runtime";
 /**
  *
  * @export
- * @interface CreateCRMDealRequestBody
+ * @interface CreateCrmDealRequestBody
  */
-export interface CreateCRMDealRequestBody {
+export interface CreateCrmDealRequestBody {
+  /**
+   *
+   * @type {number}
+   * @memberof CreateCrmDealRequestBody
+   */
+  arr?: number;
   /**
    *
    * @type {string}
-   * @memberof CreateCRMDealRequestBody
+   * @memberof CreateCrmDealRequestBody
    */
   crmCompanyId?: string;
   /**
    *
    * @type {string}
-   * @memberof CreateCRMDealRequestBody
+   * @memberof CreateCrmDealRequestBody
    */
   crmCompanyKey: string;
   /**
    *
    * @type {string}
-   * @memberof CreateCRMDealRequestBody
+   * @memberof CreateCrmDealRequestBody
    */
   crmProductId?: string;
   /**
    *
    * @type {string}
-   * @memberof CreateCRMDealRequestBody
+   * @memberof CreateCrmDealRequestBody
+   */
+  crmType: string;
+  /**
+   *
+   * @type {string}
+   * @memberof CreateCrmDealRequestBody
    */
   dealExternalId: string;
   /**
    *
    * @type {string}
-   * @memberof CreateCRMDealRequestBody
+   * @memberof CreateCrmDealRequestBody
    */
   dealName?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof CreateCrmDealRequestBody
+   */
+  dealStage?: string;
+  /**
+   *
+   * @type {number}
+   * @memberof CreateCrmDealRequestBody
+   */
+  mrr?: number;
 }
 
 /**
- * Check if a given object implements the CreateCRMDealRequestBody interface.
+ * Check if a given object implements the CreateCrmDealRequestBody interface.
  */
-export function instanceOfCreateCRMDealRequestBody(value: object): boolean {
+export function instanceOfCreateCrmDealRequestBody(value: object): boolean {
   if (!("crmCompanyKey" in value)) return false;
+  if (!("crmType" in value)) return false;
   if (!("dealExternalId" in value)) return false;
   return true;
 }
 
-export function CreateCRMDealRequestBodyFromJSON(
+export function CreateCrmDealRequestBodyFromJSON(
   json: any,
-): CreateCRMDealRequestBody {
-  return CreateCRMDealRequestBodyFromJSONTyped(json, false);
+): CreateCrmDealRequestBody {
+  return CreateCrmDealRequestBodyFromJSONTyped(json, false);
 }
 
-export function CreateCRMDealRequestBodyFromJSONTyped(
+export function CreateCrmDealRequestBodyFromJSONTyped(
   json: any,
   ignoreDiscriminator: boolean,
-): CreateCRMDealRequestBody {
+): CreateCrmDealRequestBody {
   if (json == null) {
     return json;
   }
   return {
+    arr: json["arr"] == null ? undefined : json["arr"],
     crmCompanyId:
       json["crm_company_id"] == null ? undefined : json["crm_company_id"],
     crmCompanyKey: json["crm_company_key"],
     crmProductId:
       json["crm_product_id"] == null ? undefined : json["crm_product_id"],
+    crmType: json["crm_type"],
     dealExternalId: json["deal_external_id"],
     dealName: json["deal_name"] == null ? undefined : json["deal_name"],
+    dealStage: json["deal_stage"] == null ? undefined : json["deal_stage"],
+    mrr: json["mrr"] == null ? undefined : json["mrr"],
   };
 }
 
-export function CreateCRMDealRequestBodyToJSON(
-  value?: CreateCRMDealRequestBody | null,
+export function CreateCrmDealRequestBodyToJSON(
+  value?: CreateCrmDealRequestBody | null,
 ): any {
   if (value == null) {
     return value;
   }
   return {
+    arr: value["arr"],
     crm_company_id: value["crmCompanyId"],
     crm_company_key: value["crmCompanyKey"],
     crm_product_id: value["crmProductId"],
+    crm_type: value["crmType"],
     deal_external_id: value["dealExternalId"],
     deal_name: value["dealName"],
+    deal_stage: value["dealStage"],
+    mrr: value["mrr"],
   };
 }

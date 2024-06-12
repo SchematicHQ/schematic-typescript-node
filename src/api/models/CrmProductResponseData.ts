@@ -16,81 +16,81 @@ import { mapValues } from "../runtime";
 /**
  * The created resource
  * @export
- * @interface CRMProductResponseData
+ * @interface CrmProductResponseData
  */
-export interface CRMProductResponseData {
+export interface CrmProductResponseData {
   /**
    *
    * @type {string}
-   * @memberof CRMProductResponseData
+   * @memberof CrmProductResponseData
    */
   accountId: string;
   /**
    *
    * @type {Date}
-   * @memberof CRMProductResponseData
+   * @memberof CrmProductResponseData
    */
   createdAt: Date;
   /**
    *
    * @type {string}
-   * @memberof CRMProductResponseData
+   * @memberof CrmProductResponseData
    */
   currency: string;
   /**
    *
    * @type {Date}
-   * @memberof CRMProductResponseData
+   * @memberof CrmProductResponseData
    */
   deletedAt?: Date;
   /**
    *
    * @type {string}
-   * @memberof CRMProductResponseData
+   * @memberof CrmProductResponseData
    */
   environmentId: string;
   /**
    *
    * @type {string}
-   * @memberof CRMProductResponseData
+   * @memberof CrmProductResponseData
    */
   externalId: string;
   /**
    *
    * @type {string}
-   * @memberof CRMProductResponseData
+   * @memberof CrmProductResponseData
    */
   name: string;
   /**
    *
    * @type {number}
-   * @memberof CRMProductResponseData
+   * @memberof CrmProductResponseData
    */
   price: number;
   /**
    *
    * @type {string}
-   * @memberof CRMProductResponseData
+   * @memberof CrmProductResponseData
    */
   productId: string;
   /**
    *
    * @type {number}
-   * @memberof CRMProductResponseData
+   * @memberof CrmProductResponseData
    */
   quantity: number;
   /**
    *
    * @type {Date}
-   * @memberof CRMProductResponseData
+   * @memberof CrmProductResponseData
    */
   updatedAt: Date;
 }
 
 /**
- * Check if a given object implements the CRMProductResponseData interface.
+ * Check if a given object implements the CrmProductResponseData interface.
  */
-export function instanceOfCRMProductResponseData(value: object): boolean {
+export function instanceOfCrmProductResponseData(value: object): boolean {
   if (!("accountId" in value)) return false;
   if (!("createdAt" in value)) return false;
   if (!("currency" in value)) return false;
@@ -104,16 +104,16 @@ export function instanceOfCRMProductResponseData(value: object): boolean {
   return true;
 }
 
-export function CRMProductResponseDataFromJSON(
+export function CrmProductResponseDataFromJSON(
   json: any,
-): CRMProductResponseData {
-  return CRMProductResponseDataFromJSONTyped(json, false);
+): CrmProductResponseData {
+  return CrmProductResponseDataFromJSONTyped(json, false);
 }
 
-export function CRMProductResponseDataFromJSONTyped(
+export function CrmProductResponseDataFromJSONTyped(
   json: any,
   ignoreDiscriminator: boolean,
-): CRMProductResponseData {
+): CrmProductResponseData {
   if (json == null) {
     return json;
   }
@@ -133,8 +133,8 @@ export function CRMProductResponseDataFromJSONTyped(
   };
 }
 
-export function CRMProductResponseDataToJSON(
-  value?: CRMProductResponseData | null,
+export function CrmProductResponseDataToJSON(
+  value?: CrmProductResponseData | null,
 ): any {
   if (value == null) {
     return value;

@@ -16,40 +16,60 @@ import { RequestInit } from "node-fetch";
 import * as runtime from "../runtime";
 import type {
   ApiError,
-  CreateCRMDealRequestBody,
-  CreateCRMProductRequestBody,
-  ListCRMProductsResponse,
-  UpsertCRMDealResponse,
-  UpsertCRMProductResponse,
+  CreateCrmDealLineItemAssociationRequestBody,
+  CreateCrmDealRequestBody,
+  CreateCrmLineItemRequestBody,
+  CreateCrmProductRequestBody,
+  ListCrmProductsResponse,
+  UpsertCrmDealResponse,
+  UpsertCrmProductResponse,
+  UpsertDealLineItemAssociationResponse,
+  UpsertLineItemResponse,
 } from "../models/index";
 import {
   ApiErrorFromJSON,
   ApiErrorToJSON,
-  CreateCRMDealRequestBodyFromJSON,
-  CreateCRMDealRequestBodyToJSON,
-  CreateCRMProductRequestBodyFromJSON,
-  CreateCRMProductRequestBodyToJSON,
-  ListCRMProductsResponseFromJSON,
-  ListCRMProductsResponseToJSON,
-  UpsertCRMDealResponseFromJSON,
-  UpsertCRMDealResponseToJSON,
-  UpsertCRMProductResponseFromJSON,
-  UpsertCRMProductResponseToJSON,
+  CreateCrmDealLineItemAssociationRequestBodyFromJSON,
+  CreateCrmDealLineItemAssociationRequestBodyToJSON,
+  CreateCrmDealRequestBodyFromJSON,
+  CreateCrmDealRequestBodyToJSON,
+  CreateCrmLineItemRequestBodyFromJSON,
+  CreateCrmLineItemRequestBodyToJSON,
+  CreateCrmProductRequestBodyFromJSON,
+  CreateCrmProductRequestBodyToJSON,
+  ListCrmProductsResponseFromJSON,
+  ListCrmProductsResponseToJSON,
+  UpsertCrmDealResponseFromJSON,
+  UpsertCrmDealResponseToJSON,
+  UpsertCrmProductResponseFromJSON,
+  UpsertCrmProductResponseToJSON,
+  UpsertDealLineItemAssociationResponseFromJSON,
+  UpsertDealLineItemAssociationResponseToJSON,
+  UpsertLineItemResponseFromJSON,
+  UpsertLineItemResponseToJSON,
 } from "../models/index";
 
-export interface ListCRMProductsRequest {
+export interface ListCrmProductsRequest {
   ids?: Array<string>;
   name?: string;
   limit?: number;
   offset?: number;
 }
 
-export interface UpsertCRMDealRequest {
-  createCRMDealRequestBody: CreateCRMDealRequestBody;
+export interface UpsertCrmDealRequest {
+  createCrmDealRequestBody: CreateCrmDealRequestBody;
 }
 
-export interface UpsertCRMProductRequest {
-  createCRMProductRequestBody: CreateCRMProductRequestBody;
+export interface UpsertCrmProductRequest {
+  createCrmProductRequestBody: CreateCrmProductRequestBody;
+}
+
+export interface UpsertDealLineItemAssociationRequest {
+  createCrmDealLineItemAssociationRequestBody: CreateCrmDealLineItemAssociationRequestBody;
+}
+
+export interface UpsertLineItemRequest {
+  createCrmLineItemRequestBody: CreateCrmLineItemRequestBody;
 }
 
 /**
@@ -57,12 +77,12 @@ export interface UpsertCRMProductRequest {
  */
 export class CrmApi extends runtime.BaseAPI {
   /**
-   * List c r m products
+   * List crm products
    */
-  async listCRMProductsRaw(
-    requestParameters: ListCRMProductsRequest,
+  async listCrmProductsRaw(
+    requestParameters: ListCrmProductsRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
-  ): Promise<runtime.ApiResponse<ListCRMProductsResponse>> {
+  ): Promise<runtime.ApiResponse<ListCrmProductsResponse>> {
     const queryParameters: any = {};
 
     if (requestParameters["ids"] != null) {
@@ -100,18 +120,18 @@ export class CrmApi extends runtime.BaseAPI {
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      ListCRMProductsResponseFromJSON(jsonValue),
+      ListCrmProductsResponseFromJSON(jsonValue),
     );
   }
 
   /**
-   * List c r m products
+   * List crm products
    */
-  async listCRMProducts(
-    requestParameters: ListCRMProductsRequest = {},
+  async listCrmProducts(
+    requestParameters: ListCrmProductsRequest = {},
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
-  ): Promise<ListCRMProductsResponse> {
-    const response = await this.listCRMProductsRaw(
+  ): Promise<ListCrmProductsResponse> {
+    const response = await this.listCrmProductsRaw(
       requestParameters,
       initOverrides,
     );
@@ -119,16 +139,16 @@ export class CrmApi extends runtime.BaseAPI {
   }
 
   /**
-   * Upsert c r m deal
+   * Upsert crm deal
    */
-  async upsertCRMDealRaw(
-    requestParameters: UpsertCRMDealRequest,
+  async upsertCrmDealRaw(
+    requestParameters: UpsertCrmDealRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
-  ): Promise<runtime.ApiResponse<UpsertCRMDealResponse>> {
-    if (requestParameters["createCRMDealRequestBody"] == null) {
+  ): Promise<runtime.ApiResponse<UpsertCrmDealResponse>> {
+    if (requestParameters["createCrmDealRequestBody"] == null) {
       throw new runtime.RequiredError(
-        "createCRMDealRequestBody",
-        'Required parameter "createCRMDealRequestBody" was null or undefined when calling upsertCRMDeal().',
+        "createCrmDealRequestBody",
+        'Required parameter "createCrmDealRequestBody" was null or undefined when calling upsertCrmDeal().',
       );
     }
 
@@ -150,26 +170,26 @@ export class CrmApi extends runtime.BaseAPI {
         method: "POST",
         headers: headerParameters,
         query: queryParameters,
-        body: CreateCRMDealRequestBodyToJSON(
-          requestParameters["createCRMDealRequestBody"],
+        body: CreateCrmDealRequestBodyToJSON(
+          requestParameters["createCrmDealRequestBody"],
         ),
       },
       initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      UpsertCRMDealResponseFromJSON(jsonValue),
+      UpsertCrmDealResponseFromJSON(jsonValue),
     );
   }
 
   /**
-   * Upsert c r m deal
+   * Upsert crm deal
    */
-  async upsertCRMDeal(
-    requestParameters: UpsertCRMDealRequest,
+  async upsertCrmDeal(
+    requestParameters: UpsertCrmDealRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
-  ): Promise<UpsertCRMDealResponse> {
-    const response = await this.upsertCRMDealRaw(
+  ): Promise<UpsertCrmDealResponse> {
+    const response = await this.upsertCrmDealRaw(
       requestParameters,
       initOverrides,
     );
@@ -177,16 +197,16 @@ export class CrmApi extends runtime.BaseAPI {
   }
 
   /**
-   * Upsert c r m product
+   * Upsert crm product
    */
-  async upsertCRMProductRaw(
-    requestParameters: UpsertCRMProductRequest,
+  async upsertCrmProductRaw(
+    requestParameters: UpsertCrmProductRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
-  ): Promise<runtime.ApiResponse<UpsertCRMProductResponse>> {
-    if (requestParameters["createCRMProductRequestBody"] == null) {
+  ): Promise<runtime.ApiResponse<UpsertCrmProductResponse>> {
+    if (requestParameters["createCrmProductRequestBody"] == null) {
       throw new runtime.RequiredError(
-        "createCRMProductRequestBody",
-        'Required parameter "createCRMProductRequestBody" was null or undefined when calling upsertCRMProduct().',
+        "createCrmProductRequestBody",
+        'Required parameter "createCrmProductRequestBody" was null or undefined when calling upsertCrmProduct().',
       );
     }
 
@@ -208,26 +228,144 @@ export class CrmApi extends runtime.BaseAPI {
         method: "POST",
         headers: headerParameters,
         query: queryParameters,
-        body: CreateCRMProductRequestBodyToJSON(
-          requestParameters["createCRMProductRequestBody"],
+        body: CreateCrmProductRequestBodyToJSON(
+          requestParameters["createCrmProductRequestBody"],
         ),
       },
       initOverrides,
     );
 
     return new runtime.JSONApiResponse(response, (jsonValue) =>
-      UpsertCRMProductResponseFromJSON(jsonValue),
+      UpsertCrmProductResponseFromJSON(jsonValue),
     );
   }
 
   /**
-   * Upsert c r m product
+   * Upsert crm product
    */
-  async upsertCRMProduct(
-    requestParameters: UpsertCRMProductRequest,
+  async upsertCrmProduct(
+    requestParameters: UpsertCrmProductRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
-  ): Promise<UpsertCRMProductResponse> {
-    const response = await this.upsertCRMProductRaw(
+  ): Promise<UpsertCrmProductResponse> {
+    const response = await this.upsertCrmProductRaw(
+      requestParameters,
+      initOverrides,
+    );
+    return await response.value();
+  }
+
+  /**
+   * Upsert deal line item association
+   */
+  async upsertDealLineItemAssociationRaw(
+    requestParameters: UpsertDealLineItemAssociationRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<UpsertDealLineItemAssociationResponse>> {
+    if (
+      requestParameters["createCrmDealLineItemAssociationRequestBody"] == null
+    ) {
+      throw new runtime.RequiredError(
+        "createCrmDealLineItemAssociationRequestBody",
+        'Required parameter "createCrmDealLineItemAssociationRequestBody" was null or undefined when calling upsertDealLineItemAssociation().',
+      );
+    }
+
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    headerParameters["Content-Type"] = "application/json";
+
+    if (this.configuration && this.configuration.apiKey) {
+      headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey(
+        "X-Schematic-Api-Key",
+      ); // ApiKeyAuth authentication
+    }
+
+    const response = await this.request(
+      {
+        path: `/crm/associations/deal-line-item`,
+        method: "POST",
+        headers: headerParameters,
+        query: queryParameters,
+        body: CreateCrmDealLineItemAssociationRequestBodyToJSON(
+          requestParameters["createCrmDealLineItemAssociationRequestBody"],
+        ),
+      },
+      initOverrides,
+    );
+
+    return new runtime.JSONApiResponse(response, (jsonValue) =>
+      UpsertDealLineItemAssociationResponseFromJSON(jsonValue),
+    );
+  }
+
+  /**
+   * Upsert deal line item association
+   */
+  async upsertDealLineItemAssociation(
+    requestParameters: UpsertDealLineItemAssociationRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<UpsertDealLineItemAssociationResponse> {
+    const response = await this.upsertDealLineItemAssociationRaw(
+      requestParameters,
+      initOverrides,
+    );
+    return await response.value();
+  }
+
+  /**
+   * Upsert line item
+   */
+  async upsertLineItemRaw(
+    requestParameters: UpsertLineItemRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<UpsertLineItemResponse>> {
+    if (requestParameters["createCrmLineItemRequestBody"] == null) {
+      throw new runtime.RequiredError(
+        "createCrmLineItemRequestBody",
+        'Required parameter "createCrmLineItemRequestBody" was null or undefined when calling upsertLineItem().',
+      );
+    }
+
+    const queryParameters: any = {};
+
+    const headerParameters: runtime.HTTPHeaders = {};
+
+    headerParameters["Content-Type"] = "application/json";
+
+    if (this.configuration && this.configuration.apiKey) {
+      headerParameters["X-Schematic-Api-Key"] = await this.configuration.apiKey(
+        "X-Schematic-Api-Key",
+      ); // ApiKeyAuth authentication
+    }
+
+    const response = await this.request(
+      {
+        path: `/crm/deal-line-item/upsert`,
+        method: "POST",
+        headers: headerParameters,
+        query: queryParameters,
+        body: CreateCrmLineItemRequestBodyToJSON(
+          requestParameters["createCrmLineItemRequestBody"],
+        ),
+      },
+      initOverrides,
+    );
+
+    return new runtime.JSONApiResponse(response, (jsonValue) =>
+      UpsertLineItemResponseFromJSON(jsonValue),
+    );
+  }
+
+  /**
+   * Upsert line item
+   */
+  async upsertLineItem(
+    requestParameters: UpsertLineItemRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<UpsertLineItemResponse> {
+    const response = await this.upsertLineItemRaw(
       requestParameters,
       initOverrides,
     );

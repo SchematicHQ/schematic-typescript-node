@@ -16,63 +16,63 @@ import { mapValues } from "../runtime";
 /**
  *
  * @export
- * @interface CreateCRMProductRequestBody
+ * @interface CreateCrmProductRequestBody
  */
-export interface CreateCRMProductRequestBody {
+export interface CreateCrmProductRequestBody {
   /**
    *
    * @type {string}
-   * @memberof CreateCRMProductRequestBody
+   * @memberof CreateCrmProductRequestBody
    */
   currency: string;
   /**
    *
    * @type {string}
-   * @memberof CreateCRMProductRequestBody
+   * @memberof CreateCrmProductRequestBody
    */
   description: string;
   /**
    *
    * @type {string}
-   * @memberof CreateCRMProductRequestBody
+   * @memberof CreateCrmProductRequestBody
    */
   externalId: string;
   /**
    *
    * @type {string}
-   * @memberof CreateCRMProductRequestBody
+   * @memberof CreateCrmProductRequestBody
    */
   interval: string;
   /**
    *
    * @type {string}
-   * @memberof CreateCRMProductRequestBody
+   * @memberof CreateCrmProductRequestBody
    */
   name: string;
   /**
    *
    * @type {number}
-   * @memberof CreateCRMProductRequestBody
+   * @memberof CreateCrmProductRequestBody
    */
   price: number;
   /**
    *
    * @type {number}
-   * @memberof CreateCRMProductRequestBody
+   * @memberof CreateCrmProductRequestBody
    */
   quantity: number;
   /**
    *
    * @type {string}
-   * @memberof CreateCRMProductRequestBody
+   * @memberof CreateCrmProductRequestBody
    */
   sku: string;
 }
 
 /**
- * Check if a given object implements the CreateCRMProductRequestBody interface.
+ * Check if a given object implements the CreateCrmProductRequestBody interface.
  */
-export function instanceOfCreateCRMProductRequestBody(value: object): boolean {
+export function instanceOfCreateCrmProductRequestBody(value: object): boolean {
   if (!("currency" in value)) return false;
   if (!("description" in value)) return false;
   if (!("externalId" in value)) return false;
@@ -84,16 +84,16 @@ export function instanceOfCreateCRMProductRequestBody(value: object): boolean {
   return true;
 }
 
-export function CreateCRMProductRequestBodyFromJSON(
+export function CreateCrmProductRequestBodyFromJSON(
   json: any,
-): CreateCRMProductRequestBody {
-  return CreateCRMProductRequestBodyFromJSONTyped(json, false);
+): CreateCrmProductRequestBody {
+  return CreateCrmProductRequestBodyFromJSONTyped(json, false);
 }
 
-export function CreateCRMProductRequestBodyFromJSONTyped(
+export function CreateCrmProductRequestBodyFromJSONTyped(
   json: any,
   ignoreDiscriminator: boolean,
-): CreateCRMProductRequestBody {
+): CreateCrmProductRequestBody {
   if (json == null) {
     return json;
   }
@@ -109,8 +109,8 @@ export function CreateCRMProductRequestBodyFromJSONTyped(
   };
 }
 
-export function CreateCRMProductRequestBodyToJSON(
-  value?: CreateCRMProductRequestBody | null,
+export function CreateCrmProductRequestBodyToJSON(
+  value?: CreateCrmProductRequestBody | null,
 ): any {
   if (value == null) {
     return value;

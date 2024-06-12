@@ -16,108 +16,84 @@ import { mapValues } from "../runtime";
 /**
  * The created resource
  * @export
- * @interface CRMDealResponseData
+ * @interface CrmLineItemResponseData
  */
-export interface CRMDealResponseData {
+export interface CrmLineItemResponseData {
   /**
    *
    * @type {string}
-   * @memberof CRMDealResponseData
+   * @memberof CrmLineItemResponseData
    */
   accountId: string;
   /**
    *
-   * @type {string}
-   * @memberof CRMDealResponseData
-   */
-  companyExternalId?: string;
-  /**
-   *
    * @type {Date}
-   * @memberof CRMDealResponseData
+   * @memberof CrmLineItemResponseData
    */
   createdAt: Date;
   /**
    *
    * @type {string}
-   * @memberof CRMDealResponseData
+   * @memberof CrmLineItemResponseData
    */
-  dealExternalId: string;
-  /**
-   *
-   * @type {string}
-   * @memberof CRMDealResponseData
-   */
-  dealId: string;
+  dealId?: string;
   /**
    *
    * @type {Date}
-   * @memberof CRMDealResponseData
+   * @memberof CrmLineItemResponseData
    */
   deletedAt?: Date;
   /**
    *
    * @type {string}
-   * @memberof CRMDealResponseData
+   * @memberof CrmLineItemResponseData
    */
   environmentId: string;
   /**
    *
    * @type {string}
-   * @memberof CRMDealResponseData
-   */
-  name?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof CRMDealResponseData
+   * @memberof CrmLineItemResponseData
    */
   productExternalId?: string;
   /**
    *
    * @type {Date}
-   * @memberof CRMDealResponseData
+   * @memberof CrmLineItemResponseData
    */
   updatedAt: Date;
 }
 
 /**
- * Check if a given object implements the CRMDealResponseData interface.
+ * Check if a given object implements the CrmLineItemResponseData interface.
  */
-export function instanceOfCRMDealResponseData(value: object): boolean {
+export function instanceOfCrmLineItemResponseData(value: object): boolean {
   if (!("accountId" in value)) return false;
   if (!("createdAt" in value)) return false;
-  if (!("dealExternalId" in value)) return false;
-  if (!("dealId" in value)) return false;
   if (!("environmentId" in value)) return false;
   if (!("updatedAt" in value)) return false;
   return true;
 }
 
-export function CRMDealResponseDataFromJSON(json: any): CRMDealResponseData {
-  return CRMDealResponseDataFromJSONTyped(json, false);
+export function CrmLineItemResponseDataFromJSON(
+  json: any,
+): CrmLineItemResponseData {
+  return CrmLineItemResponseDataFromJSONTyped(json, false);
 }
 
-export function CRMDealResponseDataFromJSONTyped(
+export function CrmLineItemResponseDataFromJSONTyped(
   json: any,
   ignoreDiscriminator: boolean,
-): CRMDealResponseData {
+): CrmLineItemResponseData {
   if (json == null) {
     return json;
   }
   return {
     accountId: json["account_id"],
-    companyExternalId:
-      json["company_external_id"] == null
-        ? undefined
-        : json["company_external_id"],
     createdAt: new Date(json["created_at"]),
-    dealExternalId: json["deal_external_id"],
-    dealId: json["deal_id"],
+    dealId: json["deal_id"] == null ? undefined : json["deal_id"],
     deletedAt:
       json["deleted_at"] == null ? undefined : new Date(json["deleted_at"]),
     environmentId: json["environment_id"],
-    name: json["name"] == null ? undefined : json["name"],
     productExternalId:
       json["product_external_id"] == null
         ? undefined
@@ -126,24 +102,21 @@ export function CRMDealResponseDataFromJSONTyped(
   };
 }
 
-export function CRMDealResponseDataToJSON(
-  value?: CRMDealResponseData | null,
+export function CrmLineItemResponseDataToJSON(
+  value?: CrmLineItemResponseData | null,
 ): any {
   if (value == null) {
     return value;
   }
   return {
     account_id: value["accountId"],
-    company_external_id: value["companyExternalId"],
     created_at: value["createdAt"].toISOString(),
-    deal_external_id: value["dealExternalId"],
     deal_id: value["dealId"],
     deleted_at:
       value["deletedAt"] == null
         ? undefined
         : (value["deletedAt"] as any).toISOString(),
     environment_id: value["environmentId"],
-    name: value["name"],
     product_external_id: value["productExternalId"],
     updated_at: value["updatedAt"].toISOString(),
   };

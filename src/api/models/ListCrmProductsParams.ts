@@ -16,52 +16,52 @@ import { mapValues } from "../runtime";
 /**
  * Input parameters
  * @export
- * @interface ListCRMProductsParams
+ * @interface ListCrmProductsParams
  */
-export interface ListCRMProductsParams {
+export interface ListCrmProductsParams {
   /**
    *
    * @type {Array<string>}
-   * @memberof ListCRMProductsParams
+   * @memberof ListCrmProductsParams
    */
   ids?: Array<string>;
   /**
    *
    * @type {number}
-   * @memberof ListCRMProductsParams
+   * @memberof ListCrmProductsParams
    */
   limit?: number;
   /**
    *
    * @type {string}
-   * @memberof ListCRMProductsParams
+   * @memberof ListCrmProductsParams
    */
   name?: string;
   /**
    *
    * @type {number}
-   * @memberof ListCRMProductsParams
+   * @memberof ListCrmProductsParams
    */
   offset?: number;
 }
 
 /**
- * Check if a given object implements the ListCRMProductsParams interface.
+ * Check if a given object implements the ListCrmProductsParams interface.
  */
-export function instanceOfListCRMProductsParams(value: object): boolean {
+export function instanceOfListCrmProductsParams(value: object): boolean {
   return true;
 }
 
-export function ListCRMProductsParamsFromJSON(
+export function ListCrmProductsParamsFromJSON(
   json: any,
-): ListCRMProductsParams {
-  return ListCRMProductsParamsFromJSONTyped(json, false);
+): ListCrmProductsParams {
+  return ListCrmProductsParamsFromJSONTyped(json, false);
 }
 
-export function ListCRMProductsParamsFromJSONTyped(
+export function ListCrmProductsParamsFromJSONTyped(
   json: any,
   ignoreDiscriminator: boolean,
-): ListCRMProductsParams {
+): ListCrmProductsParams {
   if (json == null) {
     return json;
   }
@@ -73,8 +73,8 @@ export function ListCRMProductsParamsFromJSONTyped(
   };
 }
 
-export function ListCRMProductsParamsToJSON(
-  value?: ListCRMProductsParams | null,
+export function ListCrmProductsParamsToJSON(
+  value?: ListCrmProductsParams | null,
 ): any {
   if (value == null) {
     return value;
