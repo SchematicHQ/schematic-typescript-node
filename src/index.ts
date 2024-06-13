@@ -91,6 +91,7 @@ export class Schematic {
     evalCtx: api.CheckFlagRequestBody,
     key: string,
   ): Promise<boolean> {
+    let val: boolean | undefined;
     if (this.offline) {
       return this.getFlagDefault(key);
     }
@@ -104,23 +105,32 @@ export class Schematic {
         }
       }
 
-      const response = await this.Features.checkFlag({
-        key,
+      const response = await this.Features.checkFlags({
         checkFlagRequestBody: evalCtx,
       });
-      if (!response.data.value) {
+      if (!response.data) {
         return this.getFlagDefault(key);
       }
 
       for (const provider of this.flagCheckCacheProviders) {
-        await provider.set(cacheKey, response.data.value);
+        await Promise.all(
+          response.data.flags.map(async (flag) => {
+            if (flag.flag === key) {
+              val = flag.value;
+              await provider.set(cacheKey, flag.value);
+            }
+          }),
+        );
       }
-
-      return response.data.value;
     } catch (err) {
       this.logger.error(`Error checking flag ${key}: ${err}`);
       return this.getFlagDefault(key);
     }
+    if (val === undefined) {
+      return this.getFlagDefault(key);
+    }
+
+    return val;
   }
 
   async close(): Promise<void> {
