@@ -14,7 +14,7 @@
 
 import { mapValues } from "../runtime";
 /**
- * The updated resource
+ *
  * @export
  * @interface WebhookResponseData
  */

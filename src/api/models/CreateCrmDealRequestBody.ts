@@ -21,10 +21,10 @@ import { mapValues } from "../runtime";
 export interface CreateCrmDealRequestBody {
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof CreateCrmDealRequestBody
    */
-  arr?: number;
+  arr?: string;
   /**
    *
    * @type {string}
@@ -69,10 +69,10 @@ export interface CreateCrmDealRequestBody {
   dealStage?: string;
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof CreateCrmDealRequestBody
    */
-  mrr?: number;
+  mrr?: string;
 }
 
 /**

@@ -13,12 +13,12 @@
  */
 
 import { mapValues } from "../runtime";
-import type { WebhookEventResponseData } from "./WebhookEventResponseData";
+import type { WebhookEventDetailResponseData } from "./WebhookEventDetailResponseData";
 import {
-  WebhookEventResponseDataFromJSON,
-  WebhookEventResponseDataFromJSONTyped,
-  WebhookEventResponseDataToJSON,
-} from "./WebhookEventResponseData";
+  WebhookEventDetailResponseDataFromJSON,
+  WebhookEventDetailResponseDataFromJSONTyped,
+  WebhookEventDetailResponseDataToJSON,
+} from "./WebhookEventDetailResponseData";
 
 /**
  *
@@ -28,10 +28,10 @@ import {
 export interface GetWebhookEventResponse {
   /**
    *
-   * @type {WebhookEventResponseData}
+   * @type {WebhookEventDetailResponseData}
    * @memberof GetWebhookEventResponse
    */
-  data: WebhookEventResponseData;
+  data: WebhookEventDetailResponseData;
   /**
    * Input parameters
    * @type {object}
@@ -63,7 +63,7 @@ export function GetWebhookEventResponseFromJSONTyped(
     return json;
   }
   return {
-    data: WebhookEventResponseDataFromJSON(json["data"]),
+    data: WebhookEventDetailResponseDataFromJSON(json["data"]),
     params: json["params"],
   };
 }
@@ -75,7 +75,7 @@ export function GetWebhookEventResponseToJSON(
     return value;
   }
   return {
-    data: WebhookEventResponseDataToJSON(value["data"]),
+    data: WebhookEventDetailResponseDataToJSON(value["data"]),
     params: value["params"],
   };
 }

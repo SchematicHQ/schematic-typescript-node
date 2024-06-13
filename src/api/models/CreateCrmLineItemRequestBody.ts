@@ -27,16 +27,16 @@ export interface CreateCrmLineItemRequestBody {
   termMonth?: number;
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof CreateCrmLineItemRequestBody
    */
-  amount: number;
+  amount: string;
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof CreateCrmLineItemRequestBody
    */
-  discountPercentage?: number;
+  discountPercentage?: string;
   /**
    *
    * @type {string}
@@ -63,10 +63,10 @@ export interface CreateCrmLineItemRequestBody {
   quantity: number;
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof CreateCrmLineItemRequestBody
    */
-  totalDiscount?: number;
+  totalDiscount?: string;
 }
 
 /**

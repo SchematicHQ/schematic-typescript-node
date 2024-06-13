@@ -21,6 +21,12 @@ import { mapValues } from "../runtime";
 export interface ListWebhookEventsParams {
   /**
    *
+   * @type {Array<string>}
+   * @memberof ListWebhookEventsParams
+   */
+  ids?: Array<string>;
+  /**
+   *
    * @type {number}
    * @memberof ListWebhookEventsParams
    */
@@ -31,6 +37,18 @@ export interface ListWebhookEventsParams {
    * @memberof ListWebhookEventsParams
    */
   offset?: number;
+  /**
+   *
+   * @type {string}
+   * @memberof ListWebhookEventsParams
+   */
+  q?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof ListWebhookEventsParams
+   */
+  webhookId?: string;
 }
 
 /**
@@ -54,8 +72,11 @@ export function ListWebhookEventsParamsFromJSONTyped(
     return json;
   }
   return {
+    ids: json["ids"] == null ? undefined : json["ids"],
     limit: json["limit"] == null ? undefined : json["limit"],
     offset: json["offset"] == null ? undefined : json["offset"],
+    q: json["q"] == null ? undefined : json["q"],
+    webhookId: json["webhook_id"] == null ? undefined : json["webhook_id"],
   };
 }
 
@@ -66,7 +87,10 @@ export function ListWebhookEventsParamsToJSON(
     return value;
   }
   return {
+    ids: value["ids"],
     limit: value["limit"],
     offset: value["offset"],
+    q: value["q"],
+    webhook_id: value["webhookId"],
   };
 }

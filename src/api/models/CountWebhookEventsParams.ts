@@ -21,6 +21,12 @@ import { mapValues } from "../runtime";
 export interface CountWebhookEventsParams {
   /**
    *
+   * @type {Array<string>}
+   * @memberof CountWebhookEventsParams
+   */
+  ids?: Array<string>;
+  /**
+   *
    * @type {number}
    * @memberof CountWebhookEventsParams
    */
@@ -31,6 +37,18 @@ export interface CountWebhookEventsParams {
    * @memberof CountWebhookEventsParams
    */
   offset?: number;
+  /**
+   *
+   * @type {string}
+   * @memberof CountWebhookEventsParams
+   */
+  q?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof CountWebhookEventsParams
+   */
+  webhookId?: string;
 }
 
 /**
@@ -54,8 +72,11 @@ export function CountWebhookEventsParamsFromJSONTyped(
     return json;
   }
   return {
+    ids: json["ids"] == null ? undefined : json["ids"],
     limit: json["limit"] == null ? undefined : json["limit"],
     offset: json["offset"] == null ? undefined : json["offset"],
+    q: json["q"] == null ? undefined : json["q"],
+    webhookId: json["webhook_id"] == null ? undefined : json["webhook_id"],
   };
 }
 
@@ -66,7 +87,10 @@ export function CountWebhookEventsParamsToJSON(
     return value;
   }
   return {
+    ids: value["ids"],
     limit: value["limit"],
     offset: value["offset"],
+    q: value["q"],
+    webhook_id: value["webhookId"],
   };
 }

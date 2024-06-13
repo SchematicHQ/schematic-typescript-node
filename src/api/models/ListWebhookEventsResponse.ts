@@ -19,12 +19,12 @@ import {
   ListWebhookEventsParamsFromJSONTyped,
   ListWebhookEventsParamsToJSON,
 } from "./ListWebhookEventsParams";
-import type { WebhookEventResponseData } from "./WebhookEventResponseData";
+import type { WebhookEventDetailResponseData } from "./WebhookEventDetailResponseData";
 import {
-  WebhookEventResponseDataFromJSON,
-  WebhookEventResponseDataFromJSONTyped,
-  WebhookEventResponseDataToJSON,
-} from "./WebhookEventResponseData";
+  WebhookEventDetailResponseDataFromJSON,
+  WebhookEventDetailResponseDataFromJSONTyped,
+  WebhookEventDetailResponseDataToJSON,
+} from "./WebhookEventDetailResponseData";
 
 /**
  *
@@ -34,10 +34,10 @@ import {
 export interface ListWebhookEventsResponse {
   /**
    * The returned resources
-   * @type {Array<WebhookEventResponseData>}
+   * @type {Array<WebhookEventDetailResponseData>}
    * @memberof ListWebhookEventsResponse
    */
-  data: Array<WebhookEventResponseData>;
+  data: Array<WebhookEventDetailResponseData>;
   /**
    *
    * @type {ListWebhookEventsParams}
@@ -69,7 +69,9 @@ export function ListWebhookEventsResponseFromJSONTyped(
     return json;
   }
   return {
-    data: (json["data"] as Array<any>).map(WebhookEventResponseDataFromJSON),
+    data: (json["data"] as Array<any>).map(
+      WebhookEventDetailResponseDataFromJSON,
+    ),
     params: ListWebhookEventsParamsFromJSON(json["params"]),
   };
 }
@@ -81,7 +83,9 @@ export function ListWebhookEventsResponseToJSON(
     return value;
   }
   return {
-    data: (value["data"] as Array<any>).map(WebhookEventResponseDataToJSON),
+    data: (value["data"] as Array<any>).map(
+      WebhookEventDetailResponseDataToJSON,
+    ),
     params: ListWebhookEventsParamsToJSON(value["params"]),
   };
 }

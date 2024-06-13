@@ -51,10 +51,10 @@ export interface CreateCrmProductRequestBody {
   name: string;
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof CreateCrmProductRequestBody
    */
-  price: number;
+  price: string;
   /**
    *
    * @type {number}

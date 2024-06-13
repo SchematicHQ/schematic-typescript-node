@@ -28,10 +28,10 @@ import {
 export interface CompanyCrmDealsResponseData {
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof CompanyCrmDealsResponseData
    */
-  dealArr?: number;
+  dealArr: string;
   /**
    *
    * @type {string}
@@ -40,10 +40,10 @@ export interface CompanyCrmDealsResponseData {
   dealExternalId: string;
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof CompanyCrmDealsResponseData
    */
-  dealMrr?: number;
+  dealMrr: string;
   /**
    *
    * @type {string}
@@ -62,7 +62,9 @@ export interface CompanyCrmDealsResponseData {
  * Check if a given object implements the CompanyCrmDealsResponseData interface.
  */
 export function instanceOfCompanyCrmDealsResponseData(value: object): boolean {
+  if (!("dealArr" in value)) return false;
   if (!("dealExternalId" in value)) return false;
+  if (!("dealMrr" in value)) return false;
   if (!("lineItems" in value)) return false;
   return true;
 }
@@ -81,9 +83,9 @@ export function CompanyCrmDealsResponseDataFromJSONTyped(
     return json;
   }
   return {
-    dealArr: json["deal_arr"] == null ? undefined : json["deal_arr"],
+    dealArr: json["deal_arr"],
     dealExternalId: json["deal_external_id"],
-    dealMrr: json["deal_mrr"] == null ? undefined : json["deal_mrr"],
+    dealMrr: json["deal_mrr"],
     dealName: json["deal_name"] == null ? undefined : json["deal_name"],
     lineItems: (json["line_items"] as Array<any>).map(CrmDealLineItemFromJSON),
   };

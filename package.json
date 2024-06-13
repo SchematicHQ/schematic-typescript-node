@@ -12,6 +12,7 @@
   "devDependencies": {
     "@eslint/js": "^9.2.0",
     "@microsoft/api-extractor": "^7.38.3",
+    "@openapitools/openapi-generator-cli": "^2.13.4",
     "@types/form-data": "^2.5.0",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.3.1",
@@ -56,10 +57,10 @@
     "build:types": "npx tsc && npx api-extractor run",
     "clean": "rm -rf dist",
     "format": "prettier --write \"src/**/*.ts\"",
-    "generate": "openapi-generator generate -c config.yaml && npx prettier --write src/* && yarn && yarn clean && yarn build",
+    "generate": "openapi-generator-cli generate -c config.yaml && npx prettier --write src/* && yarn && yarn clean && yarn build",
     "lint": "npx eslint src",
     "release": "npx standard-version && git push --follow-tags && yarn publish",
     "test": "jest"
   },
-  "version": "1.0.7"
+  "version": "1.0.8"
 }

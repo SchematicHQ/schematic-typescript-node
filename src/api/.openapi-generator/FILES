@@ -293,6 +293,7 @@ models/UpsertUserSubRequestBody.ts
 models/UpsertUserTraitResponse.ts
 models/UserDetailResponseData.ts
 models/UserResponseData.ts
+models/WebhookEventDetailResponseData.ts
 models/WebhookEventResponseData.ts
 models/WebhookResponseData.ts
 models/index.ts
