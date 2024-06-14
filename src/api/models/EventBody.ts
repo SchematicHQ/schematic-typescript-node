@@ -45,10 +45,10 @@ export function EventBodyFromJSONTyped(
   if (json == null) {
     return json;
   }
-  return {
-    ...EventBodyIdentifyFromJSONTyped(json, true),
-    ...EventBodyTrackFromJSONTyped(json, true),
-  };
+  return (
+    EventBodyIdentifyFromJSONTyped(json, true) ||
+    EventBodyTrackFromJSONTyped(json, true)
+  );
 }
 
 export function EventBodyToJSON(value?: EventBody | null): any {

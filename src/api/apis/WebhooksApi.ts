@@ -56,6 +56,9 @@ import {
 } from "../models/index";
 
 export interface CountWebhookEventsRequest {
+  webhookId?: string;
+  ids?: Array<string>;
+  q?: string;
   limit?: number;
   offset?: number;
 }
@@ -83,6 +86,9 @@ export interface GetWebhookEventRequest {
 }
 
 export interface ListWebhookEventsRequest {
+  webhookId?: string;
+  ids?: Array<string>;
+  q?: string;
   limit?: number;
   offset?: number;
 }
@@ -110,6 +116,18 @@ export class WebhooksApi extends runtime.BaseAPI {
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<CountWebhookEventsResponse>> {
     const queryParameters: any = {};
+
+    if (requestParameters["webhookId"] != null) {
+      queryParameters["webhook_id"] = requestParameters["webhookId"];
+    }
+
+    if (requestParameters["ids"] != null) {
+      queryParameters["ids"] = requestParameters["ids"];
+    }
+
+    if (requestParameters["q"] != null) {
+      queryParameters["q"] = requestParameters["q"];
+    }
 
     if (requestParameters["limit"] != null) {
       queryParameters["limit"] = requestParameters["limit"];
@@ -445,6 +463,18 @@ export class WebhooksApi extends runtime.BaseAPI {
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<ListWebhookEventsResponse>> {
     const queryParameters: any = {};
+
+    if (requestParameters["webhookId"] != null) {
+      queryParameters["webhook_id"] = requestParameters["webhookId"];
+    }
+
+    if (requestParameters["ids"] != null) {
+      queryParameters["ids"] = requestParameters["ids"];
+    }
+
+    if (requestParameters["q"] != null) {
+      queryParameters["q"] = requestParameters["q"];
+    }
 
     if (requestParameters["limit"] != null) {
       queryParameters["limit"] = requestParameters["limit"];

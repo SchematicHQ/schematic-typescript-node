@@ -27,10 +27,10 @@ export interface CrmDealResponseData {
   accountId: string;
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof CrmDealResponseData
    */
-  arr?: number;
+  arr: string;
   /**
    *
    * @type {string}
@@ -69,10 +69,10 @@ export interface CrmDealResponseData {
   environmentId: string;
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof CrmDealResponseData
    */
-  mrr?: number;
+  mrr: string;
   /**
    *
    * @type {string}
@@ -98,10 +98,12 @@ export interface CrmDealResponseData {
  */
 export function instanceOfCrmDealResponseData(value: object): boolean {
   if (!("accountId" in value)) return false;
+  if (!("arr" in value)) return false;
   if (!("createdAt" in value)) return false;
   if (!("dealExternalId" in value)) return false;
   if (!("dealId" in value)) return false;
   if (!("environmentId" in value)) return false;
+  if (!("mrr" in value)) return false;
   if (!("updatedAt" in value)) return false;
   return true;
 }
@@ -119,7 +121,7 @@ export function CrmDealResponseDataFromJSONTyped(
   }
   return {
     accountId: json["account_id"],
-    arr: json["arr"] == null ? undefined : json["arr"],
+    arr: json["arr"],
     companyExternalId:
       json["company_external_id"] == null
         ? undefined
@@ -130,7 +132,7 @@ export function CrmDealResponseDataFromJSONTyped(
     deletedAt:
       json["deleted_at"] == null ? undefined : new Date(json["deleted_at"]),
     environmentId: json["environment_id"],
-    mrr: json["mrr"] == null ? undefined : json["mrr"],
+    mrr: json["mrr"],
     name: json["name"] == null ? undefined : json["name"],
     productExternalId:
       json["product_external_id"] == null

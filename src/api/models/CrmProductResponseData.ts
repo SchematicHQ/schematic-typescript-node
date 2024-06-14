@@ -63,10 +63,10 @@ export interface CrmProductResponseData {
   name: string;
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof CrmProductResponseData
    */
-  price: number;
+  price: string;
   /**
    *
    * @type {string}

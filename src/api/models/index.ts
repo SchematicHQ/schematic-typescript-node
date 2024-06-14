@@ -284,5 +284,6 @@ export * from "./UpsertUserSubRequestBody";
 export * from "./UpsertUserTraitResponse";
 export * from "./UserDetailResponseData";
 export * from "./UserResponseData";
+export * from "./WebhookEventDetailResponseData";
 export * from "./WebhookEventResponseData";
 export * from "./WebhookResponseData";

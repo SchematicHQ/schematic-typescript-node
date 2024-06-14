@@ -51,10 +51,10 @@ export interface CrmDealLineItem {
   description: string;
   /**
    *
-   * @type {number}
+   * @type {object}
    * @memberof CrmDealLineItem
    */
-  discountPercentage?: number;
+  discountPercentage?: object;
   /**
    *
    * @type {string}
@@ -87,10 +87,10 @@ export interface CrmDealLineItem {
   termMonth?: number;
   /**
    *
-   * @type {number}
+   * @type {object}
    * @memberof CrmDealLineItem
    */
-  totalDiscount?: number;
+  totalDiscount?: object;
   /**
    *
    * @type {Date}

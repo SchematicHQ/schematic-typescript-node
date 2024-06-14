@@ -32,7 +32,7 @@ export interface CreateOrUpdateConditionRequestBody {
    */
   conditionType: CreateOrUpdateConditionRequestBodyConditionTypeEnum;
   /**
-   * DealName of track event type used to measure this condition
+   * Name of track event type used to measure this condition
    * @type {string}
    * @memberof CreateOrUpdateConditionRequestBody
    */
