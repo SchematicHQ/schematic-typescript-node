@@ -30,7 +30,9 @@ export interface LookupUserParams {
 /**
  * Check if a given object implements the LookupUserParams interface.
  */
-export function instanceOfLookupUserParams(value: object): boolean {
+export function instanceOfLookupUserParams(
+  value: object,
+): value is LookupUserParams {
   return true;
 }
 

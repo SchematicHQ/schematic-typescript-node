@@ -50,13 +50,13 @@ export interface CountCompanyOverridesParams {
    */
   ids?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof CountCompanyOverridesParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof CountCompanyOverridesParams
    */
@@ -66,7 +66,9 @@ export interface CountCompanyOverridesParams {
 /**
  * Check if a given object implements the CountCompanyOverridesParams interface.
  */
-export function instanceOfCountCompanyOverridesParams(value: object): boolean {
+export function instanceOfCountCompanyOverridesParams(
+  value: object,
+): value is CountCompanyOverridesParams {
   return true;
 }
 

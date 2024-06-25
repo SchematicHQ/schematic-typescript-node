@@ -30,7 +30,9 @@ export interface DeleteResponse {
 /**
  * Check if a given object implements the DeleteResponse interface.
  */
-export function instanceOfDeleteResponse(value: object): boolean {
+export function instanceOfDeleteResponse(
+  value: object,
+): value is DeleteResponse {
   return true;
 }
 

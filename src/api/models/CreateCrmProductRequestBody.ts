@@ -72,15 +72,19 @@ export interface CreateCrmProductRequestBody {
 /**
  * Check if a given object implements the CreateCrmProductRequestBody interface.
  */
-export function instanceOfCreateCrmProductRequestBody(value: object): boolean {
-  if (!("currency" in value)) return false;
-  if (!("description" in value)) return false;
-  if (!("externalId" in value)) return false;
-  if (!("interval" in value)) return false;
-  if (!("name" in value)) return false;
-  if (!("price" in value)) return false;
-  if (!("quantity" in value)) return false;
-  if (!("sku" in value)) return false;
+export function instanceOfCreateCrmProductRequestBody(
+  value: object,
+): value is CreateCrmProductRequestBody {
+  if (!("currency" in value) || value["currency"] === undefined) return false;
+  if (!("description" in value) || value["description"] === undefined)
+    return false;
+  if (!("externalId" in value) || value["externalId"] === undefined)
+    return false;
+  if (!("interval" in value) || value["interval"] === undefined) return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
+  if (!("price" in value) || value["price"] === undefined) return false;
+  if (!("quantity" in value) || value["quantity"] === undefined) return false;
+  if (!("sku" in value) || value["sku"] === undefined) return false;
   return true;
 }
 

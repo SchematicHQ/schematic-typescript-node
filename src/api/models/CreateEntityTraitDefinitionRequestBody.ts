@@ -74,10 +74,11 @@ export type CreateEntityTraitDefinitionRequestBodyTraitTypeEnum =
  */
 export function instanceOfCreateEntityTraitDefinitionRequestBody(
   value: object,
-): boolean {
-  if (!("entityType" in value)) return false;
-  if (!("hierarchy" in value)) return false;
-  if (!("traitType" in value)) return false;
+): value is CreateEntityTraitDefinitionRequestBody {
+  if (!("entityType" in value) || value["entityType"] === undefined)
+    return false;
+  if (!("hierarchy" in value) || value["hierarchy"] === undefined) return false;
+  if (!("traitType" in value) || value["traitType"] === undefined) return false;
   return true;
 }
 

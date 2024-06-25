@@ -51,9 +51,9 @@ export interface ListEntityKeyDefinitionsResponse {
  */
 export function instanceOfListEntityKeyDefinitionsResponse(
   value: object,
-): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+): value is ListEntityKeyDefinitionsResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

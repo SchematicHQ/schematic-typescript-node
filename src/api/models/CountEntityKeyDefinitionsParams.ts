@@ -24,7 +24,7 @@ export interface CountEntityKeyDefinitionsParams {
    * @type {string}
    * @memberof CountEntityKeyDefinitionsParams
    */
-  entityType?: string;
+  entityType?: CountEntityKeyDefinitionsParamsEntityTypeEnum;
   /**
    *
    * @type {Array<string>}
@@ -38,13 +38,13 @@ export interface CountEntityKeyDefinitionsParams {
    */
   key?: string;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof CountEntityKeyDefinitionsParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof CountEntityKeyDefinitionsParams
    */
@@ -52,11 +52,21 @@ export interface CountEntityKeyDefinitionsParams {
 }
 
 /**
+ * @export
+ */
+export const CountEntityKeyDefinitionsParamsEntityTypeEnum = {
+  Company: "company",
+  User: "user",
+} as const;
+export type CountEntityKeyDefinitionsParamsEntityTypeEnum =
+  (typeof CountEntityKeyDefinitionsParamsEntityTypeEnum)[keyof typeof CountEntityKeyDefinitionsParamsEntityTypeEnum];
+
+/**
  * Check if a given object implements the CountEntityKeyDefinitionsParams interface.
  */
 export function instanceOfCountEntityKeyDefinitionsParams(
   value: object,
-): boolean {
+): value is CountEntityKeyDefinitionsParams {
   return true;
 }
 

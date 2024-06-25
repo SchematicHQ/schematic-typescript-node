@@ -37,8 +37,10 @@ export interface UpdateFlagRulesRequestBody {
 /**
  * Check if a given object implements the UpdateFlagRulesRequestBody interface.
  */
-export function instanceOfUpdateFlagRulesRequestBody(value: object): boolean {
-  if (!("rules" in value)) return false;
+export function instanceOfUpdateFlagRulesRequestBody(
+  value: object,
+): value is UpdateFlagRulesRequestBody {
+  if (!("rules" in value) || value["rules"] === undefined) return false;
   return true;
 }
 

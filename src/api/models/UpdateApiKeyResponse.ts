@@ -43,9 +43,11 @@ export interface UpdateApiKeyResponse {
 /**
  * Check if a given object implements the UpdateApiKeyResponse interface.
  */
-export function instanceOfUpdateApiKeyResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfUpdateApiKeyResponse(
+  value: object,
+): value is UpdateApiKeyResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

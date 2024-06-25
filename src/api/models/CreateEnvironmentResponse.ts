@@ -43,9 +43,11 @@ export interface CreateEnvironmentResponse {
 /**
  * Check if a given object implements the CreateEnvironmentResponse interface.
  */
-export function instanceOfCreateEnvironmentResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfCreateEnvironmentResponse(
+  value: object,
+): value is CreateEnvironmentResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

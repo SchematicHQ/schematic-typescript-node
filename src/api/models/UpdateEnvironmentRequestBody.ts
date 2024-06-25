@@ -47,7 +47,9 @@ export type UpdateEnvironmentRequestBodyEnvironmentTypeEnum =
 /**
  * Check if a given object implements the UpdateEnvironmentRequestBody interface.
  */
-export function instanceOfUpdateEnvironmentRequestBody(value: object): boolean {
+export function instanceOfUpdateEnvironmentRequestBody(
+  value: object,
+): value is UpdateEnvironmentRequestBody {
   return true;
 }
 

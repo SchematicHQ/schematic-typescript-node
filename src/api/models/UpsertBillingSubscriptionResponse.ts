@@ -45,9 +45,9 @@ export interface UpsertBillingSubscriptionResponse {
  */
 export function instanceOfUpsertBillingSubscriptionResponse(
   value: object,
-): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+): value is UpsertBillingSubscriptionResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

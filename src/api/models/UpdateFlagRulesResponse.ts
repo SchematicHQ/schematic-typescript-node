@@ -43,9 +43,11 @@ export interface UpdateFlagRulesResponse {
 /**
  * Check if a given object implements the UpdateFlagRulesResponse interface.
  */
-export function instanceOfUpdateFlagRulesResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfUpdateFlagRulesResponse(
+  value: object,
+): value is UpdateFlagRulesResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

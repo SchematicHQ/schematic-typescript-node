@@ -32,7 +32,7 @@ export interface GetFeatureUsageByCompanyParams {
  */
 export function instanceOfGetFeatureUsageByCompanyParams(
   value: object,
-): boolean {
+): value is GetFeatureUsageByCompanyParams {
   return true;
 }
 

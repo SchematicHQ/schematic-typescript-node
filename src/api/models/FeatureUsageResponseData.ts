@@ -85,10 +85,14 @@ export interface FeatureUsageResponseData {
 /**
  * Check if a given object implements the FeatureUsageResponseData interface.
  */
-export function instanceOfFeatureUsageResponseData(value: object): boolean {
-  if (!("access" in value)) return false;
-  if (!("entitlementId" in value)) return false;
-  if (!("entitlementType" in value)) return false;
+export function instanceOfFeatureUsageResponseData(
+  value: object,
+): value is FeatureUsageResponseData {
+  if (!("access" in value) || value["access"] === undefined) return false;
+  if (!("entitlementId" in value) || value["entitlementId"] === undefined)
+    return false;
+  if (!("entitlementType" in value) || value["entitlementType"] === undefined)
+    return false;
   return true;
 }
 

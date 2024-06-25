@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { CompanyDetailResponseData } from "./CompanyDetailResponseData";
-import {
-  CompanyDetailResponseDataFromJSON,
-  CompanyDetailResponseDataFromJSONTyped,
-  CompanyDetailResponseDataToJSON,
-} from "./CompanyDetailResponseData";
 import type { FeatureDetailResponseData } from "./FeatureDetailResponseData";
 import {
   FeatureDetailResponseDataFromJSON,
   FeatureDetailResponseDataFromJSONTyped,
   FeatureDetailResponseDataToJSON,
 } from "./FeatureDetailResponseData";
+import type { CompanyDetailResponseData } from "./CompanyDetailResponseData";
+import {
+  CompanyDetailResponseDataFromJSON,
+  CompanyDetailResponseDataFromJSONTyped,
+  CompanyDetailResponseDataToJSON,
+} from "./CompanyDetailResponseData";
 import type { PlanResponseData } from "./PlanResponseData";
 import {
   PlanResponseDataFromJSON,
@@ -97,10 +97,14 @@ export interface FeatureCompanyResponseData {
 /**
  * Check if a given object implements the FeatureCompanyResponseData interface.
  */
-export function instanceOfFeatureCompanyResponseData(value: object): boolean {
-  if (!("access" in value)) return false;
-  if (!("entitlementId" in value)) return false;
-  if (!("entitlementType" in value)) return false;
+export function instanceOfFeatureCompanyResponseData(
+  value: object,
+): value is FeatureCompanyResponseData {
+  if (!("access" in value) || value["access"] === undefined) return false;
+  if (!("entitlementId" in value) || value["entitlementId"] === undefined)
+    return false;
+  if (!("entitlementType" in value) || value["entitlementType"] === undefined)
+    return false;
   return true;
 }
 

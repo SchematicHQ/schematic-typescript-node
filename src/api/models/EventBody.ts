@@ -45,10 +45,14 @@ export function EventBodyFromJSONTyped(
   if (json == null) {
     return json;
   }
-  return (
-    EventBodyIdentifyFromJSONTyped(json, true) ||
-    EventBodyTrackFromJSONTyped(json, true)
-  );
+  if (instanceOfEventBodyIdentify(json)) {
+    return EventBodyIdentifyFromJSONTyped(json, true);
+  }
+  if (instanceOfEventBodyTrack(json)) {
+    return EventBodyTrackFromJSONTyped(json, true);
+  }
+
+  throw new Error("Invalid EventBody");
 }
 
 export function EventBodyToJSON(value?: EventBody | null): any {

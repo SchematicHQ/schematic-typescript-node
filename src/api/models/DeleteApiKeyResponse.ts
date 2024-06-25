@@ -43,9 +43,11 @@ export interface DeleteApiKeyResponse {
 /**
  * Check if a given object implements the DeleteApiKeyResponse interface.
  */
-export function instanceOfDeleteApiKeyResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfDeleteApiKeyResponse(
+  value: object,
+): value is DeleteApiKeyResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

@@ -43,9 +43,11 @@ export interface GetFeatureResponse {
 /**
  * Check if a given object implements the GetFeatureResponse interface.
  */
-export function instanceOfGetFeatureResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfGetFeatureResponse(
+  value: object,
+): value is GetFeatureResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

@@ -59,8 +59,10 @@ export type CreateEventRequestBodyEventTypeEnum =
 /**
  * Check if a given object implements the CreateEventRequestBody interface.
  */
-export function instanceOfCreateEventRequestBody(value: object): boolean {
-  if (!("eventType" in value)) return false;
+export function instanceOfCreateEventRequestBody(
+  value: object,
+): value is CreateEventRequestBody {
+  if (!("eventType" in value) || value["eventType"] === undefined) return false;
   return true;
 }
 

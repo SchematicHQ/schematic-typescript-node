@@ -60,13 +60,17 @@ export interface EntityTraitResponseData {
 /**
  * Check if a given object implements the EntityTraitResponseData interface.
  */
-export function instanceOfEntityTraitResponseData(value: object): boolean {
-  if (!("createdAt" in value)) return false;
-  if (!("definitionId" in value)) return false;
-  if (!("environmentId" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("updatedAt" in value)) return false;
-  if (!("value" in value)) return false;
+export function instanceOfEntityTraitResponseData(
+  value: object,
+): value is EntityTraitResponseData {
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("definitionId" in value) || value["definitionId"] === undefined)
+    return false;
+  if (!("environmentId" in value) || value["environmentId"] === undefined)
+    return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("value" in value) || value["value"] === undefined) return false;
   return true;
 }
 

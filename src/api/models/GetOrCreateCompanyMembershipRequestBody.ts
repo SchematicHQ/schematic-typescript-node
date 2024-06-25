@@ -38,9 +38,9 @@ export interface GetOrCreateCompanyMembershipRequestBody {
  */
 export function instanceOfGetOrCreateCompanyMembershipRequestBody(
   value: object,
-): boolean {
-  if (!("companyId" in value)) return false;
-  if (!("userId" in value)) return false;
+): value is GetOrCreateCompanyMembershipRequestBody {
+  if (!("companyId" in value) || value["companyId"] === undefined) return false;
+  if (!("userId" in value) || value["userId"] === undefined) return false;
   return true;
 }
 

@@ -20,13 +20,13 @@ import { mapValues } from "../runtime";
  */
 export interface CountWebhooksParams {
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof CountWebhooksParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof CountWebhooksParams
    */
@@ -42,7 +42,9 @@ export interface CountWebhooksParams {
 /**
  * Check if a given object implements the CountWebhooksParams interface.
  */
-export function instanceOfCountWebhooksParams(value: object): boolean {
+export function instanceOfCountWebhooksParams(
+  value: object,
+): value is CountWebhooksParams {
   return true;
 }
 

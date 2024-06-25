@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from "../runtime";
-import type { CompanyMembershipDetailResponseData } from "./CompanyMembershipDetailResponseData";
-import {
-  CompanyMembershipDetailResponseDataFromJSON,
-  CompanyMembershipDetailResponseDataFromJSONTyped,
-  CompanyMembershipDetailResponseDataToJSON,
-} from "./CompanyMembershipDetailResponseData";
 import type { EntityKeyDetailResponseData } from "./EntityKeyDetailResponseData";
 import {
   EntityKeyDetailResponseDataFromJSON,
@@ -31,6 +25,12 @@ import {
   EntityTraitDetailResponseDataFromJSONTyped,
   EntityTraitDetailResponseDataToJSON,
 } from "./EntityTraitDetailResponseData";
+import type { CompanyMembershipDetailResponseData } from "./CompanyMembershipDetailResponseData";
+import {
+  CompanyMembershipDetailResponseDataFromJSON,
+  CompanyMembershipDetailResponseDataFromJSONTyped,
+  CompanyMembershipDetailResponseDataToJSON,
+} from "./CompanyMembershipDetailResponseData";
 
 /**
  *
@@ -103,15 +103,23 @@ export interface UserDetailResponseData {
 /**
  * Check if a given object implements the UserDetailResponseData interface.
  */
-export function instanceOfUserDetailResponseData(value: object): boolean {
-  if (!("companyMemberships" in value)) return false;
-  if (!("createdAt" in value)) return false;
-  if (!("entityTraits" in value)) return false;
-  if (!("environmentId" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("keys" in value)) return false;
-  if (!("name" in value)) return false;
-  if (!("updatedAt" in value)) return false;
+export function instanceOfUserDetailResponseData(
+  value: object,
+): value is UserDetailResponseData {
+  if (
+    !("companyMemberships" in value) ||
+    value["companyMemberships"] === undefined
+  )
+    return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("entityTraits" in value) || value["entityTraits"] === undefined)
+    return false;
+  if (!("environmentId" in value) || value["environmentId"] === undefined)
+    return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("keys" in value) || value["keys"] === undefined) return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
   return true;
 }
 

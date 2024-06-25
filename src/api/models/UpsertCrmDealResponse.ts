@@ -43,9 +43,11 @@ export interface UpsertCrmDealResponse {
 /**
  * Check if a given object implements the UpsertCrmDealResponse interface.
  */
-export function instanceOfUpsertCrmDealResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfUpsertCrmDealResponse(
+  value: object,
+): value is UpsertCrmDealResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

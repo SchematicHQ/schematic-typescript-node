@@ -102,16 +102,20 @@ export interface CrmDealLineItem {
 /**
  * Check if a given object implements the CrmDealLineItem interface.
  */
-export function instanceOfCrmDealLineItem(value: object): boolean {
-  if (!("billingFrequency" in value)) return false;
-  if (!("createdAt" in value)) return false;
-  if (!("currency" in value)) return false;
-  if (!("description" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("name" in value)) return false;
-  if (!("price" in value)) return false;
-  if (!("quantity" in value)) return false;
-  if (!("updatedAt" in value)) return false;
+export function instanceOfCrmDealLineItem(
+  value: object,
+): value is CrmDealLineItem {
+  if (!("billingFrequency" in value) || value["billingFrequency"] === undefined)
+    return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("currency" in value) || value["currency"] === undefined) return false;
+  if (!("description" in value) || value["description"] === undefined)
+    return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
+  if (!("price" in value) || value["price"] === undefined) return false;
+  if (!("quantity" in value) || value["quantity"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
   return true;
 }
 

@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { CompanyDetailResponseData } from "./CompanyDetailResponseData";
-import {
-  CompanyDetailResponseDataFromJSON,
-  CompanyDetailResponseDataFromJSONTyped,
-  CompanyDetailResponseDataToJSON,
-} from "./CompanyDetailResponseData";
 import type { LookupCompanyParams } from "./LookupCompanyParams";
 import {
   LookupCompanyParamsFromJSON,
   LookupCompanyParamsFromJSONTyped,
   LookupCompanyParamsToJSON,
 } from "./LookupCompanyParams";
+import type { CompanyDetailResponseData } from "./CompanyDetailResponseData";
+import {
+  CompanyDetailResponseDataFromJSON,
+  CompanyDetailResponseDataFromJSONTyped,
+  CompanyDetailResponseDataToJSON,
+} from "./CompanyDetailResponseData";
 
 /**
  *
@@ -49,9 +49,11 @@ export interface LookupCompanyResponse {
 /**
  * Check if a given object implements the LookupCompanyResponse interface.
  */
-export function instanceOfLookupCompanyResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfLookupCompanyResponse(
+  value: object,
+): value is LookupCompanyResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

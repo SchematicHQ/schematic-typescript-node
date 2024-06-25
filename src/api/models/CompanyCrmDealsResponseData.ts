@@ -61,11 +61,14 @@ export interface CompanyCrmDealsResponseData {
 /**
  * Check if a given object implements the CompanyCrmDealsResponseData interface.
  */
-export function instanceOfCompanyCrmDealsResponseData(value: object): boolean {
-  if (!("dealArr" in value)) return false;
-  if (!("dealExternalId" in value)) return false;
-  if (!("dealMrr" in value)) return false;
-  if (!("lineItems" in value)) return false;
+export function instanceOfCompanyCrmDealsResponseData(
+  value: object,
+): value is CompanyCrmDealsResponseData {
+  if (!("dealArr" in value) || value["dealArr"] === undefined) return false;
+  if (!("dealExternalId" in value) || value["dealExternalId"] === undefined)
+    return false;
+  if (!("dealMrr" in value) || value["dealMrr"] === undefined) return false;
+  if (!("lineItems" in value) || value["lineItems"] === undefined) return false;
   return true;
 }
 

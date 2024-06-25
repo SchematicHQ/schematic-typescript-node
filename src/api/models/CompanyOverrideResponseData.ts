@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from "../runtime";
-import type { CompanyDetailResponseData } from "./CompanyDetailResponseData";
-import {
-  CompanyDetailResponseDataFromJSON,
-  CompanyDetailResponseDataFromJSONTyped,
-  CompanyDetailResponseDataToJSON,
-} from "./CompanyDetailResponseData";
 import type { EntityTraitDefinitionResponseData } from "./EntityTraitDefinitionResponseData";
 import {
   EntityTraitDefinitionResponseDataFromJSON,
@@ -31,6 +25,12 @@ import {
   FeatureResponseDataFromJSONTyped,
   FeatureResponseDataToJSON,
 } from "./FeatureResponseData";
+import type { CompanyDetailResponseData } from "./CompanyDetailResponseData";
+import {
+  CompanyDetailResponseDataFromJSON,
+  CompanyDetailResponseDataFromJSONTyped,
+  CompanyDetailResponseDataToJSON,
+} from "./CompanyDetailResponseData";
 
 /**
  * The updated resource
@@ -133,15 +133,18 @@ export interface CompanyOverrideResponseData {
 /**
  * Check if a given object implements the CompanyOverrideResponseData interface.
  */
-export function instanceOfCompanyOverrideResponseData(value: object): boolean {
-  if (!("companyId" in value)) return false;
-  if (!("createdAt" in value)) return false;
-  if (!("environmentId" in value)) return false;
-  if (!("featureId" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("ruleId" in value)) return false;
-  if (!("updatedAt" in value)) return false;
-  if (!("valueType" in value)) return false;
+export function instanceOfCompanyOverrideResponseData(
+  value: object,
+): value is CompanyOverrideResponseData {
+  if (!("companyId" in value) || value["companyId"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("environmentId" in value) || value["environmentId"] === undefined)
+    return false;
+  if (!("featureId" in value) || value["featureId"] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("ruleId" in value) || value["ruleId"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("valueType" in value) || value["valueType"] === undefined) return false;
   return true;
 }
 

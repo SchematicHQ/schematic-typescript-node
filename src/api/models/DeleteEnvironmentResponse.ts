@@ -43,9 +43,11 @@ export interface DeleteEnvironmentResponse {
 /**
  * Check if a given object implements the DeleteEnvironmentResponse interface.
  */
-export function instanceOfDeleteEnvironmentResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfDeleteEnvironmentResponse(
+  value: object,
+): value is DeleteEnvironmentResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { CreateOrUpdateConditionGroupRequestBody } from "./CreateOrUpdateConditionGroupRequestBody";
-import {
-  CreateOrUpdateConditionGroupRequestBodyFromJSON,
-  CreateOrUpdateConditionGroupRequestBodyFromJSONTyped,
-  CreateOrUpdateConditionGroupRequestBodyToJSON,
-} from "./CreateOrUpdateConditionGroupRequestBody";
 import type { CreateOrUpdateConditionRequestBody } from "./CreateOrUpdateConditionRequestBody";
 import {
   CreateOrUpdateConditionRequestBodyFromJSON,
   CreateOrUpdateConditionRequestBodyFromJSONTyped,
   CreateOrUpdateConditionRequestBodyToJSON,
 } from "./CreateOrUpdateConditionRequestBody";
+import type { CreateOrUpdateConditionGroupRequestBody } from "./CreateOrUpdateConditionGroupRequestBody";
+import {
+  CreateOrUpdateConditionGroupRequestBodyFromJSON,
+  CreateOrUpdateConditionGroupRequestBodyFromJSONTyped,
+  CreateOrUpdateConditionGroupRequestBodyToJSON,
+} from "./CreateOrUpdateConditionGroupRequestBody";
 
 /**
  *
@@ -67,9 +67,13 @@ export interface AudienceRequestBody {
 /**
  * Check if a given object implements the AudienceRequestBody interface.
  */
-export function instanceOfAudienceRequestBody(value: object): boolean {
-  if (!("conditionGroups" in value)) return false;
-  if (!("conditions" in value)) return false;
+export function instanceOfAudienceRequestBody(
+  value: object,
+): value is AudienceRequestBody {
+  if (!("conditionGroups" in value) || value["conditionGroups"] === undefined)
+    return false;
+  if (!("conditions" in value) || value["conditions"] === undefined)
+    return false;
   return true;
 }
 

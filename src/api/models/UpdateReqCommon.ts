@@ -77,8 +77,10 @@ export type UpdateReqCommonValueTypeEnum =
 /**
  * Check if a given object implements the UpdateReqCommon interface.
  */
-export function instanceOfUpdateReqCommon(value: object): boolean {
-  if (!("valueType" in value)) return false;
+export function instanceOfUpdateReqCommon(
+  value: object,
+): value is UpdateReqCommon {
+  if (!("valueType" in value) || value["valueType"] === undefined) return false;
   return true;
 }
 

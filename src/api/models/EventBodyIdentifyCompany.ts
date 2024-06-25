@@ -21,10 +21,10 @@ import { mapValues } from "../runtime";
 export interface EventBodyIdentifyCompany {
   /**
    * Key-value pairs to identify the company
-   * @type {object}
+   * @type {{ [key: string]: string; }}
    * @memberof EventBodyIdentifyCompany
    */
-  keys: object;
+  keys: { [key: string]: string };
   /**
    * The display name of the company; required only if it is a new company
    * @type {string}
@@ -32,7 +32,7 @@ export interface EventBodyIdentifyCompany {
    */
   name?: string;
   /**
-   * A map of company trait names to trait values
+   * A map of trait names to trait values
    * @type {object}
    * @memberof EventBodyIdentifyCompany
    */
@@ -42,8 +42,10 @@ export interface EventBodyIdentifyCompany {
 /**
  * Check if a given object implements the EventBodyIdentifyCompany interface.
  */
-export function instanceOfEventBodyIdentifyCompany(value: object): boolean {
-  if (!("keys" in value)) return false;
+export function instanceOfEventBodyIdentifyCompany(
+  value: object,
+): value is EventBodyIdentifyCompany {
+  if (!("keys" in value) || value["keys"] === undefined) return false;
   return true;
 }
 

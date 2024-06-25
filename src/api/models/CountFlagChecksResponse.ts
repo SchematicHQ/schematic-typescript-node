@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { CountFlagChecksParams } from "./CountFlagChecksParams";
-import {
-  CountFlagChecksParamsFromJSON,
-  CountFlagChecksParamsFromJSONTyped,
-  CountFlagChecksParamsToJSON,
-} from "./CountFlagChecksParams";
 import type { CountResponse } from "./CountResponse";
 import {
   CountResponseFromJSON,
   CountResponseFromJSONTyped,
   CountResponseToJSON,
 } from "./CountResponse";
+import type { CountFlagChecksParams } from "./CountFlagChecksParams";
+import {
+  CountFlagChecksParamsFromJSON,
+  CountFlagChecksParamsFromJSONTyped,
+  CountFlagChecksParamsToJSON,
+} from "./CountFlagChecksParams";
 
 /**
  *
@@ -49,9 +49,11 @@ export interface CountFlagChecksResponse {
 /**
  * Check if a given object implements the CountFlagChecksResponse interface.
  */
-export function instanceOfCountFlagChecksResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfCountFlagChecksResponse(
+  value: object,
+): value is CountFlagChecksResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

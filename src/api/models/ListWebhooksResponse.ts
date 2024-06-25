@@ -49,9 +49,11 @@ export interface ListWebhooksResponse {
 /**
  * Check if a given object implements the ListWebhooksResponse interface.
  */
-export function instanceOfListWebhooksResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfListWebhooksResponse(
+  value: object,
+): value is ListWebhooksResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

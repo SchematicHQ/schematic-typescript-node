@@ -49,9 +49,11 @@ export interface GetEventSummariesResponse {
 /**
  * Check if a given object implements the GetEventSummariesResponse interface.
  */
-export function instanceOfGetEventSummariesResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfGetEventSummariesResponse(
+  value: object,
+): value is GetEventSummariesResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

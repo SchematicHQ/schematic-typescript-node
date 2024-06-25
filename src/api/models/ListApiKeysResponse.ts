@@ -49,9 +49,11 @@ export interface ListApiKeysResponse {
 /**
  * Check if a given object implements the ListApiKeysResponse interface.
  */
-export function instanceOfListApiKeysResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfListApiKeysResponse(
+  value: object,
+): value is ListApiKeysResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

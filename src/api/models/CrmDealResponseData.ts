@@ -96,15 +96,19 @@ export interface CrmDealResponseData {
 /**
  * Check if a given object implements the CrmDealResponseData interface.
  */
-export function instanceOfCrmDealResponseData(value: object): boolean {
-  if (!("accountId" in value)) return false;
-  if (!("arr" in value)) return false;
-  if (!("createdAt" in value)) return false;
-  if (!("dealExternalId" in value)) return false;
-  if (!("dealId" in value)) return false;
-  if (!("environmentId" in value)) return false;
-  if (!("mrr" in value)) return false;
-  if (!("updatedAt" in value)) return false;
+export function instanceOfCrmDealResponseData(
+  value: object,
+): value is CrmDealResponseData {
+  if (!("accountId" in value) || value["accountId"] === undefined) return false;
+  if (!("arr" in value) || value["arr"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("dealExternalId" in value) || value["dealExternalId"] === undefined)
+    return false;
+  if (!("dealId" in value) || value["dealId"] === undefined) return false;
+  if (!("environmentId" in value) || value["environmentId"] === undefined)
+    return false;
+  if (!("mrr" in value) || value["mrr"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
   return true;
 }
 

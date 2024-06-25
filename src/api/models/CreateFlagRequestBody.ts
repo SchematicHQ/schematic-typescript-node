@@ -60,12 +60,16 @@ export interface CreateFlagRequestBody {
 /**
  * Check if a given object implements the CreateFlagRequestBody interface.
  */
-export function instanceOfCreateFlagRequestBody(value: object): boolean {
-  if (!("defaultValue" in value)) return false;
-  if (!("description" in value)) return false;
-  if (!("flagType" in value)) return false;
-  if (!("key" in value)) return false;
-  if (!("name" in value)) return false;
+export function instanceOfCreateFlagRequestBody(
+  value: object,
+): value is CreateFlagRequestBody {
+  if (!("defaultValue" in value) || value["defaultValue"] === undefined)
+    return false;
+  if (!("description" in value) || value["description"] === undefined)
+    return false;
+  if (!("flagType" in value) || value["flagType"] === undefined) return false;
+  if (!("key" in value) || value["key"] === undefined) return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
   return true;
 }
 

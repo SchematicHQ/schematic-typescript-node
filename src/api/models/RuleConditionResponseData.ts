@@ -132,17 +132,24 @@ export interface RuleConditionResponseData {
 /**
  * Check if a given object implements the RuleConditionResponseData interface.
  */
-export function instanceOfRuleConditionResponseData(value: object): boolean {
-  if (!("conditionType" in value)) return false;
-  if (!("createdAt" in value)) return false;
-  if (!("environmentId" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("metricValue" in value)) return false;
-  if (!("operator" in value)) return false;
-  if (!("resourceIds" in value)) return false;
-  if (!("ruleId" in value)) return false;
-  if (!("traitValue" in value)) return false;
-  if (!("updatedAt" in value)) return false;
+export function instanceOfRuleConditionResponseData(
+  value: object,
+): value is RuleConditionResponseData {
+  if (!("conditionType" in value) || value["conditionType"] === undefined)
+    return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("environmentId" in value) || value["environmentId"] === undefined)
+    return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("metricValue" in value) || value["metricValue"] === undefined)
+    return false;
+  if (!("operator" in value) || value["operator"] === undefined) return false;
+  if (!("resourceIds" in value) || value["resourceIds"] === undefined)
+    return false;
+  if (!("ruleId" in value) || value["ruleId"] === undefined) return false;
+  if (!("traitValue" in value) || value["traitValue"] === undefined)
+    return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
   return true;
 }
 

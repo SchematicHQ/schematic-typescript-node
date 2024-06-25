@@ -50,13 +50,13 @@ export interface ListCompanyOverridesParams {
    */
   ids?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListCompanyOverridesParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListCompanyOverridesParams
    */
@@ -66,7 +66,9 @@ export interface ListCompanyOverridesParams {
 /**
  * Check if a given object implements the ListCompanyOverridesParams interface.
  */
-export function instanceOfListCompanyOverridesParams(value: object): boolean {
+export function instanceOfListCompanyOverridesParams(
+  value: object,
+): value is ListCompanyOverridesParams {
   return true;
 }
 

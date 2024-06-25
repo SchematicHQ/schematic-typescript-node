@@ -83,9 +83,11 @@ export type CreateReqCommonValueTypeEnum =
 /**
  * Check if a given object implements the CreateReqCommon interface.
  */
-export function instanceOfCreateReqCommon(value: object): boolean {
-  if (!("featureId" in value)) return false;
-  if (!("valueType" in value)) return false;
+export function instanceOfCreateReqCommon(
+  value: object,
+): value is CreateReqCommon {
+  if (!("featureId" in value) || value["featureId"] === undefined) return false;
+  if (!("valueType" in value) || value["valueType"] === undefined) return false;
   return true;
 }
 

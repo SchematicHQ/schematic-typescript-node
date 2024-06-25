@@ -26,13 +26,13 @@ export interface CountApiRequestsParams {
    */
   environmentId?: string;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof CountApiRequestsParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof CountApiRequestsParams
    */
@@ -54,7 +54,9 @@ export interface CountApiRequestsParams {
 /**
  * Check if a given object implements the CountApiRequestsParams interface.
  */
-export function instanceOfCountApiRequestsParams(value: object): boolean {
+export function instanceOfCountApiRequestsParams(
+  value: object,
+): value is CountApiRequestsParams {
   return true;
 }
 

@@ -57,10 +57,11 @@
     "build:types": "npx tsc && npx api-extractor run",
     "clean": "rm -rf dist",
     "format": "prettier --write \"src/**/*.ts\"",
-    "generate": "openapi-generator-cli generate -c config.yaml && npx prettier --write src/* && yarn && yarn clean && yarn build",
+    "generate": "yarn openapi:generate && yarn format && yarn install && yarn clean && yarn build",
     "lint": "npx eslint src",
+    "openapi:generate": "npx openapi-generator-cli generate -c config.yaml",
     "release": "npx standard-version && git push --follow-tags && yarn publish",
     "test": "jest"
   },
-  "version": "1.0.8"
+  "version": "1.0.9"
 }

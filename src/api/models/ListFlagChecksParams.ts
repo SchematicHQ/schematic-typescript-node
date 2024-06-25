@@ -38,13 +38,13 @@ export interface ListFlagChecksParams {
    */
   id?: string;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListFlagChecksParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListFlagChecksParams
    */
@@ -54,7 +54,9 @@ export interface ListFlagChecksParams {
 /**
  * Check if a given object implements the ListFlagChecksParams interface.
  */
-export function instanceOfListFlagChecksParams(value: object): boolean {
+export function instanceOfListFlagChecksParams(
+  value: object,
+): value is ListFlagChecksParams {
   return true;
 }
 

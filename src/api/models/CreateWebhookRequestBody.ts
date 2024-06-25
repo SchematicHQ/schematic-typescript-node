@@ -30,7 +30,7 @@ export interface CreateWebhookRequestBody {
    * @type {Array<string>}
    * @memberof CreateWebhookRequestBody
    */
-  requestTypes: Array<string>;
+  requestTypes: Array<CreateWebhookRequestBodyRequestTypesEnum>;
   /**
    *
    * @type {string}
@@ -40,12 +40,46 @@ export interface CreateWebhookRequestBody {
 }
 
 /**
+ * @export
+ */
+export const CreateWebhookRequestBodyRequestTypesEnum = {
+  CompanyUpdated: "company.updated",
+  UserUpdated: "user.updated",
+  PlanUpdated: "plan.updated",
+  PlanEntitlementUpdated: "plan.entitlement.updated",
+  CompanyOverrideUpdated: "company.override.updated",
+  FeatureUpdated: "feature.updated",
+  FlagUpdated: "flag.updated",
+  FlagRulesUpdated: "flag_rules.updated",
+  CompanyCreated: "company.created",
+  UserCreated: "user.created",
+  PlanCreated: "plan.created",
+  PlanEntitlementCreated: "plan.entitlement.created",
+  CompanyOverrideCreated: "company.override.created",
+  FeatureCreated: "feature.created",
+  FlagCreated: "flag.created",
+  CompanyDeleted: "company.deleted",
+  UserDeleted: "user.deleted",
+  PlanDeleted: "plan.deleted",
+  PlanEntitlementDeleted: "plan.entitlement.deleted",
+  CompanyOverrideDeleted: "company.override.deleted",
+  FeatureDeleted: "feature.deleted",
+  FlagDeleted: "flag.deleted",
+  TestSend: "test.send",
+} as const;
+export type CreateWebhookRequestBodyRequestTypesEnum =
+  (typeof CreateWebhookRequestBodyRequestTypesEnum)[keyof typeof CreateWebhookRequestBodyRequestTypesEnum];
+
+/**
  * Check if a given object implements the CreateWebhookRequestBody interface.
  */
-export function instanceOfCreateWebhookRequestBody(value: object): boolean {
-  if (!("name" in value)) return false;
-  if (!("requestTypes" in value)) return false;
-  if (!("url" in value)) return false;
+export function instanceOfCreateWebhookRequestBody(
+  value: object,
+): value is CreateWebhookRequestBody {
+  if (!("name" in value) || value["name"] === undefined) return false;
+  if (!("requestTypes" in value) || value["requestTypes"] === undefined)
+    return false;
+  if (!("url" in value) || value["url"] === undefined) return false;
   return true;
 }
 

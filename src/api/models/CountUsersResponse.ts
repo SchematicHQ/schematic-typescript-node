@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { CountResponse } from "./CountResponse";
-import {
-  CountResponseFromJSON,
-  CountResponseFromJSONTyped,
-  CountResponseToJSON,
-} from "./CountResponse";
 import type { CountUsersParams } from "./CountUsersParams";
 import {
   CountUsersParamsFromJSON,
   CountUsersParamsFromJSONTyped,
   CountUsersParamsToJSON,
 } from "./CountUsersParams";
+import type { CountResponse } from "./CountResponse";
+import {
+  CountResponseFromJSON,
+  CountResponseFromJSONTyped,
+  CountResponseToJSON,
+} from "./CountResponse";
 
 /**
  *
@@ -49,9 +49,11 @@ export interface CountUsersResponse {
 /**
  * Check if a given object implements the CountUsersResponse interface.
  */
-export function instanceOfCountUsersResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfCountUsersResponse(
+  value: object,
+): value is CountUsersResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

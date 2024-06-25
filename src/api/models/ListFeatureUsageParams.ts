@@ -27,10 +27,10 @@ export interface ListFeatureUsageParams {
   companyId?: string;
   /**
    *
-   * @type {object}
+   * @type {{ [key: string]: string; }}
    * @memberof ListFeatureUsageParams
    */
-  companyKeys?: object;
+  companyKeys?: { [key: string]: string };
   /**
    *
    * @type {Array<string>}
@@ -38,13 +38,13 @@ export interface ListFeatureUsageParams {
    */
   featureIds?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListFeatureUsageParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListFeatureUsageParams
    */
@@ -60,7 +60,9 @@ export interface ListFeatureUsageParams {
 /**
  * Check if a given object implements the ListFeatureUsageParams interface.
  */
-export function instanceOfListFeatureUsageParams(value: object): boolean {
+export function instanceOfListFeatureUsageParams(
+  value: object,
+): value is ListFeatureUsageParams {
   return true;
 }
 

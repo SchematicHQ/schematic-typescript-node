@@ -38,13 +38,13 @@ export interface ListPlanEntitlementsParams {
    */
   ids?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListPlanEntitlementsParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListPlanEntitlementsParams
    */
@@ -66,7 +66,9 @@ export interface ListPlanEntitlementsParams {
 /**
  * Check if a given object implements the ListPlanEntitlementsParams interface.
  */
-export function instanceOfListPlanEntitlementsParams(value: object): boolean {
+export function instanceOfListPlanEntitlementsParams(
+  value: object,
+): value is ListPlanEntitlementsParams {
   return true;
 }
 

@@ -91,10 +91,10 @@ export type CreateCompanyOverrideRequestBodyValueTypeEnum =
  */
 export function instanceOfCreateCompanyOverrideRequestBody(
   value: object,
-): boolean {
-  if (!("companyId" in value)) return false;
-  if (!("featureId" in value)) return false;
-  if (!("valueType" in value)) return false;
+): value is CreateCompanyOverrideRequestBody {
+  if (!("companyId" in value) || value["companyId"] === undefined) return false;
+  if (!("featureId" in value) || value["featureId"] === undefined) return false;
+  if (!("valueType" in value) || value["valueType"] === undefined) return false;
   return true;
 }
 

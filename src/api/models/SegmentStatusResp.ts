@@ -42,9 +42,12 @@ export interface SegmentStatusResp {
 /**
  * Check if a given object implements the SegmentStatusResp interface.
  */
-export function instanceOfSegmentStatusResp(value: object): boolean {
-  if (!("connected" in value)) return false;
-  if (!("environmentId" in value)) return false;
+export function instanceOfSegmentStatusResp(
+  value: object,
+): value is SegmentStatusResp {
+  if (!("connected" in value) || value["connected"] === undefined) return false;
+  if (!("environmentId" in value) || value["environmentId"] === undefined)
+    return false;
   return true;
 }
 

@@ -43,9 +43,11 @@ export interface CreateWebhookResponse {
 /**
  * Check if a given object implements the CreateWebhookResponse interface.
  */
-export function instanceOfCreateWebhookResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfCreateWebhookResponse(
+  value: object,
+): value is CreateWebhookResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

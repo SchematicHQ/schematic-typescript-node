@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { FlagResponseData } from "./FlagResponseData";
-import {
-  FlagResponseDataFromJSON,
-  FlagResponseDataFromJSONTyped,
-  FlagResponseDataToJSON,
-} from "./FlagResponseData";
 import type { RuleDetailResponseData } from "./RuleDetailResponseData";
 import {
   RuleDetailResponseDataFromJSON,
   RuleDetailResponseDataFromJSONTyped,
   RuleDetailResponseDataToJSON,
 } from "./RuleDetailResponseData";
+import type { FlagResponseData } from "./FlagResponseData";
+import {
+  FlagResponseDataFromJSON,
+  FlagResponseDataFromJSONTyped,
+  FlagResponseDataToJSON,
+} from "./FlagResponseData";
 
 /**
  * The updated resource
@@ -49,8 +49,10 @@ export interface RulesDetailResponseData {
 /**
  * Check if a given object implements the RulesDetailResponseData interface.
  */
-export function instanceOfRulesDetailResponseData(value: object): boolean {
-  if (!("rules" in value)) return false;
+export function instanceOfRulesDetailResponseData(
+  value: object,
+): value is RulesDetailResponseData {
+  if (!("rules" in value) || value["rules"] === undefined) return false;
   return true;
 }
 

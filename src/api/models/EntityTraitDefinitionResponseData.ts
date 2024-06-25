@@ -68,14 +68,16 @@ export interface EntityTraitDefinitionResponseData {
  */
 export function instanceOfEntityTraitDefinitionResponseData(
   value: object,
-): boolean {
-  if (!("createdAt" in value)) return false;
-  if (!("displayName" in value)) return false;
-  if (!("entityType" in value)) return false;
-  if (!("hierarchy" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("traitType" in value)) return false;
-  if (!("updatedAt" in value)) return false;
+): value is EntityTraitDefinitionResponseData {
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("displayName" in value) || value["displayName"] === undefined)
+    return false;
+  if (!("entityType" in value) || value["entityType"] === undefined)
+    return false;
+  if (!("hierarchy" in value) || value["hierarchy"] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("traitType" in value) || value["traitType"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
   return true;
 }
 

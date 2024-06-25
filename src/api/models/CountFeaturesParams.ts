@@ -26,13 +26,13 @@ export interface CountFeaturesParams {
    */
   ids?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof CountFeaturesParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof CountFeaturesParams
    */
@@ -44,13 +44,13 @@ export interface CountFeaturesParams {
    */
   q?: string;
   /**
-   *
+   * Filter out features that already have a company override for the specified company ID
    * @type {string}
    * @memberof CountFeaturesParams
    */
   withoutCompanyOverrideFor?: string;
   /**
-   *
+   * Filter out features that already have a plan entitlement for the specified plan ID
    * @type {string}
    * @memberof CountFeaturesParams
    */
@@ -60,7 +60,9 @@ export interface CountFeaturesParams {
 /**
  * Check if a given object implements the CountFeaturesParams interface.
  */
-export function instanceOfCountFeaturesParams(value: object): boolean {
+export function instanceOfCountFeaturesParams(
+  value: object,
+): value is CountFeaturesParams {
   return true;
 }
 

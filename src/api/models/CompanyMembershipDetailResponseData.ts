@@ -69,12 +69,12 @@ export interface CompanyMembershipDetailResponseData {
  */
 export function instanceOfCompanyMembershipDetailResponseData(
   value: object,
-): boolean {
-  if (!("companyId" in value)) return false;
-  if (!("createdAt" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("updatedAt" in value)) return false;
-  if (!("userId" in value)) return false;
+): value is CompanyMembershipDetailResponseData {
+  if (!("companyId" in value) || value["companyId"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("userId" in value) || value["userId"] === undefined) return false;
   return true;
 }
 

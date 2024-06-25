@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { FeatureUsageResponseData } from "./FeatureUsageResponseData";
-import {
-  FeatureUsageResponseDataFromJSON,
-  FeatureUsageResponseDataFromJSONTyped,
-  FeatureUsageResponseDataToJSON,
-} from "./FeatureUsageResponseData";
 import type { ListFeatureUsageParams } from "./ListFeatureUsageParams";
 import {
   ListFeatureUsageParamsFromJSON,
   ListFeatureUsageParamsFromJSONTyped,
   ListFeatureUsageParamsToJSON,
 } from "./ListFeatureUsageParams";
+import type { FeatureUsageResponseData } from "./FeatureUsageResponseData";
+import {
+  FeatureUsageResponseDataFromJSON,
+  FeatureUsageResponseDataFromJSONTyped,
+  FeatureUsageResponseDataToJSON,
+} from "./FeatureUsageResponseData";
 
 /**
  *
@@ -49,9 +49,11 @@ export interface ListFeatureUsageResponse {
 /**
  * Check if a given object implements the ListFeatureUsageResponse interface.
  */
-export function instanceOfListFeatureUsageResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfListFeatureUsageResponse(
+  value: object,
+): value is ListFeatureUsageResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

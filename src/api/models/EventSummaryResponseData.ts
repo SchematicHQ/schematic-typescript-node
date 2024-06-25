@@ -60,12 +60,18 @@ export interface EventSummaryResponseData {
 /**
  * Check if a given object implements the EventSummaryResponseData interface.
  */
-export function instanceOfEventSummaryResponseData(value: object): boolean {
-  if (!("companyCount" in value)) return false;
-  if (!("environmentId" in value)) return false;
-  if (!("eventCount" in value)) return false;
-  if (!("eventSubtype" in value)) return false;
-  if (!("userCount" in value)) return false;
+export function instanceOfEventSummaryResponseData(
+  value: object,
+): value is EventSummaryResponseData {
+  if (!("companyCount" in value) || value["companyCount"] === undefined)
+    return false;
+  if (!("environmentId" in value) || value["environmentId"] === undefined)
+    return false;
+  if (!("eventCount" in value) || value["eventCount"] === undefined)
+    return false;
+  if (!("eventSubtype" in value) || value["eventSubtype"] === undefined)
+    return false;
+  if (!("userCount" in value) || value["userCount"] === undefined) return false;
   return true;
 }
 

@@ -72,12 +72,22 @@ export interface CreateCrmLineItemRequestBody {
 /**
  * Check if a given object implements the CreateCrmLineItemRequestBody interface.
  */
-export function instanceOfCreateCrmLineItemRequestBody(value: object): boolean {
-  if (!("amount" in value)) return false;
-  if (!("interval" in value)) return false;
-  if (!("lineItemExternalId" in value)) return false;
-  if (!("productExternalId" in value)) return false;
-  if (!("quantity" in value)) return false;
+export function instanceOfCreateCrmLineItemRequestBody(
+  value: object,
+): value is CreateCrmLineItemRequestBody {
+  if (!("amount" in value) || value["amount"] === undefined) return false;
+  if (!("interval" in value) || value["interval"] === undefined) return false;
+  if (
+    !("lineItemExternalId" in value) ||
+    value["lineItemExternalId"] === undefined
+  )
+    return false;
+  if (
+    !("productExternalId" in value) ||
+    value["productExternalId"] === undefined
+  )
+    return false;
+  if (!("quantity" in value) || value["quantity"] === undefined) return false;
   return true;
 }
 

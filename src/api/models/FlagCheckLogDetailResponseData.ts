@@ -13,36 +13,36 @@
  */
 
 import { mapValues } from "../runtime";
-import type { CompanyResponseData } from "./CompanyResponseData";
-import {
-  CompanyResponseDataFromJSON,
-  CompanyResponseDataFromJSONTyped,
-  CompanyResponseDataToJSON,
-} from "./CompanyResponseData";
-import type { EnvironmentResponseData } from "./EnvironmentResponseData";
-import {
-  EnvironmentResponseDataFromJSON,
-  EnvironmentResponseDataFromJSONTyped,
-  EnvironmentResponseDataToJSON,
-} from "./EnvironmentResponseData";
-import type { FlagResponseData } from "./FlagResponseData";
-import {
-  FlagResponseDataFromJSON,
-  FlagResponseDataFromJSONTyped,
-  FlagResponseDataToJSON,
-} from "./FlagResponseData";
-import type { RuleResponseData } from "./RuleResponseData";
-import {
-  RuleResponseDataFromJSON,
-  RuleResponseDataFromJSONTyped,
-  RuleResponseDataToJSON,
-} from "./RuleResponseData";
 import type { UserResponseData } from "./UserResponseData";
 import {
   UserResponseDataFromJSON,
   UserResponseDataFromJSONTyped,
   UserResponseDataToJSON,
 } from "./UserResponseData";
+import type { FlagResponseData } from "./FlagResponseData";
+import {
+  FlagResponseDataFromJSON,
+  FlagResponseDataFromJSONTyped,
+  FlagResponseDataToJSON,
+} from "./FlagResponseData";
+import type { EnvironmentResponseData } from "./EnvironmentResponseData";
+import {
+  EnvironmentResponseDataFromJSON,
+  EnvironmentResponseDataFromJSONTyped,
+  EnvironmentResponseDataToJSON,
+} from "./EnvironmentResponseData";
+import type { RuleResponseData } from "./RuleResponseData";
+import {
+  RuleResponseDataFromJSON,
+  RuleResponseDataFromJSONTyped,
+  RuleResponseDataToJSON,
+} from "./RuleResponseData";
+import type { CompanyResponseData } from "./CompanyResponseData";
+import {
+  CompanyResponseDataFromJSON,
+  CompanyResponseDataFromJSONTyped,
+  CompanyResponseDataToJSON,
+} from "./CompanyResponseData";
 
 /**
  *
@@ -124,16 +124,16 @@ export interface FlagCheckLogDetailResponseData {
   reason: string;
   /**
    *
-   * @type {object}
+   * @type {{ [key: string]: string; }}
    * @memberof FlagCheckLogDetailResponseData
    */
-  reqCompany?: object;
+  reqCompany?: { [key: string]: string };
   /**
    *
-   * @type {object}
+   * @type {{ [key: string]: string; }}
    * @memberof FlagCheckLogDetailResponseData
    */
-  reqUser?: object;
+  reqUser?: { [key: string]: string };
   /**
    *
    * @type {RuleResponseData}
@@ -177,15 +177,17 @@ export interface FlagCheckLogDetailResponseData {
  */
 export function instanceOfFlagCheckLogDetailResponseData(
   value: object,
-): boolean {
-  if (!("checkStatus" in value)) return false;
-  if (!("createdAt" in value)) return false;
-  if (!("environmentId" in value)) return false;
-  if (!("flagKey" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("reason" in value)) return false;
-  if (!("updatedAt" in value)) return false;
-  if (!("value" in value)) return false;
+): value is FlagCheckLogDetailResponseData {
+  if (!("checkStatus" in value) || value["checkStatus"] === undefined)
+    return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("environmentId" in value) || value["environmentId"] === undefined)
+    return false;
+  if (!("flagKey" in value) || value["flagKey"] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("reason" in value) || value["reason"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("value" in value) || value["value"] === undefined) return false;
   return true;
 }
 

@@ -26,13 +26,13 @@ export interface ListFeaturesParams {
    */
   ids?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListFeaturesParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListFeaturesParams
    */
@@ -44,13 +44,13 @@ export interface ListFeaturesParams {
    */
   q?: string;
   /**
-   *
+   * Filter out features that already have a company override for the specified company ID
    * @type {string}
    * @memberof ListFeaturesParams
    */
   withoutCompanyOverrideFor?: string;
   /**
-   *
+   * Filter out features that already have a plan entitlement for the specified plan ID
    * @type {string}
    * @memberof ListFeaturesParams
    */
@@ -60,7 +60,9 @@ export interface ListFeaturesParams {
 /**
  * Check if a given object implements the ListFeaturesParams interface.
  */
-export function instanceOfListFeaturesParams(value: object): boolean {
+export function instanceOfListFeaturesParams(
+  value: object,
+): value is ListFeaturesParams {
   return true;
 }
 

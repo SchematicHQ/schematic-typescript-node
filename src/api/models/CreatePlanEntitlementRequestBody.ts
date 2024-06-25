@@ -91,10 +91,10 @@ export type CreatePlanEntitlementRequestBodyValueTypeEnum =
  */
 export function instanceOfCreatePlanEntitlementRequestBody(
   value: object,
-): boolean {
-  if (!("featureId" in value)) return false;
-  if (!("planId" in value)) return false;
-  if (!("valueType" in value)) return false;
+): value is CreatePlanEntitlementRequestBody {
+  if (!("featureId" in value) || value["featureId"] === undefined) return false;
+  if (!("planId" in value) || value["planId"] === undefined) return false;
+  if (!("valueType" in value) || value["valueType"] === undefined) return false;
   return true;
 }
 

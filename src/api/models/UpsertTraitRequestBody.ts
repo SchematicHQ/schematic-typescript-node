@@ -27,10 +27,10 @@ export interface UpsertTraitRequestBody {
   incr?: number;
   /**
    * Key/value pairs too identify a company or user
-   * @type {object}
+   * @type {{ [key: string]: string; }}
    * @memberof UpsertTraitRequestBody
    */
-  keys: object;
+  keys: { [key: string]: string };
   /**
    * Value to set the trait to
    * @type {string}
@@ -54,9 +54,11 @@ export interface UpsertTraitRequestBody {
 /**
  * Check if a given object implements the UpsertTraitRequestBody interface.
  */
-export function instanceOfUpsertTraitRequestBody(value: object): boolean {
-  if (!("keys" in value)) return false;
-  if (!("trait" in value)) return false;
+export function instanceOfUpsertTraitRequestBody(
+  value: object,
+): value is UpsertTraitRequestBody {
+  if (!("keys" in value) || value["keys"] === undefined) return false;
+  if (!("trait" in value) || value["trait"] === undefined) return false;
   return true;
 }
 

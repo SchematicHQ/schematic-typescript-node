@@ -21,10 +21,10 @@ import { mapValues } from "../runtime";
 export interface UpsertUserRequestBody {
   /**
    * Optionally specify company using key/value pairs
-   * @type {object}
+   * @type {{ [key: string]: string; }}
    * @memberof UpsertUserRequestBody
    */
-  company: object;
+  company: { [key: string]: string };
   /**
    * Optionally specify company using Schematic company ID
    * @type {string}
@@ -33,10 +33,10 @@ export interface UpsertUserRequestBody {
   companyId?: string;
   /**
    *
-   * @type {object}
+   * @type {{ [key: string]: string; }}
    * @memberof UpsertUserRequestBody
    */
-  keys: object;
+  keys: { [key: string]: string };
   /**
    *
    * @type {Date}
@@ -66,9 +66,11 @@ export interface UpsertUserRequestBody {
 /**
  * Check if a given object implements the UpsertUserRequestBody interface.
  */
-export function instanceOfUpsertUserRequestBody(value: object): boolean {
-  if (!("company" in value)) return false;
-  if (!("keys" in value)) return false;
+export function instanceOfUpsertUserRequestBody(
+  value: object,
+): value is UpsertUserRequestBody {
+  if (!("company" in value) || value["company"] === undefined) return false;
+  if (!("keys" in value) || value["keys"] === undefined) return false;
   return true;
 }
 

@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { CreateOrUpdateConditionGroupRequestBody } from "./CreateOrUpdateConditionGroupRequestBody";
-import {
-  CreateOrUpdateConditionGroupRequestBodyFromJSON,
-  CreateOrUpdateConditionGroupRequestBodyFromJSONTyped,
-  CreateOrUpdateConditionGroupRequestBodyToJSON,
-} from "./CreateOrUpdateConditionGroupRequestBody";
 import type { CreateOrUpdateConditionRequestBody } from "./CreateOrUpdateConditionRequestBody";
 import {
   CreateOrUpdateConditionRequestBodyFromJSON,
   CreateOrUpdateConditionRequestBodyFromJSONTyped,
   CreateOrUpdateConditionRequestBodyToJSON,
 } from "./CreateOrUpdateConditionRequestBody";
+import type { CreateOrUpdateConditionGroupRequestBody } from "./CreateOrUpdateConditionGroupRequestBody";
+import {
+  CreateOrUpdateConditionGroupRequestBodyFromJSON,
+  CreateOrUpdateConditionGroupRequestBodyFromJSONTyped,
+  CreateOrUpdateConditionGroupRequestBodyToJSON,
+} from "./CreateOrUpdateConditionGroupRequestBody";
 
 /**
  *
@@ -95,12 +95,14 @@ export type CreateOrUpdateRuleRequestBodyRuleTypeEnum =
  */
 export function instanceOfCreateOrUpdateRuleRequestBody(
   value: object,
-): boolean {
-  if (!("conditionGroups" in value)) return false;
-  if (!("conditions" in value)) return false;
-  if (!("name" in value)) return false;
-  if (!("priority" in value)) return false;
-  if (!("value" in value)) return false;
+): value is CreateOrUpdateRuleRequestBody {
+  if (!("conditionGroups" in value) || value["conditionGroups"] === undefined)
+    return false;
+  if (!("conditions" in value) || value["conditions"] === undefined)
+    return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
+  if (!("priority" in value) || value["priority"] === undefined) return false;
+  if (!("value" in value) || value["value"] === undefined) return false;
   return true;
 }
 

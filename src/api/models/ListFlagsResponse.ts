@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { FlagDetailResponseData } from "./FlagDetailResponseData";
-import {
-  FlagDetailResponseDataFromJSON,
-  FlagDetailResponseDataFromJSONTyped,
-  FlagDetailResponseDataToJSON,
-} from "./FlagDetailResponseData";
 import type { ListFlagsParams } from "./ListFlagsParams";
 import {
   ListFlagsParamsFromJSON,
   ListFlagsParamsFromJSONTyped,
   ListFlagsParamsToJSON,
 } from "./ListFlagsParams";
+import type { FlagDetailResponseData } from "./FlagDetailResponseData";
+import {
+  FlagDetailResponseDataFromJSON,
+  FlagDetailResponseDataFromJSONTyped,
+  FlagDetailResponseDataToJSON,
+} from "./FlagDetailResponseData";
 
 /**
  *
@@ -49,9 +49,11 @@ export interface ListFlagsResponse {
 /**
  * Check if a given object implements the ListFlagsResponse interface.
  */
-export function instanceOfListFlagsResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfListFlagsResponse(
+  value: object,
+): value is ListFlagsResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

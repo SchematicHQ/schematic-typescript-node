@@ -133,15 +133,18 @@ export interface PlanEntitlementResponseData {
 /**
  * Check if a given object implements the PlanEntitlementResponseData interface.
  */
-export function instanceOfPlanEntitlementResponseData(value: object): boolean {
-  if (!("createdAt" in value)) return false;
-  if (!("environmentId" in value)) return false;
-  if (!("featureId" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("planId" in value)) return false;
-  if (!("ruleId" in value)) return false;
-  if (!("updatedAt" in value)) return false;
-  if (!("valueType" in value)) return false;
+export function instanceOfPlanEntitlementResponseData(
+  value: object,
+): value is PlanEntitlementResponseData {
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("environmentId" in value) || value["environmentId"] === undefined)
+    return false;
+  if (!("featureId" in value) || value["featureId"] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("planId" in value) || value["planId"] === undefined) return false;
+  if (!("ruleId" in value) || value["ruleId"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("valueType" in value) || value["valueType"] === undefined) return false;
   return true;
 }
 

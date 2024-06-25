@@ -26,13 +26,13 @@ export interface GetEntityTraitValuesParams {
    */
   definitionId?: string;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof GetEntityTraitValuesParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof GetEntityTraitValuesParams
    */
@@ -48,7 +48,9 @@ export interface GetEntityTraitValuesParams {
 /**
  * Check if a given object implements the GetEntityTraitValuesParams interface.
  */
-export function instanceOfGetEntityTraitValuesParams(value: object): boolean {
+export function instanceOfGetEntityTraitValuesParams(
+  value: object,
+): value is GetEntityTraitValuesParams {
   return true;
 }
 

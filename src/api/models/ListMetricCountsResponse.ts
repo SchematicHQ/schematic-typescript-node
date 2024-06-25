@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { ListMetricCountsParams } from "./ListMetricCountsParams";
-import {
-  ListMetricCountsParamsFromJSON,
-  ListMetricCountsParamsFromJSONTyped,
-  ListMetricCountsParamsToJSON,
-} from "./ListMetricCountsParams";
 import type { MetricCountsHourlyResponseData } from "./MetricCountsHourlyResponseData";
 import {
   MetricCountsHourlyResponseDataFromJSON,
   MetricCountsHourlyResponseDataFromJSONTyped,
   MetricCountsHourlyResponseDataToJSON,
 } from "./MetricCountsHourlyResponseData";
+import type { ListMetricCountsParams } from "./ListMetricCountsParams";
+import {
+  ListMetricCountsParamsFromJSON,
+  ListMetricCountsParamsFromJSONTyped,
+  ListMetricCountsParamsToJSON,
+} from "./ListMetricCountsParams";
 
 /**
  *
@@ -49,9 +49,11 @@ export interface ListMetricCountsResponse {
 /**
  * Check if a given object implements the ListMetricCountsResponse interface.
  */
-export function instanceOfListMetricCountsResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfListMetricCountsResponse(
+  value: object,
+): value is ListMetricCountsResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

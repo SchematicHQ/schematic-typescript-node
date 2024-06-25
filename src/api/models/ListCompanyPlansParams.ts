@@ -26,13 +26,13 @@ export interface ListCompanyPlansParams {
    */
   companyId?: string;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListCompanyPlansParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListCompanyPlansParams
    */
@@ -48,7 +48,9 @@ export interface ListCompanyPlansParams {
 /**
  * Check if a given object implements the ListCompanyPlansParams interface.
  */
-export function instanceOfListCompanyPlansParams(value: object): boolean {
+export function instanceOfListCompanyPlansParams(
+  value: object,
+): value is ListCompanyPlansParams {
   return true;
 }
 

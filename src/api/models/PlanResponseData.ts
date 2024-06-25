@@ -60,13 +60,16 @@ export interface PlanResponseData {
 /**
  * Check if a given object implements the PlanResponseData interface.
  */
-export function instanceOfPlanResponseData(value: object): boolean {
-  if (!("createdAt" in value)) return false;
-  if (!("description" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("name" in value)) return false;
-  if (!("planType" in value)) return false;
-  if (!("updatedAt" in value)) return false;
+export function instanceOfPlanResponseData(
+  value: object,
+): value is PlanResponseData {
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("description" in value) || value["description"] === undefined)
+    return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
+  if (!("planType" in value) || value["planType"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
   return true;
 }
 

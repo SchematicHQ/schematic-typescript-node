@@ -56,11 +56,23 @@ export interface CreateBillingSubscriptionsRequestBody {
  */
 export function instanceOfCreateBillingSubscriptionsRequestBody(
   value: object,
-): boolean {
-  if (!("customerExternalId" in value)) return false;
-  if (!("expiredAt" in value)) return false;
-  if (!("productExternalIds" in value)) return false;
-  if (!("subscriptionExternalId" in value)) return false;
+): value is CreateBillingSubscriptionsRequestBody {
+  if (
+    !("customerExternalId" in value) ||
+    value["customerExternalId"] === undefined
+  )
+    return false;
+  if (!("expiredAt" in value) || value["expiredAt"] === undefined) return false;
+  if (
+    !("productExternalIds" in value) ||
+    value["productExternalIds"] === undefined
+  )
+    return false;
+  if (
+    !("subscriptionExternalId" in value) ||
+    value["subscriptionExternalId"] === undefined
+  )
+    return false;
   return true;
 }
 

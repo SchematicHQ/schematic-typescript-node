@@ -26,13 +26,13 @@ export interface ListFeatureCompaniesParams {
    */
   featureId?: string;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListFeatureCompaniesParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListFeatureCompaniesParams
    */
@@ -48,7 +48,9 @@ export interface ListFeatureCompaniesParams {
 /**
  * Check if a given object implements the ListFeatureCompaniesParams interface.
  */
-export function instanceOfListFeatureCompaniesParams(value: object): boolean {
+export function instanceOfListFeatureCompaniesParams(
+  value: object,
+): value is ListFeatureCompaniesParams {
   return true;
 }
 

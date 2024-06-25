@@ -79,8 +79,8 @@ export type UpdateCompanyOverrideRequestBodyValueTypeEnum =
  */
 export function instanceOfUpdateCompanyOverrideRequestBody(
   value: object,
-): boolean {
-  if (!("valueType" in value)) return false;
+): value is UpdateCompanyOverrideRequestBody {
+  if (!("valueType" in value) || value["valueType"] === undefined) return false;
   return true;
 }
 

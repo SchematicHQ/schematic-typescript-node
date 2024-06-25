@@ -21,10 +21,10 @@ import { mapValues } from "../runtime";
 export interface EventBodyTrack {
   /**
    * Key-value pairs to identify company associated with track event
-   * @type {object}
+   * @type {{ [key: string]: string; }}
    * @memberof EventBodyTrack
    */
-  company?: object;
+  company?: { [key: string]: string };
   /**
    * The name of the type of track event
    * @type {string}
@@ -39,17 +39,19 @@ export interface EventBodyTrack {
   traits?: object;
   /**
    * Key-value pairs to identify user associated with track event
-   * @type {object}
+   * @type {{ [key: string]: string; }}
    * @memberof EventBodyTrack
    */
-  user?: object;
+  user?: { [key: string]: string };
 }
 
 /**
  * Check if a given object implements the EventBodyTrack interface.
  */
-export function instanceOfEventBodyTrack(value: object): boolean {
-  if (!("event" in value)) return false;
+export function instanceOfEventBodyTrack(
+  value: object,
+): value is EventBodyTrack {
+  if (!("event" in value) || value["event"] === undefined) return false;
   return true;
 }
 

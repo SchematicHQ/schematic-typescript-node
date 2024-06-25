@@ -30,8 +30,8 @@ export interface CountResponse {
 /**
  * Check if a given object implements the CountResponse interface.
  */
-export function instanceOfCountResponse(value: object): boolean {
-  if (!("count" in value)) return false;
+export function instanceOfCountResponse(value: object): value is CountResponse {
+  if (!("count" in value) || value["count"] === undefined) return false;
   return true;
 }
 

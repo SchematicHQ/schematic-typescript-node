@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { ListPlansParams } from "./ListPlansParams";
-import {
-  ListPlansParamsFromJSON,
-  ListPlansParamsFromJSONTyped,
-  ListPlansParamsToJSON,
-} from "./ListPlansParams";
 import type { PlanDetailResponseData } from "./PlanDetailResponseData";
 import {
   PlanDetailResponseDataFromJSON,
   PlanDetailResponseDataFromJSONTyped,
   PlanDetailResponseDataToJSON,
 } from "./PlanDetailResponseData";
+import type { ListPlansParams } from "./ListPlansParams";
+import {
+  ListPlansParamsFromJSON,
+  ListPlansParamsFromJSONTyped,
+  ListPlansParamsToJSON,
+} from "./ListPlansParams";
 
 /**
  *
@@ -49,9 +49,11 @@ export interface ListPlansResponse {
 /**
  * Check if a given object implements the ListPlansResponse interface.
  */
-export function instanceOfListPlansResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfListPlansResponse(
+  value: object,
+): value is ListPlansResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

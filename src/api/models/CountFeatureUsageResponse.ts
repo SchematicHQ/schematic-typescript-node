@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { CountFeatureUsageParams } from "./CountFeatureUsageParams";
-import {
-  CountFeatureUsageParamsFromJSON,
-  CountFeatureUsageParamsFromJSONTyped,
-  CountFeatureUsageParamsToJSON,
-} from "./CountFeatureUsageParams";
 import type { CountResponse } from "./CountResponse";
 import {
   CountResponseFromJSON,
   CountResponseFromJSONTyped,
   CountResponseToJSON,
 } from "./CountResponse";
+import type { CountFeatureUsageParams } from "./CountFeatureUsageParams";
+import {
+  CountFeatureUsageParamsFromJSON,
+  CountFeatureUsageParamsFromJSONTyped,
+  CountFeatureUsageParamsToJSON,
+} from "./CountFeatureUsageParams";
 
 /**
  *
@@ -49,9 +49,11 @@ export interface CountFeatureUsageResponse {
 /**
  * Check if a given object implements the CountFeatureUsageResponse interface.
  */
-export function instanceOfCountFeatureUsageResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfCountFeatureUsageResponse(
+  value: object,
+): value is CountFeatureUsageResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

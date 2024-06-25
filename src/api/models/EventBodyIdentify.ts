@@ -34,10 +34,10 @@ export interface EventBodyIdentify {
   company?: EventBodyIdentifyCompany;
   /**
    * Key-value pairs to identify the user
-   * @type {object}
+   * @type {{ [key: string]: string; }}
    * @memberof EventBodyIdentify
    */
-  keys: object;
+  keys: { [key: string]: string };
   /**
    * The display name of the user being identified; required only if it is a new user
    * @type {string}
@@ -45,7 +45,7 @@ export interface EventBodyIdentify {
    */
   name?: string;
   /**
-   * A map of user trait names to trait values
+   * A map of trait names to trait values
    * @type {object}
    * @memberof EventBodyIdentify
    */
@@ -55,8 +55,10 @@ export interface EventBodyIdentify {
 /**
  * Check if a given object implements the EventBodyIdentify interface.
  */
-export function instanceOfEventBodyIdentify(value: object): boolean {
-  if (!("keys" in value)) return false;
+export function instanceOfEventBodyIdentify(
+  value: object,
+): value is EventBodyIdentify {
+  if (!("keys" in value) || value["keys"] === undefined) return false;
   return true;
 }
 

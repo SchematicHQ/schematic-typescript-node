@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { CompanyDetailResponseData } from "./CompanyDetailResponseData";
-import {
-  CompanyDetailResponseDataFromJSON,
-  CompanyDetailResponseDataFromJSONTyped,
-  CompanyDetailResponseDataToJSON,
-} from "./CompanyDetailResponseData";
 import type { ListCompaniesParams } from "./ListCompaniesParams";
 import {
   ListCompaniesParamsFromJSON,
   ListCompaniesParamsFromJSONTyped,
   ListCompaniesParamsToJSON,
 } from "./ListCompaniesParams";
+import type { CompanyDetailResponseData } from "./CompanyDetailResponseData";
+import {
+  CompanyDetailResponseDataFromJSON,
+  CompanyDetailResponseDataFromJSONTyped,
+  CompanyDetailResponseDataToJSON,
+} from "./CompanyDetailResponseData";
 
 /**
  *
@@ -49,9 +49,11 @@ export interface ListCompaniesResponse {
 /**
  * Check if a given object implements the ListCompaniesResponse interface.
  */
-export function instanceOfListCompaniesResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfListCompaniesResponse(
+  value: object,
+): value is ListCompaniesResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

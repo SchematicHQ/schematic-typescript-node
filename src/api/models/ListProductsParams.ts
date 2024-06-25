@@ -26,7 +26,7 @@ export interface ListProductsParams {
    */
   ids?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListProductsParams
    */
@@ -38,7 +38,7 @@ export interface ListProductsParams {
    */
   name?: string;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListProductsParams
    */
@@ -48,7 +48,9 @@ export interface ListProductsParams {
 /**
  * Check if a given object implements the ListProductsParams interface.
  */
-export function instanceOfListProductsParams(value: object): boolean {
+export function instanceOfListProductsParams(
+  value: object,
+): value is ListProductsParams {
   return true;
 }
 

@@ -36,7 +36,9 @@ export interface UpdateApiKeyRequestBody {
 /**
  * Check if a given object implements the UpdateApiKeyRequestBody interface.
  */
-export function instanceOfUpdateApiKeyRequestBody(value: object): boolean {
+export function instanceOfUpdateApiKeyRequestBody(
+  value: object,
+): value is UpdateApiKeyRequestBody {
   return true;
 }
 

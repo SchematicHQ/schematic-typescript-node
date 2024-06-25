@@ -26,13 +26,13 @@ export interface CountFeatureCompaniesParams {
    */
   featureId?: string;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof CountFeatureCompaniesParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof CountFeatureCompaniesParams
    */
@@ -48,7 +48,9 @@ export interface CountFeatureCompaniesParams {
 /**
  * Check if a given object implements the CountFeatureCompaniesParams interface.
  */
-export function instanceOfCountFeatureCompaniesParams(value: object): boolean {
+export function instanceOfCountFeatureCompaniesParams(
+  value: object,
+): value is CountFeatureCompaniesParams {
   return true;
 }
 

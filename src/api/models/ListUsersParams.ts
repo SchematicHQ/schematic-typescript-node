@@ -32,13 +32,13 @@ export interface ListUsersParams {
    */
   ids?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListUsersParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListUsersParams
    */
@@ -50,7 +50,7 @@ export interface ListUsersParams {
    */
   planId?: string;
   /**
-   *
+   * Search filter
    * @type {string}
    * @memberof ListUsersParams
    */
@@ -60,7 +60,9 @@ export interface ListUsersParams {
 /**
  * Check if a given object implements the ListUsersParams interface.
  */
-export function instanceOfListUsersParams(value: object): boolean {
+export function instanceOfListUsersParams(
+  value: object,
+): value is ListUsersParams {
   return true;
 }
 

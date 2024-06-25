@@ -66,11 +66,14 @@ export interface CrmLineItemResponseData {
 /**
  * Check if a given object implements the CrmLineItemResponseData interface.
  */
-export function instanceOfCrmLineItemResponseData(value: object): boolean {
-  if (!("accountId" in value)) return false;
-  if (!("createdAt" in value)) return false;
-  if (!("environmentId" in value)) return false;
-  if (!("updatedAt" in value)) return false;
+export function instanceOfCrmLineItemResponseData(
+  value: object,
+): value is CrmLineItemResponseData {
+  if (!("accountId" in value) || value["accountId"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("environmentId" in value) || value["environmentId"] === undefined)
+    return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
   return true;
 }
 

@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { CountFeaturesParams } from "./CountFeaturesParams";
-import {
-  CountFeaturesParamsFromJSON,
-  CountFeaturesParamsFromJSONTyped,
-  CountFeaturesParamsToJSON,
-} from "./CountFeaturesParams";
 import type { CountResponse } from "./CountResponse";
 import {
   CountResponseFromJSON,
   CountResponseFromJSONTyped,
   CountResponseToJSON,
 } from "./CountResponse";
+import type { CountFeaturesParams } from "./CountFeaturesParams";
+import {
+  CountFeaturesParamsFromJSON,
+  CountFeaturesParamsFromJSONTyped,
+  CountFeaturesParamsToJSON,
+} from "./CountFeaturesParams";
 
 /**
  *
@@ -49,9 +49,11 @@ export interface CountFeaturesResponse {
 /**
  * Check if a given object implements the CountFeaturesResponse interface.
  */
-export function instanceOfCountFeaturesResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfCountFeaturesResponse(
+  value: object,
+): value is CountFeaturesResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

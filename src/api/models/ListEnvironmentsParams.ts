@@ -26,13 +26,13 @@ export interface ListEnvironmentsParams {
    */
   ids?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListEnvironmentsParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListEnvironmentsParams
    */
@@ -42,7 +42,9 @@ export interface ListEnvironmentsParams {
 /**
  * Check if a given object implements the ListEnvironmentsParams interface.
  */
-export function instanceOfListEnvironmentsParams(value: object): boolean {
+export function instanceOfListEnvironmentsParams(
+  value: object,
+): value is ListEnvironmentsParams {
   return true;
 }
 

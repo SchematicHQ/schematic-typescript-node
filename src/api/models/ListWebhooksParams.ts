@@ -20,13 +20,13 @@ import { mapValues } from "../runtime";
  */
 export interface ListWebhooksParams {
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListWebhooksParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListWebhooksParams
    */
@@ -42,7 +42,9 @@ export interface ListWebhooksParams {
 /**
  * Check if a given object implements the ListWebhooksParams interface.
  */
-export function instanceOfListWebhooksParams(value: object): boolean {
+export function instanceOfListWebhooksParams(
+  value: object,
+): value is ListWebhooksParams {
   return true;
 }
 

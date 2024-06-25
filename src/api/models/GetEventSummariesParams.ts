@@ -26,13 +26,13 @@ export interface GetEventSummariesParams {
    */
   eventSubtypes?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof GetEventSummariesParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof GetEventSummariesParams
    */
@@ -48,7 +48,9 @@ export interface GetEventSummariesParams {
 /**
  * Check if a given object implements the GetEventSummariesParams interface.
  */
-export function instanceOfGetEventSummariesParams(value: object): boolean {
+export function instanceOfGetEventSummariesParams(
+  value: object,
+): value is GetEventSummariesParams {
   return true;
 }
 

@@ -32,13 +32,13 @@ export interface GetActiveDealsParams {
    */
   dealStage?: string;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof GetActiveDealsParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof GetActiveDealsParams
    */
@@ -48,7 +48,9 @@ export interface GetActiveDealsParams {
 /**
  * Check if a given object implements the GetActiveDealsParams interface.
  */
-export function instanceOfGetActiveDealsParams(value: object): boolean {
+export function instanceOfGetActiveDealsParams(
+  value: object,
+): value is GetActiveDealsParams {
   return true;
 }
 

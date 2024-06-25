@@ -43,9 +43,11 @@ export interface CreateCompanyResponse {
 /**
  * Check if a given object implements the CreateCompanyResponse interface.
  */
-export function instanceOfCreateCompanyResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfCreateCompanyResponse(
+  value: object,
+): value is CreateCompanyResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

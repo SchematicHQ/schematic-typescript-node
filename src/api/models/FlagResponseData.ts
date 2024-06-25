@@ -78,15 +78,19 @@ export interface FlagResponseData {
 /**
  * Check if a given object implements the FlagResponseData interface.
  */
-export function instanceOfFlagResponseData(value: object): boolean {
-  if (!("createdAt" in value)) return false;
-  if (!("defaultValue" in value)) return false;
-  if (!("description" in value)) return false;
-  if (!("flagType" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("key" in value)) return false;
-  if (!("name" in value)) return false;
-  if (!("updatedAt" in value)) return false;
+export function instanceOfFlagResponseData(
+  value: object,
+): value is FlagResponseData {
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("defaultValue" in value) || value["defaultValue"] === undefined)
+    return false;
+  if (!("description" in value) || value["description"] === undefined)
+    return false;
+  if (!("flagType" in value) || value["flagType"] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("key" in value) || value["key"] === undefined) return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
   return true;
 }
 

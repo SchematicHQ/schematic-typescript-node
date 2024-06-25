@@ -43,9 +43,11 @@ export interface GetAudienceResponse {
 /**
  * Check if a given object implements the GetAudienceResponse interface.
  */
-export function instanceOfGetAudienceResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfGetAudienceResponse(
+  value: object,
+): value is GetAudienceResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

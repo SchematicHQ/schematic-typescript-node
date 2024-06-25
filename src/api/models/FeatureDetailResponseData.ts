@@ -19,6 +19,12 @@ import {
   EntityTraitDefinitionResponseDataFromJSONTyped,
   EntityTraitDefinitionResponseDataToJSON,
 } from "./EntityTraitDefinitionResponseData";
+import type { PreviewObject } from "./PreviewObject";
+import {
+  PreviewObjectFromJSON,
+  PreviewObjectFromJSONTyped,
+  PreviewObjectToJSON,
+} from "./PreviewObject";
 import type { EventSummaryResponseData } from "./EventSummaryResponseData";
 import {
   EventSummaryResponseDataFromJSON,
@@ -31,12 +37,6 @@ import {
   FlagDetailResponseDataFromJSONTyped,
   FlagDetailResponseDataToJSON,
 } from "./FlagDetailResponseData";
-import type { PreviewObject } from "./PreviewObject";
-import {
-  PreviewObjectFromJSON,
-  PreviewObjectFromJSONTyped,
-  PreviewObjectToJSON,
-} from "./PreviewObject";
 
 /**
  *
@@ -127,15 +127,19 @@ export interface FeatureDetailResponseData {
 /**
  * Check if a given object implements the FeatureDetailResponseData interface.
  */
-export function instanceOfFeatureDetailResponseData(value: object): boolean {
-  if (!("createdAt" in value)) return false;
-  if (!("description" in value)) return false;
-  if (!("featureType" in value)) return false;
-  if (!("flags" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("name" in value)) return false;
-  if (!("plans" in value)) return false;
-  if (!("updatedAt" in value)) return false;
+export function instanceOfFeatureDetailResponseData(
+  value: object,
+): value is FeatureDetailResponseData {
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("description" in value) || value["description"] === undefined)
+    return false;
+  if (!("featureType" in value) || value["featureType"] === undefined)
+    return false;
+  if (!("flags" in value) || value["flags"] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
+  if (!("plans" in value) || value["plans"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
   return true;
 }
 

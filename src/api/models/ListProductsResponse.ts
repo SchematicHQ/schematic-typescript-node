@@ -49,9 +49,11 @@ export interface ListProductsResponse {
 /**
  * Check if a given object implements the ListProductsResponse interface.
  */
-export function instanceOfListProductsResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfListProductsResponse(
+  value: object,
+): value is ListProductsResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

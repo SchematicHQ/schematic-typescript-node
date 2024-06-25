@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { CountEntityTraitDefinitionsParams } from "./CountEntityTraitDefinitionsParams";
-import {
-  CountEntityTraitDefinitionsParamsFromJSON,
-  CountEntityTraitDefinitionsParamsFromJSONTyped,
-  CountEntityTraitDefinitionsParamsToJSON,
-} from "./CountEntityTraitDefinitionsParams";
 import type { CountResponse } from "./CountResponse";
 import {
   CountResponseFromJSON,
   CountResponseFromJSONTyped,
   CountResponseToJSON,
 } from "./CountResponse";
+import type { CountEntityTraitDefinitionsParams } from "./CountEntityTraitDefinitionsParams";
+import {
+  CountEntityTraitDefinitionsParamsFromJSON,
+  CountEntityTraitDefinitionsParamsFromJSONTyped,
+  CountEntityTraitDefinitionsParamsToJSON,
+} from "./CountEntityTraitDefinitionsParams";
 
 /**
  *
@@ -51,9 +51,9 @@ export interface CountEntityTraitDefinitionsResponse {
  */
 export function instanceOfCountEntityTraitDefinitionsResponse(
   value: object,
-): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+): value is CountEntityTraitDefinitionsResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

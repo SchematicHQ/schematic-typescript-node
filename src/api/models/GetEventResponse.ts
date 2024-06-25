@@ -43,9 +43,11 @@ export interface GetEventResponse {
 /**
  * Check if a given object implements the GetEventResponse interface.
  */
-export function instanceOfGetEventResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfGetEventResponse(
+  value: object,
+): value is GetEventResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

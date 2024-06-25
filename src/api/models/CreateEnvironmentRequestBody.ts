@@ -47,9 +47,12 @@ export type CreateEnvironmentRequestBodyEnvironmentTypeEnum =
 /**
  * Check if a given object implements the CreateEnvironmentRequestBody interface.
  */
-export function instanceOfCreateEnvironmentRequestBody(value: object): boolean {
-  if (!("environmentType" in value)) return false;
-  if (!("name" in value)) return false;
+export function instanceOfCreateEnvironmentRequestBody(
+  value: object,
+): value is CreateEnvironmentRequestBody {
+  if (!("environmentType" in value) || value["environmentType"] === undefined)
+    return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
   return true;
 }
 

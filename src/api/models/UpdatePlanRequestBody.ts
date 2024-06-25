@@ -56,8 +56,10 @@ export type UpdatePlanRequestBodyPlanTypeEnum =
 /**
  * Check if a given object implements the UpdatePlanRequestBody interface.
  */
-export function instanceOfUpdatePlanRequestBody(value: object): boolean {
-  if (!("name" in value)) return false;
+export function instanceOfUpdatePlanRequestBody(
+  value: object,
+): value is UpdatePlanRequestBody {
+  if (!("name" in value) || value["name"] === undefined) return false;
   return true;
 }
 

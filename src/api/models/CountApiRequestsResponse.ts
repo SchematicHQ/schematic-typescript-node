@@ -49,9 +49,11 @@ export interface CountApiRequestsResponse {
 /**
  * Check if a given object implements the CountApiRequestsResponse interface.
  */
-export function instanceOfCountApiRequestsResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfCountApiRequestsResponse(
+  value: object,
+): value is CountApiRequestsResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

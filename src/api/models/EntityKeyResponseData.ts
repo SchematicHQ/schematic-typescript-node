@@ -78,16 +78,21 @@ export interface EntityKeyResponseData {
 /**
  * Check if a given object implements the EntityKeyResponseData interface.
  */
-export function instanceOfEntityKeyResponseData(value: object): boolean {
-  if (!("createdAt" in value)) return false;
-  if (!("definitionId" in value)) return false;
-  if (!("entityId" in value)) return false;
-  if (!("entityType" in value)) return false;
-  if (!("environmentId" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("key" in value)) return false;
-  if (!("updatedAt" in value)) return false;
-  if (!("value" in value)) return false;
+export function instanceOfEntityKeyResponseData(
+  value: object,
+): value is EntityKeyResponseData {
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("definitionId" in value) || value["definitionId"] === undefined)
+    return false;
+  if (!("entityId" in value) || value["entityId"] === undefined) return false;
+  if (!("entityType" in value) || value["entityType"] === undefined)
+    return false;
+  if (!("environmentId" in value) || value["environmentId"] === undefined)
+    return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("key" in value) || value["key"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("value" in value) || value["value"] === undefined) return false;
   return true;
 }
 

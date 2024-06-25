@@ -87,13 +87,14 @@ export interface WebhookEventDetailResponseData {
  */
 export function instanceOfWebhookEventDetailResponseData(
   value: object,
-): boolean {
-  if (!("createdAt" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("requestType" in value)) return false;
-  if (!("status" in value)) return false;
-  if (!("updatedAt" in value)) return false;
-  if (!("webhookId" in value)) return false;
+): value is WebhookEventDetailResponseData {
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("requestType" in value) || value["requestType"] === undefined)
+    return false;
+  if (!("status" in value) || value["status"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("webhookId" in value) || value["webhookId"] === undefined) return false;
   return true;
 }
 

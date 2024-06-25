@@ -43,9 +43,11 @@ export interface CheckFlagsResponse {
 /**
  * Check if a given object implements the CheckFlagsResponse interface.
  */
-export function instanceOfCheckFlagsResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfCheckFlagsResponse(
+  value: object,
+): value is CheckFlagsResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

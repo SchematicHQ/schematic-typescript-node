@@ -126,11 +126,14 @@ export type CreateOrUpdateConditionRequestBodyOperatorEnum =
  */
 export function instanceOfCreateOrUpdateConditionRequestBody(
   value: object,
-): boolean {
-  if (!("conditionType" in value)) return false;
-  if (!("metricValue" in value)) return false;
-  if (!("operator" in value)) return false;
-  if (!("resourceIds" in value)) return false;
+): value is CreateOrUpdateConditionRequestBody {
+  if (!("conditionType" in value) || value["conditionType"] === undefined)
+    return false;
+  if (!("metricValue" in value) || value["metricValue"] === undefined)
+    return false;
+  if (!("operator" in value) || value["operator"] === undefined) return false;
+  if (!("resourceIds" in value) || value["resourceIds"] === undefined)
+    return false;
   return true;
 }
 

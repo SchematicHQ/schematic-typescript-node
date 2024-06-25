@@ -43,9 +43,11 @@ export interface UpdateFeatureResponse {
 /**
  * Check if a given object implements the UpdateFeatureResponse interface.
  */
-export function instanceOfUpdateFeatureResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfUpdateFeatureResponse(
+  value: object,
+): value is UpdateFeatureResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

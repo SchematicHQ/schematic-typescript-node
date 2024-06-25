@@ -43,9 +43,11 @@ export interface CreateUserResponse {
 /**
  * Check if a given object implements the CreateUserResponse interface.
  */
-export function instanceOfCreateUserResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfCreateUserResponse(
+  value: object,
+): value is CreateUserResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

@@ -43,9 +43,11 @@ export interface CreateEventResponse {
 /**
  * Check if a given object implements the CreateEventResponse interface.
  */
-export function instanceOfCreateEventResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfCreateEventResponse(
+  value: object,
+): value is CreateEventResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

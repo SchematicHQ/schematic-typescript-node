@@ -43,9 +43,11 @@ export interface GetApiRequestResponse {
 /**
  * Check if a given object implements the GetApiRequestResponse interface.
  */
-export function instanceOfGetApiRequestResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfGetApiRequestResponse(
+  value: object,
+): value is GetApiRequestResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

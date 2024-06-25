@@ -149,7 +149,7 @@ export interface CountCompaniesRequest {
 }
 
 export interface CountEntityKeyDefinitionsRequest {
-  entityType?: string;
+  entityType?: CountEntityKeyDefinitionsEntityTypeEnum;
   ids?: Array<string>;
   key?: string;
   limit?: number;
@@ -157,9 +157,9 @@ export interface CountEntityKeyDefinitionsRequest {
 }
 
 export interface CountEntityTraitDefinitionsRequest {
-  entityType?: string;
+  entityType?: CountEntityTraitDefinitionsEntityTypeEnum;
   ids?: Array<string>;
-  traitType?: string;
+  traitType?: CountEntityTraitDefinitionsTraitTypeEnum;
   q?: string;
   limit?: number;
   offset?: number;
@@ -266,7 +266,7 @@ export interface ListCompanyPlansRequest {
 }
 
 export interface ListEntityKeyDefinitionsRequest {
-  entityType?: string;
+  entityType?: ListEntityKeyDefinitionsEntityTypeEnum;
   ids?: Array<string>;
   key?: string;
   limit?: number;
@@ -274,9 +274,9 @@ export interface ListEntityKeyDefinitionsRequest {
 }
 
 export interface ListEntityTraitDefinitionsRequest {
-  entityType?: string;
+  entityType?: ListEntityTraitDefinitionsEntityTypeEnum;
   ids?: Array<string>;
-  traitType?: string;
+  traitType?: ListEntityTraitDefinitionsTraitTypeEnum;
   q?: string;
   limit?: number;
   offset?: number;
@@ -2286,3 +2286,66 @@ export class CompaniesApi extends runtime.BaseAPI {
     return await response.value();
   }
 }
+
+/**
+ * @export
+ */
+export const CountEntityKeyDefinitionsEntityTypeEnum = {
+  Company: "company",
+  User: "user",
+} as const;
+export type CountEntityKeyDefinitionsEntityTypeEnum =
+  (typeof CountEntityKeyDefinitionsEntityTypeEnum)[keyof typeof CountEntityKeyDefinitionsEntityTypeEnum];
+/**
+ * @export
+ */
+export const CountEntityTraitDefinitionsEntityTypeEnum = {
+  Company: "company",
+  User: "user",
+} as const;
+export type CountEntityTraitDefinitionsEntityTypeEnum =
+  (typeof CountEntityTraitDefinitionsEntityTypeEnum)[keyof typeof CountEntityTraitDefinitionsEntityTypeEnum];
+/**
+ * @export
+ */
+export const CountEntityTraitDefinitionsTraitTypeEnum = {
+  Boolean: "boolean",
+  Currency: "currency",
+  Date: "date",
+  Number: "number",
+  String: "string",
+  Url: "url",
+} as const;
+export type CountEntityTraitDefinitionsTraitTypeEnum =
+  (typeof CountEntityTraitDefinitionsTraitTypeEnum)[keyof typeof CountEntityTraitDefinitionsTraitTypeEnum];
+/**
+ * @export
+ */
+export const ListEntityKeyDefinitionsEntityTypeEnum = {
+  Company: "company",
+  User: "user",
+} as const;
+export type ListEntityKeyDefinitionsEntityTypeEnum =
+  (typeof ListEntityKeyDefinitionsEntityTypeEnum)[keyof typeof ListEntityKeyDefinitionsEntityTypeEnum];
+/**
+ * @export
+ */
+export const ListEntityTraitDefinitionsEntityTypeEnum = {
+  Company: "company",
+  User: "user",
+} as const;
+export type ListEntityTraitDefinitionsEntityTypeEnum =
+  (typeof ListEntityTraitDefinitionsEntityTypeEnum)[keyof typeof ListEntityTraitDefinitionsEntityTypeEnum];
+/**
+ * @export
+ */
+export const ListEntityTraitDefinitionsTraitTypeEnum = {
+  Boolean: "boolean",
+  Currency: "currency",
+  Date: "date",
+  Number: "number",
+  String: "string",
+  Url: "url",
+} as const;
+export type ListEntityTraitDefinitionsTraitTypeEnum =
+  (typeof ListEntityTraitDefinitionsTraitTypeEnum)[keyof typeof ListEntityTraitDefinitionsTraitTypeEnum];

@@ -78,10 +78,14 @@ export interface CreateCrmDealRequestBody {
 /**
  * Check if a given object implements the CreateCrmDealRequestBody interface.
  */
-export function instanceOfCreateCrmDealRequestBody(value: object): boolean {
-  if (!("crmCompanyKey" in value)) return false;
-  if (!("crmType" in value)) return false;
-  if (!("dealExternalId" in value)) return false;
+export function instanceOfCreateCrmDealRequestBody(
+  value: object,
+): value is CreateCrmDealRequestBody {
+  if (!("crmCompanyKey" in value) || value["crmCompanyKey"] === undefined)
+    return false;
+  if (!("crmType" in value) || value["crmType"] === undefined) return false;
+  if (!("dealExternalId" in value) || value["dealExternalId"] === undefined)
+    return false;
   return true;
 }
 

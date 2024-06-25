@@ -90,17 +90,21 @@ export interface BillingProductResponseData {
 /**
  * Check if a given object implements the BillingProductResponseData interface.
  */
-export function instanceOfBillingProductResponseData(value: object): boolean {
-  if (!("accountId" in value)) return false;
-  if (!("createdAt" in value)) return false;
-  if (!("currency" in value)) return false;
-  if (!("environmentId" in value)) return false;
-  if (!("externalId" in value)) return false;
-  if (!("name" in value)) return false;
-  if (!("price" in value)) return false;
-  if (!("productId" in value)) return false;
-  if (!("quantity" in value)) return false;
-  if (!("updatedAt" in value)) return false;
+export function instanceOfBillingProductResponseData(
+  value: object,
+): value is BillingProductResponseData {
+  if (!("accountId" in value) || value["accountId"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("currency" in value) || value["currency"] === undefined) return false;
+  if (!("environmentId" in value) || value["environmentId"] === undefined)
+    return false;
+  if (!("externalId" in value) || value["externalId"] === undefined)
+    return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
+  if (!("price" in value) || value["price"] === undefined) return false;
+  if (!("productId" in value) || value["productId"] === undefined) return false;
+  if (!("quantity" in value) || value["quantity"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
   return true;
 }
 

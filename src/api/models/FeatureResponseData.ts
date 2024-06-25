@@ -78,13 +78,17 @@ export interface FeatureResponseData {
 /**
  * Check if a given object implements the FeatureResponseData interface.
  */
-export function instanceOfFeatureResponseData(value: object): boolean {
-  if (!("createdAt" in value)) return false;
-  if (!("description" in value)) return false;
-  if (!("featureType" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("name" in value)) return false;
-  if (!("updatedAt" in value)) return false;
+export function instanceOfFeatureResponseData(
+  value: object,
+): value is FeatureResponseData {
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("description" in value) || value["description"] === undefined)
+    return false;
+  if (!("featureType" in value) || value["featureType"] === undefined)
+    return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
   return true;
 }
 

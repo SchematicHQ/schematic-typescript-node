@@ -37,8 +37,10 @@ export interface RawEventBatchResponseData {
 /**
  * Check if a given object implements the RawEventBatchResponseData interface.
  */
-export function instanceOfRawEventBatchResponseData(value: object): boolean {
-  if (!("events" in value)) return false;
+export function instanceOfRawEventBatchResponseData(
+  value: object,
+): value is RawEventBatchResponseData {
+  if (!("events" in value) || value["events"] === undefined) return false;
   return true;
 }
 

@@ -51,9 +51,9 @@ export interface CountEntityKeyDefinitionsResponse {
  */
 export function instanceOfCountEntityKeyDefinitionsResponse(
   value: object,
-): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+): value is CountEntityKeyDefinitionsResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

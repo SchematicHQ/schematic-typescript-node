@@ -38,13 +38,13 @@ export interface GetLatestFlagChecksParams {
    */
   id?: string;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof GetLatestFlagChecksParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof GetLatestFlagChecksParams
    */
@@ -54,7 +54,9 @@ export interface GetLatestFlagChecksParams {
 /**
  * Check if a given object implements the GetLatestFlagChecksParams interface.
  */
-export function instanceOfGetLatestFlagChecksParams(value: object): boolean {
+export function instanceOfGetLatestFlagChecksParams(
+  value: object,
+): value is GetLatestFlagChecksParams {
   return true;
 }
 

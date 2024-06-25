@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { EnvironmentResponseData } from "./EnvironmentResponseData";
-import {
-  EnvironmentResponseDataFromJSON,
-  EnvironmentResponseDataFromJSONTyped,
-  EnvironmentResponseDataToJSON,
-} from "./EnvironmentResponseData";
 import type { ListEnvironmentsParams } from "./ListEnvironmentsParams";
 import {
   ListEnvironmentsParamsFromJSON,
   ListEnvironmentsParamsFromJSONTyped,
   ListEnvironmentsParamsToJSON,
 } from "./ListEnvironmentsParams";
+import type { EnvironmentResponseData } from "./EnvironmentResponseData";
+import {
+  EnvironmentResponseDataFromJSON,
+  EnvironmentResponseDataFromJSONTyped,
+  EnvironmentResponseDataToJSON,
+} from "./EnvironmentResponseData";
 
 /**
  *
@@ -49,9 +49,11 @@ export interface ListEnvironmentsResponse {
 /**
  * Check if a given object implements the ListEnvironmentsResponse interface.
  */
-export function instanceOfListEnvironmentsResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfListEnvironmentsResponse(
+  value: object,
+): value is ListEnvironmentsResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

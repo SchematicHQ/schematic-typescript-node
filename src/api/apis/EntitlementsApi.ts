@@ -110,7 +110,7 @@ export interface CountFeatureCompaniesRequest {
 
 export interface CountFeatureUsageRequest {
   companyId?: string;
-  companyKeys?: object;
+  companyKeys?: { [key: string]: string };
   featureIds?: Array<string>;
   q?: string;
   limit?: number;
@@ -181,7 +181,7 @@ export interface ListFeatureCompaniesRequest {
 
 export interface ListFeatureUsageRequest {
   companyId?: string;
-  companyKeys?: object;
+  companyKeys?: { [key: string]: string };
   featureIds?: Array<string>;
   q?: string;
   limit?: number;

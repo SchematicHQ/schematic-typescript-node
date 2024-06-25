@@ -32,13 +32,13 @@ export interface ListFlagsParams {
    */
   ids?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListFlagsParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListFlagsParams
    */
@@ -54,7 +54,9 @@ export interface ListFlagsParams {
 /**
  * Check if a given object implements the ListFlagsParams interface.
  */
-export function instanceOfListFlagsParams(value: object): boolean {
+export function instanceOfListFlagsParams(
+  value: object,
+): value is ListFlagsParams {
   return true;
 }
 

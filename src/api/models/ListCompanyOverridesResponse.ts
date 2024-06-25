@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { CompanyOverrideResponseData } from "./CompanyOverrideResponseData";
-import {
-  CompanyOverrideResponseDataFromJSON,
-  CompanyOverrideResponseDataFromJSONTyped,
-  CompanyOverrideResponseDataToJSON,
-} from "./CompanyOverrideResponseData";
 import type { ListCompanyOverridesParams } from "./ListCompanyOverridesParams";
 import {
   ListCompanyOverridesParamsFromJSON,
   ListCompanyOverridesParamsFromJSONTyped,
   ListCompanyOverridesParamsToJSON,
 } from "./ListCompanyOverridesParams";
+import type { CompanyOverrideResponseData } from "./CompanyOverrideResponseData";
+import {
+  CompanyOverrideResponseDataFromJSON,
+  CompanyOverrideResponseDataFromJSONTyped,
+  CompanyOverrideResponseDataToJSON,
+} from "./CompanyOverrideResponseData";
 
 /**
  *
@@ -49,9 +49,11 @@ export interface ListCompanyOverridesResponse {
 /**
  * Check if a given object implements the ListCompanyOverridesResponse interface.
  */
-export function instanceOfListCompanyOverridesResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfListCompanyOverridesResponse(
+  value: object,
+): value is ListCompanyOverridesResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

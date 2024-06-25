@@ -43,9 +43,11 @@ export interface DeleteCompanyByKeysResponse {
 /**
  * Check if a given object implements the DeleteCompanyByKeysResponse interface.
  */
-export function instanceOfDeleteCompanyByKeysResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfDeleteCompanyByKeysResponse(
+  value: object,
+): value is DeleteCompanyByKeysResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

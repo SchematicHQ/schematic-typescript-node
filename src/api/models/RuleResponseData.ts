@@ -84,15 +84,18 @@ export interface RuleResponseData {
 /**
  * Check if a given object implements the RuleResponseData interface.
  */
-export function instanceOfRuleResponseData(value: object): boolean {
-  if (!("createdAt" in value)) return false;
-  if (!("environmentId" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("name" in value)) return false;
-  if (!("priority" in value)) return false;
-  if (!("ruleType" in value)) return false;
-  if (!("updatedAt" in value)) return false;
-  if (!("value" in value)) return false;
+export function instanceOfRuleResponseData(
+  value: object,
+): value is RuleResponseData {
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("environmentId" in value) || value["environmentId"] === undefined)
+    return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
+  if (!("priority" in value) || value["priority"] === undefined) return false;
+  if (!("ruleType" in value) || value["ruleType"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("value" in value) || value["value"] === undefined) return false;
   return true;
 }
 

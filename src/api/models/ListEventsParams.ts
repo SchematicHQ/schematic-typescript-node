@@ -32,13 +32,13 @@ export interface ListEventsParams {
    */
   eventSubtype?: string;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListEventsParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListEventsParams
    */
@@ -54,7 +54,9 @@ export interface ListEventsParams {
 /**
  * Check if a given object implements the ListEventsParams interface.
  */
-export function instanceOfListEventsParams(value: object): boolean {
+export function instanceOfListEventsParams(
+  value: object,
+): value is ListEventsParams {
   return true;
 }
 

@@ -32,13 +32,13 @@ export interface ListPlansParams {
    */
   ids?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListPlansParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListPlansParams
    */
@@ -50,7 +50,7 @@ export interface ListPlansParams {
    */
   q?: string;
   /**
-   *
+   * Filter out plans that already have a plan entitlement for the specified feature ID
    * @type {string}
    * @memberof ListPlansParams
    */
@@ -60,7 +60,9 @@ export interface ListPlansParams {
 /**
  * Check if a given object implements the ListPlansParams interface.
  */
-export function instanceOfListPlansParams(value: object): boolean {
+export function instanceOfListPlansParams(
+  value: object,
+): value is ListPlansParams {
   return true;
 }
 
