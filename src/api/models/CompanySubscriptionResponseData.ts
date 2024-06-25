@@ -63,11 +63,19 @@ export interface CompanySubscriptionResponseData {
  */
 export function instanceOfCompanySubscriptionResponseData(
   value: object,
-): boolean {
-  if (!("customerExternalId" in value)) return false;
-  if (!("interval" in value)) return false;
-  if (!("products" in value)) return false;
-  if (!("subscriptionExternalId" in value)) return false;
+): value is CompanySubscriptionResponseData {
+  if (
+    !("customerExternalId" in value) ||
+    value["customerExternalId"] === undefined
+  )
+    return false;
+  if (!("interval" in value) || value["interval"] === undefined) return false;
+  if (!("products" in value) || value["products"] === undefined) return false;
+  if (
+    !("subscriptionExternalId" in value) ||
+    value["subscriptionExternalId"] === undefined
+  )
+    return false;
   return true;
 }
 

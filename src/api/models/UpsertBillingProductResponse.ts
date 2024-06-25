@@ -43,9 +43,11 @@ export interface UpsertBillingProductResponse {
 /**
  * Check if a given object implements the UpsertBillingProductResponse interface.
  */
-export function instanceOfUpsertBillingProductResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfUpsertBillingProductResponse(
+  value: object,
+): value is UpsertBillingProductResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

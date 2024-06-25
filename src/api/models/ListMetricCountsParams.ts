@@ -56,13 +56,13 @@ export interface ListMetricCountsParams {
    */
   grouping?: string;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListMetricCountsParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListMetricCountsParams
    */
@@ -84,7 +84,9 @@ export interface ListMetricCountsParams {
 /**
  * Check if a given object implements the ListMetricCountsParams interface.
  */
-export function instanceOfListMetricCountsParams(value: object): boolean {
+export function instanceOfListMetricCountsParams(
+  value: object,
+): value is ListMetricCountsParams {
   return true;
 }
 

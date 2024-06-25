@@ -30,8 +30,8 @@ export interface ApiError {
 /**
  * Check if a given object implements the ApiError interface.
  */
-export function instanceOfApiError(value: object): boolean {
-  if (!("error" in value)) return false;
+export function instanceOfApiError(value: object): value is ApiError {
+  if (!("error" in value) || value["error"] === undefined) return false;
   return true;
 }
 

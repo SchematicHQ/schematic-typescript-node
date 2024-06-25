@@ -38,9 +38,9 @@ export interface RuleConditionResourceResponseData {
  */
 export function instanceOfRuleConditionResourceResponseData(
   value: object,
-): boolean {
-  if (!("id" in value)) return false;
-  if (!("name" in value)) return false;
+): value is RuleConditionResourceResponseData {
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
   return true;
 }
 

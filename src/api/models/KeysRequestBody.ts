@@ -21,17 +21,19 @@ import { mapValues } from "../runtime";
 export interface KeysRequestBody {
   /**
    *
-   * @type {object}
+   * @type {{ [key: string]: string; }}
    * @memberof KeysRequestBody
    */
-  keys: object;
+  keys: { [key: string]: string };
 }
 
 /**
  * Check if a given object implements the KeysRequestBody interface.
  */
-export function instanceOfKeysRequestBody(value: object): boolean {
-  if (!("keys" in value)) return false;
+export function instanceOfKeysRequestBody(
+  value: object,
+): value is KeysRequestBody {
+  if (!("keys" in value) || value["keys"] === undefined) return false;
   return true;
 }
 

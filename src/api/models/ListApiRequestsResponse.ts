@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { ApiKeyRequestListResponseData } from "./ApiKeyRequestListResponseData";
-import {
-  ApiKeyRequestListResponseDataFromJSON,
-  ApiKeyRequestListResponseDataFromJSONTyped,
-  ApiKeyRequestListResponseDataToJSON,
-} from "./ApiKeyRequestListResponseData";
 import type { ListApiRequestsParams } from "./ListApiRequestsParams";
 import {
   ListApiRequestsParamsFromJSON,
   ListApiRequestsParamsFromJSONTyped,
   ListApiRequestsParamsToJSON,
 } from "./ListApiRequestsParams";
+import type { ApiKeyRequestListResponseData } from "./ApiKeyRequestListResponseData";
+import {
+  ApiKeyRequestListResponseDataFromJSON,
+  ApiKeyRequestListResponseDataFromJSONTyped,
+  ApiKeyRequestListResponseDataToJSON,
+} from "./ApiKeyRequestListResponseData";
 
 /**
  *
@@ -49,9 +49,11 @@ export interface ListApiRequestsResponse {
 /**
  * Check if a given object implements the ListApiRequestsResponse interface.
  */
-export function instanceOfListApiRequestsResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfListApiRequestsResponse(
+  value: object,
+): value is ListApiRequestsResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

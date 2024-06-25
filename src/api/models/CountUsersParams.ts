@@ -32,13 +32,13 @@ export interface CountUsersParams {
    */
   ids?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof CountUsersParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof CountUsersParams
    */
@@ -50,7 +50,7 @@ export interface CountUsersParams {
    */
   planId?: string;
   /**
-   *
+   * Search filter
    * @type {string}
    * @memberof CountUsersParams
    */
@@ -60,7 +60,9 @@ export interface CountUsersParams {
 /**
  * Check if a given object implements the CountUsersParams interface.
  */
-export function instanceOfCountUsersParams(value: object): boolean {
+export function instanceOfCountUsersParams(
+  value: object,
+): value is CountUsersParams {
   return true;
 }
 

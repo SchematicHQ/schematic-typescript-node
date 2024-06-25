@@ -43,9 +43,11 @@ export interface UpdatePlanResponse {
 /**
  * Check if a given object implements the UpdatePlanResponse interface.
  */
-export function instanceOfUpdatePlanResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfUpdatePlanResponse(
+  value: object,
+): value is UpdatePlanResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

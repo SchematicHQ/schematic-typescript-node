@@ -26,13 +26,13 @@ export interface ListCompanyMembershipsParams {
    */
   companyId?: string;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListCompanyMembershipsParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListCompanyMembershipsParams
    */
@@ -48,7 +48,9 @@ export interface ListCompanyMembershipsParams {
 /**
  * Check if a given object implements the ListCompanyMembershipsParams interface.
  */
-export function instanceOfListCompanyMembershipsParams(value: object): boolean {
+export function instanceOfListCompanyMembershipsParams(
+  value: object,
+): value is ListCompanyMembershipsParams {
   return true;
 }
 

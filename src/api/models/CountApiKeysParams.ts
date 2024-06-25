@@ -26,13 +26,13 @@ export interface CountApiKeysParams {
    */
   environmentId?: string;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof CountApiKeysParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof CountApiKeysParams
    */
@@ -48,7 +48,9 @@ export interface CountApiKeysParams {
 /**
  * Check if a given object implements the CountApiKeysParams interface.
  */
-export function instanceOfCountApiKeysParams(value: object): boolean {
+export function instanceOfCountApiKeysParams(
+  value: object,
+): value is CountApiKeysParams {
   return true;
 }
 

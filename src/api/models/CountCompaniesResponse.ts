@@ -49,9 +49,11 @@ export interface CountCompaniesResponse {
 /**
  * Check if a given object implements the CountCompaniesResponse interface.
  */
-export function instanceOfCountCompaniesResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfCountCompaniesResponse(
+  value: object,
+): value is CountCompaniesResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

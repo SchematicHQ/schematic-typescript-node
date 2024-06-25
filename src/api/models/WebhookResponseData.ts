@@ -66,14 +66,17 @@ export interface WebhookResponseData {
 /**
  * Check if a given object implements the WebhookResponseData interface.
  */
-export function instanceOfWebhookResponseData(value: object): boolean {
-  if (!("createdAt" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("name" in value)) return false;
-  if (!("requestTypes" in value)) return false;
-  if (!("status" in value)) return false;
-  if (!("updatedAt" in value)) return false;
-  if (!("url" in value)) return false;
+export function instanceOfWebhookResponseData(
+  value: object,
+): value is WebhookResponseData {
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
+  if (!("requestTypes" in value) || value["requestTypes"] === undefined)
+    return false;
+  if (!("status" in value) || value["status"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("url" in value) || value["url"] === undefined) return false;
   return true;
 }
 

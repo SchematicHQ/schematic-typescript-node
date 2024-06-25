@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { FlagCheckLogResponseData } from "./FlagCheckLogResponseData";
-import {
-  FlagCheckLogResponseDataFromJSON,
-  FlagCheckLogResponseDataFromJSONTyped,
-  FlagCheckLogResponseDataToJSON,
-} from "./FlagCheckLogResponseData";
 import type { GetLatestFlagChecksParams } from "./GetLatestFlagChecksParams";
 import {
   GetLatestFlagChecksParamsFromJSON,
   GetLatestFlagChecksParamsFromJSONTyped,
   GetLatestFlagChecksParamsToJSON,
 } from "./GetLatestFlagChecksParams";
+import type { FlagCheckLogResponseData } from "./FlagCheckLogResponseData";
+import {
+  FlagCheckLogResponseDataFromJSON,
+  FlagCheckLogResponseDataFromJSONTyped,
+  FlagCheckLogResponseDataToJSON,
+} from "./FlagCheckLogResponseData";
 
 /**
  *
@@ -49,9 +49,11 @@ export interface GetLatestFlagChecksResponse {
 /**
  * Check if a given object implements the GetLatestFlagChecksResponse interface.
  */
-export function instanceOfGetLatestFlagChecksResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfGetLatestFlagChecksResponse(
+  value: object,
+): value is GetLatestFlagChecksResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

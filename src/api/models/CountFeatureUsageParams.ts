@@ -27,10 +27,10 @@ export interface CountFeatureUsageParams {
   companyId?: string;
   /**
    *
-   * @type {object}
+   * @type {{ [key: string]: string; }}
    * @memberof CountFeatureUsageParams
    */
-  companyKeys?: object;
+  companyKeys?: { [key: string]: string };
   /**
    *
    * @type {Array<string>}
@@ -38,13 +38,13 @@ export interface CountFeatureUsageParams {
    */
   featureIds?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof CountFeatureUsageParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof CountFeatureUsageParams
    */
@@ -60,7 +60,9 @@ export interface CountFeatureUsageParams {
 /**
  * Check if a given object implements the CountFeatureUsageParams interface.
  */
-export function instanceOfCountFeatureUsageParams(value: object): boolean {
+export function instanceOfCountFeatureUsageParams(
+  value: object,
+): value is CountFeatureUsageParams {
   return true;
 }
 

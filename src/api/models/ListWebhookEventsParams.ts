@@ -26,13 +26,13 @@ export interface ListWebhookEventsParams {
    */
   ids?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListWebhookEventsParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListWebhookEventsParams
    */
@@ -54,7 +54,9 @@ export interface ListWebhookEventsParams {
 /**
  * Check if a given object implements the ListWebhookEventsParams interface.
  */
-export function instanceOfListWebhookEventsParams(value: object): boolean {
+export function instanceOfListWebhookEventsParams(
+  value: object,
+): value is ListWebhookEventsParams {
   return true;
 }
 

@@ -56,12 +56,13 @@ export interface EntityKeyDefinitionResponseData {
  */
 export function instanceOfEntityKeyDefinitionResponseData(
   value: object,
-): boolean {
-  if (!("createdAt" in value)) return false;
-  if (!("entityType" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("key" in value)) return false;
-  if (!("updatedAt" in value)) return false;
+): value is EntityKeyDefinitionResponseData {
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("entityType" in value) || value["entityType"] === undefined)
+    return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("key" in value) || value["key"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
   return true;
 }
 

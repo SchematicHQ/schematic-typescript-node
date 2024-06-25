@@ -56,10 +56,11 @@ export interface BillingSubscriptionResponseData {
  */
 export function instanceOfBillingSubscriptionResponseData(
   value: object,
-): boolean {
-  if (!("externalId" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("updatedAt" in value)) return false;
+): value is BillingSubscriptionResponseData {
+  if (!("externalId" in value) || value["externalId"] === undefined)
+    return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
   return true;
 }
 

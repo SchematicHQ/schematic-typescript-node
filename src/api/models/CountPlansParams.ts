@@ -32,13 +32,13 @@ export interface CountPlansParams {
    */
   ids?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof CountPlansParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof CountPlansParams
    */
@@ -50,7 +50,7 @@ export interface CountPlansParams {
    */
   q?: string;
   /**
-   *
+   * Filter out plans that already have a plan entitlement for the specified feature ID
    * @type {string}
    * @memberof CountPlansParams
    */
@@ -60,7 +60,9 @@ export interface CountPlansParams {
 /**
  * Check if a given object implements the CountPlansParams interface.
  */
-export function instanceOfCountPlansParams(value: object): boolean {
+export function instanceOfCountPlansParams(
+  value: object,
+): value is CountPlansParams {
   return true;
 }
 

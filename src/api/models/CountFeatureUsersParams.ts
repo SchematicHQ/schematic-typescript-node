@@ -26,13 +26,13 @@ export interface CountFeatureUsersParams {
    */
   featureId?: string;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof CountFeatureUsersParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof CountFeatureUsersParams
    */
@@ -48,7 +48,9 @@ export interface CountFeatureUsersParams {
 /**
  * Check if a given object implements the CountFeatureUsersParams interface.
  */
-export function instanceOfCountFeatureUsersParams(value: object): boolean {
+export function instanceOfCountFeatureUsersParams(
+  value: object,
+): value is CountFeatureUsersParams {
   return true;
 }
 

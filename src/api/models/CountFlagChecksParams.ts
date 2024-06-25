@@ -38,13 +38,13 @@ export interface CountFlagChecksParams {
    */
   id?: string;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof CountFlagChecksParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof CountFlagChecksParams
    */
@@ -54,7 +54,9 @@ export interface CountFlagChecksParams {
 /**
  * Check if a given object implements the CountFlagChecksParams interface.
  */
-export function instanceOfCountFlagChecksParams(value: object): boolean {
+export function instanceOfCountFlagChecksParams(
+  value: object,
+): value is CountFlagChecksParams {
   return true;
 }
 

@@ -13,6 +13,12 @@
  */
 
 import { mapValues } from "../runtime";
+import type { PreviewObject } from "./PreviewObject";
+import {
+  PreviewObjectFromJSON,
+  PreviewObjectFromJSONTyped,
+  PreviewObjectToJSON,
+} from "./PreviewObject";
 import type { EntityKeyDetailResponseData } from "./EntityKeyDetailResponseData";
 import {
   EntityKeyDetailResponseDataFromJSON,
@@ -25,12 +31,6 @@ import {
   EntityTraitDetailResponseDataFromJSONTyped,
   EntityTraitDetailResponseDataToJSON,
 } from "./EntityTraitDetailResponseData";
-import type { PreviewObject } from "./PreviewObject";
-import {
-  PreviewObjectFromJSON,
-  PreviewObjectFromJSONTyped,
-  PreviewObjectToJSON,
-} from "./PreviewObject";
 
 /**
  *
@@ -115,16 +115,20 @@ export interface CompanyDetailResponseData {
 /**
  * Check if a given object implements the CompanyDetailResponseData interface.
  */
-export function instanceOfCompanyDetailResponseData(value: object): boolean {
-  if (!("createdAt" in value)) return false;
-  if (!("entityTraits" in value)) return false;
-  if (!("environmentId" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("keys" in value)) return false;
-  if (!("name" in value)) return false;
-  if (!("plans" in value)) return false;
-  if (!("updatedAt" in value)) return false;
-  if (!("userCount" in value)) return false;
+export function instanceOfCompanyDetailResponseData(
+  value: object,
+): value is CompanyDetailResponseData {
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("entityTraits" in value) || value["entityTraits"] === undefined)
+    return false;
+  if (!("environmentId" in value) || value["environmentId"] === undefined)
+    return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("keys" in value) || value["keys"] === undefined) return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
+  if (!("plans" in value) || value["plans"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("userCount" in value) || value["userCount"] === undefined) return false;
   return true;
 }
 

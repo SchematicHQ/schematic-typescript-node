@@ -57,8 +57,9 @@ export interface CreateOrUpdateConditionGroupRequestBody {
  */
 export function instanceOfCreateOrUpdateConditionGroupRequestBody(
   value: object,
-): boolean {
-  if (!("conditions" in value)) return false;
+): value is CreateOrUpdateConditionGroupRequestBody {
+  if (!("conditions" in value) || value["conditions"] === undefined)
+    return false;
   return true;
 }
 

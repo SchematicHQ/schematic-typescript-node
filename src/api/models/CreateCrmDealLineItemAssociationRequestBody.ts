@@ -38,9 +38,14 @@ export interface CreateCrmDealLineItemAssociationRequestBody {
  */
 export function instanceOfCreateCrmDealLineItemAssociationRequestBody(
   value: object,
-): boolean {
-  if (!("dealExternalId" in value)) return false;
-  if (!("lineItemExternalId" in value)) return false;
+): value is CreateCrmDealLineItemAssociationRequestBody {
+  if (!("dealExternalId" in value) || value["dealExternalId"] === undefined)
+    return false;
+  if (
+    !("lineItemExternalId" in value) ||
+    value["lineItemExternalId"] === undefined
+  )
+    return false;
   return true;
 }
 

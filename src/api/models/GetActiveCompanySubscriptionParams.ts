@@ -26,13 +26,13 @@ export interface GetActiveCompanySubscriptionParams {
    */
   companyId?: string;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof GetActiveCompanySubscriptionParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof GetActiveCompanySubscriptionParams
    */
@@ -44,7 +44,7 @@ export interface GetActiveCompanySubscriptionParams {
  */
 export function instanceOfGetActiveCompanySubscriptionParams(
   value: object,
-): boolean {
+): value is GetActiveCompanySubscriptionParams {
   return true;
 }
 

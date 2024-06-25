@@ -39,8 +39,8 @@ export interface FeatureUsageDetailResponseData {
  */
 export function instanceOfFeatureUsageDetailResponseData(
   value: object,
-): boolean {
-  if (!("features" in value)) return false;
+): value is FeatureUsageDetailResponseData {
+  if (!("features" in value) || value["features"] === undefined) return false;
   return true;
 }
 

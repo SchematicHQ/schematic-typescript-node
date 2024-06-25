@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { EntityTraitValue } from "./EntityTraitValue";
-import {
-  EntityTraitValueFromJSON,
-  EntityTraitValueFromJSONTyped,
-  EntityTraitValueToJSON,
-} from "./EntityTraitValue";
 import type { GetEntityTraitValuesParams } from "./GetEntityTraitValuesParams";
 import {
   GetEntityTraitValuesParamsFromJSON,
   GetEntityTraitValuesParamsFromJSONTyped,
   GetEntityTraitValuesParamsToJSON,
 } from "./GetEntityTraitValuesParams";
+import type { EntityTraitValue } from "./EntityTraitValue";
+import {
+  EntityTraitValueFromJSON,
+  EntityTraitValueFromJSONTyped,
+  EntityTraitValueToJSON,
+} from "./EntityTraitValue";
 
 /**
  *
@@ -49,9 +49,11 @@ export interface GetEntityTraitValuesResponse {
 /**
  * Check if a given object implements the GetEntityTraitValuesResponse interface.
  */
-export function instanceOfGetEntityTraitValuesResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfGetEntityTraitValuesResponse(
+  value: object,
+): value is GetEntityTraitValuesResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

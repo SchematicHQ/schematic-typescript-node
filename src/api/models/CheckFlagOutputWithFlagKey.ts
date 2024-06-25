@@ -66,10 +66,12 @@ export interface CheckFlagOutputWithFlagKey {
 /**
  * Check if a given object implements the CheckFlagOutputWithFlagKey interface.
  */
-export function instanceOfCheckFlagOutputWithFlagKey(value: object): boolean {
-  if (!("flag" in value)) return false;
-  if (!("reason" in value)) return false;
-  if (!("value" in value)) return false;
+export function instanceOfCheckFlagOutputWithFlagKey(
+  value: object,
+): value is CheckFlagOutputWithFlagKey {
+  if (!("flag" in value) || value["flag"] === undefined) return false;
+  if (!("reason" in value) || value["reason"] === undefined) return false;
+  if (!("value" in value) || value["value"] === undefined) return false;
   return true;
 }
 

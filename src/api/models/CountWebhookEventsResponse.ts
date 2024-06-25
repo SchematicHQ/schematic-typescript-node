@@ -49,9 +49,11 @@ export interface CountWebhookEventsResponse {
 /**
  * Check if a given object implements the CountWebhookEventsResponse interface.
  */
-export function instanceOfCountWebhookEventsResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfCountWebhookEventsResponse(
+  value: object,
+): value is CountWebhookEventsResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

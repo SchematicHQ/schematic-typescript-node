@@ -26,13 +26,13 @@ export interface ListApiRequestsParams {
    */
   environmentId?: string;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListApiRequestsParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListApiRequestsParams
    */
@@ -54,7 +54,9 @@ export interface ListApiRequestsParams {
 /**
  * Check if a given object implements the ListApiRequestsParams interface.
  */
-export function instanceOfListApiRequestsParams(value: object): boolean {
+export function instanceOfListApiRequestsParams(
+  value: object,
+): value is ListApiRequestsParams {
   return true;
 }
 

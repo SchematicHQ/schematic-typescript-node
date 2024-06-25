@@ -56,10 +56,13 @@ export type CreatePlanRequestBodyPlanTypeEnum =
 /**
  * Check if a given object implements the CreatePlanRequestBody interface.
  */
-export function instanceOfCreatePlanRequestBody(value: object): boolean {
-  if (!("description" in value)) return false;
-  if (!("name" in value)) return false;
-  if (!("planType" in value)) return false;
+export function instanceOfCreatePlanRequestBody(
+  value: object,
+): value is CreatePlanRequestBody {
+  if (!("description" in value) || value["description"] === undefined)
+    return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
+  if (!("planType" in value) || value["planType"] === undefined) return false;
   return true;
 }
 

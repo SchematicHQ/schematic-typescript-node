@@ -30,7 +30,7 @@ export interface UpdateWebhookRequestBody {
    * @type {Array<string>}
    * @memberof UpdateWebhookRequestBody
    */
-  requestTypes?: Array<string>;
+  requestTypes?: Array<UpdateWebhookRequestBodyRequestTypesEnum>;
   /**
    *
    * @type {string}
@@ -40,9 +40,42 @@ export interface UpdateWebhookRequestBody {
 }
 
 /**
+ * @export
+ */
+export const UpdateWebhookRequestBodyRequestTypesEnum = {
+  CompanyUpdated: "company.updated",
+  UserUpdated: "user.updated",
+  PlanUpdated: "plan.updated",
+  PlanEntitlementUpdated: "plan.entitlement.updated",
+  CompanyOverrideUpdated: "company.override.updated",
+  FeatureUpdated: "feature.updated",
+  FlagUpdated: "flag.updated",
+  FlagRulesUpdated: "flag_rules.updated",
+  CompanyCreated: "company.created",
+  UserCreated: "user.created",
+  PlanCreated: "plan.created",
+  PlanEntitlementCreated: "plan.entitlement.created",
+  CompanyOverrideCreated: "company.override.created",
+  FeatureCreated: "feature.created",
+  FlagCreated: "flag.created",
+  CompanyDeleted: "company.deleted",
+  UserDeleted: "user.deleted",
+  PlanDeleted: "plan.deleted",
+  PlanEntitlementDeleted: "plan.entitlement.deleted",
+  CompanyOverrideDeleted: "company.override.deleted",
+  FeatureDeleted: "feature.deleted",
+  FlagDeleted: "flag.deleted",
+  TestSend: "test.send",
+} as const;
+export type UpdateWebhookRequestBodyRequestTypesEnum =
+  (typeof UpdateWebhookRequestBodyRequestTypesEnum)[keyof typeof UpdateWebhookRequestBodyRequestTypesEnum];
+
+/**
  * Check if a given object implements the UpdateWebhookRequestBody interface.
  */
-export function instanceOfUpdateWebhookRequestBody(value: object): boolean {
+export function instanceOfUpdateWebhookRequestBody(
+  value: object,
+): value is UpdateWebhookRequestBody {
   return true;
 }
 

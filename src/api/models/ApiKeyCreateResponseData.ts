@@ -78,13 +78,15 @@ export interface ApiKeyCreateResponseData {
 /**
  * Check if a given object implements the ApiKeyCreateResponseData interface.
  */
-export function instanceOfApiKeyCreateResponseData(value: object): boolean {
-  if (!("createdAt" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("name" in value)) return false;
-  if (!("scopes" in value)) return false;
-  if (!("secret" in value)) return false;
-  if (!("updatedAt" in value)) return false;
+export function instanceOfApiKeyCreateResponseData(
+  value: object,
+): value is ApiKeyCreateResponseData {
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
+  if (!("scopes" in value) || value["scopes"] === undefined) return false;
+  if (!("secret" in value) || value["secret"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
   return true;
 }
 

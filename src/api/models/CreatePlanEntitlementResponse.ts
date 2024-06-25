@@ -45,9 +45,9 @@ export interface CreatePlanEntitlementResponse {
  */
 export function instanceOfCreatePlanEntitlementResponse(
   value: object,
-): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+): value is CreatePlanEntitlementResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

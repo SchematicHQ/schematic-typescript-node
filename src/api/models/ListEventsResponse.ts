@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { EventDetailResponseData } from "./EventDetailResponseData";
-import {
-  EventDetailResponseDataFromJSON,
-  EventDetailResponseDataFromJSONTyped,
-  EventDetailResponseDataToJSON,
-} from "./EventDetailResponseData";
 import type { ListEventsParams } from "./ListEventsParams";
 import {
   ListEventsParamsFromJSON,
   ListEventsParamsFromJSONTyped,
   ListEventsParamsToJSON,
 } from "./ListEventsParams";
+import type { EventDetailResponseData } from "./EventDetailResponseData";
+import {
+  EventDetailResponseDataFromJSON,
+  EventDetailResponseDataFromJSONTyped,
+  EventDetailResponseDataToJSON,
+} from "./EventDetailResponseData";
 
 /**
  *
@@ -49,9 +49,11 @@ export interface ListEventsResponse {
 /**
  * Check if a given object implements the ListEventsResponse interface.
  */
-export function instanceOfListEventsResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfListEventsResponse(
+  value: object,
+): value is ListEventsResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

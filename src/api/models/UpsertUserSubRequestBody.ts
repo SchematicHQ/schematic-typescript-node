@@ -27,10 +27,10 @@ export interface UpsertUserSubRequestBody {
   companyId?: string;
   /**
    *
-   * @type {object}
+   * @type {{ [key: string]: string; }}
    * @memberof UpsertUserSubRequestBody
    */
-  keys: object;
+  keys: { [key: string]: string };
   /**
    *
    * @type {Date}
@@ -60,8 +60,10 @@ export interface UpsertUserSubRequestBody {
 /**
  * Check if a given object implements the UpsertUserSubRequestBody interface.
  */
-export function instanceOfUpsertUserSubRequestBody(value: object): boolean {
-  if (!("keys" in value)) return false;
+export function instanceOfUpsertUserSubRequestBody(
+  value: object,
+): value is UpsertUserSubRequestBody {
+  if (!("keys" in value) || value["keys"] === undefined) return false;
   return true;
 }
 

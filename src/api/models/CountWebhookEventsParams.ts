@@ -26,13 +26,13 @@ export interface CountWebhookEventsParams {
    */
   ids?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof CountWebhookEventsParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof CountWebhookEventsParams
    */
@@ -54,7 +54,9 @@ export interface CountWebhookEventsParams {
 /**
  * Check if a given object implements the CountWebhookEventsParams interface.
  */
-export function instanceOfCountWebhookEventsParams(value: object): boolean {
+export function instanceOfCountWebhookEventsParams(
+  value: object,
+): value is CountWebhookEventsParams {
   return true;
 }
 

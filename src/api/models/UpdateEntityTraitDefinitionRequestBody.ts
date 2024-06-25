@@ -52,8 +52,8 @@ export type UpdateEntityTraitDefinitionRequestBodyTraitTypeEnum =
  */
 export function instanceOfUpdateEntityTraitDefinitionRequestBody(
   value: object,
-): boolean {
-  if (!("traitType" in value)) return false;
+): value is UpdateEntityTraitDefinitionRequestBody {
+  if (!("traitType" in value) || value["traitType"] === undefined) return false;
   return true;
 }
 

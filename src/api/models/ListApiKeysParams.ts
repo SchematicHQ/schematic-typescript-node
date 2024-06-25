@@ -26,13 +26,13 @@ export interface ListApiKeysParams {
    */
   environmentId?: string;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListApiKeysParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListApiKeysParams
    */
@@ -48,7 +48,9 @@ export interface ListApiKeysParams {
 /**
  * Check if a given object implements the ListApiKeysParams interface.
  */
-export function instanceOfListApiKeysParams(value: object): boolean {
+export function instanceOfListApiKeysParams(
+  value: object,
+): value is ListApiKeysParams {
   return true;
 }
 

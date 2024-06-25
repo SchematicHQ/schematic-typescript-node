@@ -84,7 +84,9 @@ export type UpdateFeatureRequestBodyFeatureTypeEnum =
 /**
  * Check if a given object implements the UpdateFeatureRequestBody interface.
  */
-export function instanceOfUpdateFeatureRequestBody(value: object): boolean {
+export function instanceOfUpdateFeatureRequestBody(
+  value: object,
+): value is UpdateFeatureRequestBody {
   return true;
 }
 

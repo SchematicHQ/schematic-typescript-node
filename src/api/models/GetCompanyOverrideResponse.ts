@@ -43,9 +43,11 @@ export interface GetCompanyOverrideResponse {
 /**
  * Check if a given object implements the GetCompanyOverrideResponse interface.
  */
-export function instanceOfGetCompanyOverrideResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfGetCompanyOverrideResponse(
+  value: object,
+): value is GetCompanyOverrideResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

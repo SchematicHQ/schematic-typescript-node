@@ -30,7 +30,9 @@ export interface LookupCompanyParams {
 /**
  * Check if a given object implements the LookupCompanyParams interface.
  */
-export function instanceOfLookupCompanyParams(value: object): boolean {
+export function instanceOfLookupCompanyParams(
+  value: object,
+): value is LookupCompanyParams {
   return true;
 }
 

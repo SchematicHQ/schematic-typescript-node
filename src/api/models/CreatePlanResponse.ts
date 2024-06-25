@@ -43,9 +43,11 @@ export interface CreatePlanResponse {
 /**
  * Check if a given object implements the CreatePlanResponse interface.
  */
-export function instanceOfCreatePlanResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfCreatePlanResponse(
+  value: object,
+): value is CreatePlanResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

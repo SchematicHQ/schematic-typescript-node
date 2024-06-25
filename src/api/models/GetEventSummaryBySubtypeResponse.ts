@@ -45,9 +45,9 @@ export interface GetEventSummaryBySubtypeResponse {
  */
 export function instanceOfGetEventSummaryBySubtypeResponse(
   value: object,
-): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+): value is GetEventSummaryBySubtypeResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

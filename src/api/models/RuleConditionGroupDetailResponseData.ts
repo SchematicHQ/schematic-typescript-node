@@ -81,13 +81,15 @@ export interface RuleConditionGroupDetailResponseData {
  */
 export function instanceOfRuleConditionGroupDetailResponseData(
   value: object,
-): boolean {
-  if (!("conditions" in value)) return false;
-  if (!("createdAt" in value)) return false;
-  if (!("environmentId" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("ruleId" in value)) return false;
-  if (!("updatedAt" in value)) return false;
+): value is RuleConditionGroupDetailResponseData {
+  if (!("conditions" in value) || value["conditions"] === undefined)
+    return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("environmentId" in value) || value["environmentId"] === undefined)
+    return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("ruleId" in value) || value["ruleId"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
   return true;
 }
 

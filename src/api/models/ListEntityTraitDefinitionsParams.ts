@@ -24,7 +24,7 @@ export interface ListEntityTraitDefinitionsParams {
    * @type {string}
    * @memberof ListEntityTraitDefinitionsParams
    */
-  entityType?: string;
+  entityType?: ListEntityTraitDefinitionsParamsEntityTypeEnum;
   /**
    *
    * @type {Array<string>}
@@ -32,13 +32,13 @@ export interface ListEntityTraitDefinitionsParams {
    */
   ids?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListEntityTraitDefinitionsParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListEntityTraitDefinitionsParams
    */
@@ -54,15 +54,39 @@ export interface ListEntityTraitDefinitionsParams {
    * @type {string}
    * @memberof ListEntityTraitDefinitionsParams
    */
-  traitType?: string;
+  traitType?: ListEntityTraitDefinitionsParamsTraitTypeEnum;
 }
+
+/**
+ * @export
+ */
+export const ListEntityTraitDefinitionsParamsEntityTypeEnum = {
+  Company: "company",
+  User: "user",
+} as const;
+export type ListEntityTraitDefinitionsParamsEntityTypeEnum =
+  (typeof ListEntityTraitDefinitionsParamsEntityTypeEnum)[keyof typeof ListEntityTraitDefinitionsParamsEntityTypeEnum];
+
+/**
+ * @export
+ */
+export const ListEntityTraitDefinitionsParamsTraitTypeEnum = {
+  Boolean: "boolean",
+  Currency: "currency",
+  Date: "date",
+  Number: "number",
+  String: "string",
+  Url: "url",
+} as const;
+export type ListEntityTraitDefinitionsParamsTraitTypeEnum =
+  (typeof ListEntityTraitDefinitionsParamsTraitTypeEnum)[keyof typeof ListEntityTraitDefinitionsParamsTraitTypeEnum];
 
 /**
  * Check if a given object implements the ListEntityTraitDefinitionsParams interface.
  */
 export function instanceOfListEntityTraitDefinitionsParams(
   value: object,
-): boolean {
+): value is ListEntityTraitDefinitionsParams {
   return true;
 }
 

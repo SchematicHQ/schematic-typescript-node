@@ -38,13 +38,13 @@ export interface CountPlanEntitlementsParams {
    */
   ids?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof CountPlanEntitlementsParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof CountPlanEntitlementsParams
    */
@@ -66,7 +66,9 @@ export interface CountPlanEntitlementsParams {
 /**
  * Check if a given object implements the CountPlanEntitlementsParams interface.
  */
-export function instanceOfCountPlanEntitlementsParams(value: object): boolean {
+export function instanceOfCountPlanEntitlementsParams(
+  value: object,
+): value is CountPlanEntitlementsParams {
   return true;
 }
 

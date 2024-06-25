@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { ListWebhookEventsParams } from "./ListWebhookEventsParams";
-import {
-  ListWebhookEventsParamsFromJSON,
-  ListWebhookEventsParamsFromJSONTyped,
-  ListWebhookEventsParamsToJSON,
-} from "./ListWebhookEventsParams";
 import type { WebhookEventDetailResponseData } from "./WebhookEventDetailResponseData";
 import {
   WebhookEventDetailResponseDataFromJSON,
   WebhookEventDetailResponseDataFromJSONTyped,
   WebhookEventDetailResponseDataToJSON,
 } from "./WebhookEventDetailResponseData";
+import type { ListWebhookEventsParams } from "./ListWebhookEventsParams";
+import {
+  ListWebhookEventsParamsFromJSON,
+  ListWebhookEventsParamsFromJSONTyped,
+  ListWebhookEventsParamsToJSON,
+} from "./ListWebhookEventsParams";
 
 /**
  *
@@ -49,9 +49,11 @@ export interface ListWebhookEventsResponse {
 /**
  * Check if a given object implements the ListWebhookEventsResponse interface.
  */
-export function instanceOfListWebhookEventsResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfListWebhookEventsResponse(
+  value: object,
+): value is ListWebhookEventsResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

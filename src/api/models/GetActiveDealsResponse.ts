@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { CompanyCrmDealsResponseData } from "./CompanyCrmDealsResponseData";
-import {
-  CompanyCrmDealsResponseDataFromJSON,
-  CompanyCrmDealsResponseDataFromJSONTyped,
-  CompanyCrmDealsResponseDataToJSON,
-} from "./CompanyCrmDealsResponseData";
 import type { GetActiveDealsParams } from "./GetActiveDealsParams";
 import {
   GetActiveDealsParamsFromJSON,
   GetActiveDealsParamsFromJSONTyped,
   GetActiveDealsParamsToJSON,
 } from "./GetActiveDealsParams";
+import type { CompanyCrmDealsResponseData } from "./CompanyCrmDealsResponseData";
+import {
+  CompanyCrmDealsResponseDataFromJSON,
+  CompanyCrmDealsResponseDataFromJSONTyped,
+  CompanyCrmDealsResponseDataToJSON,
+} from "./CompanyCrmDealsResponseData";
 
 /**
  *
@@ -49,9 +49,11 @@ export interface GetActiveDealsResponse {
 /**
  * Check if a given object implements the GetActiveDealsResponse interface.
  */
-export function instanceOfGetActiveDealsResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfGetActiveDealsResponse(
+  value: object,
+): value is GetActiveDealsResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

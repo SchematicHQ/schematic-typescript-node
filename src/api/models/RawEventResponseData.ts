@@ -54,11 +54,15 @@ export interface RawEventResponseData {
 /**
  * Check if a given object implements the RawEventResponseData interface.
  */
-export function instanceOfRawEventResponseData(value: object): boolean {
-  if (!("capturedAt" in value)) return false;
-  if (!("remoteAddr" in value)) return false;
-  if (!("remoteIp" in value)) return false;
-  if (!("userAgent" in value)) return false;
+export function instanceOfRawEventResponseData(
+  value: object,
+): value is RawEventResponseData {
+  if (!("capturedAt" in value) || value["capturedAt"] === undefined)
+    return false;
+  if (!("remoteAddr" in value) || value["remoteAddr"] === undefined)
+    return false;
+  if (!("remoteIp" in value) || value["remoteIp"] === undefined) return false;
+  if (!("userAgent" in value) || value["userAgent"] === undefined) return false;
   return true;
 }
 

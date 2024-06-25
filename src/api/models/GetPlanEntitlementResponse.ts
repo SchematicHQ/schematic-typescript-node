@@ -43,9 +43,11 @@ export interface GetPlanEntitlementResponse {
 /**
  * Check if a given object implements the GetPlanEntitlementResponse interface.
  */
-export function instanceOfGetPlanEntitlementResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfGetPlanEntitlementResponse(
+  value: object,
+): value is GetPlanEntitlementResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

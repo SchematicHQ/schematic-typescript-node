@@ -24,7 +24,7 @@ export interface ListEntityKeyDefinitionsParams {
    * @type {string}
    * @memberof ListEntityKeyDefinitionsParams
    */
-  entityType?: string;
+  entityType?: ListEntityKeyDefinitionsParamsEntityTypeEnum;
   /**
    *
    * @type {Array<string>}
@@ -38,13 +38,13 @@ export interface ListEntityKeyDefinitionsParams {
    */
   key?: string;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListEntityKeyDefinitionsParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListEntityKeyDefinitionsParams
    */
@@ -52,11 +52,21 @@ export interface ListEntityKeyDefinitionsParams {
 }
 
 /**
+ * @export
+ */
+export const ListEntityKeyDefinitionsParamsEntityTypeEnum = {
+  Company: "company",
+  User: "user",
+} as const;
+export type ListEntityKeyDefinitionsParamsEntityTypeEnum =
+  (typeof ListEntityKeyDefinitionsParamsEntityTypeEnum)[keyof typeof ListEntityKeyDefinitionsParamsEntityTypeEnum];
+
+/**
  * Check if a given object implements the ListEntityKeyDefinitionsParams interface.
  */
 export function instanceOfListEntityKeyDefinitionsParams(
   value: object,
-): boolean {
+): value is ListEntityKeyDefinitionsParams {
   return true;
 }
 

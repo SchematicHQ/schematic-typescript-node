@@ -26,13 +26,13 @@ export interface ListFeatureUsersParams {
    */
   featureId?: string;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListFeatureUsersParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListFeatureUsersParams
    */
@@ -48,7 +48,9 @@ export interface ListFeatureUsersParams {
 /**
  * Check if a given object implements the ListFeatureUsersParams interface.
  */
-export function instanceOfListFeatureUsersParams(value: object): boolean {
+export function instanceOfListFeatureUsersParams(
+  value: object,
+): value is ListFeatureUsersParams {
   return true;
 }
 

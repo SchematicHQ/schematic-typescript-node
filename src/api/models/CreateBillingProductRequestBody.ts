@@ -56,12 +56,13 @@ export interface CreateBillingProductRequestBody {
  */
 export function instanceOfCreateBillingProductRequestBody(
   value: object,
-): boolean {
-  if (!("currency" in value)) return false;
-  if (!("externalId" in value)) return false;
-  if (!("name" in value)) return false;
-  if (!("price" in value)) return false;
-  if (!("quantity" in value)) return false;
+): value is CreateBillingProductRequestBody {
+  if (!("currency" in value) || value["currency"] === undefined) return false;
+  if (!("externalId" in value) || value["externalId"] === undefined)
+    return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
+  if (!("price" in value) || value["price"] === undefined) return false;
+  if (!("quantity" in value) || value["quantity"] === undefined) return false;
   return true;
 }
 

@@ -43,9 +43,11 @@ export interface CreateFlagResponse {
 /**
  * Check if a given object implements the CreateFlagResponse interface.
  */
-export function instanceOfCreateFlagResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfCreateFlagResponse(
+  value: object,
+): value is CreateFlagResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

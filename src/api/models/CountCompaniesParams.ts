@@ -26,13 +26,13 @@ export interface CountCompaniesParams {
    */
   ids?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof CountCompaniesParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof CountCompaniesParams
    */
@@ -44,13 +44,13 @@ export interface CountCompaniesParams {
    */
   planId?: string;
   /**
-   *
+   * Search filter
    * @type {string}
    * @memberof CountCompaniesParams
    */
   q?: string;
   /**
-   *
+   * Filter out companies that already have a company override for the specified feature ID
    * @type {string}
    * @memberof CountCompaniesParams
    */
@@ -60,7 +60,9 @@ export interface CountCompaniesParams {
 /**
  * Check if a given object implements the CountCompaniesParams interface.
  */
-export function instanceOfCountCompaniesParams(value: object): boolean {
+export function instanceOfCountCompaniesParams(
+  value: object,
+): value is CountCompaniesParams {
   return true;
 }
 

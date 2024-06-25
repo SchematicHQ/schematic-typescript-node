@@ -42,9 +42,9 @@ export interface PreviewObject {
 /**
  * Check if a given object implements the PreviewObject interface.
  */
-export function instanceOfPreviewObject(value: object): boolean {
-  if (!("id" in value)) return false;
-  if (!("name" in value)) return false;
+export function instanceOfPreviewObject(value: object): value is PreviewObject {
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
   return true;
 }
 

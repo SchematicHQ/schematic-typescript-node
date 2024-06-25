@@ -36,7 +36,9 @@ export interface PaginationFilter {
 /**
  * Check if a given object implements the PaginationFilter interface.
  */
-export function instanceOfPaginationFilter(value: object): boolean {
+export function instanceOfPaginationFilter(
+  value: object,
+): value is PaginationFilter {
   return true;
 }
 

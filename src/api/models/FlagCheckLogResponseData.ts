@@ -75,16 +75,16 @@ export interface FlagCheckLogResponseData {
   reason: string;
   /**
    *
-   * @type {object}
+   * @type {{ [key: string]: string; }}
    * @memberof FlagCheckLogResponseData
    */
-  reqCompany?: object;
+  reqCompany?: { [key: string]: string };
   /**
    *
-   * @type {object}
+   * @type {{ [key: string]: string; }}
    * @memberof FlagCheckLogResponseData
    */
-  reqUser?: object;
+  reqUser?: { [key: string]: string };
   /**
    *
    * @type {string}
@@ -114,15 +114,19 @@ export interface FlagCheckLogResponseData {
 /**
  * Check if a given object implements the FlagCheckLogResponseData interface.
  */
-export function instanceOfFlagCheckLogResponseData(value: object): boolean {
-  if (!("checkStatus" in value)) return false;
-  if (!("createdAt" in value)) return false;
-  if (!("environmentId" in value)) return false;
-  if (!("flagKey" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("reason" in value)) return false;
-  if (!("updatedAt" in value)) return false;
-  if (!("value" in value)) return false;
+export function instanceOfFlagCheckLogResponseData(
+  value: object,
+): value is FlagCheckLogResponseData {
+  if (!("checkStatus" in value) || value["checkStatus"] === undefined)
+    return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("environmentId" in value) || value["environmentId"] === undefined)
+    return false;
+  if (!("flagKey" in value) || value["flagKey"] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("reason" in value) || value["reason"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("value" in value) || value["value"] === undefined) return false;
   return true;
 }
 

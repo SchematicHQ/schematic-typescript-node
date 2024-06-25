@@ -43,9 +43,11 @@ export interface UpdateAudienceResponse {
 /**
  * Check if a given object implements the UpdateAudienceResponse interface.
  */
-export function instanceOfUpdateAudienceResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfUpdateAudienceResponse(
+  value: object,
+): value is UpdateAudienceResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

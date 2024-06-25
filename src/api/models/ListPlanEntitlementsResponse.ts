@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { ListPlanEntitlementsParams } from "./ListPlanEntitlementsParams";
-import {
-  ListPlanEntitlementsParamsFromJSON,
-  ListPlanEntitlementsParamsFromJSONTyped,
-  ListPlanEntitlementsParamsToJSON,
-} from "./ListPlanEntitlementsParams";
 import type { PlanEntitlementResponseData } from "./PlanEntitlementResponseData";
 import {
   PlanEntitlementResponseDataFromJSON,
   PlanEntitlementResponseDataFromJSONTyped,
   PlanEntitlementResponseDataToJSON,
 } from "./PlanEntitlementResponseData";
+import type { ListPlanEntitlementsParams } from "./ListPlanEntitlementsParams";
+import {
+  ListPlanEntitlementsParamsFromJSON,
+  ListPlanEntitlementsParamsFromJSONTyped,
+  ListPlanEntitlementsParamsToJSON,
+} from "./ListPlanEntitlementsParams";
 
 /**
  *
@@ -49,9 +49,11 @@ export interface ListPlanEntitlementsResponse {
 /**
  * Check if a given object implements the ListPlanEntitlementsResponse interface.
  */
-export function instanceOfListPlanEntitlementsResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfListPlanEntitlementsResponse(
+  value: object,
+): value is ListPlanEntitlementsResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

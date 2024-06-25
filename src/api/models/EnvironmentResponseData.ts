@@ -54,12 +54,15 @@ export interface EnvironmentResponseData {
 /**
  * Check if a given object implements the EnvironmentResponseData interface.
  */
-export function instanceOfEnvironmentResponseData(value: object): boolean {
-  if (!("createdAt" in value)) return false;
-  if (!("environmentType" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("name" in value)) return false;
-  if (!("updatedAt" in value)) return false;
+export function instanceOfEnvironmentResponseData(
+  value: object,
+): value is EnvironmentResponseData {
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("environmentType" in value) || value["environmentType"] === undefined)
+    return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
   return true;
 }
 

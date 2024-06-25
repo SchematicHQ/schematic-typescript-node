@@ -68,12 +68,14 @@ export interface MetricCountsHourlyResponseData {
  */
 export function instanceOfMetricCountsHourlyResponseData(
   value: object,
-): boolean {
-  if (!("createdAt" in value)) return false;
-  if (!("environmentId" in value)) return false;
-  if (!("eventSubtype" in value)) return false;
-  if (!("startTime" in value)) return false;
-  if (!("value" in value)) return false;
+): value is MetricCountsHourlyResponseData {
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("environmentId" in value) || value["environmentId"] === undefined)
+    return false;
+  if (!("eventSubtype" in value) || value["eventSubtype"] === undefined)
+    return false;
+  if (!("startTime" in value) || value["startTime"] === undefined) return false;
+  if (!("value" in value) || value["value"] === undefined) return false;
   return true;
 }
 

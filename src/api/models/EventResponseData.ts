@@ -132,15 +132,20 @@ export interface EventResponseData {
 /**
  * Check if a given object implements the EventResponseData interface.
  */
-export function instanceOfEventResponseData(value: object): boolean {
-  if (!("body" in value)) return false;
-  if (!("bodyPreview" in value)) return false;
-  if (!("capturedAt" in value)) return false;
-  if (!("featureIds" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("status" in value)) return false;
-  if (!("type" in value)) return false;
-  if (!("updatedAt" in value)) return false;
+export function instanceOfEventResponseData(
+  value: object,
+): value is EventResponseData {
+  if (!("body" in value) || value["body"] === undefined) return false;
+  if (!("bodyPreview" in value) || value["bodyPreview"] === undefined)
+    return false;
+  if (!("capturedAt" in value) || value["capturedAt"] === undefined)
+    return false;
+  if (!("featureIds" in value) || value["featureIds"] === undefined)
+    return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("status" in value) || value["status"] === undefined) return false;
+  if (!("type" in value) || value["type"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
   return true;
 }
 

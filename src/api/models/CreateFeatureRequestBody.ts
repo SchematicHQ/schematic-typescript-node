@@ -84,10 +84,14 @@ export type CreateFeatureRequestBodyFeatureTypeEnum =
 /**
  * Check if a given object implements the CreateFeatureRequestBody interface.
  */
-export function instanceOfCreateFeatureRequestBody(value: object): boolean {
-  if (!("description" in value)) return false;
-  if (!("featureType" in value)) return false;
-  if (!("name" in value)) return false;
+export function instanceOfCreateFeatureRequestBody(
+  value: object,
+): value is CreateFeatureRequestBody {
+  if (!("description" in value) || value["description"] === undefined)
+    return false;
+  if (!("featureType" in value) || value["featureType"] === undefined)
+    return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
   return true;
 }
 

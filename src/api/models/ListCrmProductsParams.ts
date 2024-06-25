@@ -26,7 +26,7 @@ export interface ListCrmProductsParams {
    */
   ids?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListCrmProductsParams
    */
@@ -38,7 +38,7 @@ export interface ListCrmProductsParams {
    */
   name?: string;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListCrmProductsParams
    */
@@ -48,7 +48,9 @@ export interface ListCrmProductsParams {
 /**
  * Check if a given object implements the ListCrmProductsParams interface.
  */
-export function instanceOfListCrmProductsParams(value: object): boolean {
+export function instanceOfListCrmProductsParams(
+  value: object,
+): value is ListCrmProductsParams {
   return true;
 }
 

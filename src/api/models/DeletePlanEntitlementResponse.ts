@@ -45,9 +45,9 @@ export interface DeletePlanEntitlementResponse {
  */
 export function instanceOfDeletePlanEntitlementResponse(
   value: object,
-): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+): value is DeletePlanEntitlementResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

@@ -37,8 +37,10 @@ export interface CreateEventBatchRequestBody {
 /**
  * Check if a given object implements the CreateEventBatchRequestBody interface.
  */
-export function instanceOfCreateEventBatchRequestBody(value: object): boolean {
-  if (!("events" in value)) return false;
+export function instanceOfCreateEventBatchRequestBody(
+  value: object,
+): value is CreateEventBatchRequestBody {
+  if (!("events" in value) || value["events"] === undefined) return false;
   return true;
 }
 

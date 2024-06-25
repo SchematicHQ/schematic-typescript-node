@@ -24,7 +24,7 @@ export interface CountEntityTraitDefinitionsParams {
    * @type {string}
    * @memberof CountEntityTraitDefinitionsParams
    */
-  entityType?: string;
+  entityType?: CountEntityTraitDefinitionsParamsEntityTypeEnum;
   /**
    *
    * @type {Array<string>}
@@ -32,13 +32,13 @@ export interface CountEntityTraitDefinitionsParams {
    */
   ids?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof CountEntityTraitDefinitionsParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof CountEntityTraitDefinitionsParams
    */
@@ -54,15 +54,39 @@ export interface CountEntityTraitDefinitionsParams {
    * @type {string}
    * @memberof CountEntityTraitDefinitionsParams
    */
-  traitType?: string;
+  traitType?: CountEntityTraitDefinitionsParamsTraitTypeEnum;
 }
+
+/**
+ * @export
+ */
+export const CountEntityTraitDefinitionsParamsEntityTypeEnum = {
+  Company: "company",
+  User: "user",
+} as const;
+export type CountEntityTraitDefinitionsParamsEntityTypeEnum =
+  (typeof CountEntityTraitDefinitionsParamsEntityTypeEnum)[keyof typeof CountEntityTraitDefinitionsParamsEntityTypeEnum];
+
+/**
+ * @export
+ */
+export const CountEntityTraitDefinitionsParamsTraitTypeEnum = {
+  Boolean: "boolean",
+  Currency: "currency",
+  Date: "date",
+  Number: "number",
+  String: "string",
+  Url: "url",
+} as const;
+export type CountEntityTraitDefinitionsParamsTraitTypeEnum =
+  (typeof CountEntityTraitDefinitionsParamsTraitTypeEnum)[keyof typeof CountEntityTraitDefinitionsParamsTraitTypeEnum];
 
 /**
  * Check if a given object implements the CountEntityTraitDefinitionsParams interface.
  */
 export function instanceOfCountEntityTraitDefinitionsParams(
   value: object,
-): boolean {
+): value is CountEntityTraitDefinitionsParams {
   return true;
 }
 

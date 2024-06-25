@@ -42,8 +42,10 @@ export interface CreateApiKeyRequestBody {
 /**
  * Check if a given object implements the CreateApiKeyRequestBody interface.
  */
-export function instanceOfCreateApiKeyRequestBody(value: object): boolean {
-  if (!("name" in value)) return false;
+export function instanceOfCreateApiKeyRequestBody(
+  value: object,
+): value is CreateApiKeyRequestBody {
+  if (!("name" in value) || value["name"] === undefined) return false;
   return true;
 }
 

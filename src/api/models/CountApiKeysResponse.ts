@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { CountApiKeysParams } from "./CountApiKeysParams";
-import {
-  CountApiKeysParamsFromJSON,
-  CountApiKeysParamsFromJSONTyped,
-  CountApiKeysParamsToJSON,
-} from "./CountApiKeysParams";
 import type { CountResponse } from "./CountResponse";
 import {
   CountResponseFromJSON,
   CountResponseFromJSONTyped,
   CountResponseToJSON,
 } from "./CountResponse";
+import type { CountApiKeysParams } from "./CountApiKeysParams";
+import {
+  CountApiKeysParamsFromJSON,
+  CountApiKeysParamsFromJSONTyped,
+  CountApiKeysParamsToJSON,
+} from "./CountApiKeysParams";
 
 /**
  *
@@ -49,9 +49,11 @@ export interface CountApiKeysResponse {
 /**
  * Check if a given object implements the CountApiKeysResponse interface.
  */
-export function instanceOfCountApiKeysResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfCountApiKeysResponse(
+  value: object,
+): value is CountApiKeysResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

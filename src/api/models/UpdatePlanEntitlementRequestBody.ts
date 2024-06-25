@@ -79,8 +79,8 @@ export type UpdatePlanEntitlementRequestBodyValueTypeEnum =
  */
 export function instanceOfUpdatePlanEntitlementRequestBody(
   value: object,
-): boolean {
-  if (!("valueType" in value)) return false;
+): value is UpdatePlanEntitlementRequestBody {
+  if (!("valueType" in value) || value["valueType"] === undefined) return false;
   return true;
 }
 

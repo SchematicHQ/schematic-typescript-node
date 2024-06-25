@@ -21,22 +21,24 @@ import { mapValues } from "../runtime";
 export interface CheckFlagRequestBody {
   /**
    *
-   * @type {object}
+   * @type {{ [key: string]: string; }}
    * @memberof CheckFlagRequestBody
    */
-  company?: object;
+  company?: { [key: string]: string };
   /**
    *
-   * @type {object}
+   * @type {{ [key: string]: string; }}
    * @memberof CheckFlagRequestBody
    */
-  user?: object;
+  user?: { [key: string]: string };
 }
 
 /**
  * Check if a given object implements the CheckFlagRequestBody interface.
  */
-export function instanceOfCheckFlagRequestBody(value: object): boolean {
+export function instanceOfCheckFlagRequestBody(
+  value: object,
+): value is CheckFlagRequestBody {
   return true;
 }
 

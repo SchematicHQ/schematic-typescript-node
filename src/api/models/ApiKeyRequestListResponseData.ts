@@ -122,12 +122,12 @@ export interface ApiKeyRequestListResponseData {
  */
 export function instanceOfApiKeyRequestListResponseData(
   value: object,
-): boolean {
-  if (!("apiKeyId" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("method" in value)) return false;
-  if (!("startedAt" in value)) return false;
-  if (!("url" in value)) return false;
+): value is ApiKeyRequestListResponseData {
+  if (!("apiKeyId" in value) || value["apiKeyId"] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("method" in value) || value["method"] === undefined) return false;
+  if (!("startedAt" in value) || value["startedAt"] === undefined) return false;
+  if (!("url" in value) || value["url"] === undefined) return false;
   return true;
 }
 

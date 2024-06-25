@@ -43,9 +43,11 @@ export interface DeleteWebhookResponse {
 /**
  * Check if a given object implements the DeleteWebhookResponse interface.
  */
-export function instanceOfDeleteWebhookResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfDeleteWebhookResponse(
+  value: object,
+): value is DeleteWebhookResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

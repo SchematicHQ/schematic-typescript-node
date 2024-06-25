@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from "../runtime";
-import type { CompanySubscriptionResponseData } from "./CompanySubscriptionResponseData";
-import {
-  CompanySubscriptionResponseDataFromJSON,
-  CompanySubscriptionResponseDataFromJSONTyped,
-  CompanySubscriptionResponseDataToJSON,
-} from "./CompanySubscriptionResponseData";
 import type { GetActiveCompanySubscriptionParams } from "./GetActiveCompanySubscriptionParams";
 import {
   GetActiveCompanySubscriptionParamsFromJSON,
   GetActiveCompanySubscriptionParamsFromJSONTyped,
   GetActiveCompanySubscriptionParamsToJSON,
 } from "./GetActiveCompanySubscriptionParams";
+import type { CompanySubscriptionResponseData } from "./CompanySubscriptionResponseData";
+import {
+  CompanySubscriptionResponseDataFromJSON,
+  CompanySubscriptionResponseDataFromJSONTyped,
+  CompanySubscriptionResponseDataToJSON,
+} from "./CompanySubscriptionResponseData";
 
 /**
  *
@@ -51,9 +51,9 @@ export interface GetActiveCompanySubscriptionResponse {
  */
 export function instanceOfGetActiveCompanySubscriptionResponse(
   value: object,
-): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+): value is GetActiveCompanySubscriptionResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

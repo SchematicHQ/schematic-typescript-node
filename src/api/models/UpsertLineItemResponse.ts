@@ -43,9 +43,11 @@ export interface UpsertLineItemResponse {
 /**
  * Check if a given object implements the UpsertLineItemResponse interface.
  */
-export function instanceOfUpsertLineItemResponse(value: object): boolean {
-  if (!("data" in value)) return false;
-  if (!("params" in value)) return false;
+export function instanceOfUpsertLineItemResponse(
+  value: object,
+): value is UpsertLineItemResponse {
+  if (!("data" in value) || value["data"] === undefined) return false;
+  if (!("params" in value) || value["params"] === undefined) return false;
   return true;
 }
 

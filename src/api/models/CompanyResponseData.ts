@@ -66,12 +66,15 @@ export interface CompanyResponseData {
 /**
  * Check if a given object implements the CompanyResponseData interface.
  */
-export function instanceOfCompanyResponseData(value: object): boolean {
-  if (!("createdAt" in value)) return false;
-  if (!("environmentId" in value)) return false;
-  if (!("id" in value)) return false;
-  if (!("name" in value)) return false;
-  if (!("updatedAt" in value)) return false;
+export function instanceOfCompanyResponseData(
+  value: object,
+): value is CompanyResponseData {
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("environmentId" in value) || value["environmentId"] === undefined)
+    return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("name" in value) || value["name"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
   return true;
 }
 

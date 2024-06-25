@@ -26,13 +26,13 @@ export interface ListCompaniesParams {
    */
   ids?: Array<string>;
   /**
-   *
+   * Page limit (default 100)
    * @type {number}
    * @memberof ListCompaniesParams
    */
   limit?: number;
   /**
-   *
+   * Page offset (default 0)
    * @type {number}
    * @memberof ListCompaniesParams
    */
@@ -44,13 +44,13 @@ export interface ListCompaniesParams {
    */
   planId?: string;
   /**
-   *
+   * Search filter
    * @type {string}
    * @memberof ListCompaniesParams
    */
   q?: string;
   /**
-   *
+   * Filter out companies that already have a company override for the specified feature ID
    * @type {string}
    * @memberof ListCompaniesParams
    */
@@ -60,7 +60,9 @@ export interface ListCompaniesParams {
 /**
  * Check if a given object implements the ListCompaniesParams interface.
  */
-export function instanceOfListCompaniesParams(value: object): boolean {
+export function instanceOfListCompaniesParams(
+  value: object,
+): value is ListCompaniesParams {
   return true;
 }
 
