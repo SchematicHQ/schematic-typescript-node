@@ -66,10 +66,10 @@ export type UpdateReqCommonMetricPeriodEnum =
  * @export
  */
 export const UpdateReqCommonValueTypeEnum = {
-  Boolean: "Boolean",
-  Numeric: "Numeric",
-  Trait: "Trait",
-  Unlimited: "Unlimited",
+  Boolean: "boolean",
+  Numeric: "numeric",
+  Trait: "trait",
+  Unlimited: "unlimited",
 } as const;
 export type UpdateReqCommonValueTypeEnum =
   (typeof UpdateReqCommonValueTypeEnum)[keyof typeof UpdateReqCommonValueTypeEnum];

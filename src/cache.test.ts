@@ -8,7 +8,7 @@ describe("LocalCache", () => {
   let cache: LocalCache<any>;
 
   beforeEach(() => {
-    cache = new LocalCache({ size: 100, ttl: 5000 });
+    cache = new LocalCache({ maxItems: 10, ttl: 5000 });
   });
 
   afterEach(() => {
@@ -29,8 +29,8 @@ describe("LocalCache", () => {
     expect(value).toBeUndefined();
   });
 
-  it("should evict least recently used item when maxSize is exceeded", async () => {
-    const smallCache = new LocalCache({ size: 60, ttl: 5000 }); // Small maxSize to force eviction
+  it("should evict least recently used item when maxItems is exceeded", async () => {
+    const smallCache = new LocalCache({ maxItems: 3, ttl: 5000 }); // Small maxItems to force eviction
 
     await smallCache.set("key1", { data: "value1" });
     await smallCache.set("key2", { data: "value2" });
@@ -40,10 +40,10 @@ describe("LocalCache", () => {
     await smallCache.get("key1");
     await smallCache.get("key3");
 
-    // Add another item to exceed maxSize
+    // Add another item to exceed maxItems
     await smallCache.set("key4", { data: "value4" });
 
-    // Log values after eviction
+    // Check values after eviction
     const value1 = await smallCache.get("key1");
     const value2 = await smallCache.get("key2");
     const value3 = await smallCache.get("key3");
@@ -68,23 +68,34 @@ describe("LocalCache", () => {
     expect(item.accessCounter).toBe(initialAccessCounter + 1); // Ensure the counter is incremented by 1
   });
 
-  it("should remove the correct size when item is evicted", async () => {
+  it("should remove the item when evicted", async () => {
     await cache.set("key1", { data: "value1" });
 
-    const item = (cache as any).cache.get("key1");
-    const initialSize = (cache as any).currentSize;
+    const initialSize = (cache as any).cache.size;
 
-    cache["evictItem"]("key1", item);
+    cache["evictItem"]("key1", (cache as any).cache.get("key1"));
 
-    const currentSize = (cache as any).currentSize;
-    expect(currentSize).toBe(initialSize - item.size);
+    const currentSize = (cache as any).cache.size;
+    expect(currentSize).toBe(initialSize - 1);
   });
 
-  it("should not store items if maxSize is 0", async () => {
-    const zeroSizeCache = new LocalCache({ size: 0 });
-    await zeroSizeCache.set("key1", { data: "value1" });
-    const value = await zeroSizeCache.get("key1");
+  it("should not store items if maxItems is 0", async () => {
+    const zeroItemCache = new LocalCache({ maxItems: 0 });
+    await zeroItemCache.set("key1", { data: "value1" });
+    const value = await zeroItemCache.get("key1");
     expect(value).toBeUndefined();
-    zeroSizeCache.resetCache();
+    zeroItemCache.resetCache();
+  });
+
+  it("should maintain the correct number of items", async () => {
+    const maxItems = 5;
+    const testCache = new LocalCache({ maxItems, ttl: 5000 });
+
+    for (let i = 0; i < 10; i++) {
+      await testCache.set(`key${i}`, { data: `value${i}` });
+    }
+
+    expect((testCache as any).cache.size).toBe(maxItems);
+    testCache.resetCache();
   });
 });

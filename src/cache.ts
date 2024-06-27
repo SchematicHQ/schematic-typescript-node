@@ -8,26 +8,24 @@ interface CacheProvider<T> {
 type CacheItem<T> = {
   value: T;
   accessCounter: number;
-  size: number;
   expiration: number;
   timeoutId?: ReturnType<typeof setTimeout>;
 };
 
 export interface CacheOptions {
-  size?: number;
+  maxItems?: number;
   ttl?: number;
 }
 
 class LocalCache<T> implements CacheProvider<T> {
   private cache: Map<string, CacheItem<T>>;
-  private maxSize: number;
-  private currentSize: number = 0;
+  private maxItems: number;
   private accessCounter: number = 0;
   private defaultTTL: number;
 
-  constructor({ size = 10 * 1024, ttl = 5000 }: CacheOptions = {}) {
+  constructor({ maxItems = 1000, ttl = 5000 }: CacheOptions = {}) {
     this.cache = new Map();
-    this.maxSize = size;
+    this.maxItems = maxItems;
     this.defaultTTL = ttl;
   }
 
@@ -50,11 +48,10 @@ class LocalCache<T> implements CacheProvider<T> {
   }
 
   async set(key: string, value: T, ttlOverride?: number): Promise<void> {
-    // If maxSize is 0, caching is disabled
-    if (this.maxSize === 0) return;
+    // If maxItems is 0, caching is disabled
+    if (this.maxItems === 0) return;
 
     const ttl = ttlOverride ?? this.defaultTTL;
-    const size = this.getObjectSize(value);
 
     // Check if the key already exists in the cache
     const existingItem = this.cache.get(key);
@@ -65,20 +62,18 @@ class LocalCache<T> implements CacheProvider<T> {
     // Evict expired items
     this.evictExpiredItems();
 
-    // Evict records if the cache size exceeds the max size
-    this.evictLRUItems(size);
+    // Evict LRU items if the cache size exceeds the max items
+    this.evictLRUItems();
 
     // Add the new item to the cache
     this.accessCounter++;
     const newItem: CacheItem<T> = {
       value,
       accessCounter: this.accessCounter,
-      size,
       expiration: Date.now() + ttl,
       timeoutId: setTimeout(() => this.evictItem(key, newItem), ttl),
     };
     this.cache.set(key, newItem);
-    this.currentSize += size;
   }
 
   resetCache(): void {
@@ -88,12 +83,7 @@ class LocalCache<T> implements CacheProvider<T> {
       }
     });
     this.cache.clear();
-    this.currentSize = 0;
     this.accessCounter = 0;
-  }
-
-  private getObjectSize(value: T): number {
-    return new Blob([JSON.stringify(value)]).size;
   }
 
   private evictItem(key: string, item: CacheItem<T>): void {
@@ -101,7 +91,6 @@ class LocalCache<T> implements CacheProvider<T> {
       clearTimeout(item.timeoutId);
     }
     this.cache.delete(key);
-    this.currentSize -= item.size;
   }
 
   private evictExpiredItems(): void {
@@ -112,8 +101,8 @@ class LocalCache<T> implements CacheProvider<T> {
     });
   }
 
-  private evictLRUItems(size: number): void {
-    while (this.currentSize + size > this.maxSize) {
+  private evictLRUItems(): void {
+    while (this.cache.size >= this.maxItems) {
       let oldestKey: string | undefined;
       let oldestAccessCounter = Number.MAX_SAFE_INTEGER;
 

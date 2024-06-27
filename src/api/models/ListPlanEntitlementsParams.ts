@@ -61,6 +61,12 @@ export interface ListPlanEntitlementsParams {
    * @memberof ListPlanEntitlementsParams
    */
   planIds?: Array<string>;
+  /**
+   *
+   * @type {string}
+   * @memberof ListPlanEntitlementsParams
+   */
+  q?: string;
 }
 
 /**
@@ -93,6 +99,7 @@ export function ListPlanEntitlementsParamsFromJSONTyped(
     offset: json["offset"] == null ? undefined : json["offset"],
     planId: json["plan_id"] == null ? undefined : json["plan_id"],
     planIds: json["plan_ids"] == null ? undefined : json["plan_ids"],
+    q: json["q"] == null ? undefined : json["q"],
   };
 }
 
@@ -110,5 +117,6 @@ export function ListPlanEntitlementsParamsToJSON(
     offset: value["offset"],
     plan_id: value["planId"],
     plan_ids: value["planIds"],
+    q: value["q"],
   };
 }

@@ -36,6 +36,12 @@ export interface UpdateWebhookRequestBody {
    * @type {string}
    * @memberof UpdateWebhookRequestBody
    */
+  status?: UpdateWebhookRequestBodyStatusEnum;
+  /**
+   *
+   * @type {string}
+   * @memberof UpdateWebhookRequestBody
+   */
   url?: string;
 }
 
@@ -71,6 +77,16 @@ export type UpdateWebhookRequestBodyRequestTypesEnum =
   (typeof UpdateWebhookRequestBodyRequestTypesEnum)[keyof typeof UpdateWebhookRequestBodyRequestTypesEnum];
 
 /**
+ * @export
+ */
+export const UpdateWebhookRequestBodyStatusEnum = {
+  Active: "active",
+  Inactive: "inactive",
+} as const;
+export type UpdateWebhookRequestBodyStatusEnum =
+  (typeof UpdateWebhookRequestBodyStatusEnum)[keyof typeof UpdateWebhookRequestBodyStatusEnum];
+
+/**
  * Check if a given object implements the UpdateWebhookRequestBody interface.
  */
 export function instanceOfUpdateWebhookRequestBody(
@@ -96,6 +112,7 @@ export function UpdateWebhookRequestBodyFromJSONTyped(
     name: json["name"] == null ? undefined : json["name"],
     requestTypes:
       json["request_types"] == null ? undefined : json["request_types"],
+    status: json["status"] == null ? undefined : json["status"],
     url: json["url"] == null ? undefined : json["url"],
   };
 }
@@ -109,6 +126,7 @@ export function UpdateWebhookRequestBodyToJSON(
   return {
     name: value["name"],
     request_types: value["requestTypes"],
+    status: value["status"],
     url: value["url"],
   };
 }

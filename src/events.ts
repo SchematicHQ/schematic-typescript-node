@@ -2,7 +2,7 @@ import { CreateEventRequestBody, EventsApi } from "./api";
 import { ConsoleLogger, Logger } from "./logger";
 
 const DEFAULT_FLUSH_INTERVAL = 1000; // 1 second
-const DEFAULT_MAX_SIZE = 10 * 1024; // 10 KB
+const DEFAULT_MAX_SIZE = 1000; // 1000 items
 
 interface EventBufferOptions {
   interval?: number;
@@ -11,7 +11,6 @@ interface EventBufferOptions {
 }
 
 class EventBuffer {
-  private currentSize: number = 0;
   private events: CreateEventRequestBody[] = [];
   private eventsApi: EventsApi;
   private interval: number;
@@ -37,7 +36,6 @@ class EventBuffer {
 
     const events = [...this.events];
     this.events = [];
-    this.currentSize = 0;
 
     try {
       await this.eventsApi.createEventBatch({
@@ -54,13 +52,11 @@ class EventBuffer {
       return;
     }
 
-    const eventSize = Buffer.byteLength(JSON.stringify(event));
-    if (this.currentSize + eventSize > this.maxSize) {
+    if (this.events.length >= this.maxSize) {
       await this.flush();
     }
 
     this.events.push(event);
-    this.currentSize += eventSize;
   }
 
   public async stop(): Promise<void> {

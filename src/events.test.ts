@@ -40,10 +40,9 @@ describe("EventBuffer", () => {
       eventType: "track",
       sentAt: new Date(),
     };
-    const eventSize = Buffer.byteLength(JSON.stringify(event1));
     const buffer = new EventBuffer(mockEventsApi, {
       logger: mockLogger,
-      maxSize: eventSize - 1,
+      maxSize: 1, // Set max size to 1 item
       interval: 1000,
     });
 
@@ -54,17 +53,20 @@ describe("EventBuffer", () => {
     // Force first flush by exceeding max size
     await buffer.push(event2);
 
-    // Wait for the next periodic flush
-    jest.advanceTimersByTime(1001);
-    expect(mockEventsApi.createEventBatch).toHaveBeenCalledTimes(2);
+    expect(mockEventsApi.createEventBatch).toHaveBeenCalledTimes(1);
     expect(mockEventsApi.createEventBatch).toHaveBeenCalledWith({
       createEventBatchRequestBody: { events: [event1] },
     });
+
+    // Wait for the next periodic flush
+    jest.advanceTimersByTime(1001);
+    expect(mockEventsApi.createEventBatch).toHaveBeenCalledTimes(2);
     expect(mockEventsApi.createEventBatch).toHaveBeenCalledWith({
       createEventBatchRequestBody: { events: [event2] },
     });
   });
 
+  // The rest of the tests remain unchanged as they don't directly test the maxSize behavior
   it("should log error if flushing fails", async () => {
     mockEventsApi.createEventBatch.mockRejectedValue(new Error("Flush error"));
     const buffer = new EventBuffer(mockEventsApi, {

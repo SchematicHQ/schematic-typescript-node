@@ -130,6 +130,7 @@ export interface CountPlanEntitlementsRequest {
   ids?: Array<string>;
   planId?: string;
   planIds?: Array<string>;
+  q?: string;
   limit?: number;
   offset?: number;
 }
@@ -201,6 +202,7 @@ export interface ListPlanEntitlementsRequest {
   ids?: Array<string>;
   planId?: string;
   planIds?: Array<string>;
+  q?: string;
   limit?: number;
   offset?: number;
 }
@@ -528,6 +530,10 @@ export class EntitlementsApi extends runtime.BaseAPI {
 
     if (requestParameters["planIds"] != null) {
       queryParameters["plan_ids"] = requestParameters["planIds"];
+    }
+
+    if (requestParameters["q"] != null) {
+      queryParameters["q"] = requestParameters["q"];
     }
 
     if (requestParameters["limit"] != null) {
@@ -1281,6 +1287,10 @@ export class EntitlementsApi extends runtime.BaseAPI {
 
     if (requestParameters["planIds"] != null) {
       queryParameters["plan_ids"] = requestParameters["planIds"];
+    }
+
+    if (requestParameters["q"] != null) {
+      queryParameters["q"] = requestParameters["q"];
     }
 
     if (requestParameters["limit"] != null) {
