@@ -63,5 +63,5 @@
     "release": "npx standard-version && git push --follow-tags && yarn publish",
     "test": "jest"
   },
-  "version": "1.0.9"
+  "version": "1.0.10"
 }

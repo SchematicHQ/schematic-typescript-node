@@ -78,10 +78,10 @@ export type CreatePlanEntitlementRequestBodyMetricPeriodEnum =
  * @export
  */
 export const CreatePlanEntitlementRequestBodyValueTypeEnum = {
-  Boolean: "Boolean",
-  Numeric: "Numeric",
-  Trait: "Trait",
-  Unlimited: "Unlimited",
+  Boolean: "boolean",
+  Numeric: "numeric",
+  Trait: "trait",
+  Unlimited: "unlimited",
 } as const;
 export type CreatePlanEntitlementRequestBodyValueTypeEnum =
   (typeof CreatePlanEntitlementRequestBodyValueTypeEnum)[keyof typeof CreatePlanEntitlementRequestBodyValueTypeEnum];

@@ -36,6 +36,12 @@ export interface WebhookEventResponseData {
    * @type {string}
    * @memberof WebhookEventResponseData
    */
+  payload: string;
+  /**
+   *
+   * @type {string}
+   * @memberof WebhookEventResponseData
+   */
   requestType: string;
   /**
    *
@@ -77,6 +83,7 @@ export function instanceOfWebhookEventResponseData(
 ): value is WebhookEventResponseData {
   if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
   if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("payload" in value) || value["payload"] === undefined) return false;
   if (!("requestType" in value) || value["requestType"] === undefined)
     return false;
   if (!("status" in value) || value["status"] === undefined) return false;
@@ -101,6 +108,7 @@ export function WebhookEventResponseDataFromJSONTyped(
   return {
     createdAt: new Date(json["created_at"]),
     id: json["id"],
+    payload: json["payload"],
     requestType: json["request_type"],
     responseCode:
       json["response_code"] == null ? undefined : json["response_code"],
@@ -120,6 +128,7 @@ export function WebhookEventResponseDataToJSON(
   return {
     created_at: value["createdAt"].toISOString(),
     id: value["id"],
+    payload: value["payload"],
     request_type: value["requestType"],
     response_code: value["responseCode"],
     sent_at:

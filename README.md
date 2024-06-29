@@ -27,19 +27,17 @@ const client = new Schematic(apiKey);
 client.close();
 ```
 
-By default, the client will do some local caching for flag checks. If you would like to change this behavior, you can do so using an initialization option to specify the max size of the cache (in bytes) and the max age of the cache (in seconds):
+By default, the client will do some local caching for flag checks. If you would like to change this behavior, you can do so using an initialization option to specify the max size of the cache (in terms of number of records) and the max age of the cache (in milliseconds):
 
 ```ts
 import { LocalCache, Schematic } from "@schematichq/schematic-typescript-node";
 
 const apiKey = process.env.SCHEMATIC_API_KEY;
-const cacheSizeBytes = 1000000;
+const cacheSize = 100;
 const cacheTTL = 1000; // in milliseconds
 const client = new Schematic(apiKey, {
   cacheProviders: {
-    flagChecks: [
-      new LocalCache<boolean>({ size: cacheSizeBytes, ttl: cacheTTL }),
-    ],
+    flagChecks: [new LocalCache<boolean>({ size: cacheSize, ttl: cacheTTL })],
   },
 });
 

@@ -66,10 +66,10 @@ export type UpdateCompanyOverrideRequestBodyMetricPeriodEnum =
  * @export
  */
 export const UpdateCompanyOverrideRequestBodyValueTypeEnum = {
-  Boolean: "Boolean",
-  Numeric: "Numeric",
-  Trait: "Trait",
-  Unlimited: "Unlimited",
+  Boolean: "boolean",
+  Numeric: "numeric",
+  Trait: "trait",
+  Unlimited: "unlimited",
 } as const;
 export type UpdateCompanyOverrideRequestBodyValueTypeEnum =
   (typeof UpdateCompanyOverrideRequestBodyValueTypeEnum)[keyof typeof UpdateCompanyOverrideRequestBodyValueTypeEnum];

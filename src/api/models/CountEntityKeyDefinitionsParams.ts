@@ -32,12 +32,6 @@ export interface CountEntityKeyDefinitionsParams {
    */
   ids?: Array<string>;
   /**
-   *
-   * @type {string}
-   * @memberof CountEntityKeyDefinitionsParams
-   */
-  key?: string;
-  /**
    * Page limit (default 100)
    * @type {number}
    * @memberof CountEntityKeyDefinitionsParams
@@ -49,6 +43,12 @@ export interface CountEntityKeyDefinitionsParams {
    * @memberof CountEntityKeyDefinitionsParams
    */
   offset?: number;
+  /**
+   *
+   * @type {string}
+   * @memberof CountEntityKeyDefinitionsParams
+   */
+  q?: string;
 }
 
 /**
@@ -86,9 +86,9 @@ export function CountEntityKeyDefinitionsParamsFromJSONTyped(
   return {
     entityType: json["entity_type"] == null ? undefined : json["entity_type"],
     ids: json["ids"] == null ? undefined : json["ids"],
-    key: json["key"] == null ? undefined : json["key"],
     limit: json["limit"] == null ? undefined : json["limit"],
     offset: json["offset"] == null ? undefined : json["offset"],
+    q: json["q"] == null ? undefined : json["q"],
   };
 }
 
@@ -101,8 +101,8 @@ export function CountEntityKeyDefinitionsParamsToJSON(
   return {
     entity_type: value["entityType"],
     ids: value["ids"],
-    key: value["key"],
     limit: value["limit"],
     offset: value["offset"],
+    q: value["q"],
   };
 }

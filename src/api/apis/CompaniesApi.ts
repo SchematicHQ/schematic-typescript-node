@@ -151,7 +151,7 @@ export interface CountCompaniesRequest {
 export interface CountEntityKeyDefinitionsRequest {
   entityType?: CountEntityKeyDefinitionsEntityTypeEnum;
   ids?: Array<string>;
-  key?: string;
+  q?: string;
   limit?: number;
   offset?: number;
 }
@@ -268,7 +268,7 @@ export interface ListCompanyPlansRequest {
 export interface ListEntityKeyDefinitionsRequest {
   entityType?: ListEntityKeyDefinitionsEntityTypeEnum;
   ids?: Array<string>;
-  key?: string;
+  q?: string;
   limit?: number;
   offset?: number;
 }
@@ -412,8 +412,8 @@ export class CompaniesApi extends runtime.BaseAPI {
       queryParameters["ids"] = requestParameters["ids"];
     }
 
-    if (requestParameters["key"] != null) {
-      queryParameters["key"] = requestParameters["key"];
+    if (requestParameters["q"] != null) {
+      queryParameters["q"] = requestParameters["q"];
     }
 
     if (requestParameters["limit"] != null) {
@@ -1690,8 +1690,8 @@ export class CompaniesApi extends runtime.BaseAPI {
       queryParameters["ids"] = requestParameters["ids"];
     }
 
-    if (requestParameters["key"] != null) {
-      queryParameters["key"] = requestParameters["key"];
+    if (requestParameters["q"] != null) {
+      queryParameters["q"] = requestParameters["q"];
     }
 
     if (requestParameters["limit"] != null) {
